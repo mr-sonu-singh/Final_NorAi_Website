@@ -74,12 +74,13 @@ export default function CareersPage() {
         />
         <Container size="default" className="relative z-10">
           <div className="mx-auto max-w-3xl space-y-6 text-center">
-            <p className="inline-flex items-center gap-2 rounded-full border border-line-subtle bg-canvas-pure px-3 py-1 text-[13px] font-medium text-ink-secondary">
-              Careers
-            </p>
+            <div className="flex items-center justify-center gap-2 text-xs font-mono font-semibold text-accent-500 tracking-wider uppercase mb-2">
+              <span>// OPEN POSITIONS · ENGINEERING FOUNDRY</span>
+            </div>
             <Heading as="h1" variant="display-xl" className="text-balance text-ink-primary">
               Do the best work of your life — from anywhere in India.
             </Heading>
+
             <Text variant="body-lg" as="p" className="mx-auto max-w-xl leading-relaxed text-ink-body">
               We are a lean engineering and product team operating out of Uttar Pradesh, India. No
               bloated process, no throwaway work — just practical AI products that people rely on
@@ -87,6 +88,7 @@ export default function CareersPage() {
             </Text>
           </div>
         </Container>
+
       </Section>
 
       {/* Culture */}

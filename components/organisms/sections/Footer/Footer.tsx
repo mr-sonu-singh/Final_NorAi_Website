@@ -33,7 +33,7 @@ export const DEFAULT_FOOTER_COLUMNS: FooterColumn[] = [
       { label: 'Our Story', href: '/about' },
       { label: 'Team', href: '/team' },
       { label: 'Careers', href: '/careers' },
-      { label: 'Enterprise Services', href: '/services' },
+      { label: 'Custom AI services', href: '/services' },
       { label: 'Contact', href: '/contact' },
     ],
   },
@@ -104,7 +104,7 @@ export function Footer({
         {/* Pre-Footer CTA Block */}
         <div className="rounded-2xl bg-[#16324E] border border-[rgba(253,251,247,0.1)] p-8 md:p-12 mb-16 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="max-w-xl text-center md:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C2553A]/20 text-[#F5E1DA] text-xs font-semibold mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C2553A]/20 text-[#F5E1DA] text-xs font-semibold mb-4 lowercase-none">
               Start Automating Today
             </div>
             <h3 className="font-display text-3xl md:text-4xl text-white font-normal leading-tight tracking-tight">
@@ -202,7 +202,8 @@ export function Footer({
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="text-slate-300 text-sm font-normal transition-colors duration-150 hover:text-[#C2553A]"
+                    variant="unstyled"
+                    className="no-underline text-[#CBD5E1] text-sm font-normal transition-colors duration-150 hover:text-white hover:underline hover:decoration-[#D4A574]/60 hover:underline-offset-4"
                   >
                     {link.label}
                   </Link>
