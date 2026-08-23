@@ -10,22 +10,18 @@ import {
   ShieldCheck,
   CheckCircle2,
 } from 'lucide-react';
-import { ProductStudio } from '@/components/organisms/ProductStudio';
+import { ProductStudio } from '@/components/organisms';
 
 export default function ProductsPage() {
   return (
     <div className="text-ink-primary min-h-screen font-sans bg-canvas-base selection:bg-accent-500 selection:text-white">
       {/* Editorial Hero Header */}
-      <section className="relative pt-16 pb-12 md:pt-24 md:pb-16 border-b border-[rgba(13,37,61,0.08)]">
+      <section className="relative pt-16 pb-14 md:pt-24 md:pb-20 border-b border-[rgba(13,37,61,0.08)]">
         <MeshGradient intensity="subtle" />
 
         <Container size="default" className="relative z-10">
-          <div className="max-w-3xl space-y-6 text-left">
-            <div className="flex items-center gap-2 text-xs font-mono font-semibold text-accent-500 tracking-wider uppercase">
-              <span>// SELF-SERVE UTILITIES · 2026</span>
-            </div>
-
-            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-normal text-ink-primary leading-tight tracking-tight">
+          <div className="max-w-4xl space-y-6 text-left">
+            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal text-ink-primary leading-[1.04] tracking-tight">
               Four tools. <br />
               <span className="italic text-accent-500 font-normal">Each solves one problem.</span>
             </h1>

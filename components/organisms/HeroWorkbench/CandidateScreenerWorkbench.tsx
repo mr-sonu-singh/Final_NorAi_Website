@@ -2,7 +2,10 @@
 
 import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
+
+import { Link } from '@/components/atoms/Link';
 import { Check, Copy, ArrowRight } from 'lucide-react';
+
 
 interface Candidate {
   id: string;
@@ -284,13 +287,14 @@ export function CandidateScreenerWorkbench() {
         <span className="text-ink-secondary">
           142 resumes parsed in <span className="font-mono font-semibold text-ink-primary">8.4s</span>
         </span>
-        <a
+        <Link
           href="/products/resume-shortlister"
           className="font-medium text-accent-500 hover:text-accent-600 inline-flex items-center gap-1"
         >
           <span>Open Full Tool</span>
           <ArrowRight className="w-3.5 h-3.5" />
-        </a>
+        </Link>
+
       </div>
     </div>
   );

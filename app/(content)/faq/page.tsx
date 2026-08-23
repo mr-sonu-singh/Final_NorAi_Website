@@ -122,10 +122,7 @@ export default function FAQPage() {
           className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-canvas-paper [mask-image:linear-gradient(to_bottom,black,transparent)]"
         />
         <Container size="default" className="relative z-10">
-          <div className="mx-auto max-w-3xl space-y-5 text-center">
-            <p className="inline-flex items-center gap-2 rounded-full border border-line-subtle bg-canvas-pure px-3 py-1 text-[13px] font-medium text-ink-secondary">
-              Help center
-            </p>
+          <div className="mx-auto max-w-3xl space-y-4 text-center">
             <Heading as="h1" variant="display-xl" className="text-balance text-ink-primary">
               Frequently asked questions
             </Heading>
@@ -134,6 +131,8 @@ export default function FAQPage() {
             </Text>
           </div>
         </Container>
+
+
       </Section>
 
       {/* Search & filters */}

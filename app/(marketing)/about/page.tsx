@@ -1,33 +1,31 @@
 import React from 'react';
+import { cn } from '@/lib/utils';
 import { Container } from '@/components/foundation/Container';
 import { Section } from '@/components/foundation/Section';
 import { AnimatedSection, Reveal } from '@/components/foundation';
 import NextLink from 'next/link';
-import { ArrowRight, ShieldCheck, HeartHandshake, Hammer } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { buildMetadata } from '@/lib/seo';
 
 export const metadata = buildMetadata({
   path: '/about',
-  title: 'About Us & Regional AI Engineering Hub — NorAI Technologies',
+  title: 'Our Story & Philosophy — NorAI Technologies',
   description:
-    'Operating out of Uttar Pradesh, India, NorAI Technologies builds accessible, modular AI infrastructure and high-frequency micro-SaaS utilities.',
+    'Born in Uttar Pradesh. Building deterministic, single-purpose AI tools that save real operational hours for real teams.',
 });
 
 const VALUES = [
   {
-    number: '01',
     title: 'Privacy first by design',
-    desc: 'Your documents are processed in transient RAM containers, delivered, and immediately forgotten. They never train anyone else’s model — not even ours.',
+    desc: 'Your documents are processed in transient RAM containers, delivered, and immediately forgotten. They never train anyone else\u2019s model \u2014 not even ours.',
   },
   {
-    number: '02',
     title: 'Small enough to care',
     desc: 'A five-person team that answers its own email, fixes its own bugs, and knows every customer by workflow, not ticket number.',
   },
   {
-    number: '03',
     title: 'Shipped weekly on rhythm',
-    desc: 'Small deterministic tools released on a rhythm you can set a watch to. No roadmaps behind NDAs — just improvements you can use on Monday.',
+    desc: 'Small deterministic tools released on a rhythm you can set a watch to. No roadmaps behind NDAs \u2014 just improvements you can use on Monday.',
   },
 ];
 
@@ -36,13 +34,14 @@ export default function AboutPage() {
     '@context': 'https://schema.org',
     '@type': 'AboutPage',
     name: 'About NorAI Technologies',
-    description: 'Engineering accessible, modular AI infrastructure and micro-SaaS utilities.',
-    publisher: {
+    url: 'https://norai.in/about',
+    mainEntity: {
       '@type': 'Organization',
-      name: 'NorAI Technologies Pvt. Ltd.',
-      url: 'https://norai-c8yy.onrender.com',
-      address: {
-        '@type': 'PostalAddress',
+      name: 'NorAI Technologies',
+      url: 'https://norai.in',
+      foundingLocation: {
+        '@type': 'Place',
+        name: 'Uttar Pradesh, India',
         addressRegion: 'Uttar Pradesh',
         addressCountry: 'India',
       },
@@ -60,14 +59,11 @@ export default function AboutPage() {
       <Section className="pb-14 pt-16 md:pb-20 md:pt-24 border-b border-[rgba(13,37,61,0.08)]">
         <Container size="default">
           <Reveal>
-            <div className="flex items-center gap-2 text-xs font-mono font-semibold text-accent-500 tracking-wider uppercase mb-3">
-              <span>// FOUNDRY ORIGIN &amp; PHILOSOPHY</span>
-            </div>
-            <h1 className="max-w-3xl font-display text-5xl sm:text-6xl md:text-7xl font-normal leading-[1.04] tracking-tight text-ink-primary">
+            <h1 className="max-w-4xl font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal leading-[1.04] tracking-tight text-ink-primary">
               We&rsquo;re building from <br />
               <span className="italic text-accent-500 font-normal">Uttar Pradesh.</span>
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-body">
+            <p className="mt-6 max-w-2xl text-lg md:text-xl leading-relaxed text-ink-body">
               World-class AI engineering doesn&rsquo;t only happen in San Francisco. It happens wherever someone refuses to accept broken workflows — including a small workshop in Uttar Pradesh, where ours started.
             </p>
           </Reveal>
@@ -125,27 +121,26 @@ export default function AboutPage() {
       <Section className="py-16 md:py-24 border-b border-[rgba(13,37,61,0.08)]">
         <Container size="default">
           <div className="max-w-2xl mb-12 text-left space-y-3">
-            <span className="font-mono text-xs font-semibold text-accent-500 uppercase tracking-wider block">
-              // OPERATING AXIOMS
-            </span>
-            <h2 className="font-display text-3xl sm:text-4xl text-ink-primary font-normal">
+            <h2 className="font-display text-4xl sm:text-5xl text-ink-primary font-normal">
               How we work &amp; what we guarantee.
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-            {VALUES.map((val) => (
+          <div className="border-t border-b border-[rgba(13,37,61,0.12)] divide-y md:divide-y-0 md:divide-x divide-[rgba(13,37,61,0.12)] grid grid-cols-1 md:grid-cols-3 py-6 text-left">
+            {VALUES.map((val, idx) => (
               <div
-                key={val.number}
-                className="p-8 rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] space-y-3 shadow-sm flex flex-col justify-between"
+                key={val.title}
+                className={cn(
+                  'py-6 md:py-8 space-y-3 flex flex-col justify-between',
+                  idx === 0 ? 'pr-0 md:pr-8' : idx === 1 ? 'px-0 md:px-8' : 'pl-0 md:pl-8'
+                )}
               >
-                <span className="font-mono text-xs font-bold text-accent-500 block">
-                  {val.number}
-                </span>
-                <h3 className="font-display text-2xl text-ink-primary font-normal">
-                  {val.title}
-                </h3>
-                <p className="text-xs text-ink-body leading-relaxed">
+                <div className="space-y-2">
+                  <h3 className="font-display text-2xl text-ink-primary font-normal">
+                    {val.title}
+                  </h3>
+                </div>
+                <p className="text-sm text-ink-body leading-relaxed">
                   {val.desc}
                 </p>
               </div>

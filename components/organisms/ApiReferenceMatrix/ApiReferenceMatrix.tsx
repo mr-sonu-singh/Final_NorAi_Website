@@ -89,7 +89,7 @@ export function ApiReferenceMatrix() {
   const [language, setLanguage] = useState<'curl' | 'ts'>('curl');
   const [copied, setCopied] = useState(false);
 
-  const endpoint = ENDPOINTS.find((e) => e.id === selectedId) || ENDPOINTS[0];
+  const endpoint = (ENDPOINTS.find((e) => e.id === selectedId) || ENDPOINTS[0]) as Endpoint;
   const activeCode = language === 'curl' ? endpoint.curl : endpoint.typescript;
 
   const handleCopy = () => {
@@ -100,12 +100,6 @@ export function ApiReferenceMatrix() {
 
   return (
     <div className="w-full text-left font-sans space-y-6">
-      <div className="border-b border-[rgba(13,37,61,0.08)] pb-3">
-        <span className="font-mono text-xs font-semibold text-accent-500 uppercase tracking-wider">
-          // INTERACTIVE API REFERENCE MATRIX
-        </span>
-      </div>
-
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Endpoint Selector */}
         <div className="lg:col-span-4 space-y-2">
@@ -131,7 +125,7 @@ export function ApiReferenceMatrix() {
                     {ep.path}
                   </span>
                 </div>
-                <h4 className="font-display text-base text-ink-primary font-normal">
+                <h4 className="font-display text-lg text-ink-primary font-normal">
                   {ep.title}
                 </h4>
                 <p className="text-xs text-ink-secondary line-clamp-2 mt-1">

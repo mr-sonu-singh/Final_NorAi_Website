@@ -8,17 +8,14 @@ import { AnimatedSection } from '@/components/foundation/AnimatedSection';
 import { MeshGradient } from '@/components/atoms/MeshGradient';
 import {
   ArrowRight,
-  FileText,
-  Headphones,
-  MessageSquare,
-  Newspaper,
   ShieldCheck,
   CheckCircle2,
-  ExternalLink,
 } from 'lucide-react';
-import { CandidateScreenerWorkbench } from '@/components/organisms/HeroWorkbench';
-import { ArchitecturalSpecMatrix } from '@/components/organisms/ArchitecturalSpecMatrix';
-import { ConnectedPipelineRail } from '@/components/organisms/ConnectedPipelineRail';
+import {
+  CandidateScreenerWorkbench,
+  ArchitecturalSpecMatrix,
+  ConnectedPipelineRail,
+} from '@/components/organisms';
 
 export default function HomePage() {
   return (
@@ -26,20 +23,15 @@ export default function HomePage() {
       {/* =========================================================================
           SECTION 1: HERO (Editorial Full-Bleed with Interactive Workbench)
           ========================================================================= */}
-      <section className="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden bg-canvas-base">
+      <section className="relative pt-16 pb-20 md:pt-24 md:pb-32 overflow-hidden bg-canvas-base">
         <MeshGradient intensity="medium" />
 
         <Container size="default" className="relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
             {/* Left Content Column */}
-            <div className="lg:col-span-6 space-y-6 text-left">
-              {/* Quiet Typographic Eyebrow */}
-              <div className="flex items-center gap-2 text-xs font-mono font-semibold text-accent-500 tracking-wider uppercase">
-                <span>// NORAI AUTONOMOUS OPERATIONS · 2026</span>
-              </div>
-
+            <div className="lg:col-span-6 space-y-8 text-left">
               {/* Headline in Instrument Serif */}
-              <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-normal text-ink-primary leading-[1.05] tracking-tight">
+              <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal text-ink-primary leading-[1.02] tracking-tight">
                 Your operations, <br />
                 <span className="italic text-accent-500 font-normal">on autopilot.</span>
               </h1>
@@ -65,7 +57,7 @@ export default function HomePage() {
               </div>
 
               {/* SLA / Trust Badge */}
-              <div className="pt-4 flex items-center gap-6 text-xs text-ink-secondary">
+              <div className="pt-2 flex items-center gap-6 text-xs text-ink-secondary">
                 <div className="flex items-center gap-1.5">
                   <ShieldCheck className="w-4 h-4 text-accent-secondary" />
                   <span>Encrypted data isolation</span>
@@ -110,11 +102,8 @@ export default function HomePage() {
           ========================================================================= */}
       <AnimatedSection className="py-20 md:py-28 bg-canvas-base">
         <Container size="default">
-          <div className="max-w-2xl mb-14 text-left space-y-3">
-            <span className="font-mono text-xs font-semibold text-accent-500 uppercase tracking-wider block">
-              // MICRO-SAAS UTILITIES
-            </span>
-            <h2 className="font-display text-4xl md:text-5xl font-normal text-ink-primary leading-tight tracking-tight">
+          <div className="max-w-2xl mb-14 text-left space-y-4">
+            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-normal text-ink-primary leading-tight tracking-tight">
               Purpose-built tools. <br />
               <span className="italic text-accent-500 font-normal">Zero operational drag.</span>
             </h2>

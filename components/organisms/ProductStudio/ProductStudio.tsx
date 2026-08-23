@@ -83,7 +83,8 @@ const PRODUCTS: ProductItem[] = [
 
 export function ProductStudio() {
   const [selectedIdx, setSelectedIdx] = useState(0);
-  const activeProduct = PRODUCTS[selectedIdx] || PRODUCTS[0]!;
+  const activeProduct = (PRODUCTS[selectedIdx] || PRODUCTS[0]) as ProductItem;
+
 
   // Demo interactive states
   const [resumeThreshold, setResumeThreshold] = useState(80);

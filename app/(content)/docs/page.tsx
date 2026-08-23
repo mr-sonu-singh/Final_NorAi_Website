@@ -2,10 +2,9 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { Container } from '@/components/foundation/Container';
 import { Section } from '@/components/foundation/Section';
-import { Reveal } from '@/components/foundation';
 import { Link } from '@/components/atoms/Link';
 import { buildMetadata } from '@/lib/seo';
-import { ApiReferenceMatrix } from '@/components/organisms/ApiReferenceMatrix';
+import { ApiReferenceMatrix } from '@/components/organisms';
 
 export const metadata: Metadata = buildMetadata({
   path: '/docs',
@@ -18,17 +17,14 @@ export default function DocsPage() {
   return (
     <div className="min-h-screen bg-canvas-base font-sans text-ink-primary">
       {/* Editorial Header */}
-      <Section className="relative overflow-hidden border-b border-[rgba(13,37,61,0.08)] pb-12 pt-16 md:pt-24">
+      <Section className="relative overflow-hidden border-b border-[rgba(13,37,61,0.08)] pb-14 pt-16 md:pt-24">
         <Container size="default" className="relative z-10">
-          <div className="max-w-3xl space-y-4 text-left">
-            <div className="flex items-center gap-2 text-xs font-mono font-semibold text-accent-500 tracking-wider uppercase">
-              <span>// DEVELOPER DOCUMENTATION · API SPEC V1</span>
-            </div>
-            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-normal text-ink-primary leading-tight tracking-tight">
+          <div className="max-w-4xl space-y-6 text-left">
+            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal text-ink-primary leading-[1.04] tracking-tight">
               Developer documentation <br />
               <span className="italic text-accent-500 font-normal">&amp; API contracts.</span>
             </h1>
-            <p className="text-lg text-ink-body leading-relaxed max-w-2xl font-normal">
+            <p className="text-lg md:text-xl text-ink-body leading-relaxed max-w-2xl font-normal">
               Direct, deterministic REST endpoints for high-volume automated operations. Ephemeral RAM execution with sub-350ms response guarantees.
             </p>
           </div>

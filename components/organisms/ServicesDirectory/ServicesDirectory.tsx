@@ -8,7 +8,6 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
 interface Practice {
   id: string;
-  number: string;
   title: string;
   category: string;
   tagline: string;
@@ -23,7 +22,6 @@ interface Practice {
 const PRACTICES: Practice[] = [
   {
     id: 'rag-systems',
-    number: '01',
     title: 'RAG Systems & Vector Search',
     category: 'Knowledge Retrieval',
     tagline: 'Enterprise vector search pipelines, hybrid retrieval, and multi-document indexing engines for high-accuracy internal knowledge search.',
@@ -46,7 +44,6 @@ const PRACTICES: Practice[] = [
   },
   {
     id: 'mcp-integration',
-    number: '02',
     title: 'Model Context Protocol (MCP) Servers',
     category: 'Protocol Tooling',
     tagline: 'Standardized MCP tool and resource servers connecting LLMs and Claude directly to your private databases and internal APIs.',
@@ -69,7 +66,6 @@ const PRACTICES: Practice[] = [
   },
   {
     id: 'llm-optimization',
-    number: '03',
     title: 'LLM Stack Optimization & Cost Auditing',
     category: 'Model Optimization',
     tagline: 'Evaluate model performance, optimize prompt pipelines, eliminate token waste, and implement latency benchmarks across your LLM infrastructure.',
@@ -92,7 +88,6 @@ const PRACTICES: Practice[] = [
   },
   {
     id: 'custom-web-apps',
-    number: '04',
     title: 'Custom AI Web Applications',
     category: 'Full-Stack Web',
     tagline: 'Modern Next.js and React web applications powered by sub-second neural inference, dynamic UI generation, and deterministic workflow engines.',
@@ -115,7 +110,6 @@ const PRACTICES: Practice[] = [
   },
   {
     id: 'business-automation',
-    number: '05',
     title: 'Business Automation Pipelines',
     category: 'Enterprise Automation',
     tagline: 'Automate manual data entry, ERP ingestion, compliance auditing, and multi-app synchronization with fault-tolerant background workers.',
@@ -140,20 +134,14 @@ const PRACTICES: Practice[] = [
 
 export function ServicesDirectory() {
   const [selectedIdx, setSelectedIdx] = useState(0);
-  const practice = PRACTICES[selectedIdx] || PRACTICES[0]!;
+  const practice = (PRACTICES[selectedIdx] || PRACTICES[0]) as Practice;
 
   return (
     <div className="w-full text-left font-sans">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-        {/* Left Navigation Rail: Numbered Service Index */}
+        {/* Left Navigation Rail: Service Practice Index */}
         <div className="lg:col-span-5 space-y-2">
-          <div className="pb-3 border-b border-[rgba(13,37,61,0.08)]">
-            <span className="font-mono text-xs font-semibold text-ink-secondary uppercase tracking-wider">
-              // ENGINEERING PRACTICES
-            </span>
-          </div>
-
-          <div className="space-y-1.5 pt-2">
+          <div className="space-y-2">
             {PRACTICES.map((p, idx) => {
               const isSelected = selectedIdx === idx;
               return (
@@ -162,27 +150,24 @@ export function ServicesDirectory() {
                   type="button"
                   onClick={() => setSelectedIdx(idx)}
                   className={cn(
-                    'w-full text-left p-4 rounded-xl transition-all duration-200 flex items-start gap-4 group',
+                    'w-full text-left p-5 rounded-2xl transition-all duration-200 flex items-start justify-between gap-4 group',
                     isSelected
-                      ? 'bg-canvas-paper border border-[rgba(13,37,61,0.12)] shadow-md'
+                      ? 'bg-canvas-paper border border-[rgba(13,37,61,0.12)] shadow-md ring-1 ring-accent-500/20'
                       : 'hover:bg-canvas-paper/50 border border-transparent'
                   )}
                 >
-                  <span
-                    className={cn(
-                      'font-mono text-xs font-semibold px-2 py-0.5 rounded transition-colors',
-                      isSelected
-                        ? 'bg-accent-50 text-accent-500 font-bold'
-                        : 'text-ink-secondary group-hover:text-ink-primary'
-                    )}
-                  >
-                    {p.number}
-                  </span>
-
-                  <div className="space-y-1 flex-1">
+                  <div className="space-y-1.5 flex-1">
+                    <span
+                      className={cn(
+                        'text-xs font-mono font-semibold uppercase tracking-wider block',
+                        isSelected ? 'text-accent-500' : 'text-ink-secondary'
+                      )}
+                    >
+                      {p.category}
+                    </span>
                     <h3
                       className={cn(
-                        'font-display text-lg sm:text-xl font-normal transition-colors',
+                        'font-display text-xl sm:text-2xl font-normal transition-colors',
                         isSelected
                           ? 'text-ink-primary font-medium'
                           : 'text-ink-secondary group-hover:text-ink-primary'
@@ -190,14 +175,11 @@ export function ServicesDirectory() {
                     >
                       {p.title}
                     </h3>
-                    <span className="text-xs text-ink-secondary block">
-                      {p.category}
-                    </span>
                   </div>
 
                   <ArrowRight
                     className={cn(
-                      'w-4 h-4 mt-1 transition-all',
+                      'w-5 h-5 mt-2 transition-all',
                       isSelected
                         ? 'text-accent-500 opacity-100 translate-x-0'
                         : 'text-ink-secondary opacity-0 -translate-x-2 group-hover:opacity-60 group-hover:translate-x-0'
@@ -215,14 +197,14 @@ export function ServicesDirectory() {
           <div className="space-y-3 pb-6 border-b border-[rgba(13,37,61,0.08)]">
             <div className="flex items-center justify-between gap-4">
               <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded bg-accent-50 text-accent-500 border border-accent-500/20">
-                PRACTICE {practice.number} · {practice.category}
+                {practice.category}
               </span>
               <span className="text-xs font-medium text-accent-secondary">
                 Production SLA Ready
               </span>
             </div>
 
-            <h2 className="font-display text-3xl sm:text-4xl text-ink-primary font-normal leading-tight">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-ink-primary font-normal leading-tight">
               {practice.title}
             </h2>
 
@@ -232,20 +214,18 @@ export function ServicesDirectory() {
           </div>
 
           {/* Execution Topology Diagram */}
-          <div className="space-y-3">
-            <span className="font-mono text-xs font-semibold text-ink-secondary uppercase tracking-wider block">
-              // ARCHITECTURAL EXECUTION TOPOLOGY
-            </span>
+          <div className="space-y-4">
+            <h4 className="text-xs font-mono font-semibold text-accent-500 uppercase tracking-wider">
+              Execution Topology
+            </h4>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
               {practice.stages.map((stage, sIdx) => (
                 <div
                   key={sIdx}
-                  className="p-3.5 rounded-xl bg-canvas-recessed/40 border border-[rgba(13,37,61,0.06)] flex items-start gap-3"
+                  className="p-4 rounded-xl bg-canvas-recessed/40 border border-[rgba(13,37,61,0.06)] flex items-center gap-3"
                 >
-                  <span className="font-mono text-xs font-bold text-accent-500 shrink-0 mt-0.5">
-                    0{sIdx + 1}
-                  </span>
+                  <span className="w-2 h-2 rounded-full bg-accent-500 shrink-0" />
                   <span className="text-xs font-medium text-ink-primary leading-snug">
                     {stage}
                   </span>
@@ -255,10 +235,10 @@ export function ServicesDirectory() {
           </div>
 
           {/* Scope & Deliverables */}
-          <div className="space-y-3 pt-2">
-            <span className="font-mono text-xs font-semibold text-ink-secondary uppercase tracking-wider block">
-              // SCOPE & VERIFIED DELIVERABLES
-            </span>
+          <div className="space-y-4 pt-2">
+            <h4 className="text-xs font-mono font-semibold text-accent-500 uppercase tracking-wider">
+              Scope & Verified Deliverables
+            </h4>
 
             <div className="space-y-2.5">
               {practice.deliverables.map((item, dIdx) => (
@@ -271,7 +251,7 @@ export function ServicesDirectory() {
           </div>
 
           {/* Action CTA */}
-          <div className="pt-4 border-t border-[rgba(13,37,61,0.08)] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+          <div className="pt-6 border-t border-[rgba(13,37,61,0.08)] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
             <div className="text-xs text-ink-secondary">
               Deployment Timeline: <span className="font-semibold text-ink-primary">3–5 Days to MVP</span>
             </div>

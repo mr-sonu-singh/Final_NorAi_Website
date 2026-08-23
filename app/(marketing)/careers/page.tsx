@@ -74,9 +74,6 @@ export default function CareersPage() {
         />
         <Container size="default" className="relative z-10">
           <div className="mx-auto max-w-3xl space-y-6 text-center">
-            <div className="flex items-center justify-center gap-2 text-xs font-mono font-semibold text-accent-500 tracking-wider uppercase mb-2">
-              <span>// OPEN POSITIONS · ENGINEERING FOUNDRY</span>
-            </div>
             <Heading as="h1" variant="display-xl" className="text-balance text-ink-primary">
               Do the best work of your life — from anywhere in India.
             </Heading>
@@ -88,6 +85,7 @@ export default function CareersPage() {
             </Text>
           </div>
         </Container>
+
 
       </Section>
 

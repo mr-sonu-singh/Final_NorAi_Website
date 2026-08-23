@@ -5,7 +5,7 @@ import { AnimatedSection, Reveal } from '@/components/foundation';
 import NextLink from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { buildMetadata } from '@/lib/seo';
-import { WorkshopRoster } from '@/components/organisms/WorkshopRoster';
+import { WorkshopRoster } from '@/components/organisms';
 
 export const metadata = buildMetadata({
   path: '/team',
@@ -18,17 +18,14 @@ export default function TeamPage() {
   return (
     <div className="min-h-screen bg-canvas-base text-ink-primary font-sans">
       {/* Editorial Header */}
-      <Section className="pb-12 pt-16 md:pb-16 md:pt-24 border-b border-[rgba(13,37,61,0.08)]">
+      <Section className="pb-14 pt-16 md:pb-20 md:pt-24 border-b border-[rgba(13,37,61,0.08)]">
         <Container size="default">
           <Reveal>
-            <div className="flex items-center gap-2 text-xs font-mono font-semibold text-accent-500 tracking-wider uppercase mb-3">
-              <span>// FOUNDRY & TECHNICAL LEADERSHIP</span>
-            </div>
-            <h1 className="max-w-3xl font-display text-5xl sm:text-6xl md:text-7xl font-normal leading-[1.05] tracking-tight text-ink-primary">
+            <h1 className="max-w-4xl font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal leading-[1.04] tracking-tight text-ink-primary">
               The people behind <br />
               <span className="italic text-accent-500 font-normal">the tools.</span>
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-body">
+            <p className="mt-6 max-w-xl text-lg md:text-xl leading-relaxed text-ink-body">
               Five engineers, one workshop in Uttar Pradesh. We build every tool ourselves, answer our own email, and ship on a rhythm.
             </p>
           </Reveal>

@@ -1,8 +1,6 @@
 'use client';
 
 import React from 'react';
-import { cn } from '@/lib/utils';
-import { ArrowUpRight } from 'lucide-react';
 
 interface Founder {
   name: string;
@@ -53,42 +51,31 @@ const FOUNDERS: Founder[] = [
 export function WorkshopRoster() {
   return (
     <div className="w-full text-left font-sans space-y-6">
-      <div className="border-b border-[rgba(13,37,61,0.08)] pb-3">
-        <span className="font-mono text-xs font-semibold text-accent-500 uppercase tracking-wider">
-          // ENGINEERING FOUNDRY ROSTER
-        </span>
-      </div>
-
       <div className="divide-y divide-[rgba(13,37,61,0.1)]">
-        {FOUNDERS.map((founder, idx) => (
+        {FOUNDERS.map((founder) => (
           <div
             key={founder.name}
-            className="py-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start hover:bg-canvas-paper/40 transition-colors p-4 rounded-xl"
+            className="py-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start hover:bg-canvas-paper/40 transition-colors p-4 rounded-2xl"
           >
-            {/* Monogram and Name */}
-            <div className="lg:col-span-4 space-y-1">
-              <div className="flex items-center gap-3">
-                <span className="font-mono text-xs font-bold text-accent-500">
-                  0{idx + 1}
-                </span>
-                <h3 className="font-display text-2xl sm:text-3xl text-ink-primary font-normal">
-                  {founder.name}
-                </h3>
-              </div>
-              <span className="text-xs font-medium text-accent-500 block">
+            {/* Name and Role */}
+            <div className="lg:col-span-4 space-y-1.5">
+              <h3 className="font-display text-3xl sm:text-4xl text-ink-primary font-normal">
+                {founder.name}
+              </h3>
+              <span className="text-sm font-medium text-accent-500 block">
                 {founder.role}
               </span>
-              <span className="font-mono text-[11px] text-ink-secondary block pt-1">
+              <span className="font-mono text-xs text-ink-secondary block pt-1">
                 {founder.pedigree}
               </span>
             </div>
 
             {/* Focus and Narrative */}
-            <div className="lg:col-span-8 space-y-2">
-              <p className="text-xs font-mono font-medium text-ink-secondary">
-                CORE FOCUS: {founder.focus}
+            <div className="lg:col-span-8 space-y-2.5">
+              <p className="text-xs font-mono font-semibold uppercase tracking-wider text-accent-500">
+                Core Focus: <span className="text-ink-secondary font-normal">{founder.focus}</span>
               </p>
-              <p className="text-sm text-ink-body leading-relaxed">
+              <p className="text-sm md:text-base text-ink-body leading-relaxed">
                 {founder.bio}
               </p>
             </div>
