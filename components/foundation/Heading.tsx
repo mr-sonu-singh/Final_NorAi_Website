@@ -23,13 +23,15 @@ export function Heading({
   children,
   ...props
 }: HeadingProps) {
+  const isDisplay = variant === 'display-xl' || variant === 'display-lg' || variant === 'display-md';
+
   const variantClasses: Record<HeadingVariant, string> = {
     'display-xl':
-      'text-[length:var(--text-display-xl-size)] leading-[var(--text-display-xl-line)] font-[var(--text-display-xl-weight)] tracking-tight',
+      'font-display text-[length:var(--text-display-xl-size)] leading-[var(--text-display-xl-line)] font-[var(--text-display-xl-weight)] tracking-[var(--text-display-xl-tracking)]',
     'display-lg':
-      'text-[length:var(--text-display-lg-size)] leading-[var(--text-display-lg-line)] font-[var(--text-display-lg-weight)] tracking-tight',
+      'font-display text-[length:var(--text-display-lg-size)] leading-[var(--text-display-lg-line)] font-[var(--text-display-lg-weight)] tracking-[var(--text-display-lg-tracking)]',
     'display-md':
-      'text-[length:var(--text-display-md-size)] leading-[var(--text-display-md-line)] font-[var(--text-display-md-weight)] tracking-tight',
+      'font-display text-[length:var(--text-display-md-size)] leading-[var(--text-display-md-line)] font-[var(--text-display-md-weight)] tracking-[var(--text-display-md-tracking)]',
     'heading-xl':
       'text-[length:var(--text-heading-xl-size)] leading-[var(--text-heading-xl-line)] font-[var(--text-heading-xl-weight)]',
     'heading-lg':
@@ -44,7 +46,7 @@ export function Heading({
 
   return (
     <Component
-      className={cn('font-sans text-primary-800', variantClasses[variant], className)}
+      className={cn('text-primary-800', isDisplay ? '' : 'font-sans', variantClasses[variant], className)}
       {...props}
     >
       {children}

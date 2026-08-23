@@ -2,136 +2,124 @@
 @source '..';
 
 /* ==========================================================================
-   DESIGN TOKENS
-   (merged from styles/tokens/colors.css, typography.css, spacing.css,
-   radius.css, shadows.css, motion.css, containers.css)
+   DESIGN TOKENS — NorAI Warm Premium Palette ("Parchment & Terracotta")
+   Canvas: warm parchment. Ink: deep navy. Accents: terracotta / sage / gold.
+   The ONLY dark surface on the entire site is the navy footer block.
    ========================================================================== */
 :root {
-  /* --- Colors: Brand tokens (matched to provided logo palette) --- */
-  --ds-background-100: #ffffff; /* Page Canvas Base */
-  --ds-background-200: #f8fafc; /* Card / Surface Base */
-  --ds-background-300: #e2e8f0; /* Toggle / Recessed Base */
-  --ds-background-400: #cbd5e1; /* Hover Surface Base */
+  /* --- Surfaces (ds-* names kept for component compatibility) --- */
+  --ds-background-100: #f5f0ea; /* Page Canvas Base (Warm Parchment) */
+  --ds-background-200: #fdfbf7; /* Card / Surface Base (Clean Paper) */
+  --ds-background-300: #ede7df; /* Toggle / Recessed Base (Recessed Sand) */
+  --ds-background-400: #e7dfd4; /* Hover Surface Base */
 
-  --ds-text-100: #0F172A; /* Primary Headings & Body Text */
-  --ds-text-200: #334155; /* Secondary Text & Nav Links */
-  --ds-text-300: #64748B; /* Muted & Caption Text */
+  /* --- Ink & Text --- */
+  --ds-text-100: #0d253d; /* Primary Headings & Body Text (Deep Navy Ink) */
+  --ds-text-200: #3d4f5f; /* Secondary Text & Nav Links (Muted Slate) */
+  --ds-text-300: #6b7b8d; /* Muted & Caption Text (Warm Gray) */
 
-  /* Primary interactive accents */
-  --ds-interactive: #2E5BFF; /* Electric Blue */
-  --ds-focus-color: #3B6EF6; /* Focus / highlight accent */
+  /* --- Interactive accents --- */
+  --ds-interactive: #c2553a; /* Burnt Terracotta */
+  --ds-focus-color: #c2553a;
+  --accent-primary: #c2553a;
+  --accent-mono: #5b8a72; /* Forest Sage — secondary accent */
+  --accent-secondary: #5b8a72;
+  --accent-secondary-soft: #e2ede7;
+  --accent-tertiary: #b8860b; /* Dark Goldenrod */
+  --accent-tertiary-soft: #fff4d6;
+  --border-hairline: rgba(13, 37, 61, 0.08);
+  --glow-warm: 194, 85, 58;
 
-  --accent-primary: #2E5BFF; /* Electric Blue */
-  --accent-mono: #3B6EF6; /* lighter blue for hover/mono highlights */
-  --accent-blue: #2E5BFF;
-  --accent-purple: #7C3AED;
-  --border-hairline: rgba(15, 23, 42, 0.08);
-  --glow-blue: 46, 91, 255;
-  --glow-purple: 124, 58, 237;
+  /* --- Navy ramp (light → dark ink). Body text = primary-800 --- */
+  --primary-50: #fdfbf7;
+  --primary-100: #f5f0ea;
+  --primary-200: #ede7df;
+  --primary-300: #dde4ec;
+  --primary-400: #a0aeba;
+  --primary-500: #6b7b8d;
+  --primary-600: #4a5d70;
+  --primary-700: #3d4f5f;
+  --primary-800: #0d253d;
+  --primary-900: #081727;
 
-  /* Signature gradient */
-  --brand-gradient: linear-gradient(135deg, #2E5BFF 0%, #7C3AED 100%);
+  /* --- Terracotta ramp --- */
+  --accent-50: #faeee9;
+  --accent-100: #f5e1da;
+  --accent-400: #d97b62;
+  --accent-500: #c2553a;
+  --accent-600: #a84530;
+  --accent-700: #8a3826;
 
-  /* Site-wide subtle background wash matching the logo's blue -> purple -> blue palette.
-     Used as the default value of --site-bg (see body rule + app/layout.tsx inline style). */
-  --site-gradient: linear-gradient(
-    135deg,
-    rgba(46, 91, 255, 0.05) 0%,
-    rgba(124, 58, 237, 0.04) 50%,
-    rgba(59, 110, 246, 0.05) 100%
-  );
+  --bg-elevated: #fdfbf7;
+  --bg-sunken: #ede7df;
+  --bg-dark: #0d253d; /* Footer navy — the ONLY dark surface */
+  --bg-dark-elevated: #16324e;
 
-  /* Backward Compatibility Aliases */
-  --primary-50: #ffffff;
-  --primary-100: #f8fafc;
-  --primary-200: #e2e8f0;
-  --primary-300: #cbd5e1;
-  --primary-400: #94a3b8;
-  --primary-500: #64748B;
-  --primary-600: #475569;
-  --primary-700: #334155;
-  --primary-800: #0F172A;
-  --primary-900: #020617;
+  /* --- Status colors --- */
+  --status-blue: #4a7b9d; /* Muted info — the only blue allowed */
+  --status-cyan: #4a7b9d;
+  --status-teal: #5b8a72;
+  --status-green: #5b8a72;
+  --status-orange: #cc8a2e;
+  --status-red: #c23b3b;
 
-  --accent-50: #EEF2FF;
-  --accent-100: #DFE9FF;
-  --accent-400: #3B6EF6;
-  --accent-500: #2E5BFF;
-  --accent-600: #254FE0;
-  --accent-700: #1D3FBF;
-
-  /* Additional brand-aligned accents */
-  --accent-blue-500: #2E5BFF;
-  --accent-purple-500: #7C3AED;
-
-  --bg-elevated: #f8fafc;
-  --bg-sunken: #eef2ff;
-  --bg-dark: #0F172A;
-  --bg-dark-elevated: #1E293B;
-
-  /* Status Indicator Dot Colors (DESIGN.md - 10px dots only) */
-  --status-blue: #2E5BFF;
-  --status-cyan: #52aeff;
-  --status-teal: #10B981;
-  --status-green: #10B981;
-  --status-orange: #ff990a;
-  --status-red: #e5484d;
-  --status-purple: #7C3AED;
-
-  /* Brand purple alias (used in gradients alongside blue) */
-  --brand-purple: var(--status-purple);
-
-  --success-600: var(--status-green);
-  --success-100: #dcfce7;
-  --warning-600: var(--status-orange);
-  --warning-100: #fef9c3;
-  --error-600: var(--status-red);
-  --error-100: #fee2e2;
-  --info-600: var(--ds-interactive);
-  --info-100: #dbeafe;
+  --success-600: #5b8a72;
+  --success-100: #e2ede7;
+  --warning-600: #cc8a2e;
+  --warning-100: #fff4d6;
+  --error-600: #c23b3b;
+  --error-100: #f7e1dd;
+  --info-600: #4a7b9d;
+  --info-100: #e3edf4;
 
   --opacity-disabled: 0.5;
 
   /* --- Typography --- */
-  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
-  --font-display: var(--font-bricolage), var(--font-inter), system-ui, sans-serif;
+  --font-sans: var(--font-jakarta), system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
   --font-mono: var(--font-jetbrains-mono), monospace;
 
-  --text-display-xl-size: 3.25rem; /* 52px */
-  --text-display-xl-line: 3.5rem;
-  --text-display-xl-weight: 700;
-  --text-display-xl-tracking: -0.03em;
+  /* Editorial serif display scale (Instrument Serif renders at 400 only) */
+  --text-display-xl-size: 4rem; /* 64px */
+  --text-display-xl-line: 1.05;
+  --text-display-xl-weight: 400;
+  --text-display-xl-tracking: -0.02em;
 
-  --text-display-lg-size: 2.25rem; /* 36px */
-  --text-display-lg-line: 2.75rem;
-  --text-display-lg-weight: 700;
-  --text-display-lg-tracking: -0.025em;
+  --text-display-lg-size: 2.75rem; /* 44px */
+  --text-display-lg-line: 1.1;
+  --text-display-lg-weight: 400;
+  --text-display-lg-tracking: -0.02em;
 
-  --text-heading-xl-size: 1.5rem; /* 24px */
-  --text-heading-xl-line: 2rem;
-  --text-heading-xl-weight: 600;
-  --text-heading-xl-tracking: -0.5px;
+  --text-display-md-size: 2.25rem; /* 36px */
+  --text-display-md-line: 1.15;
+  --text-display-md-weight: 400;
+  --text-display-md-tracking: -0.015em;
 
-  --text-heading-lg-size: 1.25rem; /* 20px */
-  --text-heading-lg-line: 1.75rem;
-  --text-heading-lg-weight: 500;
-  --text-heading-lg-tracking: -0.28px;
+  --text-heading-xl-size: 2rem; /* 32px */
+  --text-heading-xl-line: 1.2;
+  --text-heading-xl-weight: 400;
+  --text-heading-xl-tracking: -0.015em;
 
-  --text-heading-md-size: 0.875rem; /* 14px */
-  --text-heading-md-line: 1.25rem; /* 20px */
-  --text-heading-md-weight: 500;
-  --text-heading-md-tracking: -0.28px;
+  --text-heading-lg-size: 1.375rem; /* 22px */
+  --text-heading-lg-line: 1.35;
+  --text-heading-lg-weight: 600;
+  --text-heading-lg-tracking: -0.01em;
+
+  --text-heading-md-size: 1rem; /* 16px */
+  --text-heading-md-line: 1.5;
+  --text-heading-md-weight: 600;
+  --text-heading-md-tracking: -0.005em;
 
   --text-body-lg-size: 1.125rem;
   --text-body-lg-line: 1.75rem;
   --text-body-lg-weight: 400;
 
   --text-body-md-size: 1rem; /* 16px */
-  --text-body-md-line: 1.5rem;
+  --text-body-md-line: 1.625rem;
   --text-body-md-weight: 400;
 
   --text-body-sm-size: 0.875rem; /* 14px */
-  --text-body-sm-line: 1.25rem;
+  --text-body-sm-line: 1.375rem;
   --text-body-sm-weight: 400;
 
   --text-body-xs-size: 0.75rem; /* 12px */
@@ -140,7 +128,7 @@
 
   --text-label-size: 0.875rem;
   --text-label-line: 1.25rem;
-  --text-label-weight: 400;
+  --text-label-weight: 500;
 
   /* --- Spacing --- */
   --space-1: 0.25rem; /* 4px */
@@ -168,29 +156,29 @@
   --radius-xl: 1rem; /* 16px */
   --radius-full: 9999px; /* Pill */
 
-  /* --- Shadows (Vercel Shadow-as-Border & Elevation Tokens) --- */
-  --ds-shadow-border-base: 0 0 0 1px #00000014;
-  --ds-shadow-background-border: 0 0 0 1px var(--ds-background-200, #ffffff);
-  --ds-shadow-border: var(--ds-shadow-border-base), var(--ds-shadow-background-border);
-  --ds-focus-ring: 0 0 0 2px #ffffff, 0 0 0 4px var(--ds-interactive, #0072f5);
+  /* --- Shadows (Stripe-style navy-tinted elevation) --- */
+  --ds-shadow-border-base: 0 0 0 1px rgba(13, 37, 61, 0.08);
+  --ds-shadow-border: var(--ds-shadow-border-base);
+  --ds-focus-ring: 0 0 0 2px var(--ds-background-100, #f5f0ea), 0 0 0 4px rgba(194, 85, 58, 0.55);
 
-  --ds-shadow-small: 0 0 0 1px #00000014, 0 2px 2px 0 rgba(0, 0, 0, 0.04);
-  --ds-shadow-medium: 0 0 0 1px #00000014, 0 2px 2px 0 rgba(0, 0, 0, 0.04), 0 8px 8px -8px rgba(0, 0, 0, 0.04);
-  --ds-shadow-large: 0 0 0 1px #00000014, 0 2px 2px 0 rgba(0, 0, 0, 0.04), 0 8px 16px -4px rgba(0, 0, 0, 0.04);
-  --ds-shadow-menu: 0 0 0 1px #00000014, 0 1px 1px 0 rgba(0, 0, 0, 0.02), 0 4px 8px -4px rgba(0, 0, 0, 0.04), 0 16px 24px -8px rgba(0, 0, 0, 0.06);
+  --ds-shadow-small: 0 1px 3px rgba(13, 37, 61, 0.08), 0 1px 2px rgba(13, 37, 61, 0.04);
+  --ds-shadow-medium: 0 4px 6px rgba(13, 37, 61, 0.07), 0 2px 4px rgba(13, 37, 61, 0.04);
+  --ds-shadow-large: 0 10px 15px rgba(13, 37, 61, 0.06), 0 4px 6px rgba(13, 37, 61, 0.03);
+  --ds-shadow-menu: 0 20px 25px rgba(13, 37, 61, 0.08), 0 8px 10px rgba(13, 37, 61, 0.03);
 
   --shadow-xs: var(--ds-shadow-border);
   --shadow-sm: var(--ds-shadow-small);
   --shadow-md: var(--ds-shadow-medium);
   --shadow-lg: var(--ds-shadow-large);
   --shadow-xl: var(--ds-shadow-menu);
-  --shadow-accent: var(--ds-focus-ring);
+  --shadow-accent: 0 1px 2px rgba(194, 85, 58, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  --shadow-hover: 0 8px 30px rgba(13, 37, 61, 0.1), 0 2px 8px rgba(13, 37, 61, 0.05);
 
   /* --- Motion --- */
   --duration-fast: 150ms;
   --duration-normal: 300ms;
   --duration-slow: 500ms;
-  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
   --tooltip-delay: 200ms;
 
   /* --- Containers --- */
@@ -198,20 +186,10 @@
   --container-default: 1120px;
   --container-wide: 1280px;
 
-  /* NOTE: containers.css defined --breakpoint-* as 480/768/1024/1280,
-     but the @theme inline block below needs 640/768/1024/1280 for
-     Tailwind's default screens. Keeping the Tailwind-facing values
-     here and renaming the container-scoped ones to avoid a silent
-     override - rename/remove whichever you don't need. */
-  --container-breakpoint-sm: 480px;
-  --container-breakpoint-md: 768px;
-  --container-breakpoint-lg: 1024px;
-  --container-breakpoint-xl: 1280px;
-
-  /* --- Page-level overrides (from pasted globals.css) --- */
-  --bg-page: #ffffff;
-  --bg-header: #ffffff;
-  --border-subtle: rgba(15, 23, 42, 0.08);
+  /* --- Page-level surfaces --- */
+  --bg-page: #f5f0ea;
+  --bg-header: rgba(253, 251, 247, 0.85); /* Warm glass header */
+  --border-subtle: rgba(13, 37, 61, 0.08);
 }
 
 /* ==========================================================================
@@ -239,6 +217,48 @@
   --color-accent-500: var(--accent-500);
   --color-accent-600: var(--accent-600);
   --color-accent-700: var(--accent-700);
+
+  /* Warm premium families */
+  --color-canvas-base: #f5f0ea;
+  --color-canvas-paper: #fdfbf7;
+  --color-canvas-pure: #ffffff;
+  --color-canvas-recessed: #ede7df;
+
+  --color-ink-primary: #0d253d;
+  --color-ink-body: #3d4f5f;
+  --color-ink-secondary: #6b7b8d;
+  --color-ink-disabled: #a0aeba;
+
+  --color-terra-50: #faeee9;
+  --color-terra-100: #f5e1da;
+  --color-terra-300: #e39b85;
+  --color-terra-400: #d97b62;
+  --color-terra-500: #c2553a;
+  --color-terra-600: #a84530;
+  --color-terra-700: #8a3826;
+
+  --color-sage-50: #f0f5f1;
+  --color-sage-100: #e2ede7;
+  --color-sage-300: #8fb3a0;
+  --color-sage-500: #5b8a72;
+  --color-sage-600: #4a7260;
+  --color-sage-700: #3a5c4c;
+
+  --color-gold-50: #fffaf0;
+  --color-gold-100: #fff4d6;
+  --color-gold-300: #d9b45e;
+  --color-gold-500: #b8860b;
+  --color-gold-600: #96700e;
+
+  --color-navy-700: #1f4062;
+  --color-navy-800: #16324e;
+  --color-navy-900: #0d253d;
+  --color-navy-950: #081727;
+
+  --color-line-subtle: rgba(13, 37, 61, 0.08);
+  --color-line-default: rgba(13, 37, 61, 0.12);
+  --color-line-strong: rgba(13, 37, 61, 0.2);
+  --color-line-accent: rgba(194, 85, 58, 0.3);
 
   --color-bg-page: var(--bg-page);
   --color-bg-elevated: var(--bg-elevated);
@@ -286,6 +306,7 @@
   --shadow-lg: var(--shadow-lg);
   --shadow-xl: var(--shadow-xl);
   --shadow-accent: var(--shadow-accent);
+  --shadow-hover: var(--shadow-hover);
 
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
@@ -299,7 +320,6 @@
 
 /* ==========================================================================
    BASE STYLES
-   (merged from styles/base/base.css)
    ========================================================================== */
 *,
 *::before,
@@ -316,29 +336,37 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--ds-background-100, #fafafa);
-  color: var(--ds-text-100, #171717);
+  background-color: var(--bg-page);
+  color: var(--ds-text-100, #0d253d);
   font-family: var(--font-sans);
-  line-height: 1.5;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Headline tracking & weight limits (DESIGN.md) */
-h1 {
-  font-weight: 600;
-  letter-spacing: -2.28px;
+/* Headlines balance across lines; serif display carries its own weight */
+h1,
+h2,
+h3 {
+  text-wrap: balance;
 }
 
-h2, h3 {
+h4,
+h5,
+h6 {
   font-weight: 600;
-  letter-spacing: -1.28px;
 }
 
-/* Vercel Double-Ring Focus Pattern (DESIGN.md §4) */
+code,
+pre,
+kbd {
+  font-family: var(--font-mono);
+}
+
+/* Warm focus ring */
 :focus-visible {
   outline: none;
-  box-shadow: var(--ds-focus-ring, 0 0 0 2px #ffffff, 0 0 0 4px #0072f5);
+  box-shadow: var(--ds-focus-ring, 0 0 0 2px #f5f0ea, 0 0 0 4px rgba(194, 85, 58, 0.55));
   border-radius: 4px;
 }
 
@@ -355,91 +383,99 @@ h2, h3 {
 }
 
 /* ==========================================================================
-   ANIMATIONS
+   WARM CANVAS & MESH GRADIENT UTILITIES
    ========================================================================== */
-@keyframes orbPulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.85;
+
+/* Subtle radial warmth over parchment — page-level default wash */
+.warm-canvas-bg {
+  background-color: var(--bg-page);
+  background-image:
+    radial-gradient(at 85% 0%, rgba(232, 146, 124, 0.07) 0px, transparent 55%),
+    radial-gradient(at 0% 100%, rgba(91, 138, 114, 0.05) 0px, transparent 50%);
+}
+
+/* Stripe-style warm mesh gradient anchor for heroes (pure CSS, zero JS) */
+.mesh-gradient {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.mesh-gradient::before,
+.mesh-gradient::after {
+  content: '';
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(60px);
+  opacity: 0.6;
+}
+
+.mesh-gradient::before {
+  inset: -20% -10% auto auto;
+  width: 70%;
+  height: 90%;
+  background-image:
+    radial-gradient(at 70% 30%, rgba(194, 85, 58, 0.16) 0px, transparent 55%),
+    radial-gradient(at 90% 60%, rgba(255, 158, 97, 0.13) 0px, transparent 55%);
+}
+
+.mesh-gradient::after {
+  inset: 20% auto auto -10%;
+  width: 55%;
+  height: 80%;
+  background-image:
+    radial-gradient(at 40% 40%, rgba(212, 165, 116, 0.14) 0px, transparent 55%),
+    radial-gradient(at 20% 70%, rgba(91, 138, 114, 0.08) 0px, transparent 55%);
+}
+
+/* Ambient drift ONLY behind a 60px blur; disabled under reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  .mesh-blob {
+    animation: mesh-drift 24s ease-in-out infinite alternate;
   }
-  50% {
-    transform: scale(1.08);
-    opacity: 1;
+  .mesh-blob-reverse {
+    animation: mesh-drift 28s ease-in-out infinite alternate-reverse;
   }
 }
 
-@keyframes floatParticle {
-  0% {
-    transform: translateY(0px) translateX(0px);
-    opacity: 0.2;
+@keyframes mesh-drift {
+  from {
+    transform: translate(0, 0) scale(1);
   }
-  50% {
-    transform: translateY(-15px) translateX(8px);
-    opacity: 0.7;
+  to {
+    transform: translate(30px, -20px) scale(1.08);
   }
-  100% {
-    transform: translateY(0px) translateX(0px);
-    opacity: 0.2;
-  }
-}
-
-@keyframes lineGlow {
-  0%, 100% {
-    stroke-opacity: 0.3;
-  }
-  50% {
-    stroke-opacity: 0.8;
-  }
-}
-
-.animate-orb-pulse {
-  animation: orbPulse 6s ease-in-out infinite;
-}
-
-.animate-float-particle {
-  animation: floatParticle 8s ease-in-out infinite;
-}
-
-.animate-line-glow {
-  animation: lineGlow 4s ease-in-out infinite;
 }
 
 /* ==========================================================================
    COMPONENTS
    ========================================================================== */
 
-/* Engineered Hairline Card & Border Styles */
+/* Warm card treatment */
 .tilt-card {
   background-color: var(--bg-elevated);
   border: 1px solid var(--border-hairline);
-  border-radius: 0.5rem; /* 8px precision radius */
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 0.5rem;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
   position: relative;
 }
 
 .tilt-card:hover {
-  border-color: rgba(var(--glow-blue), 0.28);
-  box-shadow: 0 4px 20px -2px rgba(var(--glow-blue), 0.06);
+  border-color: rgba(var(--glow-warm), 0.3);
+  box-shadow: var(--shadow-hover);
 }
 
-@keyframes floatBlue {
-  0%,
-  100% {
-    transform: translate(-80px, 20px) scale(1);
-  }
-
-  50% {
-    transform: translate(120px, 80px) scale(1.15);
-  }
+/* Editorial link underline */
+.link-editorial {
+  text-decoration: underline;
+  text-decoration-color: rgba(194, 85, 58, 0.35);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.15s ease;
 }
 
-@keyframes floatPurple {
-  0%,
-  100% {
-    transform: translate(80px, 40px) scale(1);
-  }
-
-  50% {
-    transform: translate(-120px, -60px) scale(1.15);
-  }
+.link-editorial:hover {
+  text-decoration-color: var(--accent-primary);
 }

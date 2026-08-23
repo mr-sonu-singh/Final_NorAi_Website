@@ -8,8 +8,8 @@ export interface SectionProps extends React.HTMLAttributes<HTMLElement> {
 export function Section({ variant = 'default', className, children, ...props }: SectionProps) {
   const variantClasses = {
     default: 'bg-transparent text-primary-800',
-    sunken: 'bg-[var(--bg-elevated)] text-primary-800',
-    dark: 'bg-[var(--accent-700)] text-white',
+    sunken: 'bg-canvas-recessed text-primary-800',
+    dark: 'bg-navy-900 text-canvas-paper',
   };
 
   return (

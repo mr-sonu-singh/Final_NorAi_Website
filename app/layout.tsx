@@ -1,25 +1,27 @@
 import type { Metadata } from 'next';
-import { Inter, JetBrains_Mono, Bricolage_Grotesque } from 'next/font/google';
+import { Plus_Jakarta_Sans, Instrument_Serif, JetBrains_Mono } from 'next/font/google';
 import { buildMetadata } from '@/lib/seo/metadata';
 import { ThemeTokenProvider, MotionProvider, AnalyticsProvider, ToastProvider } from '@/providers';
 import { BackgroundProvider } from '@/providers/BackgroundProvider';
 import './globals.css';
 
-const inter = Inter({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-jakarta',
+  display: 'swap',
+});
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ['latin'],
+  weight: '400',
+  style: ['normal', 'italic'],
+  variable: '--font-instrument-serif',
   display: 'swap',
 });
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-jetbrains-mono',
-  display: 'swap',
-});
-
-const bricolageGrotesque = Bricolage_Grotesque({
-  subsets: ['latin'],
-  variable: '--font-bricolage',
   display: 'swap',
 });
 
@@ -31,20 +33,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} ${bricolageGrotesque.variable}`}>
-      <body
-        className="min-h-screen text-primary-800 font-sans antialiased"
-        style={{
-          background:
-            'var(--site-bg, linear-gradient(135deg, rgba(46,91,255,0.06) 0%, rgba(124,58,237,0.05) 50%, rgba(59,110,246,0.06) 100%))',
-          backgroundColor: 'rgb(245, 244, 252)',
-          backgroundAttachment: 'fixed',
-          backgroundSize: 'cover',
-        }}
-      >
+    <html lang="en" className={`${jakarta.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}>
+      <body className="min-h-screen bg-bg-page text-primary-800 font-sans antialiased">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-bg-elevated focus:text-primary-800"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-canvas-paper focus:text-ink-primary"
         >
           Skip to main content
         </a>

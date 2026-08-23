@@ -6,7 +6,7 @@ import { Heading } from '@/components/foundation/Heading';
 import { Text } from '@/components/foundation/Text';
 import { Button } from '@/components/atoms/Button';
 import { Link } from '@/components/atoms/Link';
-import { HeroOrb } from '@/components/organisms/HeroOrb';
+import { MeshGradient } from '@/components/foundation/MeshGradient';
 import {
   Sparkles,
   Zap,
@@ -451,9 +451,9 @@ export default function HomePage() {
                 </div>
             </div>
 
-            {/* Right Signature Element: Lightweight Live Console Teaser */}
+            {/* Right Signature Element: placeholder pending homepage rebuild */}
             <div className="md:col-span-6 flex justify-center">
-              <HeroOrb />
+              <MeshGradient className="inset-0 w-full h-full" />
             </div>
           </div>
         </Container>

@@ -5,3 +5,5 @@ export * from './Grid';
 export * from './Stack';
 export * from './Section';
 export * from './VisuallyHidden';
+export * from './AnimatedSection';
+export * from './MeshGradient';
