@@ -8,11 +8,11 @@ import { LinkProps, LinkVariant } from './Link.types';
 
 const variantClasses: Record<LinkVariant, string> = {
   inline:
-    'text-accent-600 underline underline-offset-4 hover:text-accent-700 transition-colors duration-[var(--duration-fast)]',
+    'text-terra-600 underline underline-offset-4 hover:text-terra-700 transition-colors duration-200 ease-[var(--ease-smooth)]',
   standalone:
-    'inline-flex items-center gap-1 text-accent-600 font-medium hover:text-accent-700 transition-colors duration-[var(--duration-fast)]',
+    'inline-flex items-center gap-1 text-terra-600 font-medium hover:text-terra-700 transition-colors duration-200 ease-[var(--ease-smooth)]',
   quiet:
-    'text-primary-600 hover:text-primary-800 transition-colors duration-[var(--duration-fast)]',
+    'text-ink-secondary hover:text-ink-primary transition-colors duration-200 ease-[var(--ease-smooth)]',
   unstyled: 'text-inherit no-underline',
 };
 

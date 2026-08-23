@@ -14,7 +14,7 @@ export function FocusRing({ children, inset = false, offset = 'md' }: FocusRingP
   }
 
   const focusClasses = cn(
-    'outline-none focus-visible:ring-[var(--focus-ring-width)] focus-visible:ring-accent-600 focus-visible:ring-offset-bg-page',
+    'outline-none focus-visible:ring-[var(--focus-ring-width)] focus-visible:ring-terra-500/55 focus-visible:ring-offset-canvas-base',
     inset && 'focus-visible:ring-inset',
     offsetMap[offset],
     children.props.className,

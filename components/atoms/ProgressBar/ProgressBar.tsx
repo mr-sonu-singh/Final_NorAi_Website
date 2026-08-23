@@ -30,7 +30,7 @@ export function ProgressBar({
       aria-valuemax={max}
       aria-label={ariaLabel}
       className={cn(
-        'w-full bg-primary-100 rounded-full overflow-hidden border border-[var(--border-width-default)] border-primary-200 select-none',
+        'w-full bg-canvas-recessed rounded-full overflow-hidden select-none',
         sizeClasses[size],
         className,
       )}
@@ -39,7 +39,7 @@ export function ProgressBar({
       <div
         style={{ transform: `scaleX(${percentage / 100})`, transformOrigin: 'left' }}
         className={cn(
-          'h-full w-full bg-accent-600 rounded-full',
+          'h-full w-full bg-terra-500 rounded-full',
           !prefersReducedMotion &&
             'transition-transform duration-[var(--duration-normal)] ease-[var(--ease-smooth)]',
         )}

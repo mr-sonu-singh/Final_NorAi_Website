@@ -3,10 +3,17 @@ import { notFound } from 'next/navigation';
 import { buildMetadata } from '@/lib/seo';
 import { LEGAL_POLICIES } from '@/lib/legal';
 import { LegalTemplate } from '@/components/templates/LegalTemplate';
-import { HeroStandard } from '@/components/organisms/sections/HeroStandard';
 
 interface PageProps {
   params: Promise<{ policy: string }>;
+}
+
+function sectionId(slug: string, index: number, heading: string): string {
+  const base = heading
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+  return `${slug}-${index}-${base}`;
 }
 
 export function generateStaticParams() {
@@ -40,31 +47,32 @@ export default async function LegalPolicyPage({ params }: PageProps) {
     notFound();
   }
 
+  const sections = policy.sections.map((section, index) => ({
+    id: sectionId(policy.slug, index, section.heading),
+    title: section.heading,
+    paragraphs: section.paragraphs,
+  }));
+
   return (
     <LegalTemplate
-      hero={
-        <HeroStandard
-          variant="textOnly"
-          eyebrow="Legal & Compliance"
-          headline={policy.title}
-          subhead={`Last updated: ${policy.lastUpdated}`}
-        />
-      }
-      body={
-        <article className="py-8 space-y-8 text-primary-700 leading-relaxed">
-          {policy.sections.map((section, idx) => (
-            <section key={`sec-${idx}`} className="space-y-4">
-              <h2 className="text-xl font-bold text-primary-900 tracking-tight">
-                {section.heading}
-              </h2>
-              {section.paragraphs.map((para, pIdx) => (
-                <p key={`p-${pIdx}`} className="text-base text-primary-700 leading-relaxed">
-                  {para}
-                </p>
-              ))}
-            </section>
-          ))}
-        </article>
+      eyebrow="Legal & compliance"
+      title={policy.title}
+      lastUpdated={policy.lastUpdated}
+      sections={sections}
+      footer={
+        <div className="space-y-3 rounded-xl border border-line-subtle bg-canvas-paper p-6 shadow-sm">
+          <h2 className="font-display text-xl text-ink-primary">Questions about this document?</h2>
+          <p className="text-sm leading-[1.75] text-ink-body">
+            Write to us and a person will get back to you —{' '}
+            <a
+              href="mailto:noraitechnologies@gmail.com"
+              className="font-semibold text-terra-600 underline underline-offset-4 transition-colors duration-200 hover:text-terra-700"
+            >
+              noraitechnologies@gmail.com
+            </a>
+            .
+          </p>
+        </div>
       }
     />
   );

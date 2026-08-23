@@ -14,7 +14,7 @@ export function Label({
     <label
       htmlFor={htmlFor}
       className={cn(
-        'block font-sans text-body-sm font-medium text-primary-800 mb-1.5 select-none',
+        'block font-sans text-[14px] font-medium text-ink-primary mb-1.5 select-none',
         disabled && 'opacity-[var(--opacity-disabled)] cursor-not-allowed',
         className,
       )}

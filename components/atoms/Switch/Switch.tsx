@@ -50,7 +50,7 @@ export function Switch({
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledby}
       className={cn(
-        'peer inline-flex shrink-0 cursor-pointer items-center rounded-full transition-colors duration-[var(--duration-fast)] ease-[var(--ease-smooth)] select-none min-w-[44px] min-h-[44px] data-[state=checked]:bg-accent-600 data-[state=unchecked]:bg-primary-300',
+        'peer inline-flex shrink-0 cursor-pointer items-center rounded-full transition-colors duration-200 ease-[var(--ease-smooth)] select-none min-w-[44px] min-h-[44px] data-[state=checked]:bg-terra-500 data-[state=unchecked]:bg-canvas-recessed border border-line-subtle data-[state=checked]:border-terra-500',
         trackSizeClasses[size],
         disabled && 'opacity-[var(--opacity-disabled)] cursor-not-allowed',
         className,
@@ -58,7 +58,7 @@ export function Switch({
     >
       <SwitchPrimitive.Thumb
         className={cn(
-          'pointer-events-none block rounded-full bg-bg-elevated shadow-xs transition-transform duration-[var(--duration-fast)] ease-[var(--ease-smooth)] translate-x-0',
+          'pointer-events-none block rounded-full bg-canvas-pure shadow-xs transition-transform duration-200 ease-[var(--ease-smooth)] translate-x-0',
           thumbSizeClasses[size].size,
           thumbSizeClasses[size].translate,
         )}

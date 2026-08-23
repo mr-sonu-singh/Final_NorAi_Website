@@ -34,8 +34,8 @@ export function Tabs({
     >
       <RadixTabs.List
         className={cn(
-          'inline-flex border-b border-primary-200 gap-2 overflow-x-auto scrollbar-none',
-          orientation === 'vertical' && 'border-b-0 border-r border-primary-200 flex-col shrink-0 min-w-[180px]',
+          'inline-flex border-b border-line-default gap-2 overflow-x-auto scrollbar-none',
+          orientation === 'vertical' && 'border-b-0 border-r border-line-default flex-col shrink-0 min-w-[180px]',
         )}
         aria-label="Content Tabs"
       >
@@ -45,12 +45,12 @@ export function Tabs({
             value={tab.id}
             disabled={tab.disabled}
             className={cn(
-              'px-4 py-2.5 text-body-md font-medium text-primary hover:text-accent transition-colors duration-fast relative whitespace-nowrap',
-              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded-sm',
-              'data-[state=active]:text-accent data-[state=active]:font-semibold',
-              'data-[state=active]:after:absolute data-[state=active]:after:bottom-0 data-[state=active]:after:left-0 data-[state=active]:after:right-0 data-[state=active]:after:h-0.5 data-[state=active]:after:bg-accent',
+              'px-4 py-2.5 text-body-md font-medium text-ink-body hover:text-terra-600 transition-colors duration-200 ease-[var(--ease-smooth)] relative whitespace-nowrap',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terra-500/55 focus-visible:ring-offset-2 rounded-sm',
+              'data-[state=active]:text-terra-600 data-[state=active]:font-semibold',
+              'data-[state=active]:after:absolute data-[state=active]:after:bottom-0 data-[state=active]:after:left-0 data-[state=active]:after:right-0 data-[state=active]:after:h-0.5 data-[state=active]:after:bg-terra-500 data-[state=active]:after:transition-all data-[state=active]:after:duration-200',
               orientation === 'vertical' && 'data-[state=active]:after:h-full data-[state=active]:after:w-0.5 data-[state=active]:after:right-0 data-[state=active]:after:left-auto data-[state=active]:after:top-0',
-              tab.disabled && 'opacity-disabled cursor-not-allowed text-primary-300',
+              tab.disabled && 'opacity-disabled cursor-not-allowed text-ink-disabled',
             )}
           >
             {tab.label}
@@ -62,7 +62,7 @@ export function Tabs({
         <RadixTabs.Content
           key={tab.id}
           value={tab.id}
-          className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm py-2"
+          className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terra-500/55 rounded-sm py-2"
         >
           {tab.content}
         </RadixTabs.Content>

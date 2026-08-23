@@ -72,7 +72,7 @@ export function Pagination({
         {pages.map((page, index) => {
           if (typeof page === 'string') {
             return (
-              <span key={`dots-${index}`} className="px-2 text-primary-400 text-body-sm select-none">
+              <span key={`dots-${index}`} className="px-2 text-ink-disabled text-body-sm select-none">
                 {page}
               </span>
             );
@@ -87,7 +87,10 @@ export function Pagination({
               size="sm"
               aria-current={isActive ? 'page' : undefined}
               onClick={() => onPageChange(page)}
-              className="w-8 h-8 p-0 justify-center"
+              className={cn(
+                'w-8 h-8 p-0 justify-center rounded-full',
+                isActive && 'shadow-accent hover:-translate-y-px active:translate-y-0',
+              )}
             >
               {page}
             </Button>

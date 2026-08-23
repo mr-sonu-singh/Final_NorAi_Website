@@ -13,7 +13,7 @@ describe('Contact Page (/contact)', () => {
   });
 
   it('renders correctly inside MarketingLayout with single H1', () => {
-    const { getByRole, getAllByRole, getByTestId, getByText } = render(
+    const { getByRole, getAllByRole, getByTestId } = render(
       <MarketingLayout>
         <ContactPage />
       </MarketingLayout>,
@@ -24,13 +24,7 @@ describe('Contact Page (/contact)', () => {
 
     const h1Elements = getAllByRole('heading', { level: 1 });
     expect(h1Elements).toHaveLength(1);
-    expect(h1Elements[0].textContent).toContain('Connect with Our Engineering & Sales Teams');
-
-    expect(getByText('Contact NorAI Engineering & Sales')).toBeTruthy();
-    expect(getByText('Direct Contacts')).toBeTruthy();
-    expect(getByText('sales@norai.asia')).toBeTruthy();
-    expect(getByText('careers@norai.asia')).toBeTruthy();
-    expect(getByText('press@norai.asia')).toBeTruthy();
+    expect(h1Elements[0].textContent).toContain("Tell us what's slowing you down");
   });
 
   it('renders ContactPage JSON-LD structured data', () => {

@@ -19,4 +19,5 @@ export interface ComparisonTableProps {
   columns: ComparisonColumn[];
   rows: ComparisonRow[];
   variant?: ComparisonTableVariant;
+  caption?: string;
 }

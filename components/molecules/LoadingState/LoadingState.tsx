@@ -42,7 +42,7 @@ export function LoadingState({
       {...props}
     >
       <Spinner size="lg" aria-label={label} />
-      {label && <Text className="text-body-sm text-primary-400 font-medium">{label}</Text>}
+      {label && <Text className="text-body-sm text-ink-secondary font-medium">{label}</Text>}
     </Stack>
   );
 }

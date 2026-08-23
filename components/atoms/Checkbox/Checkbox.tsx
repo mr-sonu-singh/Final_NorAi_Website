@@ -60,12 +60,11 @@ export function Checkbox({
       />
       <div
         className={cn(
-          'inline-flex items-center justify-center border border-[var(--border-width-default)] border-primary-300 bg-bg-elevated transition-colors duration-[var(--duration-fast)] ease-[var(--ease-smooth)] select-none cursor-pointer',
+          'inline-flex items-center justify-center border border-line-strong bg-canvas-pure transition-colors duration-200 ease-[var(--ease-smooth)] select-none cursor-pointer',
           sizeClasses[size],
-          (isChecked || indeterminate) && 'bg-accent-600 border-accent-600 text-white',
+          (isChecked || indeterminate) && 'bg-terra-500 border-terra-500 text-white',
           invalid && 'border-error-600',
-          disabled &&
-            'opacity-[var(--opacity-disabled)] bg-bg-sunken border-primary-200 cursor-not-allowed',
+          disabled && 'opacity-disabled bg-canvas-recessed border-line-default cursor-not-allowed',
           className,
         )}
       >

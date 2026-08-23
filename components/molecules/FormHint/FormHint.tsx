@@ -10,7 +10,7 @@ export function FormHint({ text, id, className, ...props }: FormHintProps) {
     <Text
       as="p"
       id={id}
-      className={cn('text-body-xs text-primary-400 mt-1', className)}
+      className={cn('text-body-xs text-ink-secondary mt-1', className)}
       data-testid="form-hint-molecule"
       {...props}
     >

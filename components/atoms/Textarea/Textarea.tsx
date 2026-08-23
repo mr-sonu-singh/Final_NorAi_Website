@@ -39,12 +39,14 @@ export function Textarea({
       aria-invalid={invalid}
       aria-describedby={ariaDescribedby}
       className={cn(
-        'w-full bg-bg-elevated font-sans text-primary-800 placeholder:text-primary-400 border border-[var(--border-width-default)] border-primary-200 transition-colors duration-[var(--duration-fast)] ease-[var(--ease-smooth)]',
+        'w-full bg-canvas-pure font-sans text-[15px] text-ink-primary placeholder:text-ink-secondary border border-line-default rounded-md transition-[color,background-color,border-color,box-shadow] duration-200 ease-[var(--ease-smooth)]',
+        'focus-visible:border-terra-500 focus-visible:ring-[3px] focus-visible:ring-terra-500/12 focus-visible:ring-offset-0 focus-visible:outline-none',
         sizeClasses[size],
         resizeClasses[resize],
-        invalid && 'border-error-600 focus:border-error-600',
-        disabled && 'opacity-[var(--opacity-disabled)] bg-bg-sunken cursor-not-allowed',
-        readOnly && 'bg-bg-sunken cursor-default',
+        invalid &&
+          'border-error-600 focus-visible:border-error-600 focus-visible:ring-error-600/12',
+        disabled && 'opacity-disabled bg-canvas-recessed cursor-not-allowed',
+        readOnly && 'bg-canvas-recessed cursor-default',
         className,
       )}
       {...props}

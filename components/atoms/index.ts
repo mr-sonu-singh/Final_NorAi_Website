@@ -28,3 +28,7 @@ export * from './Spinner';
 export * from './Skeleton';
 export * from './Tooltip';
 export * from './ProgressBar';
+
+// Visual Assets
+export * from './MeshGradient';
+

@@ -14,7 +14,7 @@ export const TiltCard: React.FC<TiltCardProps> = ({
   children,
   className,
   maxTiltDegrees = 8,
-  glowColor: _glowColor = 'rgba(96, 165, 250, 0.4)',
+  glowColor: _glowColor = 'rgba(194, 85, 58, 0.25)',
   ...props
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -50,7 +50,7 @@ export const TiltCard: React.FC<TiltCardProps> = ({
       onMouseLeave={handleMouseLeave}
       style={{ transform: transformStyle }}
       className={cn(
-        'tilt-card rounded-xl border border-slate-200/60 bg-[var(--bg-elevated)] p-6 backdrop-blur-md transition-transform duration-200 ease-out hover:shadow-2xl hover:shadow-[color:var(--accent-500)/0.1]',
+        'tilt-card rounded-xl bg-canvas-paper p-6 backdrop-blur-md transition-transform duration-200 ease-out',
         className
       )}
       {...props}

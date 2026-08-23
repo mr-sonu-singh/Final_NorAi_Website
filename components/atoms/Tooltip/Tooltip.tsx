@@ -25,11 +25,11 @@ export function Tooltip({
             side={side}
             sideOffset={4}
             className={cn(
-              'z-50 px-2.5 py-1.5 text-body-xs font-sans font-medium text-white bg-primary-900 rounded-md shadow-lg shadow-[rgba(46,91,255,0.12)] whitespace-nowrap pointer-events-none transition-opacity duration-[var(--duration-fast)] ease-[var(--ease-smooth)] animate-in fade-in-0',
+              'z-50 px-2.5 py-1.5 text-body-xs font-sans font-medium text-canvas-paper bg-navy-900 rounded-md shadow-lg whitespace-nowrap pointer-events-none transition-opacity duration-200 ease-[var(--ease-smooth)] animate-in fade-in-0',
             )}
           >
             {content}
-            <TooltipPrimitive.Arrow className="fill-primary-900" />
+            <TooltipPrimitive.Arrow className="fill-navy-900" />
           </TooltipPrimitive.Content>
         </TooltipPrimitive.Portal>
       </TooltipPrimitive.Root>

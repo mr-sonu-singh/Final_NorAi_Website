@@ -51,17 +51,19 @@ export function Select({
       aria-invalid={invalid}
       aria-describedby={ariaDescribedby}
       className={cn(
-        'relative inline-flex items-center justify-between w-full bg-bg-elevated font-sans text-primary-800 border border-[var(--border-width-default)] border-primary-200 cursor-pointer transition-colors duration-[var(--duration-fast)] ease-[var(--ease-smooth)] select-none',
+        'relative inline-flex items-center justify-between w-full bg-canvas-pure font-sans text-[15px] text-ink-primary border border-line-default rounded-md cursor-pointer transition-[color,background-color,border-color,box-shadow] duration-200 ease-[var(--ease-smooth)] select-none',
+        'focus-visible:border-terra-500 focus-visible:ring-[3px] focus-visible:ring-terra-500/12 focus-visible:ring-offset-0 focus-visible:outline-none',
         sizeClasses[size],
-        !currentValue && 'text-primary-400',
-        invalid && 'border-error-600 focus:border-error-600',
-        disabled && 'opacity-[var(--opacity-disabled)] bg-bg-sunken cursor-not-allowed',
+        !currentValue && 'text-ink-secondary',
+        invalid &&
+          'border-error-600 focus-visible:border-error-600 focus-visible:ring-error-600/12',
+        disabled && 'opacity-disabled bg-canvas-recessed cursor-not-allowed',
         className,
       )}
     >
       <SelectPrimitive.Value placeholder={placeholder} />
       <SelectPrimitive.Icon asChild>
-        <div className="absolute right-3 pointer-events-none text-primary-400">
+        <div className="absolute right-3 pointer-events-none text-ink-secondary">
           <Icon name="ChevronDown" size={iconSizeMap[size]} />
         </div>
       </SelectPrimitive.Icon>
@@ -79,7 +81,7 @@ export function Select({
       <FocusRing>{triggerElement}</FocusRing>
       <SelectPrimitive.Portal>
         <SelectPrimitive.Content
-          className="z-50 min-w-[8rem] overflow-hidden rounded-md border border-[var(--border-width-default)] border-primary-200 bg-bg-elevated text-primary-800 shadow-md animate-in fade-in-80"
+          className="z-50 min-w-[8rem] overflow-hidden rounded-md border border-line-default bg-canvas-paper text-ink-primary shadow-md animate-in fade-in-80"
           position="popper"
           sideOffset={4}
         >
@@ -89,9 +91,9 @@ export function Select({
                 key={option.value}
                 value={option.value}
                 disabled={option.disabled}
-                className="relative flex w-full cursor-pointer select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-body-sm outline-none focus:bg-primary-100 focus:text-primary-800 data-[disabled]:pointer-events-none data-[disabled]:opacity-[var(--opacity-disabled)]"
+                className="relative flex w-full cursor-pointer select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-body-sm outline-none data-[highlighted]:bg-terra-50 data-[highlighted]:text-terra-700 focus:bg-terra-50 focus:text-terra-700 data-[disabled]:pointer-events-none data-[disabled]:opacity-disabled"
               >
-                <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+                <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center text-terra-600">
                   <SelectPrimitive.ItemIndicator>
                     <Icon name="Check" size="xs" />
                   </SelectPrimitive.ItemIndicator>

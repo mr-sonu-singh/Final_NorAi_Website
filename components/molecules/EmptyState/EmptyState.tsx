@@ -24,16 +24,16 @@ export function EmptyState({
       data-testid="empty-state-molecule"
       {...props}
     >
-      <div className="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center text-primary-400">
+      <div className="w-12 h-12 rounded-full bg-canvas-recessed flex items-center justify-center text-ink-secondary">
         <Icon name={icon} size="lg" aria-hidden="true" />
       </div>
 
       <div className="space-y-1">
-        <Heading as="h4" variant="heading-sm" className="font-semibold text-primary">
+        <Heading as="h4" variant="heading-sm" className="font-semibold text-ink-primary">
           {title}
         </Heading>
         {description && (
-          <Text as="p" className="text-body-sm text-primary-400 max-w-xs mx-auto">
+          <Text as="p" className="text-body-sm text-ink-secondary max-w-xs mx-auto">
             {description}
           </Text>
         )}

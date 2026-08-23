@@ -1,12 +1,13 @@
-export type BlogCardVariant = 'Default' | 'Compact';
+export type BlogCardAccent = 'terra' | 'sage' | 'gold';
 
 export interface BlogCardProps {
   title: string;
   excerpt: string;
   href: string;
-  image: string;
-  meta: string;
+  author: string;
+  date: string;
   category?: string;
-  variant?: BlogCardVariant;
-  pending?: boolean;
+  /** Rotating warm accent for the card's top bar */
+  accent?: BlogCardAccent;
+  className?: string;
 }

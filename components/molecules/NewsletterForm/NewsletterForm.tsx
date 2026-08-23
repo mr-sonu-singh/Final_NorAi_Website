@@ -59,7 +59,9 @@ export function NewsletterForm({
       </div>
 
       {externalError && <FormError message={externalError} />}
-      {successMessage && !externalError && <FormHint text={successMessage} className="text-success" />}
+      {successMessage && !externalError && (
+        <FormHint text={successMessage} className="text-success-600" />
+      )}
     </form>
   );
 }

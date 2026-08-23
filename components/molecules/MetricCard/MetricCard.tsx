@@ -33,7 +33,7 @@ export function MetricCard({
       <StatCard value={value} label={label} icon={icon} />
 
       {change && (
-        <div className="absolute top-6 right-6 flex items-center gap-1">
+        <div className="absolute top-6 right-6 z-10 flex items-center gap-1">
           <Badge variant={getBadgeVariant()} size="sm">
             {trendIcon && <Icon name={trendIcon} size="xs" className="mr-1" />}
             {change}

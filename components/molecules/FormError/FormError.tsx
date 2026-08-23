@@ -11,12 +11,12 @@ export function FormError({ message, id, className, ...props }: FormErrorProps) 
     <div
       id={id}
       role="alert"
-      className={cn('inline-flex items-center gap-1.5 text-error text-body-xs mt-1', className)}
+      className={cn('inline-flex items-center gap-1.5 text-error-600 text-body-xs mt-1', className)}
       data-testid="form-error-molecule"
       {...props}
     >
-      <Icon name="alert-circle" size="xs" className="shrink-0 text-error" aria-hidden="true" />
-      <Text as="span" className="text-body-xs text-error font-medium">
+      <Icon name="alert-circle" size="xs" className="shrink-0 text-error-600" aria-hidden="true" />
+      <Text as="span" className="text-body-xs text-error-600 font-medium">
         {message}
       </Text>
     </div>

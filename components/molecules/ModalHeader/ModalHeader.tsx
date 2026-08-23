@@ -19,18 +19,18 @@ export function ModalHeader({
   return (
     <div
       className={cn(
-        'flex items-start justify-between gap-4 p-6 border-b border-primary-200 w-full',
+        'flex items-start justify-between gap-4 p-6 border-b border-line-subtle w-full',
         className,
       )}
       data-testid="modal-header-molecule"
       {...props}
     >
       <div className="space-y-1 min-w-0">
-        <Heading id={titleId} as="h4" variant="heading-sm" className="font-semibold text-primary truncate">
+        <Heading id={titleId} as="h4" variant="heading-sm" className="font-semibold text-ink-primary truncate">
           {title}
         </Heading>
         {description && (
-          <Text as="p" className="text-body-sm text-primary-400">
+          <Text as="p" className="text-body-sm text-ink-secondary">
             {description}
           </Text>
         )}
@@ -43,7 +43,7 @@ export function ModalHeader({
           variant="ghost"
           aria-label="Close dialog"
           onClick={onClose}
-          className="shrink-0 -mr-2 -mt-2 text-primary-400"
+          className="shrink-0 -mr-2 -mt-2 text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed"
         />
       )}
     </div>

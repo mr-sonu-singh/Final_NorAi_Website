@@ -1,14 +1,13 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import NextLink from 'next/link';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { BLOG_POSTS } from '@/lib/blog';
-import { Container } from '@/components/foundation/Container';
-import { Section } from '@/components/foundation/Section';
-import { Heading } from '@/components/foundation/Heading';
-import { Text } from '@/components/foundation/Text';
-import { Link } from '@/components/atoms/Link';
 import { buildMetadata } from '@/lib/seo';
-import { ArrowLeft, Clock, Tag, User } from 'lucide-react';
+import { BlogPostTemplate } from '@/components/templates/BlogPostTemplate';
+import { MonogramAvatar } from '@/components/illustrations/editorial';
+
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -41,6 +40,17 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   });
 }
 
+function pickRelatedPosts(slug: string, category: string) {
+  const others = Object.values(BLOG_POSTS).filter((post) => post.slug !== slug);
+  const sameCategory = others
+    .filter((post) => post.category === category)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  const rest = others
+    .filter((post) => post.category !== category)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  return [...sameCategory, ...rest].slice(0, 2);
+}
+
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
   const post = BLOG_POSTS[slug];
@@ -49,97 +59,92 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
+  const related = pickRelatedPosts(post.slug, post.category);
+
   return (
-    <article className="bg-[var(--bg-page)] text-primary-800 min-h-screen font-sans selection:bg-[var(--accent-500)] selection:text-[var(--bg-page)]">
-      {/* Editorial Header */}
-      <Section className="relative pt-12 pb-12 md:pt-16 md:pb-16 border-b border-slate-200/60">
-        <Container size="narrow">
-            <div className="space-y-6">
-            {/* Back Button */}
-            <Link href="/blog" className="inline-flex items-center text-xs font-mono text-primary-700 hover:text-[var(--accent-500)] transition-colors">
-              <ArrowLeft className="w-3.5 h-3.5 mr-1.5" aria-hidden="true" /> Back to Journal
-            </Link>
-
-            {/* Metadata Bar */}
-              <div className="flex flex-wrap items-center gap-3 text-xs font-mono">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-[color:var(--accent-500)/0.1] text-[var(--accent-mono)] border border-[color:var(--accent-500)/0.2] font-bold">
-                <Tag className="w-3 h-3 text-[var(--accent-500)]" aria-hidden="true" />
-                {post.category}
-              </span>
-              <span className="text-primary-700">•</span>
-              <span className="text-primary-700 flex items-center gap-1">
-                <Clock className="w-3.5 h-3.5 text-[var(--accent-500)]" aria-hidden="true" /> {post.readTime}
-              </span>
-              <span className="text-primary-700">•</span>
-              <span className="text-primary-700 flex items-center gap-1">
-                <User className="w-3.5 h-3.5 text-[var(--accent-500)]" aria-hidden="true" /> By {post.author}
-              </span>
-            </div>
-
-            {/* Title */}
-            <Heading
-              as="h1"
-              variant="display-lg"
-              className="font-display font-extrabold tracking-tight text-primary-800 leading-tight"
-            >
-              {post.title}
-            </Heading>
-
-            {/* Excerpt Lead Paragraph */}
-            <Text variant="body-lg" className="text-primary-700 font-normal leading-relaxed italic border-l-2 border-[color:var(--accent-500)/1] pl-4">
-              {post.excerpt}
-            </Text>
+    <BlogPostTemplate
+      backLink={
+        <NextLink
+          href="/blog"
+          className="inline-flex items-center gap-1.5 font-sans text-[13px] text-ink-secondary transition-colors duration-200 hover:text-ink-primary"
+        >
+          <ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" />
+          All notes
+        </NextLink>
+      }
+      header={
+        <>
+          <span className="w-fit rounded-full bg-sage-100 px-2.5 py-1 text-xs font-medium text-sage-700">
+            {post.category}
+          </span>
+          <h1 className="mt-4 font-display text-[clamp(34px,5vw,44px)] leading-[1.12] tracking-[-0.01em] text-ink-primary">
+            {post.title}
+          </h1>
+          <div className="mt-6 flex items-center gap-3">
+            <MonogramAvatar name={post.author} size="sm" />
+            <p className="font-sans text-[13px] text-ink-secondary">
+              By {post.author} · {post.date} · {post.readTime}
+            </p>
           </div>
-        </Container>
-      </Section>
-
-      {/* Main Prose Article Body */}
-      <Section className="py-16">
-        <Container size="narrow">
-          <div className="space-y-10 text-primary-500 leading-relaxed text-base">
-            {post.sections.map((sec, idx) => (
-              <div key={idx} className="space-y-4">
-                {sec.heading && (
-                  <Heading as="h2" variant="heading-xl" className="font-display font-bold text-primary-800 pt-4">
-                    {sec.heading}
-                  </Heading>
-                )}
-
-                {sec.paragraphs.map((p, pIdx) => (
-                  <p key={pIdx} className="text-primary-700 text-base leading-relaxed">
-                    {p}
+          <hr className="mt-8 border-line-subtle" />
+        </>
+      }
+      footer={
+        related.length > 0 ? (
+          <div>
+            <p className="font-sans text-[13px] text-ink-secondary">Keep reading</p>
+            <ul className="mt-5 space-y-6">
+              {related.map((relatedPost) => (
+                <li key={relatedPost.slug}>
+                  <NextLink
+                    href={`/blog/${relatedPost.slug}`}
+                    className="group inline-flex items-baseline gap-2 outline-none"
+                  >
+                    <span className="font-display text-xl leading-snug text-ink-primary transition-colors duration-200 group-hover:text-terra-600">
+                      {relatedPost.title}
+                    </span>
+                    <ArrowRight
+                      className="h-4 w-4 shrink-0 self-center text-terra-500 opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100"
+                      aria-hidden="true"
+                    />
+                  </NextLink>
+                  <p className="mt-1 font-sans text-[13px] text-ink-secondary">
+                    By {relatedPost.author} · {relatedPost.date} · {relatedPost.category}
                   </p>
-                ))}
-
-                {sec.codeSnippet && (
-                  <div className="my-6 rounded-lg bg-[var(--bg-page)] border border-slate-200/60 overflow-hidden font-mono text-xs">
-                    <div className="px-4 py-2 bg-[var(--bg-elevated)] border-b border-slate-200/60 text-primary-700 flex items-center justify-between">
-                      <span className="text-xs uppercase font-bold text-[var(--accent-mono)]">{sec.codeSnippet.language}</span>
-                      <span className="text-[11px] text-primary-700">EXEMPLARY SNIPPET</span>
-                    </div>
-                    <pre className="p-4 overflow-x-auto text-primary-500 leading-relaxed">
-                      <code>{sec.codeSnippet.code}</code>
-                    </pre>
-                  </div>
-                )}
-              </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : undefined
+      }
+    >
+      {post.sections.map((section, idx) => (
+        <section key={idx}>
+          {section.heading && (
+            <h2 className="mb-4 mt-12 font-display text-[26px] leading-snug text-ink-primary first:mt-0">
+              {section.heading}
+            </h2>
+          )}
+          <div className="space-y-5">
+            {section.paragraphs.map((paragraph, pIdx) => (
+              <p key={pIdx} className="text-[17px] leading-[1.8] text-ink-body">
+                {paragraph}
+              </p>
             ))}
           </div>
 
-          {/* Article Footer & Back Action */}
-          <div className="mt-16 pt-8 border-t border-slate-200/60 flex items-center justify-between">
-            <Link href="/blog" className="inline-flex items-center text-xs font-mono text-primary-700 hover:text-[var(--accent-500)] transition-colors">
-              <ArrowLeft className="w-3.5 h-3.5 mr-1.5" aria-hidden="true" /> Back to Journal Index
-            </Link>
-            <span className="text-xs font-mono text-primary-700">
-              Published on {post.date}
-            </span>
-          </div>
-        </Container>
-      </Section>
-    </article>
+          {section.codeSnippet && (
+            <figure className="my-8 overflow-hidden rounded-lg border border-line-subtle bg-canvas-recessed">
+              <figcaption className="px-5 pt-4 font-sans text-[11px] tracking-wide text-ink-secondary">
+                {section.codeSnippet.language}
+              </figcaption>
+              <pre className="overflow-x-auto p-5 pt-2 font-mono text-sm leading-relaxed text-ink-body">
+                <code>{section.codeSnippet.code}</code>
+              </pre>
+            </figure>
+          )}
+        </section>
+      ))}
+    </BlogPostTemplate>
   );
 }
-
-
-

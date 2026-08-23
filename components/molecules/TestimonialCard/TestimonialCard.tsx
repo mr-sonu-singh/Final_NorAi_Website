@@ -17,13 +17,19 @@ export function TestimonialCardBody({
 }: TestimonialCardProps) {
   return (
     <figure
-      className={cn('p-6 bg-elevated border border-primary-200 rounded-lg w-full', className)}
+      className={cn(
+        'p-6 bg-canvas-paper border border-line-subtle rounded-xl w-full shadow-sm transition-[transform,border-color,box-shadow] duration-200 ease-[var(--ease-smooth)] hover:shadow-hover hover:border-line-accent hover:-translate-y-0.5',
+        className,
+      )}
       data-testid="testimonial-card-molecule"
       {...props}
     >
       <Stack direction="col" gap="4">
         <blockquote className="m-0">
-          <Text as="p" className="text-body-md text-primary font-serif italic leading-relaxed">
+          <Text
+            as="p"
+            className="font-display italic text-[length:var(--text-heading-lg-size)] leading-[var(--text-heading-lg-line)] tracking-[var(--text-heading-lg-tracking)] text-ink-primary"
+          >
             &ldquo;{quote}&rdquo;
           </Text>
         </blockquote>
@@ -31,10 +37,10 @@ export function TestimonialCardBody({
         <figcaption className="inline-flex items-center gap-3 pt-2">
           <Avatar src={avatarSrc} alt={authorName} size="md" />
           <div className="space-y-0.5">
-            <Heading as="h4" variant="heading-xs" className="font-semibold text-primary">
+            <Heading as="h4" variant="heading-xs" className="font-semibold text-[14px] text-ink-primary font-sans">
               {authorName}
             </Heading>
-            <Text as="p" className="text-body-xs text-primary-400">
+            <Text as="p" className="text-body-xs text-ink-secondary">
               {authorRole}
               {authorCompany ? `, ${authorCompany}` : ''}
             </Text>

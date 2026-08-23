@@ -74,8 +74,8 @@ export function BlogPreviewSection({
                     title={post.title}
                     excerpt={post.excerpt}
                     href={post.href}
-                    image={post.image}
-                    meta={post.meta}
+                    author={post.author}
+                    date={post.date}
                     category={post.category}
                   />
                 ))}

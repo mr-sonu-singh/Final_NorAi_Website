@@ -1,12 +1,13 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
+import * as Accordion from '@radix-ui/react-accordion';
 import { Container } from '@/components/foundation/Container';
 import { Section } from '@/components/foundation/Section';
 import { Heading } from '@/components/foundation/Heading';
 import { Text } from '@/components/foundation/Text';
 import { Link } from '@/components/atoms/Link';
-import { HelpCircle, Search, ChevronDown, ArrowRight } from 'lucide-react';
+import { ChevronDown, Search, X } from 'lucide-react';
 
 interface FAQItem {
   question: string;
@@ -82,127 +83,117 @@ const FAQ_ITEMS: FAQItem[] = [
   },
 ];
 
+const CATEGORIES: { id: FAQItem['category']; label: string; heading: string }[] = [
+  { id: 'product', label: 'Products', heading: 'Product questions' },
+  { id: 'service', label: 'Services', heading: 'Custom services' },
+  { id: 'billing', label: 'Billing & tiers', heading: 'Billing & pricing' },
+];
+
 export default function FAQPage() {
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeCategory, setActiveCategory] = useState<'all' | 'product' | 'service' | 'billing'>('all');
+  const [activeCategory, setActiveCategory] = useState<'all' | FAQItem['category']>('all');
 
-  const filteredItems = FAQ_ITEMS.filter((item) => {
-    const matchesCategory = activeCategory === 'all' || item.category === activeCategory;
-    const matchesSearch =
-      searchQuery.trim() === '' ||
-      item.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.answer.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
+  const grouped = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+    return CATEGORIES.filter(
+      (category) => activeCategory === 'all' || category.id === activeCategory,
+    )
+      .map((category) => ({
+        ...category,
+        items: FAQ_ITEMS.filter(
+          (item) =>
+            item.category === category.id &&
+            (query === '' ||
+              item.question.toLowerCase().includes(query) ||
+              item.answer.toLowerCase().includes(query)),
+        ),
+      }))
+      .filter((group) => group.items.length > 0);
+  }, [searchQuery, activeCategory]);
+
+  const totalMatches = grouped.reduce((sum, group) => sum + group.items.length, 0);
 
   return (
-    <div className="bg-[var(--bg-page)] text-primary-800 min-h-screen font-sans selection:bg-[var(--accent-500)] selection:text-[var(--bg-page)]">
-      {/* Header Section */}
-      <Section className="relative pt-12 pb-12 md:pt-20 md:pb-16 border-b border-slate-200/60">
-        <Container size="default">
-          <div className="text-center max-w-3xl mx-auto space-y-4">
-            <div className="inline-flex items-center gap-2 text-xs font-mono text-[var(--accent-500)] uppercase tracking-wider">
-              <HelpCircle className="w-4 h-4 text-[var(--accent-500)]" aria-hidden="true" />
-              <span>Knowledge Base &amp; Frequently Asked Questions</span>
-            </div>
-
-            <Heading
-              as="h1"
-              variant="display-lg"
-              className="font-display font-extrabold tracking-tight text-primary-800 leading-tight"
-            >
-              Frequently Asked Questions
+    <div className="min-h-screen bg-canvas-base font-sans text-ink-primary">
+      {/* Header */}
+      <Section className="relative overflow-hidden pb-12 pt-12 md:pt-20">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-canvas-paper [mask-image:linear-gradient(to_bottom,black,transparent)]"
+        />
+        <Container size="default" className="relative z-10">
+          <div className="mx-auto max-w-3xl space-y-5 text-center">
+            <p className="inline-flex items-center gap-2 rounded-full border border-line-subtle bg-canvas-pure px-3 py-1 text-[13px] font-medium text-ink-secondary">
+              Help center
+            </p>
+            <Heading as="h1" variant="display-xl" className="text-balance text-ink-primary">
+              Frequently asked questions
             </Heading>
-
-            <Text variant="body-lg" className="text-primary-700 font-normal leading-relaxed max-w-2xl mx-auto">
-              Find instant answers regarding self-serve products, custom enterprise engineering, and billing structures.
+            <Text variant="body-lg" as="p" className="mx-auto max-w-xl leading-relaxed text-ink-body">
+              Instant answers about our self-serve products, custom engineering work, and billing.
             </Text>
           </div>
         </Container>
       </Section>
 
-      {/* Search & Category Filter Controls */}
-      <Section className="py-8 border-b border-slate-200/60 bg-[color:var(--bg-elevated)/0.6] sticky top-16 z-30 backdrop-blur-md">
-        <Container size="narrow">
+      {/* Search & filters */}
+      <div className="sticky top-16 z-30 border-b border-line-subtle bg-canvas-paper/90 backdrop-blur-md">
+        <Container size="narrow" className="py-5">
           <div className="space-y-4">
-            {/* Search Input Bar */}
             <div className="relative">
-              <Search className="w-4 h-4 text-primary-700 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true" />
+              <Search
+                className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-secondary"
+                aria-hidden="true"
+              />
               <input
                 type="text"
-                placeholder="Search questions or keywords..."
+                aria-label="Search frequently asked questions"
+                placeholder="Search questions…"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-[var(--bg-page)] border border-slate-200/60 rounded-lg pl-11 pr-4 py-3 text-sm text-primary-800 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[var(--accent-500)] transition-all"
+                className="w-full rounded-md border border-line-default bg-canvas-pure py-3 pl-11 pr-10 font-sans text-[15px] text-ink-primary placeholder:text-ink-secondary focus-visible:border-terra-500 focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-terra-500/12 transition-[border-color,box-shadow] duration-200 ease-[var(--ease-smooth)]"
               />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => setSearchQuery('')}
+                  aria-label="Clear search"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-md p-1 text-ink-secondary transition-colors duration-200 hover:text-ink-primary"
+                >
+                  <X className="h-4 w-4" aria-hidden="true" />
+                </button>
+              )}
             </div>
 
-            {/* Category Tabs */}
-              <div className="flex items-center justify-center gap-2 text-xs font-mono" role="tablist" aria-label="FAQ Category Filter">
-              <button
-                type="button"
-                role="tab"
-                aria-selected={activeCategory === 'all'}
-                onClick={() => setActiveCategory('all')}
-                className={`px-3.5 py-1.5 rounded transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-500)] ${
-                  activeCategory === 'all'
-                    ? 'bg-[var(--accent-500)] text-[var(--bg-page)] font-bold'
-                    : 'bg-[var(--bg-page)] text-primary-700 border border-slate-200/60 hover:text-primary-800'
-                }`}
-              >
-                [ALL QUESTIONS]
-              </button>
-              <button
-                type="button"
-                role="tab"
-                aria-selected={activeCategory === 'product'}
-                onClick={() => setActiveCategory('product')}
-                className={`px-3.5 py-1.5 rounded transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-500)] ${
-                  activeCategory === 'product'
-                    ? 'bg-[var(--accent-500)] text-[var(--bg-page)] font-bold'
-                    : 'bg-[var(--bg-page)] text-primary-700 border border-slate-200/60 hover:text-primary-800'
-                }`}
-              >
-                [PRODUCTS]
-              </button>
-              <button
-                type="button"
-                role="tab"
-                aria-selected={activeCategory === 'service'}
-                onClick={() => setActiveCategory('service')}
-                className={`px-3.5 py-1.5 rounded transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-500)] ${
-                  activeCategory === 'service'
-                    ? 'bg-[var(--accent-500)] text-[var(--bg-page)] font-bold'
-                    : 'bg-[var(--bg-page)] text-primary-700 border border-slate-200/60 hover:text-primary-800'
-                }`}
-              >
-                [SERVICES]
-              </button>
-              <button
-                type="button"
-                role="tab"
-                aria-selected={activeCategory === 'billing'}
-                onClick={() => setActiveCategory('billing')}
-                className={`px-3.5 py-1.5 rounded transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-500)] ${
-                  activeCategory === 'billing'
-                    ? 'bg-[var(--accent-500)] text-[var(--bg-page)] font-bold'
-                    : 'bg-[var(--bg-page)] text-primary-700 border border-slate-200/60 hover:text-primary-800'
-                }`}
-              >
-                [BILLING &amp; TIERS]
-              </button>
+            <div className="flex flex-wrap items-center justify-center gap-2" role="tablist" aria-label="Filter questions by topic">
+              {[{ id: 'all' as const, label: 'All questions' }, ...CATEGORIES].map((tab) => (
+                <button
+                  key={tab.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={activeCategory === tab.id}
+                  onClick={() => setActiveCategory(tab.id)}
+                  className={`rounded-full px-3.5 py-1.5 text-[13px] font-medium transition-colors duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-terra-500/12 ${
+                    activeCategory === tab.id
+                      ? 'bg-terra-500 text-white shadow-accent'
+                      : 'border border-line-default bg-canvas-pure text-ink-body hover:border-line-strong hover:text-ink-primary'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
             </div>
           </div>
         </Container>
-      </Section>
+      </div>
 
-      {/* Accordion FAQ Results */}
-      <Section className="py-16">
+      {/* Grouped accordions */}
+      <Section className="py-14">
         <Container size="narrow">
-          {filteredItems.length === 0 ? (
-            <div className="text-center py-12 space-y-3">
-              <Text variant="body-md" className="text-primary-700">
-                No questions found matching your search.
+          {totalMatches === 0 ? (
+            <div className="space-y-3 py-12 text-center">
+              <Text variant="body-md" className="text-ink-body">
+                No questions match “{searchQuery}”. Try a different word, or ask us directly.
               </Text>
               <button
                 type="button"
@@ -210,44 +201,64 @@ export default function FAQPage() {
                   setSearchQuery('');
                   setActiveCategory('all');
                 }}
-                className="text-xs font-mono text-[var(--accent-500)] hover:underline cursor-pointer"
+                className="cursor-pointer text-sm font-semibold text-terra-600 underline underline-offset-4 transition-colors duration-200 hover:text-terra-700"
               >
-                Clear search filters
+                Clear filters
               </button>
             </div>
           ) : (
-            <div className="space-y-4">
-              {filteredItems.map((item, idx) => (
-                <details
-                  key={idx}
-                  className="group rounded-lg border border-slate-200/60 bg-[var(--bg-elevated)] p-5 backdrop-blur-md transition-all [&_summary::-webkit-details-marker]:hidden"
-                >
-                  <summary className="flex items-center justify-between cursor-pointer font-semibold text-primary-800 text-base">
-                    <span className="flex items-center gap-3">
-                        <HelpCircle className="w-5 h-5 text-[var(--accent-500)] flex-shrink-0" aria-hidden="true" />
-                      {item.question}
+            <div className="space-y-12">
+              {grouped.map((group) => (
+                <section key={group.id} id={group.id} className="scroll-mt-40 space-y-5">
+                  <div className="flex items-baseline gap-3">
+                    <h2 className="font-display text-2xl text-ink-primary">{group.heading}</h2>
+                    <span className="rounded-full bg-canvas-recessed px-2.5 py-0.5 text-xs font-semibold tabular-nums text-ink-secondary">
+                      {group.items.length}
                     </span>
-                    <ChevronDown className="w-4 h-4 text-primary-700 transition-transform group-open:rotate-180" aria-hidden="true" />
-                  </summary>
-                  <p className="mt-4 text-sm text-primary-700 leading-relaxed pl-8">
-                    {item.answer}
-                  </p>
-                </details>
+                  </div>
+
+                  <Accordion.Root type="single" collapsible className="space-y-3">
+                    {group.items.map((item) => (
+                      <Accordion.Item
+                        key={item.question}
+                        value={item.question}
+                        className="overflow-hidden rounded-xl border border-line-subtle bg-canvas-paper shadow-sm transition-shadow duration-200 data-[state=open]:shadow-md"
+                      >
+                        <Accordion.Header>
+                          <Accordion.Trigger className="group flex w-full items-center justify-between gap-4 p-5 text-left focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-terra-500/12">
+                            <span className="text-[17px] font-semibold leading-snug text-ink-primary">
+                              {item.question}
+                            </span>
+                            <ChevronDown
+                              className="h-4 w-4 shrink-0 text-ink-secondary transition-transform duration-200 ease-[var(--ease-smooth)] group-data-[state=open]:rotate-180"
+                              aria-hidden="true"
+                            />
+                          </Accordion.Trigger>
+                        </Accordion.Header>
+                        <Accordion.Content className="grid overflow-hidden transition-[grid-template-rows] duration-200 ease-[var(--ease-smooth)] motion-reduce:transition-none data-[state=closed]:grid-rows-[0fr] data-[state=open]:grid-rows-[1fr]">
+                          <div className="min-h-0">
+                            <p className="border-t border-line-subtle px-5 pb-5 pt-4 text-[15px] leading-[1.75] text-ink-body">
+                              {item.answer}
+                            </p>
+                          </div>
+                        </Accordion.Content>
+                      </Accordion.Item>
+                    ))}
+                  </Accordion.Root>
+                </section>
               ))}
             </div>
           )}
 
-          {/* Contact Support Banner */}
-          <div className="mt-16 rounded-xl border border-slate-200/60 bg-[var(--bg-elevated)] p-8 text-center space-y-4">
-            <Heading as="h2" variant="heading-xl" className="font-display font-bold text-primary-800">
-              Have Additional Questions?
-            </Heading>
-            <Text variant="body-sm" className="text-primary-700">
-              Our engineering and solution architects are available for technical scoping and inquiries.
+          {/* Contact banner */}
+          <div className="mt-16 space-y-4 rounded-xl border border-line-subtle bg-canvas-paper p-8 text-center shadow-sm">
+            <h2 className="font-display text-2xl text-ink-primary">Still stuck on something?</h2>
+            <Text variant="body-sm" className="leading-relaxed text-ink-body">
+              Skip the search bar and talk to a person — we reply within two hours during business hours.
             </Text>
-            <div className="pt-2">
-              <Link href="/contact" className="inline-flex items-center text-xs font-mono text-[var(--accent-500)] hover:text-[var(--accent-mono)] font-bold">
-                Schedule Technical Consultation <ArrowRight className="w-3.5 h-3.5 ml-1.5" aria-hidden="true" />
+            <div className="pt-1">
+              <Link href="/contact" variant="standalone" aria-label="Ask us directly through the contact page">
+                Ask us directly
               </Link>
             </div>
           </div>
@@ -256,6 +267,3 @@ export default function FAQPage() {
     </div>
   );
 }
-
-
-

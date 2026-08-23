@@ -14,7 +14,7 @@ export function Divider({
       aria-hidden={decorative ? 'true' : undefined}
       aria-orientation={decorative ? undefined : orientation}
       className={cn(
-        'bg-primary-200 shrink-0',
+        'bg-line-subtle shrink-0',
         orientation === 'horizontal'
           ? 'w-full h-[var(--border-width-default)] my-4'
           : 'h-full w-[var(--border-width-default)] mx-4 inline-block',

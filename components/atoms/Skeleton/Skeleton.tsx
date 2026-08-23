@@ -32,7 +32,7 @@ export function Skeleton({
       aria-hidden="true"
       style={customStyle}
       className={cn(
-        'bg-primary-100 border border-[var(--border-width-default)] border-primary-200 select-none',
+        'bg-canvas-recessed select-none',
         shapeClasses[shape],
         !prefersReducedMotion && 'animate-pulse',
         className,

@@ -45,7 +45,7 @@ export function Avatar({
     <div className={cn('relative inline-block shrink-0', className)} {...props}>
       <div
         className={cn(
-          'flex items-center justify-center rounded-full overflow-hidden bg-primary-100 text-primary-800 font-sans font-semibold border border-[var(--border-width-default)] border-primary-200 select-none',
+          'flex items-center justify-center rounded-full overflow-hidden bg-canvas-recessed text-ink-body font-sans font-semibold border border-line-subtle select-none',
           sizeClasses[size],
         )}
       >
@@ -67,12 +67,12 @@ export function Avatar({
         ) : fallback ? (
           <span>{fallback.substring(0, 2).toUpperCase()}</span>
         ) : (
-          <Icon name="User" size={iconSizeMap[size]} className="text-primary-400" />
+          <Icon name="User" size={iconSizeMap[size]} className="text-ink-disabled" />
         )}
       </div>
 
       {status && (
-        <span className="absolute bottom-0 right-0 transform translate-x-1/4 translate-y-1/4 ring-2 ring-bg-elevated rounded-full">
+        <span className="absolute bottom-0 right-0 transform translate-x-1/4 translate-y-1/4 ring-2 ring-canvas-paper rounded-full">
           <StatusDot status={status} size={size === 'lg' ? 'md' : 'sm'} />
         </span>
       )}

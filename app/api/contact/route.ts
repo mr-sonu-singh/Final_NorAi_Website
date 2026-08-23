@@ -30,7 +30,7 @@ export async function POST(req: Request) {
       <title>New Business Enquiry</title>
       </head>
 
-      <body style="margin:0;padding:0;background:#f5f7fb;font-family:Arial,Helvetica,sans-serif;">
+      <body style="margin:0;padding:0;background:#F5F0EA;font-family:Arial,Helvetica,sans-serif;">
 
       <!-- Gmail Preview Text -->
       <div style="display:none;max-height:0;overflow:hidden;opacity:0;">
@@ -42,12 +42,12 @@ export async function POST(req: Request) {
       <td align="center">
 
       <table width="650" cellpadding="0" cellspacing="0"
-      style="background:#ffffff;border-radius:14px;overflow:hidden;border:1px solid #e5e7eb;">
+      style="background:#FFFFFF;border-radius:14px;overflow:hidden;border:1px solid #EDE7DF;">
 
       <tr>
-      <td style="background:#0A1229;padding:30px;text-align:center;">
+      <td style="background:#FDFBF7;padding:30px;text-align:center;border-bottom:1px solid #EDE7DF;">
 
-      <h1 style="margin:0;color:#2E5BFF;font-size:30px;">
+      <h1 style="margin:0;color:#C2553A;font-size:30px;">
       NorAI Technologies
       </h1>
 
@@ -57,19 +57,19 @@ export async function POST(req: Request) {
       <tr>
       <td style="padding:35px;">
 
-      <h2 style="margin-top:0;color:#111827;">
+      <h2 style="margin-top:0;color:#0D253D;">
       Client Details
       </h2>
 
       <table width="100%" cellpadding="10" cellspacing="0" style="border-collapse:collapse;">
 
       <tr>
-      <td style="background:#f8fafc;"><b>Name</b></td>
+      <td style="background:#FAF6F0;"><b>Name</b></td>
       <td>${body.name}</td>
       </tr>
 
       <tr>
-      <td style="background:#f8fafc;"><b>Email</b></td>
+      <td style="background:#FAF6F0;"><b>Email</b></td>
       <td>
       <a href="mailto:${body.email}">
       ${body.email}
@@ -78,28 +78,28 @@ export async function POST(req: Request) {
       </tr>
 
       <tr>
-      <td style="background:#f8fafc;"><b>Company</b></td>
+      <td style="background:#FAF6F0;"><b>Company</b></td>
       <td>${body.company || "Not Provided"}</td>
       </tr>
 
       <tr>
-      <td style="background:#f8fafc;"><b>Service</b></td>
+      <td style="background:#FAF6F0;"><b>Service</b></td>
       <td>${body.service}</td>
       </tr>
 
       </table>
 
-      <h2 style="margin-top:35px;color:#111827;">
+      <h2 style="margin-top:35px;color:#0D253D;">
       Requirement
       </h2>
 
       <div style="
-      background:#f8fafc;
+      background:#FAF6F0;
       padding:20px;
-      border-left:5px solid #2E5BFF;
+      border-left:5px solid #C2553A;
       border-radius:8px;
       line-height:1.8;
-      color:#374151;
+      color:#3D4F5F;
       ">
 
       ${body.message}
@@ -111,8 +111,8 @@ export async function POST(req: Request) {
       <a href="mailto:${body.email}"
       style="
       display:inline-block;
-      background:#2E5BFF;
-      color:#0A1229;
+      background:#C2553A;
+      color:#ffffff;
       padding:14px 30px;
       border-radius:8px;
       font-weight:bold;
@@ -130,8 +130,8 @@ export async function POST(req: Request) {
 
       <tr>
       <td style="
-      background:#f8fafc;
-      color:#475569;
+      background:#FAF6F0;
+      color:#6B7B8D;
       text-align:center;
       padding:20px;
       font-size:13px;

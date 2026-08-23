@@ -29,7 +29,7 @@ export function Breadcrumb({
                 <Icon
                   name={separator}
                   size="xs"
-                  className="text-primary-300 shrink-0"
+                  className="text-ink-disabled shrink-0"
                   aria-hidden="true"
                 />
               )}
@@ -37,7 +37,7 @@ export function Breadcrumb({
               {isLast ? (
                 <span
                   aria-current="page"
-                  className="text-body-sm font-semibold text-primary truncate max-w-[200px]"
+                  className="text-body-sm font-semibold text-ink-primary truncate max-w-[200px]"
                 >
                   {item.label}
                 </span>
@@ -45,7 +45,7 @@ export function Breadcrumb({
                 <Link
                   href={item.href}
                   variant="quiet"
-                  className="text-body-sm text-primary-400 hover:text-accent transition-colors duration-fast"
+                  className="text-body-sm text-ink-secondary hover:text-terra-600 transition-colors duration-200 ease-[var(--ease-smooth)]"
                 >
                   {item.label}
                 </Link>

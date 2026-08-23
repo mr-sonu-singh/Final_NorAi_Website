@@ -46,7 +46,7 @@ export function AnimatedSection({
       initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-100px' }}
-      transition={{ duration: 0.6, delay, ease: EASE_OUT }}
+      transition={{ duration: 0.4, delay, ease: EASE_OUT }}
       {...props}
     >
       {children}
@@ -78,7 +78,7 @@ export function Reveal({ children, className, delay = 0, y = 24, ...props }: Rev
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.55, delay, ease: EASE_OUT }}
+      transition={{ duration: 0.38, delay, ease: EASE_OUT }}
       {...props}
     >
       {children}
@@ -135,7 +135,7 @@ export function StaggerItem({ children, className, ...props }: StaggerItemProps)
           opacity: 1,
           y: 0,
           scale: 1,
-          transition: { duration: 0.5, ease: EASE_OUT },
+          transition: { duration: 0.36, ease: EASE_OUT },
         },
       }}
       {...props}

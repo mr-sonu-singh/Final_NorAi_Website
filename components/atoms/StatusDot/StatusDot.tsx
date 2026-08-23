@@ -6,8 +6,8 @@ import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { StatusDotProps, StatusDotStatus, StatusDotSize } from './StatusDot.types';
 
 const statusClasses: Record<StatusDotStatus, string> = {
-  neutral: 'bg-primary-400',
-  accent: 'bg-accent-600',
+  neutral: 'bg-ink-disabled',
+  accent: 'bg-terra-500',
   success: 'bg-success-600',
   warning: 'bg-warning-600',
   error: 'bg-error-600',

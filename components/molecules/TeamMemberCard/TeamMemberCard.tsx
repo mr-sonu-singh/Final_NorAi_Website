@@ -21,23 +21,26 @@ export function TeamMemberCardBody({
       direction="col"
       gap="4"
       align="center"
-      className={cn('p-6 bg-elevated border border-primary-200 rounded-lg text-center w-full', className)}
+      className={cn(
+        'p-6 bg-canvas-paper border border-line-subtle rounded-xl text-center w-full shadow-sm transition-[transform,border-color,box-shadow] duration-200 ease-[var(--ease-smooth)] hover:shadow-hover hover:border-line-accent hover:-translate-y-0.5',
+        className,
+      )}
       data-testid="team-member-card-molecule"
       {...props}
     >
       <Avatar src={photoSrc} alt={name} size="lg" className="w-20 h-20" />
 
       <div className="space-y-1">
-        <Heading as="h3" variant="heading-sm" className="font-semibold text-primary">
+        <Heading as="h3" variant="heading-sm" className="font-semibold text-ink-primary">
           {name}
         </Heading>
-        <Text as="p" className="text-body-sm text-accent font-medium">
+        <Text as="p" className="text-[13px] text-terra-600 font-medium">
           {role}
         </Text>
       </div>
 
       {bio && (
-        <Text as="p" className="text-body-xs text-primary-400 max-w-xs leading-relaxed">
+        <Text as="p" className="text-body-xs text-ink-secondary max-w-xs leading-relaxed">
           {bio}
         </Text>
       )}

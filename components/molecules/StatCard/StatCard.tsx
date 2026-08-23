@@ -20,8 +20,8 @@ export function StatCard({
       gap="2"
       align="start"
       className={cn(
-        'p-6 bg-elevated border border-primary-200 rounded-lg w-full',
-        emphasis && 'border-accent bg-accent/5',
+        'p-6 bg-canvas-paper border border-line-subtle rounded-xl w-full shadow-sm transition-[transform,border-color,box-shadow] duration-200 ease-[var(--ease-smooth)] hover:shadow-hover hover:border-line-accent hover:-translate-y-0.5',
+        emphasis && 'border-terra-500/30 bg-terra-50',
         className,
       )}
       data-testid="stat-card-molecule"
@@ -31,14 +31,27 @@ export function StatCard({
         <Heading
           as="h3"
           variant="display-md"
-          className={cn('font-bold tracking-tight', emphasis ? 'text-accent' : 'text-primary')}
+          className={cn(
+            'font-semibold tracking-tight tabular-nums',
+            emphasis ? 'text-terra-600' : 'text-ink-primary',
+          )}
         >
           {value}
         </Heading>
-        {icon && <Icon name={icon} size="md" className="text-primary-400 shrink-0" aria-hidden="true" />}
+        {icon && (
+          <div
+            className={cn(
+              'flex h-10 w-10 items-center justify-center rounded-lg shrink-0',
+              emphasis ? 'bg-terra-100 text-terra-600' : 'bg-canvas-recessed text-ink-secondary',
+            )}
+            aria-hidden="true"
+          >
+            <Icon name={icon} size="md" />
+          </div>
+        )}
       </div>
 
-      <Text as="p" className="text-body-sm text-primary-400 font-medium">
+      <Text as="p" className="text-body-sm text-ink-secondary font-medium">
         {label}
       </Text>
     </Stack>

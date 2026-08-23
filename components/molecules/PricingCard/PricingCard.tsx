@@ -25,8 +25,10 @@ export function PricingCardBody({
       direction="col"
       gap="6"
       className={cn(
-        'p-6 bg-elevated border rounded-lg w-full relative',
-        highlighted ? 'border-accent shadow-accent' : 'border-primary-200',
+        'p-6 bg-canvas-paper border rounded-xl w-full relative shadow-sm transition-[transform,border-color,box-shadow] duration-200 ease-[var(--ease-smooth)]',
+        highlighted
+          ? 'border-terra-500 ring-1 ring-terra-500 shadow-lg hover:shadow-xl'
+          : 'border-line-subtle hover:shadow-hover hover:border-line-accent hover:-translate-y-0.5',
         className,
       )}
       data-testid="pricing-card-molecule"
@@ -34,28 +36,29 @@ export function PricingCardBody({
     >
       <div className="space-y-3">
         <div className="flex items-center justify-between gap-2">
-          <Heading as="h3" variant="heading-sm" className="font-semibold text-primary">
+          <Heading as="h3" variant="heading-sm" className="font-semibold text-ink-primary">
             {tierName}
           </Heading>
-          {(badgeText || highlighted) && (
-            <Badge variant={highlighted ? 'accent' : 'neutral'} size="sm">
-              {badgeText || 'Popular'}
-            </Badge>
-          )}
+          {(badgeText || highlighted) &&
+            (highlighted ? (
+              <span className="inline-flex items-center rounded-full bg-terra-500 px-2.5 py-1 text-[12px] font-medium text-white shadow-accent">
+                {badgeText || 'Most popular'}
+              </span>
+            ) : (
+              <Badge variant="neutral" size="sm">
+                {badgeText}
+              </Badge>
+            ))}
         </div>
 
-        {description && (
-          <Text as="p" className="text-body-xs text-primary-400">
-            {description}
-          </Text>
-        )}
+        {description && <Text as="p" className="text-body-xs text-ink-secondary">{description}</Text>}
 
         <div className="flex items-baseline gap-1 pt-1">
-          <Heading as="h2" variant="display-md" className="font-bold text-primary">
+          <Heading as="h2" variant="display-md" className="font-semibold text-ink-primary tabular-nums">
             {price}
           </Heading>
           {interval && (
-            <Text as="span" className="text-body-xs text-primary-400">
+            <Text as="span" className="text-body-xs text-ink-secondary tabular-nums">
               /{interval}
             </Text>
           )}
@@ -67,8 +70,8 @@ export function PricingCardBody({
       <ul className="space-y-2.5 flex-1" aria-label={`Features included in ${tierName} plan`}>
         {features.map((feature, idx) => (
           <li key={idx} className="flex items-start gap-2.5">
-            <Icon name="check" size="sm" className="text-accent shrink-0 mt-0.5" aria-hidden="true" />
-            <Text as="span" className="text-body-sm text-primary">
+            <Icon name="check" size="sm" className="text-terra-600 shrink-0 mt-0.5" aria-hidden="true" />
+            <Text as="span" className="text-body-sm text-ink-body">
               {feature}
             </Text>
           </li>

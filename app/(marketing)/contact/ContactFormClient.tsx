@@ -3,26 +3,39 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Heading } from '@/components/foundation/Heading';
-import { Text } from '@/components/foundation/Text';
-import { Button } from '@/components/atoms/Button';
-import {
-  MessageSquare,
-  Send,
-  CheckCircle2,
-  Terminal,
-} from 'lucide-react';
+import { CheckCircle2, ChevronDown, Send } from 'lucide-react';
 
 const SERVICE_OPTIONS = [
-  { value: 'AI Resume Shortlister', label: '[MICRO-SAAS] AI Resume Shortlister' },
-  { value: 'Course Note-Taker', label: '[MICRO-SAAS] Course Note-Taker' },
-  { value: 'Community Chat Digest', label: '[MICRO-SAAS] Community Chat Digest' },
-  { value: 'Smart Smart Government Job News News', label: '[MICRO-SAAS] Smart Government Job News' },
-  { value: 'Custom AI Chatbots & Agents', label: '[ENTERPRISE] Custom AI Chatbots & Agents' },
-  { value: 'AI Web Applications', label: '[ENTERPRISE] AI Web Applications' },
-  { value: 'AI Video & Product Ads', label: '[ENTERPRISE] AI Video & Product Ads' },
-  { value: 'Business Automation Pipelines', label: '[ENTERPRISE] Business Automation Pipelines' },
-  { value: 'General Technical Consultation', label: '[GENERAL] General Technical Consultation' },
+  { value: 'AI Resume Shortlister', label: 'AI Resume Shortlister' },
+  { value: 'Course Note-Taker', label: 'Course Note-Taker' },
+  { value: 'Community Chat Digest', label: 'Community Chat Digest' },
+  { value: 'Smart Dainik News', label: 'Smart Dainik News' },
+  { value: 'Custom AI development', label: 'Custom AI development' },
+  { value: 'Something else', label: 'Something else' },
 ];
+
+const inputClasses = [
+  'w-full rounded-md border border-line-default bg-canvas-pure px-4 py-3',
+  'font-sans text-[15px] text-ink-primary placeholder:text-ink-secondary',
+  'transition-[color,background-color,border-color,box-shadow] duration-200 ease-[var(--ease-smooth)]',
+  'focus-visible:border-terra-500 focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-terra-500/12',
+].join(' ');
+
+function FieldLabel({ htmlFor, children, required }: { htmlFor: string; children: React.ReactNode; required?: boolean }) {
+  return (
+    <label
+      htmlFor={htmlFor}
+      className="mb-1.5 block font-sans text-[14px] font-medium select-none text-ink-primary"
+    >
+      {children}
+      {required && (
+        <span className="ml-1 text-terra-500" aria-hidden="true">
+          *
+        </span>
+      )}
+    </label>
+  );
+}
 
 export function ContactFormClient() {
   const searchParams = useSearchParams();
@@ -36,6 +49,7 @@ export function ContactFormClient() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -53,6 +67,8 @@ export function ContactFormClient() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitting(true);
+    setError('');
 
     try {
       const res = await fetch('/api/contact', {
@@ -67,239 +83,176 @@ export function ContactFormClient() {
         setSubmitted(true);
         setError('');
       } else {
-        setError('Failed to send message. Please try again.');
+        setError('We could not send your message. Please try again.');
       }
     } catch (err) {
       console.error(err);
-      setError('Something went wrong. Please try again.');
+      setError('Something went wrong on our end. Please try again.');
+    } finally {
+      setSubmitting(false);
     }
   };
 
   return (
-    <div
-      className="
-        group
-        relative
-        overflow-hidden
-        rounded-2xl
-        p-8 md:p-10
-        space-y-6
-
-        bg-white/45
-        backdrop-blur-xl
-
-        border
-        border-blue-400/15
-
-        shadow-[0_10px_40px_rgba(59,130,246,0.06)]
-
-        hover:border-blue-400/25
-        hover:shadow-[0_20px_55px_rgba(59,130,246,0.10)]
-
-        transition-all
-        duration-500
-      "
-    >
-      {/* Card AI Glow */}
-      <div
-        aria-hidden="true"
-        className="
-          absolute -top-24 -right-24 w-56 h-56 rounded-full
-          bg-blue-500/10 blur-[80px]
-          opacity-60 group-hover:opacity-100
-          transition-opacity duration-500 pointer-events-none
-        "
-      />
-      <div
-        aria-hidden="true"
-        className="
-          absolute top-0 left-0 right-0 h-px
-          bg-gradient-to-r from-transparent via-blue-400/50 to-transparent
-        "
-      />
-
-      {/* Top Header Bar */}
-      <div className="relative z-10 space-y-2 border-b border-blue-400/10 pb-6">
-        <div className="flex items-center justify-between text-xs font-mono">
-          <span className="text-primary-700 font-bold tracking-wider flex items-center gap-1.5">
-            <Terminal className="w-3.5 h-3.5 text-[var(--accent-500)]" aria-hidden="true" /> TECHNICAL_SCOPING_FORM
-          </span>
-        </div>
-        <Heading as="h2" variant="heading-lg" className="font-display font-bold text-primary-800 pt-2 flex items-center gap-2">
-          <MessageSquare className="w-5 h-5 text-[var(--accent-500)]" aria-hidden="true" /> Send Us a Message
+    <div className="relative overflow-hidden rounded-2xl border border-line-subtle bg-canvas-paper p-8 shadow-md md:p-10">
+      {/* Form header */}
+      <div className="space-y-2 pb-6">
+        <Heading as="h2" variant="heading-lg" className="font-sans text-xl font-semibold tracking-tight text-ink-primary">
+          Send a message
         </Heading>
+        <p className="text-sm leading-relaxed text-ink-secondary">
+          A few lines about your project are enough — we will take it from there.
+        </p>
       </div>
 
       {submitted ? (
-        <div className="relative z-10 p-8 rounded-2xl bg-blue-500/10 border border-blue-400/25 text-center space-y-4 font-mono">
-          <div className="w-12 h-12 rounded-full bg-blue-500/15 text-blue-600 flex items-center justify-center mx-auto">
-            <CheckCircle2 className="w-6 h-6" aria-hidden="true" />
-          </div>
-          <span className="inline-block text-xs font-bold text-[var(--accent-mono)] bg-white/60 backdrop-blur-sm px-3 py-1 rounded-lg border border-blue-400/15 uppercase tracking-wider">
-            [STATUS: RECEIVED] • ENGINEER ASSIGNED
+        <div className="space-y-4 rounded-xl border border-sage-300 bg-sage-50 p-8 text-center" role="status">
+          <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-sage-100 text-sage-700">
+            <CheckCircle2 className="h-6 w-6" aria-hidden="true" />
           </span>
-          <Heading as="h3" variant="heading-md" className="font-display font-bold text-primary-800">
-            Message Successfully Dispatched!
-          </Heading>
-          <Text variant="body-sm" className="text-primary-700 max-w-md mx-auto font-sans leading-relaxed">
-            Thank you for reaching out to NorAi Technologies. One of our solution engineers will contact you at <strong className="text-primary-800">{formData.email}</strong> shortly.
-          </Text>
+          <h3 className="font-display text-2xl text-ink-primary">Message received.</h3>
+          <p className="mx-auto max-w-sm text-sm leading-relaxed text-ink-body">
+            Thanks for writing in, {formData.name.split(' ')[0] || 'friend'}. We will reply at{' '}
+            <strong className="font-semibold text-ink-primary">{formData.email}</strong> within two
+            hours during business hours.
+          </p>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="relative z-10 space-y-6">
-          <p className="text-xs font-mono text-primary-700">
-            Fields marked with <span className="text-[var(--accent-500)] font-bold">*</span> are required.
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <p className="text-[13px] text-ink-secondary">
+            Fields marked with <span className="text-terra-500">*</span> are required.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div className="space-y-2">
-              <label htmlFor="contact-name" className="text-xs font-mono font-bold text-primary-700 uppercase tracking-wider block">
-                Full Name <span className="text-[var(--accent-500)]" aria-hidden="true">*</span>
-              </label>
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+            <div>
+              <FieldLabel htmlFor="contact-name" required>
+                Full name
+              </FieldLabel>
               <input
                 id="contact-name"
                 name="name"
                 type="text"
+                autoComplete="name"
                 required
                 aria-required="true"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="
-                  w-full px-4 py-3 rounded-xl
-                  bg-white/60 backdrop-blur-sm
-                  border border-blue-400/15
-                  text-primary-800 placeholder-slate-500
-                  focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/40
-                  text-sm font-sans
-                  transition-all
-                "
+                className={inputClasses}
               />
             </div>
 
-            <div className="space-y-2">
-              <label htmlFor="contact-email" className="text-xs font-mono font-bold text-primary-700 uppercase tracking-wider block">
-                Work Email <span className="text-[var(--accent-500)]" aria-hidden="true">*</span>
-              </label>
+            <div>
+              <FieldLabel htmlFor="contact-email" required>
+                Work email
+              </FieldLabel>
               <input
                 id="contact-email"
                 name="email"
                 type="email"
+                autoComplete="email"
                 required
                 aria-required="true"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="
-                  w-full px-4 py-3 rounded-xl
-                  bg-white/60 backdrop-blur-sm
-                  border border-blue-400/15
-                  text-primary-800 placeholder-slate-500
-                  focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/40
-                  text-sm font-sans
-                  transition-all
-                "
+                className={inputClasses}
               />
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div className="space-y-2">
-              <label htmlFor="contact-company" className="text-xs font-mono font-bold text-primary-700 uppercase tracking-wider block">
-                Company / Organization
-              </label>
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+            <div>
+              <FieldLabel htmlFor="contact-company">Company (optional)</FieldLabel>
               <input
                 id="contact-company"
                 name="company"
                 type="text"
+                autoComplete="organization"
                 value={formData.company}
                 onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                className="
-                  w-full px-4 py-3 rounded-xl
-                  bg-white/60 backdrop-blur-sm
-                  border border-blue-400/15
-                  text-primary-800 placeholder-slate-500
-                  focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/40
-                  text-sm font-sans
-                  transition-all
-                "
+                className={inputClasses}
               />
             </div>
 
-            <div className="space-y-2">
-              <label htmlFor="contact-service" className="text-xs font-mono font-bold text-primary-700 uppercase tracking-wider block">
-                Service Interest <span className="text-[var(--accent-500)]" aria-hidden="true">*</span>
-              </label>
-              <select
-                id="contact-service"
-                name="service"
-                value={formData.service}
-                onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                className="
-                  w-full px-4 py-3 rounded-xl
-                  bg-white/60 backdrop-blur-sm
-                  border border-blue-400/15
-                  text-primary-800
-                  focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/40
-                  text-sm font-mono cursor-pointer
-                  transition-all
-                "
-              >
-                {SERVICE_OPTIONS.map((opt) => (
-                  <option key={opt.value} value={opt.value} className="bg-white text-primary-800">
-                    {opt.label}
-                  </option>
-                ))}
-              </select>
+            <div>
+              <FieldLabel htmlFor="contact-service" required>
+                What can we help with?
+              </FieldLabel>
+              <div className="relative">
+                <select
+                  id="contact-service"
+                  name="service"
+                  value={formData.service}
+                  onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                  className={`${inputClasses} cursor-pointer appearance-none pr-10`}
+                >
+                  {SERVICE_OPTIONS.map((opt) => (
+                    <option key={opt.value} value={opt.value} className="bg-canvas-pure text-ink-primary">
+                      {opt.label}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown
+                  className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-secondary"
+                  aria-hidden="true"
+                />
+              </div>
             </div>
           </div>
 
-          <div className="space-y-2">
-            <label htmlFor="contact-message" className="text-xs font-mono font-bold text-primary-700 uppercase tracking-wider block">
-              Project / Scoping Details <span className="text-[var(--accent-500)]" aria-hidden="true">*</span>
-            </label>
+          <div>
+            <FieldLabel htmlFor="contact-message" required>
+              Tell us about your project
+            </FieldLabel>
             <textarea
               id="contact-message"
               name="message"
               required
               aria-required="true"
-              rows={4}
-              placeholder="Tell us about your data bottleneck, request volume, or AI automation goals..."
+              rows={5}
+              placeholder="What are you working on, and where does it slow down?"
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              className="
-                w-full px-4 py-3 rounded-xl
-                bg-white/60 backdrop-blur-sm
-                border border-blue-400/15
-                text-primary-800 placeholder-slate-500
-                focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/40
-                text-sm font-sans
-                transition-all
-              "
+              className={`${inputClasses} resize-y`}
             />
           </div>
 
           {error && (
-            <div className="rounded-xl border border-red-400/30 bg-red-500/10 p-3">
-              <p className="text-sm text-red-500">{error}</p>
+            <div
+              className="flex items-start justify-between gap-4 rounded-lg border border-terra-300 bg-terra-50 p-4"
+              role="alert"
+            >
+              <p className="text-sm text-terra-700">{error}</p>
+              <button
+                type="submit"
+                disabled={submitting}
+                className="shrink-0 text-sm font-semibold text-terra-600 underline underline-offset-4 transition-colors duration-200 hover:text-terra-700 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                Retry
+              </button>
             </div>
           )}
 
-          <Button
+          <button
             type="submit"
-            variant="primary"
-            size="lg"
-            className="
-              w-full
-              bg-gradient-to-r from-blue-600 to-indigo-600
-              hover:from-blue-700 hover:to-violet-600
-              text-white font-semibold py-3.5 rounded-xl
-              shadow-lg shadow-blue-500/20
-              hover:shadow-blue-500/30
-              flex items-center justify-center gap-2
-              transition-all duration-300 cursor-pointer
-            "
+            disabled={submitting}
+            aria-busy={submitting}
+            className="inline-flex items-center justify-center gap-2 rounded-md bg-terra-500 px-6 py-3 font-sans text-[15px] font-semibold text-white shadow-accent transition-all duration-200 hover:bg-terra-600 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
           >
-            Submit <Send className="w-4 h-4" aria-hidden="true" />
-          </Button>
+            {submitting ? (
+              <>
+                <span
+                  className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white"
+                  aria-hidden="true"
+                />
+                Sending…
+              </>
+            ) : (
+              <>
+                Send message
+                <Send className="h-4 w-4" aria-hidden="true" />
+              </>
+            )}
+          </button>
         </form>
       )}
     </div>

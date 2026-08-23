@@ -7,10 +7,10 @@ import { cn } from '@/lib/utils';
 import { ToastProps, ToastSeverity } from './Toast.types';
 
 const severityMap: Record<ToastSeverity, { icon: string; iconColor: string }> = {
-  info: { icon: 'info', iconColor: 'text-accent' },
-  success: { icon: 'check-circle', iconColor: 'text-success' },
-  warning: { icon: 'alert-triangle', iconColor: 'text-warning' },
-  error: { icon: 'alert-circle', iconColor: 'text-error' },
+  info: { icon: 'info', iconColor: 'text-info-600' },
+  success: { icon: 'check-circle', iconColor: 'text-success-600' },
+  warning: { icon: 'alert-triangle', iconColor: 'text-warning-600' },
+  error: { icon: 'alert-circle', iconColor: 'text-error-600' },
 };
 
 export function Toast({
@@ -31,7 +31,7 @@ export function Toast({
       role={isCritical ? 'alert' : 'status'}
       aria-live={isCritical ? 'assertive' : 'polite'}
       className={cn(
-        'inline-flex items-center gap-3 p-3.5 bg-elevated border border-primary-200 shadow-xl rounded-default max-w-md w-full',
+        'inline-flex items-center gap-3 p-3.5 bg-canvas-paper border border-line-subtle shadow-lg rounded-lg max-w-md w-full',
         className,
       )}
       data-testid="toast-molecule"
@@ -41,17 +41,17 @@ export function Toast({
 
       <div className="flex-1 min-w-0">
         {title && (
-          <Text as="p" className="text-body-sm font-semibold text-primary">
+          <Text as="p" className="text-body-sm font-semibold text-ink-primary">
             {title}
           </Text>
         )}
-        <Text as="p" className="text-body-xs text-primary-400">
+        <Text as="p" className="text-body-xs text-ink-secondary">
           {message}
         </Text>
       </div>
 
       {actionLabel && (
-        <Button variant="ghost" size="sm" onClick={onAction} className="shrink-0 text-accent">
+        <Button variant="ghost" size="sm" onClick={onAction} className="shrink-0 text-terra-600 hover:bg-terra-50">
           {actionLabel}
         </Button>
       )}
@@ -63,7 +63,7 @@ export function Toast({
           variant="ghost"
           aria-label="Close notification"
           onClick={onDismiss}
-          className="shrink-0 text-primary-400"
+          className="shrink-0 text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed"
         />
       )}
     </div>

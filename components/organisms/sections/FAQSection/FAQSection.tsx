@@ -36,7 +36,7 @@ export function FAQSection({
       >
         <Container size="default">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <Heading as="h2" variant="heading-xl" className="text-primary-900 font-bold tracking-tight">
+            <Heading as="h2" variant="heading-xl" className="font-bold tracking-tight text-ink-primary">
               {heading}
             </Heading>
           </div>

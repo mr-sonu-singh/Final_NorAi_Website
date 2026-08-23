@@ -20,7 +20,7 @@ export function InputGroup({
       data-testid="input-group-molecule"
     >
       {leading && (
-        <div className="absolute left-3 z-10 flex items-center pointer-events-none text-primary-400">
+        <div className="absolute left-3 z-10 flex items-center pointer-events-none text-ink-secondary">
           {leading}
         </div>
       )}
@@ -34,7 +34,7 @@ export function InputGroup({
         {...props}
       />
       {trailing && (
-        <div className="absolute right-3 z-10 flex items-center text-primary-400">
+        <div className="absolute right-3 z-10 flex items-center text-ink-secondary">
           {trailing}
         </div>
       )}

@@ -20,7 +20,7 @@ export function ModalFooter({
 
   return (
     <div
-      className={cn('p-6 border-t border-primary-200 w-full', className)}
+      className={cn('p-6 border-t border-line-subtle w-full', className)}
       data-testid="modal-footer-molecule"
       {...props}
     >

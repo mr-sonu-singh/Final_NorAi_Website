@@ -58,19 +58,18 @@ export function Radio({
       />
       <div
         className={cn(
-          'inline-flex items-center justify-center rounded-full border border-[var(--border-width-default)] border-primary-300 bg-bg-elevated transition-colors duration-[var(--duration-fast)] ease-[var(--ease-smooth)] select-none cursor-pointer',
+          'inline-flex items-center justify-center rounded-full border border-line-strong bg-canvas-pure transition-colors duration-200 ease-[var(--ease-smooth)] select-none cursor-pointer',
           outerSizeClasses[size],
-          isChecked && 'border-accent-600',
+          isChecked && 'border-terra-500',
           invalid && 'border-error-600',
-          disabled &&
-            'opacity-[var(--opacity-disabled)] bg-bg-sunken border-primary-200 cursor-not-allowed',
+          disabled && 'opacity-disabled bg-canvas-recessed border-line-default cursor-not-allowed',
           className,
         )}
       >
         {isChecked && (
           <span
             className={cn(
-              'rounded-full bg-accent-600 transition-transform duration-[var(--duration-fast)] ease-[var(--ease-smooth)] scale-100',
+              'rounded-full bg-terra-500 transition-transform duration-200 ease-[var(--ease-smooth)] scale-100',
               innerSizeClasses[size],
             )}
           />

@@ -376,3 +376,16 @@ export const PRODUCTS_DATA: Record<string, ProductData> = {
     ],
   },
 };
+
+// Routing aliases
+if (PRODUCTS_DATA['resume-shortlister']) {
+  PRODUCTS_DATA['ai-resume-shortlister'] = PRODUCTS_DATA['resume-shortlister'];
+}
+if (PRODUCTS_DATA['chat-digest']) {
+  PRODUCTS_DATA['community-chat-digest'] = PRODUCTS_DATA['chat-digest'];
+}
+if (PRODUCTS_DATA['news-aggregator']) {
+  PRODUCTS_DATA['smart-dainik-news'] = PRODUCTS_DATA['news-aggregator'];
+}
+
+

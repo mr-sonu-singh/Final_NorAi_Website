@@ -8,11 +8,13 @@ import { FocusRing } from '../FocusRing';
 import { ButtonProps, ButtonVariant, ButtonSize } from './Button.types';
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: 'bg-accent-600 text-white hover:bg-accent-700 active:scale-[0.98]',
-  secondary: 'bg-primary-100 text-primary-800 hover:bg-primary-200 active:scale-[0.98]',
-  ghost: 'bg-transparent text-primary-800 hover:bg-primary-100 active:scale-[0.98]',
-  dark: 'bg-[var(--accent-700)] text-white hover:bg-[var(--accent-600)] active:scale-[0.98]',
-  danger: 'bg-error-600 text-white hover:bg-error-700 active:scale-[0.98]',
+  primary:
+    'bg-terra-500 text-white shadow-accent hover:bg-terra-600 hover:-translate-y-px active:translate-y-0 active:scale-[0.98] font-semibold',
+  secondary:
+    'bg-transparent border border-line-strong text-ink-primary shadow-sm font-medium hover:border-line-accent hover:text-terra-600 hover:bg-terra-50 active:scale-[0.98]',
+  ghost: 'bg-transparent text-terra-600 font-medium hover:bg-terra-50 active:scale-[0.98]',
+  dark: 'bg-terra-700 text-white shadow-md font-semibold hover:bg-terra-600 active:scale-[0.98]',
+  danger: 'bg-error-600 text-white font-semibold hover:bg-error-600/90 active:scale-[0.98]',
 };
 
 const sizeClasses: Record<ButtonSize, string> = {

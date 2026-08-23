@@ -4,214 +4,243 @@ import { Container } from '@/components/foundation/Container';
 import { Section } from '@/components/foundation/Section';
 import { Heading } from '@/components/foundation/Heading';
 import { Text } from '@/components/foundation/Text';
+import { Reveal, StaggerGrid, StaggerItem } from '@/components/foundation';
 import { Link } from '@/components/atoms/Link';
 import { buildMetadata } from '@/lib/seo';
-import { BookOpen, Sparkles, Zap, Cpu, Layers } from 'lucide-react';
+import { ArrowRight, BookOpen, Braces, Cpu, FileSearch, Layers, Zap } from 'lucide-react';
 
 export const metadata: Metadata = buildMetadata({
   path: '/docs',
   title: 'Documentation & Integration Guide — NorAi Technologies',
-  description: 'Conceptual documentation and getting started guide for NorAi self-serve micro-SaaS utilities and API integration patterns.',
+  description:
+    'Conceptual documentation and getting started guide for NorAi self-serve micro-SaaS utilities and API integration patterns.',
 });
+
+const QUICK_START = [
+  {
+    step: '1',
+    title: 'Dashboard access',
+    body: 'Sign up for a self-serve account and access your product dashboard to configure input parameters.',
+  },
+  {
+    step: '2',
+    title: 'Payload ingestion',
+    body: 'Submit text payloads, resume documents, lecture transcripts, or channel feeds for processing.',
+  },
+  {
+    step: '3',
+    title: 'Structured response',
+    body: 'Receive verified JSON outputs, structured summary briefs, or flashcard decks.',
+  },
+];
+
+const TOOL_DOCS = [
+  {
+    id: 'resume-shortlister',
+    icon: FileSearch,
+    category: 'Recruitment AI',
+    name: 'AI Resume Shortlister',
+    description:
+      'Parses PDF, Word, and text resumes against custom job requirement specifications. Returns an objective candidate qualification score, skill breakdown, and candidate match summary.',
+    meta: 'Supported formats: PDF, DOCX, TXT',
+    href: '/products/resume-shortlister',
+    linkText: 'Resume Shortlister documentation',
+  },
+  {
+    id: 'course-note-taker',
+    icon: Zap,
+    category: 'EdTech AI',
+    name: 'AI Course Note-Taker',
+    description:
+      'Converts lecture audio tracks, video transcripts, and educational documents into structured chapter outlines, core concept definitions, and interactive digital flashcards.',
+    meta: 'Export formats: Markdown, PDF, JSON',
+    href: '/products/course-note-taker',
+    linkText: 'Course Note-Taker documentation',
+  },
+  {
+    id: 'chat-digest',
+    icon: Cpu,
+    category: 'Community AI',
+    name: 'Chat Digest & Newsletter AI',
+    description:
+      'Aggregates daily channel transcript exports from public community spaces. Filters out noise and casual chatter to extract customer feedback, bug reports, and key discussion highlights into daily executive briefs.',
+    meta: 'Input sources: Public transcripts & webhooks',
+    href: '/products/chat-digest',
+    linkText: 'Chat Digest documentation',
+  },
+  {
+    id: 'news-aggregator',
+    icon: Layers,
+    category: 'Media AI',
+    name: 'Smart News Aggregator',
+    description:
+      'Curates regional news feeds, press releases, and market updates by topic and sentiment. Groups syndicated articles into single topic clusters for efficient media monitoring.',
+    meta: 'Features: Topic clustering & sentiment tagging',
+    href: '/products/news-aggregator',
+    linkText: 'News Aggregator documentation',
+  },
+];
+
+const RESPONSE_FIELDS = [
+  { field: 'score', type: 'number', desc: 'Overall match score from 0 to 100' },
+  { field: 'skills', type: 'array', desc: 'Detected skills with per-skill confidence' },
+  { field: 'summary', type: 'string', desc: 'Short written match rationale' },
+];
 
 export default function DocsPage() {
   return (
-    <div className="bg-[var(--bg-page)] text-primary-800 min-h-screen font-sans selection:bg-[var(--accent-500)] selection:text-[var(--bg-page)]">
-      {/* Header Section */}
-      <Section className="relative pt-12 pb-12 md:pt-20 md:pb-16 border-b border-slate-200/60">
-        <Container size="default">
-          <div className="text-center max-w-3xl mx-auto space-y-4">
-            <div className="inline-flex items-center gap-2 text-xs font-mono text-[var(--accent-500)] uppercase tracking-wider">
-              <BookOpen className="w-4 h-4 text-[var(--accent-500)]" aria-hidden="true" />
-              <span>Developer Reference &amp; Product Guide</span>
-            </div>
-
-            <Heading
-              as="h1"
-              variant="display-lg"
-              className="font-display font-extrabold tracking-tight text-primary-800 leading-tight"
-            >
-              Product &amp; Integration Documentation
+    <div className="min-h-screen bg-canvas-base font-sans text-ink-primary">
+      {/* Header */}
+      <Section className="relative overflow-hidden border-b border-line-subtle pb-12 pt-12 md:pt-20">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-canvas-paper [mask-image:linear-gradient(to_bottom,black,transparent)]"
+        />
+        <Container size="default" className="relative z-10">
+          <div className="mx-auto max-w-3xl space-y-5 text-center">
+            <p className="inline-flex items-center gap-2 rounded-full border border-line-subtle bg-canvas-pure px-3 py-1 text-[13px] font-medium text-ink-secondary">
+              <BookOpen className="h-3.5 w-3.5" aria-hidden="true" />
+              Developer documentation
+            </p>
+            <Heading as="h1" variant="display-xl" className="text-balance text-ink-primary">
+              Developer documentation.
             </Heading>
-
-            <Text variant="body-lg" className="text-primary-700 font-normal leading-relaxed max-w-2xl mx-auto">
-              Getting started overview, product execution concepts, and general integration patterns for NorAi self-serve tools.
+            <Text variant="body-lg" as="p" className="mx-auto max-w-xl leading-relaxed text-ink-body">
+              Getting-started overview, product concepts, and integration patterns for every NorAi
+              self-serve tool.
             </Text>
           </div>
         </Container>
       </Section>
 
-      {/* Getting Started Guide */}
-      <Section className="py-16 border-b border-slate-200/60 bg-[color:var(--bg-elevated)/0.4]">
+      {/* Quick start */}
+      <Section variant="sunken" className="py-14">
         <Container size="default">
-          <div className="max-w-3xl mx-auto space-y-8">
-            <div className="space-y-2">
-              <div className="text-xs font-mono text-[var(--accent-500)] uppercase font-bold tracking-widest">
-                Quick Start
-              </div>
-              <Heading as="h2" variant="heading-xl" className="font-display font-bold text-primary-800">
-                How Integration Works
-              </Heading>
-              <Text variant="body-md" className="text-primary-700">
-                All NorAi micro-tools follow a consistent 3-stage integration workflow:
-              </Text>
-            </div>
+          <Reveal className="mx-auto max-w-2xl space-y-2">
+            <Heading as="h2" variant="heading-xl" className="text-balance text-ink-primary">
+              How integration works
+            </Heading>
+            <Text variant="body-md" className="text-ink-body">
+              Every NorAi micro-tool follows the same three-stage workflow.
+            </Text>
+          </Reveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-[var(--bg-elevated)] border border-slate-200/60 rounded-xl p-6 space-y-3">
-                <span className="text-xs font-mono font-bold text-[var(--accent-500)] bg-[color:var(--accent-500)/0.1] px-2.5 py-1 rounded">
-                  STEP 01
-                </span>
-                <Heading as="h3" variant="heading-md" className="font-display font-bold text-primary-800">
-                  Dashboard Access
-                </Heading>
-                <Text variant="body-sm" className="text-primary-700 leading-relaxed">
-                  Sign up for a self-serve account and access your product dashboard to configure input parameters.
-                </Text>
-              </div>
+          <StaggerGrid className="grid grid-cols-1 gap-6 pt-10 md:grid-cols-3" stagger={0.06}>
+            {QUICK_START.map((step) => (
+              <StaggerItem key={step.step}>
+                <div className="flex h-full gap-4 rounded-xl border border-line-subtle bg-canvas-paper p-6 shadow-sm">
+                  <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-terra-100 text-sm font-semibold tabular-nums text-terra-600">
+                    {step.step}
+                  </span>
+                  <div className="space-y-1.5">
+                    <h3 className="text-[15px] font-semibold text-ink-primary">{step.title}</h3>
+                    <p className="text-sm leading-relaxed text-ink-body">{step.body}</p>
+                  </div>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerGrid>
+        </Container>
+      </Section>
 
-              <div className="bg-[var(--bg-elevated)] border border-slate-200/60 rounded-xl p-6 space-y-3">
-                <span className="text-xs font-mono font-bold text-[var(--accent-500)] bg-[color:var(--accent-500)/0.1] px-2.5 py-1 rounded">
-                  STEP 02
-                </span>
-                <Heading as="h3" variant="heading-md" className="font-display font-bold text-primary-800">
-                  Payload Ingestion
-                </Heading>
-                <Text variant="body-sm" className="text-primary-700 leading-relaxed">
-                  Submit text payloads, resume documents, lecture transcripts, or channel feeds for processing.
-                </Text>
-              </div>
+      {/* Tool reference cards */}
+      <Section className="py-16">
+        <Container size="default">
+          <Reveal className="mx-auto max-w-2xl space-y-2 pb-10">
+            <Heading as="h2" variant="heading-xl" className="text-balance text-ink-primary">
+              Tool reference guides
+            </Heading>
+            <Text variant="body-md" className="text-ink-body">
+              One card per tool — what it does, what it accepts, and where the full docs live.
+            </Text>
+          </Reveal>
 
-              <div className="bg-[var(--bg-elevated)] border border-slate-200/60 rounded-xl p-6 space-y-3">
-                <span className="text-xs font-mono font-bold text-[var(--accent-500)] bg-[color:var(--accent-500)/0.1] px-2.5 py-1 rounded">
-                  STEP 03
-                </span>
-                <Heading as="h3" variant="heading-md" className="font-display font-bold text-primary-800">
-                  Structured Response
-                </Heading>
-                <Text variant="body-sm" className="text-primary-700 leading-relaxed">
-                  Receive verified JSON outputs, structured summary briefs, or flashcard decks.
-                </Text>
-              </div>
-            </div>
+          <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 sm:grid-cols-2">
+            {TOOL_DOCS.map((tool) => (
+              <Reveal key={tool.id} className="h-full">
+                <article
+                  id={tool.id}
+                  className="flex h-full flex-col rounded-xl border border-line-subtle bg-canvas-paper p-6 shadow-sm transition-shadow duration-300 hover:shadow-hover"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-canvas-recessed text-ink-primary">
+                      <tool.icon className="h-5 w-5" aria-hidden="true" />
+                    </span>
+                    <div>
+                      <p className="text-xs font-medium uppercase tracking-wide text-ink-secondary">
+                        {tool.category}
+                      </p>
+                      <h3 className="font-display text-xl leading-snug text-ink-primary">{tool.name}</h3>
+                    </div>
+                  </div>
+
+                  <p className="flex-1 pt-4 text-sm leading-relaxed text-ink-body">{tool.description}</p>
+
+                  <p className="border-t border-line-subtle pt-3 text-[13px] font-medium text-ink-secondary [font-feature-settings:'tnum']">
+                    {tool.meta}
+                  </p>
+
+                  <Link
+                    href={tool.href}
+                    variant="standalone"
+                    aria-label={`${tool.linkText} — opens the ${tool.name} product page`}
+                    className="pt-4 text-sm"
+                  >
+                    {tool.linkText} <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </Link>
+                </article>
+              </Reveal>
+            ))}
           </div>
         </Container>
       </Section>
 
-      {/* Product Reference Guides */}
-      <Section className="py-16">
-        <Container size="default">
-          <div className="max-w-3xl mx-auto space-y-12">
-            <div className="space-y-2 text-center md:text-left">
-              <div className="text-xs font-mono text-[var(--accent-500)] uppercase font-bold tracking-widest">
-                Product Specifications
-              </div>
-              <Heading as="h2" variant="heading-xl" className="font-display font-bold text-primary-800">
-                Self-Serve Utilities Overview
+      {/* Response shape */}
+      <Section variant="sunken" className="py-14">
+        <Container size="narrow">
+          <Reveal className="space-y-6">
+            <div className="space-y-2">
+              <Heading as="h2" variant="heading-xl" className="text-balance text-ink-primary">
+                What a response looks like
               </Heading>
+              <Text variant="body-md" className="text-ink-body">
+                Tools return predictable JSON so your integration stays simple. A screening result,
+                for example:
+              </Text>
             </div>
 
-            {/* Product 1: AI Resume Shortlister */}
-            <div id="resume-shortlister" className="bg-[var(--bg-elevated)] border border-slate-200/60 rounded-xl p-8 space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-lg bg-[color:var(--accent-500)/0.1] border border-[color:var(--accent-500)/0.2] text-[var(--accent-500)]">
-                  <Sparkles className="w-5 h-5" aria-hidden="true" />
-                </div>
-                <div>
-                  <span className="text-xs font-mono text-[var(--accent-mono)]">TOOL_01 • RECRUITMENT AI</span>
-                  <Heading as="h3" variant="heading-lg" className="font-display font-bold text-primary-800">
-                    AI Resume Shortlister
-                  </Heading>
-                </div>
-              </div>
-              <Text variant="body-sm" className="text-primary-700 leading-relaxed">
-                Parses PDF, Word, and text resumes against custom job requirement specifications. Returns an objective candidate qualification score, skill breakdown, and candidate match summary.
-              </Text>
-                <div className="pt-2 border-t border-slate-200/60 flex items-center justify-between text-xs font-mono">
-                <span className="text-primary-700">Supported Formats: PDF, DOCX, TXT</span>
-                <Link href="/products/resume-shortlister" className="text-[var(--accent-500)] hover:text-[var(--accent-mono)] font-bold">
-                  Product Details &rarr;
-                </Link>
-              </div>
-            </div>
+            <pre className="overflow-x-auto rounded-xl border border-line-subtle bg-canvas-pure p-5 shadow-sm">
+              <code className="font-mono text-[13px] leading-relaxed text-ink-body">{`{
+  "score": 87,
+  "skills": [
+    { "name": "React", "confidence": 0.96 },
+    { "name": "Node.js", "confidence": 0.91 }
+  ],
+  "summary": "Strong frontend profile; matches 9 of 11 requirements."
+}`}</code>
+            </pre>
 
-            {/* Product 2: AI Course Note-Taker */}
-            <div id="course-note-taker" className="bg-[var(--bg-elevated)] border border-slate-200/60 rounded-xl p-8 space-y-4">
-                <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-lg bg-[color:var(--accent-500)/0.1] border border-[color:var(--accent-500)/0.2] text-[var(--accent-500)]">
-                  <Zap className="w-5 h-5" aria-hidden="true" />
-                </div>
-                <div>
-                  <span className="text-xs font-mono text-[var(--accent-mono)]">TOOL_02 • EDTECH AI</span>
-                  <Heading as="h3" variant="heading-lg" className="font-display font-bold text-primary-800">
-                    AI Course Note-Taker
-                  </Heading>
-                </div>
-              </div>
-              <Text variant="body-sm" className="text-primary-700 leading-relaxed">
-                Converts lecture audio tracks, video transcripts, and educational documents into structured chapter outlines, core concept definitions, and interactive digital flashcards.
-              </Text>
-                <div className="pt-2 border-t border-slate-200/60 flex items-center justify-between text-xs font-mono">
-                <span className="text-primary-700">Export Formats: Markdown, PDF, JSON</span>
-                <Link href="/products/course-note-taker" className="text-[var(--accent-500)] hover:text-[var(--accent-mono)] font-bold">
-                  Product Details &rarr;
-                </Link>
-              </div>
-            </div>
+            <ul className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+              {RESPONSE_FIELDS.map((f) => (
+                <li key={f.field} className="rounded-lg border border-line-subtle bg-canvas-paper p-4">
+                  <p className="font-mono text-[13px] font-semibold text-terra-600">{f.field}</p>
+                  <p className="text-xs font-medium uppercase tracking-wide text-ink-secondary">{f.type}</p>
+                  <p className="pt-1 text-sm leading-relaxed text-ink-body">{f.desc}</p>
+                </li>
+              ))}
+            </ul>
 
-            {/* Product 3: Chat Digest AI */}
-            <div id="chat-digest" className="bg-[var(--bg-elevated)] border border-slate-200/60 rounded-xl p-8 space-y-4">
-                <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-lg bg-[color:var(--accent-500)/0.1] border border-[color:var(--accent-500)/0.2] text-[var(--accent-500)]">
-                  <Cpu className="w-5 h-5" aria-hidden="true" />
-                </div>
-                <div>
-                  <span className="text-xs font-mono text-[var(--accent-mono)]">TOOL_03 • COMMUNITY AI</span>
-                  <Heading as="h3" variant="heading-lg" className="font-display font-bold text-primary-800">
-                    Chat Digest &amp; Newsletter AI
-                  </Heading>
-                </div>
-              </div>
-              <Text variant="body-sm" className="text-primary-700 leading-relaxed">
-                Aggregates daily channel transcript exports from public community spaces. Filters out noise and casual chatter to extract customer feedback, bug reports, and key discussion highlights into daily executive briefs.
-              </Text>
-                <div className="pt-2 border-t border-slate-200/60 flex items-center justify-between text-xs font-mono">
-                <span className="text-primary-700">Input Sources: Public Transcripts &amp; Webhooks</span>
-                <Link href="/products/chat-digest" className="text-[var(--accent-500)] hover:text-[var(--accent-mono)] font-bold">
-                  Product Details &rarr;
-                </Link>
-              </div>
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 pt-2 text-sm text-ink-body">
+              <Braces className="h-4 w-4 text-ink-secondary" aria-hidden="true" />
+              Looking for something custom?{' '}
+              <Link href="/contact" variant="inline" aria-label="Ask our team about custom integrations">
+                Ask us about custom integrations
+              </Link>
+              .
             </div>
-
-            {/* Product 4: Smart News Aggregator */}
-            <div id="news-aggregator" className="bg-[var(--bg-elevated)] border border-slate-200/60 rounded-xl p-8 space-y-4">
-                <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-lg bg-[color:var(--accent-500)/0.1] border border-[color:var(--accent-500)/0.2] text-[var(--accent-500)]">
-                  <Layers className="w-5 h-5" aria-hidden="true" />
-                </div>
-                <div>
-                  <span className="text-xs font-mono text-[var(--accent-mono)]">TOOL_04 • MEDIA AI</span>
-                  <Heading as="h3" variant="heading-lg" className="font-display font-bold text-primary-800">
-                    Smart News Aggregator
-                  </Heading>
-                </div>
-              </div>
-              <Text variant="body-sm" className="text-primary-700 leading-relaxed">
-                Curates regional news feeds, press releases, and market updates by topic and sentiment. Groups syndicated articles into single topic clusters for efficient media monitoring.
-              </Text>
-                <div className="pt-2 border-t border-slate-200/60 flex items-center justify-between text-xs font-mono">
-                <span className="text-primary-700">Features: Topic Clustering &amp; Sentiment Tagging</span>
-                <Link href="/products/news-aggregator" className="text-[var(--accent-500)] hover:text-[var(--accent-mono)] font-bold">
-                  Product Details &rarr;
-                </Link>
-              </div>
-            </div>
-          </div>
+          </Reveal>
         </Container>
       </Section>
     </div>
   );
 }
-
-
-

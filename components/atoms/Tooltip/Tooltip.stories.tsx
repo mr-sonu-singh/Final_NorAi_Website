@@ -11,7 +11,7 @@ export default meta;
 export const Default = {
   render: () => (
     <Tooltip content="Helper info text" side="top">
-      <button className="px-4 py-2 bg-primary-100 rounded-md">Hover / Focus Me</button>
+      <button className="px-4 py-2 bg-canvas-recessed rounded-md">Hover / Focus Me</button>
     </Tooltip>
   ),
 };
