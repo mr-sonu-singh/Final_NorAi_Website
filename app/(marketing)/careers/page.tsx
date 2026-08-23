@@ -7,7 +7,8 @@ import { Reveal, StaggerGrid, StaggerItem } from '@/components/foundation';
 import { Button } from '@/components/atoms/Button';
 import { Link } from '@/components/atoms/Link';
 import { buildMetadata } from '@/lib/seo';
-import { ArrowRight, ArrowUpRight, Code, Compass, Cpu, MapPin, Sparkles, Users, Workflow } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Code, Compass, Cpu, MapPin, Users, Workflow } from 'lucide-react';
+
 
 export const metadata = buildMetadata({
   title: 'Careers | NorAi Technologies',
@@ -54,11 +55,12 @@ const PERKS = [
     body: 'No layers of management — your code ships to production and stays yours.',
   },
   {
-    icon: Sparkles,
+    icon: Workflow,
     tone: 'text-terra-600 bg-terra-100',
     title: 'Tools people use daily',
     body: 'Your work powers resume screens, lecture notes, digests, and news briefs every day.',
   },
+
 ];
 
 export default function CareersPage() {

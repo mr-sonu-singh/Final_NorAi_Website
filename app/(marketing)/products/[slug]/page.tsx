@@ -13,9 +13,9 @@ import {
   Newspaper,
   ArrowRight,
   CheckCircle2,
-  Zap,
   ChevronRight,
 } from 'lucide-react';
+
 
 
 const ICON_MAP: Record<string, React.ElementType> = {
@@ -88,10 +88,6 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
               <span className="px-3 py-1 rounded-full bg-canvas-recessed text-ink-body text-xs font-semibold">
                 {product.badge}
               </span>
-              <span className="text-xs font-semibold text-accent-secondary flex items-center gap-1">
-                <Zap className="w-3.5 h-3.5" />
-                {product.latency} execution
-              </span>
             </div>
 
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl text-ink-primary font-normal leading-tight tracking-tight">
@@ -119,29 +115,33 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
         </Container>
       </section>
 
-      {/* Overview & Problem/Solution Section */}
-      <section className="py-16 md:py-24 bg-canvas-base border-b border-[rgba(13,37,61,0.08)]">
+      {/* Main Narrative & Specs */}
+      <section className="py-16 md:py-24 bg-canvas-base">
         <Container size="default">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            {/* Left: Problem vs Solution */}
+            {/* Left: Problem vs Solution Story */}
             <div className="lg:col-span-7 space-y-8">
-              <div className="rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] p-8 shadow-sm space-y-4">
-                <h2 className="font-display text-2xl text-ink-primary font-normal">The Bottleneck</h2>
-                <div className="space-y-3">
-                  {product.problem.map((prob, idx) => (
-                    <p key={idx} className="text-sm text-ink-body leading-relaxed pl-3 border-l-2 border-accent-400">
-                      {prob}
-                    </p>
+              {/* Problem Statement */}
+              <div className="rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] p-8 shadow-sm">
+                <h2 className="font-display text-2xl text-ink-primary font-normal mb-4">
+                  The Bottleneck
+                </h2>
+                <div className="space-y-3 text-base text-ink-body leading-relaxed border-l-2 border-accent-500/40 pl-4">
+                  {product.problem.map((prob, pIdx) => (
+                    <p key={pIdx}>{prob}</p>
                   ))}
                 </div>
               </div>
 
-              <div className="rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] p-8 shadow-sm space-y-4">
-                <h2 className="font-display text-2xl text-ink-primary font-normal">The NorAI Solution</h2>
-                <div className="space-y-3">
-                  {product.solution.map((sol, idx) => (
-                    <div key={idx} className="flex items-start gap-2.5 text-sm text-ink-body leading-relaxed">
-                      <CheckCircle2 className="w-4 h-4 text-accent-secondary shrink-0 mt-0.5" />
+              {/* Solution Statement */}
+              <div className="rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] p-8 shadow-sm">
+                <h2 className="font-display text-2xl text-ink-primary font-normal mb-4">
+                  The NorAI Solution
+                </h2>
+                <div className="space-y-4">
+                  {product.solution.map((sol, sIdx) => (
+                    <div key={sIdx} className="flex items-start gap-3 text-base text-ink-body leading-relaxed">
+                      <CheckCircle2 className="w-5 h-5 text-accent-secondary shrink-0 mt-0.5" />
                       <span>{sol}</span>
                     </div>
                   ))}
@@ -155,8 +155,8 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
 
               <div className="space-y-3 font-sans text-xs">
                 <div className="flex items-center justify-between p-3 rounded-lg bg-canvas-recessed/60">
-                  <span className="text-ink-secondary">Execution Latency</span>
-                  <span className="font-mono text-ink-primary font-medium">{product.latency}</span>
+                  <span className="text-ink-secondary">Processing Mode</span>
+                  <span className="font-mono text-ink-primary font-medium">Ephemeral In-Memory</span>
                 </div>
                 <div className="flex items-center justify-between p-3 rounded-lg bg-canvas-recessed/60">
                   <span className="text-ink-secondary">Integration</span>

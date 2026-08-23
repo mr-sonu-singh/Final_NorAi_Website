@@ -88,7 +88,7 @@ export function SocialProofStrip({
         <Container size="default">
           <div className="flex flex-col items-center gap-6">
             {eyebrow && (
-              <Text variant="body-xs" className="text-primary-500 uppercase tracking-wider font-semibold text-center">
+              <Text variant="body-xs" className="text-primary-500 font-medium text-center">
                 {eyebrow}
               </Text>
             )}

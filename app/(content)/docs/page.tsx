@@ -7,7 +7,8 @@ import { Text } from '@/components/foundation/Text';
 import { Reveal, StaggerGrid, StaggerItem } from '@/components/foundation';
 import { Link } from '@/components/atoms/Link';
 import { buildMetadata } from '@/lib/seo';
-import { ArrowRight, BookOpen, Braces, Cpu, FileSearch, Layers, Zap } from 'lucide-react';
+import { ArrowRight, BookOpen, Braces, Cpu, FileSearch, Layers } from 'lucide-react';
+
 
 export const metadata: Metadata = buildMetadata({
   path: '/docs',
@@ -48,9 +49,10 @@ const TOOL_DOCS = [
   },
   {
     id: 'course-note-taker',
-    icon: Zap,
+    icon: BookOpen,
     category: 'EdTech AI',
     name: 'AI Course Note-Taker',
+
     description:
       'Converts lecture audio tracks, video transcripts, and educational documents into structured chapter outlines, core concept definitions, and interactive digital flashcards.',
     meta: 'Export formats: Markdown, PDF, JSON',
@@ -167,7 +169,7 @@ export default function DocsPage() {
                       <tool.icon className="h-5 w-5" aria-hidden="true" />
                     </span>
                     <div>
-                      <p className="text-xs font-medium uppercase tracking-wide text-ink-secondary">
+                      <p className="text-xs font-medium text-ink-secondary">
                         {tool.category}
                       </p>
                       <h3 className="font-display text-xl leading-snug text-ink-primary">{tool.name}</h3>
@@ -224,7 +226,7 @@ export default function DocsPage() {
               {RESPONSE_FIELDS.map((f) => (
                 <li key={f.field} className="rounded-lg border border-line-subtle bg-canvas-paper p-4">
                   <p className="font-mono text-[13px] font-semibold text-terra-600">{f.field}</p>
-                  <p className="text-xs font-medium uppercase tracking-wide text-ink-secondary">{f.type}</p>
+                  <p className="text-xs font-medium text-ink-secondary">{f.type}</p>
                   <p className="pt-1 text-sm leading-relaxed text-ink-body">{f.desc}</p>
                 </li>
               ))}

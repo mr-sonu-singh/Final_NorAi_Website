@@ -13,13 +13,11 @@ import {
   BarChart2,
   Globe,
   Workflow,
-  Sparkles,
   ArrowRight,
   ShieldCheck,
-  Zap,
   CheckCircle2,
-  Clock,
 } from 'lucide-react';
+
 
 const ACTIVE_SERVICES = [
   {
@@ -106,8 +104,7 @@ export default function ServicesPage() {
 
         <Container size="default" className="relative z-10">
           <div className="max-w-3xl space-y-6 text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-50 border border-[rgba(194,85,58,0.2)] text-accent-500 text-xs font-semibold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-50 border border-[rgba(194,85,58,0.2)] text-accent-500 text-xs font-semibold">
               <span>Enterprise AI Engineering</span>
             </div>
 
@@ -126,15 +123,16 @@ export default function ServicesPage() {
                 <span>Dedicated VPC & on-prem deployment</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <Clock className="w-4 h-4 text-accent-secondary" />
+                <CheckCircle2 className="w-4 h-4 text-accent-secondary" />
                 <span>3–5 day rapid prototyping</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <Zap className="w-4 h-4 text-accent-secondary" />
+                <CheckCircle2 className="w-4 h-4 text-accent-secondary" />
                 <span>Deterministic inference guarantees</span>
               </div>
             </div>
           </div>
+
         </Container>
       </section>
 
@@ -146,7 +144,7 @@ export default function ServicesPage() {
               {/* Left Details */}
               <div className="lg:col-span-7 space-y-6 text-left">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-50 text-accent-500 text-xs font-semibold">
-                  Flagship Enterprise Practice
+                  Our flagship practice
                 </div>
 
                 <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-ink-primary font-normal leading-tight">
@@ -310,7 +308,7 @@ export default function ServicesPage() {
       <section className="py-20 md:py-28 bg-canvas-base border-b border-[rgba(13,37,61,0.08)]">
         <Container size="default">
           <div className="max-w-2xl mb-14 text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-secondary-soft text-accent-secondary text-xs font-semibold uppercase tracking-wider mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-secondary-soft text-accent-secondary text-xs font-semibold mb-4">
               Engagement Lifecycle
             </div>
             <h2 className="font-display text-4xl md:text-5xl text-ink-primary font-normal leading-tight">

@@ -1,13 +1,14 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+
 
 import { Container } from '@/components/foundation/Container';
 import { Button } from '@/components/atoms/Button';
 import { Link } from '@/components/atoms/Link';
 import { IconButton } from '@/components/atoms/IconButton';
+import { BrandLogo } from '@/components/atoms/BrandLogo';
 import { useLockBodyScroll } from '@/hooks/useLockBodyScroll';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { cn } from '@/lib/utils';
@@ -114,20 +115,11 @@ export function Header({
         <nav className="flex items-center justify-between min-h-[68px]" aria-label="Main Navigation">
           {/* Brand Logo & Wordmark */}
           <div className="flex items-center gap-3 shrink-0">
-            <Link href="/" className="flex items-center gap-2.5 group">
-              <Image
-                src="/images/brand-logo.png"
-                alt="NorAI"
-                width={36}
-                height={36}
-                className="w-9 h-9 object-contain rounded shrink-0"
-                priority
-              />
-              <span className="font-display text-2xl font-normal tracking-tight text-ink-primary group-hover:text-accent-500 transition-colors">
-                NorAI
-              </span>
+            <Link href="/" className="group inline-flex items-center">
+              <BrandLogo size="md" />
             </Link>
           </div>
+
 
 
           {/* Desktop Navigation Links */}
@@ -138,8 +130,9 @@ export function Header({
                 <Link
                   key={item.href}
                   href={item.href}
+                  variant="unstyled"
                   className={cn(
-                    'text-sm font-medium transition-colors duration-150',
+                    'text-sm font-medium no-underline transition-colors duration-150',
                     isActive
                       ? 'text-accent-500 font-semibold'
                       : 'text-ink-body hover:text-accent-500',

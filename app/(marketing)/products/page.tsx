@@ -14,11 +14,9 @@ import {
   Newspaper,
   ArrowRight,
   ShieldCheck,
-  Zap,
-  Clock,
   CheckCircle2,
-  Sparkles,
 } from 'lucide-react';
+
 
 const PRODUCTS = [
   {
@@ -100,8 +98,7 @@ export default function ProductsPage() {
 
         <Container size="default" className="relative z-10">
           <div className="max-w-3xl text-left space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-50 border border-[rgba(194,85,58,0.2)] text-accent-500 text-xs font-semibold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-50 border border-[rgba(194,85,58,0.2)] text-accent-500 text-xs font-semibold">
               <span>Self-Serve Utilities</span>
             </div>
 
@@ -120,11 +117,11 @@ export default function ProductsPage() {
                 <span>Zero data retention</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <Clock className="w-4 h-4 text-accent-secondary" />
+                <CheckCircle2 className="w-4 h-4 text-accent-secondary" />
                 <span>Sub-second execution</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <Zap className="w-4 h-4 text-accent-secondary" />
+                <CheckCircle2 className="w-4 h-4 text-accent-secondary" />
                 <span>REST API & Web UI</span>
               </div>
             </div>
@@ -152,11 +149,8 @@ export default function ProductsPage() {
                         <span className="px-3 py-1 rounded-full bg-canvas-recessed text-ink-body text-xs font-semibold">
                           {product.category}
                         </span>
-                        <span className="text-xs font-semibold text-accent-secondary flex items-center gap-1">
-                          <Zap className="w-3.5 h-3.5" />
-                          {product.latency} latency
-                        </span>
                       </div>
+
 
                       <h2 className="font-display text-3xl sm:text-4xl text-ink-primary font-normal">
                         {product.title}

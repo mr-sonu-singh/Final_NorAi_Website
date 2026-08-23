@@ -31,4 +31,5 @@ export * from './ProgressBar';
 
 // Visual Assets
 export * from './MeshGradient';
+export * from './BrandLogo';
 

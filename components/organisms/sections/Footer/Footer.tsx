@@ -7,11 +7,13 @@ import { Text } from '@/components/foundation/Text';
 import { Heading } from '@/components/foundation/Heading';
 import { Button } from '@/components/atoms/Button';
 import { Link } from '@/components/atoms/Link';
+import { BrandLogo } from '@/components/atoms/BrandLogo';
 import { SocialLinks } from '@/components/molecules/SocialLinks';
 import { cn } from '@/lib/utils';
 import { FooterProps, FooterColumn } from './Footer.types';
 import { SocialLinkItem } from '@/components/molecules/SocialLinks/SocialLinks.types';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+
 
 export const DEFAULT_FOOTER_COLUMNS: FooterColumn[] = [
   {
@@ -102,8 +104,7 @@ export function Footer({
         {/* Pre-Footer CTA Block */}
         <div className="rounded-2xl bg-[#16324E] border border-[rgba(253,251,247,0.1)] p-8 md:p-12 mb-16 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="max-w-xl text-center md:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C2553A]/20 text-[#F5E1DA] text-xs font-semibold uppercase tracking-wider mb-4">
-              <Sparkles className="w-3.5 h-3.5 text-[#C2553A]" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C2553A]/20 text-[#F5E1DA] text-xs font-semibold mb-4">
               Start Automating Today
             </div>
             <h3 className="font-display text-3xl md:text-4xl text-white font-normal leading-tight tracking-tight">
@@ -138,14 +139,15 @@ export function Footer({
 
         {/* Brand Wordmark & Top Row */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-12 border-b border-[rgba(253,251,247,0.1)]">
-          <div className="space-y-2">
-            <h2 className="font-display text-4xl md:text-5xl tracking-[0.2em] font-normal text-white uppercase">
-              N O R A I
-            </h2>
+          <div className="space-y-3">
+            <Link href="/" className="inline-flex items-center gap-3 group">
+              <BrandLogo variant="inverted" size="lg" />
+            </Link>
             <p className="text-slate-400 text-sm max-w-sm">
               Purpose-built micro-SaaS utilities and enterprise AI systems engineered with conviction.
             </p>
           </div>
+
 
           {/* Social Links */}
           {socialLinks && socialLinks.length > 0 && (
@@ -190,7 +192,7 @@ export function Footer({
               <Heading
                 as="h4"
                 variant="heading-xs"
-                className="font-sans text-[#FDFBF7] font-semibold text-xs uppercase tracking-widest text-[#D4A574]"
+                className="font-sans text-[#FDFBF7] font-semibold text-xs text-[#D4A574]"
               >
                 {column.title}
               </Heading>

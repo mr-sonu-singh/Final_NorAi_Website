@@ -8,18 +8,18 @@ import { AnimatedSection } from '@/components/foundation/AnimatedSection';
 import { MeshGradient } from '@/components/atoms/MeshGradient';
 import {
   ArrowRight,
-  Sparkles,
   FileText,
   Headphones,
   MessageSquare,
   Newspaper,
   ShieldCheck,
-  Zap,
   Clock,
   Coins,
   ChevronRight,
   ExternalLink,
+  Layers,
 } from 'lucide-react';
+
 
 export default function HomePage() {
 
@@ -38,10 +38,10 @@ export default function HomePage() {
             {/* Left Content Column */}
             <div className="lg:col-span-6 space-y-6 text-left">
               {/* Eyebrow Pill */}
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[rgba(194,85,58,0.2)] bg-canvas-paper/80 backdrop-blur-sm text-accent-500 text-xs font-semibold uppercase tracking-wider">
-                <Sparkles className="w-3.5 h-3.5 text-accent-500" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[rgba(194,85,58,0.2)] bg-canvas-paper/80 backdrop-blur-sm text-accent-500 text-xs font-semibold">
                 <span>NorAI Autonomous Operations</span>
               </div>
+
 
               {/* Headline in Instrument Serif */}
               <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-normal text-ink-primary leading-[1.05] tracking-tight">
@@ -185,16 +185,17 @@ export default function HomePage() {
             <div className="flex items-center gap-3">
               <span className="w-2.5 h-2.5 rounded-full bg-accent-secondary" />
               <p className="text-sm font-medium text-ink-primary">
-                Trusted by 50+ growing businesses, academic teams, and enterprise operators across India.
+                Trusted by teams, campuses, and operators across India.
               </p>
             </div>
-            <div className="flex items-center gap-8 text-xs font-semibold text-ink-secondary uppercase tracking-wider">
-              <span>99.9% Uptime</span>
-              <span>•</span>
-              <span>Sub-Second Latency</span>
-              <span>•</span>
-              <span>SOC2-Compliant Storage</span>
+            <div className="flex items-center gap-8 text-xs font-medium text-ink-secondary">
+              <span>Sub-second latency</span>
+              <span aria-hidden="true">·</span>
+              <span>Deterministic outputs</span>
+              <span aria-hidden="true">·</span>
+              <span>Zero data retention</span>
             </div>
+
           </div>
         </Container>
       </section>
@@ -205,7 +206,7 @@ export default function HomePage() {
       <AnimatedSection className="py-20 md:py-28 bg-canvas-base">
         <Container size="default">
           <div className="max-w-2xl mb-14 text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-primary-soft text-accent-primary text-xs font-semibold uppercase tracking-wider mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-primary-soft text-accent-primary text-xs font-semibold mb-4">
               Micro-SaaS Tools
             </div>
             <h2 className="font-display text-4xl md:text-5xl font-normal text-ink-primary leading-tight tracking-tight">
@@ -346,7 +347,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Sticky Narrative Column */}
             <div className="lg:col-span-5 lg:sticky lg:top-28 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-secondary-soft text-accent-secondary text-xs font-semibold uppercase tracking-wider">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-secondary-soft text-accent-secondary text-xs font-semibold">
                 Execution Workflow
               </div>
               <h2 className="font-display text-4xl md:text-5xl font-normal text-ink-primary leading-tight tracking-tight">
@@ -374,7 +375,7 @@ export default function HomePage() {
                   <span className="w-8 h-8 rounded-full bg-accent-50 text-accent-500 font-display text-lg font-bold flex items-center justify-center">
                     1
                   </span>
-                  <span className="text-xs font-semibold text-ink-secondary uppercase tracking-wider">Ingest Stage</span>
+                  <span className="text-xs font-semibold text-ink-secondary">Ingest stage</span>
                 </div>
                 <h3 className="font-display text-2xl text-ink-primary font-normal">
                   Connect your raw data source
@@ -393,7 +394,7 @@ export default function HomePage() {
                   <span className="w-8 h-8 rounded-full bg-accent-secondary-soft text-accent-secondary font-display text-lg font-bold flex items-center justify-center">
                     2
                   </span>
-                  <span className="text-xs font-semibold text-ink-secondary uppercase tracking-wider">Processing Stage</span>
+                  <span className="text-xs font-semibold text-ink-secondary">Processing stage</span>
                 </div>
                 <h3 className="font-display text-2xl text-ink-primary font-normal">
                   Deterministic neural pipeline execution
@@ -412,7 +413,7 @@ export default function HomePage() {
                   <span className="w-8 h-8 rounded-full bg-accent-tertiary-soft text-accent-tertiary font-display text-lg font-bold flex items-center justify-center">
                     3
                   </span>
-                  <span className="text-xs font-semibold text-ink-secondary uppercase tracking-wider">Delivery Stage</span>
+                  <span className="text-xs font-semibold text-ink-secondary">Delivery stage</span>
                 </div>
                 <h3 className="font-display text-2xl text-ink-primary font-normal">
                   Consume structured output
@@ -435,7 +436,7 @@ export default function HomePage() {
       <AnimatedSection className="py-20 md:py-28 bg-canvas-base">
         <Container size="default">
           <div className="max-w-2xl mb-16 text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-primary-soft text-accent-primary text-xs font-semibold uppercase tracking-wider mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-primary-soft text-accent-primary text-xs font-semibold mb-4">
               Architecture & Guarantees
             </div>
             <h2 className="font-display text-4xl md:text-5xl font-normal text-ink-primary leading-tight tracking-tight">
@@ -450,9 +451,10 @@ export default function HomePage() {
             {/* Feature 1 */}
             <div className="rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] p-8 shadow-sm">
               <div className="w-10 h-10 rounded-xl bg-accent-50 text-accent-500 flex items-center justify-center mb-5">
-                <Zap className="w-5 h-5" />
+                <Layers className="w-5 h-5" />
               </div>
               <h3 className="font-display text-2xl text-ink-primary font-normal">Sub-Second Execution</h3>
+
               <p className="mt-2 text-sm text-ink-body leading-relaxed">
                 Optimized serverless edge inference ensures your users never stare at loading spinners. Operations execute with sub-second response times.
               </p>
