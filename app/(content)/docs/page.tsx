@@ -20,11 +20,11 @@ export default function DocsPage() {
       <Section className="relative overflow-hidden border-b border-[rgba(13,37,61,0.08)] pb-14 pt-16 md:pt-24">
         <Container size="default" className="relative z-10">
           <div className="max-w-4xl space-y-6 text-left">
-            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal text-ink-primary leading-[1.04] tracking-tight">
+            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal text-ink-primary leading-[1.04] tracking-display">
               Developer documentation <br />
               <span className="italic text-accent-500 font-normal">&amp; API contracts.</span>
             </h1>
-            <p className="text-lg md:text-xl text-ink-body leading-relaxed max-w-2xl font-normal">
+            <p className="fluid-lead text-ink-body leading-relaxed max-w-2xl font-normal text-pretty">
               Direct, deterministic REST endpoints for high-volume automated operations. Ephemeral RAM execution with sub-350ms response guarantees.
             </p>
           </div>

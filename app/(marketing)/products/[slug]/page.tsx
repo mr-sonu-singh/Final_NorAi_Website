@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import { PRODUCTS_DATA } from '@/lib/products';
 import { Container } from '@/components/foundation/Container';
 import { Link } from '@/components/atoms/Link';
-import { buildMetadata } from '@/lib/seo';
+import { buildMetadata, getSoftwareApplicationJsonLd, getBreadcrumbListJsonLd, JsonLd } from '@/lib/seo';
 import { ProductInteractiveView } from '@/components/organisms/ProductDetail/ProductInteractiveView';
 import {
   FileText,
@@ -64,8 +64,16 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
 
   const IconComp = ICON_MAP[product.iconName] || FileText;
 
+  const breadcrumbs = [
+    { name: 'Home', path: '/' },
+    { name: 'Products', path: '/products' },
+    { name: product.title, path: `/products/${product.slug}` },
+  ];
+
   return (
     <div className="bg-canvas-base text-ink-primary min-h-screen font-sans selection:bg-accent-500 selection:text-white">
+      <JsonLd schema={getSoftwareApplicationJsonLd(product)} />
+      <JsonLd schema={getBreadcrumbListJsonLd(breadcrumbs)} />
       {/* Editorial Hero Header */}
       <section className="relative pt-16 pb-14 md:pt-24 md:pb-18 border-b border-[rgba(13,37,61,0.08)] bg-canvas-paper">
         <Container size="default">
@@ -88,11 +96,11 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
               </span>
             </div>
 
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl text-ink-primary font-normal leading-tight tracking-tight">
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl text-ink-primary font-normal leading-tight tracking-display">
               {product.title}
             </h1>
 
-            <p className="text-lg md:text-xl text-ink-body leading-relaxed font-normal">
+            <p className="fluid-lead text-ink-body leading-relaxed font-normal text-pretty">
               {product.tagline}
             </p>
 
@@ -116,7 +124,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
 
       {/* Main Interactive Studio Canvas & Tabs */}
       <section className="py-12 md:py-20 bg-canvas-base border-b border-[rgba(13,37,61,0.08)]">
-        <Container size="default">
+        <Container size="wide">
           <ProductInteractiveView product={product} slug={slug} />
         </Container>
       </section>

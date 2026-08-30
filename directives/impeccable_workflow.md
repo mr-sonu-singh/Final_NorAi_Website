@@ -42,6 +42,14 @@ Every interactive element must explicitly handle:
 - All route files (`page.tsx`) and layout shells must remain **React Server Components (RSC)**.
 - Client state (`'use client'`) must be strictly pushed to leaf components (e.g., workbenches, accordions, selectors).
 
+### E. Interactive Workbench Spatial Standards (The Resume Shortlister Benchmark)
+All interactive web tools (AI Resume Shortlister, Course Note-Taker, Chat Digest, Smart Dainik News, and future SaaS tools) must adhere to these spatial rules:
+1. **Widescreen Stage**: Wrap interactive studio sections in `<Container size="wide">` (`--container-wide: 1380px`, `max-w-7xl`) with `min-h-[680px]` synchronized column height.
+2. **Segmented Intake Docks**: Never stack multiple tiny textareas/dropzones in one column. Group inputs into segmented step docks (`[ 1. Role ]`, `[ 2. Ingestion ]`, `[ 3. Rubric ]`) with `min-h-[200px]` editors.
+3. **Master-Detail & Inline Accordions**: Provide 1-click chevron breakdown accordions on list cards so users can preview strengths and interview probes without leaving the list view.
+4. **Comparative Multi-Entity Matrix**: Group evaluations side-by-side per dimension with color-coded comparison progress bars.
+5. **1-Click Entity Switcher & Bento Scorecards**: Deep inspection views must have a top pill switcher strip and bento grid layout (hero, 2-column evidence vs. risks, cue-card probing questions).
+
 ---
 
 ## 3. The 5-Step Execution Loop

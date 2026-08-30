@@ -7,3 +7,8 @@ export * from './Section';
 export * from './VisuallyHidden';
 export * from './AnimatedSection';
 export * from './MeshGradient';
+export * from './TextReveal';
+export * from './CountUp';
+export * from './DrawLine';
+export * from './CrossFade';
+export * from './PageTransition';

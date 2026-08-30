@@ -11,9 +11,9 @@ import { buildMetadata } from '@/lib/seo';
 
 export const metadata = buildMetadata({
   path: '/contact',
-  title: 'Contact Us — NorAi Technologies',
+  title: 'Contact Engineering & Sales',
   description:
-    'Tell us what is slowing you down. The NorAi team replies to every message within two hours during business hours.',
+    'Discuss your enterprise AI workflow or explore our micro-SaaS tools. The NorAI engineering team responds within 2 hours during business hours.',
 });
 
 const INFO_CARDS = [

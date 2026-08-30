@@ -1,3 +1,33 @@
+/**
+ * NorAI Editorial Blog & Engineering Knowledge Store
+ *
+ * ============================================================================
+ * ARCHITECTURAL ASSESSMENT & CONTENT SCALING ROADMAP
+ * ============================================================================
+ *
+ * Current State Assessment:
+ * - Post count: 5 foundational engineering articles.
+ * - Current storage pattern: In-memory typed TypeScript dictionary (`BLOG_POSTS`).
+ * - Performance characteristics: Zero runtime parsing overhead, instant compile-time static
+ *   page generation via `generateStaticParams`, guaranteed type safety without external build plugins.
+ *
+ * Scaling Roadmap:
+ *
+ * 1. Phase 1 (Current: 1–5 Posts) — [ACTIVE]
+ *    - In-memory typed Record dictionary. Perfect fit for lean MVP with <10 articles.
+ *
+ * 2. Phase 2 (Next Milestone: 6–25 Posts) — [RECOMMENDED FOR NEXT PHASE]
+ *    - File-based MDX content pipeline (`content/blog/*.mdx`).
+ *    - Schema Validation: Zod frontmatter parser for author, category, publishedDate, and canonical URLs.
+ *    - Code Syntax Highlighting: Shiki or rehype-pretty-code with VS Code theme tokens.
+ *    - RSS & Syndication: Automated RSS 2.0 / Atom feed route at `app/feed.xml/route.ts`.
+ *    - Search & Discovery: Build-time generated Lunr/Fuse.js static index for fast client-side query matching.
+ *
+ * 3. Phase 3 (Enterprise Scale: 25+ Posts & Multi-Author Teams)
+ *    - Headless Git-backed CMS (Keystatic or Sanity.io) with visual markdown editing.
+ *    - Draft previews and on-demand Incremental Static Regeneration (ISR) via Next.js `revalidatePath()`.
+ */
+
 export interface BlogPostData {
   slug: string;
   title: string;

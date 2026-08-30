@@ -18,7 +18,9 @@ export function buildMetadata(options: BuildMetadataOptions = {}): Metadata {
     noIndex = false,
   } = options;
 
-  const fullTitle = title ? `${title} — ${siteConfig.name}` : siteConfig.titleTemplate;
+  const fullTitle = title
+    ? (title.toLowerCase().includes('norai') ? title : `${title} — ${siteConfig.name}`)
+    : siteConfig.titleTemplate;
   const canonicalUrl = `${siteConfig.url}${path}`;
 
   return {

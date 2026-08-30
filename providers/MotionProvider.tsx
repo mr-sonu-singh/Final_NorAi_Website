@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { MotionConfig } from 'framer-motion';
+import { MotionConfig } from 'motion/react';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 
 export function MotionProvider({ children }: { children: React.ReactNode }) {

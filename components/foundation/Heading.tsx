@@ -33,11 +33,11 @@ export function Heading({
     'display-md':
       'font-display text-[length:var(--text-display-md-size)] leading-[var(--text-display-md-line)] font-[var(--text-display-md-weight)] tracking-[var(--text-display-md-tracking)]',
     'heading-xl':
-      'text-[length:var(--text-heading-xl-size)] leading-[var(--text-heading-xl-line)] font-[var(--text-heading-xl-weight)]',
+      'text-[length:var(--text-heading-xl-size)] leading-[var(--text-heading-xl-line)] font-[var(--text-heading-xl-weight)] tracking-[var(--text-heading-xl-tracking)]',
     'heading-lg':
-      'text-[length:var(--text-heading-lg-size)] leading-[var(--text-heading-lg-line)] font-[var(--text-heading-lg-weight)]',
+      'text-[length:var(--text-heading-lg-size)] leading-[var(--text-heading-lg-line)] font-[var(--text-heading-lg-weight)] tracking-[var(--text-heading-lg-tracking)]',
     'heading-md':
-      'text-[length:var(--text-heading-md-size)] leading-[var(--text-heading-md-line)] font-[var(--text-heading-md-weight)]',
+      'text-[length:var(--text-heading-md-size)] leading-[var(--text-heading-md-line)] font-[var(--text-heading-md-weight)] tracking-[var(--text-heading-md-tracking)]',
     'heading-sm':
       'text-[length:var(--text-heading-sm-size)] leading-[var(--text-heading-sm-line)] font-[var(--text-heading-sm-weight)]',
     'heading-xs':

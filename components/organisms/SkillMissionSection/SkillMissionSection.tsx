@@ -11,6 +11,7 @@ import {
   ArrowRight,
   MapPin,
   CheckCircle2,
+  Landmark,
 } from 'lucide-react';
 
 interface Pillar {
@@ -25,54 +26,54 @@ interface Pillar {
 
 const PILLARS: Pillar[] = [
   {
-    icon: GraduationCap,
-    badge: 'Rural AI Enablement',
+    icon: Users,
+    badge: 'Tier 1: Grassroots Inclusion',
     badgeVariant: 'ochre',
-    title: 'Grassroots & Tier-2/3 Outreach',
-    tagline: 'Bridging the metro vs. regional technical divide directly at the campus level.',
+    title: 'Rural Citizens & Elders',
+    tagline: 'Practical everyday AI in simple Hindi and regional voice prompts.',
     description:
-      'We conduct hands-on, zero-cost AI literacy bootcamps, practical hackathons, and automation masterclasses across regional colleges, polytechnics, and schools in Uttar Pradesh and beyond.',
+      'We teach rural youth, village elders, and local shopkeepers how to use ChatGPT and Gemini for everyday tasks, administrative drafting, crop/market queries, and digital fraud/scam awareness.',
     points: [
-      'Hands-on on-ground campus workshops',
-      'Vernacular & bilingual AI curriculum',
-      'Free student tiers on NorAI EdTech tools',
+      'Hindi & voice-first AI interactions',
+      'Government welfare & letter drafting',
+      'AI scam & deepfake safety awareness',
+    ],
+  },
+  {
+    icon: GraduationCap,
+    badge: 'Tier 2: Youth Foundations',
+    badgeVariant: 'sage',
+    title: 'School & College Learners',
+    tagline: 'Transforming passive consumption into academic & research superpower.',
+    description:
+      'High school and undergraduate students learn to turn AI into a 24/7 personal tutor for STEM, convert lectures into study flashcards via Course Note-Taker, and build foundational programming literacy.',
+    points: [
+      'Socratic STEM inquiry & study engines',
+      'Lecture-to-flashcard synthesis',
+      'Prompt-to-code foundational logic',
     ],
   },
   {
     icon: Cpu,
-    badge: 'AI Knowledge-as-a-Service',
+    badge: 'Tier 3: Advanced Builders',
     badgeVariant: 'terracotta',
-    title: 'Deterministic AI Curriculum',
-    tagline: 'Practical engineering over speculative buzzwords and prompt tricks.',
+    title: 'Collegiate & Tech Hubs',
+    tagline: 'Production-grade AI engineering, MCP systems, and micro-SaaS.',
     description:
-      'We open-source our internal engineering playbooks—teaching students and young developers how to build Model Context Protocol (MCP) servers, structured RAG pipelines, and local vLLM deployments.',
+      'For engineering students in regional towns ready for real software craft: we teach Model Context Protocol (MCP) servers, local open-weight model serving (vLLM / Ollama), and type-safe Next.js micro-SaaS deployments.',
     points: [
       'Model Context Protocol (MCP) tooling',
-      'Structured schemas & JSON verification',
-      'Real-world vector search & caching',
-    ],
-  },
-  {
-    icon: Users,
-    badge: 'AI Talent Development',
-    badgeVariant: 'sage',
-    title: 'Youth Mentorship & Incubation',
-    tagline: 'From first-time learners to production-grade open-source builders.',
-    description:
-      'Direct 1-on-1 mentorship with our founding team. We help regional students build verifiable portfolio projects, contribute to open protocols, and step into high-impact engineering careers.',
-    points: [
-      'Code reviews & architectural feedback',
-      'Regional micro-enterprise incubation',
-      'Direct internship & fellowship pathways',
+      'Local model quantization & vLLM',
+      'Full-stack micro-SaaS live deploys',
     ],
   },
 ];
 
 const METRICS = [
-  { label: 'Students Mentored', value: '500+', note: 'Across regional colleges' },
-  { label: 'Focus Geography', value: 'Tier 2 & 3', note: 'Uttar Pradesh & Bharat' },
-  { label: 'Student Access', value: '100% Free', note: 'On Course Note-Taker' },
-  { label: 'Curriculum Philosophy', value: 'Zero Fluff', note: 'Real code & deployable tools' },
+  { label: 'Demographic Tiers', value: '3 Tracks', note: 'Seniors, Youth & Engineers' },
+  { label: 'Delivery Model', value: 'Adaptive', note: 'Rural Village vs Town Campus' },
+  { label: 'Student Access', value: '100% Free', note: 'Scholar EdTech Subsidies' },
+  { label: 'Long-Term Vision', value: 'Statewide UP', note: 'Government partnership blueprint' },
 ];
 
 export function SkillMissionSection() {
@@ -88,14 +89,14 @@ export function SkillMissionSection() {
             </div>
 
             <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-normal text-ink-primary leading-tight tracking-tight">
-              Building local intelligence. <br />
+              Empowering communities. <br />
               <span className="italic text-accent-500 font-normal">
-                Uplifting regional youth.
+                From rural villages to tech hubs.
               </span>
             </h2>
 
             <p className="text-base md:text-lg text-ink-body leading-relaxed">
-              We don&rsquo;t just engineer deterministic software in Uttar Pradesh—we actively invest in the next generation of builders, researchers, and operators across Tier-2/3 cities and rural institutions.
+              We conduct customized on-ground AI workshops across Uttar Pradesh—teaching everyday AI to rural elders, academic productivity to students, and production-grade software engineering to collegiate builders.
             </p>
           </div>
 
@@ -103,20 +104,20 @@ export function SkillMissionSection() {
           <div className="shrink-0 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
             <Link href="/mission">
               <Button variant="primary" size="md" className="w-full sm:w-auto group">
-                <span>Explore the Skill Mission</span>
+                <span>Explore Workshop Tracks</span>
                 <ArrowRight className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>
             <Link href="/contact?service=campus-workshop">
               <Button variant="secondary" size="md" className="w-full sm:w-auto">
-                Invite us to your campus
+                Request a Workshop
               </Button>
             </Link>
           </div>
         </div>
 
         {/* 3 Editorial Pillars */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-stretch mb-16 text-left">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-stretch mb-12 text-left">
           {PILLARS.map((pillar) => {
             const Icon = pillar.icon;
             return (
@@ -133,7 +134,7 @@ export function SkillMissionSection() {
                           ? 'bg-accent-50 text-accent-500 border-accent-500/20'
                           : pillar.badgeVariant === 'sage'
                           ? 'bg-[#e2ede7] text-accent-secondary border-accent-secondary/30'
-                          : 'bg-[#fff4d6] text-[#976a08] border-[#976a08]/20'
+                          : 'bg-[#fff4d6] text-[#7c5506] border-[#7c5506]/20'
                       }`}
                     >
                       {pillar.badge}
@@ -171,6 +172,32 @@ export function SkillMissionSection() {
               </div>
             );
           })}
+        </div>
+
+        {/* UP Government & Statewide Vision Banner */}
+        <div className="rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] p-6 md:p-8 mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 text-left">
+          <div className="flex items-start gap-4">
+            <div className="w-10 h-10 rounded-xl bg-[#fff4d6] border border-[#7c5506]/20 text-[#7c5506] flex items-center justify-center shrink-0 mt-0.5">
+              <Landmark className="w-5 h-5" />
+            </div>
+            <div className="space-y-1">
+              <span className="font-mono text-xs font-semibold text-[#7c5506] uppercase tracking-wider">
+                Statewide Vision & Government Collaboration
+              </span>
+              <h4 className="font-display text-xl sm:text-2xl text-ink-primary font-normal">
+                Aiming to uplift Uttar Pradesh with state-level partnership.
+              </h4>
+              <p className="text-xs md:text-sm text-ink-body leading-relaxed max-w-3xl">
+                We are actively developing institutional frameworks to align with the Uttar Pradesh Skill Development Mission and Department of IT & Electronics, bringing verified AI literacy to all 75 districts.
+              </p>
+            </div>
+          </div>
+
+          <Link href="/mission#statewide-vision" className="shrink-0">
+            <Button variant="secondary" size="sm">
+              Learn About State Roadmap
+            </Button>
+          </Link>
         </div>
 
         {/* Telemetry / Impact Strip */}

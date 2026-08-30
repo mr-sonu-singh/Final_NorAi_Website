@@ -1,4 +1,5 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import { Container } from '@/components/foundation/Container';
 import { Button } from '@/components/atoms/Button';
 import { Link } from '@/components/atoms/Link';
@@ -9,6 +10,14 @@ import {
   CheckCircle2,
 } from 'lucide-react';
 import { ServicesDirectory } from '@/components/organisms';
+import { buildMetadata, getServiceJsonLd, getBreadcrumbListJsonLd, JsonLd } from '@/lib/seo';
+
+export const metadata: Metadata = buildMetadata({
+  path: '/services',
+  title: 'Bespoke Enterprise AI Solutions',
+  description:
+    'Custom RAG pipelines, MCP tool servers, and high-throughput private VPC inference architectures engineered for enterprise scale and zero hallucination.',
+});
 
 const ENGAGEMENT_STEPS = [
   {
@@ -29,20 +38,27 @@ const ENGAGEMENT_STEPS = [
 ];
 
 export default function ServicesPage() {
+  const breadcrumbs = [
+    { name: 'Home', path: '/' },
+    { name: 'Services', path: '/services' },
+  ];
+
   return (
     <div className="text-ink-primary min-h-screen font-sans bg-canvas-base selection:bg-accent-500 selection:text-white">
+      <JsonLd schema={getServiceJsonLd()} />
+      <JsonLd schema={getBreadcrumbListJsonLd(breadcrumbs)} />
       {/* Editorial Hero Header */}
       <section className="relative pt-16 pb-16 md:pt-24 md:pb-24 border-b border-[rgba(13,37,61,0.08)]">
         <MeshGradient intensity="subtle" />
 
         <Container size="default" className="relative z-10">
           <div className="max-w-4xl space-y-6 text-left">
-            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal text-ink-primary leading-[1.04] tracking-tight">
+            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal text-ink-primary leading-[1.04] tracking-display">
               Bespoke AI solutions <br />
               <span className="italic text-accent-500 font-normal">engineered for your stack.</span>
             </h1>
 
-            <p className="text-lg md:text-xl text-ink-body leading-relaxed max-w-2xl font-normal">
+            <p className="fluid-lead text-ink-body leading-relaxed max-w-2xl font-normal text-pretty">
               From custom RAG pipelines to Model Context Protocol (MCP) tool servers and multi-agent workflow orchestration, we build reliable, production-grade intelligence.
             </p>
 
@@ -109,13 +125,13 @@ export default function ServicesPage() {
         <Container size="default">
           <div className="rounded-3xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] p-10 md:p-16 text-center shadow-lg relative overflow-hidden">
             <div className="max-w-2xl mx-auto space-y-6 relative z-10">
-              <h2 className="font-display text-4xl md:text-5xl font-normal text-ink-primary leading-tight">
+              <h2 className="font-display text-4xl md:text-5xl font-normal text-ink-primary leading-tight tracking-display">
                 Have a custom AI workflow in mind?
               </h2>
-              <p className="text-base md:text-lg text-ink-body leading-relaxed">
+              <p className="fluid-body text-ink-body leading-relaxed max-w-xl mx-auto text-pretty">
                 Connect directly with our engineering team to scope your technical architecture, latency requirements, and proof-of-concept timeline.
               </p>
-              <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
                 <Link href="/contact" className="w-full sm:w-auto">
                   <Button variant="primary" size="lg" className="w-full sm:w-auto group">
                     <span>Schedule technical consultation</span>

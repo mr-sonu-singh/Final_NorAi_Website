@@ -9,6 +9,7 @@ import {
   buildResumeShortlistPrompt,
 } from '@/lib/tools/prompts';
 import { estimateTokenCount, estimateApiCost } from '@/lib/tools/client-parser';
+import { checkRateLimit, getClientIp, getRateLimitHeaders } from '@/lib/security';
 
 export const runtime = 'edge'; // Serverless Edge Runtime for sub-second latency
 
@@ -16,6 +17,22 @@ export async function POST(req: NextRequest) {
   const startTime = Date.now();
 
   try {
+    const clientIp = getClientIp(req);
+    const rateLimit = checkRateLimit(`tool:resume-shortlister:${clientIp}`, {
+      maxRequests: 30,
+      windowMs: 5 * 60 * 1000,
+    });
+
+    if (!rateLimit.success) {
+      return NextResponse.json(
+        {
+          error: 'RATE_LIMIT_EXCEEDED',
+          message: 'Too many requests. Please wait a moment before analyzing more resumes.',
+        },
+        { status: 429, headers: getRateLimitHeaders(rateLimit) }
+      );
+    }
+
     const body = await req.json();
     const parseResult = ResumeShortlistInputSchema.safeParse(body);
 
@@ -26,7 +43,7 @@ export async function POST(req: NextRequest) {
           message: 'Invalid input payload. Please check required fields.',
           details: parseResult.error.flatten(),
         },
-        { status: 400 }
+        { status: 400, headers: getRateLimitHeaders(rateLimit) }
       );
     }
 

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useReducedMotion } from 'framer-motion';
+import { useReducedMotion } from 'motion/react';
 
 export interface MeshGradientProps {
   className?: string;

@@ -1,7 +1,15 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 
-export type TextVariant = 'body-xl' | 'body-lg' | 'body-md' | 'body-sm' | 'body-xs' | 'label';
+export type TextVariant =
+  | 'body-xl'
+  | 'body-lg'
+  | 'body-md'
+  | 'body-sm'
+  | 'body-xs'
+  | 'label'
+  | 'fluid-lead'
+  | 'fluid-body';
 
 export interface TextProps extends React.HTMLAttributes<HTMLElement> {
   variant?: TextVariant;
@@ -28,6 +36,8 @@ export function Text({
       'text-[length:var(--text-body-xs-size)] leading-[var(--text-body-xs-line)] font-[var(--text-body-xs-weight)]',
     label:
       'text-[length:var(--text-label-size)] leading-[var(--text-label-line)] font-[var(--text-label-weight)]',
+    'fluid-lead': 'fluid-lead font-normal',
+    'fluid-body': 'fluid-body font-normal',
   };
 
   return (

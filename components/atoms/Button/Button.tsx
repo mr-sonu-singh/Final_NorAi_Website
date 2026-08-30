@@ -17,9 +17,9 @@ const variantClasses: Record<ButtonVariant, string> = {
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
-  sm: 'h-9 px-3 min-w-[44px] text-body-sm font-medium rounded-md gap-1.5',
-  md: 'h-11 px-4 min-w-[44px] text-body-md font-medium rounded-md gap-2',
-  lg: 'h-12 px-6 min-w-[44px] text-body-lg font-semibold rounded-md gap-2.5',
+  sm: 'h-9 px-3 min-w-[44px] text-xs font-medium rounded-md gap-1.5',
+  md: 'h-11 px-4 min-w-[44px] text-sm font-medium rounded-md gap-2',
+  lg: 'h-12 px-6 min-w-[44px] text-base font-semibold rounded-md gap-2.5',
 };
 
 const iconSizeMap: Record<ButtonSize, 'sm' | 'md' | 'lg'> = {

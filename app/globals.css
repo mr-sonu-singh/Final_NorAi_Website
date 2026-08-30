@@ -16,19 +16,19 @@
   /* --- Ink & Text --- */
   --ds-text-100: #0d253d; /* Primary Headings & Body Text (Deep Navy Ink) */
   --ds-text-200: #3d4f5f; /* Secondary Text & Nav Links (Muted Slate) */
-  --ds-text-300: #6b7b8d; /* Muted & Caption Text (Warm Gray) */
+  --ds-text-300: #364757; /* Muted & Caption Text (Deep Slate, WCAG AAA 7:1) */
 
   /* --- Interactive accents --- */
-  --ds-interactive: #c2553a; /* Burnt Terracotta */
-  --ds-focus-color: #c2553a;
-  --accent-primary: #c2553a;
+  --ds-interactive: #a84530; /* Burnt Terracotta (Calibrated for WCAG AA 4.5:1+ contrast) */
+  --ds-focus-color: #a84530;
+  --accent-primary: #a84530;
   --accent-mono: #5b8a72; /* Forest Sage — secondary accent */
   --accent-secondary: #5b8a72;
   --accent-secondary-soft: #e2ede7;
   --accent-tertiary: #b8860b; /* Dark Goldenrod */
   --accent-tertiary-soft: #fff4d6;
   --border-hairline: rgba(13, 37, 61, 0.08);
-  --glow-warm: 194, 85, 58;
+  --glow-warm: 168, 69, 48;
 
   /* --- Navy ramp (light → dark ink). Body text = primary-800 --- */
   --primary-50: #fdfbf7;
@@ -36,7 +36,7 @@
   --primary-200: #ede7df;
   --primary-300: #dde4ec;
   --primary-400: #a0aeba;
-  --primary-500: #6b7b8d;
+  --primary-500: #364757;
   --primary-600: #4a5d70;
   --primary-700: #3d4f5f;
   --primary-800: #0d253d;
@@ -46,9 +46,9 @@
   --accent-50: #faeee9;
   --accent-100: #f5e1da;
   --accent-400: #d97b62;
-  --accent-500: #c2553a;
-  --accent-600: #a84530;
-  --accent-700: #8a3826;
+  --accent-500: #a84530;
+  --accent-600: #8a3826;
+  --accent-700: #702c1c;
 
   --bg-elevated: #fdfbf7;
   --bg-sunken: #ede7df;
@@ -110,6 +110,10 @@
   --text-heading-md-weight: 600;
   --text-heading-md-tracking: -0.005em;
 
+  --text-body-xl-size: 1.25rem;
+  --text-body-xl-line: 1.75rem;
+  --text-body-xl-weight: 400;
+
   --text-body-lg-size: 1.125rem;
   --text-body-lg-line: 1.75rem;
   --text-body-lg-weight: 400;
@@ -129,6 +133,10 @@
   --text-label-size: 0.875rem;
   --text-label-line: 1.25rem;
   --text-label-weight: 500;
+
+  --text-fluid-lead: clamp(1.125rem, 1rem + 0.5vw, 1.25rem);
+  --text-fluid-body: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-badge: 0.6875rem; /* 11px */
 
   /* --- Spacing --- */
   --space-1: 0.25rem; /* 4px */
@@ -178,13 +186,16 @@
   --duration-fast: 150ms;
   --duration-normal: 300ms;
   --duration-slow: 500ms;
+  --duration-exit: 150ms;
+  --duration-enter: 210ms;
+  --duration-move: 300ms;
   --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
   --tooltip-delay: 200ms;
 
   /* --- Containers --- */
   --container-narrow: 720px;
   --container-default: 1120px;
-  --container-wide: 1280px;
+  --container-wide: 1380px;
 
   /* --- Page-level surfaces --- */
   --bg-page: #f5f0ea;
@@ -226,16 +237,16 @@
 
   --color-ink-primary: #0d253d;
   --color-ink-body: #3d4f5f;
-  --color-ink-secondary: #6b7b8d;
+  --color-ink-secondary: #364757;
   --color-ink-disabled: #a0aeba;
 
   --color-terra-50: #faeee9;
   --color-terra-100: #f5e1da;
   --color-terra-300: #e39b85;
   --color-terra-400: #d97b62;
-  --color-terra-500: #c2553a;
-  --color-terra-600: #a84530;
-  --color-terra-700: #8a3826;
+  --color-terra-500: #a84530;
+  --color-terra-600: #8a3826;
+  --color-terra-700: #702c1c;
 
   --color-sage-50: #f0f5f1;
   --color-sage-100: #e2ede7;
@@ -248,7 +259,8 @@
   --color-gold-100: #fff4d6;
   --color-gold-300: #d9b45e;
   --color-gold-500: #b8860b;
-  --color-gold-600: #96700e;
+  --color-gold-600: #7c5506;
+  --color-gold-700: #634304;
 
   --color-navy-700: #1f4062;
   --color-navy-800: #16324e;
@@ -278,6 +290,12 @@
   --font-sans: var(--font-sans);
   --font-display: var(--font-display);
   --font-mono: var(--font-mono);
+
+  --tracking-display: -0.02em;
+  --tracking-heading: -0.015em;
+  --tracking-label: -0.005em;
+  --tracking-badge: 0.02em;
+  --text-badge: 0.6875rem;
 
   --spacing-1: var(--space-1);
   --spacing-2: var(--space-2);
@@ -463,3 +481,128 @@ kbd {
 .link-editorial:hover {
   text-decoration-color: var(--accent-primary);
 }
+
+/* Subtle dot-matrix hardware pattern for telemetry and technical strips */
+.pattern-dots {
+  background-image: radial-gradient(rgba(13, 37, 61, 0.08) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+/* Faint gradient hairline divider for editorial pull-quotes and callouts */
+.hairline-divider-gradient {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(13, 37, 61, 0.12) 25%, rgba(13, 37, 61, 0.12) 75%, transparent 100%);
+}
+
+/* Fluid typography utilities */
+.fluid-lead {
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.25rem);
+  line-height: 1.625;
+}
+
+.fluid-body {
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  line-height: 1.6;
+}
+
+.text-badge {
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.tracking-display {
+  letter-spacing: -0.02em;
+}
+
+.tracking-badge {
+  letter-spacing: 0.02em;
+}
+
+/* ==========================================================================
+   VIEW TRANSITIONS — Smooth Route Changes & Crossfades
+   Adheres to vercel-react-view-transitions & NorAI motion tokens
+   ========================================================================== */
+
+/* Interactivity pass-through during active transition */
+::view-transition {
+  pointer-events: none;
+}
+
+/* Base keyframes */
+@keyframes vt-fade {
+  from {
+    filter: blur(2px);
+    opacity: 0;
+  }
+  to {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+@keyframes vt-slide {
+  from {
+    translate: var(--slide-offset, 40px);
+  }
+  to {
+    translate: 0;
+  }
+}
+
+/* Fade Transitions */
+::view-transition-old(.fade-out) {
+  animation: var(--duration-exit, 150ms) cubic-bezier(0.16, 1, 0.3, 1) vt-fade reverse;
+}
+::view-transition-new(.fade-in) {
+  animation: var(--duration-enter, 210ms) cubic-bezier(0.16, 1, 0.3, 1) var(--duration-exit, 150ms) both vt-fade;
+}
+
+/* Directional Slide Navigation */
+::view-transition-old(.nav-forward) {
+  --slide-offset: -40px;
+  animation:
+    var(--duration-exit, 150ms) cubic-bezier(0.16, 1, 0.3, 1) both vt-fade reverse,
+    var(--duration-move, 300ms) cubic-bezier(0.16, 1, 0.3, 1) both vt-slide reverse;
+}
+::view-transition-new(.nav-forward) {
+  --slide-offset: 40px;
+  animation:
+    var(--duration-enter, 210ms) cubic-bezier(0.16, 1, 0.3, 1) var(--duration-exit, 150ms) both vt-fade,
+    var(--duration-move, 300ms) cubic-bezier(0.16, 1, 0.3, 1) both vt-slide;
+}
+
+::view-transition-old(.nav-back) {
+  --slide-offset: 40px;
+  animation:
+    var(--duration-exit, 150ms) cubic-bezier(0.16, 1, 0.3, 1) both vt-fade reverse,
+    var(--duration-move, 300ms) cubic-bezier(0.16, 1, 0.3, 1) both vt-slide reverse;
+}
+::view-transition-new(.nav-back) {
+  --slide-offset: -40px;
+  animation:
+    var(--duration-enter, 210ms) cubic-bezier(0.16, 1, 0.3, 1) var(--duration-exit, 150ms) both vt-fade,
+    var(--duration-move, 300ms) cubic-bezier(0.16, 1, 0.3, 1) both vt-slide;
+}
+
+/* Persistent Header Isolation — keeps sticky glass navigation anchored without flicker */
+::view-transition-group(persistent-header) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(persistent-header),
+::view-transition-new(persistent-header) {
+  animation: none;
+}
+
+/* Reduced Motion Override for View Transitions */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+  }
+}
+

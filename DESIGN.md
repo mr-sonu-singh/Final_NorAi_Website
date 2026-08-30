@@ -108,3 +108,34 @@ Every interactive atom, molecule, and component must intentionally define all 5 
 - ❌ **No generic stock photography**: use authentic regional photography or bespoke SVG wireframes.
 - ❌ **No unstyled default focus outlines**: always implement the double-ring focus token.
 - ❌ **No hardcoded raw hex values in JSX**: utilize CSS variables or Tailwind configured semantic classes.
+- ❌ **No stacked multi-textarea nested scrollbars**: always use segmented step docks.
+- ❌ **No narrow-constrained workbench canvas**: always use `--container-wide` (`1380px`).
+
+---
+
+## 8. Interactive Tool & Workbench Spatial Standards
+
+When architecting or styling interactive self-serve AI web tools (Resume Shortlister, Course Note-Taker, Chat Digest, Smart Dainik News, and upcoming tools):
+
+### 1. Canvas Width & Widescreen Scaling
+- **Container**: Use `<Container size="wide">` (`--container-wide: 1380px`, `max-w-7xl`).
+- **Aspect & Height**: Standard minimum height is `min-h-[680px]` to `min-h-[720px]`, providing synchronized column heights without clipped cards.
+
+### 2. Segmented Step Intake Dock (Zero Nested Scrollbars)
+- **Structure**: Group intake parameters into a segmented step dock (`[ 1. Job Role ]`, `[ 2. Ingestion / Batch ]`, `[ 3. Rubric & Filter ]`).
+- **Editor Height**: Textareas must have generous minimum heights (`min-h-[200px]` to `min-h-[260px]`) showing comprehensive prompt/data text without tiny internal scrollbars.
+- **Input Modes**: Provide clear sub-mode toggles (e.g. `[ Upload Files (PDF/DOCX) ]` vs `[ Batch Editor (Text) ]`) with live buffer count chips and token counters.
+
+### 3. Master-Detail List Ergonomics & Inline Accordions
+- **Ranked Cards**: Cards must include rank chips (`#1`, `#2`), display font typography, role metadata, and large score dials (`tabular-nums`).
+- **Inline Breakdown**: Provide a 1-click chevron toggle on list cards to reveal key evidence, verified strengths, and probe questions inline without breaking list context.
+
+### 4. Comparative Multi-Entity Vector Matrices
+- Group evaluated items side-by-side per evaluation dimension with progress comparison bars (Emerald $\ge 90\%$, Terracotta $\ge 75\%$, Muted Slate $< 75\%$) and qualitative evidence quotes.
+
+### 5. 1-Click Entity Switcher Pill Bars & Bento Scorecards
+- **Switcher Strip**: Deep scorecard views must feature a top pill strip (`[ #1 Entity A 96% ]` `[ #2 Entity B 82% ]`) for 1-click profile switching.
+- **Bento Grid**: 
+  - Hero Profile Box (status badge, name, score dial, executive verdict).
+  - 2-Column Evaluation (Verified Strengths vs Missing Requirements / Risk Flags).
+  - Full-width Numbered Technical Probing Questions (`01`, `02`, `03`).

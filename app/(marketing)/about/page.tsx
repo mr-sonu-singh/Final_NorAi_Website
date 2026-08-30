@@ -9,9 +9,9 @@ import { buildMetadata } from '@/lib/seo';
 
 export const metadata = buildMetadata({
   path: '/about',
-  title: 'Our Story & Philosophy — NorAI Technologies',
+  title: 'Our Story & Engineering Philosophy',
   description:
-    'Born in Uttar Pradesh. Building deterministic, single-purpose AI tools that save real operational hours for real teams.',
+    'Born in Uttar Pradesh. Building deterministic, single-purpose AI tools that save real operational hours for real teams with zero hallucination.',
 });
 
 const VALUES = [
@@ -59,11 +59,11 @@ export default function AboutPage() {
       <Section className="pb-14 pt-16 md:pb-20 md:pt-24 border-b border-[rgba(13,37,61,0.08)]">
         <Container size="default">
           <Reveal>
-            <h1 className="max-w-4xl font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal leading-[1.04] tracking-tight text-ink-primary">
+            <h1 className="max-w-4xl font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal leading-[1.04] tracking-display text-ink-primary">
               We&rsquo;re building from <br />
               <span className="italic text-accent-500 font-normal">Uttar Pradesh.</span>
             </h1>
-            <p className="mt-6 max-w-2xl text-lg md:text-xl leading-relaxed text-ink-body">
+            <p className="mt-6 max-w-2xl fluid-lead leading-relaxed text-ink-body text-pretty">
               World-class AI engineering doesn&rsquo;t only happen in San Francisco. It happens wherever someone refuses to accept broken workflows — including a small workshop in Uttar Pradesh, where ours started.
             </p>
           </Reveal>

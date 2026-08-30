@@ -208,6 +208,7 @@ export function ProductStudio() {
                   max="95"
                   value={resumeThreshold}
                   onChange={(e) => setResumeThreshold(Number(e.target.value))}
+                  aria-label="Candidate qualification match threshold percentage"
                   className="w-full accent-accent-500 cursor-pointer"
                 />
                 <div className="flex justify-between text-[11px] text-ink-secondary">
@@ -228,14 +229,21 @@ export function ProductStudio() {
                       'p-3 rounded-xl border flex items-center justify-between text-xs transition-all',
                       cand.pass
                         ? 'bg-canvas-paper border-accent-secondary/50 text-ink-primary'
-                        : 'bg-canvas-recessed/40 border-transparent opacity-40'
+                        : 'bg-canvas-recessed/60 border-line-subtle text-ink-body'
                     )}
                   >
                     <div>
-                      <span className="font-medium block">{cand.name}</span>
+                      <span className="font-medium block text-ink-primary">{cand.name}</span>
                       <span className="text-[11px] text-ink-secondary">{cand.role}</span>
                     </div>
-                    <span className="font-mono font-bold px-2 py-0.5 rounded bg-canvas-recessed text-accent-500">
+                    <span
+                      className={cn(
+                        'font-mono font-bold px-2 py-0.5 rounded text-xs',
+                        cand.pass
+                          ? 'bg-accent-50 text-accent-600 border border-accent-500/20'
+                          : 'bg-canvas-recessed text-ink-secondary'
+                      )}
+                    >
                       {cand.score}%
                     </span>
                   </div>

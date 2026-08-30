@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
-
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 
 import { Container } from '@/components/foundation/Container';
 import { Link } from '@/components/atoms/Link';
@@ -38,10 +38,13 @@ export function Header({
   className,
 }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [liveAnnouncement, setLiveAnnouncement] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const isDesktop = useMediaQuery('(min-width: 1024px)');
   const prevIsDesktop = useRef(isDesktop);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   // Automatically close mobile menu when route changes
   useEffect(() => {
@@ -80,10 +83,55 @@ export function Header({
   useEffect(() => {
     if (!isMobileMenuOpen) return;
 
+    // Focus the first focusable element inside the menu when it opens
+    const menuEl = mobileMenuRef.current;
+    if (menuEl) {
+      const focusableEls = menuEl.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusableEls.length > 0) {
+        focusableEls[0]?.focus();
+      }
+    }
+
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') {
+        event.preventDefault();
         setIsMobileMenuOpen(false);
+        setLiveAnnouncement('Mobile navigation menu closed');
         document.getElementById('mobile-menu-toggle')?.focus();
+        return;
+      }
+
+      if (event.key === 'Tab') {
+        const toggleBtn = document.getElementById('mobile-menu-toggle');
+        const container = mobileMenuRef.current;
+        if (!container) return;
+
+        const menuFocusables = Array.from(
+          container.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+          )
+        );
+
+        // Full trap ring: [toggleBtn, ...menuFocusables]
+        const allFocusables = toggleBtn ? [toggleBtn, ...menuFocusables] : menuFocusables;
+        if (allFocusables.length === 0) return;
+
+        const firstFocusable = allFocusables[0];
+        const lastFocusable = allFocusables[allFocusables.length - 1];
+
+        if (event.shiftKey) {
+          if (document.activeElement === firstFocusable) {
+            event.preventDefault();
+            lastFocusable?.focus();
+          }
+        } else {
+          if (document.activeElement === lastFocusable) {
+            event.preventDefault();
+            firstFocusable?.focus();
+          }
+        }
       }
     }
 
@@ -92,11 +140,21 @@ export function Header({
   }, [isMobileMenuOpen]);
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen((prev) => !prev);
+    setIsMobileMenuOpen((prev) => {
+      const next = !prev;
+      setLiveAnnouncement(next ? 'Mobile navigation menu opened' : 'Mobile navigation menu closed');
+      if (!next) {
+        // Return focus to toggle button when closed via click
+        setTimeout(() => document.getElementById('mobile-menu-toggle')?.focus(), 50);
+      }
+      return next;
+    });
   };
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
+    setLiveAnnouncement('Mobile navigation menu closed');
+    document.getElementById('mobile-menu-toggle')?.focus();
   };
 
   return (
@@ -107,20 +165,24 @@ export function Header({
         sticky && isScrolled && 'shadow-sm bg-[rgba(253,251,247,0.96)]',
         className,
       )}
+      style={{ viewTransitionName: 'persistent-header' }}
       data-testid="header-organism"
       data-scrolled={isScrolled}
       data-sticky={sticky}
     >
+      {/* Stable live region for screen readers */}
+      <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
+        {liveAnnouncement}
+      </div>
+
       <Container size="default">
         <nav className="flex items-center justify-between min-h-[68px]" aria-label="Main Navigation">
           {/* Brand Logo & Wordmark */}
           <div className="flex items-center gap-3 shrink-0">
-            <Link href="/" className="group inline-flex items-center">
+            <Link href="/" className="group inline-flex items-center" aria-label="NorAI Home">
               <BrandLogo size="md" />
             </Link>
           </div>
-
-
 
           {/* Desktop Navigation Links */}
           <div className="hidden lg:flex items-center gap-7">
@@ -134,8 +196,8 @@ export function Header({
                   className={cn(
                     'text-sm font-medium no-underline transition-colors duration-150',
                     isActive
-                      ? 'text-accent-500 font-semibold'
-                      : 'text-ink-body hover:text-accent-500',
+                      ? 'text-accent-600 font-semibold'
+                      : 'text-ink-body hover:text-accent-600',
                   )}
                   aria-current={isActive ? 'page' : undefined}
                 >
@@ -182,53 +244,63 @@ export function Header({
         </nav>
       </Container>
 
-      {/* Mobile Menu Dropdown */}
-      {isMobileMenuOpen && (
-        <div
-          id="mobile-menu"
-          className="lg:hidden border-t border-[rgba(13,37,61,0.08)] bg-canvas-paper px-6 py-6 shadow-xl animate-in slide-in-from-top-2 duration-200"
-        >
-          <div className="flex flex-col gap-4">
-            {navItems.map((item) => {
-              const isActive = pathname === item.href;
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={closeMobileMenu}
-                  className={cn(
-                    'text-base py-1.5 font-medium transition-colors',
-                    isActive ? 'text-accent-500 font-semibold' : 'text-ink-primary hover:text-accent-500',
-                  )}
-                  aria-current={isActive ? 'page' : undefined}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-            <div className="pt-4 mt-2 border-t border-[rgba(13,37,61,0.08)] flex flex-col gap-3">
-              {secondaryCta && (
-                <Link
-                  href={secondaryCta.href}
-                  onClick={closeMobileMenu}
-                  className="inline-flex items-center justify-center font-sans font-medium h-11 px-4 rounded-md border border-line-strong text-ink-primary shadow-sm hover:border-line-accent hover:text-terra-600 hover:bg-terra-50 text-sm w-full transition-colors"
-                >
-                  {secondaryCta.label}
-                </Link>
-              )}
-              {primaryCta && (
-                <Link
-                  href={primaryCta.href}
-                  onClick={closeMobileMenu}
-                  className="inline-flex items-center justify-center font-sans font-semibold h-11 px-4 rounded-md bg-terra-500 text-white shadow-accent hover:bg-terra-600 text-sm w-full transition-colors"
-                >
-                  {primaryCta.label}
-                </Link>
-              )}
+      {/* Mobile Menu Dropdown with Focus Trapping & Framer Motion AnimatePresence */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            id="mobile-menu"
+            ref={mobileMenuRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile Navigation Menu"
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, height: 0, y: -6 }}
+            animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, height: 'auto', y: 0 }}
+            exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, height: 0, y: -6 }}
+            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:hidden border-t border-[rgba(13,37,61,0.08)] bg-canvas-paper px-6 py-6 shadow-xl overflow-hidden"
+          >
+            <div className="flex flex-col gap-4">
+              {navItems.map((item) => {
+                const isActive = pathname === item.href;
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={closeMobileMenu}
+                    className={cn(
+                      'text-base py-1.5 font-medium transition-colors',
+                      isActive ? 'text-accent-600 font-semibold' : 'text-ink-primary hover:text-accent-600',
+                    )}
+                    aria-current={isActive ? 'page' : undefined}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+              <div className="pt-4 mt-2 border-t border-[rgba(13,37,61,0.08)] flex flex-col gap-3">
+                {secondaryCta && (
+                  <Link
+                    href={secondaryCta.href}
+                    onClick={closeMobileMenu}
+                    className="inline-flex items-center justify-center font-sans font-medium h-11 px-4 rounded-md border border-line-strong text-ink-primary shadow-sm hover:border-line-accent hover:text-terra-600 hover:bg-terra-50 text-sm w-full transition-colors"
+                  >
+                    {secondaryCta.label}
+                  </Link>
+                )}
+                {primaryCta && (
+                  <Link
+                    href={primaryCta.href}
+                    onClick={closeMobileMenu}
+                    className="inline-flex items-center justify-center font-sans font-semibold h-11 px-4 rounded-md bg-terra-500 text-white shadow-accent hover:bg-terra-600 text-sm w-full transition-colors"
+                  >
+                    {primaryCta.label}
+                  </Link>
+                )}
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

@@ -8,6 +8,7 @@ import { Heading } from '@/components/foundation/Heading';
 import { Text } from '@/components/foundation/Text';
 import { Link } from '@/components/atoms/Link';
 import { ChevronDown, Search, X } from 'lucide-react';
+import { getFAQPageJsonLd, getBreadcrumbListJsonLd, JsonLd } from '@/lib/seo';
 
 interface FAQItem {
   question: string;
@@ -113,8 +114,20 @@ export default function FAQPage() {
 
   const totalMatches = grouped.reduce((sum, group) => sum + group.items.length, 0);
 
+  const breadcrumbs = [
+    { name: 'Home', path: '/' },
+    { name: 'FAQ', path: '/faq' },
+  ];
+
+  const faqSchemaItems = FAQ_ITEMS.map((item) => ({
+    question: item.question,
+    answer: item.answer,
+  }));
+
   return (
     <div className="min-h-screen bg-canvas-base font-sans text-ink-primary">
+      <JsonLd schema={getFAQPageJsonLd(faqSchemaItems)} />
+      <JsonLd schema={getBreadcrumbListJsonLd(breadcrumbs)} />
       {/* Header */}
       <Section className="relative overflow-hidden pb-12 pt-12 md:pt-20">
         <div

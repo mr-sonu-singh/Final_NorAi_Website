@@ -48,3 +48,25 @@ When a build error, type error, or linter warning occurs:
 2. **Deterministic Fix**: Resolve the underlying type mismatch, missing prop, or styling token.
 3. **Re-verify**: Re-run `npx tsc --noEmit` and `npm run lint`.
 4. **Update Context**: If an edge case or new pattern emerged, document it in `DESIGN.md` or `directives/`.
+
+---
+
+## 4. Visual Verification & Chrome DevTools Screenshot Protocol
+
+To avoid clipped, half-cut, or scrolled-out screenshots during visual testing and automated audits:
+
+1. **Explicit Viewport Dimensions**:
+   - Always initialize standard desktop dimensions before taking screenshots:
+     `resize_page({ pageId, width: 1440, height: 900 })` (or `height: 1200` for deep dashboards/workbenches).
+2. **Full Page Capture for Structural Audits**:
+   - For auditing overall layout, hierarchy, and complete pages from header to footer, always pass:
+     `take_screenshot({ pageId, fullPage: true })`.
+3. **Scroll Coordinates Reset for Viewport Capture**:
+   - After synthetic actions (`click`, `fill`, `hover`), the browser engine may scroll horizontally or vertically into view (`scrollX > 0`, `scrollY > 0`), causing the left side or top of the interface to be cropped off.
+   - Always reset scroll position before taking a viewport screenshot:
+     `evaluate_script({ pageId, function: "() => { window.scrollTo(0, 0); }" })`
+   - Or explicitly scroll directly to the target element:
+     `evaluate_script({ pageId, function: "() => { document.querySelector('#target-section')?.scrollIntoView({ block: 'start' }); }" })`.
+4. **Targeted Element Screenshots**:
+   - To inspect a specific component (e.g. interactive workbench or scorecard), use the element `uid` from `take_snapshot` rather than an arbitrary scrolled viewport.
+

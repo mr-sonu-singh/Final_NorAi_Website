@@ -9,9 +9,9 @@ import { WorkshopRoster } from '@/components/organisms';
 
 export const metadata = buildMetadata({
   path: '/team',
-  title: 'Founding Leadership & Technical Team — NorAI Technologies',
+  title: 'Founding Leadership & Engineering Team',
   description:
-    'Meet the founding engineers and operational leadership driving NorAI Technologies from Uttar Pradesh, India.',
+    'Meet the founding engineers and operational leadership driving NorAI Technologies from our regional development workshop in Uttar Pradesh, India.',
 });
 
 export default function TeamPage() {
@@ -21,11 +21,11 @@ export default function TeamPage() {
       <Section className="pb-14 pt-16 md:pb-20 md:pt-24 border-b border-[rgba(13,37,61,0.08)]">
         <Container size="default">
           <Reveal>
-            <h1 className="max-w-4xl font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal leading-[1.04] tracking-tight text-ink-primary">
+            <h1 className="max-w-4xl font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal leading-[1.04] tracking-display text-ink-primary">
               The people behind <br />
               <span className="italic text-accent-500 font-normal">the tools.</span>
             </h1>
-            <p className="mt-6 max-w-xl text-lg md:text-xl leading-relaxed text-ink-body">
+            <p className="mt-6 max-w-xl fluid-lead leading-relaxed text-ink-body text-pretty">
               Five engineers, one workshop in Uttar Pradesh. We build every tool ourselves, answer our own email, and ship on a rhythm.
             </p>
           </Reveal>

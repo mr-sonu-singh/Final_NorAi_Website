@@ -63,12 +63,18 @@
 
 ### C. AI Skill Mission & Youth Enablement (`/mission`)
 
-1. **Rural & Tier-2/3 AI Enablement**
-   - On-ground hands-on technical masterclasses, hackathons, and practical AI bootcamps for regional colleges, polytechnics, and schools across Uttar Pradesh and Bharat.
-2. **AI Knowledge-as-a-Service (AI-KaaS)**
-   - Production-grade engineering curriculums: Model Context Protocol (MCP) server development, local inference on open weights (vLLM), and structured JSON schema guarantees.
-3. **Youth Mentorship & Incubation**
-   - Direct 1-on-1 mentorship from the founding team, open-source code reviews, and student subsidies (100% free scholar access to EdTech utilities).
+1. **Tier 1: Grassroots & Senior Citizen AI Inclusion (Rural & Village Areas)**
+   - Hands-on introduction to everyday conversational and multi-modal AI tools (ChatGPT, Gemini, voice interfaces).
+   - Practical utility in vernacular (Hindi/regional) languages: drafting official letters, navigating public services, agricultural/crop queries, health guidance, and digital safety/fraud prevention.
+2. **Tier 2: Youth & Academic AI Foundations (Schools & Colleges)**
+   - Structured AI workflows for high school and undergraduate students: deep research, structured study note-taking (Course Note-Taker), homework productivity, and foundational programming fundamentals.
+3. **Tier 3: Advanced AI Engineering & Builders (Colleges & Town Tech Hubs)**
+   - Production-grade engineering curriculums for students already using basic AI: Model Context Protocol (MCP) server development, local inference on open weights (vLLM / Ollama), hybrid RAG retrieval, and Next.js full-stack micro-SaaS deployments.
+4. **Context-Adaptive Delivery Matrix**
+   - *Rural Village Setup*: Voice-first, bilingual, mobile/projector-driven, daily problem-solving workshops.
+   - *Town/Collegiate Setup*: Live-coding labs, API key handling, GitHub portfolio generation, and direct internship pathways.
+5. **Statewide Vision & Government Alignment**
+   - Scaling across Uttar Pradesh with future strategic alignment with the **UP Government** (Uttar Pradesh Skill Development Mission & IT/Education departments) to uplift regional youth statewide.
 
 ---
 

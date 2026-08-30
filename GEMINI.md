@@ -42,6 +42,21 @@ When implementing or modifying UI in this repository, you must adhere strictly t
 - **Zero Layout Shift**: Use fixed aspect ratios, next/image optimizations, and `tabular-nums` on dynamic metrics.
 - **Accessibility (WCAG AAA)**: Always maintain accessible contrast, label associations on forms, keyboard navigation, and `prefers-reduced-motion` compliance.
 
+### C. Visual Verification & Chrome DevTools Screenshot Standards
+- **Standard Desktop Dimensions**: Always set `resize_page({ pageId, width: 1440, height: 900 })` (or `height: 1200` for deep workbenches) before capturing UI states.
+- **Full Page Snapshots**: Use `take_screenshot({ pageId, fullPage: true })` for comprehensive visual audits of complete page layouts and section flow.
+- **Reset Scroll Coordinates**: Synthetic tool interactions (clicking/typing on right-column elements) cause CDP to auto-scroll horizontally or vertically (`scrollX > 0`), which crops out the left section. Always reset `window.scrollTo(0, 0)` before viewport screenshots.
+- **Targeted Element Snapshots**: Use element `uid` for component-level verification rather than arbitrary scrolled viewport crops.
+
+### D. Interactive Web Tool & Workbench Spatial Standards (The Resume-Shortlister Benchmark)
+All interactive web tools (AI Resume Shortlister, Course Note-Taker, Chat Digest, Smart Dainik News, and future SaaS tools) must adhere strictly to the spatial and ergonomic standards established in the Resume Shortlister benchmark:
+- **Widescreen Stage Utilization**: Wrap interactive tool sections in `<Container size="wide">` (`--container-wide: 1380px` / `max-w-7xl`). Never constrain dual-pane interactive workbenches into narrow 1120px containers that waste horizontal screen area and squeeze tool controls.
+- **Zero Nested Scrollbars & Segmented Intake**: Never vertically stack multiple tiny textareas or file dropzones inside a single cramped column. Use a segmented step dock (`[ 1. Job Role ]`, `[ 2. Ingestion / Batch ]`, `[ 3. Rubric & Filter ]`) with comfortable, full-height textareas (`min-h-[200px]` to `min-h-[260px]`) that display complete content without internal scrollbars.
+- **Master-Detail & Inline Accordions**: In list or leaderboard views, provide inline expandable breakdown accordions (1-click chevron toggle) for instant preview of verified strengths, evidence, and probing questions without forcing disorienting tab switches.
+- **Multi-Entity Comparative Matrices**: When analyzing multiple items against a rubric, provide a side-by-side grouped comparative matrix view across all dimensions with color-coded comparison bars.
+- **1-Click Entity Switcher Pill Bars**: Deep scorecard/inspector views must include a top pill switcher strip (`[ #1 Entity A 96% ]` `[ #2 Entity B 82% ]`) for 1-click profile switching.
+- **Bento Grid Scorecards**: Organize deep inspections into hero banners, 2-column verified evidence vs. risk assessments, and numbered cue-card interview questions.
+
 ---
 
 ## 3. Operating Principles

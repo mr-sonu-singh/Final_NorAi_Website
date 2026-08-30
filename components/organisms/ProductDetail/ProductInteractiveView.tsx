@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
 import { cn } from '@/lib/utils';
 import { ProductData } from '@/lib/products';
-import { ResumeShortlisterWorkbench } from '@/components/organisms/tools';
 import { Link } from '@/components/atoms/Link';
 import {
   Sparkles,
@@ -14,6 +14,50 @@ import {
   Layers,
 } from 'lucide-react';
 
+const WorkbenchSkeleton = () => (
+  <div className="w-full min-h-[640px] rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] p-12 flex flex-col items-center justify-center space-y-4 shadow-sm" aria-busy="true" aria-live="polite">
+    <div className="w-12 h-12 rounded-xl bg-accent-50 text-accent-500 flex items-center justify-center shadow-xs">
+      <span className="w-5 h-5 border-2 border-accent-500 border-t-transparent rounded-full animate-spin" />
+    </div>
+    <div className="text-center space-y-1">
+      <p className="font-mono text-xs font-semibold text-ink-primary">Initializing Neural Workbench</p>
+      <p className="font-mono text-[11px] text-ink-secondary">Loading sandbox runtime & typed schema contracts...</p>
+    </div>
+  </div>
+);
+
+const ResumeShortlisterWorkbench = dynamic(
+  () =>
+    import('@/components/organisms/tools/ResumeShortlisterWorkbench').then(
+      (mod) => mod.ResumeShortlisterWorkbench
+    ),
+  { loading: () => <WorkbenchSkeleton />, ssr: false }
+);
+
+const CourseNoteTakerWorkbench = dynamic(
+  () =>
+    import('@/components/organisms/tools/CourseNoteTakerWorkbench').then(
+      (mod) => mod.CourseNoteTakerWorkbench
+    ),
+  { loading: () => <WorkbenchSkeleton />, ssr: false }
+);
+
+const ChatDigestWorkbench = dynamic(
+  () =>
+    import('@/components/organisms/tools/ChatDigestWorkbench').then(
+      (mod) => mod.ChatDigestWorkbench
+    ),
+  { loading: () => <WorkbenchSkeleton />, ssr: false }
+);
+
+const SmartDainikNewsWorkbench = dynamic(
+  () =>
+    import('@/components/organisms/tools/SmartDainikNewsWorkbench').then(
+      (mod) => mod.SmartDainikNewsWorkbench
+    ),
+  { loading: () => <WorkbenchSkeleton />, ssr: false }
+);
+
 interface ProductInteractiveViewProps {
   product: ProductData;
   slug: string;
@@ -23,9 +67,22 @@ export function ProductInteractiveView({
   product,
   slug,
 }: ProductInteractiveViewProps) {
-  const isResumeShortlister = slug === 'resume-shortlister' || slug === 'ai-resume-shortlister';
+  const isResumeShortlister =
+    slug === 'resume-shortlister' || slug === 'ai-resume-shortlister';
+  const isCourseNoteTaker =
+    slug === 'course-note-taker' || slug === 'ai-course-note-taker';
+  const isChatDigest =
+    slug === 'chat-digest' || slug === 'community-chat-digest';
+  const isSmartDainikNews =
+    slug === 'smart-dainik-news' || slug === 'regional-dainik-news';
+  const isToolLive =
+    isResumeShortlister ||
+    isCourseNoteTaker ||
+    isChatDigest ||
+    isSmartDainikNews;
+
   const [viewMode, setViewMode] = useState<'workbench' | 'specs'>(
-    isResumeShortlister ? 'workbench' : 'specs'
+    isToolLive ? 'workbench' : 'specs'
   );
 
   return (
@@ -45,7 +102,7 @@ export function ProductInteractiveView({
           >
             <Sparkles className="w-4 h-4 text-accent-500" />
             <span>Live Interactive Workbench</span>
-            {isResumeShortlister && (
+            {isToolLive && (
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse ml-1" />
             )}
           </button>
@@ -71,8 +128,14 @@ export function ProductInteractiveView({
         <div className="w-full animate-fadeIn">
           {isResumeShortlister ? (
             <ResumeShortlisterWorkbench />
+          ) : isCourseNoteTaker ? (
+            <CourseNoteTakerWorkbench />
+          ) : isChatDigest ? (
+            <ChatDigestWorkbench />
+          ) : isSmartDainikNews ? (
+            <SmartDainikNewsWorkbench />
           ) : (
-            /* Upcoming Tool Staging Card */
+            /* Fallback Staging Card */
             <div className="rounded-3xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] p-10 md:p-16 text-center shadow-lg max-w-3xl mx-auto space-y-6">
               <div className="w-14 h-14 rounded-2xl bg-accent-50 text-accent-500 flex items-center justify-center mx-auto">
                 <Lock className="w-7 h-7" />

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion } from 'motion/react';
 import type { HTMLAttributes, ReactNode } from 'react';
 
 const EASE_OUT = [0.16, 1, 0.3, 1] as const;

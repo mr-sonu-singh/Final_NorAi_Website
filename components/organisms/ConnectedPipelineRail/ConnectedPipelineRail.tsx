@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight, FileText, Cpu, CheckCircle2 } from 'lucide-react';
+import { DrawLine } from '@/components/foundation/DrawLine';
 
 interface Stage {
   step: string;
@@ -61,12 +62,25 @@ export function ConnectedPipelineRail() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 relative">
+        {/* Animated Connecting Vector Rail (Desktop) */}
+        <div className="hidden md:block absolute top-[52px] left-[15%] right-[15%] z-0 pointer-events-none">
+          <DrawLine
+            orientation="horizontal"
+            color="rgba(194, 85, 58, 0.3)"
+            strokeWidth={1.5}
+            strokeDasharray="4 4"
+            duration={0.8}
+            delay={0.1}
+            className="w-full h-3"
+          />
+        </div>
+
         {STAGES.map((st, idx) => {
           const Icon = st.icon;
           return (
             <div
               key={st.title}
-              className="p-6 md:p-8 rounded-3xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] shadow-sm hover:shadow-md hover:border-accent-500/30 transition-all duration-200 space-y-5 flex flex-col justify-between relative group"
+              className="p-6 md:p-8 rounded-3xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] shadow-sm hover:shadow-md hover:border-accent-500/30 hover:-translate-y-0.5 active:scale-[0.99] transition-all duration-200 space-y-5 flex flex-col justify-between relative z-10 group"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -109,4 +123,3 @@ export function ConnectedPipelineRail() {
     </div>
   );
 }
-
