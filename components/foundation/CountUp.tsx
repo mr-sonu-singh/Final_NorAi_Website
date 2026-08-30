@@ -16,7 +16,7 @@ export interface CountUpProps {
   suffix?: string;
   /** Number of decimal places to display (inferred if omitted) */
   decimals?: number;
-  /** Duration of counting animation in seconds (default: 1.2) */
+  /** Duration of counting animation in seconds (default: 2.2) */
   duration?: number;
   /** Delay before animation starts in seconds (default: 0) */
   delay?: number;
@@ -37,7 +37,7 @@ export function CountUp({
   prefix = '',
   suffix = '',
   decimals,
-  duration = 1.2,
+  duration = 2.2,
   delay = 0,
   className = '',
   once = true,

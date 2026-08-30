@@ -10,6 +10,7 @@ export * from './cards/ProductCard';
 
 // Bespoke Organisms
 export * from './HeroWorkbench/CandidateScreenerWorkbench';
+export * from './HeroWorkbench/HeroStudioWorkbench';
 export * from './ServicesDirectory/ServicesDirectory';
 export * from './ProductStudio/ProductStudio';
 export * from './ArchitecturalSpecMatrix/ArchitecturalSpecMatrix';
@@ -18,3 +19,6 @@ export * from './WorkshopRoster/WorkshopRoster';
 export * from './ApiReferenceMatrix/ApiReferenceMatrix';
 export * from './SkillMissionSection';
 export * from './WorkshopTrackExplorer';
+export * from './EnterpriseBlueprint/EnterpriseBlueprintMatrix';
+export * from './HomeFaq/HomeFaqAccordion';
+export * from './RoiCalculator/RoiCalculator';

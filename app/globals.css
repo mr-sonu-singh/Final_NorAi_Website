@@ -607,3 +607,91 @@ kbd {
   }
 }
 
+/* ==========================================================================
+   RADIX ACCORDION & WORKBENCH MOTION UTILITIES
+   ========================================================================== */
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+.accordion-content[data-state='open'] {
+  animation: accordion-down 320ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.accordion-content[data-state='closed'] {
+  animation: accordion-up 240ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+
+/* Audio Waveform Equalizer Animations */
+@keyframes waveform-bounce {
+  0%, 100% {
+    transform: scaleY(0.25);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.animate-waveform-1 {
+  animation: waveform-bounce 0.75s ease-in-out infinite alternate;
+  transform-origin: bottom;
+}
+.animate-waveform-2 {
+  animation: waveform-bounce 0.55s ease-in-out infinite alternate 0.15s;
+  transform-origin: bottom;
+}
+.animate-waveform-3 {
+  animation: waveform-bounce 0.85s ease-in-out infinite alternate 0.3s;
+  transform-origin: bottom;
+}
+.animate-waveform-4 {
+  animation: waveform-bounce 0.65s ease-in-out infinite alternate 0.45s;
+  transform-origin: bottom;
+}
+
+/* 3D Perspective Card Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accordion-content[data-state='open'],
+  .accordion-content[data-state='closed'],
+  .animate-waveform-1,
+  .animate-waveform-2,
+  .animate-waveform-3,
+  .animate-waveform-4 {
+    animation: none !important;
+  }
+}
+

@@ -10,9 +10,9 @@ export interface TextRevealProps {
   text: string;
   /** Whether to split text into words or individual characters (default: 'word') */
   splitBy?: 'word' | 'char';
-  /** Stagger delay between tokens in seconds (default: 0.04) */
+  /** Stagger delay between tokens in seconds (default: 0.08) */
   stagger?: number;
-  /** Animation duration per token in seconds (default: 0.4) */
+  /** Animation duration per token in seconds (default: 0.65) */
   duration?: number;
   /** Initial delay before stagger animation begins (default: 0) */
   delay?: number;
@@ -34,8 +34,8 @@ export interface TextRevealProps {
 export function TextReveal({
   text,
   splitBy = 'word',
-  stagger = 0.04,
-  duration = 0.4,
+  stagger = 0.08,
+  duration = 0.65,
   delay = 0,
   as: Tag = 'span',
   className = '',

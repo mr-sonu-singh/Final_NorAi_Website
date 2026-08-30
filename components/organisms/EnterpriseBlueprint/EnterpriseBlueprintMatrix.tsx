@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/atoms/Button';
 import { Link } from '@/components/atoms/Link';
@@ -154,7 +155,7 @@ export function EnterpriseBlueprintMatrix() {
               type="button"
               onClick={() => setSelectedTier(tier)}
               className={cn(
-                'p-6 rounded-2xl border text-left transition-all duration-200 space-y-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500',
+                'p-6 rounded-2xl border text-left transition-all duration-200 space-y-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 cursor-pointer',
                 isSelected
                   ? 'bg-canvas-paper border-accent-500 shadow-md ring-1 ring-accent-500/20 translate-y-[-2px]'
                   : 'bg-canvas-paper/50 border-[rgba(13,37,61,0.08)] hover:bg-canvas-paper hover:border-accent-500/30'
@@ -179,105 +180,115 @@ export function EnterpriseBlueprintMatrix() {
         })}
       </div>
 
-      {/* Selected Tier Deep-Dive Ledger */}
-      <div className="rounded-3xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] p-8 md:p-12 shadow-lg space-y-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Description & Deliverables (Span 7) */}
-          <div className="lg:col-span-7 space-y-6">
-            <div className="space-y-2">
-              <div className="flex items-center gap-3">
-                <span className="font-mono text-xs font-bold text-accent-500 px-2.5 py-0.5 rounded bg-accent-50 border border-accent-500/20">
-                  {selectedTier.tierLabel}
-                </span>
-                <span className="font-mono text-xs text-accent-secondary flex items-center gap-1">
-                  <Shield className="w-3.5 h-3.5" />
-                  {selectedTier.security}
-                </span>
-              </div>
-              <h3 className="font-display text-3xl sm:text-4xl text-ink-primary font-normal">
-                {selectedTier.name}
-              </h3>
-              <p className="text-base text-ink-body leading-relaxed">
-                {selectedTier.description}
-              </p>
-            </div>
-
-            {/* Deliverables Checklist */}
-            <div className="space-y-3 pt-2">
-              <span className="text-xs font-mono font-semibold text-ink-primary uppercase tracking-wider block">
-                Engineered Deliverables:
-              </span>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                {selectedTier.deliverables.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="p-3 rounded-xl bg-canvas-recessed/40 border border-[rgba(13,37,61,0.06)] flex items-start gap-2.5 text-xs text-ink-primary"
-                  >
-                    <CheckCircle2 className="w-4 h-4 text-accent-secondary shrink-0 mt-0.5" />
-                    <span className="font-medium leading-snug">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Right SLA & Architecture Card (Span 5) */}
-          <div className="lg:col-span-5 rounded-2xl bg-canvas-base border border-[rgba(13,37,61,0.08)] p-6 space-y-5">
-            <div className="space-y-1 pb-4 border-b border-[rgba(13,37,61,0.08)]">
-              <span className="text-[11px] font-mono text-ink-secondary block">Performance SLA</span>
-              <span className="font-display text-xl text-ink-primary font-normal block">
-                {selectedTier.sla}
-              </span>
-            </div>
-
-            {/* Architecture Topology Step Map */}
-            <div className="space-y-3">
-              <span className="text-xs font-mono font-semibold text-ink-primary uppercase tracking-wider block">
-                System Topology
-              </span>
+      {/* Selected Tier Deep-Dive Ledger with AnimatePresence */}
+      <div className="rounded-3xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] p-8 md:p-12 shadow-lg space-y-8 overflow-hidden">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={selectedTier.id}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start"
+          >
+            {/* Left Description & Deliverables (Span 7) */}
+            <div className="lg:col-span-7 space-y-6">
               <div className="space-y-2">
-                {selectedTier.topology.nodes.map((node, i) => {
-                  const NodeIcon = node.icon;
-                  return (
+                <div className="flex items-center gap-3">
+                  <span className="font-mono text-xs font-bold text-accent-500 px-2.5 py-0.5 rounded bg-accent-50 border border-accent-500/20">
+                    {selectedTier.tierLabel}
+                  </span>
+                  <span className="font-mono text-xs text-accent-secondary flex items-center gap-1">
+                    <Shield className="w-3.5 h-3.5" />
+                    {selectedTier.security}
+                  </span>
+                </div>
+                <h3 className="font-display text-3xl sm:text-4xl text-ink-primary font-normal">
+                  {selectedTier.name}
+                </h3>
+                <p className="text-base text-ink-body leading-relaxed">
+                  {selectedTier.description}
+                </p>
+              </div>
+
+              {/* Deliverables Checklist */}
+              <div className="space-y-3 pt-2">
+                <span className="text-xs font-mono font-semibold text-ink-primary uppercase tracking-wider block">
+                  Engineered Deliverables:
+                </span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  {selectedTier.deliverables.map((item, idx) => (
                     <div
-                      key={i}
-                      className="p-2.5 rounded-lg bg-canvas-paper border border-[rgba(13,37,61,0.06)] flex items-center justify-between gap-3 text-xs"
+                      key={idx}
+                      className="p-3 rounded-xl bg-canvas-recessed/40 border border-[rgba(13,37,61,0.06)] flex items-start gap-2.5 text-xs text-ink-primary"
                     >
-                      <div className="flex items-center gap-2.5">
-                        <div className="w-7 h-7 rounded bg-canvas-recessed flex items-center justify-center text-accent-500">
-                          <NodeIcon className="w-3.5 h-3.5" />
-                        </div>
-                        <div>
-                          <p className="font-semibold text-ink-primary">{node.title}</p>
-                          <p className="text-[11px] font-mono text-ink-secondary">{node.subtitle}</p>
-                        </div>
-                      </div>
-                      <span className="font-mono text-[10px] text-accent-secondary font-semibold">
-                        0{i + 1}
-                      </span>
+                      <CheckCircle2 className="w-4 h-4 text-accent-secondary shrink-0 mt-0.5" />
+                      <span className="font-medium leading-snug">{item}</span>
                     </div>
-                  );
-                })}
+                  ))}
+                </div>
               </div>
             </div>
 
-            <div className="pt-2">
-              <Link href={`/contact?service=${selectedTier.id}`}>
-                <Button
-                  variant="primary"
-                  size="sm"
-                  className="w-full justify-center group text-xs font-semibold"
-                >
-                  <span>Request Tier {selectedTier.tierLabel.replace('TIER ', '')} Specification</span>
-                  <ArrowRight className="w-3.5 h-3.5 ml-1 transition-transform group-hover:translate-x-1" />
-                </Button>
-              </Link>
+            {/* Right SLA & Architecture Card (Span 5) */}
+            <div className="lg:col-span-5 rounded-2xl bg-canvas-base border border-[rgba(13,37,61,0.08)] p-6 space-y-5">
+              <div className="space-y-1 pb-4 border-b border-[rgba(13,37,61,0.08)]">
+                <span className="text-[11px] font-mono text-ink-secondary block">Performance SLA</span>
+                <span className="font-display text-xl text-ink-primary font-normal block">
+                  {selectedTier.sla}
+                </span>
+              </div>
+
+              {/* Architecture Topology Step Map */}
+              <div className="space-y-3">
+                <span className="text-xs font-mono font-semibold text-ink-primary uppercase tracking-wider block">
+                  System Topology
+                </span>
+                <div className="space-y-2">
+                  {selectedTier.topology.nodes.map((node, i) => {
+                    const NodeIcon = node.icon;
+                    return (
+                      <div
+                        key={i}
+                        className="p-2.5 rounded-lg bg-canvas-paper border border-[rgba(13,37,61,0.06)] flex items-center justify-between gap-3 text-xs"
+                      >
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-7 h-7 rounded bg-canvas-recessed flex items-center justify-center text-accent-500">
+                            <NodeIcon className="w-3.5 h-3.5" />
+                          </div>
+                          <div>
+                            <p className="font-semibold text-ink-primary">{node.title}</p>
+                            <p className="text-[11px] font-mono text-ink-secondary">{node.subtitle}</p>
+                          </div>
+                        </div>
+                        <span className="font-mono text-[10px] text-accent-secondary font-semibold">
+                          0{i + 1}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="pt-2">
+                <Link href={`/contact?service=${selectedTier.id}`}>
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    className="w-full justify-center group text-xs font-semibold"
+                  >
+                    <span>Request Tier {selectedTier.tierLabel.replace('TIER ', '')} Specification</span>
+                    <ArrowRight className="w-3.5 h-3.5 ml-1 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                </Link>
+              </div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </div>
   );
 }
 
 export default EnterpriseBlueprintMatrix;
+

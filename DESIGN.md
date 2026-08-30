@@ -1,16 +1,16 @@
 # NorAI — Design System & Visual Language Reference (`DESIGN.md`)
 
-## 1. Visual Theme & Philosophy ("Parchment & Terracotta")
+## 1. Visual Theme & Philosophy ("Parchment & Terracotta: Instrument Craft")
 
-NorAI's interface embodies the **Editorial Hardware & Technical Craft** aesthetic. Moving deliberately away from generic dark-mode neon glows and cookie-cutter AI startup templates, NorAI operates on an intentional, tactile, and grounded palette inspired by physical editorial journals, engineering workbenches, and regional craftsmanship.
+NorAI's visual and interactive interface embodies the **Instrument Craft & Deterministic Utility** aesthetic. Synthesizing the physical honesty of **Teenage Engineering**, the creator velocity of **Linear**, the editorial rigor of **Stripe Press**, and the obsessive developer experience (DX) of **Resend**, NorAI builds software that feels like an authentic physical engineering instrument.
 
-- **Canvas**: Warm Parchment (`#F5F0EA`) base surface, evocative of high-grade editorial paper.
-- **Card & Elevated Surfaces**: Clean Paper (`#FDFBF7`) with calibrated 1px hairline borders (`rgba(13, 37, 61, 0.08)` to `rgba(13, 37, 61, 0.12)`).
-- **Primary Ink**: Deep Navy Ink (`#0D253D`) for authoritative headlines and high-contrast legibility.
-- **Body Prose**: Muted Slate (`#3D4F5F`) for effortless reading comfort across long technical sections.
-- **Primary Accent**: Burnt Terracotta (`#C2553A` / `var(--accent-primary)`), used deliberately on primary CTAs, active highlights, and key brand moments.
-- **Secondary Accent**: Forest Sage (`#5B8A72` / `var(--accent-secondary)`), signifying security isolation, verified signals, and sub-second SLAs.
-- **Tertiary Accent**: Warm Ochre / Dark Goldenrod (`#B8860B`), highlighting regional intelligence and specialized badges.
+- **Canvas Base**: Warm Parchment (`#F5F0EA` / `--bg-page`), evoking heavy-stock archival paper and engineering workbenches.
+- **Elevated Surfaces**: Clean Paper (`#FDFBF7` / `--bg-elevated`) with calibrated 1px hairline borders (`rgba(13, 37, 61, 0.08)` to `rgba(13, 37, 61, 0.12)`).
+- **Primary Ink**: Deep Navy Ink (`#0D253D` / `--color-ink-primary`) for authoritative headlines and high-contrast WCAG AAA legibility.
+- **Body Prose**: Muted Slate (`#3D4F5F` / `--color-ink-body`) for long-form technical reading comfort.
+- **Primary Accent**: Burnt Terracotta (`#A84530` / `#C2553A` / `var(--accent-primary)`), used on primary CTAs, active highlights, and key brand moments.
+- **Secondary Accent**: Forest Sage (`#5B8A72` / `var(--accent-secondary)`), signifying ephemeral RAM data isolation, verified signals, and sub-second SLAs.
+- **Tertiary Accent**: Warm Ochre / Dark Goldenrod (`#B8860B`), highlighting regional intelligence, UP gazettes, and specialized badges.
 - **Dark Accent Exception**: Deep Navy (`#0D253D`) is reserved exclusively for the structural footer and terminal/code JSON inspectors.
 
 ---
@@ -27,21 +27,22 @@ NorAI's interface embodies the **Editorial Hardware & Technical Craft** aestheti
 | **Hover Surface** | `--ds-background-400` | `#E7DFD4` | `hover:bg-[#E7DFD4]` | Hover states on interactive cards and rows |
 | **Primary Ink** | `--ds-text-100` / `--color-ink-primary` | `#0D253D` | `text-primary-800` / `text-ink-primary` | Headings, high-emphasis text, display titles |
 | **Body Ink** | `--ds-text-200` / `--color-ink-body` | `#3D4F5F` | `text-primary-700` / `text-ink-body` | Body paragraphs, feature descriptions |
-| **Muted Ink** | `--ds-text-300` / `--color-ink-secondary`| `#6B7B8D` | `text-primary-500` / `text-ink-secondary`| Labels, captions, helper text, timestamps |
-| **Interactive Accent**| `--accent-primary` / `--ds-interactive` | `#C2553A` | `bg-accent-500` / `text-accent-500` | Primary buttons, link hovers, active tabs |
+| **Muted Ink** | `--ds-text-300` / `--color-ink-secondary`| `#364757` | `text-primary-500` / `text-ink-secondary`| Labels, captions, helper text, timestamps |
+| **Interactive Accent**| `--accent-primary` / `--ds-interactive` | `#A84530` | `bg-accent-500` / `text-accent-500` | Primary buttons, link hovers, active tabs |
 | **Status / Verified** | `--accent-secondary` / `--accent-mono` | `#5B8A72` | `text-accent-secondary` / `bg-[#e2ede7]`| Live telemetry, SLAs, data isolation tags |
 | **Regional / Badge** | `--accent-tertiary` | `#B8860B` | `text-[#b8860b]` / `bg-[#fff4d6]` | Regional intelligence & specialized tags |
 | **Footer Canvas** | `--bg-dark` | `#0D253D` | `bg-bg-dark` / `bg-[#0d253d]` | Dedicated footer and code inspection blocks |
 
 ---
 
-## 3. Typography Architecture
+## 3. Typography & Mathematical Architecture
 
-NorAI pairs a character-rich serif with an engineered sans-serif and monospaced tabular numbers:
+NorAI pairs a character-rich editorial serif with an engineered sans-serif, monospaced tabular numbers, and rendered KaTeX formulas:
 
 - **Display Headings**: `Instrument Serif` (`--font-display`), 400 weight (italic used selectively for signature accent words).
 - **Body & Interface**: `Plus Jakarta Sans` (`--font-sans`), weights 400, 500, 600.
 - **Technical Readouts & SLA**: `JetBrains Mono` (`--font-mono`), weights 500, 600 with `tabular-nums`.
+- **Mathematical Formulas**: Rendered via KaTeX (`MathRenderer`, `MathText`) with universal Unicode fallback.
 
 ### Type Hierarchy & Scale
 
@@ -58,14 +59,35 @@ NorAI pairs a character-rich serif with an engineered sans-serif and monospaced 
 
 ---
 
-## 4. Elevation, Hairlines & Focus System
+## 4. Hardware Window Chrome & Telemetry Ribbons
 
-### Hairline Borders
-Rather than heavy drop shadows, elevation is communicated through **1px hairline borders** with subtle contrast shifts:
-- **Base Container Border**: `1px solid rgba(13, 37, 61, 0.08)` (`border-[rgba(13,37,61,0.08)]`)
-- **Hover Border**: `1px solid rgba(194, 85, 58, 0.35)` (`hover:border-accent-500/35`)
-- **Active / Selected Border**: `1px solid rgba(194, 85, 58, 0.65)` (`border-accent-500`)
-- **Dark Container Border (Footer/Code)**: `1px solid rgba(253, 251, 247, 0.1)`
+### Traffic-Light Window Chrome
+Workbenches and consoles feature hardware-style top bars with traffic light status LEDs:
+- **Terracotta LED**: `#C2553A` (Live Ingestion Channel)
+- **Ochre LED**: `#B8860B` (Neural Tokenizer Status)
+- **Forest Sage LED**: `#5B8A72` (Ephemeral RAM Isolated)
+
+### Exposed Hardware Telemetry Chips
+Every interactive workbench visibly exposes operational metrics:
+- **Latency Meter**: `font-mono tabular-nums text-xs font-semibold` (e.g. `< 0.35s / PDF`).
+- **Data Residency**: `font-mono text-[11px] text-accent-secondary` (`0 Bytes Retained · Ephemeral RAM Flushed`).
+- **Schema Validation**: `text-[10px] font-mono bg-white/10 text-emerald-300` (`Zod Typed`).
+
+---
+
+## 5. Keyboard Velocity & Global Hotkey Registry
+
+In the tradition of **Linear** and **Raycast**, power users can control interactive workbenches via keyboard:
+
+| Key | Action | Scope |
+| :--- | :--- | :--- |
+| `1` | Select Tool 01: AI Resume Shortlister | Product Studio / Hero Console |
+| `2` | Select Tool 02: Course Note-Taker | Product Studio / Hero Console |
+| `3` | Select Tool 03: Community Chat Digest | Product Studio / Hero Console |
+| `4` | Select Tool 04: Smart Dainik News | Product Studio / Hero Console |
+| `c` | Copy Active JSON Schema Payload to Clipboard | JSON Inspector Views |
+| `Esc` | Close Modal / Reset Selection | Active Tool Modals |
+| `Tab` | Accessible Focus Traversal | All Interactive Elements |
 
 ### Double-Ring Focus Pattern
 Keyboard accessibility is enforced across all interactive elements via the signature double-ring pattern:
@@ -76,46 +98,43 @@ Tailwind utility equivalent: `focus-visible:outline-none focus-visible:ring-2 fo
 
 ---
 
-## 5. 5-State Ergonomics Rule
+## 6. Nested Corner Radius & Proportional Spacing Formula
+
+When an element sits nested inside another element with a gap/padding $< 32\text{px}$:
+$$\text{Radius}_{\text{inner}} = \text{Radius}_{\text{outer}} - \text{Gap}$$
+
+### Scale Mapping
+- Outer Stage (`rounded-3xl` / 24px) with 8px padding $\rightarrow$ Inner Card (`rounded-2xl` / 16px).
+- Inner Card (`rounded-2xl` / 16px) with 8px padding $\rightarrow$ Button/Control (`rounded-lg` / 8px).
+- Button/Pill (`rounded-lg` / 8px) with 4px padding $\rightarrow$ Indicator Chip (`rounded-md` / 4px).
+
+---
+
+## 7. 5-State Ergonomics Rule
 
 Every interactive atom, molecule, and component must intentionally define all 5 states:
-1. **Idle**: Pristine hairline container on clean paper canvas.
+1. **Idle**: Pristine hairline container (`border-[rgba(13,37,61,0.08)]`) on clean paper canvas.
 2. **Hover**: Smooth border highlight (`border-accent-500/40`) + micro-lift (`hover:-translate-y-0.5`).
 3. **Active / Pressed**: Physical compression feedback (`active:scale-[0.98]`).
-4. **Focused**: Double-ring keyboard outline (`focus-visible:ring-2`).
+4. **Focused**: Double-ring keyboard outline (`focus-visible:ring-2 focus-visible:ring-accent-500`).
 5. **Disabled / Loading**: `opacity-50 cursor-not-allowed` with accessible `aria-disabled="true"` and screen-reader indicators.
 
 ---
 
-## 6. Motion & Animation Tokens
+## 8. Motion & Fluid Dynamics Tokens
 
-- **Duration Tokens**:
-  - Micro-interactions (hover, active): `150ms` to `200ms`
-  - Modal / Drawer transitions: `300ms` to `400ms`
-  - Staggered entrances: `50ms` stagger delay
-- **Easing Curve**: `cubic-bezier(0.16, 1, 0.3, 1)` (snappy ease-out).
-- **Reduced Motion**: All Framer Motion animations and CSS transitions respect `prefers-reduced-motion: reduce`.
-
----
-
-## 7. Anti-Slop Checkpoints & Linting Rules
-
-- ❌ **No gratuitous neon radial glows** on light canvas.
-- ❌ **No 3D mouse-tilt cards** (`TiltCard`).
-- ❌ **No fake ZK hardware proof claims or fictional benchmarks**.
-- ❌ **No layout shift on numeric readouts**: always use `font-mono tabular-nums`.
-- ❌ **No root `'use client'` on static marketing pages**: keep pages server-rendered; isolate client interactivity to leaf components.
-- ❌ **No generic stock photography**: use authentic regional photography or bespoke SVG wireframes.
-- ❌ **No unstyled default focus outlines**: always implement the double-ring focus token.
-- ❌ **No hardcoded raw hex values in JSX**: utilize CSS variables or Tailwind configured semantic classes.
-- ❌ **No stacked multi-textarea nested scrollbars**: always use segmented step docks.
-- ❌ **No narrow-constrained workbench canvas**: always use `--container-wide` (`1380px`).
+- **Custom Cubic Beziers**:
+  - Micro-interactions (hover, active): `cubic-bezier(0.16, 1, 0.3, 1)` (150ms–200ms).
+  - Modal & Drawer transitions: `cubic-bezier(0.32, 0.72, 0, 1)` (300ms–400ms).
+  - Staggered entrances: `50ms` stagger delay.
+- **Scroll-Interpolated Reveals**: Words and sections transition smoothly as they cross viewport triggers via `whileInView` and `IntersectionObserver`.
+- **Reduced Motion**: All animations and transitions immediately bypass transforms under `prefers-reduced-motion: reduce`.
 
 ---
 
-## 8. Interactive Tool & Workbench Spatial Standards
+## 9. Interactive Tool & Workbench Spatial Standards
 
-When architecting or styling interactive self-serve AI web tools (Resume Shortlister, Course Note-Taker, Chat Digest, Smart Dainik News, and upcoming tools):
+When architecting or styling interactive self-serve AI web tools (Resume Shortlister, Course Note-Taker, Chat Digest, Smart Dainik News):
 
 ### 1. Canvas Width & Widescreen Scaling
 - **Container**: Use `<Container size="wide">` (`--container-wide: 1380px`, `max-w-7xl`).
@@ -124,7 +143,6 @@ When architecting or styling interactive self-serve AI web tools (Resume Shortli
 ### 2. Segmented Step Intake Dock (Zero Nested Scrollbars)
 - **Structure**: Group intake parameters into a segmented step dock (`[ 1. Job Role ]`, `[ 2. Ingestion / Batch ]`, `[ 3. Rubric & Filter ]`).
 - **Editor Height**: Textareas must have generous minimum heights (`min-h-[200px]` to `min-h-[260px]`) showing comprehensive prompt/data text without tiny internal scrollbars.
-- **Input Modes**: Provide clear sub-mode toggles (e.g. `[ Upload Files (PDF/DOCX) ]` vs `[ Batch Editor (Text) ]`) with live buffer count chips and token counters.
 
 ### 3. Master-Detail List Ergonomics & Inline Accordions
 - **Ranked Cards**: Cards must include rank chips (`#1`, `#2`), display font typography, role metadata, and large score dials (`tabular-nums`).
@@ -139,3 +157,18 @@ When architecting or styling interactive self-serve AI web tools (Resume Shortli
   - Hero Profile Box (status badge, name, score dial, executive verdict).
   - 2-Column Evaluation (Verified Strengths vs Missing Requirements / Risk Flags).
   - Full-width Numbered Technical Probing Questions (`01`, `02`, `03`).
+
+---
+
+## 10. Anti-Slop Checkpoints & Linting Rules
+
+- ❌ **No gratuitous neon radial glows** on light canvas.
+- ❌ **No 3D mouse-tilt cards** (`TiltCard`).
+- ❌ **No fake ZK hardware proof claims or fictional benchmarks**.
+- ❌ **No layout shift on numeric readouts**: always use `font-mono tabular-nums`.
+- ❌ **No root `'use client'` on static marketing pages**: keep pages server-rendered; isolate client interactivity to leaf components.
+- ❌ **No generic stock photography**: use authentic regional photography or bespoke SVG wireframes.
+- ❌ **No unstyled default focus outlines**: always implement the double-ring focus token.
+- ❌ **No hardcoded raw hex values in JSX**: utilize CSS variables or Tailwind configured semantic classes.
+- ❌ **No stacked multi-textarea nested scrollbars**: always use segmented step docks.
+- ❌ **No narrow-constrained workbench canvas**: always use `--container-wide` (`1380px`).

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/atoms/Button';
 import { Link } from '@/components/atoms/Link';
@@ -13,11 +13,9 @@ import {
   ArrowRight,
   Code2,
   Sliders,
-  CheckCircle2,
   ShieldCheck,
   Play,
   Pause,
-  RotateCw,
   Radio,
   FileCode,
   Copy,
@@ -229,7 +227,13 @@ export function ProductStudio() {
   const [isCopied, setIsCopied] = useState(false);
   const activeProduct = (PRODUCTS[selectedIdx] || PRODUCTS[0]) as ProductItem;
 
-  // Global keyboard shortcuts for 1-4
+  const handleCopyJson = React.useCallback(() => {
+    navigator.clipboard?.writeText(JSON.stringify(activeProduct.jsonPayload, null, 2));
+    setIsCopied(true);
+    setTimeout(() => setIsCopied(false), 2000);
+  }, [activeProduct]);
+
+  // Global keyboard shortcuts for 1-4 and c (copy JSON)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (['input', 'textarea'].includes((e.target as HTMLElement)?.tagName?.toLowerCase())) {
@@ -239,16 +243,13 @@ export function ProductStudio() {
       if (e.key === '2') setSelectedIdx(1);
       if (e.key === '3') setSelectedIdx(2);
       if (e.key === '4') setSelectedIdx(3);
+      if (e.key.toLowerCase() === 'c' && viewMode === 'json') {
+        handleCopyJson();
+      }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
-  const handleCopyJson = () => {
-    navigator.clipboard?.writeText(JSON.stringify(activeProduct.jsonPayload, null, 2));
-    setIsCopied(true);
-    setTimeout(() => setIsCopied(false), 2000);
-  };
+  }, [viewMode, handleCopyJson]);
 
   // Tool 1: Resume Screener State
   const [resumeThreshold, setResumeThreshold] = useState(80);
@@ -404,52 +405,68 @@ export function ProductStudio() {
         {/* =========================================================================
             3. STAGE CONTENT: VISUAL DEMO VS JSON SCHEMA
             ========================================================================= */}
-        <div className="p-6 sm:p-8 md:p-10 bg-canvas-base/40 min-h-[480px] flex flex-col justify-center">
-          {viewMode === 'json' ? (
-            /* Enhanced JSON Contract Inspector with Syntax Highlighting */
-            <div className="rounded-2xl bg-[#0D253D] text-[#FDFBF7] p-6 sm:p-8 font-mono text-xs overflow-x-auto shadow-inner border border-[rgba(253,251,247,0.1)] space-y-4">
-              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[rgba(253,251,247,0.1)] pb-3 text-ink-secondary text-[11px]">
-                <div className="flex items-center gap-2">
-                  <FileCode className="w-4 h-4 text-accent-secondary" />
-                  <span className="text-white font-semibold">Deterministic Output Contract</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded bg-white/10 text-emerald-300 font-mono">
-                    Zod Schema Verified
-                  </span>
+        <div className="p-6 sm:p-8 md:p-10 bg-canvas-base/40 min-h-[480px] flex flex-col justify-center overflow-hidden">
+          <AnimatePresence mode="wait">
+            {viewMode === 'json' ? (
+              /* Enhanced JSON Contract Inspector with Syntax Highlighting */
+              <motion.div
+                key={`json-${activeProduct.id}`}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                className="rounded-2xl bg-[#0D253D] text-[#FDFBF7] p-6 sm:p-8 font-mono text-xs overflow-x-auto shadow-inner border border-[rgba(253,251,247,0.1)] space-y-4"
+              >
+                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[rgba(253,251,247,0.1)] pb-3 text-ink-secondary text-[11px]">
+                  <div className="flex items-center gap-2">
+                    <FileCode className="w-4 h-4 text-accent-secondary" />
+                    <span className="text-white font-semibold">Deterministic Output Contract</span>
+                    <span className="text-[10px] px-2 py-0.5 rounded bg-white/10 text-emerald-300 font-mono">
+                      Zod Schema Verified
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <span className="text-[rgba(253,251,247,0.5)] font-mono tabular-nums text-[10px]">
+                      {JSON.stringify(activeProduct.jsonPayload).length} bytes · RAM ephemeral
+                    </span>
+
+                    <button
+                      type="button"
+                      onClick={handleCopyJson}
+                      className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/10 hover:bg-white/20 text-white text-[11px] font-medium transition-all cursor-pointer active:scale-[0.96]"
+                      title="Copy schema JSON to clipboard"
+                    >
+                      {isCopied ? (
+                        <>
+                          <Check className="w-3.5 h-3.5 text-emerald-400" />
+                          <span className="text-emerald-400">Copied!</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3.5 h-3.5 text-accent-secondary" />
+                          <span>Copy JSON</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
                 </div>
 
-                <div className="flex items-center gap-3">
-                  <span className="text-[rgba(253,251,247,0.5)] font-mono tabular-nums text-[10px]">
-                    {JSON.stringify(activeProduct.jsonPayload).length} bytes · RAM ephemeral
-                  </span>
+                {renderJsonWithSyntaxHighlight(activeProduct.jsonPayload)}
+              </motion.div>
+            ) : (
+              /* Visual Interactive Stage */
+              <motion.div
+                key={`visual-${activeProduct.id}`}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                className="w-full"
+              >
+                {/* =============================================================
+                    TOOL 1: RESUME SHORTLISTER
 
-                  <button
-                    type="button"
-                    onClick={handleCopyJson}
-                    className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/10 hover:bg-white/20 text-white text-[11px] font-medium transition-all cursor-pointer active:scale-[0.96]"
-                    title="Copy schema JSON to clipboard"
-                  >
-                    {isCopied ? (
-                      <>
-                        <Check className="w-3.5 h-3.5 text-emerald-400" />
-                        <span className="text-emerald-400">Copied!</span>
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="w-3.5 h-3.5 text-accent-secondary" />
-                        <span>Copy JSON</span>
-                      </>
-                    )}
-                  </button>
-                </div>
-              </div>
-
-              {renderJsonWithSyntaxHighlight(activeProduct.jsonPayload)}
-            </div>
-          ) : (
-            /* Visual Interactive Stage */
-            <div className="w-full">
-              {/* =============================================================
-                  TOOL 1: RESUME SHORTLISTER
                   ============================================================= */}
               {activeProduct.id === 'resume-shortlister' && (
                 <div className="space-y-6">
@@ -602,10 +619,14 @@ export function ProductStudio() {
                             (height, barIdx) => (
                               <div
                                 key={barIdx}
-                                style={{ height: `${height}%` }}
+                                style={{ height: isPlayingAudio ? `${Math.max(25, (height + (barIdx % 5) * 10) % 100)}%` : `${height}%` }}
                                 className={cn(
                                   'flex-1 rounded-full transition-all',
-                                  barIdx <= 13 ? 'bg-gold-600' : 'bg-canvas-recessed hover:bg-gold-600/40'
+                                  isPlayingAudio
+                                    ? 'bg-gold-600 ' + (barIdx % 4 === 0 ? 'animate-waveform-1' : barIdx % 4 === 1 ? 'animate-waveform-2' : barIdx % 4 === 2 ? 'animate-waveform-3' : 'animate-waveform-4')
+                                    : barIdx <= 13
+                                    ? 'bg-gold-600'
+                                    : 'bg-canvas-recessed hover:bg-gold-600/40'
                                 )}
                               />
                             )
@@ -616,7 +637,7 @@ export function ProductStudio() {
                           <button
                             type="button"
                             onClick={() => setIsPlayingAudio(!isPlayingAudio)}
-                            className="p-2.5 rounded-full bg-[#0D253D] text-white hover:bg-accent-500 transition-colors shadow-sm cursor-pointer"
+                            className="p-2.5 rounded-full bg-[#0D253D] text-white hover:bg-accent-500 transition-colors shadow-sm cursor-pointer active:scale-95"
                             aria-label={isPlayingAudio ? 'Pause Lecture Audio' : 'Play Lecture Audio'}
                           >
                             {isPlayingAudio ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5" />}
@@ -648,37 +669,66 @@ export function ProductStudio() {
                       </span>
                     </div>
 
-                    <div
-                      role="button"
-                      tabIndex={0}
+                    {/* Interactive Flip Trigger */}
+                    <button
+                      type="button"
                       onClick={() => setActiveCardFlipped(!activeCardFlipped)}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                          setActiveCardFlipped(!activeCardFlipped);
-                        }
-                      }}
-                      aria-label="Click or press enter to flip study flashcard"
-                      className="cursor-pointer min-h-[190px] rounded-2xl bg-canvas-recessed/60 border border-[rgba(13,37,61,0.1)] p-6 text-center flex flex-col items-center justify-center transition-all hover:bg-canvas-recessed/90 space-y-3"
+                      className="w-full text-left rounded-xl p-5 bg-canvas-base border border-[rgba(13,37,61,0.08)] hover:border-gold-500/40 transition-all space-y-3 cursor-pointer shadow-2xs hover:shadow-xs active:scale-[0.99]"
                     >
-                      <span className="font-mono text-[11px] text-accent-500 font-semibold flex items-center gap-1.5">
-                        <RotateCw className="w-3.5 h-3.5" />
-                        <span>CLICK TO FLIP ANSWER</span>
+                      <div className="flex items-center justify-between text-[11px] font-mono">
+                        <span className="text-ink-secondary font-medium">
+                          {activeCardFlipped ? 'REVERSE · DEFINITION & PROOF' : 'FRONT · CORE THEOREM'}
+                        </span>
+                        <span className="text-gold-600 font-semibold">Click to flip card ↺</span>
+                      </div>
+
+                      <AnimatePresence mode="wait">
+                        {activeCardFlipped ? (
+                          <motion.div
+                            key="answer"
+                            initial={{ opacity: 0, rotateX: -30 }}
+                            animate={{ opacity: 1, rotateX: 0 }}
+                            exit={{ opacity: 0, rotateX: 30 }}
+                            transition={{ duration: 0.36 }}
+                            className="space-y-2"
+                          >
+                            <p className="text-sm font-semibold text-ink-primary">
+                              Quorum Size Proof:
+                            </p>
+                            <div className="p-2.5 rounded bg-canvas-paper border border-[rgba(13,37,61,0.06)] font-mono text-xs text-accent-secondary">
+                              Quorum = floor(N / 2) + 1
+                            </div>
+                            <p className="text-xs text-ink-body leading-relaxed">
+                              Any two quorums in a cluster of size N overlap by at least one node, ensuring no two leaders can be elected simultaneously in the same term.
+                            </p>
+                          </motion.div>
+                        ) : (
+                          <motion.div
+                            key="question"
+                            initial={{ opacity: 0, rotateX: 30 }}
+                            animate={{ opacity: 1, rotateX: 0 }}
+                            exit={{ opacity: 0, rotateX: -30 }}
+                            transition={{ duration: 0.36 }}
+                            className="space-y-2"
+                          >
+                            <p className="text-sm font-semibold text-ink-primary">
+                              What is the minimum quorum condition required for Raft leader election safety?
+                            </p>
+                            <p className="text-xs text-ink-body leading-relaxed">
+                              Why does Raft require a strict majority of nodes rather than a simple plurality during split-vote recovery?
+                            </p>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </button>
+
+                    <div className="flex items-center justify-between text-xs pt-1 border-t border-[rgba(13,37,61,0.06)]">
+                      <span className="font-mono text-accent-secondary font-medium">
+                        ✓ Extracted from audio transcript (18:32)
                       </span>
-
-                      {!activeCardFlipped ? (
-                        <p className="font-display text-xl sm:text-2xl text-ink-primary font-normal leading-relaxed">
-                          Q: What is the primary role of the Leader in the Raft Protocol?
-                        </p>
-                      ) : (
-                        <p className="text-sm text-ink-body leading-relaxed max-w-md">
-                          A: The Leader receives all client requests, appends them to its local log, and replicates log entries to follower nodes before committing.
-                        </p>
-                      )}
-                    </div>
-
-                    <div className="flex items-center justify-between text-xs text-ink-secondary">
-                      <span>Syncs to Anki & Obsidian</span>
-                      <span className="font-mono font-medium text-ink-primary">100% Free for Students</span>
+                      <span className="font-mono text-ink-secondary text-[11px]">
+                        Flashcard #03
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -688,89 +738,134 @@ export function ProductStudio() {
                   TOOL 3: COMMUNITY CHAT DIGEST
                   ============================================================= */}
               {activeProduct.id === 'community-chat-digest' && (
-                <div className="space-y-6">
-                  {/* Channel & Timeframe Filter Strip */}
-                  <div className="rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.1)] p-4 sm:p-5 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                    <div className="flex items-center gap-2">
-                      {(['#engineering-core', '#product-sync', '#infra-alerts'] as const).map((channel) => (
-                        <button
-                          key={channel}
-                          type="button"
-                          onClick={() => setActiveChannel(channel)}
-                          className={cn(
-                            'font-mono text-xs px-3 py-1.5 rounded-xl transition-all cursor-pointer',
-                            activeChannel === channel
-                              ? 'bg-[#0D253D] text-white shadow-sm font-semibold'
-                              : 'bg-canvas-recessed text-ink-secondary hover:text-ink-primary'
-                          )}
-                        >
-                          {channel}
-                        </button>
-                      ))}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+                  {/* Left: Raw Channel Stream Preview */}
+                  <div className="lg:col-span-5 rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.1)] p-6 shadow-sm space-y-4 flex flex-col justify-between">
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="font-mono text-xs font-semibold text-ink-primary">
+                          Ingested Channel Feed
+                        </span>
+                        <span className="font-mono text-xs text-accent-secondary font-medium tabular-nums">
+                          1,482 msgs / 24h
+                        </span>
+                      </div>
+
+                      {/* Channel Tabs */}
+                      <div className="flex items-center gap-1.5 p-1 rounded-xl bg-canvas-recessed border border-[rgba(13,37,61,0.08)] text-xs">
+                        {(['#engineering-core', '#product-sync', '#infra-alerts'] as const).map((ch) => (
+                          <button
+                            key={ch}
+                            type="button"
+                            onClick={() => setActiveChannel(ch)}
+                            className={cn(
+                              'px-2.5 py-1 rounded-lg font-mono text-[11px] transition-all cursor-pointer truncate',
+                              activeChannel === ch
+                                ? 'bg-canvas-paper text-accent-secondary shadow-xs font-semibold'
+                                : 'text-ink-secondary hover:text-ink-primary'
+                            )}
+                          >
+                            {ch}
+                          </button>
+                        ))}
+                      </div>
+
+                      {/* Chat Messages Mock */}
+                      <div className="space-y-2.5 pt-1">
+                        <div className="p-3 rounded-xl bg-canvas-recessed/50 border border-[rgba(13,37,61,0.06)] space-y-1">
+                          <div className="flex items-center justify-between text-[11px]">
+                            <span className="font-mono font-semibold text-ink-primary">@aditya_v</span>
+                            <span className="font-mono text-ink-secondary">10:14 AM</span>
+                          </div>
+                          <p className="text-xs text-ink-body">
+                            Migrated Redis cluster to consistent hash ring. Memory overhead down 34%. PR #412 ready.
+                          </p>
+                        </div>
+                        <div className="p-3 rounded-xl bg-canvas-recessed/50 border border-[rgba(13,37,61,0.06)] space-y-1">
+                          <div className="flex items-center justify-between text-[11px]">
+                            <span className="font-mono font-semibold text-ink-primary">@neha_k</span>
+                            <span className="font-mono text-ink-secondary">10:28 AM</span>
+                          </div>
+                          <p className="text-xs text-ink-body">
+                            Staging webhook retry test passed with exponential backoff. Merging to release candidate branch.
+                          </p>
+                        </div>
+                      </div>
                     </div>
 
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs text-ink-secondary font-medium">Window:</span>
-                      {(['24h', '7d'] as const).map((tf) => (
-                        <button
-                          key={tf}
-                          type="button"
-                          onClick={() => setDigestTimeframe(tf)}
-                          className={cn(
-                            'font-mono text-xs px-2.5 py-1 rounded-lg transition-all cursor-pointer',
-                            digestTimeframe === tf
-                              ? 'bg-accent-secondary text-white font-bold'
-                              : 'text-ink-secondary hover:text-ink-primary'
-                          )}
-                        >
-                          {tf === '24h' ? '24 Hours' : '7 Days'}
-                        </button>
-                      ))}
+                    <div className="p-3 rounded-xl bg-canvas-recessed/60 border border-[rgba(13,37,61,0.06)] flex justify-between items-center text-xs">
+                      <span className="text-ink-secondary text-[11px] font-mono">Deduplication SLA</span>
+                      <span className="font-mono font-semibold text-accent-secondary">94.8% Compression</span>
                     </div>
                   </div>
 
-                  {/* Clustered Discussion Takeaways */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.1)] p-6 shadow-sm space-y-3">
-                      <div className="flex items-center justify-between">
-                        <span className="font-mono text-xs font-semibold text-accent-secondary">
-                          TOPIC CLUSTER 01 · 64 MESSAGES
+                  {/* Right: Output Executive Brief */}
+                  <div className="lg:col-span-7 rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.1)] p-6 shadow-sm flex flex-col justify-between space-y-4">
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between border-b border-[rgba(13,37,61,0.08)] pb-3">
+                        <span className="font-mono text-xs font-semibold text-ink-primary flex items-center gap-1.5">
+                          <MessageSquare className="w-3.5 h-3.5 text-accent-secondary" />
+                          <span>Structured Executive Brief · {activeChannel}</span>
                         </span>
-                        <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-sage-50 text-accent-secondary border border-accent-secondary/20">
-                          RESOLVED
-                        </span>
+                        <div className="flex items-center gap-1.5">
+                          {(['24h', '7d'] as const).map((tf) => (
+                            <button
+                              key={tf}
+                              type="button"
+                              onClick={() => setDigestTimeframe(tf)}
+                              className={cn(
+                                'font-mono text-[10px] px-2 py-0.5 rounded border transition-all cursor-pointer',
+                                digestTimeframe === tf
+                                  ? 'bg-accent-secondary text-white border-accent-secondary font-bold'
+                                  : 'bg-canvas-recessed text-ink-secondary border-[rgba(13,37,61,0.08)] hover:text-ink-primary'
+                              )}
+                            >
+                              {tf}
+                            </button>
+                          ))}
+                        </div>
                       </div>
-                      <h4 className="font-sans font-semibold text-ink-primary text-base">
-                        Redis Cache Sharding & Key Partitioning
-                      </h4>
-                      <p className="text-xs text-ink-body leading-relaxed">
-                        Team converged on consistent hashing ring across 6 Redis cluster nodes. Memory footprint reduced by 34% in benchmark tests.
-                      </p>
-                      <div className="pt-2 border-t border-[rgba(13,37,61,0.08)] flex items-center gap-2 text-[11px] text-ink-secondary">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-accent-secondary" />
-                        <span>Action Item: Merge migration script to staging branch.</span>
+
+                      {/* Brief Topic Cluster 1 */}
+                      <div className="p-4 rounded-xl bg-canvas-base border border-[rgba(13,37,61,0.08)] space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="font-semibold text-xs text-ink-primary">
+                            1. Redis Cache Sharding Architecture
+                          </span>
+                          <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-sage-100/70 text-accent-secondary border border-accent-secondary/20 font-medium">
+                            Consensus Achieved
+                          </span>
+                        </div>
+                        <p className="text-xs text-ink-body leading-relaxed">
+                          Consistent hashing ring implementation approved. Tested on staging with 34% memory reduction and zero hash collisions.
+                        </p>
+                        <div className="pt-2 border-t border-[rgba(13,37,61,0.06)] flex justify-between items-center text-[11px] font-mono">
+                          <span className="text-ink-secondary">Action Assigned: @aditya_v</span>
+                          <span className="text-accent-secondary font-medium">Merged to Master</span>
+                        </div>
+                      </div>
+
+                      {/* Brief Topic Cluster 2 */}
+                      <div className="p-4 rounded-xl bg-canvas-base border border-[rgba(13,37,61,0.08)] space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="font-semibold text-xs text-ink-primary">
+                            2. Webhook Dispatch Exponential Backoff
+                          </span>
+                          <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-amber-50 text-amber-700 border border-amber-500/20 font-medium">
+                            Review Required
+                          </span>
+                        </div>
+                        <p className="text-xs text-ink-body leading-relaxed">
+                          Failure retry policy clamped to 5 max attempts with jitter to prevent downstream webhook thundering herd.
+                        </p>
                       </div>
                     </div>
 
-                    <div className="rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.1)] p-6 shadow-sm space-y-3">
-                      <div className="flex items-center justify-between">
-                        <span className="font-mono text-xs font-semibold text-accent-500">
-                          TOPIC CLUSTER 02 · 41 MESSAGES
-                        </span>
-                        <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-accent-50 text-accent-500 border border-accent-500/20">
-                          IN PROGRESS
-                        </span>
-                      </div>
-                      <h4 className="font-sans font-semibold text-ink-primary text-base">
-                        Webhook Retries & Exponential Backoff
-                      </h4>
-                      <p className="text-xs text-ink-body leading-relaxed">
-                        Exponential backoff with jitter proposed for Discord webhook limits. Pull request approved by security team; awaiting release cut.
-                      </p>
-                      <div className="pt-2 border-t border-[rgba(13,37,61,0.08)] flex items-center gap-2 text-[11px] text-ink-secondary">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-accent-secondary" />
-                        <span>Action Item: Deploy v2.4 hotfix to production by 4 PM.</span>
-                      </div>
+                    <div className="pt-3 border-t border-[rgba(13,37,61,0.08)] flex justify-between items-center text-xs">
+                      <span className="font-mono text-accent-secondary font-medium">
+                        ✓ Dispatched to Slack Webhook #leadership-sync
+                      </span>
+                      <span className="font-mono text-ink-secondary text-[11px]">Daily 09:00 AM IST</span>
                     </div>
                   </div>
                 </div>
@@ -780,105 +875,152 @@ export function ProductStudio() {
                   TOOL 4: SMART DAINIK NEWS
                   ============================================================= */}
               {activeProduct.id === 'smart-dainik-news' && (
-                <div className="space-y-6">
-                  {/* Language Toggle Bar */}
-                  <div className="rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.1)] p-4 sm:p-5 shadow-sm flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <span className="font-mono text-xs font-semibold text-ink-primary">
-                        UP Regional Intelligence Feed
-                      </span>
-                      <span className="font-mono text-xs text-accent-secondary">
-                        (14 Feeds Synced)
-                      </span>
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+                  {/* Left: Regional Feed Sources */}
+                  <div className="lg:col-span-5 rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.1)] p-6 shadow-sm space-y-4 flex flex-col justify-between">
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="font-mono text-xs font-semibold text-ink-primary flex items-center gap-1.5">
+                          <Newspaper className="w-3.5 h-3.5 text-accent-500" />
+                          <span>UP Regional Feed Aggregator</span>
+                        </span>
+                        <span className="font-mono text-xs text-accent-secondary font-medium tabular-nums">
+                          14 Live Sources
+                        </span>
+                      </div>
+
+                      {/* Language Selector */}
+                      <div className="flex items-center gap-1.5 p-1 rounded-xl bg-canvas-recessed border border-[rgba(13,37,61,0.08)] text-xs">
+                        <button
+                          type="button"
+                          onClick={() => setLanguage('en')}
+                          className={cn(
+                            'flex-1 py-1 rounded-lg font-mono text-[11px] transition-all cursor-pointer',
+                            language === 'en'
+                              ? 'bg-canvas-paper text-ink-primary shadow-xs font-semibold'
+                              : 'text-ink-secondary hover:text-ink-primary'
+                          )}
+                        >
+                          English Feeds
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setLanguage('hi')}
+                          className={cn(
+                            'flex-1 py-1 rounded-lg font-mono text-[11px] transition-all cursor-pointer',
+                            language === 'hi'
+                              ? 'bg-canvas-paper text-accent-500 shadow-xs font-semibold'
+                              : 'text-ink-secondary hover:text-ink-primary'
+                          )}
+                        >
+                          हिंदी समाचार फ़ीड
+                        </button>
+                      </div>
+
+                      {/* Ingested items list */}
+                      <div className="space-y-2 pt-1">
+                        <div className="p-3 rounded-xl bg-canvas-recessed/50 border border-[rgba(13,37,61,0.06)] space-y-1">
+                          <div className="flex items-center justify-between text-[11px]">
+                            <span className="font-mono font-semibold text-accent-500">UPPSC Gazette</span>
+                            <span className="font-mono text-ink-secondary">2 hrs ago</span>
+                          </div>
+                          <p className="text-xs text-ink-body">
+                            {language === 'en'
+                              ? 'Technical cadre recruitment official notification released for 411 positions.'
+                              : 'तकनीकी संवर्ग भर्ती की आधिकारिक अधिसूचना 411 पदों के लिए जारी।'}
+                          </p>
+                        </div>
+                        <div className="p-3 rounded-xl bg-canvas-recessed/50 border border-[rgba(13,37,61,0.06)] space-y-1">
+                          <div className="flex items-center justify-between text-[11px]">
+                            <span className="font-mono font-semibold text-ink-primary">Agra Industrial Board</span>
+                            <span className="font-mono text-ink-secondary">5 hrs ago</span>
+                          </div>
+                          <p className="text-xs text-ink-body">
+                            {language === 'en'
+                              ? 'Optical fiber connectivity project approved for regional leather and MSME cluster.'
+                              : 'क्षेत्रीय चमड़ा और एमएसएमई क्लस्टर के लिए ऑप्टिकल फाइबर परियोजना स्वीकृत।'}
+                          </p>
+                        </div>
+                      </div>
                     </div>
 
-                    <div className="flex items-center gap-1 bg-canvas-recessed p-1 rounded-xl">
-                      <button
-                        type="button"
-                        onClick={() => setLanguage('en')}
-                        className={cn(
-                          'font-mono text-xs px-3 py-1 rounded-lg transition-all cursor-pointer',
-                          language === 'en'
-                            ? 'bg-[#0D253D] text-white font-bold shadow-sm'
-                            : 'text-ink-secondary hover:text-ink-primary'
-                        )}
-                      >
-                        English
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setLanguage('hi')}
-                        className={cn(
-                          'font-mono text-xs px-3 py-1 rounded-lg transition-all cursor-pointer',
-                          language === 'hi'
-                            ? 'bg-[#0D253D] text-white font-bold shadow-sm'
-                            : 'text-ink-secondary hover:text-ink-primary'
-                        )}
-                      >
-                        हिंदी (Hindi)
-                      </button>
+                    <div className="p-3 rounded-xl bg-canvas-recessed/60 border border-[rgba(13,37,61,0.06)] flex justify-between items-center text-xs">
+                      <span className="text-ink-secondary text-[11px] font-mono">Bilingual Accuracy</span>
+                      <span className="font-mono font-semibold text-accent-secondary">99.4% Verified</span>
                     </div>
                   </div>
 
-                  {/* Gazette & News Notification Stream */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.1)] p-6 shadow-sm space-y-3">
-                      <div className="flex items-center justify-between">
-                        <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-accent-50 text-accent-500 border border-accent-500/20">
-                          {language === 'en' ? 'GOVT EMPLOYMENT' : 'सरकारी रोजगार'}
+                  {/* Right: Matched Alerts & Verification */}
+                  <div className="lg:col-span-7 rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.1)] p-6 shadow-sm flex flex-col justify-between space-y-4">
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between border-b border-[rgba(13,37,61,0.08)] pb-3">
+                        <span className="font-mono text-xs font-semibold text-ink-primary">
+                          Verified Public Alerts & Schema Extraction
                         </span>
-                        <span className="font-mono text-xs text-ink-secondary">Deadline: March 30</span>
-                      </div>
-
-                      <h4 className="font-sans font-semibold text-ink-primary text-base">
-                        {language === 'en'
-                          ? 'UPPSC Technical Assistant Notification'
-                          : 'UPPSC तकनीकी सहायक भर्ती अधिसूचना'}
-                      </h4>
-
-                      <p className="text-xs text-ink-body leading-relaxed">
-                        {language === 'en'
-                          ? 'Clustered from 4 official gazette releases. Age relaxation criteria and online application forms verified without duplicates.'
-                          : '4 आधिकारिक राजपत्र विज्ञप्तियों से संकलित। आयु सीमा में छूट और ऑनलाइन आवेदन लिंक सत्यापित।'}
-                      </p>
-
-                      <div className="pt-2 border-t border-[rgba(13,37,61,0.08)] flex justify-between items-center text-xs">
-                        <span className="font-mono text-accent-secondary font-medium">✓ Verified Source</span>
-                        <span className="font-mono text-accent-500 font-semibold">Eligible Pool: 18–35 Yrs</span>
-                      </div>
-                    </div>
-
-                    <div className="rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.1)] p-6 shadow-sm space-y-3">
-                      <div className="flex items-center justify-between">
-                        <span className="font-mono text-[10px] font-bold px-2 py-0.5 rounded bg-sage-50 text-accent-secondary border border-accent-secondary/20">
-                          {language === 'en' ? 'INFRASTRUCTURE' : 'अवसंरचना विकास'}
+                        <span className="font-mono text-xs text-accent-500 font-medium">
+                          UP Central & Western
                         </span>
-                        <span className="font-mono text-xs text-ink-secondary">Regional Grid</span>
                       </div>
 
-                      <h4 className="font-sans font-semibold text-ink-primary text-base">
-                        {language === 'en'
-                          ? 'Agra-Lucknow Industrial Optical Fiber Grid'
-                          : 'आगरा-लखनऊ औद्योगिक ऑप्टिकल फाइबर ग्रिड विस्तार'}
-                      </h4>
+                      {/* Alert Card 1 */}
+                      <div className="p-4 rounded-xl bg-canvas-base border border-[rgba(13,37,61,0.08)] space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="font-mono text-[11px] font-bold text-accent-500 px-2 py-0.5 rounded bg-accent-50 border border-accent-500/20">
+                            ALERT_ID: UPPSC_TECH_2026
+                          </span>
+                          <span className="font-mono text-xs text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-500/20 font-semibold">
+                            Official Verified
+                          </span>
+                        </div>
+                        <h4 className="font-display text-lg text-ink-primary font-normal">
+                          {language === 'en'
+                            ? 'UPPSC Assistant Engineer & Technical Cadre (411 Posts)'
+                            : 'यूपीपीएससी सहायक अभियंता एवं तकनीकी संवर्ग भर्ती (411 पद)'}
+                        </h4>
+                        <p className="text-xs text-ink-body leading-relaxed">
+                          {language === 'en'
+                            ? 'Eligibility: B.Tech in CSE, ECE, EE. Age: 21-40 yrs. Application window opens March 2026.'
+                            : 'पात्रता: कंप्यूटर साइंस/आईटी में बी.टेक। आयु सीमा: 21-40 वर्ष। आवेदन मार्च 2026 से उपलब्ध।'}
+                        </p>
+                        <div className="pt-2 border-t border-[rgba(13,37,61,0.06)] flex justify-between items-center text-[11px] font-mono">
+                          <span className="text-ink-secondary">Deadline: 2026-03-30</span>
+                          <span className="text-accent-500 font-semibold">Direct Portal Hook Ready</span>
+                        </div>
+                      </div>
 
-                      <p className="text-xs text-ink-body leading-relaxed">
-                        {language === 'en'
-                          ? 'High-speed data grid expansion reaching Tier-2 district hubs by Q3 2026. Micro-industrial units to gain low-latency internet.'
-                          : 'Q3 2026 तक टियर-2 जिला औद्योगिक केंद्रों तक हाई-स्पीड डेटा ग्रिड विस्तार। सूक्ष्म औद्योगिक इकाइयों को उच्च गति इंटरनेट।'}
-                      </p>
-
-                      <div className="pt-2 border-t border-[rgba(13,37,61,0.08)] flex justify-between items-center text-xs">
-                        <span className="font-mono text-accent-secondary font-medium">✓ Verified Gazette</span>
-                        <span className="font-mono text-ink-primary font-medium">Tier-2 Expansion</span>
+                      {/* Alert Card 2 */}
+                      <div className="p-4 rounded-xl bg-canvas-base border border-[rgba(13,37,61,0.08)] space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="font-mono text-[11px] font-bold text-ink-secondary px-2 py-0.5 rounded bg-canvas-recessed">
+                            ALERT_ID: AGRA_OPTICAL_GRID
+                          </span>
+                          <span className="font-mono text-xs text-accent-secondary font-medium">
+                            Infrastructure
+                          </span>
+                        </div>
+                        <h4 className="font-display text-base text-ink-primary font-normal">
+                          {language === 'en'
+                            ? 'Agra-Lucknow Industrial Optical Fiber Grid'
+                            : 'आगरा-लखनऊ औद्योगिक ऑप्टिकल फाइबर ग्रिड विस्तार'}
+                        </h4>
+                        <p className="text-xs text-ink-body leading-relaxed">
+                          {language === 'en'
+                            ? 'High-speed data grid expansion reaching Tier-2 district hubs by Q3 2026. Micro-industrial units to gain low-latency internet.'
+                            : 'Q3 2026 तक टियर-2 जिला औद्योगिक केंद्रों तक हाई-स्पीड डेटा ग्रिड विस्तार। सूक्ष्म औद्योगिक इकाइयों को उच्च गति इंटरनेट।'}
+                        </p>
+                        <div className="pt-2 border-t border-[rgba(13,37,61,0.08)] flex justify-between items-center text-xs">
+                          <span className="font-mono text-accent-secondary font-medium">✓ Verified Gazette</span>
+                          <span className="font-mono text-ink-primary font-medium">Tier-2 Expansion</span>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               )}
-            </div>
+            </motion.div>
           )}
-        </div>
+        </AnimatePresence>
+      </div>
 
         {/* =========================================================================
             4. BOTTOM SPECIFICATION & TELEMETRY STRIP

@@ -16,7 +16,7 @@ export interface DrawLineProps {
   strokeWidth?: number;
   /** Optional stroke dash array (e.g., "4 4" for dashed) */
   strokeDasharray?: string;
-  /** Duration of draw animation in seconds (default: 0.6) */
+  /** Duration of draw animation in seconds (default: 1.2) */
   duration?: number;
   /** Delay before draw starts in seconds (default: 0) */
   delay?: number;
@@ -39,7 +39,7 @@ export function DrawLine({
   color = 'currentColor',
   strokeWidth = 2,
   strokeDasharray,
-  duration = 0.6,
+  duration = 1.2,
   delay = 0,
   className = 'w-full h-4 overflow-visible',
   pathClassName = '',

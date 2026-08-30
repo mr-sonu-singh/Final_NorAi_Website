@@ -81,12 +81,12 @@ export function HomeFaqAccordion() {
             <Accordion.Item
               key={faq.id}
               value={faq.id}
-              className="rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.1)] overflow-hidden shadow-sm data-[state=open]:border-accent-500/50 data-[state=open]:shadow-md transition-all"
+              className="group rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.1)] overflow-hidden shadow-sm data-[state=open]:border-accent-500/50 data-[state=open]:shadow-md transition-all"
             >
               <Accordion.Header className="flex">
                 <Accordion.Trigger
                   className={cn(
-                    'flex items-center justify-between gap-4 w-full p-5 sm:p-6 text-left transition-colors font-sans focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2',
+                    'flex items-center justify-between gap-4 w-full p-5 sm:p-6 text-left transition-colors font-sans focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 cursor-pointer',
                     'hover:bg-canvas-recessed/30'
                   )}
                 >
@@ -102,7 +102,7 @@ export function HomeFaqAccordion() {
                 </Accordion.Trigger>
               </Accordion.Header>
 
-              <Accordion.Content className="px-5 sm:px-6 pb-6 pt-1 text-sm text-ink-body leading-relaxed border-t border-[rgba(13,37,61,0.06)] bg-canvas-recessed/20">
+              <Accordion.Content className="accordion-content overflow-hidden px-5 sm:px-6 pb-6 pt-1 text-sm text-ink-body leading-relaxed border-t border-[rgba(13,37,61,0.06)] bg-canvas-recessed/20">
                 <p className="pl-11.5 text-ink-body">
                   {faq.answer}
                 </p>

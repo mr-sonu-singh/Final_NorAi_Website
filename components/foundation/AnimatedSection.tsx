@@ -40,17 +40,19 @@ export function AnimatedSection({
     );
   }
 
+  const MotionTag = motion.create(Tag);
+
   return (
-    <motion.section
+    <MotionTag
       className={className}
-      initial={{ opacity: 0, y: 32 }}
+      initial={{ opacity: 0, y: 36 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-100px' }}
-      transition={{ duration: 0.4, delay, ease: EASE_OUT }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ duration: 0.65, delay, ease: EASE_OUT }}
       {...props}
     >
       {children}
-    </motion.section>
+    </MotionTag>
   );
 }
 
@@ -61,7 +63,7 @@ export interface RevealProps extends MotionSafeAttributes<HTMLDivElement> {
 }
 
 /** Generic scroll reveal wrapper for non-section elements. */
-export function Reveal({ children, className, delay = 0, y = 24, ...props }: RevealProps) {
+export function Reveal({ children, className, delay = 0, y = 28, ...props }: RevealProps) {
   const shouldReduceMotion = useReducedMotion();
 
   if (shouldReduceMotion) {
@@ -77,8 +79,8 @@ export function Reveal({ children, className, delay = 0, y = 24, ...props }: Rev
       className={className}
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.38, delay, ease: EASE_OUT }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ duration: 0.6, delay, ease: EASE_OUT }}
       {...props}
     >
       {children}
@@ -96,7 +98,7 @@ export interface StaggerGridProps extends MotionSafeAttributes<HTMLDivElement> {
  * Parent container that staggers its direct motion.div children.
  * Wrap each grid child in <StaggerItem />.
  */
-export function StaggerGrid({ children, className, stagger = 0.08, ...props }: StaggerGridProps) {
+export function StaggerGrid({ children, className, stagger = 0.14, ...props }: StaggerGridProps) {
   const shouldReduceMotion = useReducedMotion();
 
   if (shouldReduceMotion) {
@@ -112,7 +114,7 @@ export function StaggerGrid({ children, className, stagger = 0.08, ...props }: S
       className={className}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: '-80px' }}
+      viewport={{ once: true, margin: '-60px' }}
       variants={{ visible: { transition: { staggerChildren: stagger } } }}
       {...props}
     >
@@ -130,12 +132,12 @@ export function StaggerItem({ children, className, ...props }: StaggerItemProps)
     <motion.div
       className={className}
       variants={{
-        hidden: { opacity: 0, y: 20, scale: 0.98 },
+        hidden: { opacity: 0, y: 28, scale: 0.97 },
         visible: {
           opacity: 1,
           y: 0,
           scale: 1,
-          transition: { duration: 0.36, ease: EASE_OUT },
+          transition: { duration: 0.55, ease: EASE_OUT },
         },
       }}
       {...props}
@@ -144,3 +146,4 @@ export function StaggerItem({ children, className, ...props }: StaggerItemProps)
     </motion.div>
   );
 }
+
