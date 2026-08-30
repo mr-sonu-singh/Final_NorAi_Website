@@ -190,12 +190,12 @@ export default function HomePage() {
             {/* Bento Card 1: Resume Shortlister (Large Span 7 — Flagship Hero Card with Terracotta Top Wash) */}
             <article
               aria-labelledby="card-resume-shortlister-title"
-              className="md:col-span-7 relative overflow-hidden rounded-3xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] border-l-2 border-l-accent-500/80 p-8 md:p-10 shadow-sm hover:shadow-md hover:border-accent-500/40 hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between space-y-6 before:absolute before:inset-x-0 before:top-0 before:h-1 before:bg-gradient-to-r before:from-accent-500 before:via-accent-400 before:to-transparent"
+              className="md:col-span-7 relative overflow-hidden rounded-3xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] p-8 md:p-10 shadow-sm hover:shadow-md hover:border-accent-500/40 hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between space-y-6 before:absolute before:inset-x-0 before:top-0 before:h-1 before:bg-gradient-to-r before:from-accent-500 before:via-accent-400 before:to-transparent"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded bg-accent-50 text-accent-500 border border-accent-500/20">
-                    Recruitment AI
+                    01 · Recruitment AI
                   </span>
                   <span className="font-mono tabular-nums text-xs font-semibold px-2 py-0.5 rounded bg-sage-100/70 text-accent-secondary border border-accent-secondary/20">
                     &lt; 0.35s / PDF · Zod Typed
@@ -235,15 +235,15 @@ export default function HomePage() {
               </div>
             </article>
 
-            {/* Bento Card 2: Course Note-Taker (Span 5 — EdTech Goldenrod Token Badge) */}
+            {/* Bento Card 2: Course Note-Taker (Span 5 — EdTech Goldenrod Token Badge & Top Wash) */}
             <article
               aria-labelledby="card-course-notetaker-title"
-              className="md:col-span-5 rounded-3xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] p-8 shadow-sm hover:shadow-md hover:border-accent-500/30 hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between space-y-6"
+              className="md:col-span-5 relative overflow-hidden rounded-3xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] p-8 shadow-sm hover:shadow-md hover:border-gold-500/40 hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between space-y-6 before:absolute before:inset-x-0 before:top-0 before:h-1 before:bg-gradient-to-r before:from-gold-500 before:via-gold-400 before:to-transparent"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded bg-gold-100 text-gold-600 border border-gold-300/40">
-                    EdTech AI
+                    02 · EdTech AI
                   </span>
                   <span className="font-mono text-xs text-accent-secondary font-semibold">
                     100% Free for Students
@@ -271,7 +271,7 @@ export default function HomePage() {
                   <span className="text-ink-secondary font-mono">Audio / Video NLP</span>
                   <Link
                     href="/products/course-note-taker"
-                    className="font-semibold text-accent-500 hover:text-accent-600 inline-flex items-center gap-1 group"
+                    className="font-semibold text-gold-600 hover:text-gold-700 inline-flex items-center gap-1 group"
                   >
                     <span>Explore Note-Taker</span>
                     <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
@@ -280,15 +280,15 @@ export default function HomePage() {
               </div>
             </article>
 
-            {/* Bento Card 3: Community Chat Digest (Span 5 — Community Badge) */}
+            {/* Bento Card 3: Community Chat Digest (Span 5 — Community Badge & Sage Top Wash) */}
             <article
               aria-labelledby="card-chat-digest-title"
-              className="md:col-span-5 rounded-3xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] p-8 shadow-sm hover:shadow-md hover:border-accent-500/30 hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between space-y-6"
+              className="md:col-span-5 relative overflow-hidden rounded-3xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] p-8 shadow-sm hover:shadow-md hover:border-accent-secondary/40 hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between space-y-6 before:absolute before:inset-x-0 before:top-0 before:h-1 before:bg-gradient-to-r before:from-accent-secondary before:via-emerald-400 before:to-transparent"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded bg-accent-50 text-accent-500 border border-accent-500/20">
-                    Community AI
+                    03 · Community AI
                   </span>
                   <span className="font-mono text-xs text-ink-secondary">
                     Discord & Telegram
@@ -316,7 +316,7 @@ export default function HomePage() {
                   <span className="text-ink-secondary font-mono">Slack / Telegram Sync</span>
                   <Link
                     href="/products/chat-digest"
-                    className="font-semibold text-accent-500 hover:text-accent-600 inline-flex items-center gap-1 group"
+                    className="font-semibold text-accent-secondary hover:text-emerald-700 inline-flex items-center gap-1 group"
                   >
                     <span>Explore Digest</span>
                     <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
@@ -325,15 +325,15 @@ export default function HomePage() {
               </div>
             </article>
 
-            {/* Bento Card 4: Smart Dainik News (Span 7 — Sage Regional Badge) */}
+            {/* Bento Card 4: Smart Dainik News (Span 7 — Sage Regional Badge & Indigo Top Wash) */}
             <article
               aria-labelledby="card-smart-dainik-title"
-              className="md:col-span-7 rounded-3xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] p-8 md:p-10 shadow-sm hover:shadow-md hover:border-accent-500/30 hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between space-y-6"
+              className="md:col-span-7 relative overflow-hidden rounded-3xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] p-8 md:p-10 shadow-sm hover:shadow-md hover:border-[#0D253D]/40 hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between space-y-6 before:absolute before:inset-x-0 before:top-0 before:h-1 before:bg-gradient-to-r before:from-[#0D253D] before:via-blue-900 before:to-transparent"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded bg-sage-100 text-accent-secondary border border-sage-300/40">
-                    Regional Intelligence
+                    04 · Regional Intelligence
                   </span>
                   <span className="font-mono text-xs text-accent-500 font-semibold">
                     Hindi & English NLP
@@ -364,7 +364,7 @@ export default function HomePage() {
                   <span className="text-ink-secondary font-mono">Public Employment Alerts</span>
                   <Link
                     href="/products/smart-dainik-news"
-                    className="font-semibold text-accent-500 hover:text-accent-600 inline-flex items-center gap-1 group"
+                    className="font-semibold text-ink-primary hover:text-accent-500 inline-flex items-center gap-1 group"
                   >
                     <span>Explore News Feed</span>
                     <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />

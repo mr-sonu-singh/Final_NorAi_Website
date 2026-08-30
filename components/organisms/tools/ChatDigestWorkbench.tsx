@@ -1,11 +1,10 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { cn } from '@/lib/utils';
 import {
   MessageSquare,
   Upload,
-  CheckCircle2,
   AlertTriangle,
   Download,
   Copy,
@@ -15,10 +14,19 @@ import {
   TrendingUp,
   Mail,
   Bug,
-  Hash,
+  ChevronDown,
+  ChevronUp,
+  Send,
+  Sliders,
+  Check,
+  Filter,
+  Sparkles,
+  Users,
+  CheckCircle2,
 } from 'lucide-react';
 import { ToolShell } from './ToolShell';
 import { ApiKeyModal } from './ApiKeyModal';
+import { MathText } from '@/components/atoms/MathRenderer';
 import {
   CommunityChatResult,
   ByokSettings,
@@ -38,6 +46,9 @@ export function ChatDigestWorkbench() {
     CHAT_DIGEST_PRESETS.find((p) => p.id === activePresetId) ||
     CHAT_DIGEST_PRESETS[0];
 
+  // Intake Segmentation Dock: 1. Community | 2. Ingestion | 3. Signal Knobs
+  const [intakeTab, setIntakeTab] = useState<'community' | 'ingestion' | 'knobs'>('community');
+
   // Form Inputs
   const [communityName, setCommunityName] = useState(
     currentPreset?.communityName || 'SuperBase Developer Community'
@@ -52,6 +63,11 @@ export function ChatDigestWorkbench() {
     currentPreset?.sampleChatLogText || ''
   );
 
+  // Signal & Triage Knobs
+  const [confidenceThreshold, setConfidenceThreshold] = useState<number>(75);
+  const [noiseFilterMode, setNoiseFilterMode] = useState<'Strict' | 'Balanced' | 'Permissive'>('Balanced');
+  const [selectedChannelFilter, setSelectedChannelFilter] = useState<string>('ALL');
+
   // File Upload State
   const [uploadedFiles, setUploadedFiles] = useState<
     Array<{ name: string; sizeBytes: number; tokens: number }>
@@ -63,10 +79,17 @@ export function ChatDigestWorkbench() {
   const [result, setResult] = useState<CommunityChatResult | null>(
     currentPreset?.precomputedResult || null
   );
+
+  // Stage Navigation Tab
   const [activeTab, setActiveTab] = useState<
-    'intelligence' | 'actions' | 'newsletter' | 'json'
+    'intelligence' | 'actions' | 'transcript' | 'newsletter' | 'json'
   >('intelligence');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  // Interactive Action Tracker States
+  const [completedActionIds, setCompletedActionIds] = useState<Set<string>>(new Set(['bug-01']));
+  const [expandedTopicIds, setExpandedTopicIds] = useState<Set<string>>(new Set(['topic-01', 'topic-02']));
+  const [dispatchedWebhooks, setDispatchedWebhooks] = useState<Record<string, string>>({});
 
   // BYOK Settings
   const [isByokModalOpen, setIsByokModalOpen] = useState(false);
@@ -76,6 +99,7 @@ export function ChatDigestWorkbench() {
   });
 
   const [copiedFormat, setCopiedFormat] = useState<string | null>(null);
+  const [copiedQuoteIdx, setCopiedQuoteIdx] = useState<string | null>(null);
 
   // Load BYOK from localStorage
   useEffect(() => {
@@ -125,6 +149,9 @@ export function ChatDigestWorkbench() {
       setResult(preset.precomputedResult);
       setUploadedFiles([]);
       setErrorMessage(null);
+      setSelectedChannelFilter('ALL');
+      setCompletedActionIds(new Set(preset.precomputedResult.actionItemsAndBugs.filter(a => a.status === 'Completed').map(a => a.id)));
+      setExpandedTopicIds(new Set(preset.precomputedResult.topicClusters.map(t => t.id)));
     }
   };
 
@@ -232,6 +259,54 @@ export function ChatDigestWorkbench() {
     handleSelectPreset('preset-discord-dev');
   };
 
+  // Toggle Action Completion
+  const toggleActionCompleted = (id: string) => {
+    setCompletedActionIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  };
+
+  // Toggle Topic Accordion
+  const toggleTopicExpanded = (id: string) => {
+    setExpandedTopicIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  };
+
+  // Simulate Webhook Dispatch
+  const handleSimulateWebhook = (itemId: string, destination: string) => {
+    setDispatchedWebhooks((prev) => ({
+      ...prev,
+      [itemId]: `Dispatched to ${destination} ✓`,
+    }));
+    setTimeout(() => {
+      setDispatchedWebhooks((prev) => {
+        const next = { ...prev };
+        delete next[itemId];
+        return next;
+      });
+    }, 4000);
+  };
+
+  // Copy Quotation
+  const handleCopyQuote = (quote: string, key: string) => {
+    navigator.clipboard?.writeText(quote);
+    setCopiedQuoteIdx(key);
+    setTimeout(() => setCopiedQuoteIdx(null), 2000);
+  };
+
   // Export handlers
   const handleCopyJson = () => {
     if (!result) return;
@@ -242,26 +317,28 @@ export function ChatDigestWorkbench() {
 
   const handleDownloadMarkdown = () => {
     if (!result) return;
-    let md = `---\ntitle: "Community Intelligence Digest - ${result.communityName}"\ntimeframe: "${result.timeframeCovered}"\nsentiment_score: ${result.sentimentScore}\ngenerated_by: "NorAI Chat Digest Engine"\n---\n\n`;
+    let md = `---\ntitle: "Community Intelligence Digest - ${result.communityName}"\ntimeframe: "${result.timeframeCovered}"\nsentiment_score: ${result.sentimentScore}\ngenerated_by: "NorAI Chat Digest & Signal Engine"\n---\n\n`;
     md += `# ${result.communityName} — Community Digest\n\n`;
-    md += `**Timeframe:** ${result.timeframeCovered} | **Messages Processed:** ${result.totalRawMessages.toLocaleString()} (${result.spamFilteredPercentage}% spam eliminated)\n\n`;
+    md += `**Timeframe:** ${result.timeframeCovered} | **Messages Processed:** ${result.totalRawMessages.toLocaleString()} (${result.spamFilteredPercentage}% noise eliminated)\n\n`;
     md += `**Overall Sentiment:** ${result.overallSentiment} (${result.sentimentScore}/100)\n\n`;
     md += `## Executive Intelligence Brief\n${result.executiveBrief}\n\n`;
 
     md += `## Key Discussion Topics\n\n`;
     result.topicClusters.forEach((t) => {
-      md += `### ${t.topicName} (${t.channelOrContext})\n`;
+      md += `### [${t.status || 'RESOLVED'}] ${t.topicName} (${t.channelOrContext})\n`;
       md += `*Sentiment: ${t.sentiment} (${t.sentimentScore}/100) — ~${t.messageCount} messages*\n\n`;
+      if (t.impactSummary) md += `**Impact:** ${t.impactSummary}\n\n`;
       md += `${t.summary}\n\n`;
-      md += `**Key Quotes:**\n`;
+      md += `**Key Quotations:**\n`;
       t.keyQuotations.forEach((q) => (md += `- ${q}\n`));
       md += `\n`;
     });
 
     md += `## Action Items & Bug Reports\n\n`;
     result.actionItemsAndBugs.forEach((item) => {
-      md += `### [${item.priority}] ${item.title} (${item.type})\n`;
-      md += `**Reporter:** ${item.reporterHandle}\n`;
+      const statusMark = completedActionIds.has(item.id) ? '[x]' : '[ ]';
+      md += `### ${statusMark} [${item.priorityCode || 'P1'}] ${item.title} (${item.type})\n`;
+      md += `**Reporter:** ${item.reporterHandle} | **Assignee:** ${item.assignee?.name || 'Unassigned'}\n`;
       md += `${item.description}\n\n`;
       md += `*Recommended Triage:* ${item.recommendedTriage}\n\n`;
     });
@@ -291,12 +368,14 @@ export function ChatDigestWorkbench() {
     const rows = result.actionItemsAndBugs.map((item) => [
       `"${item.id}"`,
       `"${item.type}"`,
-      `"${item.priority}"`,
+      `"${item.priorityCode || item.priority}"`,
       `"${item.title.replace(/"/g, '""')}"`,
+      `"${item.assignee?.name || ''}"`,
+      `"${completedActionIds.has(item.id) ? 'Completed' : 'Open'}"`,
       `"${item.reporterHandle}"`,
       `"${item.recommendedTriage.replace(/"/g, '""')}"`,
     ]);
-    const csvContent = ['"ID","Type","Priority","Title","Reporter","Triage"', ...rows.map((r) => r.join(','))].join('\n');
+    const csvContent = ['"ID","Type","Priority","Title","Assignee","Status","Reporter","Triage"', ...rows.map((r) => r.join(','))].join('\n');
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
@@ -308,6 +387,44 @@ export function ChatDigestWorkbench() {
     setCopiedFormat('csv');
     setTimeout(() => setCopiedFormat(null), 2000);
   };
+
+  // Channels for filter pill bar
+  const availableChannels = useMemo(() => {
+    if (!result) return [];
+    if (result.activeChannels && result.activeChannels.length > 0) {
+      return result.activeChannels;
+    }
+    const tags = new Set<string>();
+    result.topicClusters.forEach((c) => {
+      if (c.channelTags) {
+        c.channelTags.forEach((t) => tags.add(t));
+      } else {
+        tags.add(c.channelOrContext);
+      }
+    });
+    return Array.from(tags);
+  }, [result]);
+
+  // Filtered topic clusters
+  const filteredTopicClusters = useMemo(() => {
+    if (!result) return [];
+    if (selectedChannelFilter === 'ALL') return result.topicClusters;
+    return result.topicClusters.filter((c) => {
+      if (c.channelTags) return c.channelTags.includes(selectedChannelFilter);
+      return c.channelOrContext.includes(selectedChannelFilter);
+    });
+  }, [result, selectedChannelFilter]);
+
+  // Filtered raw messages
+  const filteredRawMessages = useMemo(() => {
+    if (!result?.rawMessages) return [];
+    return result.rawMessages.filter((msg) => {
+      if (selectedChannelFilter !== 'ALL' && msg.channel !== selectedChannelFilter) {
+        return false;
+      }
+      return true;
+    });
+  }, [result, selectedChannelFilter]);
 
   return (
     <>
@@ -324,7 +441,7 @@ export function ChatDigestWorkbench() {
         activePresetTitle={currentPreset?.title}
         isPresetMode={activePresetId !== 'custom' && !byokSettings.apiKey}
       >
-        {/* Preset Dock */}
+        {/* Preset Command Strip */}
         <div className="px-5 py-3 bg-canvas-base border-b border-[rgba(13,37,61,0.08)] flex items-center justify-between gap-3 overflow-x-auto scrollbar-none">
           <div className="flex items-center gap-2">
             <span className="text-[11px] font-mono text-ink-secondary uppercase tracking-wider font-semibold whitespace-nowrap">
@@ -365,7 +482,7 @@ export function ChatDigestWorkbench() {
           </div>
 
           <div className="text-[11px] font-mono text-ink-secondary hidden md:block">
-            Estimated Ingestion: ~{estimateTokenCount(chatLogText).toLocaleString()} tokens
+            Estimated Ingestion: ~<span className="tabular-nums font-semibold">{estimateTokenCount(chatLogText).toLocaleString()}</span> tokens
           </div>
         </div>
 
@@ -387,145 +504,377 @@ export function ChatDigestWorkbench() {
         )}
 
         {/* Dual-Pane Workbench Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[640px] items-stretch">
-          {/* Left Column: Intake & Configuration Dock (5 cols) */}
-          <div className="lg:col-span-5 p-5 md:p-6 border-b lg:border-b-0 lg:border-r border-[rgba(13,37,61,0.08)] bg-canvas-paper flex flex-col justify-between space-y-6">
-            <div className="space-y-5">
-              {/* Community Parameters */}
-              <div className="space-y-3">
-                <div>
-                  <label htmlFor="community-name-input" className="text-xs font-semibold text-ink-primary block mb-1">
-                    Community / Channel Name
-                  </label>
-                  <input
-                    id="community-name-input"
-                    type="text"
-                    value={communityName}
+        <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[680px] items-stretch">
+          {/* Left Column: Segmented Intake Dock (5 cols) */}
+          <div className="lg:col-span-5 p-5 md:p-6 border-b lg:border-b-0 lg:border-r border-[rgba(13,37,61,0.08)] bg-canvas-paper flex flex-col justify-between gap-5 h-full">
+            <div className="space-y-4">
+              {/* Intake Step Tabs */}
+              <div className="flex items-center p-1 bg-canvas-recessed rounded-xl border border-[rgba(13,37,61,0.08)]">
+                <button
+                  type="button"
+                  onClick={() => setIntakeTab('community')}
+                  className={cn(
+                    'flex-1 py-1.5 text-xs font-semibold rounded-lg transition-all active:scale-[0.98]',
+                    intakeTab === 'community'
+                      ? 'bg-canvas-paper text-ink-primary shadow-xs'
+                      : 'text-ink-secondary hover:text-ink-primary'
+                  )}
+                >
+                  1. Community
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIntakeTab('ingestion')}
+                  className={cn(
+                    'flex-1 py-1.5 text-xs font-semibold rounded-lg transition-all active:scale-[0.98]',
+                    intakeTab === 'ingestion'
+                      ? 'bg-canvas-paper text-ink-primary shadow-xs'
+                      : 'text-ink-secondary hover:text-ink-primary'
+                  )}
+                >
+                  2. Ingestion
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIntakeTab('knobs')}
+                  className={cn(
+                    'flex-1 py-1.5 text-xs font-semibold rounded-lg transition-all active:scale-[0.98]',
+                    intakeTab === 'knobs'
+                      ? 'bg-canvas-paper text-ink-primary shadow-xs'
+                      : 'text-ink-secondary hover:text-ink-primary'
+                  )}
+                >
+                  3. Triage Knobs
+                </button>
+              </div>
+
+              {/* TAB 1: COMMUNITY & METADATA */}
+              {intakeTab === 'community' && (
+                <div className="space-y-3.5 animate-fadeIn">
+                  <div>
+                    <label htmlFor="community-name-input" className="text-xs font-semibold text-ink-primary block mb-1">
+                      Community / Channel Hub Name
+                    </label>
+                    <input
+                      id="community-name-input"
+                      type="text"
+                      value={communityName}
+                      onChange={(e) => {
+                        setCommunityName(e.target.value);
+                        setActivePresetId('custom');
+                      }}
+                      placeholder="e.g. SuperBase Developer Community"
+                      className="w-full px-3 py-2 rounded-lg bg-canvas-base border border-[rgba(13,37,61,0.15)] text-ink-primary text-xs focus:outline-none focus:ring-2 focus:ring-accent-500 font-medium"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label htmlFor="platform-select" className="text-xs font-semibold text-ink-primary block mb-1">
+                        Platform Source
+                      </label>
+                      <select
+                        id="platform-select"
+                        value={platform}
+                        onChange={(e) => setPlatform(e.target.value as 'Discord' | 'Telegram' | 'Slack')}
+                        className="w-full px-3 py-2 rounded-lg bg-canvas-base border border-[rgba(13,37,61,0.15)] text-ink-primary text-xs font-mono focus:outline-none focus:ring-2 focus:ring-accent-500"
+                      >
+                        <option value="Discord">Discord Server</option>
+                        <option value="Slack">Slack Workspace</option>
+                        <option value="Telegram">Telegram Group</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label htmlFor="timeframe-select" className="text-xs font-semibold text-ink-primary block mb-1">
+                        Timeframe Window
+                      </label>
+                      <select
+                        id="timeframe-select"
+                        value={timeframe}
+                        onChange={(e) => setTimeframe(e.target.value as 'Last 24 Hours' | 'Past 7 Days')}
+                        className="w-full px-3 py-2 rounded-lg bg-canvas-base border border-[rgba(13,37,61,0.15)] text-ink-primary text-xs font-mono focus:outline-none focus:ring-2 focus:ring-accent-500"
+                      >
+                        <option value="Last 24 Hours">Last 24 Hours</option>
+                        <option value="Past 7 Days">Past 7 Days</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* Signal Intelligence & Noise Reduction Matrix */}
+                  <div className="p-3.5 rounded-xl bg-canvas-base border border-[rgba(13,37,61,0.1)] space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[11px] font-mono text-ink-secondary uppercase tracking-wider font-semibold flex items-center gap-1.5">
+                        <Sparkles className="w-3.5 h-3.5 text-accent-500" />
+                        <span>Signal Extraction Pipeline:</span>
+                      </span>
+                      <span className="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded font-semibold">
+                        Active Triage
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-2 gap-1.5 text-[11px]">
+                      <div className="p-2 rounded-lg bg-canvas-paper border border-[rgba(13,37,61,0.06)] flex items-center gap-1.5">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                        <span className="font-medium text-ink-primary truncate">Spam & Bot Filter</span>
+                      </div>
+                      <div className="p-2 rounded-lg bg-canvas-paper border border-[rgba(13,37,61,0.06)] flex items-center gap-1.5">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                        <span className="font-medium text-ink-primary truncate">Action Item Tracker</span>
+                      </div>
+                      <div className="p-2 rounded-lg bg-canvas-paper border border-[rgba(13,37,61,0.06)] flex items-center gap-1.5">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                        <span className="font-medium text-ink-primary truncate">Bug & Incident Radar</span>
+                      </div>
+                      <div className="p-2 rounded-lg bg-canvas-paper border border-[rgba(13,37,61,0.06)] flex items-center gap-1.5">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                        <span className="font-medium text-ink-primary truncate">Sentiment & Morale</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Channel Ingestion Target Pills */}
+                  <div className="p-3 rounded-xl bg-canvas-recessed/60 border border-[rgba(13,37,61,0.08)] space-y-1.5">
+                    <span className="text-[10px] font-mono text-ink-secondary uppercase tracking-wider block font-semibold">
+                      Ingestion Target Channels:
+                    </span>
+                    <div className="flex flex-wrap gap-1.5">
+                      {availableChannels.map((ch) => (
+                        <span key={ch} className="px-2 py-0.5 rounded text-[10px] font-mono bg-canvas-paper border border-[rgba(13,37,61,0.1)] text-ink-primary">
+                          {ch}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* TAB 2: INGESTION & RAW LOGS */}
+              {intakeTab === 'ingestion' && (
+                <div className="space-y-3 animate-fadeIn">
+                  <div className="flex items-center justify-between">
+                    <label htmlFor="chatlog-textarea" className="text-xs font-semibold text-ink-primary flex items-center gap-1.5">
+                      <MessageSquare className="w-3.5 h-3.5 text-accent-500" />
+                      <span>Chat Logs / Raw Exports</span>
+                    </label>
+                    <span className="text-[10px] font-mono text-ink-secondary tabular-nums">
+                      {chatLogText.length} chars · ~{estimateTokenCount(chatLogText)} tokens
+                    </span>
+                  </div>
+
+                  {/* Sample Presets Loader Toolbar */}
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    <span className="text-[10px] font-mono text-ink-secondary uppercase font-semibold">Load Sample:</span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const p = CHAT_DIGEST_PRESETS[0];
+                        if (p) {
+                          setActivePresetId(p.id);
+                          setChatLogText(p.sampleChatLogText);
+                          setCommunityName(p.communityName);
+                          setPlatform(p.platform);
+                          setTimeframe(p.timeframe);
+                          setResult(p.precomputedResult);
+                        }
+                      }}
+                      className="px-2 py-0.5 rounded text-[10px] font-mono bg-canvas-base border border-[rgba(13,37,61,0.12)] hover:border-accent-500 text-ink-primary hover:text-accent-600 transition-all"
+                    >
+                      Discord Dev
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const p = CHAT_DIGEST_PRESETS[1];
+                        if (p) {
+                          setActivePresetId(p.id);
+                          setChatLogText(p.sampleChatLogText);
+                          setCommunityName(p.communityName);
+                          setPlatform(p.platform);
+                          setTimeframe(p.timeframe);
+                          setResult(p.precomputedResult);
+                        }
+                      }}
+                      className="px-2 py-0.5 rounded text-[10px] font-mono bg-canvas-base border border-[rgba(13,37,61,0.12)] hover:border-accent-500 text-ink-primary hover:text-accent-600 transition-all"
+                    >
+                      Slack Incidents
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const p = CHAT_DIGEST_PRESETS[2];
+                        if (p) {
+                          setActivePresetId(p.id);
+                          setChatLogText(p.sampleChatLogText);
+                          setCommunityName(p.communityName);
+                          setPlatform(p.platform);
+                          setTimeframe(p.timeframe);
+                          setResult(p.precomputedResult);
+                        }
+                      }}
+                      className="px-2 py-0.5 rounded text-[10px] font-mono bg-canvas-base border border-[rgba(13,37,61,0.12)] hover:border-accent-500 text-ink-primary hover:text-accent-600 transition-all"
+                    >
+                      Telegram DAO
+                    </button>
+                  </div>
+
+                  {/* Dropzone (Compact) */}
+                  <div className="relative border border-dashed border-[rgba(13,37,61,0.15)] hover:border-accent-500 rounded-xl p-3 text-center bg-canvas-base/60 transition-colors">
+                    <input
+                      type="file"
+                      id="chatlog-file-upload"
+                      multiple
+                      accept=".txt,.json,.csv,.log,.md"
+                      onChange={handleFileUpload}
+                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    />
+                    <div className="flex items-center justify-center gap-2 pointer-events-none text-xs text-ink-secondary">
+                      <Upload className="w-4 h-4 text-accent-500 shrink-0" />
+                      <span>{isParsingFiles ? 'Parsing multi-channel logs...' : 'Drop Discord/Slack export dumps or paste logs below'}</span>
+                    </div>
+                  </div>
+
+                  {/* Uploaded File Chips */}
+                  {uploadedFiles.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5">
+                      {uploadedFiles.map((f, idx) => (
+                        <span
+                          key={idx}
+                          className="inline-flex items-center gap-1 text-[10px] font-mono px-2 py-0.5 rounded bg-canvas-recessed text-ink-primary border border-[rgba(13,37,61,0.1)]"
+                        >
+                          <FileText className="w-3 h-3 text-accent-500" />
+                          <span>{f.name}</span>
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Expansive Chat Log Editor */}
+                  <textarea
+                    id="chatlog-textarea"
+                    rows={12}
+                    value={chatLogText}
                     onChange={(e) => {
-                      setCommunityName(e.target.value);
+                      setChatLogText(e.target.value);
                       setActivePresetId('custom');
                     }}
-                    placeholder="e.g. Supabase Engineering Discord"
-                    className="w-full px-3 py-2 rounded-lg bg-canvas-base border border-[rgba(13,37,61,0.15)] text-ink-primary text-xs focus:outline-none focus:ring-2 focus:ring-accent-500 font-medium"
+                    placeholder="Paste multi-channel chat logs e.g. [12:30] @user (#general): Encountered a bug in..."
+                    className="w-full p-3.5 rounded-xl bg-canvas-base border border-[rgba(13,37,61,0.15)] text-ink-primary text-xs font-mono leading-relaxed focus:outline-none focus:ring-2 focus:ring-accent-500 resize-y min-h-[340px]"
                   />
-                </div>
 
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label htmlFor="platform-select" className="text-xs font-semibold text-ink-primary block mb-1">
-                      Platform Source
-                    </label>
-                    <select
-                      id="platform-select"
-                      value={platform}
-                      onChange={(e) => setPlatform(e.target.value as 'Discord' | 'Telegram' | 'Slack')}
-                      className="w-full px-3 py-1.5 rounded-lg bg-canvas-base border border-[rgba(13,37,61,0.15)] text-ink-primary text-xs font-mono focus:outline-none focus:ring-2 focus:ring-accent-500"
-                    >
-                      <option value="Discord">Discord Server</option>
-                      <option value="Telegram">Telegram Group</option>
-                      <option value="Slack">Slack Workspace</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label htmlFor="timeframe-select" className="text-xs font-semibold text-ink-primary block mb-1">
-                      Timeframe Window
-                    </label>
-                    <select
-                      id="timeframe-select"
-                      value={timeframe}
-                      onChange={(e) => setTimeframe(e.target.value as 'Last 24 Hours' | 'Past 7 Days')}
-                      className="w-full px-3 py-1.5 rounded-lg bg-canvas-base border border-[rgba(13,37,61,0.15)] text-ink-primary text-xs font-mono focus:outline-none focus:ring-2 focus:ring-accent-500"
-                    >
-                      <option value="Last 24 Hours">Last 24 Hours</option>
-                      <option value="Past 7 Days">Past 7 Days</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-
-              {/* Message Ingestion Zone */}
-              <div className="space-y-3 pt-2 border-t border-[rgba(13,37,61,0.08)]">
-                <div className="flex items-center justify-between">
-                  <label htmlFor="chatlog-textarea" className="text-xs font-semibold text-ink-primary flex items-center gap-1.5">
-                    <MessageSquare className="w-3.5 h-3.5 text-accent-500" />
-                    <span>Raw Message Transcripts</span>
-                  </label>
-                  <span className="text-[10px] font-mono text-ink-secondary">
-                    JSON / CSV / TXT / LOG
-                  </span>
-                </div>
-
-                {/* Dropzone */}
-                <div className="relative border-2 border-dashed border-[rgba(13,37,61,0.15)] hover:border-accent-500 rounded-xl p-4 text-center bg-canvas-base/60 transition-colors">
-                  <input
-                    type="file"
-                    id="chatlog-file-upload"
-                    multiple
-                    accept=".txt,.json,.csv,.log,.md"
-                    onChange={handleFileUpload}
-                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                  />
-                  <div className="flex flex-col items-center justify-center space-y-1.5 pointer-events-none">
-                    <Upload className="w-5 h-5 text-accent-500" />
-                    <span className="text-xs font-medium text-ink-primary">
-                      {isParsingFiles ? 'Parsing multi-channel logs...' : 'Drop chat exports, channel dumps, or logs'}
+                  {/* Parsing Status Bar */}
+                  <div className="flex items-center justify-between text-[11px] font-mono text-ink-secondary pt-0.5">
+                    <span className="flex items-center gap-1 text-emerald-700">
+                      <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                      <span>PII Stripped in-memory · Zero permanent logs</span>
                     </span>
-                    <span className="text-[10px] text-ink-secondary">
-                      PII stripped in-memory. Zero chat logs stored.
-                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setChatLogText('')}
+                      className="hover:text-accent-500 transition-colors"
+                    >
+                      Clear logs
+                    </button>
                   </div>
                 </div>
+              )}
 
-                {/* Uploaded File Chips */}
-                {uploadedFiles.length > 0 && (
-                  <div className="flex flex-wrap gap-1.5 pt-1">
-                    {uploadedFiles.map((f, idx) => (
-                      <span
-                        key={idx}
-                        className="inline-flex items-center gap-1 text-[10px] font-mono px-2 py-0.5 rounded bg-canvas-recessed text-ink-primary border border-[rgba(13,37,61,0.1)]"
-                      >
-                        <FileText className="w-3 h-3 text-accent-500" />
-                        <span>{f.name}</span>
+              {/* TAB 3: SIGNAL & TRIAGE KNOBS */}
+              {intakeTab === 'knobs' && (
+                <div className="space-y-3.5 animate-fadeIn">
+                  <div className="p-3.5 rounded-xl bg-canvas-base border border-[rgba(13,37,61,0.1)] space-y-2.5">
+                    <div className="flex items-center justify-between">
+                      <label htmlFor="confidence-slider" className="text-xs font-semibold text-ink-primary flex items-center gap-1.5">
+                        <Sliders className="w-3.5 h-3.5 text-accent-500" />
+                        <span>Signal Confidence Threshold</span>
+                      </label>
+                      <span className="font-mono text-xs font-bold text-accent-500 tabular-nums">
+                        {confidenceThreshold}%
                       </span>
-                    ))}
+                    </div>
+                    <input
+                      id="confidence-slider"
+                      type="range"
+                      min={50}
+                      max={95}
+                      step={5}
+                      value={confidenceThreshold}
+                      onChange={(e) => setConfidenceThreshold(Number(e.target.value))}
+                      className="w-full accent-accent-500 cursor-pointer"
+                    />
+                    <p className="text-[11px] text-ink-secondary leading-snug">
+                      Messages below this threshold are categorized as noise or chatter and excluded from topic clustering.
+                    </p>
                   </div>
-                )}
 
-                {/* Chat Log Editor */}
-                <textarea
-                  id="chatlog-textarea"
-                  rows={7}
-                  value={chatLogText}
-                  onChange={(e) => {
-                    setChatLogText(e.target.value);
-                    setActivePresetId('custom');
-                  }}
-                  placeholder="Paste multi-channel chat logs e.g. [12:30] @user: Encountered a bug in..."
-                  className="w-full p-3 rounded-lg bg-canvas-base border border-[rgba(13,37,61,0.15)] text-ink-primary text-xs font-mono leading-relaxed focus:outline-none focus:ring-2 focus:ring-accent-500 resize-y"
-                />
-              </div>
+                  <div className="p-3.5 rounded-xl bg-canvas-base border border-[rgba(13,37,61,0.1)] space-y-2.5">
+                    <label className="text-xs font-semibold text-ink-primary block">
+                      Noise Elimination Aggressiveness
+                    </label>
+                    <div className="grid grid-cols-3 gap-2">
+                      {(['Strict', 'Balanced', 'Permissive'] as const).map((mode) => (
+                        <button
+                          key={mode}
+                          type="button"
+                          onClick={() => setNoiseFilterMode(mode)}
+                          className={cn(
+                            'py-1.5 text-xs font-medium rounded-lg border transition-all active:scale-[0.97]',
+                            noiseFilterMode === mode
+                              ? 'bg-[#0D253D] text-white border-[#0D253D] font-semibold'
+                              : 'bg-canvas-paper text-ink-secondary border-[rgba(13,37,61,0.1)] hover:bg-canvas-recessed'
+                          )}
+                        >
+                          {mode}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Executive Briefing Blueprint Matrix */}
+                  <div className="p-3.5 rounded-xl bg-canvas-base border border-[rgba(13,37,61,0.08)] space-y-2 text-xs">
+                    <span className="text-[11px] font-mono text-ink-secondary uppercase font-semibold block">
+                      Briefing Synthesis Format:
+                    </span>
+                    <div className="grid grid-cols-2 gap-2 text-[11px] font-mono">
+                      <div className="p-2 rounded bg-canvas-paper border border-[rgba(13,37,61,0.06)]">
+                        <span className="text-ink-secondary block text-[10px]">Triage Depth:</span>
+                        <strong className="text-ink-primary">Executive Memo + PR Tracker</strong>
+                      </div>
+                      <div className="p-2 rounded bg-canvas-paper border border-[rgba(13,37,61,0.06)]">
+                        <span className="text-ink-secondary block text-[10px]">Sentiment Mode:</span>
+                        <strong className="text-emerald-700">Topic-by-Topic Radar</strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Ingestion Metric Badges */}
-            <div className="p-3.5 rounded-xl bg-canvas-recessed/60 border border-[rgba(13,37,61,0.08)] text-xs text-ink-secondary space-y-1.5">
+            <div className="p-3.5 rounded-xl bg-canvas-recessed/60 border border-[rgba(13,37,61,0.08)] text-xs text-ink-secondary space-y-2">
               <div className="flex items-center justify-between font-mono text-[11px]">
-                <span>Active Target Engine:</span>
+                <span className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span>Target Engine:</span>
+                </span>
                 <strong className="text-ink-primary font-semibold">Gemini 3.5 Lite (Noise Filter)</strong>
               </div>
               <div className="flex items-center justify-between font-mono text-[11px]">
                 <span>Noise Reduction Rate:</span>
-                <strong className="text-emerald-700 font-semibold">
+                <strong className="text-emerald-700 font-semibold tabular-nums">
                   {result?.spamFilteredPercentage || 0}% Spam Cleared
                 </strong>
+              </div>
+              <div className="flex items-center justify-between font-mono text-[10px] text-ink-secondary pt-1 border-t border-[rgba(13,37,61,0.06)]">
+                <span>Security Protocol:</span>
+                <span className="text-emerald-800 font-medium">PII Stripped · Ephemeral RAM</span>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Multi-Tab Intelligence Canvas (7 cols) */}
+          {/* Right Column: Multi-Tab Intelligence Stage (7 cols) */}
           <div className="lg:col-span-7 bg-canvas-base flex flex-col justify-between">
             {/* Tab Controls Header */}
             <div className="px-5 py-3 bg-canvas-paper border-b border-[rgba(13,37,61,0.08)] flex items-center justify-between gap-3 flex-wrap">
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 flex-wrap">
                 <button
                   type="button"
                   onClick={() => setActiveTab('intelligence')}
@@ -556,6 +905,20 @@ export function ChatDigestWorkbench() {
 
                 <button
                   type="button"
+                  onClick={() => setActiveTab('transcript')}
+                  className={cn(
+                    'px-3 py-1.5 rounded-lg text-xs font-semibold transition-all active:scale-[0.97] flex items-center gap-1.5',
+                    activeTab === 'transcript'
+                      ? 'bg-[#0D253D] text-white shadow-sm'
+                      : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed'
+                  )}
+                >
+                  <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+                  <span>Raw Transcript ({result?.rawMessages?.length || 0})</span>
+                </button>
+
+                <button
+                  type="button"
                   onClick={() => setActiveTab('newsletter')}
                   className={cn(
                     'px-3 py-1.5 rounded-lg text-xs font-semibold transition-all active:scale-[0.97] flex items-center gap-1.5',
@@ -565,7 +928,7 @@ export function ChatDigestWorkbench() {
                   )}
                 >
                   <Mail className="w-3.5 h-3.5 text-accent-secondary" />
-                  <span>Newsletter Draft</span>
+                  <span>Newsletter</span>
                 </button>
 
                 <button
@@ -579,7 +942,7 @@ export function ChatDigestWorkbench() {
                   )}
                 >
                   <Code2 className="w-3.5 h-3.5" />
-                  <span>JSON Spec</span>
+                  <span>JSON</span>
                 </button>
               </div>
 
@@ -620,7 +983,7 @@ export function ChatDigestWorkbench() {
             </div>
 
             {/* Results Canvas Body */}
-            <div className="p-5 md:p-6 flex-1 overflow-y-auto max-h-[640px] space-y-6">
+            <div className="p-5 md:p-6 flex-1 overflow-y-auto space-y-6">
               {/* Executive Health Overview Bento */}
               {result && (
                 <div className="p-5 rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] shadow-sm space-y-4">
@@ -633,7 +996,7 @@ export function ChatDigestWorkbench() {
                         {result.communityName}
                       </h3>
                       <p className="text-xs text-ink-secondary font-mono">
-                        {result.timeframeCovered} &bull; {result.filteredSignalMessages.toLocaleString()} signal messages from {result.totalRawMessages.toLocaleString()} ingested
+                        {result.timeframeCovered} &bull; <span className="tabular-nums font-semibold">{result.filteredSignalMessages.toLocaleString()}</span> signal messages from <span className="tabular-nums font-semibold">{result.totalRawMessages.toLocaleString()}</span> ingested
                       </p>
                     </div>
 
@@ -648,22 +1011,22 @@ export function ChatDigestWorkbench() {
                         </strong>
                       </div>
                       <div className="w-12 h-12 rounded-xl bg-[#0D253D] text-[#F9F6F0] flex flex-col items-center justify-center font-mono font-bold text-sm shadow-sm">
-                        <span>{result.sentimentScore}</span>
+                        <span className="tabular-nums">{result.sentimentScore}</span>
                         <span className="text-[8px] font-normal opacity-70">/100</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Executive Brief Prose */}
-                  <p className="text-xs text-ink-body leading-relaxed">
-                    {result.executiveBrief}
-                  </p>
+                  <div className="text-xs text-ink-body leading-relaxed">
+                    <MathText text={result.executiveBrief} />
+                  </div>
 
                   {/* Signal Ratio Bar */}
                   <div className="space-y-1.5 pt-1">
                     <div className="flex items-center justify-between text-[11px] font-mono text-ink-secondary">
-                      <span>Signal Density ({result.filteredSignalMessages} messages)</span>
-                      <span className="text-emerald-700 font-semibold">{result.spamFilteredPercentage}% Noise Filtered</span>
+                      <span>Signal Density (<span className="tabular-nums font-semibold">{result.filteredSignalMessages}</span> messages)</span>
+                      <span className="text-emerald-700 font-semibold tabular-nums">{result.spamFilteredPercentage}% Noise Filtered</span>
                     </div>
                     <div className="w-full h-2 rounded-full bg-canvas-recessed overflow-hidden">
                       <div
@@ -675,172 +1038,431 @@ export function ChatDigestWorkbench() {
                 </div>
               )}
 
+              {/* Channel Filter Pill Strip */}
+              {availableChannels.length > 1 && (
+                <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+                  <span className="text-[10px] font-mono text-ink-secondary uppercase tracking-wider flex items-center gap-1 pr-1">
+                    <Filter className="w-3 h-3" /> Filter:
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedChannelFilter('ALL')}
+                    className={cn(
+                      'px-2.5 py-1 rounded-lg text-xs font-medium font-mono transition-all active:scale-[0.97]',
+                      selectedChannelFilter === 'ALL'
+                        ? 'bg-[#0D253D] text-white shadow-xs'
+                        : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary border border-[rgba(13,37,61,0.08)]'
+                    )}
+                  >
+                    All Channels ({result?.topicClusters.length || 0})
+                  </button>
+                  {availableChannels.map((ch) => (
+                    <button
+                      key={ch}
+                      type="button"
+                      onClick={() => setSelectedChannelFilter(ch)}
+                      className={cn(
+                        'px-2.5 py-1 rounded-lg text-xs font-medium font-mono transition-all active:scale-[0.97]',
+                        selectedChannelFilter === ch
+                          ? 'bg-[#0D253D] text-white shadow-xs'
+                          : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary border border-[rgba(13,37,61,0.08)]'
+                      )}
+                    >
+                      {ch}
+                    </button>
+                  ))}
+                </div>
+              )}
+
               {/* TAB 1: TOPIC CLUSTERS */}
               {activeTab === 'intelligence' && (
                 <div className="space-y-4">
-                  {result?.topicClusters.map((cluster) => (
-                    <div
-                      key={cluster.id}
-                      className="p-5 rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.1)] shadow-sm space-y-3"
-                    >
-                      <div className="flex items-center justify-between gap-2 border-b border-[rgba(13,37,61,0.06)] pb-2.5">
-                        <div className="flex items-center gap-2">
-                          <Hash className="w-4 h-4 text-accent-500 shrink-0" />
-                          <h4 className="font-semibold text-sm text-ink-primary">
-                            {cluster.topicName}
-                          </h4>
-                        </div>
-                        <div className="flex items-center gap-2 font-mono text-[11px]">
-                          <span className="px-2 py-0.5 rounded bg-canvas-recessed text-ink-secondary">
-                            {cluster.channelOrContext}
-                          </span>
-                          <span
-                            className={cn(
-                              'px-2 py-0.5 rounded font-semibold',
-                              cluster.sentiment === 'Positive'
-                                ? 'bg-emerald-50 text-emerald-800'
-                                : cluster.sentiment === 'Negative'
-                                ? 'bg-rose-50 text-rose-800'
-                                : 'bg-amber-50 text-amber-800'
+                  {filteredTopicClusters.map((cluster) => {
+                    const isExpanded = expandedTopicIds.has(cluster.id);
+                    return (
+                      <div
+                        key={cluster.id}
+                        className="rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.1)] shadow-sm overflow-hidden transition-all"
+                      >
+                        {/* Topic Header Card */}
+                        <div
+                          onClick={() => toggleTopicExpanded(cluster.id)}
+                          className="p-5 cursor-pointer hover:bg-canvas-recessed/30 transition-colors flex items-start justify-between gap-4"
+                        >
+                          <div className="space-y-2 flex-1">
+                            <div className="flex items-center gap-2 flex-wrap">
+                              <span
+                                className={cn(
+                                  'text-[10px] font-mono font-bold px-2 py-0.5 rounded uppercase tracking-wider',
+                                  cluster.status === 'ACTIVE DEBATE'
+                                    ? 'bg-indigo-50 text-indigo-700 border border-indigo-200'
+                                    : cluster.status === 'IN PROGRESS'
+                                    ? 'bg-amber-50 text-amber-700 border border-amber-200'
+                                    : 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                                )}
+                              >
+                                {cluster.status || 'RESOLVED'}
+                              </span>
+                              <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-canvas-recessed text-ink-secondary">
+                                {cluster.channelOrContext}
+                              </span>
+                              <span className="text-[11px] font-mono text-ink-secondary tabular-nums">
+                                ~{cluster.messageCount} messages
+                              </span>
+                            </div>
+
+                            <h4 className="font-semibold text-sm text-ink-primary">
+                              {cluster.topicName}
+                            </h4>
+
+                            {cluster.impactSummary && (
+                              <p className="text-xs text-accent-600 font-medium flex items-center gap-1.5">
+                                <Sparkles className="w-3.5 h-3.5 text-accent-500 shrink-0" />
+                                <span>{cluster.impactSummary}</span>
+                              </p>
                             )}
-                          >
-                            {cluster.sentiment} ({cluster.sentimentScore}%)
-                          </span>
-                        </div>
-                      </div>
 
-                      <p className="text-xs text-ink-body leading-relaxed">
-                        {cluster.summary}
-                      </p>
+                            {/* Participant Handles Pill Strip */}
+                            {cluster.participantHandles && cluster.participantHandles.length > 0 && (
+                              <div className="flex items-center gap-1.5 pt-1 flex-wrap">
+                                <Users className="w-3 h-3 text-ink-secondary" />
+                                {cluster.participantHandles.map((handle) => (
+                                  <span key={handle} className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-canvas-base border border-[rgba(13,37,61,0.08)] text-ink-secondary">
+                                    {handle}
+                                  </span>
+                                ))}
+                              </div>
+                            )}
+                          </div>
 
-                      {/* Quotations */}
-                      {cluster.keyQuotations.length > 0 && (
-                        <div className="space-y-1.5 pt-1">
-                          <span className="text-[10px] font-mono uppercase font-bold text-accent-500 block">
-                            Direct Community Voice:
-                          </span>
-                          {cluster.keyQuotations.map((quote, qIdx) => (
-                            <blockquote
-                              key={qIdx}
-                              className="p-2.5 rounded-lg bg-canvas-recessed/50 border-l-2 border-accent-secondary text-xs text-ink-body font-mono italic leading-relaxed"
-                            >
-                              {quote}
-                            </blockquote>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {/* TAB 2: ACTION ITEMS & BUGS */}
-              {activeTab === 'actions' && (
-                <div className="space-y-4">
-                  {result?.actionItemsAndBugs.map((item) => (
-                    <div
-                      key={item.id}
-                      className="p-5 rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.1)] shadow-sm space-y-3"
-                    >
-                      <div className="flex items-start justify-between gap-3">
-                        <div className="space-y-1">
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-2 shrink-0">
                             <span
                               className={cn(
-                                'text-[10px] font-mono font-bold px-2 py-0.5 rounded uppercase',
-                                item.priority === 'Urgent'
-                                  ? 'bg-rose-100 text-rose-800 border border-rose-400'
-                                  : item.priority === 'High'
-                                  ? 'bg-amber-100 text-amber-900 border border-amber-400'
-                                  : 'bg-canvas-recessed text-ink-secondary'
+                                'px-2.5 py-1 rounded-lg text-xs font-mono font-semibold tabular-nums',
+                                cluster.sentiment === 'Positive'
+                                  ? 'bg-emerald-50 text-emerald-700'
+                                  : cluster.sentiment === 'Mixed'
+                                  ? 'bg-amber-50 text-amber-700'
+                                  : 'bg-slate-100 text-slate-700'
                               )}
                             >
-                              {item.priority} Priority
+                              {cluster.sentiment} {cluster.sentimentScore}%
                             </span>
-                            <span className="text-xs font-mono text-ink-secondary">
-                              {item.type} &bull; Reported by <strong>{item.reporterHandle}</strong>
-                            </span>
+                            <button
+                              type="button"
+                              aria-label={isExpanded ? 'Collapse topic' : 'Expand topic'}
+                              className="p-1 rounded-lg hover:bg-canvas-recessed text-ink-secondary"
+                            >
+                              {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                            </button>
                           </div>
-                          <h4 className="font-semibold text-sm text-ink-primary">
-                            {item.title}
-                          </h4>
                         </div>
-                      </div>
 
-                      <p className="text-xs text-ink-body leading-relaxed">
-                        {item.description}
-                      </p>
+                        {/* Inline Expandable Accordion Body */}
+                        {isExpanded && (
+                          <div className="px-5 pb-5 pt-2 border-t border-[rgba(13,37,61,0.06)] space-y-4 bg-canvas-paper/50 animate-fadeIn">
+                            <div className="text-xs text-ink-body leading-relaxed">
+                              <MathText text={cluster.summary} />
+                            </div>
 
-                      <div className="p-3 rounded-xl bg-canvas-recessed/70 border border-[rgba(13,37,61,0.08)] space-y-1 text-xs">
-                        <span className="font-mono text-[10px] uppercase font-bold text-accent-500 block">
-                          Recommended Engineering Triage:
-                        </span>
-                        <p className="text-ink-primary font-medium">{item.recommendedTriage}</p>
+                            {/* Member Voice Quoted Pills */}
+                            {cluster.keyQuotations.length > 0 && (
+                              <div className="space-y-2 pt-1">
+                                <span className="text-[10px] font-mono text-ink-secondary uppercase tracking-wider font-bold block">
+                                  Verified Member Voices:
+                                </span>
+                                <div className="space-y-2">
+                                  {cluster.keyQuotations.map((quote, qIdx) => {
+                                    const quoteKey = `${cluster.id}-q-${qIdx}`;
+                                    return (
+                                      <div
+                                        key={qIdx}
+                                        className="p-3 rounded-xl bg-canvas-base border border-[rgba(13,37,61,0.08)] flex items-start justify-between gap-3 text-xs text-ink-primary font-mono"
+                                      >
+                                        <div className="flex items-start gap-2 flex-1">
+                                          <div className="w-5 h-5 rounded-full bg-accent-100 text-accent-600 flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5">
+                                            {quote.charAt(1) || 'U'}
+                                          </div>
+                                          <div className="leading-relaxed">
+                                            <MathText text={quote} />
+                                          </div>
+                                        </div>
+                                        <button
+                                          type="button"
+                                          onClick={() => handleCopyQuote(quote, quoteKey)}
+                                          className="p-1 rounded hover:bg-canvas-recessed text-ink-secondary hover:text-ink-primary transition-colors shrink-0"
+                                          title="Copy Quote"
+                                        >
+                                          {copiedQuoteIdx === quoteKey ? (
+                                            <Check className="w-3.5 h-3.5 text-emerald-600" />
+                                          ) : (
+                                            <Copy className="w-3.5 h-3.5" />
+                                          )}
+                                        </button>
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        )}
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               )}
 
-              {/* TAB 3: AUTOMATED NEWSLETTER DRAFT */}
-              {activeTab === 'newsletter' && result?.formattedNewsletter && (
-                <div className="p-6 rounded-3xl bg-canvas-paper border-2 border-[rgba(13,37,61,0.12)] shadow-md space-y-5">
-                  <div className="border-b border-[rgba(13,37,61,0.08)] pb-3">
-                    <span className="font-mono text-[10px] uppercase font-bold text-accent-500 block">
-                      EMAIL NEWSLETTER DISPATCH
+              {/* TAB 2: ACTION ITEMS & BUG TRACKER KANBAN */}
+              {activeTab === 'actions' && (
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between text-xs text-ink-secondary font-mono pb-1 border-b border-[rgba(13,37,61,0.08)]">
+                    <span>
+                      Total Tracked: <strong className="text-ink-primary tabular-nums">{result?.actionItemsAndBugs.length || 0}</strong>
                     </span>
-                    <h3 className="font-display text-2xl text-ink-primary font-normal mt-1">
+                    <span>
+                      Completed: <strong className="text-emerald-700 tabular-nums">{completedActionIds.size}</strong>
+                    </span>
+                  </div>
+
+                  {result?.actionItemsAndBugs.map((item) => {
+                    const isCompleted = completedActionIds.has(item.id);
+                    const webhookFeedback = dispatchedWebhooks[item.id];
+                    return (
+                      <div
+                        key={item.id}
+                        className={cn(
+                          'p-5 rounded-2xl bg-canvas-paper border transition-all space-y-3.5 shadow-sm',
+                          isCompleted
+                            ? 'border-emerald-500/30 bg-emerald-50/10 opacity-80'
+                            : 'border-[rgba(13,37,61,0.12)]'
+                        )}
+                      >
+                        <div className="flex items-start justify-between gap-3 flex-wrap">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <button
+                              type="button"
+                              onClick={() => toggleActionCompleted(item.id)}
+                              className={cn(
+                                'w-5 h-5 rounded flex items-center justify-center transition-colors border',
+                                isCompleted
+                                  ? 'bg-emerald-600 border-emerald-600 text-white'
+                                  : 'border-[rgba(13,37,61,0.2)] hover:border-emerald-500 bg-canvas-base'
+                              )}
+                              title={isCompleted ? 'Mark as Open' : 'Mark as Completed'}
+                            >
+                              {isCompleted && <Check className="w-3.5 h-3.5" />}
+                            </button>
+
+                            <span
+                              className={cn(
+                                'text-[10px] font-mono font-bold px-2 py-0.5 rounded uppercase tracking-wider',
+                                item.priorityCode === 'P0' || item.priority === 'Urgent'
+                                  ? 'bg-accent-50 text-accent-600 border border-accent-200'
+                                  : item.priorityCode === 'P1' || item.priority === 'High'
+                                  ? 'bg-orange-50 text-orange-700 border border-orange-200'
+                                  : 'bg-amber-50 text-amber-700 border border-amber-200'
+                              )}
+                            >
+                              {item.priorityCode || item.priority}
+                            </span>
+
+                            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-canvas-recessed text-ink-secondary">
+                              {item.type}
+                            </span>
+
+                            {item.sourceMessageRef && (
+                              <span className="text-[10px] font-mono text-ink-secondary">
+                                Ref: {item.sourceMessageRef}
+                              </span>
+                            )}
+                          </div>
+
+                          {/* Assignee Pill */}
+                          {item.assignee && (
+                            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-canvas-base border border-[rgba(13,37,61,0.08)]">
+                              <div className="w-4 h-4 rounded-full bg-[#0D253D] text-[#F9F6F0] flex items-center justify-center font-bold text-[9px]">
+                                {item.assignee.name.charAt(0)}
+                              </div>
+                              <span className="text-xs font-medium text-ink-primary">
+                                {item.assignee.name}
+                              </span>
+                              <span className="text-[10px] font-mono text-ink-secondary">
+                                ({item.assignee.role || item.assignee.handle})
+                              </span>
+                            </div>
+                          )}
+                        </div>
+
+                        <div className="space-y-1">
+                          <h4
+                            className={cn(
+                              'font-semibold text-sm text-ink-primary',
+                              isCompleted && 'line-through text-ink-secondary'
+                            )}
+                          >
+                            {item.title}
+                          </h4>
+                          <p className="text-xs text-ink-body leading-relaxed">
+                            {item.description}
+                          </p>
+                        </div>
+
+                        {/* Triage & Simulated Webhook Strip */}
+                        <div className="pt-2 border-t border-[rgba(13,37,61,0.06)] flex items-center justify-between gap-3 flex-wrap">
+                          <div className="text-xs font-mono text-ink-secondary flex-1">
+                            <span className="font-semibold text-ink-primary">Triage Action:</span> {item.recommendedTriage}
+                          </div>
+
+                          <div className="flex items-center gap-2">
+                            {webhookFeedback ? (
+                              <span className="text-xs font-mono font-bold text-emerald-700 animate-fadeIn">
+                                {webhookFeedback}
+                              </span>
+                            ) : (
+                              <>
+                                <button
+                                  type="button"
+                                  onClick={() => handleSimulateWebhook(item.id, item.targetIntegration || 'Slack')}
+                                  className="px-2.5 py-1 rounded-lg text-xs font-medium font-mono bg-canvas-base border border-[rgba(13,37,61,0.15)] hover:border-accent-500 text-ink-primary hover:text-accent-500 transition-colors active:scale-[0.97] flex items-center gap-1"
+                                >
+                                  <Send className="w-3 h-3 text-accent-500" />
+                                  <span>Push to {item.targetIntegration || 'Linear'}</span>
+                                </button>
+                              </>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+
+              {/* TAB 3: RAW TRANSCRIPT INSPECTOR */}
+              {activeTab === 'transcript' && (
+                <div className="space-y-3">
+                  <div className="p-3.5 rounded-xl bg-canvas-paper border border-[rgba(13,37,61,0.08)] flex items-center justify-between text-xs font-mono text-ink-secondary">
+                    <span>
+                      Ingested Messages: <strong className="text-ink-primary tabular-nums">{filteredRawMessages.length}</strong>
+                    </span>
+                    <span className="flex items-center gap-2">
+                      <span className="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500" /> Signal
+                      <span className="inline-block w-2.5 h-2.5 rounded-full bg-slate-300 ml-2" /> Filtered Noise
+                    </span>
+                  </div>
+
+                  <div className="space-y-2">
+                    {filteredRawMessages.map((msg) => (
+                      <div
+                        key={msg.id}
+                        className={cn(
+                          'p-3.5 rounded-xl border transition-all text-xs font-mono space-y-1.5',
+                          msg.isSignal
+                            ? 'bg-canvas-paper border-emerald-500/30'
+                            : 'bg-canvas-recessed/40 border-transparent opacity-60'
+                        )}
+                      >
+                        <div className="flex items-center justify-between gap-2 flex-wrap text-[11px]">
+                          <div className="flex items-center gap-2">
+                            <span className="text-ink-secondary">[{msg.timestamp}]</span>
+                            <strong className="text-ink-primary font-semibold">{msg.author}</strong>
+                            <span className="px-1.5 py-0.5 rounded bg-canvas-base text-ink-secondary text-[10px]">
+                              {msg.channel}
+                            </span>
+                          </div>
+
+                          <div className="flex items-center gap-1.5">
+                            {msg.category && (
+                              <span className="px-1.5 py-0.5 rounded bg-canvas-recessed text-ink-secondary text-[10px]">
+                                {msg.category}
+                              </span>
+                            )}
+                            <span
+                              className={cn(
+                                'px-2 py-0.5 rounded text-[10px] font-bold tabular-nums',
+                                msg.isSignal
+                                  ? 'bg-emerald-50 text-emerald-700'
+                                  : 'bg-slate-100 text-slate-500'
+                              )}
+                            >
+                              {msg.isSignal ? `Signal ${msg.signalConfidence}%` : 'Noise'}
+                            </span>
+                          </div>
+                        </div>
+                        <p className="text-ink-body font-sans text-xs leading-relaxed">
+                          {msg.content}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* TAB 4: FORMATTED NEWSLETTER DRAFT */}
+              {activeTab === 'newsletter' && result && (
+                <div className="p-6 rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] shadow-sm space-y-5">
+                  <div className="border-b border-[rgba(13,37,61,0.08)] pb-4">
+                    <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-accent-50 text-accent-500 uppercase tracking-wider">
+                      NEWSLETTER BROADCAST READY
+                    </span>
+                    <h3 className="font-display text-2xl text-ink-primary font-normal mt-2 leading-tight">
                       {result.formattedNewsletter.headline}
                     </h3>
                   </div>
 
-                  <p className="text-xs text-ink-body leading-relaxed">
+                  <p className="text-sm text-ink-body leading-relaxed">
                     {result.formattedNewsletter.introParagraph}
                   </p>
 
-                  <div className="p-4 rounded-2xl bg-canvas-recessed/60 border border-[rgba(13,37,61,0.08)] space-y-2">
-                    <span className="font-mono text-xs font-bold text-ink-primary block">
-                      Spotlight Story
-                    </span>
+                  <div className="p-4 rounded-xl bg-canvas-recessed/60 border border-[rgba(13,37,61,0.08)] space-y-2">
+                    <h4 className="font-semibold text-xs text-ink-primary uppercase tracking-wider font-mono">
+                      Community Spotlight
+                    </h4>
                     <p className="text-xs text-ink-body leading-relaxed">
                       {result.formattedNewsletter.spotlightSection}
                     </p>
                   </div>
 
-                  {/* Shoutouts */}
                   <div className="space-y-2">
-                    <span className="text-xs font-semibold text-ink-primary block">
-                      Community Member Shoutouts:
-                    </span>
-                    {result.formattedNewsletter.communityShoutouts.map((shoutout, sIdx) => (
-                      <div key={sIdx} className="flex items-center gap-2 text-xs text-ink-body">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                        <span>{shoutout}</span>
-                      </div>
-                    ))}
+                    <h4 className="font-semibold text-xs text-ink-primary uppercase tracking-wider font-mono">
+                      Community Shoutouts
+                    </h4>
+                    <ul className="space-y-1.5">
+                      {result.formattedNewsletter.communityShoutouts.map((s, idx) => (
+                        <li key={idx} className="text-xs text-ink-body flex items-start gap-2">
+                          <span className="text-accent-500 font-bold">&bull;</span>
+                          <span>{s}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
 
-                  <div className="pt-3 border-t border-[rgba(13,37,61,0.06)] text-xs text-ink-secondary font-mono">
-                    <strong>Closing Action:</strong> {result.formattedNewsletter.closingCallToAction}
+                  <div className="p-4 rounded-xl bg-[#0D253D] text-[#F9F6F0] space-y-1">
+                    <span className="text-[10px] font-mono uppercase tracking-wider opacity-70">
+                      Call to Action
+                    </span>
+                    <p className="text-xs font-medium">
+                      {result.formattedNewsletter.closingCallToAction}
+                    </p>
                   </div>
                 </div>
               )}
 
-              {/* TAB 4: RAW JSON SPEC */}
-              {activeTab === 'json' && (
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between text-xs text-ink-secondary font-mono">
-                    <span>STRUCTURED CHAT INTELLIGENCE PAYLOAD</span>
+              {/* TAB 5: JSON SPEC */}
+              {activeTab === 'json' && result && (
+                <div className="relative rounded-xl overflow-hidden border border-[rgba(13,37,61,0.15)] bg-[#07131F]">
+                  <div className="p-3 bg-[#0D253D] border-b border-[rgba(255,255,255,0.08)] flex items-center justify-between text-xs text-[#F9F6F0]/70 font-mono">
+                    <span>community_chat_digest.json</span>
                     <button
                       type="button"
                       onClick={handleCopyJson}
-                      className="text-accent-500 hover:underline flex items-center gap-1 font-semibold"
+                      className="px-2 py-1 rounded bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.2)] text-white text-[11px] transition-colors"
                     >
-                      <Copy className="w-3.5 h-3.5" />
-                      <span>{copiedFormat === 'json' ? 'Copied!' : 'Copy JSON'}</span>
+                      {copiedFormat === 'json' ? 'Copied!' : 'Copy'}
                     </button>
                   </div>
-                  <pre className="p-4 rounded-xl bg-[#0D253D] text-[#F9F6F0] font-mono text-[11px] leading-relaxed overflow-x-auto max-h-[460px] border border-[rgba(255,255,255,0.1)] selection:bg-accent-500">
+                  <pre className="p-4 text-xs font-mono text-[#4ADE80] overflow-x-auto max-h-[500px] leading-relaxed scrollbar-none">
                     {JSON.stringify(result, null, 2)}
                   </pre>
                 </div>
@@ -850,6 +1472,7 @@ export function ChatDigestWorkbench() {
         </div>
       </ToolShell>
 
+      {/* BYOK Modal */}
       <ApiKeyModal
         isOpen={isByokModalOpen}
         onClose={() => setIsByokModalOpen(false)}

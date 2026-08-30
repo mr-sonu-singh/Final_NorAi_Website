@@ -111,7 +111,7 @@ export function estimateTokenCount(text: string): number {
 }
 
 /**
- * Calculates estimated API cost for Gemini 2.5 Flash / 1.5 Flash.
+ * Calculates estimated API cost for Gemini 3.5 Lite / 1.5 Flash.
  * Pricing reference: ~$0.075 per 1M input tokens, ~$0.30 per 1M output tokens.
  */
 export function estimateApiCost(inputTokens: number, outputTokens: number): number {

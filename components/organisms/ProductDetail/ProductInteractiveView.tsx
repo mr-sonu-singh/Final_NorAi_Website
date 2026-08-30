@@ -14,6 +14,8 @@ import {
   Layers,
 } from 'lucide-react';
 
+import { motion } from 'framer-motion';
+
 const WorkbenchSkeleton = () => (
   <div className="w-full min-h-[640px] rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] p-12 flex flex-col items-center justify-center space-y-4 shadow-sm" aria-busy="true" aria-live="polite">
     <div className="w-12 h-12 rounded-xl bg-accent-50 text-accent-500 flex items-center justify-center shadow-xs">
@@ -86,20 +88,37 @@ export function ProductInteractiveView({
   );
 
   return (
-    <div className="w-full space-y-10">
+    <div className="w-full space-y-8">
       {/* Mode Switcher Tabs */}
       <div className="flex items-center justify-center">
-        <div className="inline-flex p-1.5 rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] shadow-sm">
+        <div
+          role="tablist"
+          aria-label="Product Studio View Modes"
+          className="relative inline-flex p-1.5 rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] shadow-xs"
+        >
           <button
+            id="tab-workbench"
+            role="tab"
+            aria-selected={viewMode === 'workbench'}
+            aria-controls="panel-workbench"
             type="button"
             onClick={() => setViewMode('workbench')}
             className={cn(
-              'flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold transition-all',
+              'relative z-10 flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold transition-colors duration-150 cursor-pointer outline-none active:scale-[0.97]',
+              'focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-page',
               viewMode === 'workbench'
-                ? 'bg-[#0D253D] text-white shadow-sm'
-                : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed'
+                ? 'text-white font-bold'
+                : 'text-ink-secondary hover:text-ink-primary'
             )}
           >
+            {viewMode === 'workbench' && (
+              <motion.span
+                layoutId="activeInteractiveTabIndicator"
+                className="absolute inset-0 bg-[#0D253D] rounded-xl -z-10 shadow-sm"
+                transition={{ type: 'spring', stiffness: 500, damping: 38 }}
+                aria-hidden="true"
+              />
+            )}
             <Sparkles className="w-4 h-4 text-accent-500" />
             <span>Live Interactive Workbench</span>
             {isToolLive && (
@@ -108,15 +127,28 @@ export function ProductInteractiveView({
           </button>
 
           <button
+            id="tab-specs"
+            role="tab"
+            aria-selected={viewMode === 'specs'}
+            aria-controls="panel-specs"
             type="button"
             onClick={() => setViewMode('specs')}
             className={cn(
-              'flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold transition-all',
+              'relative z-10 flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-semibold transition-colors duration-150 cursor-pointer outline-none active:scale-[0.97]',
+              'focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-page',
               viewMode === 'specs'
-                ? 'bg-[#0D253D] text-white shadow-sm'
-                : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed'
+                ? 'text-white font-bold'
+                : 'text-ink-secondary hover:text-ink-primary'
             )}
           >
+            {viewMode === 'specs' && (
+              <motion.span
+                layoutId="activeInteractiveTabIndicator"
+                className="absolute inset-0 bg-[#0D253D] rounded-xl -z-10 shadow-sm"
+                transition={{ type: 'spring', stiffness: 500, damping: 38 }}
+                aria-hidden="true"
+              />
+            )}
             <BookOpen className="w-4 h-4 text-accent-secondary" />
             <span>Specifications & Narrative</span>
           </button>
@@ -125,7 +157,12 @@ export function ProductInteractiveView({
 
       {/* VIEW 1: LIVE WORKBENCH */}
       {viewMode === 'workbench' && (
-        <div className="w-full animate-fadeIn">
+        <div
+          id="panel-workbench"
+          role="tabpanel"
+          aria-labelledby="tab-workbench"
+          className="w-full animate-fadeIn"
+        >
           {isResumeShortlister ? (
             <ResumeShortlisterWorkbench />
           ) : isCourseNoteTaker ? (
@@ -156,7 +193,7 @@ export function ProductInteractiveView({
               <div className="p-4 rounded-xl bg-canvas-recessed/60 border border-[rgba(13,37,61,0.08)] max-w-md mx-auto text-xs text-left font-mono space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-ink-secondary">Engine Target:</span>
-                  <span className="text-ink-primary font-semibold">Gemini 2.5 Flash High-Context</span>
+                  <span className="text-ink-primary font-semibold">Gemini 3.5 Lite High-Context</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-ink-secondary">Data Policy:</span>
@@ -193,7 +230,12 @@ export function ProductInteractiveView({
 
       {/* VIEW 2: EDITORIAL SPECIFICATIONS & NARRATIVE */}
       {viewMode === 'specs' && (
-        <div className="w-full space-y-16 animate-fadeIn">
+        <div
+          id="panel-specs"
+          role="tabpanel"
+          aria-labelledby="tab-specs"
+          className="w-full space-y-16 animate-fadeIn"
+        >
           {/* Problem vs Solution Story */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             {/* Left Narrative */}
@@ -235,7 +277,7 @@ export function ProductInteractiveView({
               <div className="space-y-3 font-sans text-xs">
                 <div className="flex items-center justify-between p-3 rounded-lg bg-canvas-recessed/60">
                   <span className="text-ink-secondary">Inference Model</span>
-                  <span className="font-mono text-ink-primary font-medium">Gemini 2.5 Flash (1M ctx)</span>
+                  <span className="font-mono text-ink-primary font-medium">Gemini 3.5 Lite (1M ctx)</span>
                 </div>
                 <div className="flex items-center justify-between p-3 rounded-lg bg-canvas-recessed/60">
                   <span className="text-ink-secondary">Processing Mode</span>

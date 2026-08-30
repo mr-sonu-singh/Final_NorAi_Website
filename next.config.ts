@@ -53,6 +53,7 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   typedRoutes: true,
+  transpilePackages: ['lucide-react'],
 
   images: {
     unoptimized: true,

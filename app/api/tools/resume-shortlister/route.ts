@@ -68,13 +68,13 @@ export async function POST(req: NextRequest) {
     const requestedModel =
       (body.preferredModel as string) ||
       process.env.GEMINI_MODEL ||
-      'gemini-2.5-flash';
+      'gemini-3.5-lite';
 
     // Map common aliases to canonical Gemini API model names
     const resolveModelName = (name: string): string => {
       const lower = name.toLowerCase().trim();
       if (lower === 'gemini-3.5-lite' || lower === 'gemini-3.1-lite' || lower === '3.5-lite') {
-        return 'gemini-2.5-flash-lite';
+        return 'gemini-1.5-flash';
       }
       return name;
     };

@@ -77,7 +77,7 @@ export async function POST(req: NextRequest) {
         lower === 'gemini-3.1-lite' ||
         lower === '3.5-lite'
       ) {
-        return 'gemini-2.5-flash-lite';
+        return 'gemini-1.5-flash';
       }
       return name;
     };

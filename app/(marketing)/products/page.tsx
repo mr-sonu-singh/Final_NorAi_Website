@@ -57,7 +57,7 @@ export default function ProductsPage() {
 
       {/* Live Interactive Product Studio Canvas */}
       <section className="py-16 md:py-24 bg-canvas-base border-b border-[rgba(13,37,61,0.08)]">
-        <Container size="default">
+        <Container size="wide">
           <ProductStudio />
         </Container>
       </section>

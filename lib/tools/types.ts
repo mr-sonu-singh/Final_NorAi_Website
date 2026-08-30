@@ -51,9 +51,8 @@ export interface ByokSettings {
   apiKey: string;
   preferredModel:
     | 'gemini-3.5-lite'
-    | 'gemini-2.5-flash'
-    | 'gemini-2.5-flash-lite'
-    | 'gemini-1.5-flash';
+    | 'gemini-1.5-flash'
+    | 'gemini-1.5-pro';
 }
 
 export interface ShortlistPreset {
@@ -123,6 +122,10 @@ export interface CourseNotesPreset {
 }
 
 // Community Chat Digest Interfaces
+export type TopicStatus = 'RESOLVED' | 'IN PROGRESS' | 'ACTIVE DEBATE';
+export type ActionPriorityCode = 'P0' | 'P1' | 'P2' | 'P3';
+export type ActionItemStatus = 'Open' | 'In Progress' | 'Completed';
+
 export interface TopicCluster {
   id: string;
   topicName: string;
@@ -132,16 +135,42 @@ export interface TopicCluster {
   sentimentScore: number; // 0 to 100
   summary: string;
   keyQuotations: string[];
+  status?: TopicStatus;
+  channelTags?: string[];
+  participantHandles?: string[];
+  impactSummary?: string;
+}
+
+export interface ActionAssignee {
+  name: string;
+  handle: string;
+  role?: string;
 }
 
 export interface ActionItemOrBug {
   id: string;
   type: 'Bug Report' | 'Feature Request' | 'Question' | 'Community Action';
   priority: 'Urgent' | 'High' | 'Medium' | 'Low';
+  priorityCode?: ActionPriorityCode;
   title: string;
   description: string;
   reporterHandle: string;
   recommendedTriage: string;
+  status?: ActionItemStatus;
+  assignee?: ActionAssignee;
+  sourceMessageRef?: string;
+  targetIntegration?: 'Slack' | 'Linear' | 'GitHub' | 'Notion';
+}
+
+export interface RawChatMessage {
+  id: string;
+  timestamp: string;
+  author: string;
+  channel: string;
+  content: string;
+  isSignal: boolean;
+  signalConfidence: number; // 0 to 100
+  category?: 'Bug' | 'Announcement' | 'Feature' | 'Question' | 'Spam' | 'General';
 }
 
 export interface CommunityChatResult {
@@ -155,6 +184,8 @@ export interface CommunityChatResult {
   executiveBrief: string;
   topicClusters: TopicCluster[];
   actionItemsAndBugs: ActionItemOrBug[];
+  rawMessages?: RawChatMessage[];
+  activeChannels?: string[];
   formattedNewsletter: {
     headline: string;
     introParagraph: string;
@@ -181,24 +212,48 @@ export interface GazetteAlertCard {
   title: string;
   hindiTitle: string;
   departmentOrMinistry: string;
-  category: 'Govt Employment' | 'Public Policy' | 'Civic Notice' | 'Industrial Incentive';
+  hindiDepartmentOrMinistry?: string;
+  category: 'Govt Employment' | 'Public Policy' | 'Civic Notice' | 'Industrial Incentive' | 'Govt Recruitment & Jobs' | 'Infrastructure & Smart City' | 'Education & Scholarships';
   urgencyLevel: 'Critical Deadline' | 'Active Window' | 'Upcoming Notification';
   deadlineDate: string;
+  hindiDeadlineDate?: string;
   daysRemaining: number;
   vacanciesOrScope: string;
+  hindiVacanciesOrScope?: string;
   salaryBandOrBudget: string;
+  hindiSalaryBandOrBudget?: string;
   eligibilitySnippet: string;
+  hindiEligibilitySnippet?: string;
   officialPortalUrl: string;
   verifiedSourceRef: string;
+  officialSealReference?: string;
+  verificationSealNumber?: string;
+  isVerifiedOfficial?: boolean;
+  antiRumorNote?: string;
+  hindiAntiRumorNote?: string;
+  minAge?: number;
+  maxAge?: number;
+  requiredDegrees?: string[];
+  categoryRelaxations?: Record<string, number>;
+  feeStructure?: Record<string, string>;
+  hindiFeeStructure?: Record<string, string>;
+  applicationStartDate?: string;
+  portalName?: string;
 }
 
 export interface EligibilityMatrixRow {
   postOrNotification: string;
+  hindiPostOrNotification?: string;
   ageCriteria: string;
+  hindiAgeCriteria?: string;
   qualification: string;
+  hindiQualification?: string;
   reservationQuotas: string;
+  hindiReservationQuotas?: string;
   applicationFee: string;
+  hindiApplicationFee?: string;
   selectionProcess: string;
+  hindiSelectionProcess?: string;
 }
 
 export interface DainikNewsResult {
@@ -225,3 +280,4 @@ export interface DainikNewsPreset {
   sampleGazetteText: string;
   precomputedResult: DainikNewsResult;
 }
+

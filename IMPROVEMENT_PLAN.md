@@ -23,6 +23,11 @@
 | 10 | Security Headers & Hardening | 🟢 Medium | ~3 files | `[x]` |
 | 11 | Test Suite Foundation | 🟢 Low | ~8 files (new) | `[x]` |
 | 12 | Conversion & Content Optimization | 🔵 Low | ~4 files | `[x]` |
+| 13 | Webtool Shell & Studio Architecture Overhaul | 🔴 Critical | ~4 files | `[x]` |
+| 14 | AI Resume Shortlister — Standout Studio Upgrade | 🟡 High | ~2 files | `[x]` |
+| 15 | Course Note-Taker & Study Engine Upgrade | 🟡 High | ~2 files | `[x]` |
+| 16 | Community Chat Digest & Signal Engine Upgrade | 🟡 High | ~2 files | `[x]` |
+| 17 | Smart Dainik News & Gazette Engine Upgrade | 🟡 High | ~2 files | `[x]` |
 
 ---
 
@@ -629,6 +634,237 @@ Skills to use: landing-page-design, design-taste-frontend
 
 ---
 
+## SESSION 13 — Webtool Shell & Studio Architecture Overhaul
+
+### Context
+Currently, all 4 webtools are wrapped inside `ToolShell.tsx` using a faux macOS window metaphor (colored window dots, nested sunken backgrounds, and dual-column vertical splits). This creates a claustrophobic "box-in-a-box" feeling with nested scrollbars and cognitive overload. Modern benchmarks (Linear, Raycast, Vercel, Emil Kowalski) show that production AI tools should feel like expansive, living studios with floating command docks, progressive disclosure, and edge-to-edge canvas layouts.
+
+### Prompt to Paste in New Thread
+```
+Read PRODUCT.md, DESIGN.md, and AGENTS.md for project tokens and standards.
+Read emil-design-eng skill for animation decisions and micro-interactions.
+
+Overhaul the core Webtool Shell and Studio Architecture across:
+- components/organisms/tools/ToolShell.tsx
+- components/organisms/ProductStudio/ProductStudio.tsx
+- components/organisms/ProductDetail/ProductInteractiveView.tsx
+
+Tasks:
+1. Modernize ToolShell.tsx:
+   - Strip out faux macOS colored window dots and enclosed box styling.
+   - Introduce a Floating Studio Command Bar: Sleek pill header with tool identity, category pill, active preset switcher, live telemetry dials (latency ms + token count in tabular-nums), and BYOK key trigger.
+   - Implement Progressive Disclosure (2-Phase Engine):
+     * Phase A: Ingestion Bar (spacious textareas, dropzones, and preset chips).
+     * Phase B: Collapsible Ingestion Strip with "Edit Inputs" toggle when viewing results, giving 100% widescreen width to the output stage.
+   - Remove nested scrollbars: use min-h-[220px] on editors and ensure outer container auto-expands cleanly.
+2. Upgrade ProductStudio.tsx:
+   - Refactor the 4-card command dock to support smooth keyboard navigation (1-4 keys), active indicator pill with Framer Motion layoutId transition, and spring micro-lift.
+   - Enhance the JSON Schema contract inspector with syntax highlighting and copy-to-clipboard feedback.
+3. Update ProductInteractiveView.tsx:
+   - Ensure seamless toggle between "Live Interactive Workbench" and "Specifications & Narrative".
+   - Ensure container-wide widescreen scaling (--container-wide: 1380px) across all viewports.
+4. Verify with: npx tsc --noEmit && npm run build
+
+PRIMARY skill: emil-design-eng
+SECONDARY skill: norai-frontend-standards
+```
+
+### Files Involved
+- `components/organisms/tools/ToolShell.tsx` — Modernize shell & command strip
+- `components/organisms/ProductStudio/ProductStudio.tsx` — Studio stage & keyboard navigation
+- `components/organisms/ProductDetail/ProductInteractiveView.tsx` — Stage wrapper
+- `lib/tools/types.ts` — Common tool state interfaces
+
+### Acceptance Criteria
+- [x] Faux macOS window dots and cramped window borders removed
+- [x] Floating command strip with live telemetry readouts and hotkeys (1-4)
+- [x] Progressive disclosure / collapsible ingestion strip implemented
+- [x] Zero nested scrollbars in intake and output views
+- [x] `npx tsc --noEmit` and `npm run build` pass cleanly
+
+---
+
+## SESSION 14 — AI Resume Shortlister: Standout Studio Upgrade
+
+### Context
+Inspired by modern talent intelligence platforms like Ashby and Metaview, the Resume Shortlister needs to move beyond simple score displays to an interactive evaluation matrix. Recruiters need real-time threshold filtering, multi-candidate comparative radar bars, verified evidence quotes from resumes, and numbered interview probing questions.
+
+### Prompt to Paste in New Thread
+```
+Read PRODUCT.md Section 3A and DESIGN.md Section 8 for Resume Shortlister requirements.
+Read emil-design-eng for micro-interactions and tactile active states.
+
+Upgrade the AI Resume Shortlister workbench at:
+- components/organisms/tools/ResumeShortlisterWorkbench.tsx
+
+Tasks:
+1. Candidate Switcher Strip & Qualification Threshold:
+   - Top 1-click candidate switcher pills: [#1 Aditya Verma 96%] [#2 Neha Kulkarni 84%] [#3 Rohit Sen 71%] with score badges and rank indicators.
+   - Interactive Qualification Threshold range slider (≥60% to ≥95%) that dynamically filters and categorizes candidates into Tier 1 (Recommended), Tier 2 (Consider), and Tier 3 (Reject).
+2. Multi-Candidate Grouped Comparative Matrix:
+   - Side-by-side competency dimension bars (Distributed Systems, Concurrency, API Architecture, Database Optimization) with color-coded progress bars (Emerald ≥90%, Terracotta ≥75%, Slate <75%).
+3. Bento Grid Candidate Profile Scorecard:
+   - Hero Profile Banner (Candidate name, role, experience, score dial, executive recommendation).
+   - 2-Column Evaluation: Verified Strengths with direct resume source citations vs Missing Requirements / Risk Flags.
+   - Numbered Technical Probing Questions: 3 high-impact behavioral & technical questions (01, 02, 03) tailored to candidate gaps.
+4. Export Suite: Instant export to ATS JSON scorecard, Markdown brief, and CSV table.
+5. Verify with: npx tsc --noEmit && npm run build
+
+PRIMARY skill: emil-design-eng
+SECONDARY skill: norai-frontend-standards
+```
+
+### Files Involved
+- `components/organisms/tools/ResumeShortlisterWorkbench.tsx` — Full studio overhaul
+- `lib/tools/presets.ts` — Enhanced multi-candidate mock datasets
+
+### Acceptance Criteria
+- [x] 1-click candidate switcher pill strip with score dials
+- [x] Real-time qualification threshold slider dynamically filters applicant pool
+- [x] Comparative competency matrix with color-coded progress bars
+- [x] Bento scorecard with verified citations and numbered interview questions
+- [x] Full export suite (JSON, Markdown, CSV) working with copy feedback
+- [x] `npx tsc --noEmit` and `npm run build` pass cleanly
+
+---
+
+## SESSION 15 — Course Note-Taker & Cognitive Study Studio Upgrade
+
+### Context
+Inspired by NotebookLM, Granola, and RemNote, the Course Note-Taker should be a comprehensive cognitive study engine. Students and knowledge workers need more than static text: they need an interactive lecture waveform scrubber linked to chapter notes, rendered LaTeX math equations, an interactive 3D Anki flashcard deck with spaced repetition scoring, and a concept verification quiz.
+
+### Prompt to Paste in New Thread
+```
+Read PRODUCT.md Section 3A and DESIGN.md Section 8 for Course Note-Taker requirements.
+Read emil-design-eng for 3D flip card interactions and spring animation curves.
+
+Upgrade the Course Note-Taker workbench at:
+- components/organisms/tools/CourseNoteTakerWorkbench.tsx
+
+Tasks:
+1. Lecture Audio Waveform Scrubber:
+   - Interactive waveform bar visualizer with clickable timestamp chapters (e.g., [00:00] Intro, [08:30] Raft 3 Node States, [18:32] Log Replication).
+   - Clicking a timestamp scrubs the player and highlights the corresponding chapter in the notes canvas.
+2. Chapterized Executive Study Canvas:
+   - Rendered LaTeX math equations and core invariant axioms (e.g., \text{Quorum} = \lfloor N/2 \rfloor + 1).
+   - Clean chapter cards with key takeaways, formula breakdowns, and source timestamps.
+3. Interactive 3D Study Flashcard Deck:
+   - 3D card flip animation on click or Spacebar with spring physics.
+   - Spaced repetition rating buttons: [Again (1d)], [Good (3d)], [Easy (7d)] tracking mastered cards.
+   - 1-click export to Anki-compatible CSV and Obsidian Markdown.
+4. Active Recall Quiz & Concept Verifier:
+   - Multiple-choice questions with instant feedback, option selection highlight, and detailed pedagogical explanations on submit.
+5. Verify with: npx tsc --noEmit && npm run build
+
+PRIMARY skill: emil-design-eng
+SECONDARY skill: norai-frontend-standards
+```
+
+### Files Involved
+- `components/organisms/tools/CourseNoteTakerWorkbench.tsx` — Full study engine upgrade
+- `lib/tools/presets.ts` — Rich multi-chapter lecture datasets with LaTeX formulas
+
+### Acceptance Criteria
+- [x] Interactive waveform scrubber with clickable chapter sync
+- [x] Chapterized notes with rendered LaTeX formulas and axioms
+- [x] 3D flip flashcard studio with spaced repetition mastery tracking
+- [x] Interactive concept quiz with live grading and rationale explanations
+- [x] 1-click Anki CSV, Markdown, and JSON export suite
+- [x] `npx tsc --noEmit` and `npm run build` pass cleanly
+
+---
+
+## SESSION 16 — Community Chat Digest & Signal Engine Upgrade
+
+### Context
+Inspired by Slack AI Recaps, Discord Conversation Summaries, and Linear Insights, the Community Chat Digest must transform high-volume unread chat firehoses (Discord, Slack, Telegram) into actionable intelligence. Community admins need noise filtering metrics, clustered discussion cards with quoted member voices, and checkable action item kanbans.
+
+### Prompt to Paste in New Thread
+```
+Read PRODUCT.md Section 3A and DESIGN.md Section 8 for Community Chat Digest requirements.
+Read emil-design-eng for tactile action item toggles and micro-animations.
+
+Upgrade the Community Chat Digest workbench at:
+- components/organisms/tools/ChatDigestWorkbench.tsx
+
+Tasks:
+1. Signal-to-Noise Density Header & Sentiment Radar:
+   - Visual signal density meter (e.g., 77.7% Noise Filtered, 412 signal messages extracted from 1,850 raw chats).
+   - Community Sentiment Dial (e.g., 91/100 Bullish/Enthusiastic).
+   - Channel & Timeframe Filter Dock (#engineering-core, #product-sync, #infra-alerts across 24h, 7d).
+2. Clustered Topic Intelligence Stream:
+   - Topic cluster cards with status badges (RESOLVED, IN PROGRESS, ACTIVE DEBATE), participant tags, and impact summary.
+   - Quoted Community Voice quote pills displaying actual verbatim member messages.
+3. Action Item & Bug Tracker Kanban:
+   - Checkable action item cards with assignee avatars, priority badges (P0, P1, P2), and direct source message references.
+   - Simulated webhook triggers: [Send to Slack Channel], [Create Linear Issue], [Export Digest Newsletter].
+4. Interactive Raw Transcript Inspector:
+   - Side-by-side or collapsible raw message stream with noise vs signal color highlights.
+5. Verify with: npx tsc --noEmit && npm run build
+
+PRIMARY skill: emil-design-eng
+SECONDARY skill: norai-frontend-standards
+```
+
+### Files Involved
+- `components/organisms/tools/ChatDigestWorkbench.tsx` — Full signal engine upgrade
+- `lib/tools/presets.ts` — Realistic Discord/Slack chat message batches
+
+### Acceptance Criteria
+- [x] Signal density meter and sentiment gauge displaying live metrics
+- [x] Clustered topic cards with status tags and quoted community voice snippets
+- [x] Action item checklist with assignees, priority tags, and webhook buttons
+- [x] Raw transcript viewer with signal/noise highlighting
+- [x] Export suite (Newsletter draft, Markdown digest, JSON spec)
+- [x] `npx tsc --noEmit` and `npm run build` pass cleanly
+
+---
+
+## SESSION 17 — Smart Dainik News & Regional Gazette Engine Upgrade
+
+### Context
+Inspired by Ground News source verification matrices and GovUK clear eligibility interfaces, the Smart Dainik News & Gazette Engine serves job seekers and regional citizens in North India / Uttar Pradesh. It extracts verified employment alerts, official gazette dispatches, age relaxation rules, and deadlines with bilingual English/Hindi capability.
+
+### Prompt to Paste in New Thread
+```
+Read PRODUCT.md Section 3A and DESIGN.md Section 8 for Smart Dainik News requirements.
+Read emil-design-eng for bilingual transition animations and micro-interactions.
+
+Upgrade the Smart Dainik News & Gazette Engine workbench at:
+- components/organisms/tools/SmartDainikNewsWorkbench.tsx
+
+Tasks:
+1. Official Gazette Verification & Countdown Banner:
+   - Verified Official Seal badge with dispatch reference (e.g., UPPSC Official Dispatch A-3/E-1/2026).
+   - Anti-Rumor / Fact-Check verification note confirming offline forms are void.
+   - Live Deadline Countdown Clock (e.g., "31 Days Remaining till 30 Sept 2026").
+2. Instant Bilingual Switcher:
+   - Seamless English ↔ हिंदी toggle that translates all alert headers, summaries, eligibility criteria, and fee structures in place with smooth text crossfade.
+3. Interactive 1-Click Eligibility Criteria Matcher:
+   - Interactive checklist where users select their age, degree (B.Tech Civil/EE/ME), and category (General/OBC/SC/ST) to get an instant "Eligible: Yes/No" verdict with specific relaxation clauses.
+   - Structured breakdown cards: Vacancies (1,450 Posts), Salary Band (Pay Level 10: ₹56,100–₹1,77,500), Application Fee, and Direct Portal Links.
+4. Regional Gazette Feed Stream:
+   - Tabbed filters: [Govt Recruitment & Jobs], [Infrastructure & Smart City], [Education & Scholarships].
+5. Verify with: npx tsc --noEmit && npm run build
+
+PRIMARY skill: emil-design-eng
+SECONDARY skill: norai-frontend-standards
+```
+
+### Files Involved
+- `components/organisms/tools/SmartDainikNewsWorkbench.tsx` — Full gazette engine upgrade
+- `lib/tools/presets.ts` — Comprehensive bilingual gazette notification datasets
+
+### Acceptance Criteria
+- [x] Official gazette verification seal and anti-rumor note
+- [x] Live deadline countdown timer with active application window status
+- [x] Instant bilingual toggle (English ↔ Hindi) with smooth text crossfades
+- [x] Interactive 1-click eligibility criteria match calculator
+- [x] Multi-category gazette stream (Jobs, Infrastructure, Education)
+- [x] `npx tsc --noEmit` and `npm run build` pass cleanly
+
+---
+
 ## Quick Reference: Skills Index
 
 | Skill Name | Best Used For | Sessions |
@@ -637,15 +873,16 @@ Skills to use: landing-page-design, design-taste-frontend
 | `landing-page-design` | SEO, conversion, page structure | 2, 3, 12 |
 | `performance-optimization` | Core Web Vitals, bundle size | 2, 9 |
 | `animate` | Motion primitives, easing | 4, 5 |
-| `emil-design-eng` | Micro-interactions, feel | 4, 6 |
+| `emil-design-eng` | Micro-interactions, feel, workbenches | 4, 6, 13, 14, 15, 16, 17 |
+| `norai-frontend-standards` | Tier-0 studio standards, tokens | 6, 13, 14, 15, 16, 17 |
 | `vercel-react-view-transitions` | Route transitions | 5 |
 | `impeccable` | Visual polish, UI review | 6, 8 |
 | `better-ui` | Component polish, shadows | 6 |
-| `high-end-visual-design` | Premium feel, agency-quality | 6 |
+| `high-end-visual-design` | Premium feel, agency-quality | 6, 13 |
 | `tastemaker` | Anti-slop, brand consistency | 6 |
 | `better-typography` | Type scale, fluid sizing | 7 |
-| `better-layout` | Spacing, grouping, alignment | 7 |
-| `perception-laws` | Gestalt, Fitts's, Hick's Law | 7 |
+| `better-layout` | Spacing, grouping, alignment | 7, 13 |
+| `perception-laws` | Gestalt, Fitts's, Hick's Law | 7, 14 |
 | `better-accessibility` | WCAG, focus, ARIA | 8, 11 |
 | `security-and-hardening` | Headers, input validation | 10 |
 | `playwright-best-practices` | E2E tests, visual regression | 11 |

@@ -12,7 +12,7 @@ export const envSchema = z.object({
 
   // Server-side secrets & model credentials (NEVER prefix with NEXT_PUBLIC_)
   GEMINI_API_KEY: z.string().optional(),
-  GEMINI_MODEL: z.string().optional().default('gemini-2.5-flash'),
+  GEMINI_MODEL: z.string().optional().default('gemini-3.5-lite'),
   EMAIL_USER: z.string().optional(),
   EMAIL_PASS: z.string().optional(),
   ANALYZE: z.enum(['true', 'false']).optional(),

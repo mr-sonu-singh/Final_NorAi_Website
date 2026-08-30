@@ -42,7 +42,7 @@ export function ApiKeyModal({
     setApiKey('');
     onSave({
       apiKey: '',
-      preferredModel: 'gemini-2.5-flash',
+      preferredModel: 'gemini-3.5-lite',
     });
   };
 
@@ -140,9 +140,8 @@ export function ApiKeyModal({
               className="w-full px-3 py-2 rounded-lg bg-canvas-base border border-[rgba(13,37,61,0.15)] text-ink-primary text-xs font-mono focus:outline-none focus:ring-2 focus:ring-accent-500"
             >
               <option value="gemini-3.5-lite">Gemini 3.5 Lite (Recommended: High-Throughput & Structured)</option>
-              <option value="gemini-2.5-flash">Gemini 2.5 Flash (Balanced High-Context)</option>
-              <option value="gemini-2.5-flash-lite">Gemini 2.5 Flash-Lite (Fast Micro-SLA)</option>
               <option value="gemini-1.5-flash">Gemini 1.5 Flash (1M Tokens Context)</option>
+              <option value="gemini-1.5-pro">Gemini 1.5 Pro (Deep Reasoning & Multimodal)</option>
             </select>
           </div>
 

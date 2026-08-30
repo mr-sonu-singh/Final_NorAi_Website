@@ -111,7 +111,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-accent-secondary" />
-                <span>Gemini 2.5 Flash High-Context</span>
+                <span>Gemini 3.5 Lite High-Context</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-accent-secondary" />
