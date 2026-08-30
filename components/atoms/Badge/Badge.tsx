@@ -1,7 +1,6 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { Icon } from '../Icon';
-import { StatusDot } from '../StatusDot';
 import { BadgeProps, BadgeVariant, BadgeSize } from './Badge.types';
 
 const variantClasses: Record<BadgeVariant, string> = {
@@ -36,7 +35,20 @@ export function Badge({
       )}
       {...props}
     >
-      {showStatusDot && <StatusDot status={variant} size={size} />}
+      {showStatusDot && (
+        <span
+          className={cn(
+            'inline-block rounded-full shrink-0',
+            size === 'sm' ? 'w-1.5 h-1.5' : 'w-2 h-2',
+            variant === 'accent' && 'bg-terra-500',
+            variant === 'success' && 'bg-success-600',
+            variant === 'warning' && 'bg-warning-600',
+            variant === 'error' && 'bg-error-600',
+            variant === 'neutral' && 'bg-ink-secondary',
+          )}
+          aria-hidden="true"
+        />
+      )}
       {leadingIcon && <Icon name={leadingIcon} size={size === 'sm' ? 'xs' : 'sm'} />}
       <span>{children}</span>
     </span>

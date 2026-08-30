@@ -1,8 +1,9 @@
+'use client';
+
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { Icon } from '../Icon';
 import { Spinner } from '../Spinner';
-import { FocusRing } from '../FocusRing';
 import { ButtonVariant, ButtonSize } from '../Button/Button.types';
 import { IconButtonProps } from './IconButton.types';
 
@@ -50,7 +51,7 @@ export function IconButton({
     onClick?.(e);
   };
 
-  const buttonElement = (
+  return (
     <button
       type="button"
       disabled={disabled || loading}
@@ -76,6 +77,4 @@ export function IconButton({
       )}
     </button>
   );
-
-  return <FocusRing>{buttonElement}</FocusRing>;
 }

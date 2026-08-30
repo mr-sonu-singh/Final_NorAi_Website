@@ -291,11 +291,11 @@ export const PRODUCTS_DATA: Record<string, ProductData> = {
     ],
   },
 
-  'news-aggregator': {
-    slug: 'news-aggregator',
+  'smart-dainik-news': {
+    slug: 'smart-dainik-news',
     id: 'TOOL_04',
-    title: 'Smart News Aggregator',
-    badge: 'Media Intelligence',
+    title: 'Smart Dainik News',
+    badge: 'Regional Intelligence',
     tagline: 'Hyper-local regional news curation & topic tracking with sentiment briefings.',
     excerpt: 'Track sector trends, local news events, and market intelligence categorized by geographic relevance and sentiment metrics.',
     latency: '< 0.45s',
@@ -377,15 +377,16 @@ export const PRODUCTS_DATA: Record<string, ProductData> = {
   },
 };
 
-// Routing aliases
+// Aliases for backward compatibility
 if (PRODUCTS_DATA['resume-shortlister']) {
   PRODUCTS_DATA['ai-resume-shortlister'] = PRODUCTS_DATA['resume-shortlister'];
 }
 if (PRODUCTS_DATA['chat-digest']) {
   PRODUCTS_DATA['community-chat-digest'] = PRODUCTS_DATA['chat-digest'];
 }
-if (PRODUCTS_DATA['news-aggregator']) {
-  PRODUCTS_DATA['smart-dainik-news'] = PRODUCTS_DATA['news-aggregator'];
+if (PRODUCTS_DATA['smart-dainik-news']) {
+  PRODUCTS_DATA['news-aggregator'] = PRODUCTS_DATA['smart-dainik-news'];
 }
+
 
 

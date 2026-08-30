@@ -1,4 +1,4 @@
-import { NavItem } from '@/components/molecules/NavigationGroup/NavigationGroup.types';
+import { NavItem } from '@/types';
 import { SocialLinkItem } from '@/components/molecules/SocialLinks/SocialLinks.types';
 import { LogoVariant } from '@/components/molecules/Logo/Logo.types';
 

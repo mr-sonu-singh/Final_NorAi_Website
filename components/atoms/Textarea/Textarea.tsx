@@ -1,6 +1,5 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { FocusRing } from '../FocusRing';
 import { InputSize } from '../Input/Input.types';
 import { TextareaProps, TextareaResize } from './Textarea.types';
 
@@ -29,7 +28,7 @@ export function Textarea({
   'aria-describedby': ariaDescribedby,
   ...props
 }: TextareaProps) {
-  const textareaElement = (
+  return (
     <textarea
       id={id}
       name={name}
@@ -52,6 +51,4 @@ export function Textarea({
       {...props}
     />
   );
-
-  return <FocusRing>{textareaElement}</FocusRing>;
 }

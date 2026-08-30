@@ -4,7 +4,6 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { Icon } from '../Icon';
-import { StatusDot } from '../StatusDot';
 import { AvatarProps, AvatarSize } from './Avatar.types';
 
 const sizeClasses: Record<AvatarSize, string> = {
@@ -72,9 +71,18 @@ export function Avatar({
       </div>
 
       {status && (
-        <span className="absolute bottom-0 right-0 transform translate-x-1/4 translate-y-1/4 ring-2 ring-canvas-paper rounded-full">
-          <StatusDot status={status} size={size === 'lg' ? 'md' : 'sm'} />
-        </span>
+        <span
+          className={cn(
+            'absolute bottom-0 right-0 transform translate-x-1/4 translate-y-1/4 ring-2 ring-canvas-paper rounded-full',
+            size === 'lg' ? 'w-3 h-3' : 'w-2.5 h-2.5',
+            status === 'accent' && 'bg-terra-500',
+            status === 'success' && 'bg-success-600',
+            status === 'warning' && 'bg-warning-600',
+            status === 'error' && 'bg-error-600',
+            status === 'neutral' && 'bg-ink-secondary',
+          )}
+          aria-hidden="true"
+        />
       )}
     </div>
   );

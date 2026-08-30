@@ -3,7 +3,6 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { PRODUCTS_DATA } from '@/lib/products';
 import { Container } from '@/components/foundation/Container';
-import { Button } from '@/components/atoms/Button';
 import { Link } from '@/components/atoms/Link';
 import { buildMetadata } from '@/lib/seo';
 import {
@@ -99,16 +98,18 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
             </p>
 
             <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-              <Link href="/contact">
-                <Button variant="primary" size="lg" className="w-full sm:w-auto">
-                  <span>Start using this tool</span>
-                  <ArrowRight className="w-4 h-4 ml-1.5" />
-                </Button>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-accent-500 text-white text-sm font-semibold hover:bg-accent-600 transition-colors shadow-sm w-full sm:w-auto"
+              >
+                <span>Start using this tool</span>
+                <ArrowRight className="w-4 h-4 ml-1" />
               </Link>
-              <Link href="/pricing">
-                <Button variant="secondary" size="lg" className="w-full sm:w-auto">
-                  View pricing tiers
-                </Button>
+              <Link
+                href="/pricing"
+                className="inline-flex items-center justify-center px-6 py-3.5 rounded-lg border border-[rgba(13,37,61,0.15)] bg-canvas-base text-ink-primary text-sm font-medium hover:border-accent-500 hover:text-accent-500 transition-colors w-full sm:w-auto"
+              >
+                View pricing tiers
               </Link>
             </div>
           </div>
@@ -254,14 +255,15 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
                   </div>
 
                   <div className="pt-8">
-                    <Link href="/contact" className="w-full">
-                      <Button
-                        variant={tier.highlighted ? 'primary' : 'secondary'}
-                        size="md"
-                        fullWidth
-                      >
-                        Get Started
-                      </Button>
+                    <Link
+                      href="/contact"
+                      className={`w-full inline-flex items-center justify-center py-2.5 px-4 rounded-lg text-sm font-semibold transition-all ${
+                        tier.highlighted
+                          ? 'bg-accent-500 text-white hover:bg-accent-600 shadow-sm'
+                          : 'border border-[rgba(13,37,61,0.15)] bg-canvas-base text-ink-primary hover:border-accent-500 hover:text-accent-500'
+                      }`}
+                    >
+                      Get Started
                     </Link>
                   </div>
                 </div>

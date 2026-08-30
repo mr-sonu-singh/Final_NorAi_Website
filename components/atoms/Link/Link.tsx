@@ -2,7 +2,6 @@ import React from 'react';
 import NextLink from 'next/link';
 import type { Route } from 'next';
 import { cn } from '@/lib/utils';
-import { FocusRing } from '../FocusRing';
 import { Icon } from '../Icon';
 import { LinkProps, LinkVariant } from './Link.types';
 
@@ -44,32 +43,28 @@ export function Link({
 
   if (isExternal) {
     return (
-      <FocusRing>
-        <a
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={ariaLabel}
-          className={combinedClasses}
-          {...props}
-        >
-          {linkContent}
-        </a>
-      </FocusRing>
-    );
-  }
-
-  return (
-    <FocusRing>
-      <NextLink
-        href={href as Route}
-        prefetch={prefetch}
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
         aria-label={ariaLabel}
         className={combinedClasses}
         {...props}
       >
         {linkContent}
-      </NextLink>
-    </FocusRing>
+      </a>
+    );
+  }
+
+  return (
+    <NextLink
+      href={href as Route}
+      prefetch={prefetch}
+      aria-label={ariaLabel}
+      className={combinedClasses}
+      {...props}
+    >
+      {linkContent}
+    </NextLink>
   );
 }

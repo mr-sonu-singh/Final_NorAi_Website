@@ -29,7 +29,7 @@ interface ProductItem {
 const PRODUCTS: ProductItem[] = [
   {
     id: 'resume-shortlister',
-    slug: 'ai-resume-shortlister',
+    slug: 'resume-shortlister',
     title: 'AI Resume Shortlister',
     category: 'Recruitment AI',
     tagline: 'Parse, score, and rank hundreds of candidate resumes against job specifications in seconds.',
@@ -55,7 +55,7 @@ const PRODUCTS: ProductItem[] = [
   },
   {
     id: 'community-chat-digest',
-    slug: 'community-chat-digest',
+    slug: 'chat-digest',
     title: 'Community Chat Digest',
     category: 'Community AI',
     tagline: 'Condense thousands of unread Slack, Discord, and Telegram messages into structured executive briefings.',

@@ -449,24 +449,8 @@ kbd {
 }
 
 /* ==========================================================================
-   COMPONENTS
+   COMPONENTS & UTILITIES
    ========================================================================== */
-
-/* Warm card treatment */
-.tilt-card {
-  background-color: var(--bg-elevated);
-  border: 1px solid var(--border-hairline);
-  border-radius: 0.5rem;
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
-  position: relative;
-}
-
-.tilt-card:hover {
-  border-color: rgba(var(--glow-warm), 0.3);
-  box-shadow: var(--shadow-hover);
-}
 
 /* Editorial link underline */
 .link-editorial {

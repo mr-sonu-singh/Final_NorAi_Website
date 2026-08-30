@@ -29,11 +29,13 @@ To transform the website from generic AI startup tropes into a bespoke, state-of
 `Critique → User Approval → Implementation → Vercel Guidelines Review → Fixes & Visual Verification`.
 
 ### Derived Bespoke Design Tokens (Site-Wide Baseline)
-* **Canvas Base (`--bg-page`):** `#0B0F17` (Obsidian Slate — pure neutral dark canvas).
-* **Elevated Surfaces (`--bg-surface`):** `#131924` (Elevated Slate — 1px hairline border containers `rgba(255,255,255,0.09)`).
-* **Primary Accent (`--accent-primary`):** `#0CCAB1` (Electric Viridian — mathematically derived HSL shift off catalog swatches).
-* **Mono/Status Accent (`--accent-[#45F7D6]`):** `#45F7D6` (Phosphor Mint — for live indicators, latency badges, and status tags).
-* **Typography:** `Bricolage Grotesque` (Display headings), `Inter` (Body prose), `JetBrains Mono` (Technical SLAs and metadata).
+* **Canvas Base (`--bg-page` / `--ds-background-100`):** `#F5F0EA` (Warm Parchment — pure editorial paper canvas).
+* **Elevated Surfaces (`--bg-elevated` / `--ds-background-200`):** `#FDFBF7` (Clean Paper — 1px hairline border containers `rgba(13,37,61,0.08)` to `0.12`).
+* **Primary Ink (`--color-ink-primary` / `--ds-text-100`):** `#0D253D` (Deep Navy Ink).
+* **Body Prose (`--color-ink-body` / `--ds-text-200`):** `#3D4F5F` (Muted Slate).
+* **Primary Accent (`--accent-primary`):** `#C2553A` (Burnt Terracotta).
+* **Status / Verified Accent (`--accent-secondary` / `--accent-mono`):** `#5B8A72` (Forest Sage — for live indicators, latency badges, and status tags).
+* **Typography:** `Instrument Serif` (Display headings 400), `Plus Jakarta Sans` (Body prose 400/500/600), `JetBrains Mono` (Technical SLAs and metadata 500 tabular-nums).
 
 ---
 
@@ -41,23 +43,24 @@ To transform the website from generic AI startup tropes into a bespoke, state-of
 
 | Phase / Page | Rebuild Objective | Key Architectural & Design Changes | Status |
 | :--- | :--- | :--- | :--- |
-| **Homepage (`/`)** | Establish token baseline & hero signature | Added `Bricolage Grotesque`, custom Electric Viridian (`#0CCAB1`), 1px hairline console cards, lightweight Live Console Teaser. | ✅ Complete |
+| **Homepage (`/`)** | Establish token baseline & hero signature | Added `Instrument Serif`, Burnt Terracotta (`#C2553A`), hairline workbench cards, interactive `CandidateScreenerWorkbench`. | ✅ Complete |
 | **Phase 1 (`/pricing`)** | Audit numbers & purge placeholders | Purged fictional "ZK Proofs" for *Custom Model Fine-Tuning & Private Connectors*, added static throughput brackets, audited 5k/50k/unlimited request limits. | ✅ Complete |
-| **Phase 2 (`/services`)** | Solve 8-product grid monotony | Transformed flat 2x2 grids into an **Asymmetrical Architecture Matrix** (Featured Flagship Chatbots card + 3-card spec grid) + Solution Architecture Selector Bar. Updated claims to *Strict RAG Context Validation*. | ✅ Complete |
-| **Phase 3 (`/about`)** | Human origin story & regional hub | Preserved 100% authentic Uttar Pradesh, India hub facts. Replaced console status telemetry with an **Editorial Location Credit** & **Founding Team Pull-Quote** + connected milestone flow. | ✅ Complete |
+| **Phase 2 (`/services`)** | Solve 8-product grid monotony | Transformed flat 2x2 grids into an **Asymmetrical Architecture Matrix** + Solution Architecture Selector Bar. | ✅ Complete |
+| **Phase 3 (`/about`)** | Human origin story & regional hub | Preserved 100% authentic Uttar Pradesh, India hub facts. Reconciled founder biographies with `WorkshopRoster`. | ✅ Complete |
 | **Phase 4 (`/contact`)** | Interactive form & pre-filled routing | Upgrade form to parse URL query params (`?service=...`), hairline form cards, UP India address block, `< 2 Hours Guaranteed` SLA telemetry badge. | ✅ Complete |
-| **Phase 5 (`/team`)** | Team presentation & roles | Clean hierarchy, preserved 100% authentic founder roles & credentials, hairline roster cards, `#0CCAB1` accents. | ✅ Complete |
+| **Phase 5 (`/team`)** | Team presentation & roles | Clean hierarchy, preserved 100% authentic founder roles & credentials, hairline roster cards, `#C2553A` accents. | ✅ Complete |
 | **Phase 6 (`/blog`)** | Content hub & article reader | High-contrast typography, reading time badges, stateful category routing (`[ALL]`, `[AI ORCHESTRATION]`, `[SPATIAL]`, `[OPERATIONS]`), high-contrast code snippet reader. | ✅ Complete |
-| **Phase 7 (`/privacy` & `/terms`)** | Legal & compliance templates | Structured legal typography, sticky document index sidebar, updated organization metadata (NorAI Technologies Pvt. Ltd., Uttar Pradesh, India), `#0CCAB1` accents. | ✅ Complete |
-| **Phase 8 (`/products` & `/services`)** | Split products & services | Trimmed `/services` down to 4 consultative enterprise offerings; created `/products` self-serve catalog & `/products/[slug]` detail routes; synchronized primary navigation. | ✅ Complete |
-| **Phase 9 (`/services` 8-Offering Expansion)** | 3-Tier service maturity matrix | Expanded `/services` to 8 offerings categorized into 3 distinct visual tiers: Tier 1 (7 Active Core Services), Tier 2 (1 Early Access Practice), and Tier 3 (1 Provisional R&D Scaffold). | ✅ Complete |
-| **Phase 10 (`/blog`, `/docs`, `/faq`)** | Information Architecture & Content Pages | Created `/blog` index & `/blog/[slug]` editorial reader, `/docs` product reference guide, and `/faq` searchable Q&A hub — strictly avoiding invented facts, fake metrics, or unconfirmed security claims. | ✅ Complete |
-| **Phase 11 (Nav & Footer Audit)** | Global navigation & footer sync | Audited and synchronized Header/Footer links across all active pages (`/`, `/products`, `/services`, `/pricing`, `/about`, `/team`, `/blog`, `/contact`, `/careers`). Removed dead `/docs` & `/faq` links, synced all 4 product routes, and updated `/careers` to authentic UP India hub facts. | ✅ Complete |
-| **Phase 13 (Production Polish & Launch Readiness)** | Accessibility, SEO Metadata, Sitemap & Final Verification | Audited WCAG AAA contrast, keyboard focus rings, semantic `<h1>` hierarchy, form label associations (`htmlFor`/`id`/`aria-required`), server-side `buildMetadata` exports across all routes, `sitemap.ts` (excluding `/careers`), `robots.ts` disallow, and clean desktop/mobile viewport rendering across all 10 page types. | ✅ Complete |
+| **Phase 7 (`/privacy` & `/terms`)** | Legal & compliance templates | Structured legal typography, sticky document index sidebar, updated organization metadata (NorAI Technologies Pvt. Ltd., Uttar Pradesh, India), `#C2553A` accents. | ✅ Complete |
+| **Phase 8 (`/products` & `/services`)** | Split products & services | Trimmed `/services` down to consultative enterprise offerings; created `/products` self-serve catalog & `/products/[slug]` detail routes; synchronized primary navigation. | ✅ Complete |
+| **Phase 9 (`/services` 8-Offering Expansion)** | 3-Tier service maturity matrix | Expanded `/services` to offerings categorized into distinct visual tiers. | ✅ Complete |
+| **Phase 10 (`/blog`, `/docs`, `/faq`)** | Information Architecture & Content Pages | Created `/blog` index & `/blog/[slug]` editorial reader, `/docs` product reference guide, and `/faq` searchable Q&A hub. | ✅ Complete |
+| **Phase 11 (Nav & Footer Audit)** | Global navigation & footer sync | Audited and synchronized Header/Footer links across all active pages (`/`, `/products`, `/services`, `/pricing`, `/about`, `/team`, `/blog`, `/contact`, `/careers`). | ✅ Complete |
+| **Phase 13 (Production Polish & Launch Readiness)** | Accessibility, SEO Metadata, Sitemap & Final Verification | Audited WCAG AAA contrast, keyboard focus rings, semantic `<h1>` hierarchy, form label associations, server-side `buildMetadata` exports. | ✅ Complete |
+| **Phase 14 (Anti-AI-Slop & Dead Code Purge)** | Strict Codebase Cleanse & RSC Migration | Purged 76 unconfigured story files, 15 unused organism sections, 12 dead molecules, 8 dead atoms, and dead React context providers (`ThemeTokenProvider`, `BackgroundProvider`). Converted marketing route roots (`/`, `/products`, `/services`) to React Server Components (RSC) with isolated client leaves. Streamlined Footer and standardized canonical product slugs. | ✅ Complete |
 
 ---
 
 ## 5. Security & Dependency Notes
 
-* **Dependency Security Audit (August 2026):** 3 known high-severity advisories exist in Next.js's internal nested dependencies (`postcss` 8.4.31 and `sharp` 0.34.5 under `next@15.5.22`). No direct patch is available without a major Next 16 upgrade. Real-world risk is low (build-time image/CSS processing only; no user-uploaded binary content in current scope). Revisit upon Next.js 16 major release or prior to Phase 12 (user file upload & dynamic media demos).
+* **Dependency Security Audit (August 2026):** 3 known high-severity advisories exist in Next.js's internal nested dependencies (`postcss` 8.4.31 and `sharp` 0.34.5 under `next@15.5.22`). No direct patch is available without a major Next 16 upgrade. Real-world risk is low (build-time image/CSS processing only; no user-uploaded binary content in current scope). Revisit upon Next.js 16 major release.
 

@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import { Container } from '@/components/foundation/Container';
 import { Button } from '@/components/atoms/Button';

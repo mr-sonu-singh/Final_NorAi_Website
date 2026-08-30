@@ -1,25 +1,14 @@
+// Active Sections
 export * from './sections/Header';
 export * from './sections/Footer';
-export * from './sections/HeroStandard';
-export * from './sections/HeroTypographic';
-export * from './sections/StatisticsSection';
-export * from './sections/SocialProofStrip';
-export * from './sections/FeatureSection';
-export * from './sections/FeatureGrid';
-export * from './sections/UseCasesSection';
-export * from './sections/TestimonialsSection';
-export * from './sections/PricingSection';
-export * from './sections/FAQSection';
-export * from './sections/CTASection';
 export * from './sections/ContactSection';
-export * from './sections/TeamSection';
-export * from './sections/BlogPreviewSection';
 export * from './sections/ComparisonTable';
-export * from './sections/Timeline';
-export * from './sections/ProcessFlow';
+
+// Active Cards
 export * from './cards/BlogCard';
 export * from './cards/ProductCard';
 
+// Bespoke Organisms
 export * from './HeroWorkbench/CandidateScreenerWorkbench';
 export * from './ServicesDirectory/ServicesDirectory';
 export * from './ProductStudio/ProductStudio';

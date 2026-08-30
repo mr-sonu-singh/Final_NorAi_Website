@@ -1,7 +1,5 @@
 import React from 'react';
 import { Label } from '@/components/atoms/Label';
-import { FormHint } from '../FormHint';
-import { FormError } from '../FormError';
 import { cn } from '@/lib/utils';
 import { FormFieldProps } from './FormField.types';
 
@@ -56,8 +54,16 @@ export function FormField({
 
       {renderedControl}
 
-      {hint && !error && <FormHint text={hint} id={hintId} />}
-      {error && <FormError message={error} id={errorId} />}
+      {hint && !error && (
+        <span id={hintId} className="text-xs text-ink-secondary font-sans">
+          {hint}
+        </span>
+      )}
+      {error && (
+        <span id={errorId} role="alert" className="text-xs text-error-600 font-sans font-medium">
+          {error}
+        </span>
+      )}
     </div>
   );
 }

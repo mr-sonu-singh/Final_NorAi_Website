@@ -1,6 +1,5 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { FocusRing } from '../FocusRing';
 import { Icon } from '../Icon';
 import { InputProps, InputSize } from './Input.types';
 
@@ -30,7 +29,7 @@ export function Input({
   'aria-describedby': ariaDescribedby,
   ...props
 }: InputProps) {
-  const inputElement = (
+  return (
     <div className="relative flex items-center w-full">
       {leadingIcon && (
         <div className="absolute left-3 pointer-events-none text-ink-secondary">
@@ -66,6 +65,4 @@ export function Input({
       )}
     </div>
   );
-
-  return <FocusRing>{inputElement}</FocusRing>;
 }

@@ -5,14 +5,12 @@ import { Container } from '@/components/foundation/Container';
 import { Stack } from '@/components/foundation/Stack';
 import { Text } from '@/components/foundation/Text';
 import { Heading } from '@/components/foundation/Heading';
-import { Button } from '@/components/atoms/Button';
 import { Link } from '@/components/atoms/Link';
 import { BrandLogo } from '@/components/atoms/BrandLogo';
 import { SocialLinks } from '@/components/molecules/SocialLinks';
 import { cn } from '@/lib/utils';
 import { FooterProps, FooterColumn } from './Footer.types';
 import { SocialLinkItem } from '@/components/molecules/SocialLinks/SocialLinks.types';
-import { ArrowRight } from 'lucide-react';
 
 
 export const DEFAULT_FOOTER_COLUMNS: FooterColumn[] = [
@@ -20,9 +18,9 @@ export const DEFAULT_FOOTER_COLUMNS: FooterColumn[] = [
     title: 'Products',
     links: [
       { label: 'All Products', href: '/products' },
-      { label: 'Resume Shortlister', href: '/products/ai-resume-shortlister' },
+      { label: 'Resume Shortlister', href: '/products/resume-shortlister' },
       { label: 'Course Note-Taker', href: '/products/course-note-taker' },
-      { label: 'Chat Digest AI', href: '/products/community-chat-digest' },
+      { label: 'Chat Digest AI', href: '/products/chat-digest' },
       { label: 'Smart Dainik News', href: '/products/smart-dainik-news' },
       { label: 'Pricing', href: '/pricing' },
     ],
@@ -85,57 +83,12 @@ export function Footer({
     <footer
       aria-label="Site Footer"
       className={cn(
-        'relative w-full bg-[#0D253D] text-[#FDFBF7] pt-20 pb-12 overflow-hidden font-sans border-t border-[rgba(253,251,247,0.08)]',
+        'relative w-full bg-[#0D253D] text-[#FDFBF7] pt-16 pb-12 font-sans border-t border-[rgba(253,251,247,0.08)]',
         className,
       )}
       data-testid="footer-organism"
     >
-      {/* Subtle warm ambient glow behind footer */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-40 right-10 h-96 w-96 rounded-full bg-[#C2553A]/10 blur-[100px]"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute bottom-0 left-1/4 h-80 w-80 rounded-full bg-[#5B8A72]/10 blur-[90px]"
-      />
-
       <Container size="default" className="relative z-10">
-        {/* Pre-Footer CTA Block */}
-        <div className="rounded-2xl bg-[#16324E] border border-[rgba(253,251,247,0.1)] p-8 md:p-12 mb-16 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="max-w-xl text-center md:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C2553A]/20 text-[#F5E1DA] text-xs font-semibold mb-4 lowercase-none">
-              Start Automating Today
-            </div>
-            <h3 className="font-display text-3xl md:text-4xl text-white font-normal leading-tight tracking-tight">
-              Ready to automate your operations?
-            </h3>
-            <p className="mt-3 text-slate-300 text-base leading-relaxed">
-              Deploy our focused micro-SaaS tools in minutes, or partner with our engineering team for custom enterprise workflow orchestration.
-            </p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-4 shrink-0 w-full sm:w-auto">
-            <Link href="/contact" className="w-full sm:w-auto">
-              <Button
-                variant="primary"
-                size="lg"
-                className="w-full sm:w-auto justify-center group"
-              >
-                <span>Get in touch</span>
-                <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
-              </Button>
-            </Link>
-            <Link href="/products" className="w-full sm:w-auto">
-              <Button
-                variant="secondary"
-                size="lg"
-                className="w-full sm:w-auto justify-center bg-[#0D253D] text-[#FDFBF7] border-[rgba(253,251,247,0.2)] hover:bg-[#1A3857] hover:border-[rgba(253,251,247,0.4)]"
-              >
-                Explore tools
-              </Button>
-            </Link>
-          </div>
-        </div>
 
         {/* Brand Wordmark & Top Row */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-12 border-b border-[rgba(253,251,247,0.1)]">

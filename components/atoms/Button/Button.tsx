@@ -4,7 +4,6 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 import { Icon } from '../Icon';
 import { Spinner } from '../Spinner';
-import { FocusRing } from '../FocusRing';
 import { ButtonProps, ButtonVariant, ButtonSize } from './Button.types';
 
 const variantClasses: Record<ButtonVariant, string> = {
@@ -54,7 +53,7 @@ export function Button({
     onClick?.(e);
   };
 
-  const buttonElement = (
+  return (
     <button
       type={type}
       disabled={disabled || loading}
@@ -84,6 +83,4 @@ export function Button({
       )}
     </button>
   );
-
-  return <FocusRing>{buttonElement}</FocusRing>;
 }

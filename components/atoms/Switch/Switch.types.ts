@@ -1,11 +1,12 @@
 import React from 'react';
-import { CheckboxSize } from '../Checkbox/Checkbox.types';
+
+export type SwitchSize = 'sm' | 'md';
 
 export interface SwitchProps extends Omit<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   'size' | 'onChange'
 > {
-  size?: CheckboxSize;
+  size?: SwitchSize;
   checked?: boolean;
   defaultChecked?: boolean;
   disabled?: boolean;

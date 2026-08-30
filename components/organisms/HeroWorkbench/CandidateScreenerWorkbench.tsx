@@ -191,7 +191,7 @@ export function CandidateScreenerWorkbench() {
                       <span className="font-display text-base font-normal text-ink-primary">
                         {cand.name}
                       </span>
-                      <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-accent-50 text-accent-500 border border-accent-500/20">
+                      <span className="font-mono tabular-nums text-xs font-semibold px-2 py-0.5 rounded bg-accent-50 text-accent-500 border border-accent-500/20">
                         {cand.score}% Match
                       </span>
                     </div>
@@ -285,7 +285,7 @@ export function CandidateScreenerWorkbench() {
       {/* Footer Strip */}
       <div className="flex items-center justify-between px-5 py-3 bg-canvas-recessed/40 border-t border-[rgba(13,37,61,0.06)] text-xs">
         <span className="text-ink-secondary">
-          142 resumes parsed in <span className="font-mono font-semibold text-ink-primary">8.4s</span>
+          142 resumes parsed in <span className="font-mono tabular-nums font-semibold text-ink-primary">8.4s</span>
         </span>
         <Link
           href="/products/resume-shortlister"

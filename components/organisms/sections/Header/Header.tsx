@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation';
 
 
 import { Container } from '@/components/foundation/Container';
-import { Button } from '@/components/atoms/Button';
 import { Link } from '@/components/atoms/Link';
 import { IconButton } from '@/components/atoms/IconButton';
 import { BrandLogo } from '@/components/atoms/BrandLogo';
@@ -13,7 +12,7 @@ import { useLockBodyScroll } from '@/hooks/useLockBodyScroll';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { cn } from '@/lib/utils';
 import { HeaderProps, HeaderCTA } from './Header.types';
-import { NavItem } from '@/components/molecules/NavigationGroup/NavigationGroup.types';
+import { NavItem } from '@/types';
 
 export const DEFAULT_HEADER_NAV_ITEMS: NavItem[] = [
   { label: 'Products', href: '/products' },
@@ -148,17 +147,19 @@ export function Header({
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-3">
             {secondaryCta && (
-              <Link href={secondaryCta.href}>
-                <Button variant="secondary" size="sm">
-                  {secondaryCta.label}
-                </Button>
+              <Link
+                href={secondaryCta.href}
+                className="inline-flex items-center justify-center font-sans font-medium h-9 px-3.5 rounded-md border border-line-strong text-ink-primary shadow-sm hover:border-line-accent hover:text-terra-600 hover:bg-terra-50 text-xs transition-colors"
+              >
+                {secondaryCta.label}
               </Link>
             )}
             {primaryCta && (
-              <Link href={primaryCta.href}>
-                <Button variant="primary" size="sm">
-                  {primaryCta.label}
-                </Button>
+              <Link
+                href={primaryCta.href}
+                className="inline-flex items-center justify-center font-sans font-semibold h-9 px-3.5 rounded-md bg-terra-500 text-white shadow-accent hover:bg-terra-600 text-xs transition-colors"
+              >
+                {primaryCta.label}
               </Link>
             )}
           </div>
@@ -206,17 +207,21 @@ export function Header({
             })}
             <div className="pt-4 mt-2 border-t border-[rgba(13,37,61,0.08)] flex flex-col gap-3">
               {secondaryCta && (
-                <Link href={secondaryCta.href} onClick={closeMobileMenu}>
-                  <Button variant="secondary" size="md" fullWidth>
-                    {secondaryCta.label}
-                  </Button>
+                <Link
+                  href={secondaryCta.href}
+                  onClick={closeMobileMenu}
+                  className="inline-flex items-center justify-center font-sans font-medium h-11 px-4 rounded-md border border-line-strong text-ink-primary shadow-sm hover:border-line-accent hover:text-terra-600 hover:bg-terra-50 text-sm w-full transition-colors"
+                >
+                  {secondaryCta.label}
                 </Link>
               )}
               {primaryCta && (
-                <Link href={primaryCta.href} onClick={closeMobileMenu}>
-                  <Button variant="primary" size="md" fullWidth>
-                    {primaryCta.label}
-                  </Button>
+                <Link
+                  href={primaryCta.href}
+                  onClick={closeMobileMenu}
+                  className="inline-flex items-center justify-center font-sans font-semibold h-11 px-4 rounded-md bg-terra-500 text-white shadow-accent hover:bg-terra-600 text-sm w-full transition-colors"
+                >
+                  {primaryCta.label}
                 </Link>
               )}
             </div>
