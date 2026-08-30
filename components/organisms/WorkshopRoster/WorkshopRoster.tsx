@@ -12,14 +12,14 @@ interface Founder {
 
 const FOUNDERS: Founder[] = [
   {
-    name: 'Sonu Singh',
+    name: 'Dhruw Singh',
     role: 'Founder & Head of Operations',
     pedigree: '30-Year Indian Army Veteran · Strategic Defense Operations',
     focus: 'Operational discipline, organizational architecture, enterprise execution rigor.',
     bio: 'Brings three decades of high-stakes defense leadership and operational precision to ensure NorAI operates with uncompromising reliability, while directing organizational outreach across regional educational institutions.',
   },
   {
-    name: 'Dhruw Singh',
+    name: 'Sonu Singh',
     role: 'Co-Founder & Chief Technology Officer',
     pedigree: 'Computer Science (AI/ML) · Open-Source Protocol Maintainer',
     focus: 'Model Context Protocol (MCP) server architecture, sub-second inference pipelines, neural vector retrieval.',
