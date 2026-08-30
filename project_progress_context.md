@@ -9,20 +9,7 @@
 
 ---
 
-## 2. Initial 7-Phase Build Roadmap (Phase 0–7 Infrastructure)
-The repository was built through a structured 7-phase architecture:
-
-1. **Phase 1: Project Foundation & Design Tokens** — Established layout landmarks, custom CSS variables, typography tokens, and foundation primitives (`Container`, `Heading`, `Text`, `Section`).
-2. **Phase 2: Shared UI Components (Atoms & Molecules)** — Built buttons, card containers, inputs, badges, and icon wrappers.
-3. **Phase 3: Organisms & Global Layouts** — Implemented global `Header`, `Footer`, `ProcessFlow`, `ComparisonTable`, and `FAQSection`.
-4. **Phase 4: Homepage Assembly** — Assembled primary marketing funnel with hero, stat cards, product showcase, and CTA.
-5. **Phase 5: Core Pages Construction** — Created route shells for `/products`, `/services`, `/about`, `/contact`, and `/pricing`.
-6. **Phase 6: Content Hub & Support Pages** — Integrated `/blog` MDX templates, `/privacy`, and `/terms`.
-7. **Phase 7: Optimization & Audit Phase** — Cleaned up build errors, SEO metadata helpers (`buildMetadata`), and initial component tests.
-
----
-
-## 3. Current Rebuild Workflow & Token System Baseline
+## 2. The Impeccable Design Standard & Token System Baseline
 
 ### The Quality Protocol (Loop for Every Page)
 To transform the website from generic AI startup tropes into a bespoke, state-of-the-art visual experience, every page undergoes a strict 5-step loop:
@@ -31,15 +18,17 @@ To transform the website from generic AI startup tropes into a bespoke, state-of
 ### Derived Bespoke Design Tokens (Site-Wide Baseline)
 * **Canvas Base (`--bg-page` / `--ds-background-100`):** `#F5F0EA` (Warm Parchment — pure editorial paper canvas).
 * **Elevated Surfaces (`--bg-elevated` / `--ds-background-200`):** `#FDFBF7` (Clean Paper — 1px hairline border containers `rgba(13,37,61,0.08)` to `0.12`).
+* **Recessed Surfaces (`--bg-sunken` / `--ds-background-300`):** `#EDE7DF` (Recessed Sand — inputs, sunken tracks).
 * **Primary Ink (`--color-ink-primary` / `--ds-text-100`):** `#0D253D` (Deep Navy Ink).
 * **Body Prose (`--color-ink-body` / `--ds-text-200`):** `#3D4F5F` (Muted Slate).
 * **Primary Accent (`--accent-primary`):** `#C2553A` (Burnt Terracotta).
 * **Status / Verified Accent (`--accent-secondary` / `--accent-mono`):** `#5B8A72` (Forest Sage — for live indicators, latency badges, and status tags).
+* **Regional Accent (`--accent-tertiary`):** `#B8860B` (Dark Goldenrod).
 * **Typography:** `Instrument Serif` (Display headings 400), `Plus Jakarta Sans` (Body prose 400/500/600), `JetBrains Mono` (Technical SLAs and metadata 500 tabular-nums).
 
 ---
 
-## 4. Rebuild Status & Execution Log
+## 3. Rebuild Status & Execution Log
 
 | Phase / Page | Rebuild Objective | Key Architectural & Design Changes | Status |
 | :--- | :--- | :--- | :--- |
@@ -57,10 +46,21 @@ To transform the website from generic AI startup tropes into a bespoke, state-of
 | **Phase 11 (Nav & Footer Audit)** | Global navigation & footer sync | Audited and synchronized Header/Footer links across all active pages (`/`, `/products`, `/services`, `/pricing`, `/about`, `/team`, `/blog`, `/contact`, `/careers`). | ✅ Complete |
 | **Phase 13 (Production Polish & Launch Readiness)** | Accessibility, SEO Metadata, Sitemap & Final Verification | Audited WCAG AAA contrast, keyboard focus rings, semantic `<h1>` hierarchy, form label associations, server-side `buildMetadata` exports. | ✅ Complete |
 | **Phase 14 (Anti-AI-Slop & Dead Code Purge)** | Strict Codebase Cleanse & RSC Migration | Purged 76 unconfigured story files, 15 unused organism sections, 12 dead molecules, 8 dead atoms, and dead React context providers (`ThemeTokenProvider`, `BackgroundProvider`). Converted marketing route roots (`/`, `/products`, `/services`) to React Server Components (RSC) with isolated client leaves. Streamlined Footer and standardized canonical product slugs. | ✅ Complete |
+| **Phase 15 (Impeccable Context Initialization)** | Standardize `.md` Context Architecture | Generated `PRODUCT.md` (Product taxonomy, personas, brand voice, anti-goals), updated `DESIGN.md` (Parchment & Terracotta tokens, typography scales, 5-state ergonomics, anti-slop rules), modernized `README.md` (Next.js 15 / React 19 / Tailwind v4 / Atomic structure), and aligned `AGENTS.md`. | ✅ Complete |
+
+---
+
+## 4. Grounding Context Files Matrix
+
+Every AI agent and engineer operating on this repository must consult the unified markdown context files:
+1. **`PRODUCT.md`**: Product identity, personas, product taxonomy, brand voice, and anti-references.
+2. **`DESIGN.md`**: Design tokens, typography hierarchy, elevation, 5-state ergonomics, and anti-slop rules.
+3. **`AGENTS.md`**: 3-layer architecture, coding conventions, RSC guidelines, and quality loops.
+4. **`README.md`**: High-level overview, directory architecture, scripts, and deployment instructions.
+5. **`project_progress_context.md`**: Chronological build history, milestone tracking, and architectural status.
 
 ---
 
 ## 5. Security & Dependency Notes
 
 * **Dependency Security Audit (August 2026):** 3 known high-severity advisories exist in Next.js's internal nested dependencies (`postcss` 8.4.31 and `sharp` 0.34.5 under `next@15.5.22`). No direct patch is available without a major Next 16 upgrade. Real-world risk is low (build-time image/CSS processing only; no user-uploaded binary content in current scope). Revisit upon Next.js 16 major release.
-

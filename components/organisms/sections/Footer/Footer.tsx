@@ -29,6 +29,7 @@ export const DEFAULT_FOOTER_COLUMNS: FooterColumn[] = [
     title: 'Company',
     links: [
       { label: 'Our Story', href: '/about' },
+      { label: 'AI Skill Mission', href: '/mission' },
       { label: 'Team', href: '/team' },
       { label: 'Careers', href: '/careers' },
       { label: 'Custom AI services', href: '/services' },
@@ -39,6 +40,7 @@ export const DEFAULT_FOOTER_COLUMNS: FooterColumn[] = [
     title: 'Resources',
     links: [
       { label: 'Blog & Insights', href: '/blog' },
+      { label: 'Campus Workshops', href: '/mission#workshops' },
       { label: 'Documentation', href: '/docs' },
       { label: 'Help & FAQ', href: '/faq' },
     ],

@@ -11,6 +11,7 @@ const SERVICE_OPTIONS = [
   { value: 'Community Chat Digest', label: 'Community Chat Digest' },
   { value: 'Smart Dainik News', label: 'Smart Dainik News' },
   { value: 'Custom AI development', label: 'Custom AI development' },
+  { value: 'Campus Workshop / AI Skill Mission', label: 'Campus Workshop / AI Skill Mission' },
   { value: 'Something else', label: 'Something else' },
 ];
 

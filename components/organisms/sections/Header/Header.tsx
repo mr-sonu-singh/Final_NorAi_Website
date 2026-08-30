@@ -18,6 +18,7 @@ export const DEFAULT_HEADER_NAV_ITEMS: NavItem[] = [
   { label: 'Products', href: '/products' },
   { label: 'Services', href: '/services' },
   { label: 'Pricing', href: '/pricing' },
+  { label: 'Mission', href: '/mission' },
   { label: 'About', href: '/about' },
   { label: 'Team', href: '/team' },
   { label: 'Blog', href: '/blog' },

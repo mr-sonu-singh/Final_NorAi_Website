@@ -2,10 +2,8 @@
 
 import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
-
 import { Link } from '@/components/atoms/Link';
-import { Check, Copy, ArrowRight } from 'lucide-react';
-
+import { Check, Copy, ArrowRight, ShieldCheck, Zap, SlidersHorizontal } from 'lucide-react';
 
 interface Candidate {
   id: string;
@@ -27,9 +25,9 @@ const CANDIDATES: Candidate[] = [
     experience: '5 yrs exp',
     score: 96,
     status: 'Top Candidate',
-    skills: ['Python', 'FastAPI', 'PostgreSQL', 'Distributed Systems'],
+    skills: ['Python', 'FastAPI', 'PostgreSQL', 'Distributed Systems', 'vLLM'],
     rationale:
-      'Verified 5+ yrs high-concurrency API engineering. Exact match on distributed queue orchestration and async database pools.',
+      'Verified 5+ yrs high-concurrency API engineering. Exact match on distributed queue orchestration, async database connection pooling, and low-latency inference wrappers.',
     vectors: [
       { label: 'Distributed Architecture', match: 98 },
       { label: 'Async Python / FastAPI', match: 96 },
@@ -43,9 +41,9 @@ const CANDIDATES: Candidate[] = [
     experience: '3 yrs exp',
     score: 84,
     status: 'Shortlisted',
-    skills: ['React 19', 'Next.js', 'Node.js', 'GraphQL'],
+    skills: ['React 19', 'Next.js 15', 'TypeScript', 'GraphQL', 'Tailwind'],
     rationale:
-      'Strong React & Next.js full-stack foundation. Meets core frontend architecture requirements with solid backend tooling experience.',
+      'Strong React & Next.js full-stack foundation. Meets core frontend architecture standards with solid server component patterns and API contracts.',
     vectors: [
       { label: 'Frontend Component Design', match: 92 },
       { label: 'Next.js App Router', match: 88 },
@@ -59,9 +57,9 @@ const CANDIDATES: Candidate[] = [
     experience: '2 yrs exp',
     score: 71,
     status: 'Review Queue',
-    skills: ['TypeScript', 'Tailwind CSS', 'REST APIs'],
+    skills: ['TypeScript', 'Tailwind CSS', 'REST APIs', 'Figma'],
     rationale:
-      'Good UI design execution and TypeScript typing. Meets baseline requirements, recommended for secondary technical interview round.',
+      'Good UI design execution and TypeScript typing. Meets baseline UI standards, recommended for secondary technical architecture interview.',
     vectors: [
       { label: 'UI Precision & Styling', match: 85 },
       { label: 'TypeScript Interfaces', match: 74 },
@@ -90,19 +88,26 @@ const JSON_SAMPLE = {
   },
 };
 
+const DEFAULT_CANDIDATE: Candidate = CANDIDATES[0] ?? {
+  id: 'cand-01',
+  name: 'Aditya Verma',
+  role: 'Senior Backend Engineer',
+  experience: '5 yrs exp',
+  score: 96,
+  status: 'Top Candidate',
+  skills: ['Python', 'FastAPI', 'PostgreSQL', 'Distributed Systems', 'vLLM'],
+  rationale:
+    'Verified 5+ yrs high-concurrency API engineering. Exact match on distributed queue orchestration, async database connection pooling, and low-latency inference wrappers.',
+  vectors: [
+    { label: 'Distributed Architecture', match: 98 },
+    { label: 'Async Python / FastAPI', match: 96 },
+    { label: 'Relational DB Optimization', match: 94 },
+  ],
+};
+
 export function CandidateScreenerWorkbench() {
   const [activeTab, setActiveTab] = useState<'scorecard' | 'vectors' | 'json'>('scorecard');
-  const [selectedCandidate, setSelectedCandidate] = useState<Candidate>(CANDIDATES[0] || {
-    id: 'cand-01',
-    name: 'Aditya Verma',
-    role: 'Senior Backend Engineer',
-    experience: '5 yrs exp',
-    score: 96,
-    status: 'Top Candidate',
-    skills: ['Python', 'FastAPI'],
-    rationale: 'Verified 5+ yrs high-concurrency API engineering.',
-    vectors: [{ label: 'Distributed Architecture', match: 98 }],
-  });
+  const [selectedCandidate, setSelectedCandidate] = useState<Candidate>(DEFAULT_CANDIDATE);
   const [copied, setCopied] = useState(false);
 
   const handleCopyJson = () => {
@@ -114,28 +119,33 @@ export function CandidateScreenerWorkbench() {
   return (
     <div className="w-full rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] shadow-xl overflow-hidden text-left font-sans transition-all">
       {/* Titlebar / Chrome */}
-      <div className="flex flex-wrap items-center justify-between gap-3 px-5 py-3.5 bg-canvas-recessed/70 border-b border-[rgba(13,37,61,0.08)]">
+      <div className="flex flex-wrap items-center justify-between gap-3 px-4 sm:px-5 py-3 bg-canvas-recessed/70 border-b border-[rgba(13,37,61,0.08)]">
         <div className="flex items-center gap-2.5">
           <div className="flex gap-1.5" aria-hidden="true">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#C2553A]/30 border border-[#C2553A]/50" />
-            <span className="w-2.5 h-2.5 rounded-full bg-[#B8860B]/30 border border-[#B8860B]/50" />
-            <span className="w-2.5 h-2.5 rounded-full bg-[#5B8A72]/30 border border-[#5B8A72]/50" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#C2553A]/40 border border-[#C2553A]/60" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#B8860B]/40 border border-[#B8860B]/60" />
+            <span className="w-2.5 h-2.5 rounded-full bg-[#5B8A72]/40 border border-[#5B8A72]/60" />
           </div>
-          <span className="font-mono text-xs font-semibold text-ink-primary tracking-tight">
-            Batch #104 · 58 Resumes Screened
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="font-mono text-xs font-semibold text-ink-primary tracking-tight">
+              Live Screener
+            </span>
+            <span className="text-[11px] font-mono text-ink-secondary hidden sm:inline">
+              · Batch #104 (58 Evaluated)
+            </span>
+          </div>
         </div>
 
-        {/* Tab Switcher */}
-        <div className="flex items-center rounded-lg bg-canvas-paper/90 p-1 border border-[rgba(13,37,61,0.08)] text-xs">
+        {/* Tab Switcher with 5-State Ergonomics */}
+        <div className="flex items-center rounded-lg bg-canvas-paper/90 p-0.5 border border-[rgba(13,37,61,0.08)] text-xs">
           <button
             type="button"
             onClick={() => setActiveTab('scorecard')}
             className={cn(
-              'px-2.5 py-1 rounded-md font-medium transition-all duration-150',
+              'px-2.5 py-1 rounded-md font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-1',
               activeTab === 'scorecard'
                 ? 'bg-[#0D253D] text-white shadow-sm'
-                : 'text-ink-secondary hover:text-ink-primary'
+                : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed/50'
             )}
           >
             Scorecard
@@ -144,10 +154,10 @@ export function CandidateScreenerWorkbench() {
             type="button"
             onClick={() => setActiveTab('vectors')}
             className={cn(
-              'px-2.5 py-1 rounded-md font-medium transition-all duration-150',
+              'px-2.5 py-1 rounded-md font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-1',
               activeTab === 'vectors'
                 ? 'bg-[#0D253D] text-white shadow-sm'
-                : 'text-ink-secondary hover:text-ink-primary'
+                : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed/50'
             )}
           >
             Skill Vectors
@@ -156,34 +166,36 @@ export function CandidateScreenerWorkbench() {
             type="button"
             onClick={() => setActiveTab('json')}
             className={cn(
-              'px-2.5 py-1 rounded-md font-medium transition-all duration-150',
+              'px-2.5 py-1 rounded-md font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-1',
               activeTab === 'json'
                 ? 'bg-[#0D253D] text-white shadow-sm'
-                : 'text-ink-secondary hover:text-ink-primary'
+                : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed/50'
             )}
           >
-            JSON Schema
+            JSON Contract
           </button>
         </div>
       </div>
 
-      {/* Main Workbench Body */}
+      {/* Main Workbench Body: Scorecard Tab */}
       {activeTab === 'scorecard' && (
-        <div className="p-5 md:p-6 space-y-4">
+        <div className="p-4 sm:p-5 md:p-6 space-y-4">
           {/* Candidate Interactive Rows */}
-          <div className="space-y-2.5">
+          <div className="space-y-2.5" role="listbox" aria-label="Screened candidates list">
             {CANDIDATES.map((cand) => {
               const isSelected = selectedCandidate.id === cand.id;
               return (
                 <button
                   key={cand.id}
                   type="button"
+                  role="option"
+                  aria-selected={isSelected}
                   onClick={() => setSelectedCandidate(cand)}
                   className={cn(
-                    'w-full text-left p-3.5 rounded-xl border transition-all duration-150 flex items-center justify-between gap-4',
+                    'w-full text-left p-3.5 rounded-xl border transition-all duration-150 flex items-center justify-between gap-3 sm:gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2',
                     isSelected
-                      ? 'bg-canvas-paper border-accent-500/80 shadow-md ring-1 ring-accent-500/20'
-                      : 'bg-canvas-recessed/30 border-[rgba(13,37,61,0.06)] hover:bg-canvas-recessed/60'
+                      ? 'bg-canvas-paper border-accent-500/80 shadow-md ring-1 ring-accent-500/20 translate-y-[-1px]'
+                      : 'bg-canvas-recessed/30 border-[rgba(13,37,61,0.06)] hover:bg-canvas-recessed/60 hover:border-accent-500/30'
                   )}
                 >
                   <div className="space-y-1 min-w-0">
@@ -196,12 +208,21 @@ export function CandidateScreenerWorkbench() {
                       </span>
                     </div>
                     <p className="text-xs text-ink-secondary">
-                      {cand.role} · {cand.experience}
+                      {cand.role} · <span className="font-mono tabular-nums">{cand.experience}</span>
                     </p>
                   </div>
 
                   <div className="text-right shrink-0">
-                    <span className="text-xs font-medium text-ink-secondary">
+                    <span
+                      className={cn(
+                        'text-xs font-medium px-2 py-0.5 rounded-full inline-block',
+                        cand.status === 'Top Candidate'
+                          ? 'bg-sage-100/70 text-accent-secondary font-semibold'
+                          : cand.status === 'Shortlisted'
+                          ? 'bg-accent-50 text-accent-500'
+                          : 'bg-canvas-recessed text-ink-secondary'
+                      )}
+                    >
                       {cand.status}
                     </span>
                   </div>
@@ -212,9 +233,15 @@ export function CandidateScreenerWorkbench() {
 
           {/* Selected Candidate Rationale Drawer */}
           <div className="rounded-xl bg-canvas-recessed/50 border border-[rgba(13,37,61,0.08)] p-4 space-y-3">
-            <div className="flex items-center justify-between text-xs text-ink-secondary">
-              <span className="font-mono font-medium">Deterministic Scoring Rationale</span>
-              <span className="text-accent-secondary font-medium">Memory Ephemeral</span>
+            <div className="flex items-center justify-between text-xs text-ink-secondary flex-wrap gap-2">
+              <div className="flex items-center gap-1.5 font-mono font-medium text-ink-primary">
+                <SlidersHorizontal className="w-3.5 h-3.5 text-accent-500" />
+                <span>Deterministic Scoring Rationale</span>
+              </div>
+              <div className="flex items-center gap-1 text-accent-secondary font-mono text-[11px]">
+                <ShieldCheck className="w-3.5 h-3.5" />
+                <span>RAM Flushed on Exit</span>
+              </div>
             </div>
             <p className="text-xs text-ink-body leading-relaxed">
               {selectedCandidate.rationale}
@@ -233,14 +260,20 @@ export function CandidateScreenerWorkbench() {
         </div>
       )}
 
+      {/* Main Workbench Body: Skill Vectors Tab */}
       {activeTab === 'vectors' && (
-        <div className="p-5 md:p-6 space-y-5">
+        <div className="p-4 sm:p-5 md:p-6 space-y-5">
           <div className="space-y-1">
-            <h4 className="font-display text-lg text-ink-primary font-normal">
-              Candidate Skill Vector Alignment
-            </h4>
+            <div className="flex items-center justify-between">
+              <h4 className="font-display text-lg text-ink-primary font-normal">
+                Skill Vector Alignment
+              </h4>
+              <span className="font-mono text-xs text-accent-500 font-semibold">
+                {selectedCandidate.name}
+              </span>
+            </div>
             <p className="text-xs text-ink-secondary">
-              Weights parsed against target job description criteria for {selectedCandidate.name}.
+              Extracted weights parsed against target backend engineering requirements.
             </p>
           </div>
 
@@ -249,7 +282,9 @@ export function CandidateScreenerWorkbench() {
               <div key={idx} className="space-y-1.5">
                 <div className="flex justify-between text-xs font-sans">
                   <span className="font-medium text-ink-primary">{vec.label}</span>
-                  <span className="font-mono font-semibold text-accent-500">{vec.match}%</span>
+                  <span className="font-mono tabular-nums font-semibold text-accent-500">
+                    {vec.match}%
+                  </span>
                 </div>
                 <div className="w-full h-2 rounded-full bg-canvas-recessed overflow-hidden">
                   <div
@@ -263,17 +298,33 @@ export function CandidateScreenerWorkbench() {
         </div>
       )}
 
+      {/* Main Workbench Body: JSON Schema Tab */}
       {activeTab === 'json' && (
-        <div className="p-4 md:p-5 relative bg-[#0D253D] text-[#FDFBF7]">
+        <div className="p-4 sm:p-5 relative bg-[#0D253D] text-[#FDFBF7]">
           <div className="flex justify-between items-center pb-2 mb-2 border-b border-[rgba(253,251,247,0.1)] text-xs text-slate-400">
-            <span className="font-mono">POST /api/v1/shortlist/batch-104</span>
+            <div className="flex items-center gap-2">
+              <span className="font-mono text-[11px] text-emerald-400">POST /api/v1/shortlist/batch-104</span>
+              <span className="font-mono tabular-nums text-[10px] px-1.5 py-0.5 rounded bg-white/10 text-slate-300">
+                238ms
+              </span>
+            </div>
             <button
               type="button"
               onClick={handleCopyJson}
-              className="inline-flex items-center gap-1 text-slate-300 hover:text-white transition-colors"
+              aria-label="Copy JSON schema payload"
+              className="inline-flex items-center gap-1 px-2 py-1 rounded bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-all text-xs font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500"
             >
-              {copied ? <Check className="w-3.5 h-3.5 text-[#5B8A72]" /> : <Copy className="w-3.5 h-3.5" />}
-              <span>{copied ? 'Copied' : 'Copy'}</span>
+              {copied ? (
+                <>
+                  <Check className="w-3.5 h-3.5 text-accent-secondary" />
+                  <span className="text-accent-secondary">Copied</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="w-3.5 h-3.5" />
+                  <span>Copy Payload</span>
+                </>
+              )}
             </button>
           </div>
           <pre className="font-mono text-xs text-emerald-300/90 overflow-x-auto p-2 leading-relaxed max-h-60">
@@ -282,20 +333,23 @@ export function CandidateScreenerWorkbench() {
         </div>
       )}
 
-      {/* Footer Strip */}
-      <div className="flex items-center justify-between px-5 py-3 bg-canvas-recessed/40 border-t border-[rgba(13,37,61,0.06)] text-xs">
-        <span className="text-ink-secondary">
-          142 resumes parsed in <span className="font-mono tabular-nums font-semibold text-ink-primary">8.4s</span>
-        </span>
+      {/* Footer Telemetry Strip */}
+      <div className="flex items-center justify-between px-4 sm:px-5 py-3 bg-canvas-recessed/40 border-t border-[rgba(13,37,61,0.06)] text-xs">
+        <div className="flex items-center gap-2 text-ink-secondary">
+          <Zap className="w-3.5 h-3.5 text-accent-500" />
+          <span>
+            Parsed in <span className="font-mono tabular-nums font-semibold text-ink-primary">&lt; 0.35s</span> / PDF
+          </span>
+        </div>
         <Link
           href="/products/resume-shortlister"
-          className="font-medium text-accent-500 hover:text-accent-600 inline-flex items-center gap-1"
+          className="font-medium text-accent-500 hover:text-accent-600 inline-flex items-center gap-1 group"
         >
           <span>Open Full Tool</span>
-          <ArrowRight className="w-3.5 h-3.5" />
+          <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
         </Link>
-
       </div>
     </div>
   );
 }
+

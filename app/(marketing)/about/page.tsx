@@ -111,6 +111,9 @@ export default function AboutPage() {
               Building from UP keeps us close to the users big labs forget: first-generation graduates managing hiring in spreadsheets, students stitching together study material from five apps, admins who need news before it trends. We feel these broken workflows in our own day — hunger plus empathy is a genuine technical edge, because you can&rsquo;t design a fix for a problem you&rsquo;ve never lived.
             </p>
             <p>
+              It also defines our responsibility: we don&rsquo;t just build software in UP, we actively teach and mentor here. Through our <strong>AI Skill Mission</strong>, we take hands-on, zero-cost AI engineering masterclasses directly to regional campuses and polytechnics, ensuring local students learn how to write real protocols and deploy deterministic systems rather than settling for superficial prompt tricks.
+            </p>
+            <p>
               The team reflects the same range: operational discipline from Sonu Singh&rsquo;s thirty years in strategic defense operations, AI/ML protocol architecture from Dhruw Singh, spatial computing research from Gourav Singh (Japan AR/VR Summit finalist), distributed backend engineering from Rishabh, and applied NLP pipelines from Annant. Small team, full stack, zero hand-offs.
             </p>
           </div>

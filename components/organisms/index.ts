@@ -16,3 +16,5 @@ export * from './ArchitecturalSpecMatrix/ArchitecturalSpecMatrix';
 export * from './ConnectedPipelineRail/ConnectedPipelineRail';
 export * from './WorkshopRoster/WorkshopRoster';
 export * from './ApiReferenceMatrix/ApiReferenceMatrix';
+export * from './SkillMissionSection';
+export * from './tools';

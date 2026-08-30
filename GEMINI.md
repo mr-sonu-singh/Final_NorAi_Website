@@ -1,4 +1,4 @@
-# Agent Instructions (`AGENTS.md`)
+# Agent Instructions (`GEMINI.md`)
 
 > This file is mirrored across `CLAUDE.md`, `AGENTS.md`, and `GEMINI.md` so the same instructions load in any AI environment.
 

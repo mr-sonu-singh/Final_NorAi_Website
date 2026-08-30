@@ -1,69 +1,132 @@
-# NorAI Technologies — Next.js Website
+# NorAI Technologies — Official Web Platform
 
-This project is a full conversion of the original static HTML/CSS website into **Next.js 16** using the App Router and TypeScript. All pages, styling, and content have been preserved — only the underlying architecture has changed, giving you routing, component reuse, and easy deployment out of the box.
+Welcome to the official web repository for **NorAI Technologies**, building practical, high-reliability AI products and enterprise automation pipelines. Headquartered in its regional development hub in **Uttar Pradesh, India**, NorAI engineers micro-SaaS utilities and bespoke enterprise intelligence architectures.
 
-## Tech Stack
+---
 
-- **Next.js 16** (App Router)
-- **React 19**
-- **TypeScript**
-- Plain CSS (no CSS framework) — kept close to the original design
+## 🚀 Tech Stack & Architecture
 
-## Project Structure
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router, React Server Components)
+- **UI Runtime**: [React 19](https://react.dev/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/) (Strict Mode)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) with `@tailwindcss/postcss`
+- **Design System**: "Parchment & Terracotta" bespoke editorial hardware tokens
+- **Typography**: `Instrument Serif` (Display), `Plus Jakarta Sans` (Body & UI), `JetBrains Mono` (Readouts & Code)
+- **Primitives & Accessibility**: [Radix UI](https://www.radix-ui.com/) Primitives
+- **Animation**: [Framer Motion](https://www.framer.com/motion/) (Optimized for `prefers-reduced-motion`)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Validation**: [Zod](https://zod.dev/)
+
+---
+
+## 📁 Repository Structure
 
 ```
-app/
-  layout.tsx           Root layout — fonts, metadata, and shared <head> tags
-  globals.css          All site-wide styles (ported from the original style.css)
-  page.tsx             Home page                    → /
-  about/page.tsx        About Us page               → /about
-  services/page.tsx     Services page               → /services
-  team/page.tsx          Team page                  → /team
-  contact/page.tsx        Contact page               → /contact
-                          (client component — handles the contact form)
-
-components/
-  Header.tsx    Navigation bar. Automatically highlights the active
-                page link based on the current route.
-  Footer.tsx    Shared site footer.
+NorAi_Ofiicial_Web/
+├── app/                          # Next.js App Router root
+│   ├── (marketing)/              # Marketing routes (RSC by default)
+│   │   ├── page.tsx              # Homepage & CandidateScreenerWorkbench
+│   │   ├── products/             # Product catalog & dynamic [slug] routes
+│   │   ├── services/             # Enterprise Solution Architecture Matrix
+│   │   ├── pricing/              # Transparent pricing brackets
+│   │   ├── about/                # Origin story & regional UP hub roster
+│   │   ├── team/                 # Team directory & credentials
+│   │   ├── contact/              # Interactive inquiry form with URL pre-fill
+│   │   └── careers/              # Open engineering positions
+│   ├── (content)/                # Content hub
+│   │   ├── blog/                 # Editorial technical blog & [slug] reader
+│   │   ├── docs/                 # Product reference guide
+│   │   └── faq/                  # Searchable FAQ hub
+│   ├── (legal)/                  # Compliance & legal
+│   │   ├── privacy/              # Privacy Policy
+│   │   └── terms/                # Terms of Service
+│   ├── api/                      # Route handlers (e.g., /api/contact)
+│   ├── globals.css               # Design tokens, ramps, font variables
+│   └── layout.tsx                # Root layout, font definitions, SEO metadata
+├── components/                   # Atomic Design component hierarchy
+│   ├── foundation/               # Base layout primitives (Container, Grid, Section, Heading)
+│   ├── atoms/                    # Atomic controls (Button, Badge, Input, Link, BrandLogo)
+│   ├── molecules/                # Multi-atom patterns (FormField, SearchBar, Accordion)
+│   ├── organisms/                # Complex organisms (HeroWorkbench, ServicesDirectory, Header, Footer)
+│   ├── templates/                # Full page layouts (LegalTemplate, EditorialReader)
+│   └── illustrations/            # Bespoke editorial SVGs and wireframe matrices
+├── config/                       # Site metadata, routes, and navigation definitions
+├── lib/                          # Data layers, schemas, SEO helpers, and utility functions
+│   ├── products.ts               # Canonical product data catalog
+│   ├── schemas/                  # Zod validation schemas
+│   └── seo/                      # Dynamic metadata & OpenGraph generators
+├── public/                       # Static brand assets, favicons, logos
+├── directives/                   # Layer 1 SOPs & workflows
+└── execution/                    # Layer 3 deterministic execution scripts
 ```
 
-## Getting Started
+---
 
-Install dependencies:
+## 🛠️ Getting Started
 
+### 1. Prerequisites
+- Node.js `18.18+` or `20+`
+- npm, pnpm, or yarn
+
+### 2. Installation
+Clone the repository and install dependencies:
 ```bash
 npm install
 ```
 
-Run the development server:
+### 3. Environment Variables
+Copy `.env.example` to `.env`:
+```bash
+cp .env.example .env
+```
+Configure your environment variables:
+```env
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+CONTACT_EMAIL_RECIPIENT=contact@noraitech.com
+```
 
+### 4. Development Server
+Start the local development server:
 ```bash
 npm run dev
 ```
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
-Then open [http://localhost:3000](http://localhost:3000) in your browser.
+---
 
-## Production Build
+## 🧪 Quality & Verification Commands
 
 ```bash
+# Typecheck TypeScript
+npx tsc --noEmit
+
+# Run ESLint checks
+npm run lint
+
+# Format codebase with Prettier
+npm run format:write
+
+# Build production bundle
 npm run build
+
+# Start production server
 npm start
 ```
 
-## Deployment
+---
 
-This project deploys cleanly to **Vercel** (the creators of Next.js) with zero configuration:
+## 🎨 Design System & Context Guidelines
 
-1. Push the project to a GitHub repository.
-2. Import the repository in Vercel.
-3. Deploy — no additional setup required.
+All design standards, typography scales, color tokens, and anti-slop rules are strictly defined in:
+- [`PRODUCT.md`](PRODUCT.md) — Product vision, target personas, taxonomy, and anti-references.
+- [`DESIGN.md`](DESIGN.md) — Design tokens, color system, typography scale, 5-state ergonomics, and anti-slop checklist.
+- [`AGENTS.md`](AGENTS.md) — 3-layer architecture, coding conventions, and agent execution protocol.
+- [`project_progress_context.md`](project_progress_context.md) — Complete phase roadmap and rebuild execution history.
 
-It will also run on any Node.js hosting environment that supports Next.js (Netlify, Render, a VPS, etc.).
+---
 
-## Notes
+## 🚢 Deployment
 
-- All styling lives in `app/globals.css`. Colors, spacing, and layout match the original design exactly — nothing was redesigned.
-- Navigation uses Next.js's `<Link>` component, so moving between pages is instant, client-side navigation rather than a full page reload.
-- Team member images are served through `next/image` for automatic optimization (lazy loading, responsive sizing, compression).
-- Keep dependencies (`next`, `react`, `react-dom`) up to date — Next.js ships regular security patches, and older major versions eventually stop receiving fixes.
+This platform is configured for continuous zero-config deployment on **Vercel**:
+1. Push changes to `main`.
+2. Vercel automatically builds the production bundle with Edge runtime and image optimization.
