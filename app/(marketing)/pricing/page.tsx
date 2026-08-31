@@ -131,8 +131,8 @@ const ASSURANCES = [
   {
     icon: Clock,
     tone: 'text-terra-600 bg-terra-100',
-    title: 'Humans reply < 2 hours',
-    body: 'Real people answer during business hours — Monday to Saturday, 9 AM to 8 PM IST.',
+    title: 'Engineers on desk',
+    body: 'Real founders and engineers answer during business hours — Monday to Saturday, 9 AM to 8 PM IST.',
   },
 ];
 

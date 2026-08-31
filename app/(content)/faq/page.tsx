@@ -266,7 +266,7 @@ export default function FAQPage() {
           <div className="mt-16 space-y-4 rounded-xl border border-line-subtle bg-canvas-paper p-8 text-center shadow-sm">
             <h2 className="font-display text-2xl text-ink-primary">Still stuck on something?</h2>
             <Text variant="body-sm" className="leading-relaxed text-ink-body">
-              Skip the search bar and talk to a person — we reply within two hours during business hours.
+              Skip the search bar and talk directly to our engineering team during business hours.
             </Text>
             <div className="pt-1">
               <Link href="/contact" variant="standalone" aria-label="Ask us directly through the contact page">

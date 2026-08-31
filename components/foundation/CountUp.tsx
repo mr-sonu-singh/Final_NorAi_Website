@@ -43,7 +43,7 @@ export function CountUp({
   once = true,
 }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once, margin: '-60px' });
+  const isInView = useInView(ref, { once, margin: '0px 0px -20px 0px' });
   const shouldReduceMotion = useReducedMotion();
 
   // Infer decimal places if not explicitly passed (e.g. 0.35 -> 2, 50 -> 0)

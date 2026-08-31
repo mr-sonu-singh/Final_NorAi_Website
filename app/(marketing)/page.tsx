@@ -134,7 +134,7 @@ export default function HomePage() {
                   </div>
                   <div className="flex items-center gap-1.5">
                     <CheckCircle2 className="w-4 h-4 text-accent-secondary shrink-0" />
-                    <span>&lt; 2hr engineering response SLA</span>
+                    <span>Direct founder & engineer support</span>
                   </div>
                 </div>
               </Reveal>
