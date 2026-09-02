@@ -8,7 +8,6 @@ import {
   Check,
   Copy,
   ArrowRight,
-  Zap,
   SlidersHorizontal,
   FileText,
   Headphones,
@@ -16,10 +15,9 @@ import {
   Newspaper,
   Play,
   Pause,
-  Sparkles,
-  CheckCircle2,
 } from 'lucide-react';
 import { MathRenderer, MathText } from '@/components/atoms/MathRenderer';
+import { WaveformCanvas } from '@/components/atoms/WaveformCanvas';
 
 type ToolId = 'resume' | 'notes' | 'digest' | 'news';
 
@@ -130,7 +128,7 @@ export function HeroStudioWorkbench() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  // Keyboard hotkeys 1-4 for quick tool switching
+  // Keyboard hotkeys 1-4 for quick tool switching & c for JSON copy
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (['input', 'textarea'].includes((e.target as HTMLElement)?.tagName?.toLowerCase())) {
@@ -157,38 +155,42 @@ export function HeroStudioWorkbench() {
   }, [resumeSubTab, activeTool]);
 
   const TOOLS_LIST = [
-    { id: 'resume' as const, label: 'Resume', icon: FileText },
-    { id: 'notes' as const, label: 'Notes', icon: Headphones },
-    { id: 'digest' as const, label: 'Digest', icon: MessageSquare },
-    { id: 'news' as const, label: 'Dainik', icon: Newspaper },
+    { id: 'resume' as const, label: 'Resume', icon: FileText, hotkey: '1' },
+    { id: 'notes' as const, label: 'Notes', icon: Headphones, hotkey: '2' },
+    { id: 'digest' as const, label: 'Digest', icon: MessageSquare, hotkey: '3' },
+    { id: 'news' as const, label: 'Dainik', icon: Newspaper, hotkey: '4' },
   ];
 
   return (
-    <div className="w-full rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] shadow-2xl overflow-hidden text-left font-sans transition-all duration-300">
+    <div className="w-full rounded-xl bg-surface-panel border border-border-strong overflow-hidden text-left font-sans transition-all duration-200">
       {/* Screen reader live region */}
       <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
         {liveAnnouncement}
       </div>
 
-      {/* Studio Header Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 px-3.5 sm:px-4 py-2.5 bg-canvas-recessed/80 border-b border-[rgba(13,37,61,0.08)]">
-        {/* Left Mac/Terminal Dots + Title */}
+      {/* Faux-OS Window Chrome Header Bar */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 px-3.5 sm:px-4 py-2.5 bg-surface-panel-subtle/70 border-b border-border-subtle">
+        {/* Left Faux-OS Window Dots + Title */}
         <div className="flex items-center gap-2.5">
-          <div className="flex gap-1" aria-hidden="true">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#C2553A]/60 border border-[#C2553A]/80" />
-            <span className="w-2.5 h-2.5 rounded-full bg-[#B8860B]/60 border border-[#B8860B]/80" />
-            <span className="w-2.5 h-2.5 rounded-full bg-[#5B8A72]/60 border border-[#5B8A72]/80" />
+          <div className="flex gap-1.5" aria-hidden="true">
+            <span className="w-2.5 h-2.5 rounded-full bg-slate-300 border border-slate-400/40" />
+            <span className="w-2.5 h-2.5 rounded-full bg-slate-300 border border-slate-400/40" />
+            <span className="w-2.5 h-2.5 rounded-full bg-slate-300 border border-slate-400/40" />
           </div>
-          <span className="font-mono text-xs font-semibold text-ink-primary tracking-tight">
-            NorAI Studio
+          <span className="font-mono text-xs font-semibold text-text-primary tracking-tight whitespace-nowrap">
+            NorAI Studio<span className="hidden xl:inline"> · Living Workbench</span>
           </span>
-          <span className="text-[10px] font-mono font-medium px-1.5 py-0.5 rounded bg-sage-100/70 text-accent-secondary border border-accent-secondary/20">
+          <span className="text-[11px] font-mono text-text-muted shrink-0 whitespace-nowrap">
             Ephemeral RAM
           </span>
         </div>
 
-        {/* 4 Tool Selector Buttons with 5-State Ergonomics & Sliding Pill */}
-        <div className="grid grid-cols-4 sm:flex items-center rounded-lg bg-canvas-paper p-0.5 border border-[rgba(13,37,61,0.08)] text-xs relative">
+        {/* 4 Tool Selector Buttons with Physical Keycaps */}
+        <div
+          role="tablist"
+          aria-label="NorAI Living Studio Tools"
+          className="grid grid-cols-4 sm:flex items-center rounded-lg bg-surface-panel p-0.5 border border-border-subtle text-xs relative"
+        >
           {TOOLS_LIST.map((tool) => {
             const Icon = tool.icon;
             const isSelected = activeTool === tool.id;
@@ -196,23 +198,35 @@ export function HeroStudioWorkbench() {
               <button
                 key={tool.id}
                 type="button"
+                role="tab"
+                id={`tab-${tool.id}`}
+                aria-selected={isSelected}
+                aria-controls={`panel-${tool.id}`}
                 onClick={() => setActiveTool(tool.id)}
                 className={cn(
-                  'relative flex items-center justify-center gap-1 px-2.5 py-1 rounded-md font-medium transition-colors duration-150 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 z-10',
+                  'relative flex items-center justify-center gap-1 px-2.5 py-1 rounded-md font-medium transition-all duration-150 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary z-10 cursor-pointer active:scale-[0.98]',
                   isSelected
                     ? 'text-white font-semibold'
-                    : 'text-ink-secondary hover:text-ink-primary'
+                    : 'text-text-secondary hover:text-text-primary hover:bg-surface-hover/50'
                 )}
               >
                 {isSelected && (
                   <motion.span
                     layoutId="heroStudioTabIndicator"
-                    className="absolute inset-0 bg-[#0D253D] rounded-md shadow-xs -z-10"
+                    className="absolute inset-0 bg-[#141C2B] rounded-md -z-10"
                     transition={{ type: 'spring', stiffness: 500, damping: 35 }}
                   />
                 )}
-                <Icon className="w-3 h-3 shrink-0" />
-                <span className="text-[11px]">{tool.label}</span>
+                <Icon className="w-3.5 h-3.5 shrink-0" />
+                <span className="hidden min-[380px]:inline">{tool.label}</span>
+                <kbd className={cn(
+                  'hidden sm:inline-block ml-1 font-mono text-[9px] px-1 py-0.2 rounded border leading-none',
+                  isSelected
+                    ? 'bg-white/10 text-white/80 border-white/20'
+                    : 'bg-surface-panel text-text-muted border-border-subtle'
+                )}>
+                  {tool.hotkey}
+                </kbd>
               </button>
             );
           })}
@@ -227,21 +241,24 @@ export function HeroStudioWorkbench() {
         {activeTool === 'resume' && (
           <motion.div
             key="resume"
+            id="panel-resume"
+            role="tabpanel"
+            aria-labelledby="tab-resume"
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
           >
             {/* Subheader */}
-            <div className="flex items-center justify-between px-4 sm:px-5 py-2.5 bg-canvas-base border-b border-[rgba(13,37,61,0.06)] text-xs">
+            <div className="flex items-center justify-between px-4 sm:px-5 py-2.5 bg-surface-canvas border-b border-border-subtle text-xs">
               <div className="flex items-center gap-2">
-                <span className="font-semibold text-ink-primary">AI Resume Shortlister</span>
-                <span className="text-[11px] font-mono text-ink-secondary hidden sm:inline">
+                <span className="font-semibold text-text-primary">AI Resume Shortlister</span>
+                <span className="text-[11px] font-mono text-text-muted hidden sm:inline">
                   · Batch #104 (58 Evaluated)
                 </span>
               </div>
 
-              <div className="flex items-center gap-1 bg-canvas-paper p-0.5 rounded border border-[rgba(13,37,61,0.06)] relative">
+              <div className="flex items-center gap-1 bg-surface-panel p-0.5 rounded border border-border-subtle relative">
                 {(['scorecard', 'vectors', 'json'] as const).map((tab) => {
                   const isTabActive = resumeSubTab === tab;
                   const label = tab === 'scorecard' ? 'Scorecard' : tab === 'vectors' ? 'Vectors' : 'JSON Schema';
@@ -251,16 +268,16 @@ export function HeroStudioWorkbench() {
                       type="button"
                       onClick={() => setResumeSubTab(tab)}
                       className={cn(
-                        'relative px-2 py-0.5 rounded text-[11px] font-medium transition-colors z-10',
+                        'relative px-2 py-0.5 rounded text-[11px] font-medium transition-colors z-10 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent-primary',
                         isTabActive
-                          ? 'text-accent-500 font-semibold'
-                          : 'text-ink-secondary hover:text-ink-primary'
+                          ? 'text-accent-primary font-semibold'
+                          : 'text-text-secondary hover:text-text-primary'
                       )}
                     >
                       {isTabActive && (
                         <motion.span
                           layoutId="resumeSubTabIndicator"
-                          className="absolute inset-0 bg-accent-50 rounded -z-10 border border-accent-500/20"
+                          className="absolute inset-0 bg-accent-50 rounded -z-10 border border-accent-primary/20"
                           transition={{ type: 'spring', stiffness: 500, damping: 35 }}
                         />
                       )}
@@ -286,37 +303,28 @@ export function HeroStudioWorkbench() {
                         aria-selected={isSelected}
                         onClick={() => setSelectedCandidate(cand)}
                         className={cn(
-                          'w-full text-left p-3 rounded-xl border transition-all duration-150 flex items-center justify-between gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500',
+                          'w-full text-left p-3 rounded-lg border transition-all duration-150 flex items-center justify-between gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary cursor-pointer active:scale-[0.99]',
                           isSelected
-                            ? 'bg-canvas-paper border-accent-500/80 shadow-md ring-1 ring-accent-500/20 translate-y-[-1px]'
-                            : 'bg-canvas-recessed/30 border-[rgba(13,37,61,0.06)] hover:bg-canvas-recessed/60 hover:border-accent-500/30'
+                            ? 'bg-surface-panel border-border-strong ring-1 ring-border-strong'
+                            : 'bg-surface-panel-subtle/30 border-border-subtle hover:bg-surface-panel-subtle/60 hover:border-border-strong'
                         )}
                       >
-                        <div className="space-y-0.5 min-w-0">
+                        <div className="space-y-1 min-w-0">
                           <div className="flex items-center gap-2 flex-wrap">
-                            <span className="font-display text-base font-normal text-ink-primary">
+                            <span className="font-sans font-medium text-sm text-text-primary">
                               {cand.name}
                             </span>
-                            <span className="font-mono tabular-nums text-xs font-semibold px-2 py-0.5 rounded bg-accent-50 text-accent-500 border border-accent-500/20">
+                            <span className="font-mono tabular-nums text-xs font-semibold text-text-secondary">
                               {cand.score}% Match
                             </span>
                           </div>
-                          <p className="text-xs text-ink-secondary">
+                          <p className="text-xs text-text-secondary">
                             {cand.role} · <span className="font-mono tabular-nums">{cand.experience}</span>
                           </p>
                         </div>
 
                         <div className="shrink-0 text-right">
-                          <span
-                            className={cn(
-                              'text-[11px] font-medium px-2 py-0.5 rounded-full inline-block',
-                              cand.status === 'Top Candidate'
-                                ? 'bg-sage-100/70 text-accent-secondary font-semibold'
-                                : cand.status === 'Shortlisted'
-                                ? 'bg-accent-50 text-accent-500'
-                                : 'bg-canvas-recessed text-ink-secondary'
-                            )}
-                          >
+                          <span className="text-xs font-mono text-text-muted">
                             {cand.status}
                           </span>
                         </div>
@@ -326,24 +334,24 @@ export function HeroStudioWorkbench() {
                 </div>
 
                 {/* Rationale Drawer */}
-                <div className="rounded-xl bg-canvas-recessed/40 border border-[rgba(13,37,61,0.08)] p-3.5 space-y-2.5">
-                  <div className="flex items-center justify-between text-xs text-ink-secondary">
-                    <div className="flex items-center gap-1.5 font-mono font-medium text-ink-primary">
-                      <SlidersHorizontal className="w-3.5 h-3.5 text-accent-500" />
+                <div className="rounded-lg bg-surface-panel-subtle/40 border border-border-subtle p-3.5 space-y-2.5">
+                  <div className="flex items-center justify-between text-xs text-text-secondary">
+                    <div className="flex items-center gap-1.5 font-mono font-medium text-text-primary">
+                      <SlidersHorizontal className="w-3.5 h-3.5 text-accent-primary" />
                       <span>Scoring Rationale</span>
                     </div>
-                    <span className="font-mono text-[11px] text-accent-secondary">
+                    <span className="font-mono text-xs text-accent-secondary">
                       {selectedCandidate.name}
                     </span>
                   </div>
-                  <p className="text-xs text-ink-body leading-relaxed">
+                  <p className="text-xs text-text-secondary leading-relaxed">
                     {selectedCandidate.rationale}
                   </p>
                   <div className="flex flex-wrap gap-1.5 pt-0.5">
                     {selectedCandidate.skills.map((skill, idx) => (
                       <span
                         key={idx}
-                        className="px-2 py-0.5 rounded bg-canvas-paper text-[11px] font-medium text-ink-primary border border-[rgba(13,37,61,0.08)]"
+                        className="px-2 py-0.5 rounded bg-surface-panel text-[11px] font-medium text-text-primary border border-border-subtle"
                       >
                         {skill}
                       </span>
@@ -357,14 +365,14 @@ export function HeroStudioWorkbench() {
               <div className="p-4 sm:p-5 space-y-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h4 className="font-display text-lg text-ink-primary font-normal">
+                    <h4 className="font-sans font-semibold text-sm text-text-primary">
                       Skill Vector Alignment
                     </h4>
-                    <p className="text-xs text-ink-secondary">
+                    <p className="text-xs text-text-secondary">
                       Cosine similarity calculated against Senior Backend specification.
                     </p>
                   </div>
-                  <span className="font-mono text-xs text-accent-500 font-semibold px-2 py-1 bg-accent-50 rounded">
+                  <span className="font-mono text-xs text-accent-primary font-semibold px-2 py-1 bg-accent-50 rounded border border-accent-primary/20">
                     {selectedCandidate.name}
                   </span>
                 </div>
@@ -373,14 +381,14 @@ export function HeroStudioWorkbench() {
                   {selectedCandidate.vectors.map((vec, idx) => (
                     <div key={idx} className="space-y-1">
                       <div className="flex justify-between text-xs">
-                        <span className="font-medium text-ink-primary">{vec.label}</span>
-                        <span className="font-mono tabular-nums font-semibold text-accent-500">
+                        <span className="font-medium text-text-primary">{vec.label}</span>
+                        <span className="font-mono tabular-nums font-semibold text-accent-primary">
                           {vec.match}%
                         </span>
                       </div>
-                      <div className="w-full h-2 rounded-full bg-canvas-recessed overflow-hidden">
+                      <div className="w-full h-1.5 rounded-full bg-surface-panel-subtle overflow-hidden">
                         <div
-                          className="h-full bg-gradient-to-r from-accent-400 to-accent-500 rounded-full transition-all duration-500 ease-out"
+                          className="h-full bg-accent-primary rounded-full transition-all duration-500 ease-out"
                           style={{ width: `${vec.match}%` }}
                         />
                       </div>
@@ -391,15 +399,15 @@ export function HeroStudioWorkbench() {
             )}
 
             {resumeSubTab === 'json' && (
-              <div className="p-4 relative bg-[#0D253D] text-[#FDFBF7]">
-                <div className="flex justify-between items-center pb-2 mb-2 border-b border-[rgba(253,251,247,0.1)] text-xs text-slate-400">
-                  <span className="font-mono text-[11px] text-emerald-400">
+              <div className="p-4 relative bg-[#141C2B] text-[#F5F0EA] rounded-b-xl">
+                <div className="flex justify-between items-center pb-2 mb-2 border-b border-white/10 text-xs text-slate-400">
+                  <span className="font-mono text-[11px] text-[#55BA83]">
                     POST /api/v1/shortlist/batch-104
                   </span>
                   <button
                     type="button"
                     onClick={handleCopyJson}
-                    className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-white/10 hover:bg-white/20 text-slate-300 text-xs font-mono transition-all"
+                    className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-white/10 hover:bg-white/20 text-slate-200 text-xs font-mono transition-all cursor-pointer"
                   >
                     {copied ? (
                       <>
@@ -409,28 +417,27 @@ export function HeroStudioWorkbench() {
                     ) : (
                       <>
                         <Copy className="w-3 h-3" />
-                        <span>Copy Payload</span>
+                        <span>Copy Payload (c)</span>
                       </>
                     )}
                   </button>
                 </div>
-                <pre className="font-mono text-[11px] text-emerald-300/90 overflow-x-auto p-1 leading-relaxed max-h-52">
+                <pre className="font-mono text-[11px] text-[#55BA83]/90 overflow-x-auto p-1 leading-relaxed max-h-52">
                   {JSON.stringify(JSON_SAMPLE, null, 2)}
                 </pre>
               </div>
             )}
 
             {/* Footer Bar */}
-            <div className="flex items-center justify-between px-4 sm:px-5 py-2.5 bg-canvas-recessed/40 border-t border-[rgba(13,37,61,0.06)] text-xs">
-              <div className="flex items-center gap-2 text-ink-secondary">
-                <Zap className="w-3.5 h-3.5 text-accent-500" />
+            <div className="flex items-center justify-between px-4 sm:px-5 py-2.5 bg-surface-panel-subtle/40 border-t border-border-subtle text-xs">
+              <div className="text-text-secondary">
                 <span>
-                  Parsed in <span className="font-mono tabular-nums font-semibold text-ink-primary">&lt; 0.35s</span> / PDF
+                  Parsed in <span className="font-mono tabular-nums font-semibold text-text-primary">&lt; 0.35s</span> / PDF
                 </span>
               </div>
               <Link
                 href="/products/resume-shortlister"
-                className="font-medium text-accent-500 hover:text-accent-600 inline-flex items-center gap-1 group"
+                className="font-medium text-accent-primary hover:text-accent-hover inline-flex items-center gap-1 group"
               >
                 <span>Open Tool Fullscreen</span>
                 <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
@@ -445,15 +452,18 @@ export function HeroStudioWorkbench() {
         {activeTool === 'notes' && (
           <motion.div
             key="notes"
+            id="panel-notes"
+            role="tabpanel"
+            aria-labelledby="tab-notes"
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
           >
             {/* Subheader */}
-            <div className="flex items-center justify-between px-4 sm:px-5 py-2.5 bg-canvas-base border-b border-[rgba(13,37,61,0.06)] text-xs">
+            <div className="flex items-center justify-between px-4 sm:px-5 py-2.5 bg-surface-canvas border-b border-border-subtle text-xs">
               <div className="flex items-center gap-2">
-                <span className="font-semibold text-ink-primary">AI Course Note-Taker</span>
+                <span className="font-semibold text-text-primary">AI Course Note-Taker</span>
                 <span className="text-[11px] font-mono text-[#7c5506] bg-[#fff4d6] px-2 py-0.5 rounded border border-[#7c5506]/20">
                   100% Free for Students
                 </span>
@@ -463,57 +473,50 @@ export function HeroStudioWorkbench() {
 
             <div className="p-4 sm:p-5 space-y-4">
               {/* Audio Waveform Simulator */}
-              <div className="rounded-xl bg-canvas-recessed/40 border border-[rgba(13,37,61,0.08)] p-3.5 space-y-3">
+              <div className="rounded-xl bg-surface-panel-subtle/40 border border-border-subtle p-3.5 space-y-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <button
                       type="button"
                       onClick={() => setIsPlayingAudio(!isPlayingAudio)}
-                      className="w-8 h-8 rounded-full bg-terra-500 hover:bg-terra-600 text-white flex items-center justify-center shadow-accent transition-all active:scale-95 cursor-pointer"
+                      className="w-8 h-8 rounded-full bg-accent-primary hover:bg-accent-hover text-white flex items-center justify-center shadow-accent transition-all active:scale-95 cursor-pointer focus-visible:ring-2 focus-visible:ring-accent-primary"
                       aria-label={isPlayingAudio ? 'Pause Lecture Audio' : 'Play Lecture Audio'}
                     >
                       {isPlayingAudio ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 ml-0.5" />}
                     </button>
                     <div>
-                      <p className="text-xs font-semibold text-ink-primary">MIT 8.02: Maxwell&apos;s Equations & Electromagnetism</p>
-                      <p className="text-[11px] font-mono text-ink-secondary">04:12 / 52:30 · 1.5x Speed Neural Filtered</p>
+                      <p className="text-xs font-semibold text-text-primary">MIT 8.02: Maxwell&apos;s Equations & Electromagnetism</p>
+                      <p className="text-[11px] font-mono text-text-secondary">04:12 / 52:30 · 1.5x Speed Neural Filtered</p>
                     </div>
                   </div>
-                  <span className="font-mono tabular-nums text-xs text-accent-500 font-semibold px-2 py-0.5 rounded bg-accent-50">
+                  <span className="font-mono tabular-nums text-xs text-accent-primary font-semibold px-2 py-0.5 rounded bg-accent-50 border border-accent-primary/20">
                     {isPlayingAudio ? 'Transcribing...' : 'Paused'}
                   </span>
                 </div>
 
-                {/* Animated Waveform Visualizer */}
-                <div className="flex items-center gap-1 h-7 px-2 bg-canvas-paper rounded-lg border border-[rgba(13,37,61,0.06)] overflow-hidden">
-                  {[40, 65, 80, 45, 90, 70, 30, 85, 95, 60, 50, 75, 100, 80, 65, 45, 90, 85, 70, 55, 40, 75, 90, 60, 35, 80, 65, 90, 50].map((h, i) => (
-                    <div
-                      key={i}
-                      className={cn(
-                        'flex-1 rounded-full transition-all duration-200',
-                        isPlayingAudio ? 'bg-terra-500' : 'bg-terra-300/40',
-                        isPlayingAudio && (i % 4 === 0 ? 'animate-waveform-1' : i % 4 === 1 ? 'animate-waveform-2' : i % 4 === 2 ? 'animate-waveform-3' : 'animate-waveform-4')
-                      )}
-                      style={{
-                        height: isPlayingAudio ? `${Math.max(25, (h + (i % 5) * 10) % 100)}%` : `${h * 0.4}%`,
-                      }}
-                    />
-                  ))}
+                {/* Animated Waveform Visualizer Canvas */}
+                <div className="h-8 px-2 py-1 bg-surface-panel rounded-lg border border-border-subtle overflow-hidden flex items-center">
+                  <WaveformCanvas
+                    isPlaying={isPlayingAudio}
+                    color="#C85A32"
+                    height={24}
+                    barCount={36}
+                  />
                 </div>
               </div>
 
               {/* Extracted Structured Note Card */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {/* LaTeX Math Extraction */}
-                <div className="rounded-xl bg-canvas-paper border border-[rgba(13,37,61,0.08)] p-3.5 space-y-2">
+                <div className="rounded-xl bg-surface-panel border border-border-subtle p-3.5 space-y-2">
                   <div className="flex items-center justify-between text-xs">
-                    <span className="font-mono font-semibold text-accent-500">LaTeX Formula Extraction</span>
+                    <span className="font-mono font-semibold text-accent-primary">LaTeX Formula Extraction</span>
                     <span className="text-[10px] font-mono text-accent-secondary">Verified</span>
                   </div>
-                  <div className="p-2.5 rounded bg-canvas-recessed/60 text-ink-primary border border-[rgba(13,37,61,0.06)] flex items-center justify-center min-h-[44px]">
+                  <div className="p-2.5 rounded bg-surface-panel-subtle/60 text-text-primary border border-border-subtle flex items-center justify-center min-h-[44px]">
                     <MathRenderer math="\nabla \times \mathbf{E} = -\frac{\partial \mathbf{B}}{\partial t}" displayMode={false} />
                   </div>
-                  <p className="text-[11px] text-ink-secondary">
+                  <p className="text-[11px] text-text-secondary">
                     Faraday&apos;s Law of Induction: Time-varying magnetic fields induce circulating electric fields.
                   </p>
                 </div>
@@ -522,11 +525,11 @@ export function HeroStudioWorkbench() {
                 <button
                   type="button"
                   onClick={() => setFlashcardFlipped(!flashcardFlipped)}
-                  className="text-left rounded-xl bg-canvas-paper border border-accent-500/30 hover:border-accent-500 p-3.5 space-y-2 transition-all hover:shadow-sm cursor-pointer"
+                  className="text-left rounded-xl bg-surface-panel border border-accent-primary/30 hover:border-accent-primary p-3.5 space-y-2 transition-all hover:shadow-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
                 >
                   <div className="flex items-center justify-between text-xs">
-                    <span className="font-mono font-semibold text-ink-primary">Interactive Study Card</span>
-                    <span className="text-[10px] font-mono text-accent-500">Click to Flip</span>
+                    <span className="font-mono font-semibold text-text-primary">Interactive Study Card</span>
+                    <span className="text-[10px] font-mono text-accent-primary">Click to Flip</span>
                   </div>
                   <AnimatePresence mode="wait">
                     {flashcardFlipped ? (
@@ -539,7 +542,7 @@ export function HeroStudioWorkbench() {
                         className="space-y-1"
                       >
                         <span className="text-[10px] font-mono text-accent-secondary uppercase">Answer</span>
-                        <p className="text-xs text-ink-primary font-medium">
+                        <p className="text-xs text-text-primary font-medium">
                           <MathText text="The displacement current term $\mu_0 \varepsilon_0 \frac{\partial \mathbf{E}}{\partial t}$ was added by Maxwell to satisfy conservation of charge." />
                         </p>
                       </motion.div>
@@ -552,8 +555,8 @@ export function HeroStudioWorkbench() {
                         transition={{ duration: 0.36 }}
                         className="space-y-1"
                       >
-                        <span className="text-[10px] font-mono text-ink-secondary uppercase">Question (Card #04)</span>
-                        <p className="text-xs text-ink-primary font-medium">
+                        <span className="text-[10px] font-mono text-text-secondary uppercase">Question (Card #04)</span>
+                        <p className="text-xs text-text-primary font-medium">
                           What critical term did Maxwell add to Ampère&apos;s Law to unify electricity and magnetism?
                         </p>
                       </motion.div>
@@ -564,14 +567,13 @@ export function HeroStudioWorkbench() {
             </div>
 
             {/* Footer Bar */}
-            <div className="flex items-center justify-between px-4 sm:px-5 py-2.5 bg-canvas-recessed/40 border-t border-[rgba(13,37,61,0.06)] text-xs">
-              <div className="flex items-center gap-2 text-ink-secondary">
-                <Sparkles className="w-3.5 h-3.5 text-accent-500" />
-                <span>Generates chapter outlines, key definitions & LaTeX formulas</span>
+            <div className="flex items-center justify-between px-4 sm:px-5 py-2.5 bg-surface-panel-subtle/40 border-t border-border-subtle text-xs">
+              <div className="text-text-secondary">
+                <span>Generates chapter outlines, key definitions &amp; LaTeX formulas</span>
               </div>
               <Link
                 href="/products/course-note-taker"
-                className="font-medium text-accent-500 hover:text-accent-600 inline-flex items-center gap-1 group"
+                className="font-medium text-accent-primary hover:text-accent-hover inline-flex items-center gap-1 group"
               >
                 <span>Try Note-Taker</span>
                 <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
@@ -586,20 +588,23 @@ export function HeroStudioWorkbench() {
         {activeTool === 'digest' && (
           <motion.div
             key="digest"
+            id="panel-digest"
+            role="tabpanel"
+            aria-labelledby="tab-digest"
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
           >
             {/* Subheader */}
-            <div className="flex items-center justify-between px-4 sm:px-5 py-2.5 bg-canvas-base border-b border-[rgba(13,37,61,0.06)] text-xs">
+            <div className="flex items-center justify-between px-4 sm:px-5 py-2.5 bg-surface-canvas border-b border-border-subtle text-xs">
               <div className="flex items-center gap-2">
-                <span className="font-semibold text-ink-primary">Community Chat Digest</span>
-                <span className="text-[11px] font-mono text-ink-secondary">4,820 messages condensed to 3 briefs</span>
+                <span className="font-semibold text-text-primary">Community Chat Digest</span>
+                <span className="text-[11px] font-mono text-text-muted">4,820 messages condensed to 3 briefs</span>
               </div>
 
               {/* Platform toggles */}
-              <div className="flex items-center gap-1 bg-canvas-paper p-0.5 rounded border border-[rgba(13,37,61,0.06)] relative">
+              <div className="flex items-center gap-1 bg-surface-panel p-0.5 rounded border border-border-subtle relative">
                 {(['discord', 'telegram', 'slack'] as const).map((plat) => {
                   const isPlatActive = activeCommunityPlatform === plat;
                   return (
@@ -608,16 +613,16 @@ export function HeroStudioWorkbench() {
                       type="button"
                       onClick={() => setActiveCommunityPlatform(plat)}
                       className={cn(
-                        'relative px-2 py-0.5 rounded text-[11px] font-medium capitalize transition-colors z-10',
+                        'relative px-2 py-0.5 rounded text-[11px] font-medium capitalize transition-colors z-10 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent-primary',
                         isPlatActive
-                          ? 'text-accent-500 font-semibold'
-                          : 'text-ink-secondary hover:text-ink-primary'
+                          ? 'text-accent-primary font-semibold'
+                          : 'text-text-secondary hover:text-text-primary'
                       )}
                     >
                       {isPlatActive && (
                         <motion.span
                           layoutId="communityPlatformIndicator"
-                          className="absolute inset-0 bg-accent-50 rounded -z-10 border border-accent-500/20"
+                          className="absolute inset-0 bg-accent-50 rounded -z-10 border border-accent-primary/20"
                           transition={{ type: 'spring', stiffness: 500, damping: 35 }}
                         />
                       )}
@@ -631,54 +636,52 @@ export function HeroStudioWorkbench() {
             <div className="p-4 sm:p-5 space-y-3.5">
               {/* Digest Metrics Strip */}
               <div className="grid grid-cols-3 gap-2 text-left">
-                <div className="p-2.5 rounded-xl bg-canvas-recessed/40 border border-[rgba(13,37,61,0.06)]">
-                  <span className="text-[10px] font-mono text-ink-secondary block">Compression Ratio</span>
-                  <span className="font-display text-xl text-ink-primary font-normal">94.8%</span>
+                <div className="p-2.5 rounded-lg bg-surface-panel-subtle/40 border border-border-subtle">
+                  <span className="text-[10px] font-mono text-text-secondary block">Compression Ratio</span>
+                  <span className="font-mono tabular-nums text-base text-text-primary font-semibold">94.8%</span>
                 </div>
-                <div className="p-2.5 rounded-xl bg-canvas-recessed/40 border border-[rgba(13,37,61,0.06)]">
-                  <span className="text-[10px] font-mono text-ink-secondary block">Community Sentiment</span>
-                  <span className="font-display text-xl text-accent-secondary font-normal">82% Positive</span>
+                <div className="p-2.5 rounded-lg bg-surface-panel-subtle/40 border border-border-subtle">
+                  <span className="text-[10px] font-mono text-text-secondary block">Community Sentiment</span>
+                  <span className="font-mono tabular-nums text-base text-accent-secondary font-semibold">82% Positive</span>
                 </div>
-                <div className="p-2.5 rounded-xl bg-canvas-recessed/40 border border-[rgba(13,37,61,0.06)]">
-                  <span className="text-[10px] font-mono text-ink-secondary block">Action Items Found</span>
-                  <span className="font-display text-xl text-accent-500 font-normal">6 Tasks</span>
+                <div className="p-2.5 rounded-lg bg-surface-panel-subtle/40 border border-border-subtle">
+                  <span className="text-[10px] font-mono text-text-secondary block">Action Items Found</span>
+                  <span className="font-mono tabular-nums text-base text-accent-primary font-semibold">6 Tasks</span>
                 </div>
               </div>
 
               {/* Structured Executive Brief Output */}
-              <div className="rounded-xl bg-canvas-paper border border-[rgba(13,37,61,0.08)] p-3.5 space-y-2.5">
+              <div className="rounded-xl bg-surface-panel border border-border-subtle p-3.5 space-y-2.5">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono font-semibold text-ink-primary">
+                  <span className="text-xs font-mono font-semibold text-text-primary">
                     Today&apos;s Cluster: #vLLM-Inference-Deployments
                   </span>
-                  <span className="text-[10px] font-mono text-accent-secondary bg-sage-100/70 px-2 py-0.5 rounded">
+                  <span className="text-[10px] font-mono text-accent-secondary bg-sage-100/70 px-2 py-0.5 rounded border border-accent-secondary/20">
                     High Engagement
                   </span>
                 </div>
-                <p className="text-xs text-ink-body leading-relaxed">
+                <p className="text-xs text-text-secondary leading-relaxed">
                   Key discussion: 42 developers benchmarked the new FP8 quantization kernel. General consensus: 2.1x throughput gain on RTX 4090 with zero loss in JSON schema strictness.
                 </p>
 
                 {/* Action item card */}
-                <div className="pt-2 border-t border-[rgba(13,37,61,0.06)] flex items-center justify-between text-xs">
-                  <div className="flex items-center gap-1.5 text-ink-primary font-medium">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-accent-500 shrink-0" />
+                <div className="pt-2 border-t border-border-subtle flex items-center justify-between text-xs">
+                  <div className="text-text-primary font-medium">
                     <span>Action: Release benchmark guide for TensorRT-LLM integration</span>
                   </div>
-                  <span className="text-[10px] font-mono text-ink-secondary">Assigned: @infra-team</span>
+                  <span className="text-[10px] font-mono text-text-muted">Assigned: @infra-team</span>
                 </div>
               </div>
             </div>
 
             {/* Footer Bar */}
-            <div className="flex items-center justify-between px-4 sm:px-5 py-2.5 bg-canvas-recessed/40 border-t border-[rgba(13,37,61,0.06)] text-xs">
-              <div className="flex items-center gap-2 text-ink-secondary">
-                <Zap className="w-3.5 h-3.5 text-accent-500" />
+            <div className="flex items-center justify-between px-4 sm:px-5 py-2.5 bg-surface-panel-subtle/40 border-t border-border-subtle text-xs">
+              <div className="text-text-secondary">
                 <span>Token-efficient batch deduplication with webhook dispatch</span>
               </div>
               <Link
                 href="/products/chat-digest"
-                className="font-medium text-accent-500 hover:text-accent-600 inline-flex items-center gap-1 group"
+                className="font-medium text-accent-primary hover:text-accent-hover inline-flex items-center gap-1 group"
               >
                 <span>Explore Chat Digest</span>
                 <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
@@ -693,36 +696,39 @@ export function HeroStudioWorkbench() {
         {activeTool === 'news' && (
           <motion.div
             key="news"
+            id="panel-news"
+            role="tabpanel"
+            aria-labelledby="tab-news"
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
           >
             {/* Subheader */}
-            <div className="flex items-center justify-between px-4 sm:px-5 py-2.5 bg-canvas-base border-b border-[rgba(13,37,61,0.06)] text-xs">
+            <div className="flex items-center justify-between px-4 sm:px-5 py-2.5 bg-surface-canvas border-b border-border-subtle text-xs">
               <div className="flex items-center gap-2">
-                <span className="font-semibold text-ink-primary">Smart Dainik News</span>
+                <span className="font-semibold text-text-primary">Smart Dainik News</span>
                 <span className="text-[11px] font-mono text-accent-secondary bg-sage-100/70 px-2 py-0.5 rounded border border-accent-secondary/20">
                   UP Gazette & Civic Matcher
                 </span>
               </div>
 
               {/* Language Switcher */}
-              <div className="flex items-center gap-1 bg-canvas-paper p-0.5 rounded border border-[rgba(13,37,61,0.06)] relative">
+              <div className="flex items-center gap-1 bg-surface-panel p-0.5 rounded border border-border-subtle relative">
                 <button
                   type="button"
                   onClick={() => setNewsLang('hi')}
                   className={cn(
-                    'relative px-2 py-0.5 rounded text-[11px] font-medium transition-colors z-10',
+                    'relative px-2 py-0.5 rounded text-[11px] font-medium transition-colors z-10 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent-primary',
                     newsLang === 'hi'
-                      ? 'text-accent-500 font-semibold'
-                      : 'text-ink-secondary hover:text-ink-primary'
+                      ? 'text-accent-primary font-semibold'
+                      : 'text-text-secondary hover:text-text-primary'
                   )}
                 >
                   {newsLang === 'hi' && (
                     <motion.span
                       layoutId="newsLangIndicator"
-                      className="absolute inset-0 bg-accent-50 rounded -z-10 border border-accent-500/20"
+                      className="absolute inset-0 bg-accent-50 rounded -z-10 border border-accent-primary/20"
                       transition={{ type: 'spring', stiffness: 500, damping: 35 }}
                     />
                   )}
@@ -732,16 +738,16 @@ export function HeroStudioWorkbench() {
                   type="button"
                   onClick={() => setNewsLang('en')}
                   className={cn(
-                    'relative px-2 py-0.5 rounded text-[11px] font-medium transition-colors z-10',
+                    'relative px-2 py-0.5 rounded text-[11px] font-medium transition-colors z-10 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent-primary',
                     newsLang === 'en'
-                      ? 'text-accent-500 font-semibold'
-                      : 'text-ink-secondary hover:text-ink-primary'
+                      ? 'text-accent-primary font-semibold'
+                      : 'text-text-secondary hover:text-text-primary'
                   )}
                 >
                   {newsLang === 'en' && (
                     <motion.span
                       layoutId="newsLangIndicator"
-                      className="absolute inset-0 bg-accent-50 rounded -z-10 border border-accent-500/20"
+                      className="absolute inset-0 bg-accent-50 rounded -z-10 border border-accent-primary/20"
                       transition={{ type: 'spring', stiffness: 500, damping: 35 }}
                     />
                   )}
@@ -752,9 +758,9 @@ export function HeroStudioWorkbench() {
 
             <div className="p-4 sm:p-5 space-y-3.5">
               {/* Gazette Alert Card */}
-              <div className="rounded-xl bg-canvas-paper border border-[rgba(13,37,61,0.08)] p-4 space-y-3">
+              <div className="rounded-xl bg-surface-panel border border-border-subtle p-4 space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-accent-50 text-accent-500 border border-accent-500/20">
+                  <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-accent-50 text-accent-primary border border-accent-primary/20">
                     {newsLang === 'hi' ? 'उत्तर प्रदेश लोक सेवा आयोग' : 'UP Public Service Commission'}
                   </span>
                   <span className="font-mono text-xs text-accent-secondary font-medium">
@@ -763,12 +769,12 @@ export function HeroStudioWorkbench() {
                 </div>
 
                 <div>
-                  <h4 className="font-display text-lg sm:text-xl text-ink-primary font-normal">
+                  <h4 className="font-sans font-semibold text-sm sm:text-base text-text-primary">
                     {newsLang === 'hi'
                       ? 'सहायक समीक्षा अधिकारी (RO/ARO) भर्ती 2026 — 411 पद'
                       : 'Assistant Review Officer (RO/ARO) Recruitment 2026 — 411 Posts'}
                   </h4>
-                  <p className="text-xs text-ink-body mt-1 leading-relaxed">
+                  <p className="text-xs text-text-secondary mt-1 leading-relaxed">
                     {newsLang === 'hi'
                       ? 'आयु सीमा 21-40 वर्ष, स्नातक डिग्री अनिवार्य, आवेदन की अंतिम तिथि 15 सितंबर 2026। ओ-लेवल प्रमाण पत्र अनिवार्य।'
                       : 'Age limit 21-40 years, Graduate degree required, Final application deadline Sep 15, 2026. O-Level Certificate mandatory.'}
@@ -776,11 +782,11 @@ export function HeroStudioWorkbench() {
                 </div>
 
                 {/* Extraction Tags */}
-                <div className="pt-2 border-t border-[rgba(13,37,61,0.06)] flex flex-wrap items-center justify-between gap-2 text-xs">
-                  <div className="flex items-center gap-2 font-mono text-[11px] text-ink-secondary">
+                <div className="pt-2 border-t border-border-subtle flex flex-wrap items-center justify-between gap-2 text-xs">
+                  <div className="flex items-center gap-2 font-mono text-[11px] text-text-muted">
                     <span>Pay Scale: Level-7 (₹44,900 - ₹1,42,400)</span>
                   </div>
-                  <span className="text-[11px] font-mono text-accent-500 font-semibold">
+                  <span className="text-[11px] font-mono text-accent-primary font-semibold">
                     {newsLang === 'hi' ? 'आवेदन लिंक सत्यापित ✓' : 'Verified Apply Link ✓'}
                   </span>
                 </div>
@@ -788,14 +794,13 @@ export function HeroStudioWorkbench() {
             </div>
 
             {/* Footer Bar */}
-            <div className="flex items-center justify-between px-4 sm:px-5 py-2.5 bg-canvas-recessed/40 border-t border-[rgba(13,37,61,0.06)] text-xs">
-              <div className="flex items-center gap-2 text-ink-secondary">
-                <Zap className="w-3.5 h-3.5 text-accent-500" />
+            <div className="flex items-center justify-between px-4 sm:px-5 py-2.5 bg-surface-panel-subtle/40 border-t border-border-subtle text-xs">
+              <div className="text-text-secondary">
                 <span>Bi-directional Hindi/English NLP with civic impact filtering</span>
               </div>
               <Link
                 href="/products/smart-dainik-news"
-                className="font-medium text-accent-500 hover:text-accent-600 inline-flex items-center gap-1 group"
+                className="font-medium text-accent-primary hover:text-accent-hover inline-flex items-center gap-1 group"
               >
                 <span>Explore Regional News</span>
                 <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
@@ -809,4 +814,3 @@ export function HeroStudioWorkbench() {
 }
 
 export default HeroStudioWorkbench;
-

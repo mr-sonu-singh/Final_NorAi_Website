@@ -1,10 +1,32 @@
 'use client';
 
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/atoms/Button';
 import { Link } from '@/components/atoms/Link';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { MagneticButton } from '@/components/atoms/MagneticButton';
+import {
+  ArrowRight,
+  CheckCircle2,
+  Server,
+  Cpu,
+  Layers,
+  Shield,
+  Code2,
+  Workflow,
+  FileCheck,
+  Zap,
+  Lock,
+  Boxes,
+} from 'lucide-react';
+
+interface TopologyNode {
+  title: string;
+  subtitle: string;
+  category: string;
+  icon: React.ElementType;
+}
 
 interface Practice {
   id: string;
@@ -13,7 +35,13 @@ interface Practice {
   tagline: string;
   problem: string;
   solution: string;
-  stages: string[];
+  sla: string;
+  security: string;
+  topology: {
+    flowLabel: string;
+    nodes: TopologyNode[];
+  };
+  codeContract: string;
   deliverables: string[];
   cta: string;
   href: string;
@@ -24,15 +52,46 @@ const PRACTICES: Practice[] = [
     id: 'rag-systems',
     title: 'RAG Systems & Vector Search',
     category: 'Knowledge Retrieval',
-    tagline: 'Enterprise vector search pipelines, hybrid retrieval, and multi-document indexing engines for high-accuracy internal knowledge search.',
-    problem: 'Off-the-shelf chatbots hallucinate when queried on thousands of internal PDFs, Notion wikis, and technical documents.',
-    solution: 'We build hybrid vector + BM25 keyword search engines with grounded context verification, ensuring zero false retrieval.',
-    stages: [
-      'Document Chunking & Clean Ingestion',
-      'Dense Embeddings & Vector Indexing',
-      'Hybrid Retrieval & Grounding Check',
-      'Verified Deterministic JSON Response',
-    ],
+    tagline:
+      'Enterprise vector search pipelines, hybrid retrieval, and multi-document indexing engines for high-accuracy internal knowledge search.',
+    problem:
+      'Off-the-shelf chatbots hallucinate when queried on thousands of internal PDFs, Notion wikis, and technical documents.',
+    solution:
+      'We build hybrid vector + BM25 keyword search engines with grounded citation verification, ensuring zero false retrieval.',
+    sla: 'P95 Latency < 180ms · 99.95% Precision',
+    security: 'Zero-Retention RAM · Air-Gapped VPC',
+    topology: {
+      flowLabel: 'Pipeline Flow: Ingestion ➔ Semantic Vectorizer ➔ Hybrid Ranker ➔ Verified Output',
+      nodes: [
+        { title: 'Multi-Format Ingestion', subtitle: 'PDF / Wiki / SQL / Docs', category: 'Ingress', icon: Layers },
+        { title: 'Layout-Aware Vectorizer', subtitle: 'pgvector / Qdrant Embeddings', category: 'Embedding Engine', icon: Cpu },
+        { title: 'Hybrid Dense + BM25 Ranker', subtitle: 'Citation Grounding Gate', category: 'Verification Gate', icon: Shield },
+        { title: 'Grounded JSON Output', subtitle: 'Deterministic Schema Response', category: 'Egress API', icon: CheckCircle2 },
+      ],
+    },
+    codeContract: `// NorAI RAG Knowledge Retrieval Pipeline Contract
+import { z } from 'zod';
+
+export const RetrievalQuerySchema = z.object({
+  query: z.string().min(3),
+  collection: z.enum(['legal-docs', 'financial-filings', 'internal-wiki']),
+  filters: z.record(z.string(), z.unknown()).optional(),
+  topK: z.number().int().min(1).max(20).default(5),
+  rerankModel: z.literal('cohere-rerank-v3').default('cohere-rerank-v3'),
+  minCitationConfidence: z.number().min(0.85).default(0.92),
+});
+
+export type RetrievalResponse = {
+  answer: string;
+  citations: Array<{
+    sourceId: string;
+    pageNumber: number;
+    verifiedQuote: string;
+    similarityScore: number;
+  }>;
+  processingLatencyMs: number;
+  ephemeralRamReleased: boolean;
+};`,
     deliverables: [
       'Custom chunking strategies tailored to your document schema',
       'Hybrid vector DB infrastructure (pgvector / Qdrant / Pinecone)',
@@ -46,15 +105,41 @@ const PRACTICES: Practice[] = [
     id: 'mcp-integration',
     title: 'Model Context Protocol (MCP) Servers',
     category: 'Protocol Tooling',
-    tagline: 'Standardized MCP tool and resource servers connecting LLMs and Claude directly to your private databases and internal APIs.',
-    problem: 'Connecting AI assistants to internal databases requires brittle custom connectors that break with every API update.',
-    solution: 'We engineer official Model Context Protocol (MCP) tool servers with secure sandbox execution and typed tool schemas.',
-    stages: [
-      'Schema Introspection & Security Boundary',
-      'Standardized MCP Protocol Server Implementation',
-      'Type-Safe Parameter Validation & Sandboxing',
-      'Claude Desktop & Agent Orchestration Ready',
-    ],
+    tagline:
+      'Standardized MCP tool and resource servers connecting LLMs and Claude directly to your private databases and internal APIs.',
+    problem:
+      'Connecting AI assistants to internal databases requires brittle custom connectors that break with every API update.',
+    solution:
+      'We engineer official Model Context Protocol (MCP) tool servers with secure sandbox execution and typed tool schemas.',
+    sla: 'Sub-Second Tool Dispatch · Zero Schema Drift',
+    security: 'Sandboxed Stdio / SSE · Granular RBAC',
+    topology: {
+      flowLabel: 'MCP Topology: Intent Router ➔ MCP Tool Bus ➔ Security Interceptor ➔ Atomic Commit',
+      nodes: [
+        { title: 'Schema Introspection', subtitle: 'PostgreSQL / ERP / REST', category: 'Discovery', icon: Workflow },
+        { title: 'Hardened MCP Server Bus', subtitle: 'TypeScript / Python Runtime', category: 'Core Engine', icon: Server },
+        { title: 'RBAC Security Interceptor', subtitle: 'Sandboxed Guardrails & Log', category: 'Security Gate', icon: Lock },
+        { title: 'Agent Client Dispatch', subtitle: 'Claude / Cursor / Webhooks', category: 'Client Execution', icon: Boxes },
+      ],
+    },
+    codeContract: `// NorAI Model Context Protocol (MCP) Tool Contract
+import { z } from 'zod';
+
+export const MCPToolDefinition = {
+  name: 'execute_analytics_query_sandboxed',
+  description: 'Execute read-only sanitized analytics query with tenant isolation',
+  parameters: z.object({
+    sql: z.string().refine((q) => !/insert|update|delete|drop/i.test(q), {
+      message: 'Write operations are strictly forbidden on read-only replica',
+    }),
+    timeoutMs: z.number().max(5000).default(3000),
+  }),
+  securityPolicy: {
+    rbacRequired: ['read:analytics'],
+    auditLogged: true,
+    allowNetworkEgress: false,
+  },
+};`,
     deliverables: [
       'Production-grade TypeScript / Python MCP tool servers',
       'Granular authorization & read/write access policies',
@@ -68,15 +153,32 @@ const PRACTICES: Practice[] = [
     id: 'llm-optimization',
     title: 'LLM Stack Optimization & Cost Auditing',
     category: 'Model Optimization',
-    tagline: 'Evaluate model performance, optimize prompt pipelines, eliminate token waste, and implement latency benchmarks across your LLM infrastructure.',
-    problem: 'Unoptimized LLM calls burn through thousands of dollars monthly while suffering from 5+ second latency delays.',
-    solution: 'We audit prompt token density, implement semantic response caching, and route queries to smaller, fine-tuned deterministic models.',
-    stages: [
-      'Token Density & Latency Bottleneck Audit',
-      'Prompt Optimization & Schema Compression',
-      'Semantic In-Memory Response Caching',
-      'Model Tiering & Automated Fallback Routing',
-    ],
+    tagline:
+      'Evaluate model performance, optimize prompt pipelines, eliminate token waste, and implement latency benchmarks across your LLM infrastructure.',
+    problem:
+      'Unoptimized LLM calls burn through thousands of dollars monthly while suffering from 5+ second latency delays.',
+    solution:
+      'We audit prompt token density, implement semantic response caching, and route queries to smaller, fine-tuned deterministic models.',
+    sla: '40%–70% Spend Cut · P95 Latency < 600ms',
+    security: 'Zero Data Retention · On-Prem vLLM Ready',
+    topology: {
+      flowLabel: 'Optimization Pipeline: Token Profiling ➔ Semantic Cache ➔ Model Tiering ➔ Telemetry HUD',
+      nodes: [
+        { title: 'Token Density Profiler', subtitle: 'Prompt Schema Analysis', category: 'Audit Layer', icon: FileCheck },
+        { title: 'Semantic In-Memory Cache', subtitle: 'Sub-5ms Exact / Fuzzy Hit', category: 'Cache Engine', icon: Zap },
+        { title: 'Model Tiering Router', subtitle: 'vLLM 8B vs. Frontier Tier', category: 'Dynamic Routing', icon: Cpu },
+        { title: 'Cost & Latency Dashboard', subtitle: 'Real-Time Telemetry Log', category: 'Observability', icon: CheckCircle2 },
+      ],
+    },
+    codeContract: `// NorAI Semantic Cache & Model Tiering Router
+export interface OptimizationTelemetry {
+  promptTokenReductionRatio: number; // e.g., 0.62 (62% reduction)
+  semanticCacheStatus: 'HIT' | 'MISS' | 'SYNTHESIZED';
+  routedModel: 'vllm-llama3-70b-fp8' | 'claude-3-5-sonnet' | 'local-lora-8b';
+  p95LatencyMs: number;
+  costSavedPerMonthUSD: number;
+  accuracyRetentionScore: number; // 0.998
+}`,
     deliverables: [
       '40%–70% reduction in monthly foundation model API spend',
       'P95 latency reduction from 4s down to < 600ms',
@@ -90,19 +192,42 @@ const PRACTICES: Practice[] = [
     id: 'custom-web-apps',
     title: 'Custom AI Web Applications',
     category: 'Full-Stack Web',
-    tagline: 'Modern Next.js and React web applications powered by sub-second neural inference, dynamic UI generation, and deterministic workflow engines.',
-    problem: 'Generic AI wrapper templates lack tactile polish, responsive speed, and enterprise-grade state management.',
-    solution: 'We design bespoke full-stack applications with high-polish UI craft, streaming responses, and robust backend integrations.',
-    stages: [
-      'Design System & Information Architecture',
-      'Next.js 15 & React 19 Client Engineering',
-      'Serverless Inference & Streaming Endpoints',
-      'Automated CI/CD & Production SLA Deployment',
-    ],
+    tagline:
+      'Modern Next.js and React web applications powered by sub-second neural inference, dynamic UI generation, and deterministic workflow engines.',
+    problem:
+      'Generic AI wrapper templates lack tactile polish, responsive speed, and enterprise-grade state management.',
+    solution:
+      'We design bespoke full-stack applications with high-polish UI craft, streaming responses, and robust backend integrations.',
+    sla: '< 100ms Serverless TTFB · 60fps Fluid UI',
+    security: 'Vercel / AWS ECS / Edge Runtime',
+    topology: {
+      flowLabel: 'App Architecture: Design System ➔ Next.js 15 RSC ➔ Streaming Inference ➔ Production CI/CD',
+      nodes: [
+        { title: 'Design System Architecture', subtitle: 'Tactile Double-Bezel Tokens', category: 'Design Stage', icon: Layers },
+        { title: 'Next.js 15 & React 19 Client', subtitle: 'Server Components & Leaves', category: 'Frontend Layer', icon: Code2 },
+        { title: 'Serverless Inference Stream', subtitle: 'EventStream with Typed Events', category: 'Backend Engine', icon: Server },
+        { title: 'Continuous Delivery SLA', subtitle: 'Zero-Downtime Deploy Pipeline', category: 'Production Stack', icon: CheckCircle2 },
+      ],
+    },
+    codeContract: `// NorAI Stream Inference Protocol
+export async function createStreamingInferencePipeline(req: Request) {
+  const stream = new TransformStream();
+  const writer = stream.writable.getWriter();
+
+  // Return real-time chunked response with typed headers
+  return new Response(stream.readable, {
+    headers: {
+      'Content-Type': 'text/event-stream',
+      'Cache-Control': 'no-cache',
+      'X-Accel-Buffering': 'no',
+      'X-NorAI-Inference-Engine': 'vLLM-v0.6',
+    },
+  });
+}`,
     deliverables: [
       'Bespoke, un-templated visual identity and tactile UI',
       'Sub-100ms serverless endpoints with streaming outputs',
-      'Fully responsive accessible design (WCAG AA compliant)',
+      'Fully responsive accessible design (WCAG AAA compliant)',
       'Clean TypeScript codebase ready for your in-house team',
     ],
     cta: 'Build Custom AI App',
@@ -112,15 +237,36 @@ const PRACTICES: Practice[] = [
     id: 'business-automation',
     title: 'Business Automation Pipelines',
     category: 'Enterprise Automation',
-    tagline: 'Automate manual data entry, ERP ingestion, compliance auditing, and multi-app synchronization with fault-tolerant background workers.',
-    problem: 'Operations teams waste dozens of hours every week copying data across ERPs, spreadsheets, and emails.',
-    solution: 'We engineer deterministic background worker queues that parse unstructured documents, validate business rules, and sync downstream automatically.',
-    stages: [
-      'Workflow Process Mapping & Data Contract',
-      'Multi-Format Document Parsing Engine',
-      'Business Logic Validation & Rule Checks',
-      'Automated ERP & Webhook Synchronization',
-    ],
+    tagline:
+      'Automate manual data entry, ERP ingestion, compliance auditing, and multi-app synchronization with fault-tolerant background workers.',
+    problem:
+      'Operations teams waste dozens of hours every week copying data across ERPs, spreadsheets, and emails.',
+    solution:
+      'We engineer deterministic background worker queues that parse unstructured documents, validate business rules, and sync downstream automatically.',
+    sla: '99.9% Pipeline Uptime · Zero Data Loss',
+    security: 'Encrypted In-Flight & Rest · SOC2 Ready',
+    topology: {
+      flowLabel: 'Automation Topology: Process Map ➔ Ingestion Worker ➔ Rule Validator ➔ ERP Webhook Sync',
+      nodes: [
+        { title: 'Workflow Contract Ingress', subtitle: 'SAP / Netsuite / Webhooks', category: 'Ingress Queue', icon: Workflow },
+        { title: 'Unstructured Parser Worker', subtitle: 'Docling / Layout OCR Engine', category: 'Parser Worker', icon: Cpu },
+        { title: 'Deterministic Validator Gate', subtitle: 'Business Rules & Schema Check', category: 'Validation Gate', icon: Shield },
+        { title: 'Downstream Sync & Audit', subtitle: 'Atomic State Commit & Alert', category: 'Execution Queue', icon: CheckCircle2 },
+      ],
+    },
+    codeContract: `// NorAI Deterministic Background Worker Contract
+import { z } from 'zod';
+
+export const WorkerJobPayload = z.object({
+  jobId: z.string().uuid(),
+  sourceSystem: z.enum(['sap_erp', 'salesforce', 'oracle_netsuite', 'webhook']),
+  payloadChecksum: z.string().length(64),
+  retryPolicy: z.object({
+    maxAttempts: z.number().default(5),
+    backoffMultiplier: z.number().default(2),
+  }),
+  auditTrailEnabled: z.boolean().default(true),
+});`,
     deliverables: [
       'Fault-tolerant worker queues with automatic retry logic',
       'Audit log trail for compliance and human-in-the-loop review',
@@ -134,137 +280,289 @@ const PRACTICES: Practice[] = [
 
 export function ServicesDirectory() {
   const [selectedIdx, setSelectedIdx] = useState(0);
+  const [viewMode, setViewMode] = useState<'topology' | 'schema'>('topology');
+
   const practice = (PRACTICES[selectedIdx] || PRACTICES[0]) as Practice;
 
   return (
-    <div className="w-full text-left font-sans">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-        {/* Left Navigation Rail: Service Practice Index */}
-        <div className="lg:col-span-5 space-y-2">
-          <div className="space-y-2">
-            {PRACTICES.map((p, idx) => {
-              const isSelected = selectedIdx === idx;
-              return (
-                <button
-                  key={p.id}
-                  type="button"
-                  onClick={() => setSelectedIdx(idx)}
-                  className={cn(
-                    'w-full text-left p-5 rounded-2xl transition-all duration-200 flex items-start justify-between gap-4 group',
-                    isSelected
-                      ? 'bg-canvas-paper border border-[rgba(13,37,61,0.12)] shadow-md ring-1 ring-accent-500/20'
-                      : 'hover:bg-canvas-paper/50 border border-transparent'
-                  )}
-                >
-                  <div className="space-y-1.5 flex-1">
-                    <span
-                      className={cn(
-                        'text-xs font-mono font-semibold uppercase tracking-wider block',
-                        isSelected ? 'text-accent-500' : 'text-ink-secondary'
-                      )}
-                    >
-                      {p.category}
-                    </span>
-                    <h3
-                      className={cn(
-                        'font-display text-xl sm:text-2xl font-normal transition-colors',
-                        isSelected
-                          ? 'text-ink-primary font-medium'
-                          : 'text-ink-secondary group-hover:text-ink-primary'
-                      )}
-                    >
-                      {p.title}
-                    </h3>
-                  </div>
+    <div className="w-full text-left font-sans space-y-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+        {/* Left Navigation Rail: Machined Double-Bezel Shell */}
+        <div className="lg:col-span-4 space-y-2">
+          <div className="p-2 rounded-3xl bg-surface-panel/40 border border-border-strong shadow-sm space-y-1.5">
+            <div className="px-3 py-2 border-b border-border-subtle flex items-center justify-between">
+              <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-text-muted">
+                Enterprise Practices
+              </span>
+              <span className="text-[10px] font-mono text-accent-primary font-bold px-1.5 py-0.5 rounded bg-accent-50 border border-accent-primary/20">
+                0{selectedIdx + 1} / 0{PRACTICES.length}
+              </span>
+            </div>
 
-                  <ArrowRight
+            <div className="space-y-1.5 pt-1">
+              {PRACTICES.map((p, idx) => {
+                const isSelected = selectedIdx === idx;
+                return (
+                  <button
+                    key={p.id}
+                    type="button"
+                    onClick={() => setSelectedIdx(idx)}
                     className={cn(
-                      'w-5 h-5 mt-2 transition-all',
+                      'w-full text-left p-4 rounded-2xl transition-all duration-200 flex items-start justify-between gap-3 group relative cursor-pointer',
                       isSelected
-                        ? 'text-accent-500 opacity-100 translate-x-0'
-                        : 'text-ink-secondary opacity-0 -translate-x-2 group-hover:opacity-60 group-hover:translate-x-0'
+                        ? 'bg-surface-panel border border-accent-primary/30 shadow-md ring-1 ring-accent-primary/20 translate-y-[-1px]'
+                        : 'hover:bg-surface-panel/70 border border-transparent hover:border-border-subtle'
                     )}
-                  />
-                </button>
-              );
-            })}
+                  >
+                    <div className="space-y-1 flex-1 min-w-0">
+                      <div className="flex items-center gap-2">
+                        <span
+                          className={cn(
+                            'text-[10px] font-mono font-semibold uppercase tracking-wider block truncate',
+                            isSelected ? 'text-accent-primary' : 'text-text-muted'
+                          )}
+                        >
+                          {p.category}
+                        </span>
+                        {isSelected && (
+                          <span className="w-1.5 h-1.5 rounded-full bg-accent-primary animate-pulse shrink-0" />
+                        )}
+                      </div>
+                      <h3
+                        className={cn(
+                          'font-display text-lg sm:text-xl font-normal transition-colors leading-snug truncate',
+                          isSelected ? 'text-text-primary font-medium' : 'text-text-secondary group-hover:text-text-primary'
+                        )}
+                      >
+                        {p.title}
+                      </h3>
+                    </div>
+
+                    <div
+                      className={cn(
+                        'w-7 h-7 rounded-full flex items-center justify-center shrink-0 mt-1 transition-all',
+                        isSelected
+                          ? 'bg-accent-50 text-accent-primary'
+                          : 'bg-surface-panel-subtle/50 text-text-muted opacity-0 group-hover:opacity-100 group-hover:bg-surface-panel-subtle'
+                      )}
+                    >
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
-        {/* Right Active Stage: Dynamic Architecture Blueprint */}
-        <div className="lg:col-span-7 rounded-3xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] p-6 sm:p-8 md:p-10 shadow-sm space-y-8">
-          {/* Header */}
-          <div className="space-y-3 pb-6 border-b border-[rgba(13,37,61,0.08)]">
-            <div className="flex items-center justify-between gap-4">
-              <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded bg-accent-50 text-accent-500 border border-accent-500/20">
-                {practice.category}
-              </span>
-              <span className="text-xs font-medium text-accent-secondary">
-                Production SLA Ready
-              </span>
-            </div>
+        {/* Right Active Stage: Dynamic Double-Bezel Architectural Blueprint */}
+        <div className="lg:col-span-8 p-2 rounded-3xl bg-surface-panel/40 border border-border-strong shadow-md">
+          <div className="rounded-[calc(1.5rem-0.25rem)] bg-surface-panel border border-border-subtle p-6 sm:p-8 md:p-10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)] space-y-8">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={practice.id}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                className="space-y-8"
+              >
+                {/* Header with Category & Telemetry Badges */}
+                <div className="space-y-4 pb-6 border-b border-border-subtle">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <span className="font-mono text-xs font-semibold px-3 py-1 rounded-full bg-accent-50 text-accent-primary border border-accent-primary/25">
+                      {practice.category}
+                    </span>
+                    <div className="flex items-center gap-2">
+                      <span className="font-mono text-[11px] font-medium text-accent-secondary bg-sage-100/70 border border-accent-secondary/20 px-2.5 py-1 rounded-full flex items-center gap-1.5">
+                        <Lock className="w-3 h-3" />
+                        <span>{practice.security}</span>
+                      </span>
+                    </div>
+                  </div>
 
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-ink-primary font-normal leading-tight">
-              {practice.title}
-            </h2>
+                  <div className="space-y-2">
+                    <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-text-primary font-normal leading-tight tracking-tight">
+                      {practice.title}
+                    </h2>
+                    <p className="fluid-body text-text-secondary leading-relaxed max-w-2xl text-pretty">
+                      {practice.tagline}
+                    </p>
+                  </div>
 
-            <p className="text-base text-ink-body leading-relaxed">
-              {practice.tagline}
-            </p>
-          </div>
-
-          {/* Execution Topology Diagram */}
-          <div className="space-y-4">
-            <h4 className="text-xs font-mono font-semibold text-accent-500 uppercase tracking-wider">
-              Execution Topology
-            </h4>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-              {practice.stages.map((stage, sIdx) => (
-                <div
-                  key={sIdx}
-                  className="p-4 rounded-xl bg-canvas-recessed/40 border border-[rgba(13,37,61,0.06)] flex items-center gap-3"
-                >
-                  <span className="w-2 h-2 rounded-full bg-accent-500 shrink-0" />
-                  <span className="text-xs font-medium text-ink-primary leading-snug">
-                    {stage}
-                  </span>
+                  {/* Problem / Solution Snapshot Inset */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs">
+                    <div className="p-3.5 rounded-xl bg-surface-panel-subtle/40 border border-border-subtle space-y-1">
+                      <span className="font-mono font-semibold text-accent-primary uppercase tracking-wider text-[10px]">
+                        The Operational Bottleneck
+                      </span>
+                      <p className="text-text-secondary leading-relaxed">{practice.problem}</p>
+                    </div>
+                    <div className="p-3.5 rounded-xl bg-surface-panel-subtle/40 border border-border-subtle space-y-1">
+                      <span className="font-mono font-semibold text-accent-secondary uppercase tracking-wider text-[10px]">
+                        The Deterministic Solution
+                      </span>
+                      <p className="text-text-secondary leading-relaxed">{practice.solution}</p>
+                    </div>
+                  </div>
                 </div>
-              ))}
-            </div>
-          </div>
 
-          {/* Scope & Deliverables */}
-          <div className="space-y-4 pt-2">
-            <h4 className="text-xs font-mono font-semibold text-accent-500 uppercase tracking-wider">
-              Scope & Verified Deliverables
-            </h4>
+                {/* View Mode Switcher Header */}
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-1">
+                  <div className="space-y-0.5">
+                    <span className="text-xs font-mono font-semibold text-text-primary uppercase tracking-wider block">
+                      Architectural Blueprint
+                    </span>
+                    <span className="text-[11px] font-mono text-text-muted">
+                      {practice.topology.flowLabel}
+                    </span>
+                  </div>
 
-            <div className="space-y-2.5">
-              {practice.deliverables.map((item, dIdx) => (
-                <div key={dIdx} className="flex items-start gap-2.5 text-xs text-ink-body">
-                  <CheckCircle2 className="w-4 h-4 text-accent-secondary shrink-0 mt-0.5" />
-                  <span className="leading-relaxed">{item}</span>
+                  {/* Segmented Mode Toggle */}
+                  <div className="p-1 rounded-xl bg-surface-canvas border border-border-subtle flex items-center gap-1 shrink-0">
+                    <button
+                      type="button"
+                      onClick={() => setViewMode('topology')}
+                      className={cn(
+                        'px-3 py-1 rounded-lg text-xs font-mono font-semibold transition-all cursor-pointer',
+                        viewMode === 'topology'
+                          ? 'bg-surface-panel text-text-primary shadow-sm border border-border-subtle'
+                          : 'text-text-muted hover:text-text-primary'
+                      )}
+                    >
+                      System Topology
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setViewMode('schema')}
+                      className={cn(
+                        'px-3 py-1 rounded-lg text-xs font-mono font-semibold transition-all cursor-pointer flex items-center gap-1',
+                        viewMode === 'schema'
+                          ? 'bg-surface-panel text-text-primary shadow-sm border border-border-subtle'
+                          : 'text-text-muted hover:text-text-primary'
+                      )}
+                    >
+                      <Code2 className="w-3 h-3 text-accent-primary" />
+                      <span>TypeScript Contract</span>
+                    </button>
+                  </div>
                 </div>
-              ))}
-            </div>
-          </div>
 
-          {/* Action CTA */}
-          <div className="pt-6 border-t border-[rgba(13,37,61,0.08)] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
-            <div className="text-xs text-ink-secondary">
-              Deployment Timeline: <span className="font-semibold text-ink-primary">3–5 Days to MVP</span>
-            </div>
+                {/* Dynamic Content: Topology Graph vs. Code Schema */}
+                <div className="rounded-2xl bg-surface-canvas border border-border-subtle p-5 overflow-hidden">
+                  <AnimatePresence mode="wait">
+                    {viewMode === 'topology' ? (
+                      <motion.div
+                        key="topology"
+                        initial={{ opacity: 0, scale: 0.98 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.98 }}
+                        transition={{ duration: 0.25 }}
+                        className="grid grid-cols-1 sm:grid-cols-2 gap-3"
+                      >
+                        {practice.topology.nodes.map((node, nIdx) => {
+                          const NodeIcon = node.icon;
+                          return (
+                            <div
+                              key={nIdx}
+                              className="p-4 rounded-xl bg-surface-panel border border-border-subtle flex items-start gap-3 relative overflow-hidden group hover:border-accent-primary/30 transition-colors"
+                            >
+                              <div className="w-9 h-9 rounded-lg bg-surface-panel-subtle border border-border-subtle flex items-center justify-center text-accent-primary shrink-0 group-hover:scale-105 transition-transform">
+                                <NodeIcon className="w-4 h-4" />
+                              </div>
+                              <div className="space-y-0.5 min-w-0 flex-1">
+                                <div className="flex items-center justify-between gap-2">
+                                  <span className="text-[10px] font-mono text-accent-primary font-semibold uppercase tracking-wider">
+                                    {node.category}
+                                  </span>
+                                  <span className="font-mono text-[10px] text-text-muted">
+                                    0{nIdx + 1}
+                                  </span>
+                                </div>
+                                <h4 className="text-xs font-semibold text-text-primary leading-snug">
+                                  {node.title}
+                                </h4>
+                                <p className="text-[11px] text-text-secondary font-mono leading-tight truncate">
+                                  {node.subtitle}
+                                </p>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key="schema"
+                        initial={{ opacity: 0, scale: 0.98 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.98 }}
+                        transition={{ duration: 0.25 }}
+                        className="space-y-2"
+                      >
+                        <div className="flex items-center justify-between text-[11px] font-mono text-text-muted pb-2 border-b border-border-subtle">
+                          <span>contract.ts · Typed Zod Guardrail</span>
+                          <span className="text-accent-secondary font-semibold">Strict Schema Sync</span>
+                        </div>
+                        <pre className="text-xs font-mono text-text-primary overflow-x-auto p-3 rounded-lg bg-surface-panel border border-border-subtle leading-relaxed">
+                          <code>{practice.codeContract}</code>
+                        </pre>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
 
-            <Link href={practice.href} className="w-full sm:w-auto">
-              <Button variant="primary" size="md" className="w-full sm:w-auto justify-center group">
-                <span>{practice.cta}</span>
-                <ArrowRight className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-1" />
-              </Button>
-            </Link>
+                {/* Scope & Verified Deliverables Checklist */}
+                <div className="space-y-3 pt-1">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-mono font-semibold text-text-primary uppercase tracking-wider block">
+                      Scope &amp; Production Deliverables
+                    </span>
+                    <span className="text-xs font-mono text-accent-primary font-semibold">
+                      {practice.sla}
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    {practice.deliverables.map((item, dIdx) => (
+                      <div
+                        key={dIdx}
+                        className="p-3 rounded-xl bg-surface-canvas border border-border-subtle flex items-start gap-2.5 text-xs text-text-primary"
+                      >
+                        <CheckCircle2 className="w-4 h-4 text-accent-secondary shrink-0 mt-0.5" />
+                        <span className="leading-relaxed font-medium">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Bottom Action Strip with Tactile Button-in-Button CTA */}
+                <div className="pt-6 border-t border-border-subtle flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+                  <div className="space-y-0.5 text-xs">
+                    <span className="text-text-muted block font-mono text-[11px]">Sprint Timeline</span>
+                    <span className="font-semibold text-text-primary">3–5 Days to Production PoC</span>
+                  </div>
+
+                  <Link href={practice.href} className="w-full sm:w-auto">
+                    <MagneticButton strength={12} className="w-full sm:w-auto">
+                      <Button
+                        variant="primary"
+                        size="md"
+                        className="w-full sm:w-auto justify-between group shadow-accent hover:shadow-hover active:scale-[0.98] transition-all cursor-pointer btn-tactile pl-5 pr-2 py-2"
+                      >
+                        <span className="font-semibold text-xs tracking-wide">{practice.cta}</span>
+                        <span className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center transition-transform group-hover:translate-x-1 group-hover:-translate-y-0.5 ml-3">
+                          <ArrowRight className="w-3.5 h-3.5 text-white" />
+                        </span>
+                      </Button>
+                    </MagneticButton>
+                  </Link>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </div>
     </div>
   );
 }
+

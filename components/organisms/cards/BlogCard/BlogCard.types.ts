@@ -7,6 +7,9 @@ export interface BlogCardProps {
   author: string;
   date: string;
   category?: string;
+  readTime?: string;
+  difficulty?: 'Foundational' | 'Intermediate' | 'Advanced';
+  tags?: string[];
   /** Rotating warm accent for the card's top bar */
   accent?: BlogCardAccent;
   className?: string;

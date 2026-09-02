@@ -140,10 +140,10 @@ const PRODUCTS: ProductItem[] = [
     hotkey: '4',
     title: 'Smart Dainik News',
     category: 'Regional Intelligence',
-    accentColor: '#0D253D',
-    accentBorder: 'border-[#0D253D]',
-    accentBg: 'bg-canvas-recessed',
-    accentText: 'text-ink-primary',
+    accentColor: '#141C2B',
+    accentBorder: 'border-border-strong',
+    accentBg: 'bg-surface-panel-subtle',
+    accentText: 'text-text-primary',
     tagline: 'Hyper-local regional news and public employment alerts clustered across Hindi and English feeds.',
     metric: 'Hindi & English Feeds',
     inputFormat: 'Regional RSS, Wire, Gazette',
@@ -284,18 +284,18 @@ export function ProductStudio() {
                 setActiveCardFlipped(false);
               }}
               className={cn(
-                'group relative rounded-2xl p-4 sm:p-5 text-left transition-all duration-150 flex flex-col justify-between space-y-3 cursor-pointer outline-none active:scale-[0.98]',
-                'focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-page',
+                'group relative rounded-xl p-4 sm:p-5 text-left transition-all duration-150 flex flex-col justify-between space-y-3 cursor-pointer outline-none active:scale-[0.98]',
+                'focus-visible:ring-2 focus-visible:ring-accent-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface-canvas',
                 isSelected
-                  ? 'bg-canvas-paper shadow-md border border-accent-500/80 -translate-y-0.5'
-                  : 'bg-canvas-paper/70 hover:bg-canvas-paper border border-[rgba(13,37,61,0.09)] hover:border-accent-500/35 hover:-translate-y-0.5'
+                  ? 'bg-surface-panel border border-border-strong ring-1 ring-border-strong'
+                  : 'bg-surface-panel/70 hover:bg-surface-panel border border-border-subtle hover:border-border-strong'
               )}
             >
               {/* Active Indicator Top Bar via Framer Motion */}
               {isSelected && (
                 <motion.span
                   layoutId="activeStudioDockIndicator"
-                  className="absolute inset-x-0 top-0 h-1 bg-accent-500 rounded-t-2xl z-10"
+                  className="absolute inset-x-0 top-0 h-0.5 bg-accent-primary rounded-t-xl z-10"
                   transition={{ type: 'spring', stiffness: 500, damping: 38 }}
                   aria-hidden="true"
                 />
@@ -303,12 +303,12 @@ export function ProductStudio() {
 
               {/* Card Header: Category + Hotkey Tag */}
               <div className="flex items-center justify-between w-full">
-                <span className="font-mono text-[11px] font-semibold text-ink-secondary flex items-center gap-1.5">
-                  <span className="text-accent-500 font-bold">{prod.number}</span>
+                <span className="font-mono text-[11px] font-semibold text-text-secondary flex items-center gap-1.5">
+                  <span className="text-accent-primary font-bold">{prod.number}</span>
                   <span>·</span>
                   <span>{prod.category}</span>
                 </span>
-                <kbd className="hidden sm:inline-flex items-center justify-center font-mono text-[10px] px-1.5 py-0.5 rounded bg-canvas-recessed/80 text-ink-secondary border border-[rgba(13,37,61,0.08)] group-hover:text-ink-primary group-hover:border-accent-500/30 transition-colors">
+                <kbd className="hidden sm:inline-flex items-center justify-center font-mono text-[10px] px-1.5 py-0.5 rounded bg-surface-panel-subtle text-text-secondary border border-border-subtle group-hover:text-text-primary transition-colors">
                   {prod.hotkey}
                 </kbd>
               </div>
@@ -317,16 +317,16 @@ export function ProductStudio() {
               <div className="flex items-center gap-3">
                 <div
                   className={cn(
-                    'w-9 h-9 rounded-xl flex items-center justify-center transition-colors shrink-0',
+                    'w-9 h-9 rounded-lg flex items-center justify-center transition-colors shrink-0',
                     isSelected
-                      ? 'bg-accent-500 text-white shadow-xs'
-                      : 'bg-canvas-recessed text-ink-primary group-hover:bg-accent-50 group-hover:text-accent-500'
+                      ? 'bg-[#141C2B] text-white shadow-xs'
+                      : 'bg-surface-panel-subtle text-text-primary group-hover:bg-accent-primary/10 group-hover:text-accent-primary'
                   )}
                 >
                   <IconComp className="w-4 h-4" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h3 className="font-sans text-sm sm:text-base font-semibold text-ink-primary truncate">
+                  <h3 className="font-sans text-sm sm:text-base font-semibold text-text-primary truncate">
                     {prod.title}
                   </h3>
                   <p className="font-mono text-xs text-accent-secondary font-medium tabular-nums truncate">
@@ -342,59 +342,56 @@ export function ProductStudio() {
       {/* =========================================================================
           2. WIDESCREEN LIVING STAGE CANVAS (Expansive Dual-Pane Console)
           ========================================================================= */}
-      <div className="rounded-3xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] shadow-sm overflow-hidden flex flex-col">
+      <div className="rounded-xl bg-surface-panel border border-border-strong overflow-hidden flex flex-col">
         {/* Stage Navigation & Mode Bar */}
-        <div className="p-5 sm:p-6 md:p-8 border-b border-[rgba(13,37,61,0.08)] bg-canvas-paper flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="p-5 sm:p-6 md:p-8 border-b border-border-subtle bg-surface-canvas flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="space-y-1">
-            <div className="flex items-center gap-2">
-              <span className="font-mono text-xs font-semibold px-2.5 py-0.5 rounded bg-accent-50 text-accent-500 border border-accent-500/20">
-                {activeProduct.category}
-              </span>
-              <span className="font-mono text-xs text-accent-secondary font-medium tabular-nums">
-                Latency: {activeProduct.metric}
-              </span>
+            <div className="flex items-center gap-2 text-xs font-mono text-text-muted">
+              <span>{activeProduct.category}</span>
+              <span className="text-border-strong select-none">/</span>
+              <span className="tabular-nums">Latency: {activeProduct.metric}</span>
             </div>
-            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl text-ink-primary font-normal">
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl text-text-primary font-normal">
               {activeProduct.title}
             </h2>
-            <p className="text-sm sm:text-base text-ink-body max-w-2xl text-pretty">
+            <p className="text-sm sm:text-base text-text-secondary max-w-2xl text-pretty">
               {activeProduct.tagline}
             </p>
           </div>
 
           {/* Right Controls: Mode Toggle & Launch CTA */}
           <div className="flex items-center gap-3 shrink-0 self-start md:self-auto">
-            <div className="inline-flex p-1 rounded-xl bg-canvas-recessed border border-[rgba(13,37,61,0.08)] text-xs">
+            <div className="inline-flex p-1 rounded-lg bg-surface-panel-subtle border border-border-subtle text-xs">
               <button
                 type="button"
                 onClick={() => setViewMode('visual')}
                 className={cn(
-                  'flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-medium transition-all cursor-pointer active:scale-[0.97]',
+                  'flex items-center gap-1.5 px-3 py-1.5 rounded font-medium transition-all cursor-pointer active:scale-[0.97]',
                   viewMode === 'visual'
-                    ? 'bg-canvas-paper text-ink-primary shadow-sm font-semibold'
-                    : 'text-ink-secondary hover:text-ink-primary'
+                    ? 'bg-surface-panel text-text-primary shadow-xs font-semibold border border-border-subtle'
+                    : 'text-text-secondary hover:text-text-primary'
                 )}
               >
                 <Sliders className="w-3.5 h-3.5" />
-                <span>Interactive Simulator</span>
+                <span>Interactive Visual</span>
               </button>
               <button
                 type="button"
                 onClick={() => setViewMode('json')}
                 className={cn(
-                  'flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-medium transition-all cursor-pointer active:scale-[0.97]',
+                  'flex items-center gap-1.5 px-3 py-1.5 rounded font-medium transition-all cursor-pointer active:scale-[0.97]',
                   viewMode === 'json'
-                    ? 'bg-[#0D253D] text-white shadow-sm font-semibold'
-                    : 'text-ink-secondary hover:text-ink-primary'
+                    ? 'bg-[#141C2B] text-white shadow-xs font-semibold'
+                    : 'text-text-secondary hover:text-text-primary'
                 )}
               >
                 <Code2 className="w-3.5 h-3.5" />
-                <span>JSON Schema</span>
+                <span>Verified Schema</span>
               </button>
             </div>
 
             <Link href={`/products/${activeProduct.slug}`}>
-              <Button variant="primary" size="md" className="group shadow-sm whitespace-nowrap active:scale-[0.97] transition-transform">
+              <Button variant="primary" size="md" className="group whitespace-nowrap active:scale-[0.97] transition-transform cursor-pointer">
                 <span>{activeProduct.cta}</span>
                 <ArrowRight className="w-3.5 h-3.5 ml-1.5 transition-transform group-hover:translate-x-1" />
               </Button>
@@ -405,7 +402,7 @@ export function ProductStudio() {
         {/* =========================================================================
             3. STAGE CONTENT: VISUAL DEMO VS JSON SCHEMA
             ========================================================================= */}
-        <div className="p-6 sm:p-8 md:p-10 bg-canvas-base/40 min-h-[480px] flex flex-col justify-center overflow-hidden">
+        <div className="p-6 sm:p-8 md:p-10 bg-surface-panel min-h-[480px] flex flex-col justify-center overflow-hidden">
           <AnimatePresence mode="wait">
             {viewMode === 'json' ? (
               /* Enhanced JSON Contract Inspector with Syntax Highlighting */
@@ -415,9 +412,9 @@ export function ProductStudio() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="rounded-2xl bg-[#0D253D] text-[#FDFBF7] p-6 sm:p-8 font-mono text-xs overflow-x-auto shadow-inner border border-[rgba(253,251,247,0.1)] space-y-4"
+                className="rounded-xl bg-[#111722] text-[#F5F0EA] p-6 sm:p-8 font-mono text-xs overflow-x-auto shadow-inner border border-white/10 space-y-4"
               >
-                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[rgba(253,251,247,0.1)] pb-3 text-ink-secondary text-[11px]">
+                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-3 text-white/60 text-[11px]">
                   <div className="flex items-center gap-2">
                     <FileCode className="w-4 h-4 text-accent-secondary" />
                     <span className="text-white font-semibold">Deterministic Output Contract</span>
@@ -471,17 +468,17 @@ export function ProductStudio() {
               {activeProduct.id === 'resume-shortlister' && (
                 <div className="space-y-6">
                   {/* Interactive Slider Bar */}
-                  <div className="rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.1)] p-5 sm:p-6 shadow-sm space-y-3">
+                  <div className="rounded-xl bg-surface-canvas border border-border-strong p-5 sm:p-6 space-y-3">
                     <div className="flex items-center justify-between">
                       <div className="space-y-0.5">
-                        <span className="font-mono text-xs font-semibold text-ink-primary block">
+                        <span className="font-mono text-xs font-semibold text-text-primary block">
                           Candidate Qualification Threshold
                         </span>
-                        <span className="text-xs text-ink-secondary">
+                        <span className="text-xs text-text-secondary">
                           Filter applicant vector scores in real time
                         </span>
                       </div>
-                      <span className="font-mono text-base font-bold text-accent-500 bg-accent-50 px-3 py-1 rounded-lg border border-accent-500/20 tabular-nums">
+                      <span className="font-mono text-base font-bold text-accent-primary bg-accent-50 px-3 py-1 rounded-lg border border-accent-primary/20 tabular-nums">
                         ≥ {resumeThreshold}% Match
                       </span>
                     </div>
@@ -493,9 +490,9 @@ export function ProductStudio() {
                       value={resumeThreshold}
                       onChange={(e) => setResumeThreshold(Number(e.target.value))}
                       aria-label="Candidate qualification threshold percentage"
-                      className="w-full accent-accent-500 cursor-pointer h-2 bg-canvas-recessed rounded-lg"
+                      className="w-full accent-accent-primary cursor-pointer h-2 bg-surface-panel-subtle rounded-lg"
                     />
-                    <div className="flex justify-between font-mono text-[11px] text-ink-secondary">
+                    <div className="flex justify-between font-mono text-[11px] text-text-secondary">
                       <span>60% (Broad Pool)</span>
                       <span>80% (Recommended)</span>
                       <span>95% (Strict Vector Match)</span>
@@ -506,49 +503,49 @@ export function ProductStudio() {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     {[
                       {
-                        name: 'Aditya Verma',
-                        score: 96,
-                        role: 'Sr. Backend Engineer',
-                        exp: '5 yrs exp',
-                        pass: 96 >= resumeThreshold,
-                        skills: ['Go', 'Distributed Systems', 'vLLM', 'Postgres'],
-                        rationale: 'Exact match on consensus algorithms and high-concurrency API pipelines.',
+                        name: 'Priyanshu Sharma',
+                        score: 94,
+                        role: 'Sr. Distributed Systems Architect',
+                        exp: '6 yrs exp',
+                        pass: 94 >= resumeThreshold,
+                        skills: ['Go', 'Raft Consensus', 'vLLM', 'Postgres'],
+                        rationale: 'Exact match on consensus algorithms, low-latency queues, and high-concurrency API pipelines.',
                       },
                       {
-                        name: 'Neha Kulkarni',
-                        score: 84,
-                        role: 'Full Stack Engineer',
+                        name: 'Tanya Nair',
+                        score: 88,
+                        role: 'Staff ML Inference Engineer',
+                        exp: '4 yrs exp',
+                        pass: 88 >= resumeThreshold,
+                        skills: ['PyTorch', 'Quantization (FP8)', 'CUDA', 'Python'],
+                        rationale: 'Deep model optimization and tensor compilation experience. Meets tier-1 inference engineering specs.',
+                      },
+                      {
+                        name: 'Vikram Malhotra',
+                        score: 73,
+                        role: 'Cloud Infrastructure Engineer',
                         exp: '3 yrs exp',
-                        pass: 84 >= resumeThreshold,
-                        skills: ['Next.js', 'FastAPI', 'Redis', 'TypeScript'],
-                        rationale: 'Strong web architecture background; slight gap in vector indexing depth.',
-                      },
-                      {
-                        name: 'Rohit Sen',
-                        score: 71,
-                        role: 'Frontend Engineer',
-                        exp: '2 yrs exp',
-                        pass: 71 >= resumeThreshold,
-                        skills: ['React', 'Tailwind', 'REST APIs'],
-                        rationale: 'Proficient UI builder, lacks backend telemetry experience.',
+                        pass: 73 >= resumeThreshold,
+                        skills: ['Terraform', 'AWS VPC', 'Kubernetes', 'Docker'],
+                        rationale: 'Solid cloud infrastructure foundation, but lacks specialized LLM inference orchestration.',
                       },
                     ].map((cand, cIdx) => (
                       <div
                         key={cIdx}
                         className={cn(
-                          'rounded-2xl border p-5 transition-all flex flex-col justify-between space-y-4',
+                          'rounded-xl border p-5 transition-all flex flex-col justify-between space-y-4',
                           cand.pass
-                            ? 'bg-canvas-paper border-accent-secondary/50 shadow-sm'
-                            : 'bg-canvas-paper/40 border-[rgba(13,37,61,0.06)] opacity-60'
+                            ? 'bg-surface-canvas border-accent-secondary/50 shadow-xs'
+                            : 'bg-surface-canvas/40 border-border-subtle opacity-60'
                         )}
                       >
                         <div className="space-y-2">
                           <div className="flex items-start justify-between gap-2">
                             <div>
-                              <h4 className="font-sans font-semibold text-ink-primary text-sm">
+                              <h4 className="font-sans font-semibold text-text-primary text-sm">
                                 {cand.name}
                               </h4>
-                              <p className="text-xs text-ink-secondary">
+                              <p className="text-xs text-text-secondary">
                                 {cand.role} · {cand.exp}
                               </p>
                             </div>
@@ -556,8 +553,8 @@ export function ProductStudio() {
                               className={cn(
                                 'font-mono font-bold text-xs px-2.5 py-1 rounded tabular-nums',
                                 cand.pass
-                                  ? 'bg-accent-50 text-accent-500 border border-accent-500/20'
-                                  : 'bg-canvas-recessed text-ink-secondary'
+                                  ? 'bg-accent-50 text-accent-primary border border-accent-primary/20'
+                                  : 'bg-surface-panel-subtle text-text-muted'
                               )}
                             >
                               {cand.score}%
@@ -568,7 +565,7 @@ export function ProductStudio() {
                             {cand.skills.map((s, sIdx) => (
                               <span
                                 key={sIdx}
-                                className="font-mono text-[10px] px-2 py-0.5 rounded bg-canvas-recessed/80 text-ink-primary border border-[rgba(13,37,61,0.06)]"
+                                className="font-mono text-[10px] px-2 py-0.5 rounded bg-surface-panel-subtle text-text-primary border border-border-subtle"
                               >
                                 {s}
                               </span>
@@ -577,8 +574,8 @@ export function ProductStudio() {
                         </div>
 
                         {/* Accordion / Rationale */}
-                        <div className="pt-3 border-t border-[rgba(13,37,61,0.08)]">
-                          <p className="text-xs text-ink-body leading-relaxed">
+                        <div className="pt-3 border-t border-border-subtle">
+                          <p className="text-xs text-text-secondary leading-relaxed">
                             {cand.rationale}
                           </p>
                         </div>
@@ -594,11 +591,11 @@ export function ProductStudio() {
               {activeProduct.id === 'course-note-taker' && (
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
                   {/* Left: Interactive Lecture Audio Scrubber */}
-                  <div className="lg:col-span-6 rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.1)] p-6 shadow-sm space-y-5 flex flex-col justify-between">
+                  <div className="lg:col-span-6 rounded-xl bg-surface-canvas border border-border-strong p-6 space-y-5 flex flex-col justify-between">
                     <div className="space-y-3">
                       <div className="flex items-center justify-between">
-                        <span className="font-mono text-xs font-semibold text-ink-primary flex items-center gap-1.5">
-                          <Radio className="w-3.5 h-3.5 text-gold-600 animate-pulse" />
+                        <span className="font-mono text-xs font-semibold text-text-primary flex items-center gap-1.5">
+                          <Radio className="w-3.5 h-3.5 text-accent-tertiary animate-pulse" />
                           <span>Distributed Systems Lecture 08</span>
                         </span>
                         <span className="font-mono text-xs text-accent-secondary font-medium tabular-nums">
@@ -607,10 +604,10 @@ export function ProductStudio() {
                       </div>
 
                       {/* Waveform Scrubber Simulation */}
-                      <div className="p-4 rounded-xl bg-canvas-recessed/60 border border-[rgba(13,37,61,0.08)] space-y-3">
+                      <div className="p-4 rounded-lg bg-surface-panel-subtle/60 border border-border-subtle space-y-3">
                         <div className="flex items-center justify-between text-xs font-mono">
-                          <span className="text-ink-primary font-bold">18:32</span>
-                          <span className="text-ink-secondary">42:15</span>
+                          <span className="text-text-primary font-bold">18:32</span>
+                          <span className="text-text-secondary">42:15</span>
                         </div>
 
                         {/* Bar Waveform */}
@@ -623,10 +620,10 @@ export function ProductStudio() {
                                 className={cn(
                                   'flex-1 rounded-full transition-all',
                                   isPlayingAudio
-                                    ? 'bg-gold-600 ' + (barIdx % 4 === 0 ? 'animate-waveform-1' : barIdx % 4 === 1 ? 'animate-waveform-2' : barIdx % 4 === 2 ? 'animate-waveform-3' : 'animate-waveform-4')
+                                    ? 'bg-accent-primary ' + (barIdx % 4 === 0 ? 'animate-waveform-1' : barIdx % 4 === 1 ? 'animate-waveform-2' : barIdx % 4 === 2 ? 'animate-waveform-3' : 'animate-waveform-4')
                                     : barIdx <= 13
-                                    ? 'bg-gold-600'
-                                    : 'bg-canvas-recessed hover:bg-gold-600/40'
+                                    ? 'bg-accent-primary'
+                                    : 'bg-surface-panel-subtle hover:bg-accent-primary/40'
                                 )}
                               />
                             )
@@ -637,7 +634,7 @@ export function ProductStudio() {
                           <button
                             type="button"
                             onClick={() => setIsPlayingAudio(!isPlayingAudio)}
-                            className="p-2.5 rounded-full bg-[#0D253D] text-white hover:bg-accent-500 transition-colors shadow-sm cursor-pointer active:scale-95"
+                            className="p-2.5 rounded-full bg-[#141C2B] text-white hover:bg-[#1F2B3E] transition-colors cursor-pointer active:scale-95"
                             aria-label={isPlayingAudio ? 'Pause Lecture Audio' : 'Play Lecture Audio'}
                           >
                             {isPlayingAudio ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5" />}
@@ -647,24 +644,24 @@ export function ProductStudio() {
                     </div>
 
                     <div className="grid grid-cols-2 gap-2 text-xs">
-                      <div className="p-3 rounded-xl bg-canvas-recessed/50 border border-[rgba(13,37,61,0.06)]">
-                        <span className="font-semibold text-ink-primary block">LaTeX Extraction</span>
-                        <span className="text-ink-secondary text-[11px]">Formula rendering ready</span>
+                      <div className="p-3 rounded-lg bg-surface-panel-subtle/50 border border-border-subtle">
+                        <span className="font-semibold text-text-primary block">LaTeX Extraction</span>
+                        <span className="text-text-secondary text-[11px]">Formula rendering ready</span>
                       </div>
-                      <div className="p-3 rounded-xl bg-canvas-recessed/50 border border-[rgba(13,37,61,0.06)]">
-                        <span className="font-semibold text-ink-primary block">Notion Sync</span>
-                        <span className="text-ink-secondary text-[11px]">1-click page export</span>
+                      <div className="p-3 rounded-lg bg-surface-panel-subtle/50 border border-border-subtle">
+                        <span className="font-semibold text-text-primary block">Notion Sync</span>
+                        <span className="text-text-secondary text-[11px]">1-click page export</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Right: Interactive 3D Study Flashcard */}
-                  <div className="lg:col-span-6 rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.1)] p-6 shadow-sm flex flex-col justify-between space-y-4">
-                    <div className="flex items-center justify-between border-b border-[rgba(13,37,61,0.08)] pb-3">
-                      <span className="font-mono text-xs font-semibold text-ink-primary">
+                  <div className="lg:col-span-6 rounded-xl bg-surface-canvas border border-border-strong p-6 flex flex-col justify-between space-y-4">
+                    <div className="flex items-center justify-between border-b border-border-subtle pb-3">
+                      <span className="font-mono text-xs font-semibold text-text-primary">
                         Extracted Concept Flashcard
                       </span>
-                      <span className="font-mono text-xs text-gold-600 font-medium">
+                      <span className="font-mono text-xs text-accent-tertiary font-medium">
                         Card 03 of 12
                       </span>
                     </div>
@@ -673,13 +670,13 @@ export function ProductStudio() {
                     <button
                       type="button"
                       onClick={() => setActiveCardFlipped(!activeCardFlipped)}
-                      className="w-full text-left rounded-xl p-5 bg-canvas-base border border-[rgba(13,37,61,0.08)] hover:border-gold-500/40 transition-all space-y-3 cursor-pointer shadow-2xs hover:shadow-xs active:scale-[0.99]"
+                      className="w-full text-left rounded-lg p-5 bg-surface-panel border border-border-subtle hover:border-accent-primary/40 transition-all space-y-3 cursor-pointer active:scale-[0.99]"
                     >
                       <div className="flex items-center justify-between text-[11px] font-mono">
-                        <span className="text-ink-secondary font-medium">
+                        <span className="text-text-secondary font-medium">
                           {activeCardFlipped ? 'REVERSE · DEFINITION & PROOF' : 'FRONT · CORE THEOREM'}
                         </span>
-                        <span className="text-gold-600 font-semibold">Click to flip card ↺</span>
+                        <span className="text-accent-primary font-semibold">Click to flip card ↺</span>
                       </div>
 
                       <AnimatePresence mode="wait">
@@ -692,13 +689,13 @@ export function ProductStudio() {
                             transition={{ duration: 0.36 }}
                             className="space-y-2"
                           >
-                            <p className="text-sm font-semibold text-ink-primary">
+                            <p className="text-sm font-semibold text-text-primary">
                               Quorum Size Proof:
                             </p>
-                            <div className="p-2.5 rounded bg-canvas-paper border border-[rgba(13,37,61,0.06)] font-mono text-xs text-accent-secondary">
+                            <div className="p-2.5 rounded bg-surface-panel-subtle border border-border-subtle font-mono text-xs text-accent-secondary">
                               Quorum = floor(N / 2) + 1
                             </div>
-                            <p className="text-xs text-ink-body leading-relaxed">
+                            <p className="text-xs text-text-secondary leading-relaxed">
                               Any two quorums in a cluster of size N overlap by at least one node, ensuring no two leaders can be elected simultaneously in the same term.
                             </p>
                           </motion.div>
@@ -711,10 +708,10 @@ export function ProductStudio() {
                             transition={{ duration: 0.36 }}
                             className="space-y-2"
                           >
-                            <p className="text-sm font-semibold text-ink-primary">
+                            <p className="text-sm font-semibold text-text-primary">
                               What is the minimum quorum condition required for Raft leader election safety?
                             </p>
-                            <p className="text-xs text-ink-body leading-relaxed">
+                            <p className="text-xs text-text-secondary leading-relaxed">
                               Why does Raft require a strict majority of nodes rather than a simple plurality during split-vote recovery?
                             </p>
                           </motion.div>
@@ -722,11 +719,11 @@ export function ProductStudio() {
                       </AnimatePresence>
                     </button>
 
-                    <div className="flex items-center justify-between text-xs pt-1 border-t border-[rgba(13,37,61,0.06)]">
+                    <div className="flex items-center justify-between text-xs pt-1 border-t border-border-subtle">
                       <span className="font-mono text-accent-secondary font-medium">
                         ✓ Extracted from audio transcript (18:32)
                       </span>
-                      <span className="font-mono text-ink-secondary text-[11px]">
+                      <span className="font-mono text-text-muted text-[11px]">
                         Flashcard #03
                       </span>
                     </div>
@@ -740,10 +737,10 @@ export function ProductStudio() {
               {activeProduct.id === 'community-chat-digest' && (
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
                   {/* Left: Raw Channel Stream Preview */}
-                  <div className="lg:col-span-5 rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.1)] p-6 shadow-sm space-y-4 flex flex-col justify-between">
+                  <div className="lg:col-span-5 rounded-xl bg-surface-canvas border border-border-strong p-6 space-y-4 flex flex-col justify-between">
                     <div className="space-y-3">
                       <div className="flex items-center justify-between">
-                        <span className="font-mono text-xs font-semibold text-ink-primary">
+                        <span className="font-mono text-xs font-semibold text-text-primary">
                           Ingested Channel Feed
                         </span>
                         <span className="font-mono text-xs text-accent-secondary font-medium tabular-nums">
@@ -752,17 +749,17 @@ export function ProductStudio() {
                       </div>
 
                       {/* Channel Tabs */}
-                      <div className="flex items-center gap-1.5 p-1 rounded-xl bg-canvas-recessed border border-[rgba(13,37,61,0.08)] text-xs">
+                      <div className="flex items-center gap-1.5 p-1 rounded-lg bg-surface-panel-subtle border border-border-subtle text-xs">
                         {(['#engineering-core', '#product-sync', '#infra-alerts'] as const).map((ch) => (
                           <button
                             key={ch}
                             type="button"
                             onClick={() => setActiveChannel(ch)}
                             className={cn(
-                              'px-2.5 py-1 rounded-lg font-mono text-[11px] transition-all cursor-pointer truncate',
+                              'px-2.5 py-1 rounded-md font-mono text-[11px] transition-all cursor-pointer truncate',
                               activeChannel === ch
-                                ? 'bg-canvas-paper text-accent-secondary shadow-xs font-semibold'
-                                : 'text-ink-secondary hover:text-ink-primary'
+                                ? 'bg-surface-panel text-accent-secondary shadow-xs font-semibold'
+                                : 'text-text-secondary hover:text-text-primary'
                             )}
                           >
                             {ch}
@@ -772,38 +769,38 @@ export function ProductStudio() {
 
                       {/* Chat Messages Mock */}
                       <div className="space-y-2.5 pt-1">
-                        <div className="p-3 rounded-xl bg-canvas-recessed/50 border border-[rgba(13,37,61,0.06)] space-y-1">
+                        <div className="p-3 rounded-lg bg-surface-panel-subtle/50 border border-border-subtle space-y-1">
                           <div className="flex items-center justify-between text-[11px]">
-                            <span className="font-mono font-semibold text-ink-primary">@aditya_v</span>
-                            <span className="font-mono text-ink-secondary">10:14 AM</span>
+                            <span className="font-mono font-semibold text-text-primary">@aditya_v</span>
+                            <span className="font-mono text-text-secondary">10:14 AM</span>
                           </div>
-                          <p className="text-xs text-ink-body">
+                          <p className="text-xs text-text-secondary">
                             Migrated Redis cluster to consistent hash ring. Memory overhead down 34%. PR #412 ready.
                           </p>
                         </div>
-                        <div className="p-3 rounded-xl bg-canvas-recessed/50 border border-[rgba(13,37,61,0.06)] space-y-1">
+                        <div className="p-3 rounded-lg bg-surface-panel-subtle/50 border border-border-subtle space-y-1">
                           <div className="flex items-center justify-between text-[11px]">
-                            <span className="font-mono font-semibold text-ink-primary">@neha_k</span>
-                            <span className="font-mono text-ink-secondary">10:28 AM</span>
+                            <span className="font-mono font-semibold text-text-primary">@neha_k</span>
+                            <span className="font-mono text-text-secondary">10:28 AM</span>
                           </div>
-                          <p className="text-xs text-ink-body">
+                          <p className="text-xs text-text-secondary">
                             Staging webhook retry test passed with exponential backoff. Merging to release candidate branch.
                           </p>
                         </div>
                       </div>
                     </div>
 
-                    <div className="p-3 rounded-xl bg-canvas-recessed/60 border border-[rgba(13,37,61,0.06)] flex justify-between items-center text-xs">
-                      <span className="text-ink-secondary text-[11px] font-mono">Deduplication SLA</span>
+                    <div className="p-3 rounded-lg bg-surface-panel-subtle/60 border border-border-subtle flex justify-between items-center text-xs">
+                      <span className="text-text-secondary text-[11px] font-mono">Deduplication SLA</span>
                       <span className="font-mono font-semibold text-accent-secondary">94.8% Compression</span>
                     </div>
                   </div>
 
                   {/* Right: Output Executive Brief */}
-                  <div className="lg:col-span-7 rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.1)] p-6 shadow-sm flex flex-col justify-between space-y-4">
+                  <div className="lg:col-span-7 rounded-xl bg-surface-canvas border border-border-strong p-6 flex flex-col justify-between space-y-4">
                     <div className="space-y-3">
-                      <div className="flex items-center justify-between border-b border-[rgba(13,37,61,0.08)] pb-3">
-                        <span className="font-mono text-xs font-semibold text-ink-primary flex items-center gap-1.5">
+                      <div className="flex items-center justify-between border-b border-border-subtle pb-3">
+                        <span className="font-mono text-xs font-semibold text-text-primary flex items-center gap-1.5">
                           <MessageSquare className="w-3.5 h-3.5 text-accent-secondary" />
                           <span>Structured Executive Brief · {activeChannel}</span>
                         </span>
@@ -817,7 +814,7 @@ export function ProductStudio() {
                                 'font-mono text-[10px] px-2 py-0.5 rounded border transition-all cursor-pointer',
                                 digestTimeframe === tf
                                   ? 'bg-accent-secondary text-white border-accent-secondary font-bold'
-                                  : 'bg-canvas-recessed text-ink-secondary border-[rgba(13,37,61,0.08)] hover:text-ink-primary'
+                                  : 'bg-surface-panel-subtle text-text-secondary border-border-subtle hover:text-text-primary'
                               )}
                             >
                               {tf}
@@ -827,45 +824,45 @@ export function ProductStudio() {
                       </div>
 
                       {/* Brief Topic Cluster 1 */}
-                      <div className="p-4 rounded-xl bg-canvas-base border border-[rgba(13,37,61,0.08)] space-y-2">
+                      <div className="p-4 rounded-lg bg-surface-panel border border-border-subtle space-y-2">
                         <div className="flex items-center justify-between">
-                          <span className="font-semibold text-xs text-ink-primary">
+                          <span className="font-semibold text-xs text-text-primary">
                             1. Redis Cache Sharding Architecture
                           </span>
                           <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-sage-100/70 text-accent-secondary border border-accent-secondary/20 font-medium">
                             Consensus Achieved
                           </span>
                         </div>
-                        <p className="text-xs text-ink-body leading-relaxed">
+                        <p className="text-xs text-text-secondary leading-relaxed">
                           Consistent hashing ring implementation approved. Tested on staging with 34% memory reduction and zero hash collisions.
                         </p>
-                        <div className="pt-2 border-t border-[rgba(13,37,61,0.06)] flex justify-between items-center text-[11px] font-mono">
-                          <span className="text-ink-secondary">Action Assigned: @aditya_v</span>
+                        <div className="pt-2 border-t border-border-subtle flex justify-between items-center text-[11px] font-mono">
+                          <span className="text-text-secondary">Action Assigned: @aditya_v</span>
                           <span className="text-accent-secondary font-medium">Merged to Master</span>
                         </div>
                       </div>
 
                       {/* Brief Topic Cluster 2 */}
-                      <div className="p-4 rounded-xl bg-canvas-base border border-[rgba(13,37,61,0.08)] space-y-2">
+                      <div className="p-4 rounded-lg bg-surface-panel border border-border-subtle space-y-2">
                         <div className="flex items-center justify-between">
-                          <span className="font-semibold text-xs text-ink-primary">
+                          <span className="font-semibold text-xs text-text-primary">
                             2. Webhook Dispatch Exponential Backoff
                           </span>
                           <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-amber-50 text-amber-700 border border-amber-500/20 font-medium">
                             Review Required
                           </span>
                         </div>
-                        <p className="text-xs text-ink-body leading-relaxed">
+                        <p className="text-xs text-text-secondary leading-relaxed">
                           Failure retry policy clamped to 5 max attempts with jitter to prevent downstream webhook thundering herd.
                         </p>
                       </div>
                     </div>
 
-                    <div className="pt-3 border-t border-[rgba(13,37,61,0.08)] flex justify-between items-center text-xs">
+                    <div className="pt-3 border-t border-border-subtle flex justify-between items-center text-xs">
                       <span className="font-mono text-accent-secondary font-medium">
                         ✓ Dispatched to Slack Webhook #leadership-sync
                       </span>
-                      <span className="font-mono text-ink-secondary text-[11px]">Daily 09:00 AM IST</span>
+                      <span className="font-mono text-text-secondary text-[11px]">Daily 09:00 AM IST</span>
                     </div>
                   </div>
                 </div>
@@ -877,11 +874,11 @@ export function ProductStudio() {
               {activeProduct.id === 'smart-dainik-news' && (
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
                   {/* Left: Regional Feed Sources */}
-                  <div className="lg:col-span-5 rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.1)] p-6 shadow-sm space-y-4 flex flex-col justify-between">
+                  <div className="lg:col-span-5 rounded-xl bg-surface-canvas border border-border-strong p-6 space-y-4 flex flex-col justify-between">
                     <div className="space-y-3">
                       <div className="flex items-center justify-between">
-                        <span className="font-mono text-xs font-semibold text-ink-primary flex items-center gap-1.5">
-                          <Newspaper className="w-3.5 h-3.5 text-accent-500" />
+                        <span className="font-mono text-xs font-semibold text-text-primary flex items-center gap-1.5">
+                          <Newspaper className="w-3.5 h-3.5 text-accent-primary" />
                           <span>UP Regional Feed Aggregator</span>
                         </span>
                         <span className="font-mono text-xs text-accent-secondary font-medium tabular-nums">
@@ -890,15 +887,15 @@ export function ProductStudio() {
                       </div>
 
                       {/* Language Selector */}
-                      <div className="flex items-center gap-1.5 p-1 rounded-xl bg-canvas-recessed border border-[rgba(13,37,61,0.08)] text-xs">
+                      <div className="flex items-center gap-1.5 p-1 rounded-lg bg-surface-panel-subtle border border-border-subtle text-xs">
                         <button
                           type="button"
                           onClick={() => setLanguage('en')}
                           className={cn(
-                            'flex-1 py-1 rounded-lg font-mono text-[11px] transition-all cursor-pointer',
+                            'flex-1 py-1 rounded-md font-mono text-[11px] transition-all cursor-pointer',
                             language === 'en'
-                              ? 'bg-canvas-paper text-ink-primary shadow-xs font-semibold'
-                              : 'text-ink-secondary hover:text-ink-primary'
+                              ? 'bg-surface-panel text-text-primary shadow-xs font-semibold'
+                              : 'text-text-secondary hover:text-text-primary'
                           )}
                         >
                           English Feeds
@@ -907,10 +904,10 @@ export function ProductStudio() {
                           type="button"
                           onClick={() => setLanguage('hi')}
                           className={cn(
-                            'flex-1 py-1 rounded-lg font-mono text-[11px] transition-all cursor-pointer',
+                            'flex-1 py-1 rounded-md font-mono text-[11px] transition-all cursor-pointer',
                             language === 'hi'
-                              ? 'bg-canvas-paper text-accent-500 shadow-xs font-semibold'
-                              : 'text-ink-secondary hover:text-ink-primary'
+                              ? 'bg-surface-panel text-accent-primary shadow-xs font-semibold'
+                              : 'text-text-secondary hover:text-text-primary'
                           )}
                         >
                           हिंदी समाचार फ़ीड
@@ -919,23 +916,23 @@ export function ProductStudio() {
 
                       {/* Ingested items list */}
                       <div className="space-y-2 pt-1">
-                        <div className="p-3 rounded-xl bg-canvas-recessed/50 border border-[rgba(13,37,61,0.06)] space-y-1">
+                        <div className="p-3 rounded-lg bg-surface-panel-subtle/50 border border-border-subtle space-y-1">
                           <div className="flex items-center justify-between text-[11px]">
-                            <span className="font-mono font-semibold text-accent-500">UPPSC Gazette</span>
-                            <span className="font-mono text-ink-secondary">2 hrs ago</span>
+                            <span className="font-mono font-semibold text-accent-primary">UPPSC Gazette</span>
+                            <span className="font-mono text-text-secondary">2 hrs ago</span>
                           </div>
-                          <p className="text-xs text-ink-body">
+                          <p className="text-xs text-text-secondary">
                             {language === 'en'
                               ? 'Technical cadre recruitment official notification released for 411 positions.'
                               : 'तकनीकी संवर्ग भर्ती की आधिकारिक अधिसूचना 411 पदों के लिए जारी।'}
                           </p>
                         </div>
-                        <div className="p-3 rounded-xl bg-canvas-recessed/50 border border-[rgba(13,37,61,0.06)] space-y-1">
+                        <div className="p-3 rounded-lg bg-surface-panel-subtle/50 border border-border-subtle space-y-1">
                           <div className="flex items-center justify-between text-[11px]">
-                            <span className="font-mono font-semibold text-ink-primary">Agra Industrial Board</span>
-                            <span className="font-mono text-ink-secondary">5 hrs ago</span>
+                            <span className="font-mono font-semibold text-text-primary">Agra Industrial Board</span>
+                            <span className="font-mono text-text-secondary">5 hrs ago</span>
                           </div>
-                          <p className="text-xs text-ink-body">
+                          <p className="text-xs text-text-secondary">
                             {language === 'en'
                               ? 'Optical fiber connectivity project approved for regional leather and MSME cluster.'
                               : 'क्षेत्रीय चमड़ा और एमएसएमई क्लस्टर के लिए ऑप्टिकल फाइबर परियोजना स्वीकृत।'}
@@ -944,73 +941,73 @@ export function ProductStudio() {
                       </div>
                     </div>
 
-                    <div className="p-3 rounded-xl bg-canvas-recessed/60 border border-[rgba(13,37,61,0.06)] flex justify-between items-center text-xs">
-                      <span className="text-ink-secondary text-[11px] font-mono">Bilingual Accuracy</span>
+                    <div className="p-3 rounded-lg bg-surface-panel-subtle/60 border border-border-subtle flex justify-between items-center text-xs">
+                      <span className="text-text-secondary text-[11px] font-mono">Bilingual Accuracy</span>
                       <span className="font-mono font-semibold text-accent-secondary">99.4% Verified</span>
                     </div>
                   </div>
 
                   {/* Right: Matched Alerts & Verification */}
-                  <div className="lg:col-span-7 rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.1)] p-6 shadow-sm flex flex-col justify-between space-y-4">
+                  <div className="lg:col-span-7 rounded-xl bg-surface-canvas border border-border-strong p-6 flex flex-col justify-between space-y-4">
                     <div className="space-y-3">
-                      <div className="flex items-center justify-between border-b border-[rgba(13,37,61,0.08)] pb-3">
-                        <span className="font-mono text-xs font-semibold text-ink-primary">
+                      <div className="flex items-center justify-between border-b border-border-subtle pb-3">
+                        <span className="font-mono text-xs font-semibold text-text-primary">
                           Verified Public Alerts & Schema Extraction
                         </span>
-                        <span className="font-mono text-xs text-accent-500 font-medium">
+                        <span className="font-mono text-xs text-accent-primary font-medium">
                           UP Central & Western
                         </span>
                       </div>
 
                       {/* Alert Card 1 */}
-                      <div className="p-4 rounded-xl bg-canvas-base border border-[rgba(13,37,61,0.08)] space-y-2">
+                      <div className="p-4 rounded-lg bg-surface-panel border border-border-subtle space-y-2">
                         <div className="flex items-center justify-between">
-                          <span className="font-mono text-[11px] font-bold text-accent-500 px-2 py-0.5 rounded bg-accent-50 border border-accent-500/20">
+                          <span className="font-mono text-[11px] font-bold text-accent-primary px-2 py-0.5 rounded bg-accent-50 border border-accent-primary/20">
                             ALERT_ID: UPPSC_TECH_2026
                           </span>
                           <span className="font-mono text-xs text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-500/20 font-semibold">
                             Official Verified
                           </span>
                         </div>
-                        <h4 className="font-display text-lg text-ink-primary font-normal">
+                        <h4 className="font-sans font-semibold text-sm sm:text-base text-text-primary">
                           {language === 'en'
                             ? 'UPPSC Assistant Engineer & Technical Cadre (411 Posts)'
                             : 'यूपीपीएससी सहायक अभियंता एवं तकनीकी संवर्ग भर्ती (411 पद)'}
                         </h4>
-                        <p className="text-xs text-ink-body leading-relaxed">
+                        <p className="text-xs text-text-secondary leading-relaxed">
                           {language === 'en'
                             ? 'Eligibility: B.Tech in CSE, ECE, EE. Age: 21-40 yrs. Application window opens March 2026.'
                             : 'पात्रता: कंप्यूटर साइंस/आईटी में बी.टेक। आयु सीमा: 21-40 वर्ष। आवेदन मार्च 2026 से उपलब्ध।'}
                         </p>
-                        <div className="pt-2 border-t border-[rgba(13,37,61,0.06)] flex justify-between items-center text-[11px] font-mono">
-                          <span className="text-ink-secondary">Deadline: 2026-03-30</span>
-                          <span className="text-accent-500 font-semibold">Direct Portal Hook Ready</span>
+                        <div className="pt-2 border-t border-border-subtle flex justify-between items-center text-[11px] font-mono">
+                          <span className="text-text-secondary">Deadline: 2026-03-30</span>
+                          <span className="text-accent-primary font-semibold">Direct Portal Hook Ready</span>
                         </div>
                       </div>
 
                       {/* Alert Card 2 */}
-                      <div className="p-4 rounded-xl bg-canvas-base border border-[rgba(13,37,61,0.08)] space-y-2">
+                      <div className="p-4 rounded-lg bg-surface-panel border border-border-subtle space-y-2">
                         <div className="flex items-center justify-between">
-                          <span className="font-mono text-[11px] font-bold text-ink-secondary px-2 py-0.5 rounded bg-canvas-recessed">
+                          <span className="font-mono text-[11px] font-bold text-text-secondary px-2 py-0.5 rounded bg-surface-panel-subtle">
                             ALERT_ID: AGRA_OPTICAL_GRID
                           </span>
                           <span className="font-mono text-xs text-accent-secondary font-medium">
                             Infrastructure
                           </span>
                         </div>
-                        <h4 className="font-display text-base text-ink-primary font-normal">
+                        <h4 className="font-sans font-semibold text-sm text-text-primary">
                           {language === 'en'
                             ? 'Agra-Lucknow Industrial Optical Fiber Grid'
                             : 'आगरा-लखनऊ औद्योगिक ऑप्टिकल फाइबर ग्रिड विस्तार'}
                         </h4>
-                        <p className="text-xs text-ink-body leading-relaxed">
+                        <p className="text-xs text-text-secondary leading-relaxed">
                           {language === 'en'
                             ? 'High-speed data grid expansion reaching Tier-2 district hubs by Q3 2026. Micro-industrial units to gain low-latency internet.'
                             : 'Q3 2026 तक टियर-2 जिला औद्योगिक केंद्रों तक हाई-स्पीड डेटा ग्रिड विस्तार। सूक्ष्म औद्योगिक इकाइयों को उच्च गति इंटरनेट।'}
                         </p>
-                        <div className="pt-2 border-t border-[rgba(13,37,61,0.08)] flex justify-between items-center text-xs">
+                        <div className="pt-2 border-t border-border-subtle flex justify-between items-center text-xs">
                           <span className="font-mono text-accent-secondary font-medium">✓ Verified Gazette</span>
-                          <span className="font-mono text-ink-primary font-medium">Tier-2 Expansion</span>
+                          <span className="font-mono text-text-primary font-medium">Tier-2 Expansion</span>
                         </div>
                       </div>
                     </div>
@@ -1025,27 +1022,27 @@ export function ProductStudio() {
         {/* =========================================================================
             4. BOTTOM SPECIFICATION & TELEMETRY STRIP
             ========================================================================= */}
-        <div className="p-5 sm:p-6 md:p-8 bg-canvas-paper border-t border-[rgba(13,37,61,0.08)] grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
+        <div className="p-5 sm:p-6 md:p-8 bg-surface-canvas border-t border-border-subtle grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
           <div>
-            <span className="text-ink-secondary block text-[11px]">Input Support</span>
-            <span className="font-mono font-medium text-ink-primary">
+            <span className="text-text-secondary block text-[11px]">Input Support</span>
+            <span className="font-mono font-medium text-text-primary">
               {activeProduct.inputFormat}
             </span>
           </div>
           <div>
-            <span className="text-ink-secondary block text-[11px]">Output Delivery</span>
-            <span className="font-mono font-medium text-ink-primary">
+            <span className="text-text-secondary block text-[11px]">Output Delivery</span>
+            <span className="font-mono font-medium text-text-primary">
               {activeProduct.outputFormat}
             </span>
           </div>
           <div>
-            <span className="text-ink-secondary block text-[11px]">Execution Speed</span>
-            <span className="font-mono font-medium text-accent-500 tabular-nums">
+            <span className="text-text-secondary block text-[11px]">Execution Speed</span>
+            <span className="font-mono font-medium text-accent-primary tabular-nums">
               {activeProduct.metric}
             </span>
           </div>
           <div>
-            <span className="text-ink-secondary block text-[11px]">Privacy Guarantee</span>
+            <span className="text-text-secondary block text-[11px]">Privacy Guarantee</span>
             <span className="font-mono font-medium text-accent-secondary flex items-center gap-1">
               <ShieldCheck className="w-3.5 h-3.5" />
               <span>0 bytes retained</span>

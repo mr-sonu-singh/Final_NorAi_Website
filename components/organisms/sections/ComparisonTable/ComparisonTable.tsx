@@ -4,19 +4,25 @@ import React from 'react';
 import { Section } from '@/components/foundation/Section';
 import { Container } from '@/components/foundation/Container';
 import { Heading } from '@/components/foundation/Heading';
-import { Icon } from '@/components/atoms/Icon';
-
+import { Text } from '@/components/foundation/Text';
+import { Check, Minus } from 'lucide-react';
 import { VisuallyHidden } from '@/components/foundation/VisuallyHidden';
 import { EmptyState } from '@/components/molecules/EmptyState';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { cn } from '@/lib/utils';
-import { ComparisonTableProps, ComparisonCellValue, ComparisonColumn, ComparisonRow } from './ComparisonTable.types';
+import {
+  ComparisonTableProps,
+  ComparisonCellValue,
+  ComparisonRow,
+} from './ComparisonTable.types';
 
 export function ComparisonTable({
   heading,
+  description,
   columns = [],
   rows = [],
+  categories,
   variant = 'FeatureComparison',
   caption,
 }: ComparisonTableProps) {
@@ -28,8 +34,8 @@ export function ComparisonTable({
   const renderCellContent = (value: ComparisonCellValue | undefined) => {
     if (value === undefined || value === false) {
       return (
-        <div className="flex items-center justify-center text-ink-disabled">
-          <Icon name="minus" size="sm" aria-hidden="true" />
+        <div className="flex items-center justify-center text-ink-muted">
+          <Minus className="h-4 w-4" aria-hidden="true" />
           <VisuallyHidden>Not included</VisuallyHidden>
         </div>
       );
@@ -37,39 +43,47 @@ export function ComparisonTable({
 
     if (value === true) {
       return (
-        <div className="flex items-center justify-center text-sage-500">
-          <Icon name="check" size="sm" aria-hidden="true" />
+        <div className="flex items-center justify-center text-sage-600">
+          <Check className="h-4 w-4 stroke-[2.5]" aria-hidden="true" />
           <VisuallyHidden>Included</VisuallyHidden>
         </div>
       );
     }
 
     return (
-      <span className="text-sm font-medium text-ink-body tabular-nums">{value}</span>
+      <span className="font-mono text-sm font-medium text-ink-primary tabular-nums">
+        {value}
+      </span>
     );
   };
 
   const renderHeaderRow = () => (
-    <tr className="border-b border-line-default bg-canvas-recessed">
+    <tr className="border-b border-line-strong bg-canvas-recessed">
       <th
         scope="col"
         className={cn(
-          'sticky left-0 z-10 w-48 border-r border-line-subtle bg-canvas-recessed p-4 text-left align-bottom text-[13px] font-semibold tracking-wide text-ink-secondary',
+          'sticky left-0 z-20 w-64 border-r border-line-subtle bg-canvas-recessed p-4 text-left align-bottom text-[13px] font-semibold tracking-wide text-ink-secondary',
         )}
       >
-        Features / Tiers
+        Features & Specifications
       </th>
       {columns.map((col) => (
         <th
           key={col.id}
           scope="col"
           className={cn(
-            'w-36 p-4 text-center text-sm font-semibold text-ink-primary',
-            col.highlighted && 'bg-terra-50 text-terra-600',
+            'w-44 p-4 text-center text-sm font-semibold text-ink-primary transition-colors',
+            col.highlighted && 'bg-accent-subtle/50 text-accent-primary font-bold',
           )}
         >
-          {col.label}
-          {col.highlighted ? <span className="sr-only"> (recommended)</span> : null}
+          <div className="flex flex-col items-center gap-1">
+            <span>{col.label}</span>
+            {col.highlighted && (
+              <span className="rounded-full bg-accent-primary px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">
+                Recommended
+              </span>
+            )}
+          </div>
         </th>
       ))}
     </tr>
@@ -79,20 +93,28 @@ export function ComparisonTable({
     const zebraBg = rowIndex % 2 === 0 ? 'bg-canvas-paper' : 'bg-canvas-base';
 
     return (
-      <tr key={row.id} className={cn('transition-colors duration-200', zebraBg)}>
+      <tr key={row.id} className={cn('transition-colors duration-150', zebraBg)}>
         <th
           scope="row"
           className={cn(
-            'sticky left-0 z-10 border-r border-line-subtle p-4 text-left text-sm font-medium text-ink-primary',
+            'sticky left-0 z-10 border-r border-line-subtle p-4 text-left font-normal text-ink-primary',
             zebraBg,
           )}
         >
-          {row.label}
+          <div className="space-y-0.5">
+            <span className="text-sm font-medium text-ink-primary">{row.label}</span>
+            {row.hint && (
+              <p className="text-xs text-ink-secondary">{row.hint}</p>
+            )}
+          </div>
         </th>
         {columns.map((col) => (
           <td
             key={`${row.id}-${col.id}`}
-            className={cn('p-4 text-center', col.highlighted && 'bg-terra-50')}
+            className={cn(
+              'p-4 text-center align-middle',
+              col.highlighted && (rowIndex % 2 === 0 ? 'bg-accent-subtle/25' : 'bg-accent-subtle/35'),
+            )}
           >
             {renderCellContent(row.values[col.id])}
           </td>
@@ -101,20 +123,40 @@ export function ComparisonTable({
     );
   };
 
-  const renderTable = (_columns: ComparisonColumn[], rows: ComparisonRow[]) => (
-
-    <div className="w-full overflow-x-auto rounded-xl border border-line-subtle bg-canvas-paper shadow-sm">
-      <table className="w-full min-w-[640px] border-collapse text-left">
-        <thead>{renderHeaderRow()}</thead>
-        <tbody className="divide-y divide-line-subtle">
-          {rows.map((row, index) => renderBodyRow(row, index))}
-        </tbody>
-      </table>
-      {caption ? (
-        <p className="px-4 py-3 text-[13px] leading-relaxed text-ink-secondary">{caption}</p>
-      ) : null}
-    </div>
+  const renderCategoryHeader = (categoryName: string, catIndex: number) => (
+    <tr key={`cat-${catIndex}`} className="border-y border-line-strong bg-canvas-recessed/80">
+      <th
+        colSpan={columns.length + 1}
+        scope="colgroup"
+        className="px-4 py-3 text-left font-mono text-[11px] font-bold uppercase tracking-wider text-ink-secondary"
+      >
+        {categoryName}
+      </th>
+    </tr>
   );
+
+  const renderTableContent = () => {
+    if (categories && categories.length > 0) {
+      return (
+        <tbody className="divide-y divide-line-subtle">
+          {categories.map((cat, catIdx) => (
+            <React.Fragment key={cat.name}>
+              {renderCategoryHeader(cat.name, catIdx)}
+              {cat.rows.map((row, rIdx) => renderBodyRow(row, rIdx))}
+            </React.Fragment>
+          ))}
+        </tbody>
+      );
+    }
+
+    return (
+      <tbody className="divide-y divide-line-subtle">
+        {rows.map((row, index) => renderBodyRow(row, index))}
+      </tbody>
+    );
+  };
+
+  const hasData = (categories && categories.length > 0) || (rows && rows.length > 0);
 
   return (
     <div ref={ref}>
@@ -131,21 +173,43 @@ export function ComparisonTable({
       >
         <Container size="default">
           {heading ? (
-            <div className="mx-auto mb-10 max-w-2xl text-center">
+            <div className="mx-auto mb-10 max-w-2xl text-center space-y-3">
+              <p className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold uppercase tracking-wider text-accent-primary">
+                Detailed Matrix
+              </p>
               <Heading as="h2" variant="display-md" className="text-balance text-ink-primary">
                 {heading}
               </Heading>
+              {description && (
+                <Text variant="body-md" className="text-ink-body">
+                  {description}
+                </Text>
+              )}
             </div>
           ) : null}
 
-          {rows.length === 0 ? (
+          {!hasData ? (
             <EmptyState
               title="No Comparison Features"
               description="Comparison details are currently unavailable."
               icon="layers"
             />
           ) : (
-            renderTable(columns, rows)
+            <div className="w-full overflow-hidden rounded-2xl border border-line-subtle bg-canvas-paper shadow-sm">
+              <div className="overflow-x-auto">
+                <table className="w-full min-w-[680px] border-collapse text-left">
+                  <thead>{renderHeaderRow()}</thead>
+                  {renderTableContent()}
+                </table>
+              </div>
+              {caption ? (
+                <div className="border-t border-line-subtle bg-canvas-recessed/50 px-5 py-3.5">
+                  <p className="font-mono text-xs leading-relaxed text-ink-secondary">
+                    ℹ️ {caption}
+                  </p>
+                </div>
+              ) : null}
+            </div>
           )}
         </Container>
       </Section>

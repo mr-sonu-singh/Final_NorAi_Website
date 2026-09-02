@@ -219,11 +219,15 @@ export function WorkshopTrackExplorer() {
     TRACKS.find((t) => t.id === activeTrackId) || (TRACKS[0] as TrackData);
 
   return (
-    <div className="w-full text-left font-sans space-y-8 select-none">
-      {/* Track Selector Navigation Tabs with Sliding Spring Pill */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 border-b border-[rgba(13,37,61,0.08)] pb-4">
-        {/* Track Pills */}
-        <div className="flex flex-wrap items-center gap-2 p-1 rounded-2xl bg-canvas-sunken/70 border border-[rgba(13,37,61,0.06)]" role="tablist" aria-label="Workshop Tiers">
+    <div className="w-full text-left font-sans space-y-6">
+      {/* Track Selector & Context Switcher Bar */}
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 border-b border-[rgba(20,28,43,0.08)] pb-4">
+        {/* Track Selection Tabs */}
+        <div
+          className="flex flex-wrap items-center gap-1.5 p-1 rounded-xl bg-canvas-sunken border border-[rgba(20,28,43,0.08)]"
+          role="tablist"
+          aria-label="Workshop Tiers"
+        >
           {TRACKS.map((track) => {
             const isSelected = activeTrackId === track.id;
             return (
@@ -235,16 +239,16 @@ export function WorkshopTrackExplorer() {
                   setActiveTrackId(track.id);
                   setExpandedModuleIdx(0);
                 }}
-                className={`relative px-4 py-2.5 rounded-xl font-sans text-xs md:text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-terra-500 focus-visible:ring-offset-canvas-sunken ${
+                className={`relative px-3.5 py-2 rounded-lg font-sans text-xs md:text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terra-500 ${
                   isSelected
                     ? 'text-ink-primary'
-                    : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-paper/40'
+                    : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-paper/50'
                 }`}
               >
                 {isSelected && (
                   <motion.div
                     layoutId="activeTrackPill"
-                    className="absolute inset-0 rounded-xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] shadow-xs"
+                    className="absolute inset-0 rounded-lg bg-canvas-paper border border-[rgba(20,28,43,0.12)] shadow-xs"
                     transition={{ type: 'spring', duration: 0.35, bounce: 0.1 }}
                   />
                 )}
@@ -254,23 +258,23 @@ export function WorkshopTrackExplorer() {
           })}
         </div>
 
-        {/* Geographic Context Switcher with Spring Indicator */}
-        <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-canvas-sunken border border-[rgba(13,37,61,0.08)] shrink-0 self-start sm:self-auto">
+        {/* Geographic Delivery Context Toggle */}
+        <div className="flex items-center gap-1 p-1 rounded-xl bg-canvas-sunken border border-[rgba(20,28,43,0.08)] self-start sm:self-auto">
           <span className="text-[11px] font-mono font-medium text-ink-secondary px-2 flex items-center gap-1">
-            <MapPin className="w-3 h-3 text-terra-500" />
-            <span>Delivery Context:</span>
+            <MapPin className="w-3 h-3 text-terra-600" aria-hidden="true" />
+            <span>Context:</span>
           </span>
           <button
             type="button"
             onClick={() => setContextMode('rural')}
-            className={`relative px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all ${
+            className={`relative px-2.5 py-1 rounded-lg text-xs font-mono font-semibold transition-all ${
               contextMode === 'rural' ? 'text-terra-600' : 'text-ink-secondary hover:text-ink-primary'
             }`}
           >
             {contextMode === 'rural' && (
               <motion.div
                 layoutId="activeContextPill"
-                className="absolute inset-0 rounded-xl bg-canvas-paper border border-[rgba(13,37,61,0.10)] shadow-2xs"
+                className="absolute inset-0 rounded-lg bg-canvas-paper border border-[rgba(20,28,43,0.08)] shadow-xs"
                 transition={{ type: 'spring', duration: 0.3, bounce: 0.08 }}
               />
             )}
@@ -279,14 +283,14 @@ export function WorkshopTrackExplorer() {
           <button
             type="button"
             onClick={() => setContextMode('town')}
-            className={`relative px-3 py-1.5 rounded-xl text-xs font-mono font-semibold transition-all ${
+            className={`relative px-2.5 py-1 rounded-lg text-xs font-mono font-semibold transition-all ${
               contextMode === 'town' ? 'text-terra-600' : 'text-ink-secondary hover:text-ink-primary'
             }`}
           >
             {contextMode === 'town' && (
               <motion.div
                 layoutId="activeContextPill"
-                className="absolute inset-0 rounded-xl bg-canvas-paper border border-[rgba(13,37,61,0.10)] shadow-2xs"
+                className="absolute inset-0 rounded-lg bg-canvas-paper border border-[rgba(20,28,43,0.08)] shadow-xs"
                 transition={{ type: 'spring', duration: 0.3, bounce: 0.08 }}
               />
             )}
@@ -295,50 +299,50 @@ export function WorkshopTrackExplorer() {
         </div>
       </div>
 
-      {/* Main Animated Track Detail Card (AnimatePresence depth scale entrance) */}
+      {/* Main Animated Track Workbench */}
       <AnimatePresence mode="wait">
         <motion.div
           key={`${activeTrack.id}-${contextMode}`}
-          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 16, scale: shouldReduceMotion ? 1 : 0.985 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: shouldReduceMotion ? 0 : -10, scale: 0.99 }}
-          transition={{ duration: 0.26, ease: EASE_OUT }}
-          className="rounded-3xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] p-6 md:p-10 shadow-md space-y-8"
+          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: shouldReduceMotion ? 0 : -8 }}
+          transition={{ duration: 0.22, ease: EASE_OUT }}
+          className="rounded-2xl bg-canvas-paper border border-[rgba(20,28,43,0.08)] p-6 sm:p-8 md:p-10 space-y-8"
         >
-          {/* Card Header & Meta Ribbon */}
-          <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6 pb-6 border-b border-[rgba(13,37,61,0.08)]">
+          {/* Header & Metadata Banner */}
+          <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6 pb-6 border-b border-[rgba(20,28,43,0.06)]">
             <div className="space-y-3 max-w-3xl">
               <div className="flex flex-wrap items-center gap-2.5">
-                <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded-lg border bg-terra-50 text-terra-600 border-terra-500/20">
+                <span className="font-mono text-xs font-semibold px-2.5 py-0.5 rounded bg-canvas-sunken text-terra-600 border border-[rgba(20,28,43,0.08)]">
                   {activeTrack.badge}
                 </span>
                 <span className="font-mono text-xs text-ink-secondary flex items-center gap-1.5">
-                  <Radio className="w-3 h-3 text-sage-600 animate-pulse" />
+                  <Radio className="w-3 h-3 text-sage-600 animate-pulse" aria-hidden="true" />
                   <span>{activeTrack.duration}</span>
                 </span>
               </div>
 
-              <h3 className="font-display text-3xl sm:text-4xl text-ink-primary font-normal leading-tight">
+              <h3 className="font-display text-2xl sm:text-3xl text-ink-primary font-normal leading-tight">
                 {activeTrack.title}
               </h3>
 
-              <p className="text-base text-ink-body leading-relaxed">
+              <p className="text-sm text-ink-body leading-relaxed max-w-2xl font-sans">
                 {activeTrack.tagline}
               </p>
             </div>
 
-            {/* Quick Meta Box */}
-            <div className="shrink-0 rounded-2xl bg-canvas-base border border-[rgba(13,37,61,0.08)] p-5 space-y-3 lg:w-76 shadow-2xs">
+            {/* Quick Meta Card */}
+            <div className="shrink-0 rounded-xl bg-canvas-base border border-[rgba(20,28,43,0.08)] p-4 space-y-3 lg:w-80">
               <div>
-                <span className="text-[11px] font-mono uppercase tracking-wider text-ink-secondary block">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-ink-secondary block font-semibold">
                   Target Audience
                 </span>
                 <span className="text-xs text-ink-primary font-medium mt-0.5 block leading-snug">
                   {activeTrack.targetAudience}
                 </span>
               </div>
-              <div className="pt-2 border-t border-[rgba(13,37,61,0.06)]">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-ink-secondary block">
+              <div className="pt-2 border-t border-[rgba(20,28,43,0.06)]">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-ink-secondary block font-semibold">
                   Prerequisites
                 </span>
                 <span className="text-xs text-ink-body mt-0.5 block leading-snug">
@@ -348,69 +352,69 @@ export function WorkshopTrackExplorer() {
             </div>
           </div>
 
-          {/* Adaptive Delivery Banner */}
-          <div className="rounded-2xl bg-canvas-base border border-terra-500/20 p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-2xs">
+          {/* Context Calibration Strip */}
+          <div className="rounded-xl bg-canvas-base border border-[rgba(20,28,43,0.08)] p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
             <div className="flex items-start gap-3">
-              <div className="w-8 h-8 rounded-lg bg-terra-50 border border-terra-500/20 text-terra-600 flex items-center justify-center shrink-0 mt-0.5">
+              <div className="w-7 h-7 rounded-lg bg-canvas-sunken border border-[rgba(20,28,43,0.08)] text-terra-600 flex items-center justify-center shrink-0 mt-0.5">
                 {contextMode === 'rural' ? (
-                  <Languages className="w-4 h-4" />
+                  <Languages className="w-3.5 h-3.5" aria-hidden="true" />
                 ) : (
-                  <Laptop className="w-4 h-4" />
+                  <Laptop className="w-3.5 h-3.5" aria-hidden="true" />
                 )}
               </div>
               <div>
-                <div className="text-xs font-mono font-semibold text-terra-600 uppercase tracking-wider">
+                <div className="text-[11px] font-mono font-semibold text-terra-600 uppercase tracking-wider">
                   {contextMode === 'rural'
-                    ? 'Adapted for Rural Villages & Gram Panchayats'
-                    : 'Adapted for Semi-Urban Towns & Campus Labs'}
+                    ? 'Tailored for Rural Villages & Gram Panchayats'
+                    : 'Tailored for Semi-Urban Towns & Collegiate Labs'}
                 </div>
-                <p className="text-xs md:text-sm text-ink-body mt-0.5">
+                <p className="text-xs text-ink-body mt-0.5 leading-relaxed">
                   {contextMode === 'rural'
                     ? activeTrack.ruralAdaptation
                     : activeTrack.townAdaptation}
                 </p>
               </div>
             </div>
-            <span className="shrink-0 text-xs font-mono text-sage-800 font-medium px-2.5 py-1 rounded-lg bg-sage-50 border border-sage-200">
-              Context Calibrated
+            <span className="shrink-0 text-[11px] font-mono text-sage-800 font-medium px-2 py-0.5 rounded bg-sage-50/70 border border-sage-200">
+              Ground-Calibrated
             </span>
           </div>
 
-          {/* Two-Column Details: Syllabus Modules (Expandable) & Practical Outcomes */}
+          {/* Two-Column Grid: Curriculum Modules (Col 7) & Capstone/Outcomes (Col 5) */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            {/* Syllabus Flow with Expandable Modules (Col 7) */}
-            <div className="lg:col-span-7 space-y-4">
-              <div className="flex items-center gap-2">
-                <BookOpen className="w-4 h-4 text-terra-500" />
-                <h4 className="font-display text-xl text-ink-primary font-normal">
-                  Structured Curriculum Flow (Interactive Modules)
+            {/* Left: Syllabus Flow with Modules */}
+            <div className="lg:col-span-7 space-y-3.5">
+              <div className="flex items-center gap-2 pb-1 border-b border-[rgba(20,28,43,0.06)]">
+                <BookOpen className="w-3.5 h-3.5 text-terra-600" aria-hidden="true" />
+                <h4 className="font-mono text-xs font-semibold uppercase tracking-wider text-ink-primary">
+                  Interactive Curriculum Modules
                 </h4>
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-2.5">
                 {activeTrack.syllabus.map((item, idx) => {
                   const isExpanded = expandedModuleIdx === idx;
                   return (
-                    <motion.div
+                    <div
                       key={item.title}
-                      layout
                       onClick={() => setExpandedModuleIdx(isExpanded ? null : idx)}
-                      className={`rounded-2xl border transition-all cursor-pointer p-5 space-y-2 ${
+                      className={`rounded-xl border transition-colors cursor-pointer p-4 space-y-1.5 ${
                         isExpanded
-                          ? 'bg-canvas-base border-terra-500/30 shadow-xs'
-                          : 'bg-canvas-base/70 border-[rgba(13,37,61,0.08)] hover:border-[rgba(13,37,61,0.16)]'
+                          ? 'bg-canvas-base border-[rgba(20,28,43,0.16)] shadow-xs'
+                          : 'bg-canvas-base/60 border-[rgba(20,28,43,0.08)] hover:border-[rgba(20,28,43,0.14)]'
                       }`}
                     >
                       <div className="flex items-center justify-between">
-                        <span className="font-mono text-xs font-semibold text-terra-600">
-                          Module 0{idx + 1}
+                        <span className="font-mono text-[11px] font-bold text-terra-600">
+                          MODULE 0{idx + 1}
                         </span>
                         <div className="flex items-center gap-2">
-                          <Terminal className="w-3.5 h-3.5 text-ink-secondary" />
+                          <Terminal className="w-3 h-3 text-ink-secondary" aria-hidden="true" />
                           <ChevronDown
-                            className={`w-4 h-4 text-ink-secondary transition-transform duration-200 ${
-                              isExpanded ? 'rotate-180 text-terra-500' : ''
+                            className={`w-3.5 h-3.5 text-ink-secondary transition-transform duration-200 ${
+                              isExpanded ? 'rotate-180 text-terra-600' : ''
                             }`}
+                            aria-hidden="true"
                           />
                         </div>
                       </div>
@@ -429,13 +433,13 @@ export function WorkshopTrackExplorer() {
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: 'auto' }}
                             exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.2, ease: EASE_OUT }}
+                            transition={{ duration: 0.18, ease: EASE_OUT }}
                             className="pt-2 flex flex-wrap gap-1.5 overflow-hidden"
                           >
                             {item.points.map((pt) => (
                               <span
                                 key={pt}
-                                className="font-mono text-[10px] px-2 py-0.5 rounded-md bg-canvas-paper text-ink-primary border border-[rgba(13,37,61,0.08)] shadow-2xs"
+                                className="font-mono text-[10px] px-2 py-0.5 rounded bg-canvas-paper text-ink-primary border border-[rgba(20,28,43,0.08)]"
                               >
                                 {pt}
                               </span>
@@ -443,21 +447,21 @@ export function WorkshopTrackExplorer() {
                           </motion.div>
                         )}
                       </AnimatePresence>
-                    </motion.div>
+                    </div>
                   );
                 })}
               </div>
             </div>
 
-            {/* Practical Outcomes, Tools & Capstone (Col 5) */}
-            <div className="lg:col-span-5 space-y-6">
-              {/* Capstone Project Card */}
-              <div className="rounded-2xl bg-canvas-base border border-terra-500/20 p-5 space-y-2.5 shadow-2xs">
+            {/* Right: Capstone Utility, Outcomes & Stack */}
+            <div className="lg:col-span-5 space-y-5">
+              {/* Capstone Project Box */}
+              <div className="rounded-xl bg-canvas-base border border-[rgba(20,28,43,0.08)] p-4 space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-terra-600 px-2 py-0.5 rounded bg-terra-50 border border-terra-500/20">
+                  <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-terra-600 px-2 py-0.5 rounded bg-canvas-sunken border border-[rgba(20,28,43,0.06)]">
                     {activeTrack.capstoneProject.badge}
                   </span>
-                  <Code2 className="w-4 h-4 text-terra-500" />
+                  <Code2 className="w-3.5 h-3.5 text-terra-600" aria-hidden="true" />
                 </div>
                 <h5 className="font-display text-lg text-ink-primary font-normal">
                   {activeTrack.capstoneProject.title}
@@ -467,39 +471,39 @@ export function WorkshopTrackExplorer() {
                 </p>
               </div>
 
-              {/* Practical Outcomes */}
-              <div className="space-y-3">
-                <div className="flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-sage-600" />
-                  <h4 className="font-display text-xl text-ink-primary font-normal">
+              {/* Measurable Outcomes */}
+              <div className="space-y-2.5">
+                <div className="flex items-center gap-1.5 pb-1 border-b border-[rgba(20,28,43,0.06)]">
+                  <ShieldCheck className="w-3.5 h-3.5 text-sage-600" aria-hidden="true" />
+                  <h4 className="font-mono text-xs font-semibold uppercase tracking-wider text-ink-primary">
                     Measurable Outcomes
                   </h4>
                 </div>
 
-                <div className="rounded-2xl bg-canvas-base border border-[rgba(13,37,61,0.08)] p-5 space-y-3 shadow-2xs">
+                <div className="rounded-xl bg-canvas-base border border-[rgba(20,28,43,0.08)] p-4 space-y-2.5">
                   {activeTrack.keyOutcomes.map((outcome, idx) => (
-                    <div key={idx} className="flex items-start gap-2.5 text-xs text-ink-body leading-relaxed">
-                      <CheckCircle2 className="w-4 h-4 text-sage-600 shrink-0 mt-0.5" />
+                    <div key={idx} className="flex items-start gap-2 text-xs text-ink-body leading-relaxed">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-sage-600 shrink-0 mt-0.5" aria-hidden="true" />
                       <span>{outcome}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Tools Covered */}
-              <div className="space-y-3">
-                <div className="flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-ochre-600" />
-                  <h4 className="font-display text-xl text-ink-primary font-normal">
-                    Tools &amp; Protocols Covered
+              {/* Tools & Protocols */}
+              <div className="space-y-2.5">
+                <div className="flex items-center gap-1.5 pb-1 border-b border-[rgba(20,28,43,0.06)]">
+                  <Sparkles className="w-3.5 h-3.5 text-ochre-600" aria-hidden="true" />
+                  <h4 className="font-mono text-xs font-semibold uppercase tracking-wider text-ink-primary">
+                    Verified Tool Stack
                   </h4>
                 </div>
 
-                <div className="rounded-2xl bg-canvas-base border border-[rgba(13,37,61,0.08)] p-5 flex flex-wrap gap-2 shadow-2xs">
+                <div className="rounded-xl bg-canvas-base border border-[rgba(20,28,43,0.08)] p-3.5 flex flex-wrap gap-1.5">
                   {activeTrack.toolsCovered.map((tool) => (
                     <span
                       key={tool}
-                      className="font-mono text-xs font-medium px-2.5 py-1 rounded-lg bg-canvas-paper border border-[rgba(13,37,61,0.1)] text-ink-primary"
+                      className="font-mono text-[11px] px-2 py-0.5 rounded bg-canvas-paper border border-[rgba(20,28,43,0.08)] text-ink-primary"
                     >
                       {tool}
                     </span>
@@ -507,14 +511,14 @@ export function WorkshopTrackExplorer() {
                 </div>
               </div>
 
-              {/* Direct CTA */}
-              <div className="pt-2">
+              {/* Action Button */}
+              <div className="pt-1">
                 <NextLink
                   href={`/contact?service=workshop-${activeTrack.id}` as Route}
-                  className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-terra-500 px-6 py-3.5 font-sans text-sm font-semibold text-white shadow-sm hover:bg-terra-600 transition-all hover:-translate-y-0.5 active:scale-[0.98] group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terra-500"
+                  className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#141C2B] px-5 py-3 font-sans text-xs font-semibold text-[#F5F0EA] hover:bg-[#1F2B3E] active:scale-[0.98] transition-all group"
                 >
                   <span>Request This Track for Your Institution</span>
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                 </NextLink>
               </div>
             </div>

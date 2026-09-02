@@ -14,11 +14,9 @@ test.describe('Navigation & Interactive Flows', () => {
 
     const navLinks = [
       { name: 'Products', expectedPath: '/products' },
-      { name: 'Services', expectedPath: '/services' },
-      { name: 'About', expectedPath: '/about' },
-      { name: 'Team', expectedPath: '/team' },
-      { name: 'Blog', expectedPath: '/blog' },
-      { name: 'Contact', expectedPath: '/contact' },
+      { name: 'Enterprise', expectedPath: '/services' },
+      { name: 'Pricing', expectedPath: '/pricing' },
+      { name: 'Company', expectedPath: '/about' },
     ];
 
     for (const { name, expectedPath } of navLinks) {
@@ -37,8 +35,8 @@ test.describe('Navigation & Interactive Flows', () => {
     test('primary and secondary CTA header links navigate correctly', async ({ page }) => {
       const header = page.locator('header[data-testid="header-organism"]');
 
-      // Primary CTA: "Launch Studio" / "Explore Live Demo"
-      const exploreBtn = header.getByRole('link', { name: /Launch Studio|Explore|Demo/i });
+      // Primary CTA: "Start Free Sandbox"
+      const exploreBtn = header.getByRole('link', { name: /Start Free Sandbox|Explore|Demo/i });
       if (await exploreBtn.isVisible()) {
         const href = await exploreBtn.getAttribute('href');
         expect(href).toBeTruthy();
@@ -72,6 +70,7 @@ test.describe('Navigation & Interactive Flows', () => {
     test.beforeEach(async ({ page }) => {
       await page.setViewportSize({ width: 375, height: 812 });
       await page.goto('/');
+      await page.waitForLoadState('domcontentloaded');
     });
 
     test('toggles mobile menu drawer open and closed with aria states', async ({ page }) => {
@@ -98,6 +97,9 @@ test.describe('Navigation & Interactive Flows', () => {
 
     test('closes mobile menu on Escape key press', async ({ page }) => {
       const toggleBtn = page.locator('#mobile-menu-toggle');
+      await expect(toggleBtn).toBeVisible();
+      await expect(toggleBtn).toHaveAttribute('aria-expanded', 'false');
+
       await toggleBtn.click();
       await expect(toggleBtn).toHaveAttribute('aria-expanded', 'true');
 

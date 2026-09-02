@@ -2,7 +2,7 @@
 
 import React from 'react';
 import * as Accordion from '@radix-ui/react-accordion';
-import { ChevronDown, HelpCircle, ShieldCheck, Zap, Lock, Terminal, GraduationCap } from 'lucide-react';
+import { ShieldCheck, Zap, Lock, Terminal, GraduationCap } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface FAQItem {
@@ -52,58 +52,54 @@ const FAQS: FAQItem[] = [
 
 export function HomeFaqAccordion() {
   return (
-    <div className="w-full text-left font-sans max-w-4xl mx-auto space-y-8">
+    <div className="w-full text-left font-sans max-w-3xl mx-auto space-y-10">
       {/* Header */}
-      <div className="text-center space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-50 border border-accent-500/20 text-accent-500 text-xs font-mono font-semibold">
-          <HelpCircle className="w-3.5 h-3.5" />
-          <span>Technical Architecture & FAQ</span>
-        </div>
-        <h2 className="font-display text-4xl sm:text-5xl text-ink-primary font-normal leading-tight tracking-tight">
+      <div className="text-center space-y-2">
+        <p className="text-xs font-mono font-semibold uppercase tracking-[0.14em] text-accent-primary">
+          Technical Architecture &amp; FAQ
+        </p>
+        <h2 className="font-display text-4xl sm:text-5xl text-text-primary font-normal leading-tight tracking-tight">
           Frequently asked <br />
-          <span className="italic text-accent-500 font-normal">engineering questions.</span>
+          <span className="font-medium text-text-primary">engineering questions.</span>
         </h2>
-        <p className="text-base text-ink-body leading-relaxed max-w-xl mx-auto">
+        <p className="text-base text-text-secondary leading-relaxed max-w-xl mx-auto">
           Radical transparency on model architecture, sub-second latency targets, privacy guarantees, and regional integration.
         </p>
       </div>
 
-      {/* Accordion Container */}
+      {/* Box-Free Minimalist Accordion List */}
       <Accordion.Root
         type="single"
         collapsible
         defaultValue="faq-latency"
-        className="space-y-3.5"
+        className="divide-y divide-border-subtle border-t border-b border-border-subtle"
       >
         {FAQS.map((faq) => {
-          const Icon = faq.icon;
           return (
             <Accordion.Item
               key={faq.id}
               value={faq.id}
-              className="group rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.1)] overflow-hidden shadow-sm data-[state=open]:border-accent-500/50 data-[state=open]:shadow-md transition-all"
+              className="group py-1"
             >
               <Accordion.Header className="flex">
                 <Accordion.Trigger
                   className={cn(
-                    'flex items-center justify-between gap-4 w-full p-5 sm:p-6 text-left transition-colors font-sans focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 cursor-pointer',
-                    'hover:bg-canvas-recessed/30'
+                    'flex items-center justify-between gap-4 w-full py-4 sm:py-5 text-left transition-colors duration-150 font-sans focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary cursor-pointer active:scale-[0.995]',
+                    'hover:text-accent-primary'
                   )}
                 >
-                  <div className="flex items-center gap-3.5">
-                    <div className="w-8 h-8 rounded-lg bg-canvas-recessed flex items-center justify-center text-accent-500 shrink-0">
-                      <Icon className="w-4 h-4" />
-                    </div>
-                    <span className="font-display text-lg sm:text-xl text-ink-primary font-normal leading-snug">
-                      {faq.question}
-                    </span>
-                  </div>
-                  <ChevronDown className="w-4 h-4 text-ink-secondary shrink-0 transition-transform duration-200 ease-out group-data-[state=open]:rotate-180" />
+                  <span className="font-sans font-medium text-base sm:text-lg text-text-primary leading-snug group-hover:text-accent-primary transition-colors">
+                    {faq.question}
+                  </span>
+                  <span className="font-mono text-xl text-text-muted group-hover:text-text-primary w-6 h-6 flex items-center justify-center shrink-0 select-none transition-colors">
+                    <span className="group-data-[state=open]:hidden">+</span>
+                    <span className="hidden group-data-[state=open]:inline">−</span>
+                  </span>
                 </Accordion.Trigger>
               </Accordion.Header>
 
-              <Accordion.Content className="accordion-content overflow-hidden px-5 sm:px-6 pb-6 pt-1 text-sm text-ink-body leading-relaxed border-t border-[rgba(13,37,61,0.06)] bg-canvas-recessed/20">
-                <p className="pl-11.5 text-ink-body">
+              <Accordion.Content className="accordion-content overflow-hidden pb-5 pt-1 text-sm sm:text-base text-text-secondary leading-relaxed">
+                <p className="max-w-2xl leading-relaxed">
                   {faq.answer}
                 </p>
               </Accordion.Content>

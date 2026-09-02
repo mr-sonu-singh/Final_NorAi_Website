@@ -1624,7 +1624,7 @@ export function ResumeShortlisterWorkbench() {
                                   <div className="w-full h-2 rounded-full bg-canvas-recessed overflow-hidden">
                                     <div
                                       className={cn(
-                                        'h-full rounded-full transition-all duration-500',
+                                        'h-full rounded-full transition-[width] duration-250 ease-out',
                                         score >= 90
                                           ? 'bg-emerald-600'
                                           : score >= 75

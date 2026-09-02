@@ -139,11 +139,11 @@ export function MissionActionDock() {
 
   return (
     <div className="w-full space-y-6 select-none">
-      {/* Persona Tab Switcher Pill Strip */}
+      {/* Persona Tab Switcher */}
       <div
         role="tablist"
         aria-label="Choose your role to join the mission"
-        className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 p-1.5 rounded-2xl bg-canvas-sunken border border-[rgba(13,37,61,0.08)]"
+        className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 p-1 rounded-xl bg-canvas-sunken border border-[rgba(20,28,43,0.08)]"
       >
         {PERSONAS.map((persona) => {
           const Icon = persona.icon;
@@ -156,22 +156,22 @@ export function MissionActionDock() {
               aria-controls={`panel-${persona.id}`}
               id={`tab-${persona.id}`}
               onClick={() => setActivePersonaId(persona.id)}
-              className={`relative flex items-center justify-center gap-2 px-3 py-3 rounded-xl font-sans text-xs md:text-sm font-semibold transition-all duration-200 ${
+              className={`relative flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg font-sans text-xs md:text-sm font-semibold transition-all duration-200 ${
                 isActive
                   ? 'text-ink-primary'
                   : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-paper/50'
-              } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-terra-500 focus-visible:ring-offset-canvas-sunken`}
+              } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terra-500`}
             >
               {isActive && (
                 <motion.div
                   layoutId="activePersonaPill"
-                  className="absolute inset-0 rounded-xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] shadow-xs"
+                  className="absolute inset-0 rounded-lg bg-canvas-paper border border-[rgba(20,28,43,0.12)] shadow-xs"
                   transition={{ type: 'spring', duration: 0.35, bounce: 0.1 }}
                 />
               )}
               <Icon
                 className={`w-4 h-4 shrink-0 transition-colors relative z-10 ${
-                  isActive ? 'text-terra-500' : 'text-ink-secondary'
+                  isActive ? 'text-terra-600' : 'text-ink-secondary'
                 }`}
                 aria-hidden="true"
               />
@@ -181,59 +181,59 @@ export function MissionActionDock() {
         })}
       </div>
 
-      {/* Active Persona Intake Stage with AnimatePresence */}
+      {/* Active Persona Intake Stage */}
       <AnimatePresence mode="wait">
         <motion.div
           key={activePersona.id}
-          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 16, scale: shouldReduceMotion ? 1 : 0.985 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: shouldReduceMotion ? 0 : -10, scale: 0.99 }}
-          transition={{ duration: 0.25, ease: EASE_OUT }}
+          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: shouldReduceMotion ? 0 : -8 }}
+          transition={{ duration: 0.22, ease: EASE_OUT }}
           role="tabpanel"
           id={`panel-${activePersona.id}`}
           aria-labelledby={`tab-${activePersona.id}`}
-          className="rounded-3xl border border-[rgba(13,37,61,0.12)] bg-canvas-paper p-7 md:p-10 shadow-md space-y-8"
+          className="rounded-2xl border border-[rgba(20,28,43,0.08)] bg-canvas-paper p-6 sm:p-8 md:p-10 space-y-6"
         >
           {/* Header Ribbon */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-[rgba(13,37,61,0.08)] pb-6">
-            <div className="flex items-center gap-3.5">
-              <div className="w-12 h-12 rounded-2xl bg-terra-50 border border-terra-500/20 text-terra-600 flex items-center justify-center shrink-0 shadow-2xs">
-                <PersonaIcon className="w-6 h-6" aria-hidden="true" />
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-[rgba(20,28,43,0.06)] pb-5">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-canvas-sunken border border-[rgba(20,28,43,0.08)] text-terra-600 flex items-center justify-center shrink-0">
+                <PersonaIcon className="w-5 h-5" aria-hidden="true" />
               </div>
-              <div className="space-y-1">
-                <span className="font-mono text-xs font-semibold uppercase tracking-wider text-terra-600 block">
+              <div className="space-y-0.5">
+                <span className="font-mono text-[11px] font-semibold uppercase tracking-wider text-terra-600 block">
                   {activePersona.badge}
                 </span>
-                <h3 className="font-display text-2xl md:text-3xl text-ink-primary font-normal">
+                <h3 className="font-display text-2xl md:text-3xl text-ink-primary font-normal leading-tight">
                   {activePersona.tagline}
                 </h3>
               </div>
             </div>
 
-            <span className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold px-3 py-1 rounded-full bg-sage-50 border border-sage-300 text-sage-800 self-start sm:self-center shrink-0">
+            <span className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold px-2.5 py-1 rounded-lg bg-sage-50/70 border border-sage-200 text-sage-800 self-start sm:self-center shrink-0">
               <ShieldCheck className="w-3.5 h-3.5 text-sage-600" aria-hidden="true" />
-              {activePersona.metricBadge}
+              <span>{activePersona.metricBadge}</span>
             </span>
           </div>
 
-          <p className="text-sm md:text-base text-ink-body leading-relaxed max-w-3xl font-normal">
+          <p className="text-sm md:text-[15px] text-ink-body leading-relaxed max-w-3xl font-sans">
             {activePersona.description}
           </p>
 
-          {/* 2-Column Detail Bento: What NorAI Delivers vs Requirements */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+          {/* 2-Column Bento: Deliverables vs Logistics */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
             {/* Left: What NorAI Delivers */}
-            <div className="md:col-span-7 rounded-2xl bg-canvas-base border border-[rgba(13,37,61,0.08)] p-6 space-y-4 shadow-2xs">
-              <div className="flex items-center gap-2">
-                <Zap className="w-4 h-4 text-terra-500" aria-hidden="true" />
-                <h4 className="font-sans text-xs font-semibold uppercase tracking-wider text-ink-primary">
+            <div className="md:col-span-7 rounded-xl bg-canvas-base border border-[rgba(20,28,43,0.08)] p-5 space-y-3.5">
+              <div className="flex items-center gap-1.5 pb-1 border-b border-[rgba(20,28,43,0.06)]">
+                <Zap className="w-3.5 h-3.5 text-terra-600" aria-hidden="true" />
+                <h4 className="font-mono text-xs font-semibold uppercase tracking-wider text-ink-primary">
                   What NorAI Delivers (100% Free)
                 </h4>
               </div>
-              <ul className="space-y-3">
+              <ul className="space-y-2.5">
                 {activePersona.delivers.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-2.5 text-xs md:text-sm text-ink-body leading-relaxed">
-                    <CheckCircle2 className="w-4 h-4 text-sage-600 shrink-0 mt-0.5" aria-hidden="true" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-sage-600 shrink-0 mt-0.5" aria-hidden="true" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -241,15 +241,15 @@ export function MissionActionDock() {
             </div>
 
             {/* Right: Requirements & Action */}
-            <div className="md:col-span-5 rounded-2xl bg-canvas-sunken/60 border border-[rgba(13,37,61,0.08)] p-6 flex flex-col justify-between space-y-6 shadow-2xs">
-              <div className="space-y-4">
-                <div className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-ochre-600" aria-hidden="true" />
-                  <h4 className="font-sans text-xs font-semibold uppercase tracking-wider text-ink-primary">
-                    What is Required
+            <div className="md:col-span-5 rounded-xl bg-canvas-sunken border border-[rgba(20,28,43,0.08)] p-5 flex flex-col justify-between space-y-5">
+              <div className="space-y-3">
+                <div className="flex items-center gap-1.5 pb-1 border-b border-[rgba(20,28,43,0.06)]">
+                  <Calendar className="w-3.5 h-3.5 text-ochre-600" aria-hidden="true" />
+                  <h4 className="font-mono text-xs font-semibold uppercase tracking-wider text-ink-primary">
+                    What Is Required
                   </h4>
                 </div>
-                <ul className="space-y-2.5">
+                <ul className="space-y-2">
                   {activePersona.requirements.map((item, idx) => (
                     <li key={idx} className="flex items-start gap-2 text-xs text-ink-body leading-relaxed">
                       <span className="w-1.5 h-1.5 rounded-full bg-ochre-500 shrink-0 mt-1.5" />
@@ -259,13 +259,13 @@ export function MissionActionDock() {
                 </ul>
               </div>
 
-              <div className="pt-2 border-t border-[rgba(13,37,61,0.08)]">
+              <div className="pt-2 border-t border-[rgba(20,28,43,0.06)]">
                 <NextLink
                   href={activePersona.ctaHref as Route}
-                  className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-terra-500 px-6 py-3.5 font-sans text-sm font-semibold text-white shadow-sm hover:bg-terra-600 transition-all hover:-translate-y-0.5 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-terra-500 focus-visible:ring-offset-canvas-paper"
+                  className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#141C2B] px-5 py-3 font-sans text-xs font-semibold text-[#F5F0EA] hover:bg-[#1F2B3E] active:scale-[0.98] transition-all group"
                 >
                   <span>{activePersona.ctaLabel}</span>
-                  <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                 </NextLink>
               </div>
             </div>
@@ -275,3 +275,5 @@ export function MissionActionDock() {
     </div>
   );
 }
+
+export default MissionActionDock;

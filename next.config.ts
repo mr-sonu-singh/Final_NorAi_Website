@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 import withBundleAnalyzer from "@next/bundle-analyzer";
 
+const isDev = process.env.NODE_ENV === 'development';
+
 const cspHeader = `
     default-src 'self';
     script-src 'self' 'unsafe-inline' 'unsafe-eval';
@@ -12,7 +14,7 @@ const cspHeader = `
     object-src 'none';
     base-uri 'self';
     form-action 'self';
-    upgrade-insecure-requests;
+    ${isDev ? '' : 'upgrade-insecure-requests;'}
 `.replace(/\s{2,}/g, ' ').trim();
 
 const securityHeaders = [
@@ -28,10 +30,14 @@ const securityHeaders = [
     key: 'X-Content-Type-Options',
     value: 'nosniff',
   },
-  {
-    key: 'Strict-Transport-Security',
-    value: 'max-age=31536000; includeSubDomains; preload',
-  },
+  ...(!isDev
+    ? [
+        {
+          key: 'Strict-Transport-Security',
+          value: 'max-age=31536000; includeSubDomains; preload',
+        },
+      ]
+    : []),
   {
     key: 'Referrer-Policy',
     value: 'strict-origin-when-cross-origin',

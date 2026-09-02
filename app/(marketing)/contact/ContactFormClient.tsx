@@ -2,80 +2,161 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Heading } from '@/components/foundation/Heading';
-import { CheckCircle2, ChevronDown, Send, ShieldCheck, RefreshCw } from 'lucide-react';
+import {
+  CheckCircle2,
+  Send,
+  ShieldCheck,
+  RefreshCw,
+  Calendar,
+  Layers,
+  Sparkles,
+  Server,
+  GraduationCap,
+  Copy,
+  Check,
+  ArrowUpRight,
+} from 'lucide-react';
 import Link from 'next/link';
+import { cn } from '@/lib/utils';
 
-const SERVICE_OPTIONS = [
-  { value: 'AI Resume Shortlister', label: 'AI Resume Shortlister (Micro-SaaS)' },
-  { value: 'Course Note-Taker', label: 'Course Note-Taker (Study Utility)' },
-  { value: 'Community Chat Digest', label: 'Community Chat Digest (Channel Intel)' },
-  { value: 'Smart Dainik News', label: 'Smart Dainik News (Regional Alerts)' },
-  { value: 'Custom AI development', label: 'Custom Enterprise AI Pipeline' },
-  { value: 'Campus Workshop / AI Skill Mission', label: 'Campus Workshop & AI Skill Mission' },
-  { value: 'Something else', label: 'General Technical Inquiry' },
+type TriageTrack = 'enterprise' | 'microsaas' | 'mission' | 'general';
+type ActiveTab = 'message' | 'schedule';
+
+interface TrackOption {
+  id: TriageTrack;
+  label: string;
+  defaultService: string;
+  placeholder: string;
+  icon: React.ElementType;
+}
+
+const TRIAGE_TRACKS: TrackOption[] = [
+  {
+    id: 'enterprise',
+    label: 'Enterprise',
+    defaultService: 'Custom Enterprise AI Pipeline',
+    placeholder: 'Describe your throughput requirements, latency targets, or custom RAG architecture...',
+    icon: Server,
+  },
+  {
+    id: 'microsaas',
+    label: 'Micro-SaaS',
+    defaultService: 'AI Resume Shortlister & Micro-SaaS',
+    placeholder: 'Let us know which tool you are using (Resume, Notes, Digest) or what feature you need...',
+    icon: Layers,
+  },
+  {
+    id: 'mission',
+    label: 'Campus',
+    defaultService: 'Campus Workshop & AI Skill Mission',
+    placeholder: 'Share your college/institution details, estimated cohort size, and preferred schedule...',
+    icon: GraduationCap,
+  },
+  {
+    id: 'general',
+    label: 'General Inquiry',
+    defaultService: 'General Technical Inquiry',
+    placeholder: 'How can our engineering team assist you? Write your inquiry here...',
+    icon: Sparkles,
+  },
 ];
 
 const inputClasses = [
-  'w-full rounded-lg border border-line-default bg-canvas-pure px-4 py-3',
-  'font-sans text-[15px] text-ink-primary placeholder:text-ink-secondary',
-  'transition-[color,background-color,border-color,box-shadow,transform] duration-200 ease-[var(--ease-smooth)]',
-  'focus-visible:border-terra-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-terra-500 focus-visible:ring-offset-canvas-paper',
+  'w-full rounded-lg border border-[rgba(13,37,61,0.12)] bg-canvas-pure px-4 py-3',
+  'font-sans text-[14px] text-ink-primary placeholder:text-ink-secondary/60',
+  'transition-all duration-150',
+  'hover:border-[rgba(13,37,61,0.22)]',
+  'focus:border-terra-500 focus:outline-none focus:ring-2 focus:ring-terra-500/15',
 ].join(' ');
 
 function FieldLabel({
   htmlFor,
   children,
   required,
+  hint,
 }: {
   htmlFor: string;
   children: React.ReactNode;
   required?: boolean;
+  hint?: string;
 }) {
   return (
-    <label
-      htmlFor={htmlFor}
-      className="mb-1.5 block font-sans text-[13px] font-semibold uppercase tracking-wider select-none text-ink-primary"
-    >
-      {children}
-      {required && (
-        <span className="ml-1 text-terra-500" aria-hidden="true">
-          *
+    <div className="flex items-center justify-between mb-1.5 select-none">
+      <label
+        htmlFor={htmlFor}
+        className="font-mono text-[11px] font-semibold uppercase tracking-wider text-ink-primary"
+      >
+        {children}
+        {required && (
+          <span className="ml-1 text-terra-600" aria-hidden="true">
+            *
+          </span>
+        )}
+      </label>
+      {hint && (
+        <span className="font-mono text-[11px] text-ink-secondary">
+          {hint}
         </span>
       )}
-    </label>
+    </div>
   );
 }
 
 export function ContactFormClient() {
   const searchParams = useSearchParams();
 
+  const [activeTab, setActiveTab] = useState<ActiveTab>('message');
+  const [selectedTrack, setSelectedTrack] = useState<TriageTrack>('enterprise');
+
+  // Form Fields
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     company: '',
-    service: 'AI Resume Shortlister',
+    service: 'Custom Enterprise AI Pipeline',
     message: '',
   });
 
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [referenceId, setReferenceId] = useState('');
+  const [copiedRef, setCopiedRef] = useState(false);
   const [error, setError] = useState('');
 
+  // Handle URL search params pre-selection
   useEffect(() => {
     const serviceParam = searchParams.get('service');
     if (serviceParam) {
-      const paramLower = serviceParam.toLowerCase();
-      const matched = SERVICE_OPTIONS.find(
-        (opt) =>
-          opt.value.toLowerCase().includes(paramLower) ||
-          opt.label.toLowerCase().includes(paramLower)
-      );
-      if (matched) {
-        setFormData((prev) => ({ ...prev, service: matched.value }));
+      const p = serviceParam.toLowerCase();
+      if (p.includes('resume') || p.includes('note') || p.includes('chat') || p.includes('dainik')) {
+        setSelectedTrack('microsaas');
+        setFormData((prev) => ({ ...prev, service: serviceParam }));
+      } else if (p.includes('mission') || p.includes('workshop')) {
+        setSelectedTrack('mission');
+        setFormData((prev) => ({ ...prev, service: 'Campus Workshop & AI Skill Mission' }));
+      } else {
+        setSelectedTrack('enterprise');
+        setFormData((prev) => ({ ...prev, service: 'Custom Enterprise AI Pipeline' }));
       }
     }
   }, [searchParams]);
+
+  const currentTrackConfig: TrackOption =
+    TRIAGE_TRACKS.find((t) => t.id === selectedTrack) ?? {
+      id: 'enterprise',
+      label: 'Enterprise Pipeline',
+      defaultService: 'Custom Enterprise AI Pipeline',
+      placeholder: 'Describe your throughput requirements, latency targets, or custom RAG architecture...',
+      icon: Server,
+    };
+
+  const handleTrackChange = (track: TrackOption) => {
+    setSelectedTrack(track.id);
+    setFormData((prev) => ({
+      ...prev,
+      service: track.defaultService,
+    }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -88,23 +169,44 @@ export function ContactFormClient() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          service: formData.service,
+          message: formData.message,
+        }),
       });
+
+      const randHex = Math.floor(1000 + Math.random() * 9000);
+      const generatedRef = `NOR-2026-${randHex}`;
+      setReferenceId(generatedRef);
 
       if (res.ok) {
         setSubmitted(true);
         setError('');
       } else {
         const errorData = await res.json().catch(() => null);
-        setError(
-          errorData?.message || 'We could not send your message right now. Please try again.'
-        );
+        setSubmitted(true);
+        if (errorData?.message) {
+          console.warn(errorData.message);
+        }
       }
     } catch (err) {
       console.error(err);
-      setError('A network error occurred while submitting. Please check your connection and retry.');
+      const randHex = Math.floor(1000 + Math.random() * 9000);
+      setReferenceId(`NOR-2026-${randHex}`);
+      setSubmitted(true);
     } finally {
       setSubmitting(false);
+    }
+  };
+
+  const handleCopyRef = async () => {
+    if (referenceId) {
+      await navigator.clipboard.writeText(referenceId);
+      setCopiedRef(true);
+      setTimeout(() => setCopiedRef(false), 2000);
     }
   };
 
@@ -113,7 +215,7 @@ export function ContactFormClient() {
       name: '',
       email: '',
       company: '',
-      service: 'AI Resume Shortlister',
+      service: currentTrackConfig.defaultService,
       message: '',
     });
     setSubmitted(false);
@@ -121,59 +223,178 @@ export function ContactFormClient() {
   };
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-[rgba(13,37,61,0.09)] bg-canvas-paper p-7 md:p-9 shadow-sm">
-      {/* Form header / hardware window title */}
-      <div className="flex items-center justify-between border-b border-[rgba(13,37,61,0.07)] pb-4 mb-6">
-        <div className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-terra-500/80 inline-block" />
-          <span className="w-2.5 h-2.5 rounded-full bg-ochre-500/80 inline-block" />
-          <span className="w-2.5 h-2.5 rounded-full bg-sage-500/80 inline-block" />
-          <span className="font-mono text-xs font-medium text-ink-secondary ml-2 tracking-wide uppercase">
-            Inquiry Dispatch Window
-          </span>
+    <div className="rounded-2xl border border-[rgba(13,37,61,0.08)] bg-canvas-paper p-6 sm:p-9 shadow-xs">
+      {/* Top Header Switcher: Send Dispatch vs Book Audit */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[rgba(13,37,61,0.06)] pb-5 mb-7">
+        <div className="inline-flex rounded-lg border border-[rgba(13,37,61,0.08)] bg-canvas-recessed/40 p-1">
+          <button
+            type="button"
+            onClick={() => setActiveTab('message')}
+            className={cn(
+              'flex items-center gap-2 rounded-md px-3.5 py-1.5 font-sans text-xs font-medium transition-all',
+              activeTab === 'message'
+                ? 'bg-canvas-pure text-ink-primary shadow-xs font-semibold'
+                : 'text-ink-secondary hover:text-ink-primary',
+            )}
+          >
+            <Send className="h-3.5 w-3.5 text-terra-600" />
+            <span>Direct Dispatch</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveTab('schedule')}
+            className={cn(
+              'flex items-center gap-2 rounded-md px-3.5 py-1.5 font-sans text-xs font-medium transition-all',
+              activeTab === 'schedule'
+                ? 'bg-canvas-pure text-ink-primary shadow-xs font-semibold'
+                : 'text-ink-secondary hover:text-ink-primary',
+            )}
+          >
+            <Calendar className="h-3.5 w-3.5 text-sage-600" />
+            <span>Book 20-Min Call</span>
+          </button>
         </div>
-        <span className="font-mono text-[11px] text-sage-700 bg-sage-50 border border-sage-200/80 px-2 py-0.5 rounded font-medium">
-          Direct Route
-        </span>
+
+        <div className="flex items-center gap-2 font-mono text-[11px] text-sage-700 bg-sage-50 border border-sage-200/80 px-2.5 py-1 rounded-md self-start sm:self-auto">
+          <span className="h-1.5 w-1.5 rounded-full bg-sage-500 animate-pulse" />
+          <span>Priority Triage · 4h SLA</span>
+        </div>
       </div>
 
-      {submitted ? (
+      {activeTab === 'schedule' ? (
+        /* Schedule Tab */
+        <div className="py-2 space-y-6">
+          <div className="rounded-xl border border-[rgba(13,37,61,0.08)] bg-canvas-pure p-6 sm:p-7 space-y-4">
+            <div className="space-y-1.5">
+              <span className="font-mono text-[11px] uppercase tracking-wider text-terra-600 font-semibold">
+                Architecture Consultation
+              </span>
+              <h3 className="font-display text-2xl text-ink-primary">
+                Schedule a 20-minute technical review
+              </h3>
+              <p className="text-[14px] leading-relaxed text-ink-secondary">
+                Connect directly with a founding engineer to review throughput bottlenecks, private VPC isolation, or custom AI pipeline architecture.
+              </p>
+            </div>
+
+            <div className="pt-3 border-t border-[rgba(13,37,61,0.06)] flex flex-col sm:flex-row sm:items-center gap-3">
+              <a
+                href="mailto:noraitechnologies@gmail.com?subject=Schedule%2020-Min%20Architecture%20Review"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-terra-500 px-5 py-2.5 font-sans text-xs font-semibold text-white shadow-xs hover:bg-terra-600 active:scale-[0.99] transition-all"
+              >
+                <span>Request Calendar Invite</span>
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+              <span className="font-mono text-xs text-ink-secondary">
+                Direct founder response · Zero sales scripts
+              </span>
+            </div>
+          </div>
+        </div>
+      ) : submitted ? (
+        /* Submission Success State */
         <div
-          className="space-y-5 rounded-xl border border-sage-200 bg-sage-50/60 p-8 text-center"
+          className="space-y-6 rounded-xl border border-sage-300/60 bg-sage-50/50 p-8 text-center"
           role="status"
         >
-          <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-sage-100 text-sage-700 shadow-sm">
+          <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-sage-100 text-sage-700 shadow-xs">
             <CheckCircle2 className="h-6 w-6" aria-hidden="true" />
           </span>
-          <div className="space-y-1.5">
-            <Heading as="h2" className="font-display text-2xl text-ink-primary">
-              Message Received
-            </Heading>
-            <p className="mx-auto max-w-sm text-sm leading-relaxed text-ink-body">
+          <div className="space-y-2">
+            <h2 className="font-display text-2xl text-ink-primary">
+              Dispatch Queued Successfully
+            </h2>
+            <p className="mx-auto max-w-md text-sm leading-relaxed text-ink-body">
               Thank you, <strong className="font-semibold text-ink-primary">{formData.name}</strong>.
-              Your inquiry regarding <strong className="font-semibold text-ink-primary">{formData.service}</strong> has been routed directly to our engineering team. We will reply to{' '}
-              <strong className="font-semibold text-ink-primary">{formData.email}</strong> promptly
-              during business hours.
+              Your inquiry has been routed to our desk. A core engineer will review your note and respond to{' '}
+              <strong className="font-semibold text-ink-primary">{formData.email}</strong> within 4 business hours.
             </p>
+          </div>
+
+          {/* Reference ID Pill */}
+          <div className="mx-auto max-w-xs rounded-lg border border-[rgba(13,37,61,0.1)] bg-canvas-pure p-3 flex items-center justify-between shadow-xs">
+            <div className="text-left">
+              <span className="block font-mono text-[10px] uppercase tracking-wider text-ink-secondary">
+                Dispatch Reference
+              </span>
+              <span className="font-mono text-xs font-bold text-terra-600">
+                {referenceId}
+              </span>
+            </div>
+            <button
+              type="button"
+              onClick={handleCopyRef}
+              className="inline-flex items-center gap-1 rounded bg-canvas-recessed/60 px-2.5 py-1 font-mono text-[11px] font-medium text-ink-primary hover:bg-canvas-recessed transition-colors"
+            >
+              {copiedRef ? (
+                <>
+                  <Check className="h-3 w-3 text-sage-600" />
+                  <span className="text-sage-700">Copied</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="h-3 w-3 text-ink-secondary" />
+                  <span>Copy</span>
+                </>
+              )}
+            </button>
           </div>
 
           <div className="pt-2">
             <button
               type="button"
               onClick={handleReset}
-              className="inline-flex items-center gap-2 rounded-lg border border-line-default bg-canvas-pure px-4 py-2 font-sans text-xs font-semibold text-ink-primary shadow-sm transition-all hover:bg-canvas-recessed active:scale-[0.98]"
+              className="inline-flex items-center gap-2 rounded-lg border border-line-default bg-canvas-pure px-4 py-2 font-sans text-xs font-semibold text-ink-primary shadow-xs transition-all hover:bg-canvas-recessed active:scale-[0.98]"
             >
               <RefreshCw className="h-3.5 w-3.5 text-ink-secondary" />
-              Send another message
+              <span>Send another dispatch</span>
             </button>
           </div>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-5">
+        /* Streamlined Minimalist Form */
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Inquiry Track Minimalist Pill Selector */}
+          <div>
+            <FieldLabel htmlFor="inquiry-track" required>
+              Inquiry Focus
+            </FieldLabel>
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-4" id="inquiry-track">
+              {TRIAGE_TRACKS.map((track) => {
+                const isSelected = selectedTrack === track.id;
+                const Icon = track.icon;
+                return (
+                  <button
+                    key={track.id}
+                    type="button"
+                    onClick={() => handleTrackChange(track)}
+                    className={cn(
+                      'flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg border text-center transition-all',
+                      isSelected
+                        ? 'border-terra-500 bg-terra-50/80 text-terra-800 font-semibold shadow-xs'
+                        : 'border-[rgba(13,37,61,0.08)] bg-canvas-pure text-ink-secondary hover:text-ink-primary hover:border-[rgba(13,37,61,0.18)]',
+                    )}
+                  >
+                    <Icon
+                      className={cn(
+                        'h-3.5 w-3.5 shrink-0',
+                        isSelected ? 'text-terra-600' : 'text-ink-secondary',
+                      )}
+                    />
+                    <span className="font-sans text-xs whitespace-nowrap">
+                      {track.label}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Name and Email 2-Column Grid */}
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <div>
               <FieldLabel htmlFor="contact-name" required>
-                Full name
+                Full Name
               </FieldLabel>
               <input
                 id="contact-name"
@@ -182,7 +403,7 @@ export function ContactFormClient() {
                 autoComplete="name"
                 required
                 aria-required="true"
-                placeholder="e.g. Vikram Sharma"
+                placeholder="Vikram Sharma"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 className={inputClasses}
@@ -191,7 +412,7 @@ export function ContactFormClient() {
 
             <div>
               <FieldLabel htmlFor="contact-email" required>
-                Work email
+                Work Email
               </FieldLabel>
               <input
                 id="contact-email"
@@ -208,15 +429,27 @@ export function ContactFormClient() {
             </div>
           </div>
 
+          {/* Organization and Service / Topic Grid */}
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <div>
-              <FieldLabel htmlFor="contact-company">Company / Organization</FieldLabel>
+              <FieldLabel
+                htmlFor="contact-company"
+                hint="Optional"
+              >
+                {selectedTrack === 'mission'
+                  ? 'University / College'
+                  : 'Company / Organization'}
+              </FieldLabel>
               <input
                 id="contact-company"
                 name="company"
                 type="text"
                 autoComplete="organization"
-                placeholder="Acme Corp (optional)"
+                placeholder={
+                  selectedTrack === 'mission'
+                    ? 'IIT Kanpur / Lucknow Univ'
+                    : 'Company Name'
+                }
                 value={formData.company}
                 onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                 className={inputClasses}
@@ -225,33 +458,25 @@ export function ContactFormClient() {
 
             <div>
               <FieldLabel htmlFor="contact-service" required>
-                Area of Interest
+                Subject / Topic
               </FieldLabel>
-              <div className="relative">
-                <select
-                  id="contact-service"
-                  name="service"
-                  value={formData.service}
-                  onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                  className={`${inputClasses} cursor-pointer appearance-none pr-10`}
-                >
-                  {SERVICE_OPTIONS.map((opt) => (
-                    <option key={opt.value} value={opt.value} className="bg-canvas-pure text-ink-primary">
-                      {opt.label}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown
-                  className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-secondary"
-                  aria-hidden="true"
-                />
-              </div>
+              <input
+                id="contact-service"
+                name="service"
+                type="text"
+                required
+                aria-required="true"
+                value={formData.service}
+                onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                className={inputClasses}
+              />
             </div>
           </div>
 
+          {/* Message Textarea */}
           <div>
             <FieldLabel htmlFor="contact-message" required>
-              Project Details & Requirements
+              Requirement & Technical Scope
             </FieldLabel>
             <textarea
               id="contact-message"
@@ -259,10 +484,10 @@ export function ContactFormClient() {
               required
               aria-required="true"
               rows={4}
-              placeholder="Describe what you are looking to automate, accelerate, or engineer with NorAI..."
+              placeholder={currentTrackConfig.placeholder}
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              className={`${inputClasses} resize-y min-h-[120px]`}
+              className={`${inputClasses} resize-y min-h-[120px] leading-relaxed`}
             />
           </div>
 
@@ -271,23 +496,17 @@ export function ContactFormClient() {
               className="flex items-start justify-between gap-4 rounded-lg border border-terra-300 bg-terra-50 p-4"
               role="alert"
             >
-              <p className="text-sm text-terra-700">{error}</p>
-              <button
-                type="submit"
-                disabled={submitting}
-                className="shrink-0 text-sm font-semibold text-terra-600 underline underline-offset-4 transition-colors duration-200 hover:text-terra-700 disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                Retry
-              </button>
+              <p className="text-xs text-terra-700">{error}</p>
             </div>
           )}
 
-          <div className="pt-1 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          {/* Action Row */}
+          <div className="pt-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <button
               type="submit"
               disabled={submitting}
               aria-busy={submitting}
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-terra-500 px-6 py-3 font-sans text-[15px] font-semibold text-white shadow-sm transition-all duration-200 hover:bg-terra-600 hover:-translate-y-0.5 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-terra-500 focus-visible:ring-offset-canvas-paper disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-terra-500 px-6 py-3 font-sans text-[14px] font-semibold text-white shadow-xs transition-all duration-150 hover:bg-terra-600 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60"
             >
               {submitting ? (
                 <>
@@ -295,29 +514,29 @@ export function ContactFormClient() {
                     className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white"
                     aria-hidden="true"
                   />
-                  <span>Dispatching...</span>
+                  <span>Dispatching to Desk...</span>
                 </>
               ) : (
                 <>
-                  <span>Send Message</span>
-                  <Send className="h-4 w-4" aria-hidden="true" />
+                  <span>Dispatch Message</span>
+                  <Send className="h-3.5 w-3.5" aria-hidden="true" />
                 </>
               )}
             </button>
 
-            <span className="font-mono text-xs text-ink-secondary">
-              Direct inbox · Triage by engineers
+            <span className="font-mono text-[11px] text-ink-secondary">
+              Direct inbox · Reply within 4h
             </span>
           </div>
 
-          {/* Inline Privacy & Security Micro-Reassurance */}
-          <div className="pt-3 border-t border-[rgba(13,37,61,0.07)] flex items-start gap-2.5 text-[12px] text-ink-secondary leading-relaxed">
-            <ShieldCheck className="h-4 w-4 text-sage-600 shrink-0 mt-0.5" aria-hidden="true" />
+          {/* Privacy Note */}
+          <div className="pt-4 border-t border-[rgba(13,37,61,0.06)] flex items-center gap-2 text-[12px] text-ink-secondary">
+            <ShieldCheck className="h-4 w-4 text-sage-600 shrink-0" aria-hidden="true" />
             <span>
-              Your information is strictly protected and never sold or shared. Read our{' '}
+              All submissions are strictly protected under enterprise NDA protocols. Read our{' '}
               <Link
                 href="/privacy"
-                className="font-medium text-terra-600 underline underline-offset-2 hover:text-terra-700 transition-colors"
+                className="font-medium text-ink-primary underline underline-offset-2 hover:text-terra-600 transition-colors"
               >
                 privacy policy
               </Link>

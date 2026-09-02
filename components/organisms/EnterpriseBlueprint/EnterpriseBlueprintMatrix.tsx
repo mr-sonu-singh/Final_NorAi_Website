@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/atoms/Button';
 import { Link } from '@/components/atoms/Link';
@@ -117,27 +117,27 @@ export function EnterpriseBlueprintMatrix() {
       {/* Section Header */}
       <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
         <div className="max-w-2xl space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-50 border border-accent-500/20 text-accent-500 text-xs font-mono font-semibold">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-50 border border-accent-primary/20 text-accent-primary text-xs font-mono font-semibold">
             <Server className="w-3.5 h-3.5" />
             <span>Bespoke Enterprise Systems</span>
           </div>
-          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-normal text-ink-primary leading-tight tracking-tight">
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-normal text-text-primary leading-tight tracking-tight">
             Tailored architectures for <br />
-            <span className="italic text-accent-500 font-normal">mission-critical scale.</span>
+            <span className="italic text-accent-primary font-normal">mission-critical scale.</span>
           </h2>
-          <p className="text-base md:text-lg text-ink-body leading-relaxed">
+          <p className="text-base md:text-lg text-text-secondary leading-relaxed">
             When off-the-shelf APIs can&apos;t satisfy strict data sovereignty, deterministic schema contracts, or sub-second latency SLAs, our core engineering team builds dedicated infrastructure.
           </p>
         </div>
 
         <div className="shrink-0 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
           <Link href="/services">
-            <Button variant="secondary" size="md" className="w-full sm:w-auto">
+            <Button variant="secondary" size="md" className="w-full sm:w-auto cursor-pointer">
               View All Services
             </Button>
           </Link>
           <Link href="/contact?service=enterprise-architecture">
-            <Button variant="primary" size="md" className="w-full sm:w-auto group">
+            <Button variant="primary" size="md" className="w-full sm:w-auto group cursor-pointer">
               <span>Book Architecture Audit</span>
               <ArrowRight className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-1" />
             </Button>
@@ -155,24 +155,24 @@ export function EnterpriseBlueprintMatrix() {
               type="button"
               onClick={() => setSelectedTier(tier)}
               className={cn(
-                'p-6 rounded-2xl border text-left transition-all duration-200 space-y-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 cursor-pointer',
+                'p-6 rounded-2xl border text-left transition-all duration-200 space-y-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary cursor-pointer active:scale-[0.99]',
                 isSelected
-                  ? 'bg-canvas-paper border-accent-500 shadow-md ring-1 ring-accent-500/20 translate-y-[-2px]'
-                  : 'bg-canvas-paper/50 border-[rgba(13,37,61,0.08)] hover:bg-canvas-paper hover:border-accent-500/30'
+                  ? 'bg-surface-panel border-accent-primary shadow-md ring-1 ring-accent-primary/20 translate-y-[-2px]'
+                  : 'bg-surface-panel/50 border-border-subtle hover:bg-surface-panel hover:border-accent-primary/30'
               )}
             >
               <div className="flex items-center justify-between">
-                <span className="font-mono text-xs font-bold text-accent-500">
+                <span className="font-mono text-xs font-bold text-accent-primary">
                   {tier.tierLabel}
                 </span>
                 {isSelected && (
-                  <span className="w-2 h-2 rounded-full bg-accent-500" />
+                  <span className="w-2 h-2 rounded-full bg-accent-primary" />
                 )}
               </div>
-              <h3 className="font-display text-2xl text-ink-primary font-normal leading-tight">
+              <h3 className="font-display text-2xl text-text-primary font-normal leading-tight">
                 {tier.name}
               </h3>
-              <p className="text-xs text-ink-secondary leading-relaxed line-clamp-2">
+              <p className="text-xs text-text-secondary leading-relaxed line-clamp-2">
                 {tier.tagline}
               </p>
             </button>
@@ -181,7 +181,7 @@ export function EnterpriseBlueprintMatrix() {
       </div>
 
       {/* Selected Tier Deep-Dive Ledger with AnimatePresence */}
-      <div className="rounded-3xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] p-8 md:p-12 shadow-lg space-y-8 overflow-hidden">
+      <div className="rounded-3xl bg-surface-panel border border-border-strong p-8 md:p-12 shadow-lg space-y-8 overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={selectedTier.id}
@@ -195,7 +195,7 @@ export function EnterpriseBlueprintMatrix() {
             <div className="lg:col-span-7 space-y-6">
               <div className="space-y-2">
                 <div className="flex items-center gap-3">
-                  <span className="font-mono text-xs font-bold text-accent-500 px-2.5 py-0.5 rounded bg-accent-50 border border-accent-500/20">
+                  <span className="font-mono text-xs font-bold text-accent-primary px-2.5 py-0.5 rounded bg-accent-50 border border-accent-primary/20">
                     {selectedTier.tierLabel}
                   </span>
                   <span className="font-mono text-xs text-accent-secondary flex items-center gap-1">
@@ -203,24 +203,24 @@ export function EnterpriseBlueprintMatrix() {
                     {selectedTier.security}
                   </span>
                 </div>
-                <h3 className="font-display text-3xl sm:text-4xl text-ink-primary font-normal">
+                <h3 className="font-display text-3xl sm:text-4xl text-text-primary font-normal">
                   {selectedTier.name}
                 </h3>
-                <p className="text-base text-ink-body leading-relaxed">
+                <p className="text-base text-text-secondary leading-relaxed">
                   {selectedTier.description}
                 </p>
               </div>
 
               {/* Deliverables Checklist */}
               <div className="space-y-3 pt-2">
-                <span className="text-xs font-mono font-semibold text-ink-primary uppercase tracking-wider block">
+                <span className="text-xs font-mono font-semibold text-text-primary uppercase tracking-wider block">
                   Engineered Deliverables:
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {selectedTier.deliverables.map((item, idx) => (
                     <div
                       key={idx}
-                      className="p-3 rounded-xl bg-canvas-recessed/40 border border-[rgba(13,37,61,0.06)] flex items-start gap-2.5 text-xs text-ink-primary"
+                      className="p-3 rounded-xl bg-surface-panel-subtle/40 border border-border-subtle flex items-start gap-2.5 text-xs text-text-primary"
                     >
                       <CheckCircle2 className="w-4 h-4 text-accent-secondary shrink-0 mt-0.5" />
                       <span className="font-medium leading-snug">{item}</span>
@@ -231,17 +231,17 @@ export function EnterpriseBlueprintMatrix() {
             </div>
 
             {/* Right SLA & Architecture Card (Span 5) */}
-            <div className="lg:col-span-5 rounded-2xl bg-canvas-base border border-[rgba(13,37,61,0.08)] p-6 space-y-5">
-              <div className="space-y-1 pb-4 border-b border-[rgba(13,37,61,0.08)]">
-                <span className="text-[11px] font-mono text-ink-secondary block">Performance SLA</span>
-                <span className="font-display text-xl text-ink-primary font-normal block">
+            <div className="lg:col-span-5 rounded-2xl bg-surface-canvas border border-border-subtle p-6 space-y-5">
+              <div className="space-y-1 pb-4 border-b border-border-subtle">
+                <span className="text-[11px] font-mono text-text-muted block">Performance SLA</span>
+                <span className="font-display text-xl text-text-primary font-normal block">
                   {selectedTier.sla}
                 </span>
               </div>
 
               {/* Architecture Topology Step Map */}
               <div className="space-y-3">
-                <span className="text-xs font-mono font-semibold text-ink-primary uppercase tracking-wider block">
+                <span className="text-xs font-mono font-semibold text-text-primary uppercase tracking-wider block">
                   System Topology
                 </span>
                 <div className="space-y-2">
@@ -250,15 +250,15 @@ export function EnterpriseBlueprintMatrix() {
                     return (
                       <div
                         key={i}
-                        className="p-2.5 rounded-lg bg-canvas-paper border border-[rgba(13,37,61,0.06)] flex items-center justify-between gap-3 text-xs"
+                        className="p-2.5 rounded-lg bg-surface-panel border border-border-subtle flex items-center justify-between gap-3 text-xs"
                       >
                         <div className="flex items-center gap-2.5">
-                          <div className="w-7 h-7 rounded bg-canvas-recessed flex items-center justify-center text-accent-500">
+                          <div className="w-7 h-7 rounded bg-surface-panel-subtle flex items-center justify-center text-accent-primary">
                             <NodeIcon className="w-3.5 h-3.5" />
                           </div>
                           <div>
-                            <p className="font-semibold text-ink-primary">{node.title}</p>
-                            <p className="text-[11px] font-mono text-ink-secondary">{node.subtitle}</p>
+                            <p className="font-semibold text-text-primary">{node.title}</p>
+                            <p className="text-[11px] font-mono text-text-muted">{node.subtitle}</p>
                           </div>
                         </div>
                         <span className="font-mono text-[10px] text-accent-secondary font-semibold">
@@ -275,7 +275,7 @@ export function EnterpriseBlueprintMatrix() {
                   <Button
                     variant="primary"
                     size="sm"
-                    className="w-full justify-center group text-xs font-semibold"
+                    className="w-full justify-center group text-xs font-semibold cursor-pointer"
                   >
                     <span>Request Tier {selectedTier.tierLabel.replace('TIER ', '')} Specification</span>
                     <ArrowRight className="w-3.5 h-3.5 ml-1 transition-transform group-hover:translate-x-1" />
@@ -291,4 +291,3 @@ export function EnterpriseBlueprintMatrix() {
 }
 
 export default EnterpriseBlueprintMatrix;
-

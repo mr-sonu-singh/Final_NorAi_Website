@@ -2,12 +2,19 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import NextLink from 'next/link';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowLeft, Clock } from 'lucide-react';
 import { BLOG_POSTS } from '@/lib/blog';
 import { buildMetadata } from '@/lib/seo';
 import { BlogPostTemplate } from '@/components/templates/BlogPostTemplate';
-import { MonogramAvatar } from '@/components/illustrations/editorial';
-
+import { MonogramAvatar } from '@/components/illustrations/editorial/MonogramAvatar';
+import {
+  CodeSnippetBlock,
+  EditorialCallout,
+  BenchmarkTable,
+  ShareAndMetaBar,
+  AuthorBioCard,
+  ContextualProductCard,
+} from '@/components/templates/BlogPostInteractive';
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -61,90 +68,145 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   const related = pickRelatedPosts(post.slug, post.category);
 
+  // Extract table of contents from sections with headings
+  const tocItems = post.sections
+    .filter((sec) => sec.heading && sec.id)
+    .map((sec) => ({
+      id: sec.id,
+      title: sec.heading ?? '',
+    }));
+
+  const difficultyColors = {
+    Foundational: 'bg-sage-100 text-sage-800 border-sage-200',
+    Intermediate: 'bg-ochre-100 text-ochre-800 border-ochre-200',
+    Advanced: 'bg-terra-100 text-terra-800 border-terra-200',
+  }[post.difficulty];
+
   return (
     <BlogPostTemplate
+      tocItems={tocItems}
       backLink={
         <NextLink
           href="/blog"
-          className="inline-flex items-center gap-1.5 font-sans text-[13px] text-ink-secondary transition-colors duration-200 hover:text-ink-primary"
+          className="inline-flex items-center gap-2 font-mono text-xs text-ink-secondary transition-colors duration-200 hover:text-ink-primary"
         >
           <ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" />
-          All notes
+          <span>Back to All Notes</span>
         </NextLink>
       }
       header={
         <>
-          <span className="w-fit rounded-full bg-sage-100 px-2.5 py-1 text-xs font-medium text-sage-700">
-            {post.category}
-          </span>
-          <h1 className="mt-4 font-display text-[clamp(34px,5vw,44px)] leading-[1.12] tracking-[-0.01em] text-ink-primary">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="rounded-full bg-sage-100 border border-sage-200 px-3 py-1 font-mono text-xs font-semibold text-sage-800">
+              {post.category}
+            </span>
+            <span
+              className={`rounded-full border px-2.5 py-1 font-mono text-[11px] font-semibold ${difficultyColors}`}
+            >
+              {post.difficulty}
+            </span>
+          </div>
+
+          <h1 className="mt-4 font-display text-[clamp(34px,5vw,50px)] leading-[1.08] tracking-[-0.015em] text-ink-primary">
             {post.title}
           </h1>
-          <div className="mt-6 flex items-center gap-3">
-            <MonogramAvatar name={post.author} size="sm" />
-            <p className="font-sans text-[13px] text-ink-secondary">
-              By {post.author} · {post.date} · {post.readTime}
-            </p>
+
+          <p className="mt-4 text-[17px] leading-relaxed text-ink-body font-sans">
+            {post.excerpt}
+          </p>
+
+          <div className="mt-6 flex flex-wrap items-center gap-4 pt-4 border-t border-[rgba(13,37,61,0.08)]">
+            <div className="flex items-center gap-3">
+              <MonogramAvatar name={post.author} size="sm" />
+              <div>
+                <p className="font-sans text-[14px] font-semibold text-ink-primary">
+                  {post.author}
+                </p>
+                <p className="font-sans text-[12px] text-ink-secondary">
+                  {post.authorRole}
+                </p>
+              </div>
+            </div>
+
+            <div className="ml-auto flex items-center gap-3 font-mono text-xs text-ink-secondary">
+              <span>{post.date}</span>
+              <span>·</span>
+              <span className="flex items-center gap-1">
+                <Clock className="h-3.5 w-3.5" />
+                {post.readTime}
+              </span>
+            </div>
           </div>
-          <hr className="mt-8 border-line-subtle" />
         </>
       }
       footer={
-        related.length > 0 ? (
-          <div>
-            <p className="font-sans text-[13px] text-ink-secondary">Keep reading</p>
-            <ul className="mt-5 space-y-6">
-              {related.map((relatedPost) => (
-                <li key={relatedPost.slug}>
-                  <NextLink
-                    href={`/blog/${relatedPost.slug}`}
-                    className="group inline-flex items-baseline gap-2 outline-none"
+        <div className="space-y-12">
+          {/* Author bio */}
+          <AuthorBioCard author={post.author} authorRole={post.authorRole} />
+
+          {/* Related reading */}
+          {related.length > 0 && (
+            <div>
+              <p className="font-mono text-xs uppercase tracking-wider text-ink-secondary">
+                Keep Reading
+              </p>
+              <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {related.map((relatedPost) => (
+                  <li
+                    key={relatedPost.slug}
+                    className="group rounded-xl border border-[rgba(13,37,61,0.08)] bg-canvas-paper p-5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
                   >
-                    <span className="font-display text-xl leading-snug text-ink-primary transition-colors duration-200 group-hover:text-terra-600">
-                      {relatedPost.title}
+                    <span className="font-mono text-[11px] text-sage-700 font-medium">
+                      {relatedPost.category}
                     </span>
-                    <ArrowRight
-                      className="h-4 w-4 shrink-0 self-center text-terra-500 opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100"
-                      aria-hidden="true"
-                    />
-                  </NextLink>
-                  <p className="mt-1 font-sans text-[13px] text-ink-secondary">
-                    By {relatedPost.author} · {relatedPost.date} · {relatedPost.category}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : undefined
+                    <h3 className="mt-2 font-display text-xl leading-snug text-ink-primary transition-colors group-hover:text-terra-600">
+                      <NextLink
+                        href={`/blog/${relatedPost.slug}`}
+                        className="outline-none"
+                      >
+                        {relatedPost.title}
+                      </NextLink>
+                    </h3>
+                    <p className="mt-2 text-xs text-ink-secondary">
+                      {relatedPost.author} · {relatedPost.readTime}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
       }
     >
-      {post.sections.map((section, idx) => (
-        <section key={idx}>
+      {post.sections.map((section) => (
+        <section key={section.id} id={section.id} className="scroll-mt-24 mb-10">
           {section.heading && (
-            <h2 className="mb-4 mt-12 font-display text-[26px] leading-snug text-ink-primary first:mt-0">
+            <h2 className="mb-4 mt-8 font-display text-[26px] sm:text-[30px] leading-snug text-ink-primary">
               {section.heading}
             </h2>
           )}
-          <div className="space-y-5">
+
+          <div className="space-y-4">
             {section.paragraphs.map((paragraph, pIdx) => (
-              <p key={pIdx} className="text-[17px] leading-[1.8] text-ink-body">
+              <p key={pIdx} className="text-[17px] leading-[1.8] text-ink-body font-sans">
                 {paragraph}
               </p>
             ))}
           </div>
 
-          {section.codeSnippet && (
-            <figure className="my-8 overflow-hidden rounded-lg border border-line-subtle bg-canvas-recessed">
-              <figcaption className="px-5 pt-4 font-sans text-[11px] tracking-wide text-ink-secondary">
-                {section.codeSnippet.language}
-              </figcaption>
-              <pre className="overflow-x-auto p-5 pt-2 font-mono text-sm leading-relaxed text-ink-body">
-                <code>{section.codeSnippet.code}</code>
-              </pre>
-            </figure>
-          )}
+          {section.callout && <EditorialCallout callout={section.callout} />}
+
+          {section.table && <BenchmarkTable table={section.table} />}
+
+          {section.codeSnippet && <CodeSnippetBlock snippet={section.codeSnippet} />}
         </section>
       ))}
+
+      {/* Contextual Product Widget */}
+      {post.relatedProduct && <ContextualProductCard product={post.relatedProduct} />}
+
+      {/* Share and Metadata Bar */}
+      <ShareAndMetaBar title={post.title} slug={post.slug} tags={post.tags} />
     </BlogPostTemplate>
   );
 }

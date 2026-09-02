@@ -40,6 +40,7 @@ import {
   extractTextFromFile,
   estimateTokenCount,
 } from '@/lib/tools/client-parser';
+import { SmartDainikAlertCard } from './SmartDainikAlertCard';
 
 export function SmartDainikNewsWorkbench() {
   // Preset Selection
@@ -1308,125 +1309,20 @@ export function SmartDainikNewsWorkbench() {
               {/* TAB 1: VERIFIED ALERTS FEED */}
               {activeTab === 'alerts' && (
                 <div className="space-y-4">
-                  {filteredAlertCards.map((card) => (
-                    <div
-                      key={card.id}
-                      className="p-5 rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.1)] shadow-sm space-y-4 transition-all hover:border-accent-500/30"
-                    >
-                      <div className="flex items-start justify-between gap-3 flex-wrap">
-                        <div className="space-y-1 max-w-lg">
-                          <div className="flex items-center gap-2 flex-wrap">
-                            <span
-                              className={cn(
-                                'text-[10px] font-mono font-bold px-2 py-0.5 rounded uppercase',
-                                card.urgencyLevel === 'Critical Deadline'
-                                  ? 'bg-rose-100 text-rose-800 border border-rose-400'
-                                  : 'bg-emerald-50 text-emerald-800 border border-emerald-500/20'
-                              )}
-                            >
-                              {card.urgencyLevel}
-                            </span>
-                            <span className="text-xs font-mono text-ink-secondary">
-                              {card.category} &bull; {card.departmentOrMinistry}
-                            </span>
-                          </div>
-
-                          <AnimatePresence mode="wait">
-                            <motion.div
-                              key={`${card.id}-${displayLanguage}`}
-                              initial={{ opacity: 0, filter: 'blur(2px)' }}
-                              animate={{ opacity: 1, filter: 'blur(0px)' }}
-                              exit={{ opacity: 0, filter: 'blur(2px)' }}
-                              transition={{ duration: 0.18 }}
-                            >
-                              {displayLanguage !== 'hindi' && (
-                                <h4 className="font-semibold text-sm md:text-base text-ink-primary">
-                                  {card.title}
-                                </h4>
-                              )}
-                              {displayLanguage !== 'english' && (
-                                <p className={cn(
-                                  'text-ink-secondary',
-                                  displayLanguage === 'hindi' ? 'font-semibold text-sm md:text-base text-ink-primary' : 'text-xs mt-0.5'
-                                )}>
-                                  {card.hindiTitle}
-                                </p>
-                              )}
-                            </motion.div>
-                          </AnimatePresence>
-                        </div>
-
-                        {/* Countdown Badge */}
-                        <div className="p-2.5 rounded-xl bg-canvas-recessed/80 border border-[rgba(13,37,61,0.08)] text-right font-mono">
-                          <span className="text-[10px] text-ink-secondary uppercase block">
-                            Application Deadline
-                          </span>
-                          <strong className="text-base text-accent-500 font-bold tabular-nums">
-                            {card.daysRemaining} Days
-                          </strong>
-                          <span className="text-[10px] text-ink-secondary block">
-                            till {card.deadlineDate}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Specs Bento Grid */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-                        <div className="p-3 rounded-xl bg-canvas-base border border-[rgba(13,37,61,0.08)] space-y-0.5">
-                          <span className="text-[10px] font-mono text-ink-secondary uppercase block">
-                            Vacancies / Allocation
-                          </span>
-                          <span className="text-xs font-semibold text-ink-primary tabular-nums">
-                            {displayLanguage === 'hindi' ? card.hindiVacanciesOrScope || card.vacanciesOrScope : card.vacanciesOrScope}
-                          </span>
-                        </div>
-                        <div className="p-3 rounded-xl bg-canvas-base border border-[rgba(13,37,61,0.08)] space-y-0.5">
-                          <span className="text-[10px] font-mono text-ink-secondary uppercase block">
-                            Salary Band / Subsidy
-                          </span>
-                          <span className="text-xs font-semibold text-ink-primary tabular-nums">
-                            {displayLanguage === 'hindi' ? card.hindiSalaryBandOrBudget || card.salaryBandOrBudget : card.salaryBandOrBudget}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Eligibility Snippet */}
-                      <div className="p-3 rounded-xl bg-canvas-recessed/60 border border-[rgba(13,37,61,0.08)] space-y-1 text-xs">
-                        <span className="font-mono text-[10px] uppercase font-bold text-accent-500 block">
-                          Eligibility Criteria:
-                        </span>
-                        <p className="text-ink-body font-medium leading-relaxed">
-                          {displayLanguage === 'hindi' ? card.hindiEligibilitySnippet || card.eligibilitySnippet : card.eligibilitySnippet}
-                        </p>
-                      </div>
-
-                      {/* Anti-Rumor Note */}
-                      {card.antiRumorNote && (
-                        <div className="p-2.5 rounded-lg bg-amber-50/70 border border-amber-300/30 text-[11px] text-amber-900 flex items-start gap-2">
-                          <ShieldCheck className="w-3.5 h-3.5 text-amber-700 shrink-0 mt-0.5" />
-                          <span>
-                            {displayLanguage === 'hindi' ? card.hindiAntiRumorNote || card.antiRumorNote : card.antiRumorNote}
-                          </span>
-                        </div>
-                      )}
-
-                      {/* Footer Actions */}
-                      <div className="flex items-center justify-between pt-2 border-t border-[rgba(13,37,61,0.06)] text-xs flex-wrap gap-2">
-                        <span className="font-mono text-[11px] text-ink-secondary">
-                          Dispatch Ref: <strong>{card.officialSealReference || card.verifiedSourceRef}</strong>
-                        </span>
-                        <a
-                          href={card.officialPortalUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0D253D] text-white hover:bg-accent-500 transition-colors text-xs font-semibold active:scale-[0.97]"
-                        >
-                          <span>Open Official State Portal</span>
-                          <ExternalLink className="w-3.5 h-3.5" />
-                        </a>
-                      </div>
-                    </div>
-                  ))}
+                  {filteredAlertCards.map((card) => {
+                    const statusType =
+                      card.urgencyLevel === 'Critical Deadline' || card.daysRemaining <= 2
+                        ? 'deadline-urgent'
+                        : 'verified';
+                    return (
+                      <SmartDainikAlertCard
+                        key={card.id}
+                        card={card}
+                        statusType={statusType}
+                        initialLanguage={displayLanguage}
+                      />
+                    );
+                  })}
                 </div>
               )}
 

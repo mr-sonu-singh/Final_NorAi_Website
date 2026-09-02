@@ -11,6 +11,9 @@ export * from './cards/ProductCard';
 // Bespoke Organisms
 export * from './HeroWorkbench/CandidateScreenerWorkbench';
 export * from './HeroWorkbench/HeroStudioWorkbench';
+export * from './HeroWorkbench/TelemetryHeader';
+export * from './HardwareTelemetryLedger/HardwareTelemetryLedger';
+export * from './EnterpriseMcpDiptych/EnterpriseMcpDiptych';
 export * from './ServicesDirectory/ServicesDirectory';
 export * from './ProductStudio/ProductStudio';
 export * from './ArchitecturalSpecMatrix/ArchitecturalSpecMatrix';

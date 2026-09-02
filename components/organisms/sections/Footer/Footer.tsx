@@ -85,7 +85,7 @@ export function Footer({
     <footer
       aria-label="Site Footer"
       className={cn(
-        'relative w-full bg-[#0D253D] text-[#FDFBF7] pt-16 pb-12 font-sans border-t border-[rgba(253,251,247,0.08)]',
+        'relative w-full bg-[#111722] text-[#F5F0EA] pt-16 pb-12 font-sans border-t border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]',
         className,
       )}
       data-testid="footer-organism"
@@ -93,16 +93,15 @@ export function Footer({
       <Container size="default" className="relative z-10">
 
         {/* Brand Wordmark & Top Row */}
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-12 border-b border-[rgba(253,251,247,0.1)]">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-12 border-b border-white/10">
           <div className="space-y-3">
-            <Link href="/" className="inline-flex items-center gap-3 group">
+            <Link href="/" className="inline-flex items-center gap-3 group active:scale-[0.98] transition-transform">
               <BrandLogo variant="inverted" size="lg" />
             </Link>
             <p className="text-slate-400 text-sm max-w-sm">
               Purpose-built micro-SaaS utilities and enterprise AI systems engineered with conviction.
             </p>
           </div>
-
 
           {/* Social Links */}
           {socialLinks && socialLinks.length > 0 && (
@@ -116,18 +115,19 @@ export function Footer({
                   [&_a]:w-10
                   [&_a]:rounded-full
                   [&_a]:border
-                  [&_a]:border-[rgba(253,251,247,0.15)]
-                  [&_a]:bg-[#16324E]
+                  [&_a]:border-white/15
+                  [&_a]:bg-[#141C2B]
                   [&_a]:flex
                   [&_a]:items-center
                   [&_a]:justify-center
                   [&_a]:text-slate-300
                   [&_a]:transition-all
-                  [&_a]:duration-200
-                  [&_a:hover]:border-[#C2553A]
+                  [&_a]:duration-150
+                  [&_a:hover]:border-accent-primary
                   [&_a:hover]:text-white
-                  [&_a:hover]:bg-[#C2553A]/20
+                  [&_a:hover]:bg-accent-primary/20
                   [&_a:hover]:-translate-y-0.5
+                  [&_a:active]:scale-[0.95]
                 "
               />
             </div>
@@ -135,7 +135,7 @@ export function Footer({
         </div>
 
         {/* Navigation Columns */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 py-12 border-b border-[rgba(253,251,247,0.1)]">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 py-12 border-b border-white/10">
           {columns.map((column) => (
             <Stack
               key={column.title}

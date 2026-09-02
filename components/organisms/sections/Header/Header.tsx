@@ -16,18 +16,16 @@ import { NavItem } from '@/types';
 
 export const DEFAULT_HEADER_NAV_ITEMS: NavItem[] = [
   { label: 'Products', href: '/products' },
-  { label: 'Services', href: '/services' },
+  { label: 'Enterprise', href: '/services' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'Mission', href: '/mission' },
-  { label: 'About', href: '/about' },
-  { label: 'Team', href: '/team' },
-  { label: 'Blog', href: '/blog' },
+  { label: 'Company', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ];
 
 export const DEFAULT_HEADER_PRIMARY_CTA: HeaderCTA = {
-  label: 'Get in touch',
-  href: '/contact',
+  label: 'Start Free Sandbox',
+  href: '/products',
 };
 
 export function Header({
@@ -153,16 +151,16 @@ export function Header({
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
-    setLiveAnnouncement('Mobile navigation menu closed');
-    document.getElementById('mobile-menu-toggle')?.focus();
+    setLiveAnnouncement('Navigation menu closed');
   };
 
   return (
     <header
+      role="banner"
       className={cn(
-        'relative w-full bg-[rgba(253,251,247,0.9)] backdrop-blur-md border-b border-[rgba(13,37,61,0.08)] text-ink-primary transition-all duration-200 z-50',
+        'relative w-full bg-surface-canvas/90 backdrop-blur-md border-b border-border-subtle text-text-primary transition-all duration-200 z-50',
         sticky && 'sticky top-0',
-        sticky && isScrolled && 'shadow-sm bg-[rgba(253,251,247,0.96)]',
+        sticky && isScrolled && 'shadow-[0_1px_3px_rgba(20,28,43,0.05)] bg-surface-canvas/95',
         className,
       )}
       style={{ viewTransitionName: 'persistent-header' }}
@@ -176,7 +174,7 @@ export function Header({
       </div>
 
       <Container size="default">
-        <nav className="flex items-center justify-between min-h-[68px]" aria-label="Main Navigation">
+        <nav className="flex items-center justify-between min-h-[66px]" aria-label="Main Navigation">
           {/* Brand Logo & Wordmark */}
           <div className="flex items-center gap-3 shrink-0">
             <Link href="/" className="group inline-flex items-center" aria-label="NorAI Home">
@@ -184,8 +182,8 @@ export function Header({
             </Link>
           </div>
 
-          {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center gap-7">
+          {/* Desktop Navigation Links (Clean Title Case Plus Jakarta Sans) */}
+          <div className="hidden lg:flex items-center gap-5 xl:gap-7">
             {navItems.map((item) => {
               const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
               return (
@@ -194,10 +192,10 @@ export function Header({
                   href={item.href}
                   variant="unstyled"
                   className={cn(
-                    'text-sm font-medium no-underline transition-colors duration-150',
+                    'text-sm font-medium no-underline transition-colors duration-150 font-sans',
                     isActive
-                      ? 'text-accent-600 font-semibold'
-                      : 'text-ink-body hover:text-accent-600',
+                      ? 'text-accent-primary font-semibold'
+                      : 'text-text-secondary hover:text-accent-primary',
                   )}
                   aria-current={isActive ? 'page' : undefined}
                 >
@@ -207,12 +205,12 @@ export function Header({
             })}
           </div>
 
-          {/* Desktop CTA */}
+          {/* Desktop CTA (Warm Terracotta Primary Button) */}
           <div className="hidden lg:flex items-center gap-3">
             {secondaryCta && (
               <Link
                 href={secondaryCta.href}
-                className="inline-flex items-center justify-center font-sans font-medium h-9 px-3.5 rounded-md border border-line-strong text-ink-primary shadow-sm hover:border-line-accent hover:text-terra-600 hover:bg-terra-50 text-xs transition-colors"
+                className="inline-flex items-center justify-center font-sans font-medium h-9 px-3.5 rounded-md border border-border-strong text-text-primary hover:bg-surface-hover hover:border-border-highlight text-xs transition-[transform,background-color,border-color] duration-150 ease-out active:scale-[0.98] cursor-pointer"
               >
                 {secondaryCta.label}
               </Link>
@@ -220,7 +218,7 @@ export function Header({
             {primaryCta && (
               <Link
                 href={primaryCta.href}
-                className="inline-flex items-center justify-center font-sans font-semibold h-9 px-3.5 rounded-md bg-terra-500 text-white shadow-accent hover:bg-terra-600 text-xs transition-colors"
+                className="inline-flex items-center justify-center font-sans font-medium h-9 px-4 rounded-md bg-accent-primary text-white hover:bg-[#b04824] text-xs shadow-accent hover:shadow-hover hover:-translate-y-0.5 transition-[transform,background-color,box-shadow] duration-150 ease-out active:scale-[0.98] cursor-pointer whitespace-nowrap"
               >
                 {primaryCta.label}
               </Link>
@@ -238,13 +236,13 @@ export function Header({
               variant="ghost"
               size="md"
               onClick={toggleMobileMenu}
-              className="text-ink-primary hover:bg-canvas-recessed"
+              className="text-text-primary hover:bg-surface-hover active:scale-[0.95] transition-transform"
             />
           </div>
         </nav>
       </Container>
 
-      {/* Mobile Menu Dropdown with Focus Trapping & Framer Motion AnimatePresence */}
+      {/* Mobile Menu Dropdown with GPU-Accelerated Clip Path */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -253,11 +251,11 @@ export function Header({
             role="dialog"
             aria-modal="true"
             aria-label="Mobile Navigation Menu"
-            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, height: 0, y: -6 }}
-            animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, height: 'auto', y: 0 }}
-            exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, height: 0, y: -6 }}
-            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:hidden border-t border-[rgba(13,37,61,0.08)] bg-canvas-paper px-6 py-6 shadow-xl overflow-hidden"
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
+            animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, clipPath: 'inset(0 0 0% 0)' }}
+            exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
+            transition={{ duration: 0.18, ease: [0.23, 1, 0.32, 1] }}
+            className="lg:hidden border-t border-border-subtle bg-surface-panel px-6 py-6 shadow-xl overflow-hidden"
           >
             <div className="flex flex-col gap-4">
               {navItems.map((item) => {
@@ -268,8 +266,8 @@ export function Header({
                     href={item.href}
                     onClick={closeMobileMenu}
                     className={cn(
-                      'text-base py-1.5 font-medium transition-colors',
-                      isActive ? 'text-accent-600 font-semibold' : 'text-ink-primary hover:text-accent-600',
+                      'text-sm font-mono tracking-wide py-1.5 font-medium transition-colors',
+                      isActive ? 'text-accent-primary font-semibold' : 'text-text-primary hover:text-accent-primary',
                     )}
                     aria-current={isActive ? 'page' : undefined}
                   >
@@ -277,12 +275,12 @@ export function Header({
                   </Link>
                 );
               })}
-              <div className="pt-4 mt-2 border-t border-[rgba(13,37,61,0.08)] flex flex-col gap-3">
+              <div className="pt-4 mt-2 border-t border-border-subtle flex flex-col gap-3">
                 {secondaryCta && (
                   <Link
                     href={secondaryCta.href}
                     onClick={closeMobileMenu}
-                    className="inline-flex items-center justify-center font-sans font-medium h-11 px-4 rounded-md border border-line-strong text-ink-primary shadow-sm hover:border-line-accent hover:text-terra-600 hover:bg-terra-50 text-sm w-full transition-colors"
+                    className="inline-flex items-center justify-center font-sans font-medium h-10 px-4 rounded-md border border-border-strong text-text-primary hover:bg-surface-hover text-sm w-full transition-[transform,background-color] duration-150 ease-out active:scale-[0.98] cursor-pointer"
                   >
                     {secondaryCta.label}
                   </Link>
@@ -291,7 +289,7 @@ export function Header({
                   <Link
                     href={primaryCta.href}
                     onClick={closeMobileMenu}
-                    className="inline-flex items-center justify-center font-sans font-semibold h-11 px-4 rounded-md bg-terra-500 text-white shadow-accent hover:bg-terra-600 text-sm w-full transition-colors"
+                    className="inline-flex items-center justify-center font-sans font-semibold h-10 px-4 rounded-md bg-[#141C2B] text-white hover:bg-[#1F2B3E] text-sm w-full transition-[transform,background-color] duration-150 ease-out active:scale-[0.98] cursor-pointer"
                   >
                     {primaryCta.label}
                   </Link>

@@ -20,6 +20,12 @@ export * from './Divider';
 export * from './Spinner';
 export * from './Skeleton';
 
-// Visual Assets
+// Visual & Hardware Atoms
 export * from './MeshGradient';
 export * from './BrandLogo';
+export * from './MagneticButton';
+export * from './WaveformCanvas';
+export * from './TelemetrySparkline';
+export * from './KnobSwitch';
+export * from './MathRenderer';
+

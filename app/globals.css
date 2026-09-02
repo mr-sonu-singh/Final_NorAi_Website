@@ -8,53 +8,86 @@
    The ONLY dark surface on the entire site is the navy footer block.
    ========================================================================== */
 :root {
-  /* --- Surfaces (ds-* names kept for component compatibility) --- */
-  --ds-background-100: #f5f0ea; /* Page Canvas Base (Warm Parchment) */
-  --ds-background-200: #fdfbf7; /* Card / Surface Base (Clean Paper) */
-  --ds-background-300: #ede7df; /* Toggle / Recessed Base (Recessed Sand) */
-  --ds-background-400: #e7dfd4; /* Hover Surface Base */
+  /* ==========================================================================
+     DESIGN.md §2.1 Base Neutrals & Structural Surfaces
+     ========================================================================== */
+  --surface-canvas: #F5F0EA;              /* Warm parchment paper canvas */
+  --surface-panel: #FAF7F2;               /* Lighter warm paper container / card surface */
+  --surface-panel-elevated: #FFFFFF;      /* Popovers, modals, flyout drawers */
+  --surface-panel-subtle: #EBE3D8;        /* Inset wells, code blocks, parameter tables */
+  --surface-hover: #ECE5DA;               /* Interactive row/button hover state */
+  --surface-active: #E0D5C5;              /* Pressed/active state */
 
-  /* --- Ink & Text --- */
-  --ds-text-100: #0d253d; /* Primary Headings & Body Text (Deep Navy Ink) */
-  --ds-text-200: #3d4f5f; /* Secondary Text & Nav Links (Muted Slate) */
-  --ds-text-300: #364757; /* Muted & Caption Text (Deep Slate, WCAG AAA 7:1) */
+  /* Interactive Accent (DESIGN.md §2.1) */
+  --accent-primary: #C85A32;              /* Burnt terracotta interactive accent */
+  --accent-hover: #B54F2A;                /* Terracotta hover state */
+  --accent-subtle: rgba(200, 90, 50, 0.12); /* Terracotta tint for badges/selection */
+  --accent-mono: #5B8A72;                 /* Forest Sage secondary telemetry */
+  --accent-secondary: #5B8A72;
+  --accent-secondary-soft: #E2EDE7;
+  --accent-tertiary: #B8860B;             /* Dark Goldenrod */
+  --accent-tertiary-soft: #FFF4D6;
 
-  /* --- Interactive accents --- */
-  --ds-interactive: #a84530; /* Burnt Terracotta (Calibrated for WCAG AA 4.5:1+ contrast) */
-  --ds-focus-color: #a84530;
-  --accent-primary: #a84530;
-  --accent-mono: #5b8a72; /* Forest Sage — secondary accent */
-  --accent-secondary: #5b8a72;
-  --accent-secondary-soft: #e2ede7;
-  --accent-tertiary: #b8860b; /* Dark Goldenrod */
-  --accent-tertiary-soft: #fff4d6;
-  --border-hairline: rgba(13, 37, 61, 0.08);
-  --glow-warm: 168, 69, 48;
+  /* Borders & Dividers (DESIGN.md §2.1) */
+  --border-subtle: rgba(20, 28, 43, 0.08);   /* Calibrated 1px hairline divider */
+  --border-strong: rgba(20, 28, 43, 0.16);   /* Active tabs, focus states, card edges */
+  --border-highlight: rgba(20, 28, 43, 0.32);/* Sticky headers, selected items */
+  --border-hairline: var(--border-subtle);
 
-  /* --- Navy ramp (light → dark ink). Body text = primary-800 --- */
-  --primary-50: #fdfbf7;
-  --primary-100: #f5f0ea;
-  --primary-200: #ede7df;
-  --primary-300: #dde4ec;
-  --primary-400: #a0aeba;
-  --primary-500: #364757;
-  --primary-600: #4a5d70;
-  --primary-700: #3d4f5f;
-  --primary-800: #0d253d;
-  --primary-900: #081727;
+  /* Content / Foreground (DESIGN.md §2.1) */
+  --text-primary: #141C2B;                /* Deep navy ink for primary headings and data values */
+  --text-secondary: #526075;              /* Descriptive copy, labels, inactive tabs */
+  --text-muted: #8491A2;                  /* Secondary metadata, line numbers, disabled items */
+  --text-inverse: #F5F0EA;                /* Light parchment text on solid dark/accent elements */
 
-  /* --- Terracotta ramp --- */
-  --accent-50: #faeee9;
-  --accent-100: #f5e1da;
-  --accent-400: #d97b62;
-  --accent-500: #a84530;
-  --accent-600: #8a3826;
-  --accent-700: #702c1c;
+  /* Legacy aliases for backwards compatibility across existing components */
+  --ds-background-100: var(--surface-canvas);
+  --ds-background-200: var(--surface-panel);
+  --ds-background-300: var(--surface-panel-subtle);
+  --ds-background-400: var(--surface-hover);
+  --ds-text-100: var(--text-primary);
+  --ds-text-200: var(--text-secondary);
+  --ds-text-300: var(--text-muted);
+  --ds-interactive: var(--accent-primary);
+  --ds-focus-color: var(--accent-primary);
+  --bg-page: var(--surface-canvas);
+  --bg-elevated: var(--surface-panel);
+  --bg-sunken: var(--surface-panel-subtle);
+  --bg-dark: #141C2B;
+  --bg-dark-elevated: #1F2B3E;
 
-  --bg-elevated: #fdfbf7;
-  --bg-sunken: #ede7df;
-  --bg-dark: #0d253d; /* Footer navy — the ONLY dark surface */
-  --bg-dark-elevated: #16324e;
+  /* ==========================================================================
+     DESIGN.md §2.2 Status, Telemetry & Severity Tokens
+     ========================================================================== */
+  --status-error-bg: rgba(220, 38, 38, 0.10);
+  --status-error-border: rgba(220, 38, 38, 0.25);
+  --status-error-text: #B91C1C;
+  --status-error-solid: #DC2626;
+
+  --status-warn-bg: rgba(217, 119, 6, 0.10);
+  --status-warn-border: rgba(217, 119, 6, 0.25);
+  --status-warn-text: #B45309;
+  --status-warn-solid: #D97706;
+
+  --status-success-bg: rgba(5, 150, 105, 0.10);
+  --status-success-border: rgba(5, 150, 105, 0.25);
+  --status-success-text: #047857;
+  --status-success-solid: #059669;
+
+  --status-info-bg: rgba(79, 70, 229, 0.10);
+  --status-info-border: rgba(79, 70, 229, 0.25);
+  --status-info-text: #4338CA;
+  --status-info-solid: #4F46E5;
+
+  --badge-cache-hit-bg: rgba(5, 150, 105, 0.12);
+  --badge-cache-hit-text: #047857;
+  --badge-cache-miss-bg: rgba(217, 119, 6, 0.12);
+  --badge-cache-miss-text: #B45309;
+  --badge-cache-stale-bg: rgba(100, 116, 139, 0.12);
+  --badge-cache-stale-text: #475569;
+
+  --glow-warm: 200, 90, 50;
+
 
   /* --- Status colors --- */
   --status-blue: #4a7b9d; /* Muted info — the only blue allowed */
@@ -183,15 +216,20 @@
   --shadow-accent: 0 1px 2px rgba(194, 85, 58, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
   --shadow-hover: 0 8px 30px rgba(13, 37, 61, 0.1), 0 2px 8px rgba(13, 37, 61, 0.05);
 
-  /* --- Motion --- */
-  --duration-fast: 150ms;
-  --duration-normal: 300ms;
-  --duration-slow: 500ms;
-  --duration-exit: 150ms;
-  --duration-enter: 210ms;
-  --duration-move: 300ms;
-  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
-  --tooltip-delay: 200ms;
+  /* --- Motion (Emil Kowalski Design Engineering Standards) --- */
+  --duration-instant: 120ms;
+  --duration-fast: 160ms;
+  --duration-ui: 200ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+  --duration-exit: 140ms;
+  --duration-enter: 200ms;
+  --duration-move: 250ms;
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-smooth: cubic-bezier(0.23, 1, 0.32, 1);
+  --tooltip-delay: 150ms;
 
   /* --- Containers --- */
   --container-narrow: 720px;
@@ -222,6 +260,8 @@
   --color-primary-900: var(--primary-900);
 
   --color-accent-primary: var(--accent-primary);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-subtle: var(--accent-subtle);
   --color-accent-mono: var(--accent-mono);
   --color-accent-50: var(--accent-50);
   --color-accent-100: var(--accent-100);
@@ -230,16 +270,35 @@
   --color-accent-600: var(--accent-600);
   --color-accent-700: var(--accent-700);
 
+  /* DESIGN.md §2.1 Semantic Surface Tokens */
+  --color-surface-canvas: var(--surface-canvas);
+  --color-surface-panel: var(--surface-panel);
+  --color-surface-panel-elevated: var(--surface-panel-elevated);
+  --color-surface-panel-subtle: var(--surface-panel-subtle);
+  --color-surface-hover: var(--surface-hover);
+  --color-surface-active: var(--surface-active);
+
+  /* DESIGN.md §2.1 Semantic Text Tokens */
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-inverse: var(--text-inverse);
+
+  /* DESIGN.md §2.1 Semantic Border Tokens */
+  --color-border-subtle: var(--border-subtle);
+  --color-border-strong: var(--border-strong);
+  --color-border-highlight: var(--border-highlight);
+
   /* Warm premium families */
   --color-canvas-base: #f5f0ea;
   --color-canvas-paper: #fdfbf7;
   --color-canvas-pure: #ffffff;
   --color-canvas-recessed: #ede7df;
 
-  --color-ink-primary: #0d253d;
-  --color-ink-body: #3d4f5f;
-  --color-ink-secondary: #364757;
-  --color-ink-disabled: #a0aeba;
+  --color-ink-primary: #141C2B;
+  --color-ink-body: #526075;
+  --color-ink-secondary: #526075;
+  --color-ink-disabled: #8491A2;
 
   --color-terra-50: #faeee9;
   --color-terra-100: #f5e1da;
@@ -634,11 +693,11 @@ kbd {
 }
 
 .accordion-content[data-state='open'] {
-  animation: accordion-down 320ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: accordion-down 200ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 
 .accordion-content[data-state='closed'] {
-  animation: accordion-up 240ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: accordion-up 150ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 
 
@@ -684,14 +743,199 @@ kbd {
   transform: rotateY(180deg);
 }
 
+/* ==========================================================================
+   LENIS SMOOTH SCROLL INTEGRATION
+   ========================================================================== */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   TEENAGE ENGINEERING & STRIPE PRESS TACTILE UTILITIES
+   ========================================================================== */
+/* Hardware Inset Wells */
+.well-inset {
+  background-color: var(--surface-panel-subtle);
+  border: 1px solid var(--border-subtle);
+  box-shadow: inset 0 1px 3px rgba(20, 28, 43, 0.06);
+}
+
+.well-inset-elevated {
+  background-color: var(--surface-panel);
+  border: 1px solid var(--border-strong);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 2px 8px rgba(20, 28, 43, 0.04);
+}
+
+/* Knurled Metal / Stepped Switch Pattern */
+.knurled-texture {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(20, 28, 43, 0.06),
+    rgba(20, 28, 43, 0.06) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* Laser-Etched Circuit Trace (Subtle Static Vector Glow) */
+.laser-trace-glow {
+  stroke-dasharray: 6 3;
+  opacity: 0.85;
+}
+
+/* Tactile Physical Button Click Reaction (Emil Kowalski Standard: scale 0.97 on active) */
+.btn-tactile {
+  box-shadow: 0 2px 0 rgba(140, 50, 20, 0.8), 0 4px 12px rgba(200, 90, 50, 0.25);
+  transition: transform 0.12s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.12s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.btn-tactile:active {
+  transform: scale(0.97) translateY(1px);
+  box-shadow: 0 0 0 rgba(140, 50, 20, 0.8), 0 1px 3px rgba(200, 90, 50, 0.15);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .accordion-content[data-state='open'],
-  .accordion-content[data-state='closed'],
-  .animate-waveform-1,
-  .animate-waveform-2,
-  .animate-waveform-3,
-  .animate-waveform-4 {
-    animation: none !important;
+  .accordion-content[data-state='closed'] {
+    animation-duration: 0.01ms !important;
+  }
+  .btn-tactile:active {
+    transform: none !important;
   }
 }
+
+/* ==========================================================================
+   EDITORIAL PROSE STYLES (Surface A & Technical Reading)
+   ========================================================================== */
+.prose-editorial {
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+}
+
+.prose-editorial h2 {
+  font-family: var(--font-display);
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+}
+
+.prose-editorial h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+.prose-editorial p {
+  line-height: 1.8;
+  color: #2D3748;
+}
+
+.prose-editorial strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.prose-editorial a {
+  color: var(--accent-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.15s ease;
+}
+
+.prose-editorial a:hover {
+  color: var(--accent-hover);
+}
+
+/* ==========================================================================
+   MINIMALIST UI PROTOCOL UTILITIES (/minimalist-ui)
+   Warm monochrome palette, flat bento architecture, spot pastels, faux-OS
+   ========================================================================== */
+
+/* Washed-out spot pastels (§4 Color Palette) */
+.badge-pastel-red {
+  background-color: #FDEBEC;
+  color: #9F2F2D;
+  border: 1px solid rgba(159, 47, 45, 0.15);
+}
+
+.badge-pastel-blue {
+  background-color: #E1F3FE;
+  color: #1F6C9F;
+  border: 1px solid rgba(31, 108, 159, 0.15);
+}
+
+.badge-pastel-green {
+  background-color: #EDF3EC;
+  color: #346538;
+  border: 1px solid rgba(52, 101, 56, 0.15);
+}
+
+.badge-pastel-yellow {
+  background-color: #FBF3DB;
+  color: #956400;
+  border: 1px solid rgba(149, 100, 0, 0.15);
+}
+
+/* Faux-OS Window Chrome (§5 Component Specifications) */
+.window-chrome {
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  background-color: var(--surface-panel);
+  overflow: hidden;
+}
+
+.window-chrome-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  background-color: rgba(20, 28, 43, 0.02);
+}
+
+.window-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.window-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 9999px;
+  background-color: rgba(20, 28, 43, 0.18);
+}
+
+/* Physical Micro-Keystroke UI (§5 Keystroke Micro-UIs) */
+kbd.key-cap {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--border-strong);
+  background-color: #F7F6F3;
+  color: var(--text-secondary);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  user-select: none;
+}
+
+
+
 

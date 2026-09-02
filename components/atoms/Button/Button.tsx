@@ -8,12 +8,12 @@ import { ButtonProps, ButtonVariant, ButtonSize } from './Button.types';
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    'bg-terra-500 text-white shadow-accent hover:bg-terra-600 hover:-translate-y-px active:translate-y-0 active:scale-[0.98] font-semibold',
+    'bg-terra-500 text-white shadow-none hover:bg-terra-600 active:scale-[0.98] font-medium',
   secondary:
-    'bg-transparent border border-line-strong text-ink-primary shadow-sm font-medium hover:border-line-accent hover:text-terra-600 hover:bg-terra-50 active:scale-[0.98]',
-  ghost: 'bg-transparent text-terra-600 font-medium hover:bg-terra-50 active:scale-[0.98]',
-  dark: 'bg-terra-700 text-white shadow-md font-semibold hover:bg-terra-600 active:scale-[0.98]',
-  danger: 'bg-error-600 text-white font-semibold hover:bg-error-600/90 active:scale-[0.98]',
+    'bg-surface-panel border border-border-strong text-text-primary shadow-none font-medium hover:border-border-highlight hover:bg-surface-hover active:scale-[0.98]',
+  ghost: 'bg-transparent text-text-primary font-medium hover:bg-surface-hover active:scale-[0.98]',
+  dark: 'bg-[#141C2B] text-white shadow-none font-medium hover:bg-[#1F2B3E] active:scale-[0.98]',
+  danger: 'bg-error-600 text-white font-medium hover:bg-error-600/90 active:scale-[0.98]',
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
@@ -63,11 +63,12 @@ export function Button({
       onClick={handleClick}
       className={cn(
         'inline-flex items-center justify-center font-sans transition-[transform,opacity,color,background-color,border-color,box-shadow] duration-[var(--duration-fast)] ease-[var(--ease-smooth)] select-none',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-terra-500 focus-visible:ring-offset-canvas-paper',
         variantClasses[variant],
         sizeClasses[size],
         fullWidth && 'w-full',
         (disabled || loading) &&
-          'opacity-[var(--opacity-disabled)] pointer-events-none cursor-not-allowed transform-none',
+          'opacity-40 pointer-events-none cursor-not-allowed transform-none shadow-none',
         className,
       )}
       {...props}

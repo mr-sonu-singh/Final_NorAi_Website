@@ -3,146 +3,119 @@ import type { Metadata } from 'next';
 import { Container } from '@/components/foundation/Container';
 import { Button } from '@/components/atoms/Button';
 import { Link } from '@/components/atoms/Link';
-import {
-  AnimatedSection,
-  Reveal,
-  StaggerGrid,
-  StaggerItem,
-} from '@/components/foundation/AnimatedSection';
+import { AnimatedSection, Reveal } from '@/components/foundation/AnimatedSection';
 import { TextReveal } from '@/components/foundation/TextReveal';
-import { CountUp } from '@/components/foundation/CountUp';
-import { MeshGradient } from '@/components/atoms/MeshGradient';
-import {
-  ArrowRight,
-  ShieldCheck,
-  CheckCircle2,
-  Zap,
-  FileCheck,
-  MapPin,
-  Clock,
-  Users,
-  Activity,
-  Terminal,
-} from 'lucide-react';
+import { MagneticButton } from '@/components/atoms/MagneticButton';
+import { InteractiveCircuitTrace, TaglineReveal } from '@/components/molecules';
+import { ArrowRight } from 'lucide-react';
 import {
   HeroStudioWorkbench,
+  HardwareTelemetryLedger,
   ProductStudio,
-  ConnectedPipelineRail,
+  EnterpriseMcpDiptych,
   RoiCalculator,
-  EnterpriseBlueprintMatrix,
-  ArchitecturalSpecMatrix,
   SkillMissionSection,
+  ArchitecturalSpecMatrix,
   HomeFaqAccordion,
 } from '@/components/organisms';
 import { buildMetadata, getOrganizationJsonLd, getLocalBusinessJsonLd, JsonLd } from '@/lib/seo';
 
 export const metadata: Metadata = buildMetadata({
   path: '/',
-  title: 'AI That Actually Works',
+  title: 'NorAI Technologies — Deterministic AI Pipelines & Enterprise Automation',
   description:
-    'Deterministic micro-SaaS utilities and bespoke enterprise AI automation pipelines engineered in Uttar Pradesh with sub-second latency targets.',
+    'Eliminate manual document drag with sub-second, deterministic AI pipelines. Verified JSON schemas, ephemeral RAM data isolation, and air-gapped private VPC deployments.',
 });
 
 export default function HomePage() {
   return (
-    <div className="text-ink-primary min-h-screen font-sans selection:bg-accent-500 selection:text-white">
+    <div className="text-text-primary min-h-screen font-sans selection:bg-accent-primary selection:text-white">
       <JsonLd schema={getOrganizationJsonLd()} />
       <JsonLd schema={getLocalBusinessJsonLd()} />
 
       {/* =========================================================================
-          TOP HARDWARE TELEMETRY & STATUS STRIP
+          BEAT 1: HERO (High-Impact Living Command Stage with 4-Tool Sandbox)
+          Linear & Vercel Inspired 6/6 Split Layout with Zero Fold Cutoff
           ========================================================================= */}
-      <div className="bg-canvas-recessed/90 border-b border-[rgba(13,37,61,0.08)] py-1.5 px-4 text-center">
-        <div className="flex items-center justify-center gap-3 text-[11px] font-mono text-ink-secondary flex-wrap">
-          <span className="flex items-center gap-1.5 text-accent-secondary font-semibold">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent-secondary animate-pulse" />
-            SYS: NOMINAL
-          </span>
-          <span className="text-[rgba(13,37,61,0.2)]">|</span>
-          <span>P95 LATENCY &lt; 320ms</span>
-          <span className="text-[rgba(13,37,61,0.2)]">|</span>
-          <span>ZERO-EGRESS EPHEMERAL RAM</span>
-          <span className="text-[rgba(13,37,61,0.2)]">|</span>
-          <span className="text-accent-500 font-semibold">100% DETERMINISTIC JSON</span>
-        </div>
-      </div>
-
-      {/* =========================================================================
-          SECTION 1: HERO (Living Command Stage with HeroStudioWorkbench)
-          ========================================================================= */}
-      <section className="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden bg-canvas-base">
-        <MeshGradient intensity="medium" />
-
+      <section className="relative pt-8 pb-10 sm:pt-12 sm:pb-14 md:pt-14 md:pb-16 overflow-hidden bg-surface-canvas border-b border-border-subtle">
         <Container size="default" className="relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            {/* Left Content Column */}
-            <div className="lg:col-span-6 space-y-7 text-left">
-              {/* Badge */}
-              <Reveal delay={0} y={16}>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-50 border border-accent-500/20 text-accent-500 text-xs font-mono font-semibold">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent-500 animate-pulse" />
-                  <span>Deterministic AI Engineering · Uttar Pradesh</span>
-                </div>
-              </Reveal>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+            {/* Left Content Column (6 cols on desktop) */}
+            <div className="lg:col-span-6 space-y-5 text-left">
+              {/* Borderless Minimalist Eyebrow */}
+              <p className="text-xs font-mono font-semibold uppercase tracking-[0.14em] text-accent-primary">
+                NorAI Technologies · Tools · Services · Community Mission
+              </p>
 
               {/* Headline in Instrument Serif with TextReveal */}
-              <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal text-ink-primary leading-[1.02] tracking-display">
-                <TextReveal text="Your operations," splitBy="word" as="span" stagger={0.08} duration={0.7} /> <br />
-                <span className="italic text-accent-500 font-normal inline-block">
-                  <TextReveal text="on autopilot." splitBy="word" as="span" delay={0.2} stagger={0.08} duration={0.7} />
+              <h1
+                aria-label="Frontier AI tools and services. Rooted in community growth."
+                className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-normal text-text-primary leading-[1.05] tracking-display text-balance"
+              >
+                <TextReveal text="Frontier AI" splitBy="word" as="span" stagger={0.08} duration={0.7} /> <br />
+                <span className="font-normal inline-block text-text-primary">
+                  <TextReveal text="tools & services." splitBy="word" as="span" delay={0.16} stagger={0.08} duration={0.7} />
+                </span> <br />
+                <span className="italic text-accent-primary font-normal inline-block">
+                  <TextReveal text="Rooted in community growth." splitBy="word" as="span" delay={0.32} stagger={0.08} duration={0.7} />
                 </span>
               </h1>
 
-              {/* Body in Plus Jakarta Sans with Fluid Clamp & Pretty Wrap */}
-              <Reveal delay={0.32} y={18}>
-                <p className="fluid-lead text-ink-body font-normal leading-relaxed max-w-xl text-pretty">
-                  Four purpose-built AI tools engineered to eliminate manual operational drag. Screen candidate batches in <span className="font-mono tabular-nums font-semibold text-ink-primary">&lt; 0.35s</span>, extract lecture intelligence with LaTeX precision, summarize community chats, and digest regional news with verifiable JSON schemas.
+              {/* Lede */}
+              <Reveal delay={0.32} y={16}>
+                <p className="fluid-lead text-text-secondary font-normal leading-relaxed max-w-xl text-pretty">
+                  NorAI builds high-velocity autonomous tools, bespoke enterprise pipelines, and grassroots computational literacy. From sub-second document triage to statewide builder training across Uttar Pradesh, we engineer deterministic AI with zero data retention and physical-world reliability.
                 </p>
               </Reveal>
 
-              {/* Dual Primary Terracotta CTA + Secondary Clean Paper */}
-              <Reveal delay={0.46} y={18}>
-                <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                  <Link href="/contact?service=enterprise-audit" className="w-full sm:w-auto">
-                    <Button
-                      variant="primary"
-                      size="lg"
-                      className="w-full sm:w-auto justify-center group shadow-accent hover:shadow-hover hover:-translate-y-0.5 active:scale-[0.98] transition-all"
-                    >
-                      <span>Schedule Architecture Audit</span>
-                      <ArrowRight className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-1" />
-                    </Button>
+              {/* Primary Action + Secondary Scoping */}
+              <Reveal delay={0.46} y={16}>
+                <div className="pt-1 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                  <Link href="/products" className="w-full sm:w-auto">
+                    <MagneticButton strength={12} className="w-full sm:w-auto">
+                      <Button
+                        variant="primary"
+                        size="lg"
+                        className="w-full sm:w-auto justify-center group active:scale-[0.98] transition-transform cursor-pointer whitespace-nowrap"
+                      >
+                        <span>Start Free Sandbox</span>
+                        <ArrowRight className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-1" />
+                      </Button>
+                    </MagneticButton>
                   </Link>
-                  <Link href="#product-studio" className="w-full sm:w-auto">
+                  <Link href="/services" className="w-full sm:w-auto">
                     <Button
                       variant="secondary"
                       size="lg"
-                      className="w-full sm:w-auto justify-center hover:-translate-y-0.5 active:scale-[0.98] transition-all"
+                      className="w-full sm:w-auto justify-center active:scale-[0.98] transition-transform cursor-pointer whitespace-nowrap"
                     >
-                      Explore 4 Live Tools
+                      Enterprise Services &rarr;
                     </Button>
                   </Link>
                 </div>
               </Reveal>
 
-              {/* SLA / Trust Badges with Tightened Gestalt Grouping */}
+              {/* SLA / Hardware Guarantees */}
               <Reveal delay={0.60} y={14}>
-                <div className="pt-2 flex flex-wrap items-center gap-4 text-xs text-ink-secondary">
-                  <div className="flex items-center gap-1.5">
-                    <ShieldCheck className="w-4 h-4 text-accent-secondary shrink-0" />
-                    <span>Encrypted RAM isolation (0 bytes logged)</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-4 h-4 text-accent-secondary shrink-0" />
-                    <span>Direct founder & engineer support</span>
-                  </div>
+                <div className="pt-1 flex flex-wrap items-center gap-3 text-xs text-text-muted font-mono">
+                  <Link href="/products" className="no-underline hover:text-accent-primary transition-colors">
+                    <span>4 Autonomous Tools</span>
+                  </Link>
+                  <span className="text-border-strong select-none">/</span>
+                  <Link href="/services" className="no-underline hover:text-accent-primary transition-colors">
+                    <span>Dedicated Enterprise VPC</span>
+                  </Link>
+                  <span className="text-border-strong select-none">/</span>
+                  <Link href="/mission" className="no-underline hover:text-accent-primary transition-colors">
+                    <span>75-District UP Skill Mission</span>
+                  </Link>
                 </div>
               </Reveal>
             </div>
 
-            {/* Right Product Demo: Authentic Interactive 4-in-1 Living Studio Workbench */}
+            {/* Right Product Demo: Multi-Tool Living Sandbox (6 cols on desktop) */}
             <div className="lg:col-span-6 relative">
-              <Reveal delay={0.35} y={28}>
+              <Reveal delay={0.35} y={24}>
                 <HeroStudioWorkbench />
               </Reveal>
             </div>
@@ -151,78 +124,32 @@ export default function HomePage() {
       </section>
 
       {/* =========================================================================
-          SECTION 2: TRUST & TELEMETRY STRIP (Quantified Social Proof)
+          BEAT 2: HARDWARE TELEMETRY LEDGER (Teenage Engineering Honesty)
           ========================================================================= */}
-      <AnimatedSection as="aside" aria-label="Platform telemetry and verified impact" className="relative py-6 border-y border-[rgba(13,37,61,0.08)] bg-canvas-paper/70 pattern-dots backdrop-blur-sm">
-        <Container size="default">
-          <StaggerGrid className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 items-center text-center" stagger={0.14}>
-            {/* Metric 1: Resumes Screened */}
-            <StaggerItem className="flex flex-col items-center justify-center space-y-1">
-              <div className="flex items-center gap-1 font-mono text-xl sm:text-2xl font-bold text-ink-primary tabular-nums">
-                <CountUp value={14200} duration={2.2} />
-                <span className="text-accent-500 font-sans font-semibold text-lg">+</span>
-              </div>
-              <p className="text-xs font-medium text-ink-secondary flex items-center gap-1.5">
-                <FileCheck className="w-3.5 h-3.5 text-accent-secondary shrink-0" />
-                Resumes parsed & scored
-              </p>
-            </StaggerItem>
-
-            {/* Metric 2: Hours Saved */}
-            <StaggerItem className="flex flex-col items-center justify-center space-y-1">
-              <div className="flex items-center gap-1 font-mono text-xl sm:text-2xl font-bold text-ink-primary tabular-nums">
-                <CountUp value={4800} duration={2.2} />
-                <span className="text-accent-500 font-sans font-semibold text-lg">+</span>
-              </div>
-              <p className="text-xs font-medium text-ink-secondary flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5 text-accent-500 shrink-0" />
-                Operational hours saved
-              </p>
-            </StaggerItem>
-
-            {/* Metric 3: Active Workspaces */}
-            <StaggerItem className="flex flex-col items-center justify-center space-y-1">
-              <div className="flex items-center gap-1 font-mono text-xl sm:text-2xl font-bold text-ink-primary tabular-nums">
-                <CountUp value={180} duration={2.0} />
-                <span className="text-accent-500 font-sans font-semibold text-lg">+</span>
-              </div>
-              <p className="text-xs font-medium text-ink-secondary flex items-center gap-1.5">
-                <Users className="w-3.5 h-3.5 text-accent-secondary shrink-0" />
-                Teams & workspaces
-              </p>
-            </StaggerItem>
-
-            {/* Metric 4: Sub-second SLA */}
-            <StaggerItem className="flex flex-col items-center justify-center space-y-1">
-              <div className="flex items-center gap-1 font-mono text-xl sm:text-2xl font-bold text-ink-primary tabular-nums">
-                <span className="text-accent-500 font-sans text-lg font-normal">&lt;</span>
-                <CountUp value={0.35} decimals={2} duration={1.8} suffix="s" />
-              </div>
-              <p className="text-xs font-medium text-ink-secondary flex items-center gap-1.5">
-                <Zap className="w-3.5 h-3.5 text-accent-500 shrink-0" />
-                Average parser latency
-              </p>
-            </StaggerItem>
-          </StaggerGrid>
-        </Container>
-      </AnimatedSection>
+      <HardwareTelemetryLedger />
 
       {/* =========================================================================
-          SECTION 3: FLAGSHIP MICRO-SAAS PRODUCT STUDIO (Widescreen 1380px Stage)
+          BEAT 3: MANDATORY TAGLINE REVEAL (Skill Rule B11)
+          Apple & Stripe Press Reading Cadence
           ========================================================================= */}
-      <AnimatedSection id="product-studio" className="py-20 md:py-28 bg-canvas-base border-b border-[rgba(13,37,61,0.08)]">
+      <TaglineReveal />
+
+      {/* =========================================================================
+          BEAT 4: FLAGSHIP MICRO-SAAS BENTO WORKBENCHES (Widescreen 1380px Stage)
+          ========================================================================= */}
+      <AnimatedSection id="product-studio" className="py-14 md:py-20 bg-surface-canvas border-b border-border-subtle">
         <Container size="wide">
           <Reveal delay={0} y={24}>
-            <div className="max-w-2xl mb-12 text-left space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-50 border border-accent-500/20 text-accent-500 text-xs font-mono font-semibold">
-                <Activity className="w-3.5 h-3.5" />
-                <span>Interactive Product Studio</span>
-              </div>
-              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-normal text-ink-primary leading-tight tracking-display">
+            <div className="max-w-2xl mb-12 text-left space-y-3">
+              <p className="text-xs font-mono font-semibold uppercase tracking-[0.14em] text-accent-primary">
+                Autonomous Workbenches
+              </p>
+
+              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-normal text-text-primary leading-tight tracking-display">
                 Purpose-built tools. <br />
-                <span className="italic text-accent-500 font-normal">Zero operational drag.</span>
+                <span className="font-medium text-text-primary">Zero operational drag.</span>
               </h2>
-              <p className="fluid-body text-ink-body leading-relaxed max-w-xl text-pretty">
+              <p className="fluid-body text-text-secondary leading-relaxed max-w-xl text-pretty">
                 No bloated all-in-one platforms. Each utility does exactly one operational job with deterministic accuracy, sub-second speed, and ephemeral memory isolation.
               </p>
             </div>
@@ -231,191 +158,151 @@ export default function HomePage() {
           <Reveal delay={0.2} y={28}>
             <ProductStudio />
           </Reveal>
-
         </Container>
       </AnimatedSection>
 
       {/* =========================================================================
-          SECTION 4: CONNECTED 3-STAGE EXECUTION PIPELINE
+          BEAT 5: EXECUTION PIPELINE & OPERATIONAL ROI DIAGNOSTIC
           ========================================================================= */}
-      <AnimatedSection className="py-20 md:py-28 bg-canvas-paper border-b border-[rgba(13,37,61,0.08)]">
+      <AnimatedSection className="py-14 md:py-20 bg-surface-panel border-b border-border-subtle" id="pipeline-roi">
         <Container size="default">
-          <ConnectedPipelineRail />
-        </Container>
-      </AnimatedSection>
+          <Reveal delay={0} y={20}>
+            <div className="max-w-2xl mb-12 text-left space-y-3">
+              <p className="text-xs font-mono font-semibold uppercase tracking-[0.14em] text-accent-primary">
+                Execution Architecture &amp; Savings
+              </p>
 
-      {/* =========================================================================
-          SECTION 5: OPERATIONAL DRAG & ROI CALCULATOR
-          ========================================================================= */}
-      <AnimatedSection className="py-20 md:py-28 bg-canvas-base border-b border-[rgba(13,37,61,0.08)]">
-        <Container size="default">
-          <RoiCalculator />
-        </Container>
-      </AnimatedSection>
-
-      {/* =========================================================================
-          SECTION 6: BESPOKE ENTERPRISE SYSTEM TOPOLOGY MATRIX
-          ========================================================================= */}
-      <AnimatedSection className="py-20 md:py-28 bg-canvas-paper border-b border-[rgba(13,37,61,0.08)]">
-        <Container size="default">
-          <EnterpriseBlueprintMatrix />
-        </Container>
-      </AnimatedSection>
-
-      {/* =========================================================================
-          SECTION 7: CORE ARCHITECTURAL SPEC MATRIX
-          ========================================================================= */}
-      <AnimatedSection className="py-20 md:py-28 bg-canvas-base border-b border-[rgba(13,37,61,0.08)]">
-        <Container size="default">
-          <ArchitecturalSpecMatrix />
-        </Container>
-      </AnimatedSection>
-
-      {/* =========================================================================
-          SECTION 8: AI SKILL MISSION & YOUTH ENABLEMENT
-          ========================================================================= */}
-      <AnimatedSection className="py-20 md:py-28 bg-canvas-base border-t border-[rgba(13,37,61,0.08)]">
-        <SkillMissionSection />
-      </AnimatedSection>
-
-      {/* =========================================================================
-          SECTION 9: TECHNICAL ARCHITECTURE & FAQ ACCORDION
-          ========================================================================= */}
-      <AnimatedSection className="py-20 md:py-28 bg-canvas-paper border-y border-[rgba(13,37,61,0.08)]">
-        <Container size="default">
-          <HomeFaqAccordion />
-        </Container>
-      </AnimatedSection>
-
-      {/* =========================================================================
-          SECTION 10: MANDATORY TAGLINE REVEAL MANIFESTO (Skill B11)
-          ========================================================================= */}
-      <AnimatedSection className="relative py-24 md:py-32 bg-canvas-base border-b border-[rgba(13,37,61,0.08)] overflow-hidden">
-        {/* Ambient radial warmth on parchment */}
-        <div
-          className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(194,85,58,0.05)_0%,transparent_70%)]"
-          aria-hidden="true"
-        />
-
-        <Container size="narrow" className="relative z-10">
-          {/* Top Hairline Gradient Divider */}
-          <div className="hairline-divider-gradient mb-12" aria-hidden="true" />
-
-          <div className="relative text-center space-y-8 px-4 sm:px-8">
-            {/* Large Decorative Instrument Serif Opening Quote Watermark */}
-            <span
-              aria-hidden="true"
-              className="font-display text-8xl sm:text-9xl md:text-[11rem] text-accent-500/10 leading-none select-none pointer-events-none absolute -top-12 sm:-top-16 left-1/2 -translate-x-1/2"
-            >
-              “
-            </span>
-
-            <h3 className="font-display text-3xl sm:text-4xl md:text-5xl text-ink-primary font-normal leading-snug relative z-10 max-w-2xl mx-auto text-pretty">
-              <TextReveal
-                text="We do not build generic chatbots that guess. We engineer high-precision deterministic tools that do one job exceptionally well."
-                splitBy="word"
-                as="span"
-                stagger={0.04}
-              />
-            </h3>
-
-            <div className="pt-2 relative z-10 space-y-1">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-canvas-recessed/60 border border-[rgba(13,37,61,0.08)] text-xs font-mono font-medium text-ink-primary mb-2">
-                <Terminal className="w-3.5 h-3.5 text-accent-500" />
-                <span>NorAI Engineering Philosophy</span>
-              </div>
-              <p className="text-sm font-semibold text-ink-primary">Core Engineering Team</p>
-              <p className="text-xs text-ink-secondary">Engineered in Uttar Pradesh, India</p>
+              <h3 className="font-display text-3xl sm:text-4xl md:text-5xl font-normal text-text-primary leading-tight">
+                Quantified efficiency. <br />
+                <span className="font-medium text-text-primary">Sub-second payload execution.</span>
+              </h3>
+              <p className="text-sm md:text-base text-text-secondary leading-relaxed max-w-xl">
+                Trace payload execution through ingest, neural vector scoring, and ephemeral flush — then calculate your organization&apos;s annual payroll reclamation.
+              </p>
             </div>
+          </Reveal>
+
+          {/* Connected Pipeline Trace */}
+          <div className="mb-14">
+            <InteractiveCircuitTrace />
           </div>
 
-          {/* Bottom Hairline Gradient Divider */}
-          <div className="hairline-divider-gradient mt-12" aria-hidden="true" />
+          {/* ROI Calculator */}
+          <div className="pt-8 border-t border-border-subtle">
+            <RoiCalculator />
+          </div>
         </Container>
       </AnimatedSection>
 
       {/* =========================================================================
-          SECTION 11: PRE-FOOTER HIGH-CONVERSION CONSOLE
+          BEAT 6: SOVEREIGN ENTERPRISE & MCP AGENT CONSOLE (Dark Obsidian Breakout)
+          Supabase & Vercel Enterprise Inspired Breakout
           ========================================================================= */}
-      <AnimatedSection as="aside" aria-label="Get started" role="complementary" className="py-20 md:py-28 bg-canvas-base">
+      <EnterpriseMcpDiptych />
+
+      {/* =========================================================================
+          BEAT 7: REGIONAL IMPACT DOSSIER: AI SKILL MISSION (Stripe Press Monograph)
+          ========================================================================= */}
+      <SkillMissionSection />
+
+      {/* =========================================================================
+          BEAT 8: ARCHITECTURAL SPEC MATRIX & TECHNICAL ARCHITECTURE FAQ
+          ========================================================================= */}
+      <AnimatedSection className="py-14 md:py-20 bg-surface-panel border-b border-border-subtle" id="spec-matrix">
         <Container size="default">
-          <div className="rounded-3xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] p-8 sm:p-12 md:p-16 text-center shadow-lg relative overflow-hidden">
-            {/* Ambient radial warmth on parchment */}
-            <div
-              className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(194,85,58,0.04)_0%,transparent_70%)]"
-              aria-hidden="true"
-            />
+          <Reveal delay={0} y={20}>
+            <div className="max-w-2xl mb-12 text-left space-y-3">
+              <p className="text-xs font-mono font-semibold uppercase tracking-[0.14em] text-accent-primary">
+                Verifiable Standards
+              </p>
 
+              <h3 className="font-display text-3xl sm:text-4xl md:text-5xl font-normal text-text-primary leading-tight">
+                Deterministic standards. <br />
+                <span className="font-medium text-text-primary">Direct technical answers.</span>
+              </h3>
+              <p className="text-sm md:text-base text-text-secondary leading-relaxed max-w-xl">
+                Review our verifiable SLA guarantees, zero-logging data isolation specs, and integration guidelines.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="space-y-14">
+            <ArchitecturalSpecMatrix />
+            <div className="pt-10 border-t border-border-subtle">
+              <HomeFaqAccordion />
+            </div>
+          </div>
+        </Container>
+      </AnimatedSection>
+
+      {/* =========================================================================
+          BEAT 9: DUAL-FUNNEL CLOSING CONSOLE & TESTIMONIAL PROOF
+          ========================================================================= */}
+      <AnimatedSection as="aside" aria-label="Get started" role="complementary" className="py-14 md:py-20 bg-surface-canvas">
+        <Container size="default">
+          <div className="rounded-xl bg-surface-panel border border-border-strong p-6 sm:p-10 md:p-12 text-center relative overflow-hidden">
             <div className="max-w-2xl mx-auto space-y-8 relative z-10">
-              {/* Urgency / Beta Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent-50 border border-accent-500/25 text-accent-600 text-xs font-mono font-semibold">
-                <span className="w-1.5 h-1.5 rounded-full bg-accent-500 animate-pulse" />
-                <span>Limited Beta Access · Early Adopter Tier Free for 50 Resumes/mo</span>
-              </div>
+              <p className="text-xs font-mono font-semibold uppercase tracking-[0.14em] text-accent-primary">
+                Immediate Access
+              </p>
 
-              {/* Headline */}
-              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-normal text-ink-primary leading-tight tracking-display">
+              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-normal text-text-primary leading-tight tracking-display">
                 Ready to eliminate <br />
-                <span className="italic text-accent-500 font-normal">operational drag?</span>
+                <span className="font-medium text-text-primary">manual operational drag?</span>
               </h2>
 
-              <p className="fluid-body text-ink-body leading-relaxed max-w-xl mx-auto text-pretty">
-                Deploy any of our self-serve tools right now with instant API keys or consult with our core engineering team for custom enterprise VPC workflow scoping.
+              <p className="fluid-body text-text-secondary leading-relaxed max-w-xl mx-auto text-pretty">
+                Deploy any of our self-serve tools right now with 50 free parse credits, or schedule a direct architectural audit with our core engineering team for private VPC deployments.
               </p>
 
               {/* Micro-Testimonial Card */}
-              <div className="rounded-2xl border border-[rgba(13,37,61,0.08)] bg-canvas-base/80 p-5 sm:p-6 text-left shadow-sm max-w-lg mx-auto space-y-3">
-                <p className="font-sans text-sm text-ink-body leading-relaxed italic text-pretty">
-                  “NorAI cut our candidate screening time from 4 hours to under 15 minutes with verified skill schema matching and zero false positives.”
+              <div className="rounded-xl border border-border-subtle bg-surface-canvas p-5 sm:p-6 text-left max-w-lg mx-auto space-y-3">
+                <p className="font-sans text-sm text-text-secondary leading-relaxed italic text-pretty">
+                  &ldquo;NorAI cut our candidate screening time from 4 hours to under 15 minutes with verified skill schema matching and zero false positives.&rdquo;
                 </p>
-                <div className="flex items-center justify-between border-t border-[rgba(13,37,61,0.06)] pt-3 text-xs">
+                <div className="flex items-center justify-between border-t border-border-subtle pt-3 text-xs">
                   <div>
-                    <p className="font-semibold text-ink-primary">Talent Acquisition Lead</p>
-                    <p className="text-ink-secondary">Regional Logistics & Supply Platform</p>
+                    <p className="font-semibold text-text-primary">Talent Acquisition Lead</p>
+                    <p className="text-text-muted">Regional Logistics &amp; Supply Platform</p>
                   </div>
-                  <span className="font-mono text-[11px] text-accent-secondary font-medium bg-sage-100/70 border border-accent-secondary/20 px-2 py-0.5 rounded">
-                    Verified User
+                  <span className="font-mono text-[11px] text-text-muted font-medium">
+                    Verified Production User
                   </span>
                 </div>
               </div>
 
-              {/* Dual Action CTAs with Tightened Proximity */}
+              {/* Dual Action: Primary CTA + Secondary Link */}
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
-                <Link href="/contact?service=enterprise-audit" className="w-full sm:w-auto">
-                  <Button
-                    variant="primary"
-                    size="lg"
-                    className="w-full sm:w-auto justify-center group shadow-accent hover:shadow-hover hover:-translate-y-0.5 active:scale-[0.98] transition-all"
-                  >
-                    <span>Schedule Architecture Audit</span>
-                    <ArrowRight className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </Link>
                 <Link href="/products" className="w-full sm:w-auto">
+                  <MagneticButton strength={12} className="w-full sm:w-auto">
+                    <Button
+                      variant="primary"
+                      size="lg"
+                      className="w-full sm:w-auto justify-center group active:scale-[0.98] transition-transform cursor-pointer whitespace-nowrap"
+                    >
+                      <span>Start Free Sandbox (50 Credits)</span>
+                      <ArrowRight className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-1" />
+                    </Button>
+                  </MagneticButton>
+                </Link>
+                <Link href="/contact?service=enterprise-audit" className="w-full sm:w-auto">
                   <Button
                     variant="secondary"
                     size="lg"
-                    className="w-full sm:w-auto justify-center hover:-translate-y-0.5 active:scale-[0.98] transition-all"
+                    className="w-full sm:w-auto justify-center active:scale-[0.98] transition-transform cursor-pointer whitespace-nowrap"
                   >
-                    Explore all 4 products
+                    Schedule Architecture Audit &rarr;
                   </Button>
                 </Link>
               </div>
 
-              {/* Trust badges footer with Tightened Grouping */}
-              <div className="pt-6 border-t border-[rgba(13,37,61,0.08)] flex flex-wrap items-center justify-center gap-4 text-xs text-ink-secondary">
-                <div className="flex items-center gap-1.5">
-                  <Zap className="w-3.5 h-3.5 text-accent-500" />
-                  <span>Sub-second response SLA</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <ShieldCheck className="w-3.5 h-3.5 text-accent-secondary" />
-                  <span>Ephemeral data isolation</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-accent-500" />
-                  <span>Engineered in Uttar Pradesh, India</span>
-                </div>
+              {/* Trust Badges Footer */}
+              <div className="pt-6 border-t border-border-subtle flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-text-muted">
+                <span>Sub-second response SLA</span>
+                <span className="text-border-strong select-none">/</span>
+                <span>Ephemeral RAM isolation</span>
+                <span className="text-border-strong select-none">/</span>
+                <span>Engineered in Uttar Pradesh</span>
               </div>
             </div>
           </div>

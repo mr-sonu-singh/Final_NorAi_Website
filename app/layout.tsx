@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans, Instrument_Serif, JetBrains_Mono } from 'next/font/google';
 import { buildMetadata, getOrganizationJsonLd, getWebSiteJsonLd, JsonLd } from '@/lib/seo';
-import { MotionProvider, AnalyticsProvider, ToastProvider } from '@/providers';
+import { MotionProvider, SmoothScrollProvider, AnalyticsProvider, ToastProvider } from '@/providers';
 import './globals.css';
 
 const jakarta = Plus_Jakarta_Sans({
@@ -55,11 +55,13 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        <MotionProvider>
-          <AnalyticsProvider>
-            <ToastProvider>{children}</ToastProvider>
-          </AnalyticsProvider>
-        </MotionProvider>
+        <SmoothScrollProvider>
+          <MotionProvider>
+            <AnalyticsProvider>
+              <ToastProvider>{children}</ToastProvider>
+            </AnalyticsProvider>
+          </MotionProvider>
+        </SmoothScrollProvider>
       </body>
     </html>
   );

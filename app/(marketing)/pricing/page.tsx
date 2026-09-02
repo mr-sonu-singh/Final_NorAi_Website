@@ -8,71 +8,130 @@ import { Button } from '@/components/atoms/Button';
 import { Link } from '@/components/atoms/Link';
 import { ComparisonTable } from '@/components/organisms/sections/ComparisonTable';
 import {
-  ArrowRight,
-  ArrowUpRight,
-  Clock,
   RotateCcw,
   ShieldCheck,
+  Headphones,
+  ArrowRight,
 } from 'lucide-react';
 import { buildMetadata } from '@/lib/seo';
-import { PricingToggleClient, type PricingTier } from './PricingToggleClient';
+import {
+  PricingToggleClient,
+  type PricingTier,
+  type IndividualToolPlan,
+} from './PricingToggleClient';
+import { PricingEstimator } from './PricingEstimator';
+import { PricingFaqAccordion, type PricingFaqItem } from './PricingFaqAccordion';
 
 export const metadata = buildMetadata({
   path: '/pricing',
-  title: 'Pricing & Plans',
+  title: 'Pricing & Infrastructure Plans',
   description:
-    'Transparent pricing for NorAI micro-SaaS tools. Starter, Pro, and Enterprise tiers with sub-second latency guarantees. No hidden fees.',
+    'Transparent, deterministic pricing for NorAI micro-SaaS tools and high-throughput AI pipelines. Sub-second latency guarantees with zero hidden costs.',
 });
 
 const TIERS: PricingTier[] = [
   {
     id: 'starter',
     tierLabel: 'Starter',
-    audience: 'Individual & Small Projects',
-    description: 'Essential micro-AI tools for freelancers and early-stage startups.',
+    audience: 'Freelancers & Early Teams',
+    description: 'Essential micro-AI pipeline tools for individuals and early-stage product teams.',
     monthlyPrice: 29,
     annualPrice: 23,
+    latencySla: 'p95 < 950ms (Shared Pool)',
     features: [
-      '5,000 AI API requests / mo',
-      'Sub-1s processing latency guarantee',
-      'Access to all 4 micro-SaaS tools',
-      'Standard email support',
+      '5,000 AI API operations / mo',
+      'Sub-1s latency guarantee across all tools',
+      'All 4 micro-SaaS applications included',
+      'Standard REST API & export formats (JSON, Markdown)',
+      'Community & email support (24h response)',
     ],
-    cta: 'Start screening free',
+    cta: 'Start 14-day free trial',
+    href: '/contact?tier=starter',
     highlighted: false,
   },
   {
     id: 'pro',
     tierLabel: 'Pro',
-    audience: 'Growing Businesses',
-    description: 'High-throughput AI pipelines with webhooks and priority SLA.',
+    audience: 'High-Throughput Businesses',
+    description: 'High-throughput automation pipelines with dedicated compute and priority SLAs.',
     monthlyPrice: 99,
     annualPrice: 79,
+    latencySla: 'p95 < 350ms (Dedicated Pool)',
     features: [
-      '50,000 AI API requests / mo',
-      'Priority sub-500ms processing SLA',
-      'Webhooks & REST API access',
-      'Custom candidate & parser rules',
-      '24/7 priority chat support',
+      '50,000 AI API operations / mo',
+      'Sub-350ms processing SLA guarantee',
+      'Model Context Protocol (MCP) & Webhook triggers',
+      'Custom candidate scoring & parsing rules',
+      'Team seats (up to 5 members)',
+      'Priority engineer chat support (4h response)',
     ],
-    cta: 'Take better notes',
+    cta: 'Get started with Pro',
+    href: '/contact?tier=pro',
     highlighted: true,
   },
   {
     id: 'enterprise',
     tierLabel: 'Enterprise',
-    audience: 'Custom AI Infrastructure',
-    description: 'Dedicated compute clusters, custom model fine-tuning, and enterprise SLAs.',
+    audience: 'Dedicated VPC & Hardware',
+    description: 'Isolated compute clusters, custom model fine-tuning (LoRA), and zero-egress SLAs.',
     monthlyPrice: null,
     annualPrice: null,
+    latencySla: 'p95 < 100ms (Isolated VPC)',
     features: [
       'Unlimited AI request throughput',
-      'Custom model fine-tuning & private connectors',
-      'Dedicated cluster & 99.99% uptime SLA',
-      'Dedicated solution architect',
+      'Private on-prem / VPC vLLM deployment',
+      'Custom model fine-tuning & ATS connector development',
+      '99.99% uptime guarantee with contractual SLA',
+      'Dedicated solution architect & Slack channel',
     ],
-    cta: 'Talk to us',
+    cta: 'Schedule architecture call',
+    href: '/contact?service=enterprise-capacity',
     highlighted: false,
+  },
+];
+
+const INDIVIDUAL_TOOLS: IndividualToolPlan[] = [
+  {
+    id: 'resume-shortlister',
+    name: 'AI Resume Shortlister',
+    tagline: 'Automated candidate screening and weighted scoring for recruitment teams.',
+    freeLimit: '50 resumes / mo',
+    paidPrice: '$29 / mo (1,000 resumes)',
+    latency: '< 0.35s parser latency',
+    keyFeature: 'Weighted JSON scorecard & skill vector extraction',
+    href: '/products/resume-shortlister',
+    badge: 'Popular',
+  },
+  {
+    id: 'course-note-taker',
+    name: 'Course Note-Taker',
+    tagline: 'Turn video lectures and webinars into structured study guides in seconds.',
+    freeLimit: '3 hours audio / mo',
+    paidPrice: '$12 / mo (25 hours)',
+    latency: '< 0.5s summary latency',
+    keyFeature: 'LaTeX formula parsing & active-recall quiz cards',
+    href: '/products/course-note-taker',
+  },
+  {
+    id: 'chat-digest',
+    name: 'Community Chat Digest',
+    tagline: 'Automated daily intelligence briefs for Discord, Telegram, and Slack communities.',
+    freeLimit: '1 channel free',
+    paidPrice: '$19 / mo (10 channels)',
+    latency: '< 0.4s digest latency',
+    keyFeature: 'Token-efficient batch deduplication & sentiment radar',
+    href: '/products/chat-digest',
+  },
+  {
+    id: 'smart-dainik-news',
+    name: 'Smart Dainik Gazette',
+    tagline: 'Instant, verified employment gazette alerts and regional policy summaries.',
+    freeLimit: '100% Free for citizens',
+    paidPrice: 'Institutional licensing',
+    latency: '< 0.2s alert latency',
+    keyFeature: 'Bilingual Hindi/English eligibility matchers',
+    href: '/products/smart-dainik-news',
+    badge: 'Free',
   },
 ];
 
@@ -82,129 +141,247 @@ const COMPARISON_COLUMNS = [
   { id: 'enterprise', label: 'Enterprise' },
 ];
 
-const COMPARISON_ROWS = [
+const COMPARISON_CATEGORIES = [
   {
-    id: 'requests',
-    label: 'Monthly AI requests',
-    values: { starter: '5,000', pro: '50,000', enterprise: 'Unlimited' },
+    name: 'Compute & Telemetry',
+    rows: [
+      {
+        id: 'requests',
+        label: 'Monthly AI operations',
+        hint: 'Combined quota across all micro-SaaS tools and API calls',
+        values: { starter: '5,000', pro: '50,000', enterprise: 'Unlimited' },
+      },
+      {
+        id: 'latency',
+        label: 'p95 Latency SLA',
+        hint: 'Guaranteed processing turnaround on warm instances',
+        values: { starter: '< 950ms', pro: '< 350ms', enterprise: '< 100ms' },
+      },
+      {
+        id: 'memory',
+        label: 'Memory state persistence',
+        hint: 'Data processed in ephemeral RAM without disk writes',
+        values: { starter: 'In-RAM only', pro: 'In-RAM only', enterprise: 'Zero-Egress VPC' },
+      },
+      {
+        id: 'concurrency',
+        label: 'Concurrent worker threads',
+        hint: 'Simultaneous document & stream parsing capacity',
+        values: { starter: '2 workers', pro: '10 workers', enterprise: 'Dedicated cluster' },
+      },
+    ],
   },
   {
-    id: 'latency',
-    label: 'Latency guarantee',
-    values: { starter: '< 1s', pro: '< 500ms', enterprise: '< 100ms' },
+    name: 'Micro-SaaS Access & Capabilities',
+    rows: [
+      {
+        id: 'shortlister',
+        label: 'AI Resume Shortlister',
+        hint: 'PDF/DOCX parsing with weighted JSON skill scorecards',
+        values: { starter: true, pro: true, enterprise: true },
+      },
+      {
+        id: 'notetaker',
+        label: 'Course Note-Taker',
+        hint: 'Audio/video ingestion with LaTeX formula rendering',
+        values: { starter: true, pro: true, enterprise: true },
+      },
+      {
+        id: 'chatdigest',
+        label: 'Community Chat Digest',
+        hint: 'Topic clustering, deduplication, and sentiment radar',
+        values: { starter: true, pro: true, enterprise: true },
+      },
+      {
+        id: 'smartdainik',
+        label: 'Smart Dainik Gazette Alerts',
+        hint: 'Bilingual Hindi/English government job matching',
+        values: { starter: true, pro: true, enterprise: true },
+      },
+    ],
   },
   {
-    id: 'api',
-    label: 'Webhooks & REST API access',
-    values: { starter: true, pro: true, enterprise: true },
+    name: 'API & Developer Integrations',
+    rows: [
+      {
+        id: 'mcp',
+        label: 'Model Context Protocol (MCP) Endpoints',
+        hint: 'Agent-ready tool definitions for Claude Desktop & Cursor',
+        values: { starter: false, pro: true, enterprise: true },
+      },
+      {
+        id: 'webhooks',
+        label: 'Webhooks & REST API access',
+        hint: 'Direct programmatic pipeline integration',
+        values: { starter: 'Basic REST', pro: 'Full REST + Webhooks', enterprise: 'Full Custom SDK' },
+      },
+      {
+        id: 'customrules',
+        label: 'Custom candidate & parser rules',
+        hint: 'Define proprietary rubrics and regex scoring',
+        values: { starter: false, pro: true, enterprise: true },
+      },
+      {
+        id: 'exportformats',
+        label: 'Export formats supported',
+        hint: 'Data interoperability options',
+        values: { starter: 'JSON, TXT', pro: 'JSON, LaTeX, Markdown', enterprise: 'All + ATS Direct Sync' },
+      },
+    ],
   },
   {
-    id: 'rules',
-    label: 'Custom candidate & parsing rules',
-    values: { starter: false, pro: true, enterprise: true },
-  },
-  {
-    id: 'finetuning',
-    label: 'Custom model fine-tuning & private connectors',
-    values: { starter: false, pro: false, enterprise: true },
-  },
-  {
-    id: 'sla',
-    label: 'Uptime SLA',
-    values: { starter: '99.5%', pro: '99.9%', enterprise: '99.99%' },
+    name: 'Security, Governance & Support',
+    rows: [
+      {
+        id: 'training',
+        label: 'Zero Model Training Guarantee',
+        hint: 'Your proprietary documents are never used to train models',
+        values: { starter: true, pro: true, enterprise: true },
+      },
+      {
+        id: 'finetuning',
+        label: 'Custom LoRA Fine-Tuning & Private Weights',
+        hint: 'Dedicated quantized open models for proprietary domains',
+        values: { starter: false, pro: false, enterprise: true },
+      },
+      {
+        id: 'support',
+        label: 'Support SLA & Channels',
+        hint: 'Real engineers and founders answering',
+        values: { starter: 'Email (24h SLA)', pro: 'Priority Chat (4h SLA)', enterprise: 'Dedicated Slack (1h SLA)' },
+      },
+      {
+        id: 'uptime',
+        label: 'Uptime SLA',
+        hint: 'Contractual infrastructure availability guarantee',
+        values: { starter: '99.5%', pro: '99.9%', enterprise: '99.99%' },
+      },
+    ],
   },
 ];
 
 const ASSURANCES = [
   {
-    icon: RotateCcw,
-    tone: 'text-sage-600 bg-sage-100',
-    title: 'Cancel anytime',
-    body: 'Upgrade, downgrade, or leave from your dashboard. No phone calls required.',
-  },
-  {
+    tag: 'PRIVACY',
     icon: ShieldCheck,
-    tone: 'text-gold-600 bg-gold-100',
-    title: 'Data stays yours',
-    body: 'Your documents are processed in memory and never used to train public models.',
+    title: 'Zero Model Training & In-Memory RAM',
+    body: 'Your resumes, audio files, and chat logs are processed ephemerally in RAM. We never store raw documents or train public models on your data.',
   },
   {
-    icon: Clock,
-    tone: 'text-terra-600 bg-terra-100',
-    title: 'Engineers on desk',
-    body: 'Real founders and engineers answer during business hours — Monday to Saturday, 9 AM to 8 PM IST.',
+    tag: 'FLEXIBILITY',
+    icon: RotateCcw,
+    title: 'Self-Serve Cancellation & Pro-Rated Upgrades',
+    body: 'Upgrade, downgrade, or cancel anytime directly from your dashboard with one click. Pro-rated credits are calculated automatically with zero friction.',
+  },
+  {
+    tag: 'ENGINEERING SUPPORT',
+    icon: Headphones,
+    title: 'Real Engineers on Desk (9 AM – 8 PM IST)',
+    body: 'No outsourced ticket centers. Real founding engineers answer technical inquiries Monday through Saturday across our development hubs.',
   },
 ];
 
-const FAQ_PREVIEW = [
+const PRICING_FAQS: PricingFaqItem[] = [
   {
-    question: 'Can I change or upgrade my plan later?',
+    id: 'plan-changes',
+    tag: 'Billing',
+    question: 'Can I change, upgrade, or pause my plan anytime?',
     answer:
-      'Yes. Upgrade, downgrade, or cancel at any time from your dashboard, with pro-rated credits applied automatically.',
-    href: '/faq#billing',
-    linkText: 'Read about changing plans',
+      'Yes. You can switch between Monthly and Annual billing or upgrade tiers anytime from your dashboard. Pro-rated differences are automatically computed and credited immediately.',
   },
   {
-    question: 'What happens if I exceed my monthly request limit?',
+    id: 'usage-limits',
+    tag: 'Usage & Quotas',
+    question: 'What happens if our team exceeds the monthly operation cap?',
     answer:
-      'We notify you at 80% and 100% of your cap. Extra requests bill at a simple pay-as-you-go rate of $0.002 per request — no service interruption.',
-    href: '/faq#billing',
-    linkText: 'See how usage limits work',
+      'We notify your workspace administrator at 80% and 100% capacity. Extra operations continue seamlessly at a transparent pay-as-you-go rate of $0.002 per operation with zero pipeline interruption.',
   },
   {
+    id: 'free-trial',
+    tag: 'Evaluation',
     question: 'How does the 14-day free trial work?',
     answer:
-      'The trial includes full Starter and Pro features with 1,000 free API requests. No credit card required to sign up.',
-    href: '/faq#product',
-    linkText: 'Learn about the free trial',
+      'The trial grants full access to Starter and Pro capabilities with 1,000 free operations across all four micro-tools. No credit card is required to create an account and benchmark latency.',
+  },
+  {
+    id: 'mcp-support',
+    tag: 'Integrations',
+    question: 'How do Model Context Protocol (MCP) endpoints work?',
+    answer:
+      'Pro and Enterprise tiers include pre-configured MCP manifests that allow AI agents (in Claude Desktop, Cursor, or LangChain) to directly query the Resume Shortlister and Note-Taker as deterministic tools.',
+  },
+  {
+    id: 'custom-hardware',
+    tag: 'Enterprise',
+    question: 'Can NorAI deploy on our private AWS/GCP VPC or on-premise hardware?',
+    answer:
+      'Yes. Our Enterprise tier includes custom vLLM deployment templates, private LoRA quantization, and air-gapped container configurations with zero network egress outside your VPC perimeter.',
   },
 ];
 
 export default function PricingPage() {
   return (
     <div className="min-h-screen bg-canvas-base font-sans text-ink-primary">
-      {/* Hero */}
+      {/* Hero Header */}
       <Section className="relative overflow-hidden pb-4 pt-12 md:pb-6 md:pt-20">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-canvas-paper [mask-image:linear-gradient(to_bottom,black,transparent)]"
+          className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-canvas-paper [mask-image:linear-gradient(to_bottom,black,transparent)]"
         />
         <Container size="default" className="relative z-10">
-          <div className="mx-auto max-w-3xl space-y-6 text-center">
-            <p className="inline-flex items-center gap-2 rounded-full border border-line-subtle bg-canvas-pure px-3 py-1 text-[13px] font-medium text-ink-secondary">
-              Pricing
+          <div className="mx-auto max-w-3xl space-y-5 text-center">
+            <p className="inline-flex items-center gap-2 rounded-full border border-line-subtle bg-canvas-pure px-3.5 py-1 font-mono text-xs font-semibold uppercase tracking-wider text-accent-primary shadow-xs">
+              Deterministic Pricing
             </p>
             <Heading
               as="h1"
               variant="display-xl"
-              className="text-balance text-ink-primary"
+              className="text-balance text-ink-primary tracking-tight"
             >
-              Simple prices, serious tools.
+              Simple prices. Serious instrument craft.
             </Heading>
-            <Text variant="body-lg" as="p" className="mx-auto max-w-xl leading-relaxed text-ink-body">
-              Pick a plan for the tools you use every day. Choose annual billing and save 20%.
+            <Text variant="body-lg" as="p" className="mx-auto max-w-2xl leading-relaxed text-ink-body">
+              Transparent capacity tiers with sub-second latency guarantees and zero data retention.
+              Choose an all-access platform suite or license individual micro-tools.
             </Text>
           </div>
         </Container>
       </Section>
 
-      {/* Interactive toggle & tier cards */}
-      <PricingToggleClient tiers={TIERS} />
+      {/* Interactive Billing Toggle, View Mode Switch & Tier Cards */}
+      <PricingToggleClient tiers={TIERS} individualTools={INDIVIDUAL_TOOLS} />
 
-      {/* Objection-handling strip */}
-      <Section variant="sunken" className="py-12">
+      {/* Workload & Compute Estimator Calculator */}
+      <PricingEstimator />
+
+      {/* Tactile Engineering Assurance Index Cards */}
+      <Section className="py-16 lg:py-20">
         <Container size="default">
-          <StaggerGrid className="grid grid-cols-1 gap-8 sm:grid-cols-3" stagger={0.06}>
+          <div className="mb-10 text-center max-w-xl mx-auto space-y-2">
+            <p className="font-mono text-xs font-bold uppercase tracking-wider text-accent-primary">
+              The NorAI Guarantee
+            </p>
+            <h2 className="font-display text-2xl sm:text-3xl text-ink-primary">
+              Built on transparency, not fine print.
+            </h2>
+          </div>
+
+          <StaggerGrid className="grid grid-cols-1 gap-6 sm:grid-cols-3" stagger={0.06}>
             {ASSURANCES.map((item) => (
               <StaggerItem key={item.title}>
-                <div className="flex items-start gap-4">
-                  <span
-                    className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${item.tone}`}
-                  >
-                    <item.icon className="h-5 w-5" aria-hidden="true" />
-                  </span>
-                  <div className="space-y-1">
-                    <h3 className="text-[15px] font-semibold text-ink-primary">{item.title}</h3>
+                <div className="flex h-full flex-col justify-between rounded-2xl border border-line-subtle bg-canvas-paper p-7 shadow-sm transition-shadow hover:shadow-md">
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-ink-secondary">
+                        {item.tag}
+                      </span>
+                      <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent-subtle text-accent-primary">
+                        <item.icon className="h-4 w-4" aria-hidden="true" />
+                      </span>
+                    </div>
+                    <h3 className="font-display text-lg font-bold text-ink-primary">
+                      {item.title}
+                    </h3>
                     <p className="text-sm leading-relaxed text-ink-body">{item.body}</p>
                   </div>
                 </div>
@@ -214,74 +391,51 @@ export default function PricingPage() {
         </Container>
       </Section>
 
-      {/* Comparison table */}
+      {/* Categorized Detailed Feature Comparison Table */}
       <ComparisonTable
-        heading="Compare every plan"
+        heading="Comprehensive Capability Matrix"
+        description="Side-by-side technical breakdown across compute limits, integrations, and governance SLAs."
         columns={COMPARISON_COLUMNS}
-        rows={COMPARISON_ROWS}
-        caption="All plans include access to all four NorAI tools. Usage limits reset at the start of each billing cycle."
+        categories={COMPARISON_CATEGORIES}
+        caption="All plans include access to all four NorAI micro-tools. Quotas reset automatically at the beginning of each billing cycle."
       />
 
-      {/* FAQ preview */}
-      <Section variant="sunken" className="py-16">
-        <Container size="narrow">
-          <div className="mb-10 max-w-2xl space-y-3">
-            <Heading as="h2" variant="display-md" className="text-balance text-ink-primary">
-              Questions people ask before paying
-            </Heading>
-            <Text variant="body-md" className="text-ink-body">
-              The short versions are below — the full answers live on the FAQ page.
-            </Text>
-          </div>
-
-          <StaggerGrid className="space-y-3" stagger={0.05}>
-            {FAQ_PREVIEW.map((faq) => (
-              <StaggerItem key={faq.question}>
-                <Link
-                  href={faq.href}
-                  variant="unstyled"
-                  aria-label={`${faq.linkText} — opens the full answer for: ${faq.question}`}
-                  className="group block rounded-xl border border-line-subtle bg-canvas-paper p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-line-strong hover:shadow-hover"
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="space-y-1.5">
-                      <h3 className="text-[17px] font-semibold text-ink-primary">{faq.question}</h3>
-                      <p className="text-sm leading-relaxed text-ink-body">{faq.answer}</p>
-                    </div>
-                    <ArrowUpRight
-                      className="mt-1 h-4 w-4 shrink-0 text-ink-secondary transition-colors duration-200 group-hover:text-terra-500"
-                      aria-hidden="true"
-                    />
-                  </div>
-                </Link>
-              </StaggerItem>
-            ))}
-          </StaggerGrid>
-
-          <div className="pt-6 text-center">
-            <Link href="/faq" variant="standalone">
-              Browse all frequently asked questions <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-          </div>
-        </Container>
-      </Section>
+      {/* In-Place Interactive FAQ Accordion */}
+      <PricingFaqAccordion items={PRICING_FAQS} />
 
       {/* Closing CTA */}
-      <Section className="py-16 lg:py-20">
+      <Section className="py-16 lg:py-24">
         <Container size="default">
           <Reveal>
-            <div className="mx-auto max-w-2xl space-y-5 rounded-2xl border border-line-subtle bg-canvas-paper p-10 text-center shadow-sm sm:p-12">
+            <div className="mx-auto max-w-3xl space-y-6 rounded-3xl border border-line-subtle bg-canvas-paper p-10 text-center shadow-md sm:p-14">
+              <span className="font-mono text-xs font-bold uppercase tracking-wider text-accent-primary">
+                Custom Architecture Support
+              </span>
               <Heading as="h2" variant="display-lg" className="text-balance text-ink-primary">
-                Not sure which plan fits?
+                Need tailored capacity or an on-prem deployment?
               </Heading>
-              <Text variant="body-md" className="leading-relaxed text-ink-body">
-                Tell us what you are building and we will point you to the right tier — or scope a
-                custom pipeline if none of them do.
+              <Text variant="body-md" className="mx-auto max-w-xl leading-relaxed text-ink-body">
+                Tell our engineering team about your throughput constraints and compliance requirements.
+                We will configure a dedicated VPC cluster or custom fine-tuned pipeline.
               </Text>
-              <div className="pt-2">
-                <Link href="/contact" variant="unstyled" aria-label="Contact our team about pricing">
-                  <Button variant="primary" size="lg">
-                    Talk to our team
+              <div className="pt-2 flex flex-wrap items-center justify-center gap-4">
+                <Link
+                  href="/contact?service=enterprise-audit"
+                  variant="unstyled"
+                  aria-label="Talk to our engineering team about pricing"
+                >
+                  <Button variant="primary" size="lg" className="group">
+                    <span>Talk to our engineers</span>
+                    <ArrowRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                </Link>
+                <Link
+                  href="/services"
+                  variant="unstyled"
+                  aria-label="Explore Bespoke Enterprise Services"
+                >
+                  <Button variant="secondary" size="lg">
+                    Explore Enterprise Services
                   </Button>
                 </Link>
               </div>
