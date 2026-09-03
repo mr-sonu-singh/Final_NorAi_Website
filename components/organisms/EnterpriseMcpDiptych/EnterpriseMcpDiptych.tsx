@@ -222,10 +222,8 @@ export type QueryPrivateRagInput = z.infer<typeof QueryPrivateRagSchema>;`,
 const DEPLOYMENT_TOPOLOGIES = [
   {
     id: 'vpc',
-    tierNumber: '01',
     title: 'Customer Private VPC',
     badge: 'Zero Public Egress',
-    badgeTone: 'blue',
     description: 'Model inference operates entirely within your AWS, GCP, or Azure perimeter via dedicated PrivateLink peering. No public gateway.',
     specs: [
       { label: 'Network Peering', val: 'AWS PrivateLink / Azure ExpressRoute' },
@@ -236,10 +234,8 @@ const DEPLOYMENT_TOPOLOGIES = [
   },
   {
     id: 'onprem',
-    tierNumber: '02',
     title: 'Air-Gapped Bare Metal',
     badge: 'FIPS 140-2 Compliant',
-    badgeTone: 'green',
     description: 'Containerized Kubernetes release deployed directly on physical on-premises servers. Completely severed from external telemetry.',
     specs: [
       { label: 'Runtime Target', val: 'Air-gapped Kubernetes / Docker' },
@@ -250,10 +246,8 @@ const DEPLOYMENT_TOPOLOGIES = [
   },
   {
     id: 'dedicated',
-    tierNumber: '03',
     title: 'Dedicated Isolated Tenant',
     badge: 'Instant Provisioning',
-    badgeTone: 'yellow',
     description: 'Single-tenant database and dedicated vLLM GPU nodes managed by NorAI with custom token rate limits and 99.99% uptime SLA.',
     specs: [
       { label: 'Provisioning Speed', val: '< 48 Hours to Production' },
@@ -370,7 +364,7 @@ export function EnterpriseMcpDiptych() {
                 <div className="space-y-0.5">
                   <div className="flex items-center gap-2">
                     <span className="font-mono text-xs font-semibold text-text-primary">MCP Tool Registry</span>
-                    <span className="px-2 py-0.5 rounded-full bg-[#E1F3FE] text-[#1F6C9F] text-[10px] font-mono font-semibold">
+                    <span className="px-2.5 py-0.5 rounded-full bg-surface-panel-subtle text-text-secondary border border-border-subtle text-[10px] font-mono font-medium shrink-0 whitespace-nowrap">
                       v2.4 Spec
                     </span>
                   </div>
@@ -511,12 +505,12 @@ export function EnterpriseMcpDiptych() {
               <div className="p-5 sm:p-6 rounded-xl bg-white border border-border-subtle hover:border-border-strong transition-colors space-y-3">
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-2 min-w-0">
-                    <Lock className="w-4 h-4 text-[#1F6C9F] shrink-0" />
+                    <Lock className="w-4 h-4 text-text-secondary shrink-0" />
                     <h3 className="font-sans font-semibold text-sm sm:text-base text-text-primary truncate">
                       Air-Gapped Private VPC Peering
                     </h3>
                   </div>
-                  <span className="px-2 py-0.5 rounded-full bg-[#E1F3FE] text-[#1F6C9F] text-[10px] font-mono font-semibold shrink-0 whitespace-nowrap">
+                  <span className="px-2.5 py-0.5 rounded-full bg-surface-panel-subtle text-text-secondary border border-border-subtle text-[10px] font-mono font-medium shrink-0 whitespace-nowrap">
                     AWS · GCP · Azure
                   </span>
                 </div>
@@ -533,12 +527,12 @@ export function EnterpriseMcpDiptych() {
               <div className="p-5 sm:p-6 rounded-xl bg-white border border-border-subtle hover:border-border-strong transition-colors space-y-3">
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-2 min-w-0">
-                    <Cpu className="w-4 h-4 text-[#346538] shrink-0" />
+                    <Cpu className="w-4 h-4 text-text-secondary shrink-0" />
                     <h3 className="font-sans font-semibold text-sm sm:text-base text-text-primary truncate">
                       Dedicated vLLM GPU Enclaves
                     </h3>
                   </div>
-                  <span className="px-2 py-0.5 rounded-full bg-[#EDF3EC] text-[#346538] text-[10px] font-mono font-semibold shrink-0 whitespace-nowrap">
+                  <span className="px-2.5 py-0.5 rounded-full bg-surface-panel-subtle text-text-secondary border border-border-subtle text-[10px] font-mono font-medium shrink-0 whitespace-nowrap">
                     H100 / L40S Non-Contended
                   </span>
                 </div>
@@ -555,12 +549,12 @@ export function EnterpriseMcpDiptych() {
               <div className="p-5 sm:p-6 rounded-xl bg-white border border-border-subtle hover:border-border-strong transition-colors space-y-3">
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-2 min-w-0">
-                    <ShieldCheck className="w-4 h-4 text-[#9F2F2D] shrink-0" />
+                    <ShieldCheck className="w-4 h-4 text-text-secondary shrink-0" />
                     <h3 className="font-sans font-semibold text-sm sm:text-base text-text-primary truncate">
                       Ephemeral In-VRAM Firewall
                     </h3>
                   </div>
-                  <span className="px-2 py-0.5 rounded-full bg-[#FDEBEC] text-[#9F2F2D] text-[10px] font-mono font-semibold shrink-0 whitespace-nowrap">
+                  <span className="px-2.5 py-0.5 rounded-full bg-surface-panel-subtle text-text-secondary border border-border-subtle text-[10px] font-mono font-medium shrink-0 whitespace-nowrap">
                     0 Bytes Logged
                   </span>
                 </div>
@@ -591,40 +585,26 @@ export function EnterpriseMcpDiptych() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {DEPLOYMENT_TOPOLOGIES.map((topo) => {
-                const isBlue = topo.badgeTone === 'blue';
-                const isGreen = topo.badgeTone === 'green';
-
-                return (
-                  <div
-                    key={topo.id}
-                    className="rounded-xl border border-border-subtle bg-white p-6 space-y-4 hover:border-border-strong transition-all flex flex-col justify-between text-left"
-                  >
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-mono font-semibold text-text-muted">
-                          {topo.tierNumber}
-                        </span>
-                        <span
-                          className={cn(
-                            'px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold',
-                            isBlue && 'bg-[#E1F3FE] text-[#1F6C9F]',
-                            isGreen && 'bg-[#EDF3EC] text-[#346538]',
-                            !isBlue && !isGreen && 'bg-[#FBF3DB] text-[#956400]'
-                          )}
-                        >
-                          {topo.badge}
-                        </span>
-                      </div>
-
-                      <h4 className="font-sans font-semibold text-base text-text-primary tracking-tight">
-                        {topo.title}
-                      </h4>
-
-                      <p className="text-xs text-text-secondary leading-relaxed">
-                        {topo.description}
-                      </p>
+              {DEPLOYMENT_TOPOLOGIES.map((topo) => (
+                <div
+                  key={topo.id}
+                  className="rounded-xl border border-border-subtle bg-white p-6 space-y-4 hover:border-border-strong transition-all flex flex-col justify-between text-left"
+                >
+                  <div className="space-y-3">
+                    <div>
+                      <span className="px-2.5 py-0.5 rounded-full bg-surface-panel-subtle text-text-secondary border border-border-subtle text-[10px] font-mono font-medium shrink-0 whitespace-nowrap">
+                        {topo.badge}
+                      </span>
                     </div>
+
+                    <h4 className="font-sans font-semibold text-base text-text-primary tracking-tight">
+                      {topo.title}
+                    </h4>
+
+                    <p className="text-xs text-text-secondary leading-relaxed">
+                      {topo.description}
+                    </p>
+                  </div>
 
                     <div className="pt-4 border-t border-border-subtle space-y-2 text-xs font-mono">
                       {topo.specs.map((s, idx) => (
@@ -635,8 +615,7 @@ export function EnterpriseMcpDiptych() {
                       ))}
                     </div>
                   </div>
-                );
-              })}
+              ))}
             </div>
           </div>
         </Reveal>
