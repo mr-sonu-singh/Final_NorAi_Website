@@ -12,7 +12,6 @@ import {
   HeroStudioWorkbench,
   HardwareTelemetryLedger,
   ProductStudio,
-  EnterpriseMcpDiptych,
   RoiCalculator,
   SkillMissionSection,
   ArchitecturalSpecMatrix,
@@ -195,13 +194,8 @@ export default function HomePage() {
       </AnimatedSection>
 
       {/* =========================================================================
-          BEAT 6: SOVEREIGN ENTERPRISE & MCP AGENT CONSOLE (Dark Obsidian Breakout)
-          Supabase & Vercel Enterprise Inspired Breakout
-          ========================================================================= */}
-      <EnterpriseMcpDiptych />
-
-      {/* =========================================================================
-          BEAT 7: REGIONAL IMPACT DOSSIER: AI SKILL MISSION (Stripe Press Monograph)
+          BEAT 6: AI SKILL MISSION & COMMUNITY UPLIFTMENT (Premier Centerpiece)
+          Democratizing AI literacy & production engineering across Uttar Pradesh
           ========================================================================= */}
       <SkillMissionSection />
 
