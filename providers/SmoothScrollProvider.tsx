@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, createContext, useContext, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import Lenis from 'lenis';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 
@@ -19,8 +20,20 @@ export function useSmoothScroll() {
 }
 
 export function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
   const prefersReducedMotion = usePrefersReducedMotion();
   const lenisRef = useRef<Lenis | null>(null);
+
+  // Reset scroll position immediately upon route navigation
+  useEffect(() => {
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true });
+    }
+    if (typeof window !== 'undefined') {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname]);
+
 
   useEffect(() => {
     // Under prefers-reduced-motion, bypass smooth scrolling completely

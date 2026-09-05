@@ -47,7 +47,7 @@ export function AnimatedSection({
       className={className}
       initial={{ opacity: 0, y: 36 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
+      viewport={{ once: true }}
       transition={{ duration: 0.65, delay, ease: EASE_OUT }}
       {...props}
     >
@@ -79,7 +79,7 @@ export function Reveal({ children, className, delay = 0, y = 28, ...props }: Rev
       className={className}
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
+      viewport={{ once: true }}
       transition={{ duration: 0.6, delay, ease: EASE_OUT }}
       {...props}
     >
@@ -114,7 +114,7 @@ export function StaggerGrid({ children, className, stagger = 0.14, ...props }: S
       className={className}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: '-60px' }}
+      viewport={{ once: true }}
       variants={{ visible: { transition: { staggerChildren: stagger } } }}
       {...props}
     >

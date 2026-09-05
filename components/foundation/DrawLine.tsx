@@ -95,7 +95,7 @@ export function DrawLine({
         className={pathClassName}
         initial={{ pathLength: 0, opacity: 0 }}
         whileInView={{ pathLength: 1, opacity: 1 }}
-        viewport={{ once, margin: '-60px' }}
+        viewport={{ once }}
         transition={{
           pathLength: { duration, delay, ease: EASE_OUT },
           opacity: { duration: 0.2, delay },

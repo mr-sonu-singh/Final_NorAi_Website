@@ -163,7 +163,6 @@ export function Header({
         sticky && isScrolled && 'shadow-[0_1px_3px_rgba(20,28,43,0.05)] bg-surface-canvas/95',
         className,
       )}
-      style={{ viewTransitionName: 'persistent-header' }}
       data-testid="header-organism"
       data-scrolled={isScrolled}
       data-sticky={sticky}

@@ -83,7 +83,7 @@ export function TextReveal({
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once, margin: '-60px' }}
+      viewport={{ once }}
     >
       {splitBy === 'word' ? (
         words.map((word, index) => (

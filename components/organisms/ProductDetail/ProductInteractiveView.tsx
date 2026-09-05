@@ -14,7 +14,7 @@ import {
   Layers,
 } from 'lucide-react';
 
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 const WorkbenchSkeleton = () => (
   <div className="w-full min-h-[640px] rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] p-12 flex flex-col items-center justify-center space-y-4 shadow-sm" aria-busy="true" aria-live="polite">

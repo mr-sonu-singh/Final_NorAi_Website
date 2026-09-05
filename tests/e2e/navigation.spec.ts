@@ -16,21 +16,69 @@ test.describe('Navigation & Interactive Flows', () => {
       { name: 'Products', expectedPath: '/products' },
       { name: 'Enterprise', expectedPath: '/services' },
       { name: 'Pricing', expectedPath: '/pricing' },
+      { name: 'Mission', expectedPath: '/mission' },
       { name: 'Company', expectedPath: '/about' },
+      { name: 'Contact', expectedPath: '/contact' },
     ];
 
     for (const { name, expectedPath } of navLinks) {
-      test(`navigates to ${name} (${expectedPath}) successfully`, async ({ page }) => {
+      test(`navigates to ${name} (${expectedPath}) successfully without blank screen`, async ({ page }) => {
         const navItem = page.locator('nav[aria-label="Main Navigation"]').getByRole('link', { name, exact: true });
         await expect(navItem).toBeVisible();
 
         await navItem.click();
         await expect(page).toHaveURL(new RegExp(expectedPath));
 
-        // Ensure not a 404 page
+        // Ensure main content is mounted and immediately visible (not blank)
+        const mainContent = page.locator('#main-content');
+        await expect(mainContent).toBeVisible();
+        await expect(mainContent).not.toBeEmpty();
+
+        // Ensure not a 404 page and heading is rendered
+        await expect(page.locator('h1')).toBeVisible();
         await expect(page.locator('h1')).not.toContainText('404');
       });
     }
+
+    test('resets scroll position to top when navigating from scrolled home page', async ({ page }) => {
+      await page.evaluate(() => window.scrollTo(0, 3000));
+      await page.waitForTimeout(200);
+
+      const contactLink = page.locator('nav[aria-label="Main Navigation"]').getByRole('link', { name: 'Contact', exact: true });
+      await contactLink.click();
+      await expect(page).toHaveURL(/\/contact/);
+
+      const scrollY = await page.evaluate(() => window.scrollY);
+      expect(scrollY).toBeLessThanOrEqual(50);
+      await expect(page.locator('h1')).toBeVisible();
+    });
+
+    test('heavy pages (team, mission, company) mount full content with visible headings and telemetry on soft navigation', async ({ page }) => {
+      for (const { name, path } of [
+        { name: 'Mission', path: '/mission' },
+        { name: 'Company', path: '/about' },
+      ]) {
+        const link = page.locator('nav[aria-label="Main Navigation"]').getByRole('link', { name, exact: true });
+        await link.click();
+        await expect(page).toHaveURL(new RegExp(path));
+
+        const mainContent = page.locator('#main-content');
+        await expect(mainContent).toBeVisible();
+        await expect(mainContent).not.toBeEmpty();
+
+        const h1 = page.locator('h1');
+        await expect(h1).toBeVisible();
+        await expect(h1).not.toContainText('404');
+      }
+
+      // Navigate to /team via footer link
+      const teamLink = page.locator('footer').getByRole('link', { name: 'Team', exact: true });
+      await teamLink.click();
+      await expect(page).toHaveURL(/\/team/);
+      await expect(page.locator('#main-content')).toBeVisible();
+      await expect(page.locator('#main-content')).not.toBeEmpty();
+      await expect(page.locator('h1')).toBeVisible();
+    });
 
     test('primary and secondary CTA header links navigate correctly', async ({ page }) => {
       const header = page.locator('header[data-testid="header-organism"]');
