@@ -5,7 +5,7 @@ import { KineticWaveMarquee } from '@/components/foundation';
 import { Link } from '@/components/atoms/Link';
 import {
   HeroChamber,
-  AudensCapabilityBento,
+  CapabilityArc,
   ThreeDimensionsRail,
   SectorLedger,
   OperatingRitualsRail,
@@ -57,9 +57,9 @@ export default function HomePage() {
       <KineticWaveMarquee />
 
       {/* =========================================================================
-          BEAT 5: AUDENS CAPABILITY BENTO & 4 MICRO-VIGNETTES (id="tools")
+          BEAT 5: THE CAPABILITY ARC · FOUR SOVEREIGN TOOLS (id="capabilities")
           ========================================================================= */}
-      <AudensCapabilityBento />
+      <CapabilityArc />
 
       {/* =========================================================================
           BEAT 6: THE SECTOR LEDGER (Enterprise & Bharat Matrix)

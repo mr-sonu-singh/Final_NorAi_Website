@@ -4,6 +4,7 @@ export * from './sections/Footer';
 export * from './sections/ContactSection';
 export * from './sections/ComparisonTable';
 export * from './sections/HeroChamber';
+export * from './sections/CapabilityArc';
 
 // Active Cards
 export * from './cards/BlogCard';
