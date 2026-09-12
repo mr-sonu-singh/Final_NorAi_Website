@@ -15,3 +15,4 @@ export * from './InteractiveCircuitTrace';
 export * from './McpSchemaInspector';
 export * from './EnterpriseTopologyViewer';
 export * from './TaglineReveal';
+export * from './BilingualToggle';

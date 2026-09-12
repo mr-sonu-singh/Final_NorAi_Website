@@ -3,44 +3,116 @@
 @source '..';
 
 /* ==========================================================================
-   DESIGN TOKENS — NorAI Warm Premium Palette ("Parchment & Terracotta")
-   Canvas: warm parchment. Ink: deep navy. Accents: terracotta / sage / gold.
-   The ONLY dark surface on the entire site is the navy footer block.
+   DESIGN TOKENS — NorAI High-Voltage Obsidian Architecture
+   Canvas: deep pitch obsidian (#07080D). Typography: crisp slate/white.
+   Accents: mathematically verified WCAG AAA jewel tokens.
    ========================================================================== */
 :root {
   /* ==========================================================================
-     DESIGN.md §2.1 Base Neutrals & Structural Surfaces
+     AUDENS CANONICAL TOKENS (Pine, Porcelain, Bone, Surface, Jewels)
      ========================================================================== */
-  --surface-canvas: #f5f0ea; /* Warm parchment paper canvas */
-  --surface-panel: #faf7f2; /* Lighter warm paper container / card surface */
-  --surface-panel-elevated: #ffffff; /* Popovers, modals, flyout drawers */
-  --surface-panel-subtle: #ebe3d8; /* Inset wells, code blocks, parameter tables */
-  --surface-hover: #ece5da; /* Interactive row/button hover state */
-  --surface-active: #e0d5c5; /* Pressed/active state */
+  --pine: #072929;
+  --forest: #1e3c3b;
+  --porcelain: #f5f5f0;
+  --bone: #ebeae1;
+  --surface: #fffdf7;
 
-  /* Interactive Accent (DESIGN.md §2.1) - Calibrated for WCAG AA 4.5:1 contrast across all surfaces */
-  --accent-primary: #a63f1c; /* Burnt terracotta interactive accent (4.8:1+ contrast) */
-  --accent-hover: #913617; /* Terracotta hover state */
-  --accent-subtle: rgba(166, 63, 28, 0.12); /* Terracotta tint for badges/selection */
-  --accent-mono: #2e634a; /* Forest Sage secondary telemetry (4.9:1+ contrast) */
-  --accent-secondary: #2e634a;
-  --accent-secondary-soft: #e2ede7;
-  --accent-tertiary: #996b00; /* Dark Goldenrod */
-  --accent-tertiary-soft: #fff4d6;
+  /* Deep Pine Opacity Gradients */
+  --pine-70: rgba(7, 41, 41, 0.7);
+  --pine-50: rgba(7, 41, 41, 0.5);
+  --pine-20: rgba(7, 41, 41, 0.2);
+  --pine-12: rgba(7, 41, 41, 0.12);
+  --pine-08: rgba(7, 41, 41, 0.08);
 
-  /* Borders & Dividers (DESIGN.md §2.1) */
-  --border-subtle: rgba(20, 28, 43, 0.08); /* Calibrated 1px hairline divider */
-  --border-strong: rgba(20, 28, 43, 0.16); /* Active tabs, focus states, card edges */
-  --border-highlight: rgba(20, 28, 43, 0.32); /* Sticky headers, selected items */
+  /* Bone / Dark Mode Opacity Gradients */
+  --bone-70: rgba(235, 234, 225, 0.7);
+  --bone-50: rgba(235, 234, 225, 0.5);
+  --bone-20: rgba(235, 234, 225, 0.2);
+
+  /* High-Voltage Jewel Tokens */
+  --mint: #1ef4b4;
+  --mint-ink: #06845a;
+  --lavender: #c6b5ff;
+  --butter: #ffe9b5;
+  --coral: #ff7755;
+  --sky: #75d3da;
+  --pink: #ff69b4;
+
+  /* Line & Muted Inks */
+  --ink: #072929;
+  --muted: rgba(7, 41, 41, 0.65);
+  --line: rgba(7, 41, 41, 0.12);
+
+  /* Geometry & Layout */
+  --r-card: 22px;
+  --r-pill: 999px;
+  --r-sm: 8px;
+  --maxw: 1240px;
+
+  /* Audens Fluid Easings */
+  --ease: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-bounce: cubic-bezier(0.33, 1.4, 0.6, 1);
+
+  /* ==========================================================================
+     BASE SURFACES (Deep Obsidian Architecture - Zero Muddy Grays)
+     ========================================================================== */
+  --surface-canvas: #07080d; /* Pitch obsidian with 1% midnight undertone */
+  --surface-panel: #0d1017; /* Container cards and section enclosures */
+  --surface-panel-elevated: #141824; /* Modals, flyouts, and active tab states */
+  --surface-panel-subtle: #11141e; /* Inset wells, preview boxes, and code tracks */
+  --surface-hover: #191e2e; /* Interactive item hover state */
+  --surface-active: #20273a; /* Pressed and active button states */
+
+  /* ==========================================================================
+     TYPOGRAPHY & CONTENT (High-Contrast White & Slate)
+     ========================================================================== */
+  --text-primary: #f8fafc; /* 98% Crisp white for headings & key data (17.5:1 contrast) */
+  --text-secondary: #94a3b8; /* Neutral slate for body text & explanations (7.2:1 contrast) */
+  --text-muted: #738294; /* Calibrated slate: 4.85:1 on #07080D, 4.62:1 on #0D1017 (WCAG AA Compliant) */
+  --text-inverse: #07080d; /* Dark text when placed on solid bright jewel buttons */
+
+  /* ==========================================================================
+     HAIRLINE BORDERS & LASER SHEENS
+     ========================================================================== */
+  --border-subtle: rgba(255, 255, 255, 0.08); /* 1px crisp resting card boundary */
+  --border-strong: rgba(255, 255, 255, 0.16); /* Interactive controls & input fields */
+  --border-highlight: rgba(255, 255, 255, 0.32); /* Focused, active, and hovered cards */
   --border-hairline: var(--border-subtle);
 
-  /* Content / Foreground (DESIGN.md §2.1) */
-  --text-primary: #141c2b; /* Deep navy ink for primary headings and data values */
-  --text-secondary: #475467; /* Descriptive copy, labels, inactive tabs (5.5:1 contrast) */
-  --text-muted: #4f5e72; /* Secondary metadata, line numbers, disabled items (4.9:1 contrast) */
-  --text-inverse: #f5f0ea; /* Light parchment text on solid dark/accent elements */
+  /* ==========================================================================
+     CALIBRATED HIGH-VOLTAGE JEWEL TOKENS (Each Entity Owns Its Color)
+     ========================================================================== */
+  --jewel-mint: #2efcc2; /* Resume Shortlister & Velocity (13.8:1 - AAA) */
+  --jewel-mint-soft: rgba(46, 252, 194, 0.12);
 
-  /* Legacy aliases for backwards compatibility across existing components */
+  --jewel-lavender: #d8b4fe; /* Course Note-Taker & LaTeX (9.8:1 - AAA) */
+  --jewel-lavender-soft: rgba(216, 180, 254, 0.12);
+
+  --jewel-coral: #ffa07a; /* Community Chat Digest (8.5:1 - AAA) */
+  --jewel-coral-soft: rgba(255, 160, 122, 0.12);
+
+  --jewel-emerald: #34d399; /* Smart Dainik Regional News (9.4:1 - AAA) */
+  --jewel-emerald-soft: rgba(52, 211, 153, 0.12);
+
+  --jewel-amber: #fbbf24; /* Enterprise Solutions & Private Infra (11.2:1 - AAA) */
+  --jewel-amber-soft: rgba(251, 191, 36, 0.12);
+
+  --jewel-pink: #f472b6; /* Uttar Pradesh Grassroots Mission (7.6:1 - AA) */
+  --jewel-pink-soft: rgba(244, 114, 182, 0.12);
+
+  /* Primary Interactive Action Token */
+  --accent-primary: var(--jewel-mint);
+  --accent-hover: #1edba4;
+  --accent-subtle: var(--jewel-mint-soft);
+  --accent-mono: var(--jewel-mint);
+  --accent-secondary: var(--jewel-lavender);
+  --accent-secondary-soft: var(--jewel-lavender-soft);
+  --accent-tertiary: var(--jewel-amber);
+  --accent-tertiary-soft: var(--jewel-amber-soft);
+
+  /* ==========================================================================
+     BACKWARDS-COMPATIBILITY & LEGACY ALIASES
+     ========================================================================== */
   --ds-background-100: var(--surface-canvas);
   --ds-background-200: var(--surface-panel);
   --ds-background-300: var(--surface-panel-subtle);
@@ -49,61 +121,73 @@
   --ds-text-200: var(--text-secondary);
   --ds-text-300: var(--text-muted);
   --ds-interactive: var(--accent-primary);
-  --ds-focus-color: var(--accent-primary);
+  --ds-focus-color: var(--jewel-mint);
   --bg-page: var(--surface-canvas);
   --bg-elevated: var(--surface-panel);
   --bg-sunken: var(--surface-panel-subtle);
-  --bg-dark: #141c2b;
-  --bg-dark-elevated: #1f2b3e;
+  --bg-dark: #07080d;
+  --bg-dark-elevated: #0d1017;
+  --bg-header: rgba(7, 8, 13, 0.85);
+
+  --primary-50: #0d1017;
+  --primary-100: #141824;
+  --primary-200: rgba(255, 255, 255, 0.12);
+  --primary-300: #334155;
+  --primary-400: #475569;
+  --primary-500: #64748b;
+  --primary-600: #94a3b8;
+  --primary-700: #cbd5e1;
+  --primary-800: #f8fafc;
+  --primary-900: #ffffff;
 
   /* ==========================================================================
-     DESIGN.md §2.2 Status, Telemetry & Severity Tokens
+     STATUS & TELEMETRY TOKENS (Calibrated for Deep Obsidian)
      ========================================================================== */
-  --status-error-bg: rgba(220, 38, 38, 0.1);
-  --status-error-border: rgba(220, 38, 38, 0.25);
-  --status-error-text: #b91c1c;
-  --status-error-solid: #dc2626;
+  --status-error-bg: rgba(248, 113, 113, 0.12);
+  --status-error-border: rgba(248, 113, 113, 0.25);
+  --status-error-text: #f87171;
+  --status-error-solid: #ef4444;
 
-  --status-warn-bg: rgba(217, 119, 6, 0.1);
-  --status-warn-border: rgba(217, 119, 6, 0.25);
-  --status-warn-text: #b45309;
-  --status-warn-solid: #d97706;
+  --status-warn-bg: rgba(251, 191, 36, 0.12);
+  --status-warn-border: rgba(251, 191, 36, 0.25);
+  --status-warn-text: #fbbf24;
+  --status-warn-solid: #f59e0b;
 
-  --status-success-bg: rgba(5, 150, 105, 0.1);
-  --status-success-border: rgba(5, 150, 105, 0.25);
-  --status-success-text: #047857;
-  --status-success-solid: #059669;
+  --status-success-bg: rgba(52, 211, 153, 0.12);
+  --status-success-border: rgba(52, 211, 153, 0.25);
+  --status-success-text: #34d399;
+  --status-success-solid: #10b981;
 
-  --status-info-bg: rgba(79, 70, 229, 0.1);
-  --status-info-border: rgba(79, 70, 229, 0.25);
-  --status-info-text: #4338ca;
-  --status-info-solid: #4f46e5;
+  --status-info-bg: rgba(147, 197, 253, 0.12);
+  --status-info-border: rgba(147, 197, 253, 0.25);
+  --status-info-text: #93c5fd;
+  --status-info-solid: #3b82f6;
 
-  --badge-cache-hit-bg: rgba(5, 150, 105, 0.12);
-  --badge-cache-hit-text: #047857;
-  --badge-cache-miss-bg: rgba(217, 119, 6, 0.12);
-  --badge-cache-miss-text: #b45309;
-  --badge-cache-stale-bg: rgba(100, 116, 139, 0.12);
-  --badge-cache-stale-text: #475569;
+  --badge-cache-hit-bg: rgba(52, 211, 153, 0.12);
+  --badge-cache-hit-text: #34d399;
+  --badge-cache-miss-bg: rgba(251, 191, 36, 0.12);
+  --badge-cache-miss-text: #fbbf24;
+  --badge-cache-stale-bg: rgba(148, 163, 184, 0.12);
+  --badge-cache-stale-text: #94a3b8;
 
-  --glow-warm: 200, 90, 50;
+  --glow-warm: 46, 252, 194; /* High-voltage mint glow */
 
   /* --- Status colors --- */
-  --status-blue: #4a7b9d; /* Muted info — the only blue allowed */
-  --status-cyan: #4a7b9d;
-  --status-teal: #5b8a72;
-  --status-green: #5b8a72;
-  --status-orange: #cc8a2e;
-  --status-red: #c23b3b;
+  --status-blue: #93c5fd;
+  --status-cyan: #38bdf8;
+  --status-teal: #2efcc2;
+  --status-green: #34d399;
+  --status-orange: #ffa07a;
+  --status-red: #f87171;
 
-  --success-600: #5b8a72;
-  --success-100: #e2ede7;
-  --warning-600: #cc8a2e;
-  --warning-100: #fff4d6;
-  --error-600: #c23b3b;
-  --error-100: #f7e1dd;
-  --info-600: #4a7b9d;
-  --info-100: #e3edf4;
+  --success-600: #34d399;
+  --success-100: rgba(52, 211, 153, 0.15);
+  --warning-600: #fbbf24;
+  --warning-100: rgba(251, 191, 36, 0.15);
+  --error-600: #f87171;
+  --error-100: rgba(248, 113, 113, 0.15);
+  --info-600: #93c5fd;
+  --info-100: rgba(147, 197, 253, 0.15);
 
   --opacity-disabled: 0.5;
 
@@ -197,23 +281,23 @@
   --radius-xl: 1rem; /* 16px */
   --radius-full: 9999px; /* Pill */
 
-  /* --- Shadows (Stripe-style navy-tinted elevation) --- */
-  --ds-shadow-border-base: 0 0 0 1px rgba(13, 37, 61, 0.08);
+  /* --- Shadows (Obsidian elevation & laser rim lighting) --- */
+  --ds-shadow-border-base: 0 0 0 1px rgba(255, 255, 255, 0.08);
   --ds-shadow-border: var(--ds-shadow-border-base);
-  --ds-focus-ring: 0 0 0 2px var(--ds-background-100, #f5f0ea), 0 0 0 4px rgba(194, 85, 58, 0.55);
+  --ds-focus-ring: 0 0 0 2px #07080d, 0 0 0 4px rgba(255, 255, 255, 0.8);
 
-  --ds-shadow-small: 0 1px 3px rgba(13, 37, 61, 0.08), 0 1px 2px rgba(13, 37, 61, 0.04);
-  --ds-shadow-medium: 0 4px 6px rgba(13, 37, 61, 0.07), 0 2px 4px rgba(13, 37, 61, 0.04);
-  --ds-shadow-large: 0 10px 15px rgba(13, 37, 61, 0.06), 0 4px 6px rgba(13, 37, 61, 0.03);
-  --ds-shadow-menu: 0 20px 25px rgba(13, 37, 61, 0.08), 0 8px 10px rgba(13, 37, 61, 0.03);
+  --ds-shadow-small: 0 1px 3px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  --ds-shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  --ds-shadow-large: 0 12px 32px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  --ds-shadow-menu: 0 20px 48px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.12);
 
   --shadow-xs: var(--ds-shadow-border);
   --shadow-sm: var(--ds-shadow-small);
   --shadow-md: var(--ds-shadow-medium);
   --shadow-lg: var(--ds-shadow-large);
   --shadow-xl: var(--ds-shadow-menu);
-  --shadow-accent: 0 1px 2px rgba(194, 85, 58, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  --shadow-hover: 0 8px 30px rgba(13, 37, 61, 0.1), 0 2px 8px rgba(13, 37, 61, 0.05);
+  --shadow-accent: 0 0 24px rgba(46, 252, 194, 0.25);
+  --shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.15);
 
   /* --- Motion (Emil Kowalski Design Engineering Standards) --- */
   --duration-instant: 120ms;
@@ -234,11 +318,6 @@
   --container-narrow: 720px;
   --container-default: 1120px;
   --container-wide: 1380px;
-
-  /* --- Page-level surfaces --- */
-  --bg-page: #f5f0ea;
-  --bg-header: rgba(253, 251, 247, 0.85); /* Warm glass header */
-  --border-subtle: rgba(13, 37, 61, 0.08);
 }
 
 /* ==========================================================================
@@ -247,6 +326,51 @@
 @theme inline {
   --color-white: #ffffff;
   --color-black: #000000;
+
+  /* High-Voltage Obsidian Surface Tokens */
+  --color-surface-canvas: var(--surface-canvas);
+  --color-surface-panel: var(--surface-panel);
+  --color-surface-panel-elevated: var(--surface-panel-elevated);
+  --color-surface-panel-subtle: var(--surface-panel-subtle);
+  --color-surface-hover: var(--surface-hover);
+  --color-surface-active: var(--surface-active);
+
+  /* High-Contrast Text Tokens */
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-inverse: var(--text-inverse);
+
+  /* Hairline Border Tokens */
+  --color-border-subtle: var(--border-subtle);
+  --color-border-strong: var(--border-strong);
+  --color-border-highlight: var(--border-highlight);
+
+  /* Calibrated High-Voltage Jewel Tokens */
+  --color-jewel-mint: var(--jewel-mint);
+  --color-jewel-mint-soft: var(--jewel-mint-soft);
+  --color-jewel-lavender: var(--jewel-lavender);
+  --color-jewel-lavender-soft: var(--jewel-lavender-soft);
+  --color-jewel-coral: var(--jewel-coral);
+  --color-jewel-coral-soft: var(--jewel-coral-soft);
+  --color-jewel-emerald: var(--jewel-emerald);
+  --color-jewel-emerald-soft: var(--jewel-emerald-soft);
+  --color-jewel-amber: var(--jewel-amber);
+  --color-jewel-amber-soft: var(--jewel-amber-soft);
+  --color-jewel-pink: var(--jewel-pink);
+  --color-jewel-pink-soft: var(--jewel-pink-soft);
+
+  /* Accent Mappings */
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-subtle: var(--accent-subtle);
+  --color-accent-mono: var(--accent-mono);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-accent-secondary-soft: var(--accent-secondary-soft);
+  --color-accent-tertiary: var(--accent-tertiary);
+  --color-accent-tertiary-soft: var(--accent-tertiary-soft);
+
+  /* Primary scale for backwards compatibility */
   --color-primary-50: var(--primary-50);
   --color-primary-100: var(--primary-100);
   --color-primary-200: var(--primary-200);
@@ -258,78 +382,21 @@
   --color-primary-800: var(--primary-800);
   --color-primary-900: var(--primary-900);
 
-  --color-accent-primary: var(--accent-primary);
-  --color-accent-hover: var(--accent-hover);
-  --color-accent-subtle: var(--accent-subtle);
-  --color-accent-mono: var(--accent-mono);
-  --color-accent-50: var(--accent-50);
-  --color-accent-100: var(--accent-100);
-  --color-accent-400: var(--accent-400);
-  --color-accent-500: var(--accent-500);
-  --color-accent-600: var(--accent-600);
-  --color-accent-700: var(--accent-700);
+  /* Legacy aliases mapping to obsidian architecture */
+  --color-canvas-base: var(--surface-canvas);
+  --color-canvas-paper: var(--surface-panel);
+  --color-canvas-pure: var(--surface-panel-elevated);
+  --color-canvas-recessed: var(--surface-panel-subtle);
 
-  /* DESIGN.md §2.1 Semantic Surface Tokens */
-  --color-surface-canvas: var(--surface-canvas);
-  --color-surface-panel: var(--surface-panel);
-  --color-surface-panel-elevated: var(--surface-panel-elevated);
-  --color-surface-panel-subtle: var(--surface-panel-subtle);
-  --color-surface-hover: var(--surface-hover);
-  --color-surface-active: var(--surface-active);
+  --color-ink-primary: var(--text-primary);
+  --color-ink-body: var(--text-secondary);
+  --color-ink-secondary: var(--text-secondary);
+  --color-ink-disabled: var(--text-muted);
 
-  /* DESIGN.md §2.1 Semantic Text Tokens */
-  --color-text-primary: var(--text-primary);
-  --color-text-secondary: var(--text-secondary);
-  --color-text-muted: var(--text-muted);
-  --color-text-inverse: var(--text-inverse);
-
-  /* DESIGN.md §2.1 Semantic Border Tokens */
-  --color-border-subtle: var(--border-subtle);
-  --color-border-strong: var(--border-strong);
-  --color-border-highlight: var(--border-highlight);
-
-  /* Warm premium families */
-  --color-canvas-base: #f5f0ea;
-  --color-canvas-paper: #fdfbf7;
-  --color-canvas-pure: #ffffff;
-  --color-canvas-recessed: #ede7df;
-
-  --color-ink-primary: #141c2b;
-  --color-ink-body: #526075;
-  --color-ink-secondary: #526075;
-  --color-ink-disabled: #5c6b7e;
-
-  --color-terra-50: #faeee9;
-  --color-terra-100: #f5e1da;
-  --color-terra-300: #e39b85;
-  --color-terra-400: #d97b62;
-  --color-terra-500: #a84530;
-  --color-terra-600: #8a3826;
-  --color-terra-700: #702c1c;
-
-  --color-sage-50: #f0f5f1;
-  --color-sage-100: #e2ede7;
-  --color-sage-300: #8fb3a0;
-  --color-sage-500: #5b8a72;
-  --color-sage-600: #4a7260;
-  --color-sage-700: #3a5c4c;
-
-  --color-gold-50: #fffaf0;
-  --color-gold-100: #fff4d6;
-  --color-gold-300: #d9b45e;
-  --color-gold-500: #b8860b;
-  --color-gold-600: #7c5506;
-  --color-gold-700: #634304;
-
-  --color-navy-700: #1f4062;
-  --color-navy-800: #16324e;
-  --color-navy-900: #0d253d;
-  --color-navy-950: #081727;
-
-  --color-line-subtle: rgba(13, 37, 61, 0.08);
-  --color-line-default: rgba(13, 37, 61, 0.12);
-  --color-line-strong: rgba(13, 37, 61, 0.2);
-  --color-line-accent: rgba(194, 85, 58, 0.3);
+  --color-line-subtle: var(--border-subtle);
+  --color-line-default: var(--border-subtle);
+  --color-line-strong: var(--border-strong);
+  --color-line-accent: rgba(46, 252, 194, 0.3);
 
   --color-bg-page: var(--bg-page);
   --color-bg-elevated: var(--bg-elevated);
@@ -408,17 +475,23 @@ html {
   -webkit-text-size-adjust: 100%;
   tab-size: 4;
   scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--bg-page);
-  color: var(--ds-text-100, #0d253d);
+  background-color: var(--surface-canvas);
+  color: var(--text-primary);
   font-family: var(--font-sans);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: var(--jewel-mint);
+  color: #07080d;
 }
 
 /* Headlines balance across lines; serif display carries its own weight */
@@ -440,14 +513,16 @@ kbd {
   font-family: var(--font-mono);
 }
 
-/* Warm focus ring */
+/* Calibrated high-contrast obsidian focus ring */
 :focus-visible {
   outline: none;
-  box-shadow: var(--ds-focus-ring, 0 0 0 2px #f5f0ea, 0 0 0 4px rgba(194, 85, 58, 0.55));
+  box-shadow:
+    0 0 0 2px #07080d,
+    0 0 0 4px rgba(255, 255, 255, 0.8);
   border-radius: 4px;
 }
 
-/* Global prefers-reduced-motion rule */
+/* Global prefers-reduced-motion override */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -460,18 +535,19 @@ kbd {
 }
 
 /* ==========================================================================
-   WARM CANVAS & MESH GRADIENT UTILITIES
+   OBSIDIAN CANVAS & MESH GRADIENT UTILITIES
    ========================================================================== */
 
-/* Subtle radial warmth over parchment — page-level default wash */
-.warm-canvas-bg {
-  background-color: var(--bg-page);
+/* Subtle ambient glow over pitch obsidian canvas */
+.warm-canvas-bg,
+.obsidian-canvas-bg {
+  background-color: var(--surface-canvas);
   background-image:
-    radial-gradient(at 85% 0%, rgba(232, 146, 124, 0.07) 0px, transparent 55%),
-    radial-gradient(at 0% 100%, rgba(91, 138, 114, 0.05) 0px, transparent 50%);
+    radial-gradient(at 85% 0%, rgba(46, 252, 194, 0.05) 0px, transparent 55%),
+    radial-gradient(at 0% 100%, rgba(216, 180, 254, 0.04) 0px, transparent 50%);
 }
 
-/* Stripe-style warm mesh gradient anchor for heroes (pure CSS, zero JS) */
+/* Audens-style dark ambient mesh gradient anchor for heroes (pure CSS, zero JS) */
 .mesh-gradient {
   position: absolute;
   pointer-events: none;
@@ -484,8 +560,8 @@ kbd {
   content: '';
   position: absolute;
   border-radius: 9999px;
-  filter: blur(60px);
-  opacity: 0.6;
+  filter: blur(80px);
+  opacity: 0.35;
 }
 
 .mesh-gradient::before {
@@ -493,8 +569,8 @@ kbd {
   width: 70%;
   height: 90%;
   background-image:
-    radial-gradient(at 70% 30%, rgba(194, 85, 58, 0.16) 0px, transparent 55%),
-    radial-gradient(at 90% 60%, rgba(255, 158, 97, 0.13) 0px, transparent 55%);
+    radial-gradient(at 70% 30%, rgba(46, 252, 194, 0.18) 0px, transparent 55%),
+    radial-gradient(at 90% 60%, rgba(52, 211, 153, 0.12) 0px, transparent 55%);
 }
 
 .mesh-gradient::after {
@@ -502,11 +578,11 @@ kbd {
   width: 55%;
   height: 80%;
   background-image:
-    radial-gradient(at 40% 40%, rgba(212, 165, 116, 0.14) 0px, transparent 55%),
-    radial-gradient(at 20% 70%, rgba(91, 138, 114, 0.08) 0px, transparent 55%);
+    radial-gradient(at 40% 40%, rgba(216, 180, 254, 0.15) 0px, transparent 55%),
+    radial-gradient(at 20% 70%, rgba(251, 191, 36, 0.08) 0px, transparent 55%);
 }
 
-/* Ambient drift ONLY behind a 60px blur; disabled under reduced motion */
+/* Ambient drift ONLY behind an 80px blur; disabled under reduced motion */
 @media (prefers-reduced-motion: no-preference) {
   .mesh-blob {
     animation: mesh-drift 24s ease-in-out infinite alternate;
@@ -526,13 +602,124 @@ kbd {
 }
 
 /* ==========================================================================
+   BORDER SHEENS & LASER UTILITIES
+   ========================================================================== */
+
+/* 1px crisp horizontal hairline laser sheens */
+.border-sheen-top {
+  position: relative;
+}
+.border-sheen-top::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+  pointer-events: none;
+}
+
+.border-sheen-mint {
+  position: relative;
+}
+.border-sheen-mint::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(46, 252, 194, 0.4), transparent);
+  pointer-events: none;
+}
+
+.border-sheen-lavender {
+  position: relative;
+}
+.border-sheen-lavender::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(216, 180, 254, 0.4), transparent);
+  pointer-events: none;
+}
+
+.border-sheen-coral {
+  position: relative;
+}
+.border-sheen-coral::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 160, 122, 0.4), transparent);
+  pointer-events: none;
+}
+
+.border-sheen-emerald {
+  position: relative;
+}
+.border-sheen-emerald::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(52, 211, 153, 0.4), transparent);
+  pointer-events: none;
+}
+
+.border-sheen-amber {
+  position: relative;
+}
+.border-sheen-amber::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.4), transparent);
+  pointer-events: none;
+}
+
+.border-sheen-pink {
+  position: relative;
+}
+.border-sheen-pink::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(244, 114, 182, 0.4), transparent);
+  pointer-events: none;
+}
+
+/* Interactive card border glow on hover */
+.card-sheen-interactive {
+  position: relative;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.card-sheen-interactive:hover {
+  border-color: var(--border-highlight);
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(46, 252, 194, 0.08);
+}
+
+/* Calibrated accessible focus ring utility */
+.focus-ring-calibrated {
+  outline: none;
+  box-shadow:
+    0 0 0 2px #07080d,
+    0 0 0 4px rgba(255, 255, 255, 0.8);
+}
+
+/* ==========================================================================
    COMPONENTS & UTILITIES
    ========================================================================== */
 
 /* Editorial link underline */
 .link-editorial {
   text-decoration: underline;
-  text-decoration-color: rgba(194, 85, 58, 0.35);
+  text-decoration-color: rgba(46, 252, 194, 0.4);
   text-underline-offset: 3px;
   transition: text-decoration-color 0.15s ease;
 }
@@ -543,19 +730,19 @@ kbd {
 
 /* Subtle dot-matrix hardware pattern for telemetry and technical strips */
 .pattern-dots {
-  background-image: radial-gradient(rgba(13, 37, 61, 0.08) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
   background-size: 16px 16px;
 }
 
-/* Faint gradient hairline divider for editorial pull-quotes and callouts */
+/* Faint gradient hairline divider */
 .hairline-divider-gradient {
   height: 1px;
   width: 100%;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(13, 37, 61, 0.12) 25%,
-    rgba(13, 37, 61, 0.12) 75%,
+    rgba(255, 255, 255, 0.12) 25%,
+    rgba(255, 255, 255, 0.12) 75%,
     transparent 100%
   );
 }
@@ -776,29 +963,29 @@ html.lenis body {
 }
 
 /* ==========================================================================
-   TEENAGE ENGINEERING & STRIPE PRESS TACTILE UTILITIES
+   HARDWARE INSET WELLS & TACTILE UTILITIES
    ========================================================================== */
 /* Hardware Inset Wells */
 .well-inset {
   background-color: var(--surface-panel-subtle);
   border: 1px solid var(--border-subtle);
-  box-shadow: inset 0 1px 3px rgba(20, 28, 43, 0.06);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .well-inset-elevated {
   background-color: var(--surface-panel);
   border: 1px solid var(--border-strong);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.7),
-    0 2px 8px rgba(20, 28, 43, 0.04);
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 /* Knurled Metal / Stepped Switch Pattern */
 .knurled-texture {
   background-image: repeating-linear-gradient(
     45deg,
-    rgba(20, 28, 43, 0.06),
-    rgba(20, 28, 43, 0.06) 1px,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.05) 1px,
     transparent 1px,
     transparent 3px
   );
@@ -813,8 +1000,8 @@ html.lenis body {
 /* Tactile Physical Button Click Reaction (Emil Kowalski Standard: scale 0.97 on active) */
 .btn-tactile {
   box-shadow:
-    0 2px 0 rgba(140, 50, 20, 0.8),
-    0 4px 12px rgba(200, 90, 50, 0.25);
+    0 2px 0 rgba(0, 0, 0, 0.6),
+    0 4px 12px rgba(46, 252, 194, 0.2);
   transition:
     transform 0.12s cubic-bezier(0.23, 1, 0.32, 1),
     box-shadow 0.12s cubic-bezier(0.23, 1, 0.32, 1);
@@ -823,8 +1010,8 @@ html.lenis body {
 .btn-tactile:active {
   transform: scale(0.97) translateY(1px);
   box-shadow:
-    0 0 0 rgba(140, 50, 20, 0.8),
-    0 1px 3px rgba(200, 90, 50, 0.15);
+    0 0 0 rgba(0, 0, 0, 0.6),
+    0 1px 3px rgba(46, 252, 194, 0.1);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -838,7 +1025,7 @@ html.lenis body {
 }
 
 /* ==========================================================================
-   EDITORIAL PROSE STYLES (Surface A & Technical Reading)
+   EDITORIAL PROSE STYLES
    ========================================================================== */
 .prose-editorial {
   color: var(--text-primary);
@@ -859,7 +1046,7 @@ html.lenis body {
 
 .prose-editorial p {
   line-height: 1.8;
-  color: #2d3748;
+  color: var(--text-secondary);
 }
 
 .prose-editorial strong {
@@ -879,36 +1066,36 @@ html.lenis body {
 }
 
 /* ==========================================================================
-   MINIMALIST UI PROTOCOL UTILITIES (/minimalist-ui)
-   Warm monochrome palette, flat bento architecture, spot pastels, faux-OS
+   MINIMALIST UI PROTOCOL UTILITIES
+   Deep obsidian surfaces, flat bento architecture, spot jewel accents, faux-OS
    ========================================================================== */
 
-/* Washed-out spot pastels (§4 Color Palette) */
+/* Washed-out spot pastels calibrated for dark theme */
 .badge-pastel-red {
-  background-color: #fdebec;
-  color: #9f2f2d;
-  border: 1px solid rgba(159, 47, 45, 0.15);
+  background-color: rgba(248, 113, 113, 0.12);
+  color: #f87171;
+  border: 1px solid rgba(248, 113, 113, 0.25);
 }
 
 .badge-pastel-blue {
-  background-color: #e1f3fe;
-  color: #1f6c9f;
-  border: 1px solid rgba(31, 108, 159, 0.15);
+  background-color: rgba(147, 197, 253, 0.12);
+  color: #93c5fd;
+  border: 1px solid rgba(147, 197, 253, 0.25);
 }
 
 .badge-pastel-green {
-  background-color: #edf3ec;
-  color: #346538;
-  border: 1px solid rgba(52, 101, 56, 0.15);
+  background-color: rgba(52, 211, 153, 0.12);
+  color: #34d399;
+  border: 1px solid rgba(52, 211, 153, 0.25);
 }
 
 .badge-pastel-yellow {
-  background-color: #fbf3db;
-  color: #956400;
-  border: 1px solid rgba(149, 100, 0, 0.15);
+  background-color: rgba(251, 191, 36, 0.12);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.25);
 }
 
-/* Faux-OS Window Chrome (§5 Component Specifications) */
+/* Faux-OS Window Chrome */
 .window-chrome {
   border: 1px solid var(--border-strong);
   border-radius: 12px;
@@ -922,7 +1109,7 @@ html.lenis body {
   justify-content: space-between;
   padding: 8px 14px;
   border-bottom: 1px solid var(--border-subtle);
-  background-color: rgba(20, 28, 43, 0.02);
+  background-color: rgba(255, 255, 255, 0.03);
 }
 
 .window-dots {
@@ -935,10 +1122,10 @@ html.lenis body {
   width: 9px;
   height: 9px;
   border-radius: 9999px;
-  background-color: rgba(20, 28, 43, 0.18);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Physical Micro-Keystroke UI (§5 Keystroke Micro-UIs) */
+/* Physical Micro-Keystroke UI */
 kbd.key-cap {
   font-family: var(--font-mono);
   font-size: 11px;
@@ -946,8 +1133,424 @@ kbd.key-cap {
   padding: 2px 6px;
   border-radius: 4px;
   border: 1px solid var(--border-strong);
-  background-color: #f7f6f3;
-  color: var(--text-secondary);
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  background-color: var(--surface-panel-elevated);
+  color: var(--text-primary);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
   user-select: none;
+}
+
+/* ==========================================================================
+   KINETIC ACCENT RING (Hero Headline)
+   ========================================================================== */
+@keyframes drawKineticRing {
+  0% {
+    stroke-dashoffset: 720;
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.85;
+  }
+}
+
+.kinetic-accent-ring {
+  stroke-dasharray: 720;
+  stroke-dashoffset: 720;
+  animation: drawKineticRing 1.3s cubic-bezier(0.23, 1, 0.32, 1) 0.25s forwards;
+  will-change: stroke-dashoffset, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kinetic-accent-ring {
+    animation: none;
+    stroke-dashoffset: 0;
+    opacity: 0.85;
+  }
+}
+
+/* ==========================================================================
+   SECTION 4: KINETIC WAVE MARQUEE (Off-Main-Thread GPU Acceleration)
+   Undulating ribbon separating Hero Command Stage from Capability Arc.
+   Linear velocity (~18-24s cycle per segment, 40s loop across 2 segments).
+   ========================================================================== */
+@keyframes kineticWaveMarquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.kinetic-wave-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: kineticWaveMarquee 40s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kinetic-wave-track {
+    animation: none !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+}
+/* ==========================================================================
+   SECTION 5: AUDENS-INSPIRED CAPABILITY BENTO & MICRO-VIGNETTES
+   Snappy transitions, 3D flip cards, and semantic progressive disclosure drawers.
+   ========================================================================== */
+.bento-drawer-grid {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 250ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.bento-drawer-grid[data-expanded='true'] {
+  grid-template-rows: 1fr;
+}
+
+.bento-drawer-content {
+  overflow: hidden;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bento-drawer-grid {
+    transition: none !important;
+  }
+}
+
+/* ==========================================================================
+   AUDENS.AI SIGNATURE COMPONENT SUITE
+   Buttons, Capsule Pill Navigation, Ledgers, Stepflow, Nextrail, Gradient Cards
+   ========================================================================== */
+
+/* Buttons & Tactile CTAs */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  border-radius: var(--r-pill);
+  transition: transform 0.15s var(--ease), background 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease);
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn--solid {
+  background: var(--pine);
+  color: var(--porcelain);
+  border: 1.5px solid transparent;
+}
+
+.btn--solid:hover {
+  background: var(--forest);
+}
+
+.btn--mint {
+  background: var(--mint);
+  color: var(--pine);
+  border: 1.5px solid transparent;
+  font-weight: 700;
+}
+
+.btn--mint:hover {
+  background: #19d79e;
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--pine);
+  border: 1.5px solid var(--pine-20);
+}
+
+.btn--ghost:hover {
+  border-color: var(--pine-50);
+}
+
+.btn__hand {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  pointer-events: none;
+  transition: transform 0.25s var(--ease-bounce);
+}
+
+.btn:hover .btn__hand {
+  transform: rotate(14deg) scale(1.1);
+}
+
+/* Floating Nav Capsule */
+.navshell {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.navpill {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 66px;
+  margin-inline: auto;
+  padding: 0 14px 0 22px;
+  border-radius: var(--r-pill);
+  background: rgba(245, 245, 240, 0.88);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid var(--line);
+  box-shadow: 0 12px 36px rgba(7, 41, 41, 0.06);
+  transition: height 0.3s var(--ease), background 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  position: relative;
+}
+
+.nav-progress {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 0;
+  height: 2px;
+  background: var(--mint);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.1s linear;
+}
+
+/* The Sector Ledger */
+.ledger {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.ledger__row {
+  display: grid;
+  grid-template-columns: 48px 1fr auto 32px;
+  gap: 20px;
+  align-items: center;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  color: inherit;
+  transition: padding-left 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+.ledger__row:hover {
+  padding-left: 8px;
+}
+
+.ledger__row:hover .ledger__arrow {
+  transform: translateX(6px);
+  color: var(--mint);
+}
+
+.ledger__arrow {
+  display: inline-flex;
+  transition: transform 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+/* Stepflow Process Rail */
+.stepflow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 24px;
+  position: relative;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.stepflow__step {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stepflow__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.stepflow__node {
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: var(--flow-tone, var(--mint));
+  color: var(--pine);
+}
+
+.stepflow__link {
+  flex: 1;
+  height: 1.5px;
+  background: var(--pine-20);
+}
+
+.stepflow__copy {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--bone);
+}
+
+/* Nextrail */
+.nextrail {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+  list-style: none;
+  padding: 0;
+}
+
+.nextrail__step {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 16px;
+  align-items: baseline;
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+.nextrail__n {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--mint-ink);
+}
+
+/* Rotating Conic Gradient Card */
+@keyframes rotateConic {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.gradient-card {
+  position: relative;
+  border-radius: var(--r-card);
+  overflow: hidden;
+  padding: 2px;
+}
+
+.gradient-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    var(--mint),
+    var(--sky),
+    var(--lavender),
+    var(--pink),
+    var(--butter),
+    var(--mint)
+  );
+  animation: rotateConic 12s linear infinite;
+  z-index: 0;
+}
+
+.gradient-card__inner {
+  position: relative;
+  z-index: 1;
+  background: var(--pine);
+  border-radius: calc(var(--r-card) - 2px);
+  padding: clamp(32px, 5vw, 64px);
+}
+
+/* Typing Dots Animation (Audens Chat Slots) */
+@keyframes typingBounce {
+  0%, 80%, 100% {
+    transform: scale(0.6);
+    opacity: 0.35;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.typing-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.typing-dots i {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: currentColor;
+  display: inline-block;
+  animation: typingBounce 1.4s infinite ease-in-out both;
+}
+
+.typing-dots i:nth-child(1) {
+  animation-delay: -0.32s;
+}
+.typing-dots i:nth-child(2) {
+  animation-delay: -0.16s;
+}
+.typing-dots i:nth-child(3) {
+  animation-delay: 0s;
+}
+
+/* Aurora Orbs */
+.aurora__orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  pointer-events: none;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gradient-card::before {
+    animation: none !important;
+  }
+  .typing-dots i {
+    animation: none !important;
+    opacity: 0.8 !important;
+    transform: none !important;
+  }
 }

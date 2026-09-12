@@ -1,42 +1,25 @@
 import React from 'react';
-import Image from 'next/image';
 import type { Metadata } from 'next';
 import { Container } from '@/components/foundation/Container';
-import { Button } from '@/components/atoms/Button';
 import { Link } from '@/components/atoms/Link';
-import { MagneticButton } from '@/components/atoms/MagneticButton';
-import {
-  AnimatedSection,
-  Reveal,
-  StaggerGrid,
-  StaggerItem,
-} from '@/components/foundation/AnimatedSection';
-import { TextReveal } from '@/components/foundation/TextReveal';
 import {
   ArrowRight,
-  Sparkles,
   ShieldCheck,
   Cpu,
   Palette,
   TrendingUp,
   Bot,
   HeartHandshake,
-  Terminal,
-  Zap,
-  Users,
   CheckCircle2,
-  Lock,
-  Code2,
-  Layers,
+  Terminal,
 } from 'lucide-react';
 import { buildMetadata, getBreadcrumbListJsonLd, JsonLd } from '@/lib/seo';
-import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = buildMetadata({
   path: '/team',
-  title: 'Founding Leadership & Engineering Studio',
+  title: 'The Builders & Engineering Ethos — Built to change what happens',
   description:
-    'Meet Dhruw Singh, Sonu Singh, Annanta Singh, Rishabh Singh, and Gourav Singh—the founding team driving NorAI Technologies from Uttar Pradesh, India.',
+    'Meet Dhruw Singh, Sonu Singh, Annanta Singh, Rishabh Singh, and Gourav Singh—the founding engineering team driving NorAI Technologies from Uttar Pradesh, India.',
 });
 
 interface TeamMember {
@@ -48,7 +31,6 @@ interface TeamMember {
   bio: string;
   systemsOwned: string[];
   primaryStack: string[];
-  image: string;
   icon: React.ElementType;
 }
 
@@ -58,15 +40,14 @@ const BUILDERS: TeamMember[] = [
     name: 'Dhruw Singh',
     role: 'Founder & Head of Strategic Operations',
     discipline: 'Strategic Operations',
-    pedigree: 'Retd. Indian Army (Corps of Signals) · 30 Years Military Service',
-    bio: 'Leads institutional governance, operational security protocols, and state-level outreach with the same discipline that guided three decades of defense communications.',
+    pedigree: 'Retd. Indian Army (Corps of Signals) · 30 Years Defense Service',
+    bio: 'Directs institutional governance, operational security protocols, and state-level outreach with the same discipline that guided three decades of military communications.',
     systemsOwned: [
       'Strategic Operations & Governance',
       'Institutional & State Outreach',
       'Operational SLAs & Security Guardrails',
     ],
     primaryStack: ['Defense Ops Rigor', 'Institutional Governance', 'Operational SLAs'],
-    image: '/images/team/dhruw-singh.jpg',
     icon: ShieldCheck,
   },
   {
@@ -82,7 +63,6 @@ const BUILDERS: TeamMember[] = [
       'WebGPU & Spatial Shaders',
     ],
     primaryStack: ['Spatial Computing', 'WebGPU & Three.js', 'Python / vLLM'],
-    image: '/images/team/sonu-singh.jpg',
     icon: Cpu,
   },
   {
@@ -98,7 +78,6 @@ const BUILDERS: TeamMember[] = [
       'Technical SEO & B2B Client Pipelines',
     ],
     primaryStack: ['Inbound Growth Funnels', 'Technical SEO', 'B2B Client Pipelines'],
-    image: '/images/team/annanta-singh.jpg',
     icon: TrendingUp,
   },
   {
@@ -109,12 +88,11 @@ const BUILDERS: TeamMember[] = [
     pedigree: 'UI/UX Architect & Visual Rendering Specialist',
     bio: 'Designs tactile, high-craft interfaces, fluid spring physics, and accessible typography, ensuring every software surface feels as substantial as a physical tool.',
     systemsOwned: [
-      'Parchment & Terracotta Design Tokens',
+      'High-Craft Design Tokens',
       'Tactile Hardware UI Atoms & Molecules',
       'Motion & Micro-Interaction Curves',
     ],
     primaryStack: ['Design Systems', 'Tailwind CSS & Next.js 15', 'motion/react'],
-    image: '/images/team/rishabh-singh.jpg',
     icon: Palette,
   },
   {
@@ -130,16 +108,15 @@ const BUILDERS: TeamMember[] = [
       'Sub-Second Ingestion & Extraction Engines',
     ],
     primaryStack: ['TypeScript & Next.js App Router', 'vLLM / Ollama Serving', 'Zod Schemas'],
-    image: '/images/team/gourav-singh.jpg',
     icon: Bot,
   },
 ];
 
-const OPERATING_RITUALS = [
+const RITUALS = [
   {
     number: '01',
-    title: 'Founders write the code & answer support',
-    tagline: 'Zero support queues · Direct engineer accountability',
+    title: 'Founders write the code & answer technical questions',
+    tagline: 'Zero support deflection · Direct engineer accountability',
     desc: 'We do not employ deflection bots or junior triage queues. When you suggest an improvement or report a parsing edge case, the engineer who authored the schema fixes it.',
     icon: HeartHandshake,
   },
@@ -152,492 +129,257 @@ const OPERATING_RITUALS = [
   },
   {
     number: '03',
-    title: 'Shipped weekly on a deterministic rhythm',
-    tagline: 'Continuous delivery · Real software every Monday',
-    desc: 'We build lightweight, single-purpose utilities released on a steady rhythm. No vaporware or pitch decks behind NDAs—just reliable software you can use in production tomorrow.',
-    icon: Zap,
+    title: 'Rapid improvements, shipped frequently',
+    tagline: 'Short feedback loops · Constant iteration · Weekly releases',
+    desc: 'We deploy in tight, verifiable cycles. Our clients receive direct Git commits, benchmark logs, and release notes instead of quarterly committee slide decks.',
+    icon: Cpu,
   },
   {
     number: '04',
-    title: 'Field Fridays across regional Uttar Pradesh',
-    tagline: 'Grassroots ground truth · Real classroom testing',
-    desc: 'Every Friday, our team visits regional colleges, polytechnics, and village clusters across Uttar Pradesh—testing our tools with first-generation students and everyday citizens.',
-    icon: Users,
-  },
-];
-
-const ENGINEERING_INVARIANTS = [
-  {
-    number: 'INVARIANT 01',
-    title: 'Zero Data Retention',
-    tagline: 'Ephemeral RAM isolation · 0 bytes retained',
-    desc: 'User documents and query vectors process exclusively in ephemeral RAM containers. Once the response stream terminates, memory is zeroed. Client data is never retained or used for model training.',
-    icon: Lock,
-  },
-  {
-    number: 'INVARIANT 02',
-    title: 'Typed Runtime Contracts',
-    tagline: 'Strict Zod boundaries · Zero schema drift',
-    desc: 'Every LLM output is validated against strict, versioned Zod schemas before returning to the caller. Hallucinations and malformed keys are caught and healed deterministically at the boundary.',
-    icon: Code2,
-  },
-  {
-    number: 'INVARIANT 03',
-    title: 'Sub-Second Execution',
-    tagline: 'P95 cold-start < 350ms · Native parallelism',
-    desc: 'We aggressively eliminate overhead. Fast tokenizers, streaming responses, and pre-warmed inference workers ensure our tools respond at the speed of thought.',
-    icon: Zap,
+    title: 'Upskilling local communities across 75 districts',
+    tagline: '100% free campus workshops · Vernacular literacy · ₹0 cost',
+    desc: 'Every commercial deployment subsidizes free computational literacy workshops, open-weight student models, and localized Hindi tooling across Uttar Pradesh.',
+    icon: ShieldCheck,
   },
 ];
 
 export default function TeamPage() {
   const breadcrumbs = [
     { name: 'Home', path: '/' },
-    { name: 'Team', path: '/team' },
+    { name: 'About', path: '/team' },
   ];
 
-  const teamJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'AboutPage',
-    name: 'NorAI Founding Leadership & Engineering Team',
-    url: `${siteConfig.url}/team`,
-    mainEntity: {
-      '@type': 'Organization',
-      name: 'NorAI Technologies',
-      url: siteConfig.url,
-      location: {
-        '@type': 'Place',
-        name: 'Uttar Pradesh, India',
-      },
-      member: BUILDERS.map((builder) => ({
-        '@type': 'Person',
-        name: builder.name,
-        jobTitle: builder.role,
-        description: builder.bio,
-      })),
-    },
-  };
-
   return (
-    <div className="text-text-primary min-h-screen font-sans bg-surface-canvas selection:bg-accent-primary selection:text-white">
-      <JsonLd schema={teamJsonLd} />
+    <div className="min-h-screen font-sans bg-[#f5f5f0] text-[var(--pine)] selection:bg-[var(--mint)] selection:text-[var(--pine)]">
       <JsonLd schema={getBreadcrumbListJsonLd(breadcrumbs)} />
 
       {/* =========================================================================
-          SECTION 1: HERO & STUDIO CRAFT STAGE
+          HERO CHAMBER (.phero)
           ========================================================================= */}
-      <section className="relative pt-16 pb-14 md:pt-24 md:pb-20 border-b border-border-subtle overflow-hidden bg-surface-canvas">
-        <Container size="default" className="relative z-10 space-y-12">
-          <div className="max-w-4xl space-y-6 text-left">
-            <Reveal delay={0} y={16}>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-accent-50 border border-accent-primary/20 text-accent-primary text-xs font-mono font-semibold">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Founding Leadership &amp; Engineering Studio · Uttar Pradesh</span>
-              </div>
-            </Reveal>
+      <section className="relative pt-12 pb-16 sm:pt-20 sm:pb-20 overflow-hidden border-b border-[var(--line)]">
+        {/* Soft Organic Aurora Glow Orbs */}
+        <div
+          className="aurora__orb -top-32 -left-20 w-[450px] h-[450px] bg-[var(--mint)]/15"
+          aria-hidden="true"
+        />
+        <div
+          className="aurora__orb -top-20 right-0 w-[500px] h-[500px] bg-[var(--lavender)]/12"
+          aria-hidden="true"
+        />
 
-            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal text-text-primary leading-[1.02] tracking-display">
-              <TextReveal text="Five engineers." as="span" /> <br />
-              <span className="italic text-accent-primary font-normal">
-                <TextReveal text="One standard." as="span" delay={0.2} />
+        <Container size="default" className="relative z-10 max-w-[1240px] mx-auto px-4 sm:px-6">
+          <div className="max-w-4xl space-y-6 text-left">
+            {/* Monospace Eyebrow Tag */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--pine-08)] border border-[var(--line)] text-xs font-mono text-[var(--pine)]">
+              <span className="w-2 h-2 rounded-full bg-[var(--mint-ink)] animate-pulse" aria-hidden="true" />
+              <span className="tracking-wide uppercase font-medium">
+                05 · THE BUILDERS &amp; ARCHITECTURAL ETHOS · DIRECT ACCESS
+              </span>
+            </div>
+
+            {/* Kinetic Display Headline */}
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[var(--pine)] leading-[1.04] tracking-tight">
+              Built to change what happens. <br />
+              <span className="relative inline-block text-[var(--mint-ink)]">
+                Direct access to the builders.
+                <svg
+                  className="absolute -bottom-2 sm:-bottom-3 left-0 w-full h-3 sm:h-4 text-[var(--mint)]"
+                  viewBox="0 0 240 40"
+                  fill="none"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M3 33C50 12 150 5 237 22"
+                    stroke="currentColor"
+                    strokeWidth="5"
+                    strokeLinecap="round"
+                  />
+                </svg>
               </span>
             </h1>
 
-            <Reveal delay={0.2} y={18}>
-              <p className="fluid-lead text-text-secondary leading-relaxed max-w-2xl font-normal text-pretty">
-                Every pipeline authored, deployed, and supported directly by the five founding
-                engineers in Uttar Pradesh. No corporate bureaucracy, no deflection queues—just
-                grounded engineering from the heart of North India.
-              </p>
-            </Reveal>
+            <p className="text-lg sm:text-xl text-[var(--pine)]/80 leading-relaxed max-w-2xl font-normal text-pretty">
+              We are an engineering studio headquartered in Uttar Pradesh. We design, benchmark,
+              and deploy autonomous tools and private enterprise intelligence with mathematical precision.
+            </p>
           </div>
-
-          {/* Hero Studio Photography Frame */}
-          <Reveal delay={0.3} y={24}>
-            <figure className="relative overflow-hidden rounded-3xl border border-border-strong bg-surface-panel shadow-sm">
-              <div className="relative aspect-[16/9] w-full overflow-hidden bg-surface-panel-subtle">
-                <Image
-                  src="/images/team/studio-workshop.jpg"
-                  alt="NorAI engineering studio workshop in Uttar Pradesh, India with founders collaborating at oak workbenches"
-                  fill
-                  priority
-                  className="object-cover"
-                  sizes="(max-width: 1200px) 100vw, 1200px"
-                />
-              </div>
-              <figcaption className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-t border-border-subtle bg-surface-panel/90 px-6 py-3.5 text-xs font-mono text-text-secondary text-left">
-                <span>NorAI Engineering Studio · Uttar Pradesh, India</span>
-                <span className="text-accent-primary font-medium">
-                  Ground Truth, Hard Hardware, and Fast Code
-                </span>
-              </figcaption>
-            </figure>
-          </Reveal>
         </Container>
       </section>
 
       {/* =========================================================================
-          SECTION 2: ORIGIN STORY & GROUNDED PERSPECTIVE (Merged from /about)
+          THE BUILDERS ROSTER
           ========================================================================= */}
-      <AnimatedSection className="py-20 md:py-28 border-b border-border-subtle bg-surface-panel">
-        <Container size="default">
-          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
-            {/* Left: Origin Narrative */}
-            <Reveal className="space-y-6 lg:col-span-7 text-left">
-              <div className="space-y-3">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-50 border border-accent-primary/20 text-accent-primary text-xs font-mono font-semibold">
-                  <Layers className="w-3.5 h-3.5" />
-                  <span>The Genesis &amp; Grounded Perspective</span>
-                </div>
-                <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-normal text-text-primary leading-tight tracking-display">
-                  Born from real <br />
-                  <span className="italic text-accent-primary font-normal">
-                    operational friction.
-                  </span>
-                </h2>
-              </div>
-
-              <div className="space-y-5 text-base md:text-lg leading-relaxed text-text-secondary text-pretty">
-                <p>
-                  NorAI began with a simple frustration. Resumes arrived faster than anyone could
-                  read them—four hundred applicants for a single position, shortlisted by hand over
-                  long weekends. Lecture recordings dissolved into chaotic screenshots across three
-                  apps and were never found again.
-                </p>
-                <p>
-                  None of these bottlenecks required a trillion-parameter general assistant. They
-                  needed someone to sit down and build the{' '}
-                  <strong className="text-text-primary font-medium">
-                    focused, deterministic fix
-                  </strong>
-                  —and keep it running with sub-second speed and zero hallucination.
-                </p>
-                <p>
-                  The first tool was our{' '}
-                  <strong className="text-text-primary font-medium">AI Resume Shortlister</strong>,
-                  engineered for our own hiring. It parsed candidate documents and returned a
-                  structured, verified verdict in under 350 milliseconds. We shipped it, watched
-                  teams rely on it daily, and doubled down on single-purpose utility.
-                </p>
-              </div>
-            </Reveal>
-
-            {/* Right: Candid Workshop Craft Photo */}
-            <Reveal delay={0.2} className="lg:col-span-5">
-              <figure className="overflow-hidden rounded-3xl border border-border-strong bg-surface-canvas shadow-sm">
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-surface-panel-subtle">
-                  <Image
-                    src="/images/about/origin-craft.jpg"
-                    alt="NorAI engineers sketching architecture and reviewing code on an engineering desk"
-                    fill
-                    loading="lazy"
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 500px"
-                  />
-                </div>
-                <figcaption className="border-t border-border-subtle bg-surface-panel px-5 py-3 text-xs font-mono text-text-secondary text-left">
-                  <span>Architecture review at the studio desk</span>
-                </figcaption>
-              </figure>
-            </Reveal>
-          </div>
-        </Container>
-      </AnimatedSection>
-
-      {/* =========================================================================
-          SECTION 3: THE 5 BUILDERS ROSTER (High-Craft Editorial Cards)
-          ========================================================================= */}
-      <AnimatedSection className="py-20 md:py-28 border-b border-border-subtle bg-surface-canvas">
-        <Container size="default">
-          <div className="max-w-3xl mb-14 text-left space-y-3">
-            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-accent-primary">
-              Core Engineering Team
+      <section className="py-14 sm:py-20 border-b border-[var(--line)]">
+        <Container size="wide" className="max-w-[1240px] mx-auto px-4 sm:px-6">
+          <div className="max-w-2xl mb-12 text-left space-y-2">
+            <span className="font-mono text-xs text-[var(--pine)]/60 uppercase tracking-wider font-semibold block">
+              FOUNDING STUDIO ENGINEERS
             </span>
-            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-normal text-text-primary leading-tight tracking-display">
-              Meet the five builders.
+            <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-[var(--pine)] tracking-tight">
+              The people who write the code.
             </h2>
-            <p className="fluid-body text-text-secondary leading-relaxed max-w-xl text-pretty">
-              Direct engineer accountability. When you use a NorAI tool or scope a custom pipeline,
-              you work directly with the person who authored the architecture.
+            <p className="text-sm sm:text-base text-[var(--pine)]/75">
+              Zero executive insulation. Each engineer directly owns production runtime services.
             </p>
           </div>
 
-          {/* Builder Cards Grid */}
-          <StaggerGrid
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left"
-            stagger={0.12}
-          >
-            {BUILDERS.map((builder, idx) => {
-              const Icon = builder.icon;
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+            {BUILDERS.map((builder) => {
+              const BuilderIcon = builder.icon;
               return (
-                <StaggerItem
+                <div
                   key={builder.id}
-                  className={idx === 0 ? 'md:col-span-2 lg:col-span-1' : ''}
+                  className="rounded-[22px] bg-[#fffdf7] border border-[var(--line)] p-7 sm:p-9 flex flex-col justify-between space-y-6 shadow-xs group hover:shadow-lg transition-all duration-200"
                 >
-                  <div className="p-2 rounded-3xl bg-surface-panel/40 border border-border-strong shadow-sm h-full flex flex-col justify-between hover:border-accent-primary/40 transition-colors">
-                    <div className="rounded-[calc(1.5rem-0.25rem)] bg-surface-panel border border-border-subtle p-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)] space-y-5 h-full flex flex-col justify-between">
-                      <div className="space-y-4">
-                        {/* Portrait & Discipline Badge */}
-                        <div className="flex items-start justify-between gap-3">
-                          <div className="relative w-16 h-16 rounded-2xl overflow-hidden border border-border-subtle bg-surface-panel-subtle shrink-0">
-                            <Image
-                              src={builder.image}
-                              alt={builder.name}
-                              fill
-                              className="object-cover"
-                              sizes="64px"
-                            />
-                          </div>
-                          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-panel-subtle border border-border-subtle text-[11px] font-mono text-accent-primary font-medium">
-                            <Icon className="w-3 h-3" />
-                            <span>{builder.discipline}</span>
-                          </div>
+                  <div className="space-y-4 text-left">
+                    <div className="flex items-start justify-between gap-4 border-b border-[var(--line)] pb-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 rounded-xl bg-[var(--porcelain)] border border-[var(--line)] flex items-center justify-center text-[var(--pine)]">
+                          <BuilderIcon className="w-6 h-6" />
                         </div>
-
-                        {/* Name & Role */}
-                        <div className="space-y-1">
-                          <h3 className="font-display text-2xl text-text-primary font-normal">
+                        <div>
+                          <h3 className="font-display text-2xl font-extrabold text-[var(--pine)]">
                             {builder.name}
                           </h3>
-                          <p className="text-xs font-mono text-accent-secondary font-medium">
+                          <span className="text-xs font-mono font-semibold text-[var(--mint-ink)] block">
                             {builder.role}
-                          </p>
-                        </div>
-
-                        {/* Pedigree Pill */}
-                        <div className="text-[11px] font-mono text-text-muted bg-surface-canvas border border-border-subtle rounded-lg px-2.5 py-1">
-                          {builder.pedigree}
-                        </div>
-
-                        {/* Bio */}
-                        <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
-                          {builder.bio}
-                        </p>
-                      </div>
-
-                      {/* Systems Owned & Stack */}
-                      <div className="space-y-3 pt-4 border-t border-border-subtle">
-                        <div className="space-y-1.5">
-                          <span className="text-[10px] font-mono uppercase tracking-wider text-text-muted block">
-                            Systems Owned:
                           </span>
-                          <div className="space-y-1">
-                            {builder.systemsOwned.map((sys) => (
-                              <div
-                                key={sys}
-                                className="flex items-center gap-1.5 text-xs text-text-primary"
-                              >
-                                <CheckCircle2 className="w-3 h-3 text-accent-secondary shrink-0" />
-                                <span className="text-[11px] font-medium leading-tight">{sys}</span>
-                              </div>
-                            ))}
-                          </div>
                         </div>
+                      </div>
+                      <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-[var(--pine-08)] text-[var(--pine)]/70">
+                        {builder.discipline}
+                      </span>
+                    </div>
 
-                        <div className="pt-2 flex flex-wrap gap-1.5">
-                          {builder.primaryStack.map((st) => (
-                            <span
-                              key={st}
-                              className="px-2 py-0.5 rounded bg-surface-canvas border border-border-subtle text-[10px] font-mono text-text-secondary"
-                            >
-                              {st}
-                            </span>
-                          ))}
-                        </div>
+                    <div className="space-y-1 text-xs font-mono text-[var(--pine)]/60">
+                      <span className="text-[10px] uppercase font-bold tracking-wider text-[var(--pine)]/40 block">
+                        PEDIGREE
+                      </span>
+                      <p>{builder.pedigree}</p>
+                    </div>
+
+                    <p className="text-sm text-[var(--pine)]/80 leading-relaxed font-normal">
+                      {builder.bio}
+                    </p>
+
+                    <div className="pt-3 border-t border-[var(--line)] space-y-2">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-[var(--pine)]/50 font-bold block">
+                        SYSTEMS OWNED:
+                      </span>
+                      <div className="space-y-1">
+                        {builder.systemsOwned.map((sys, sIdx) => (
+                          <div key={sIdx} className="flex items-center gap-2 text-xs text-[var(--pine)]/85">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-[var(--mint-ink)] shrink-0" />
+                            <span>{sys}</span>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </div>
-                </StaggerItem>
-              );
-            })}
-          </StaggerGrid>
-        </Container>
-      </AnimatedSection>
 
-      {/* =========================================================================
-          SECTION 4: THE 4 OPERATING RITUALS ("HOW WE BUILD")
-          ========================================================================= */}
-      <AnimatedSection className="py-20 md:py-28 bg-surface-panel border-b border-border-subtle">
-        <Container size="default">
-          <div className="max-w-3xl mb-14 text-left space-y-3">
-            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-accent-secondary">
-              Studio Operating Rigor
-            </span>
-            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-normal text-text-primary leading-tight tracking-display">
-              Our four operating rituals.
-            </h2>
-            <p className="fluid-body text-text-secondary leading-relaxed max-w-xl text-pretty">
-              How five builders ship reliable, sub-second tools without corporate bloat or
-              deflection tickets.
-            </p>
-          </div>
-
-          <StaggerGrid className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left" stagger={0.12}>
-            {OPERATING_RITUALS.map((ritual) => {
-              const Icon = ritual.icon;
-              return (
-                <StaggerItem key={ritual.number} className="h-full">
-                  <div className="p-2 rounded-3xl bg-surface-canvas/80 border border-border-strong shadow-sm h-full flex flex-col justify-between hover:border-accent-primary/40 transition-colors">
-                    <div className="rounded-[calc(1.5rem-0.25rem)] bg-surface-panel border border-border-subtle p-7 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)] space-y-5 h-full flex flex-col justify-between">
-                      <div className="space-y-4">
-                        <div className="flex items-center justify-between">
-                          <span className="font-mono text-xs font-bold text-accent-primary px-2.5 py-0.5 rounded bg-accent-50 border border-accent-primary/20">
-                            Ritual {ritual.number}
-                          </span>
-                          <div className="w-8 h-8 rounded-lg bg-surface-panel-subtle border border-border-subtle text-accent-primary flex items-center justify-center">
-                            <Icon className="w-4 h-4" />
-                          </div>
-                        </div>
-
-                        <h3 className="font-display text-2xl text-text-primary font-normal leading-snug">
-                          {ritual.title}
-                        </h3>
-
-                        <p className="font-mono text-xs text-accent-primary font-medium">
-                          {ritual.tagline}
-                        </p>
-
-                        <p className="text-sm text-text-secondary leading-relaxed">{ritual.desc}</p>
-                      </div>
-
-                      <div className="pt-4 border-t border-border-subtle flex items-center justify-between text-xs font-mono text-accent-secondary font-semibold">
-                        <span>Zero Deflection Principle</span>
-                        <CheckCircle2 className="w-4 h-4 text-accent-secondary" />
-                      </div>
-                    </div>
-                  </div>
-                </StaggerItem>
-              );
-            })}
-          </StaggerGrid>
-        </Container>
-      </AnimatedSection>
-
-      {/* =========================================================================
-          SECTION 5: THREE ENGINEERING INVARIANTS
-          ========================================================================= */}
-      <AnimatedSection className="py-20 md:py-28 bg-surface-canvas border-b border-border-subtle">
-        <Container size="default">
-          <div className="max-w-3xl mb-14 text-left space-y-3">
-            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-accent-primary">
-              Deterministic Architecture
-            </span>
-            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-normal text-text-primary leading-tight tracking-display">
-              Three engineering invariants.
-            </h2>
-            <p className="fluid-body text-text-secondary leading-relaxed max-w-xl text-pretty">
-              The architectural rules enforced on every pipeline, tool, and client deployment across
-              the NorAI stack.
-            </p>
-          </div>
-
-          <StaggerGrid className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left" stagger={0.12}>
-            {ENGINEERING_INVARIANTS.map((inv) => {
-              const Icon = inv.icon;
-              return (
-                <StaggerItem key={inv.number} className="h-full">
-                  <div className="p-2 rounded-3xl bg-surface-panel/40 border border-border-strong shadow-sm h-full flex flex-col justify-between hover:border-accent-primary/40 transition-colors">
-                    <div className="rounded-[calc(1.5rem-0.25rem)] bg-surface-panel border border-border-subtle p-7 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)] space-y-5 h-full flex flex-col justify-between">
-                      <div className="space-y-4">
-                        <div className="flex items-center justify-between">
-                          <span className="font-mono text-[11px] font-bold text-accent-secondary px-2.5 py-0.5 rounded bg-sage-100/70 border border-accent-secondary/20">
-                            {inv.number}
-                          </span>
-                          <div className="w-8 h-8 rounded-lg bg-surface-panel-subtle border border-border-subtle text-accent-secondary flex items-center justify-center">
-                            <Icon className="w-4 h-4" />
-                          </div>
-                        </div>
-
-                        <h3 className="font-display text-2xl text-text-primary font-normal leading-snug">
-                          {inv.title}
-                        </h3>
-
-                        <p className="font-mono text-xs text-accent-secondary font-medium">
-                          {inv.tagline}
-                        </p>
-
-                        <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
-                          {inv.desc}
-                        </p>
-                      </div>
-
-                      <div className="pt-4 border-t border-border-subtle flex items-center justify-between text-xs font-mono text-text-muted">
-                        <span>Strict Verification</span>
-                        <CheckCircle2 className="w-4 h-4 text-accent-secondary" />
-                      </div>
-                    </div>
-                  </div>
-                </StaggerItem>
-              );
-            })}
-          </StaggerGrid>
-        </Container>
-      </AnimatedSection>
-
-      {/* =========================================================================
-          SECTION 6: CLOSING FOUNDER DISPATCH CONSOLE
-          ========================================================================= */}
-      <AnimatedSection
-        as="aside"
-        aria-label="Connect with our founders"
-        className="py-20 md:py-28 bg-surface-panel"
-      >
-        <Container size="default">
-          <div className="p-2 sm:p-3 rounded-3xl bg-surface-canvas/80 border border-border-strong shadow-lg">
-            <div className="rounded-[calc(1.5rem-0.25rem)] bg-surface-panel border border-border-subtle p-8 sm:p-12 md:p-16 text-center shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)] relative overflow-hidden">
-              <div
-                className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(200,90,50,0.04)_0%,transparent_70%)]"
-                aria-hidden="true"
-              />
-
-              <div className="max-w-2xl mx-auto space-y-6 relative z-10">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent-50 border border-accent-primary/25 text-accent-primary text-xs font-mono font-semibold">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent-primary" />
-                  <span>Direct Founder Dispatch</span>
-                </div>
-
-                <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-normal text-text-primary leading-tight tracking-display">
-                  Have an engineering challenge <br />
-                  <span className="italic text-accent-primary font-normal">for our workshop?</span>
-                </h2>
-
-                <p className="fluid-body text-text-secondary leading-relaxed max-w-xl mx-auto text-pretty">
-                  Whether you need bespoke multi-agent RAG pipelines, air-gapped private inference,
-                  or want to invite us to your regional campus—talk directly with our founding
-                  engineers.
-                </p>
-
-                <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
-                  <Link href="/contact" className="w-full sm:w-auto">
-                    <MagneticButton strength={14} className="w-full sm:w-auto">
-                      <Button
-                        variant="primary"
-                        size="lg"
-                        className="w-full sm:w-auto justify-between group shadow-accent hover:shadow-hover hover:-translate-y-0.5 active:scale-[0.98] transition-all cursor-pointer btn-tactile pl-6 pr-2.5 py-2.5"
+                  <div className="pt-3 border-t border-[var(--line)] flex flex-wrap gap-1.5">
+                    {builder.primaryStack.map((tech, tIdx) => (
+                      <span
+                        key={tIdx}
+                        className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-[var(--porcelain)] text-[var(--pine)]/80 border border-[var(--line)]"
                       >
-                        <span className="font-semibold text-sm">Talk to the Engineering Team</span>
-                        <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center transition-transform group-hover:translate-x-1 group-hover:-translate-y-0.5 ml-3">
-                          <ArrowRight className="w-4 h-4 text-white" />
-                        </span>
-                      </Button>
-                    </MagneticButton>
-                  </Link>
-
-                  <Link href="/products" className="w-full sm:w-auto">
-                    <Button
-                      variant="secondary"
-                      size="lg"
-                      className="w-full sm:w-auto justify-center hover:-translate-y-0.5 active:scale-[0.98] transition-all cursor-pointer text-sm"
-                    >
-                      Explore 4 live tools
-                    </Button>
-                  </Link>
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
+              );
+            })}
+          </div>
+        </Container>
+      </section>
+
+      {/* =========================================================================
+          OPERATING RITUALS
+          ========================================================================= */}
+      <section className="py-16 sm:py-24 border-b border-[var(--line)]">
+        <Container size="wide" className="max-w-[1240px] mx-auto px-4 sm:px-6">
+          <div className="max-w-2xl mb-12 text-left space-y-2">
+            <span className="font-mono text-xs text-[var(--pine)]/60 uppercase tracking-wider font-semibold block">
+              OPERATIONAL RITUALS
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-[var(--pine)] tracking-tight">
+              How we work with clients and code.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {RITUALS.map((ritual) => {
+              const RitualIcon = ritual.icon;
+              return (
+                <div
+                  key={ritual.number}
+                  className="rounded-[22px] bg-[#fffdf7] border border-[var(--line)] p-6 sm:p-7 flex flex-col justify-between space-y-4 shadow-xs"
+                >
+                  <div className="space-y-3 text-left">
+                    <div className="flex items-center justify-between border-b border-[var(--line)] pb-2.5">
+                      <span className="font-mono text-xs font-bold text-[var(--pine)]/60">
+                        {ritual.number}
+                      </span>
+                      <RitualIcon className="w-4 h-4 text-[var(--mint-ink)]" />
+                    </div>
+                    <h3 className="font-display text-lg font-bold text-[var(--pine)] leading-snug">
+                      {ritual.title}
+                    </h3>
+                    <span className="text-xs font-mono text-[var(--mint-ink)] block font-semibold">
+                      {ritual.tagline}
+                    </span>
+                    <p className="text-xs sm:text-sm text-[var(--pine)]/75 leading-relaxed">
+                      {ritual.desc}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </Container>
+      </section>
+
+      {/* =========================================================================
+          CLOSING CONIC DISPATCH (.gradient-card)
+          ========================================================================= */}
+      <section className="py-16 sm:py-24">
+        <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
+          <div className="gradient-card max-w-4xl mx-auto text-center">
+            <div className="gradient-card__inner p-8 sm:p-12 space-y-6">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--mint)]/20 border border-[var(--mint-ink)]/20 text-xs font-mono font-bold text-[var(--mint-ink)] dark:text-[var(--mint)] uppercase tracking-wider">
+                Direct Engineering Collaboration
+              </div>
+
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--pine)] dark:text-[var(--bone)] tracking-tight leading-tight">
+                Work directly with our founders.
+              </h2>
+
+              <p className="text-base sm:text-lg text-[var(--pine)]/75 dark:text-[var(--bone-70)] max-w-2xl mx-auto leading-relaxed font-normal">
+                Whether you need dedicated enterprise deployment, private on-premise model enclaves,
+                or want to partner on grassroots AI research, our core builders are ready.
+              </p>
+
+              <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Link
+                  href="/contact"
+                  className="btn btn--solid w-full sm:w-auto h-12 px-7 text-sm font-semibold shadow-md"
+                >
+                  <span>Talk to an Engineer</span>
+                  <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
+                </Link>
+                <Link
+                  href="/products"
+                  className="btn btn--ghost w-full sm:w-auto h-12 px-6 text-sm font-medium"
+                >
+                  <span>Explore 4 live tools &rarr;</span>
+                </Link>
               </div>
             </div>
           </div>
         </Container>
-      </AnimatedSection>
+      </section>
     </div>
   );
 }

@@ -1,84 +1,97 @@
-# NorAI Technologies — Product Overview & Context (`PRODUCT.md`)
+# NorAI Technologies — Product Architecture & Catalog (`PRODUCT.md`)
 
-## 1. About NorAI Technologies
-
-**NorAI Technologies** builds fast, reliable AI utilities and custom enterprise automation pipelines. Headquartered in **Uttar Pradesh, India**, NorAI focuses on practical tools that solve real operational bottlenecks with transparent execution, sub-second latency, and privacy-first ephemeral memory.
-
-Rather than chasing generic AI hype or building complex black boxes, NorAI builds focused, single-purpose software that is dependable, understandable, and immediately useful.
+> **Platform Positioning**: Independent AI engineering, sovereign inference architectures, and consumer intelligence utilities. Headquartered in Uttar Pradesh, India.  
+> **Editorial Ethos**: "Built to change what happens. Advice that ships. Systems you own."
 
 ---
 
-## 2. The Four Flagship Products
+## 1. Executive Summary & Mission
 
-The platform centers around four purpose-built autonomous tools available at `/products`:
+NorAI Technologies builds fast, reliable AI utilities and custom enterprise automation pipelines. Rather than chasing generic LLM hype or creating opaque black boxes, NorAI designs and ships single-purpose, deterministic systems with sub-second latency, zero permanent data retention, and strict operational sovereignty.
 
-### 1. AI Resume Shortlister (`/products/resume-shortlister`)
-
-- **What it does:** High-velocity candidate screening and contextual resume parsing for recruiting teams and engineering managers.
-- **Key Capabilities:**
-  - Sub-second vector scoring and weighted skills evaluation (`< 0.35s / PDF`).
-  - Multi-format ingestion (PDF, DOCX, TXT) with zero permanent data retention.
-  - Transparent candidate scorecards and ATS-compatible structured JSON export.
-
-### 2. Course Note-Taker (`/products/course-note-taker`)
-
-- **What it does:** Transforms raw lecture recordings, technical videos, and slide decks into clean, structured study notes.
-- **Key Capabilities:**
-  - Real-time audio NLP and timestamped topic synthesis.
-  - Automatic LaTeX mathematical formula extraction and rendering.
-  - Interactive flashcards with spaced repetition for active recall.
-  - Accessible scholar access for students and researchers.
-
-### 3. Community Chat Digest (`/products/chat-digest`)
-
-- **What it does:** Condenses thousands of unread messages from Discord, Slack, and Telegram into concise executive briefs.
-- **Key Capabilities:**
-  - Noise deduplication and high-ratio token compression.
-  - Automatic action-item extraction with assignee tags and dead links filtered.
-  - Multi-channel topic clustering and sentiment radar.
-
-### 4. Smart Dainik News (`/products/smart-dainik-news`)
-
-- **What it does:** Aggregates and simplifies public employment gazettes and regional government notifications.
-- **Key Capabilities:**
-  - Bilingual coverage across Hindi and English feeds.
-  - Clear eligibility criteria, age limits, and countdown timers for application deadlines.
-  - Direct links to official application portals, eliminating misinformation and broken links.
+NorAI operates across **Three Core Dimensions**:
+1. **Sovereign Everyday Tools**: High-velocity autonomous utilities for recruiters, students, community leads, and citizens.
+2. **Bespoke Enterprise Intelligence**: Custom private VPC inference clusters, deterministic RAG pipelines, and Model Context Protocol (MCP) servers.
+3. **Grassroots Literacy & Bharat Mission**: 100% free coding literacy and autonomous agent workshops across all 75 districts of Uttar Pradesh.
 
 ---
 
-## 3. Enterprise Services (`/services`)
+## 2. Dimension 1: The Four Sovereign Everyday Tools (`/products`)
 
-For organizations requiring tailored infrastructure, NorAI provides bespoke engineering partnerships:
+Each tool is delivered as a production-grade utility with an interactive micro-vignette preview:
 
-- **High-Throughput Ingestion & Document Pipelines:** Scalable ETL architectures, custom parsing, and vector indexing (Milvus / Qdrant).
-- **Agent Orchestration & MCP Server Architecture:** Designing production Model Context Protocol (MCP) servers, multi-agent workflows, and deterministic human-in-the-loop checkpoints.
-- **Private On-Premises Inference & Fine-Tuning:** Dedicated VPC enclaves, air-gapped container deployments, custom LoRA adapters, and local vLLM inference with zero external data egress.
+### 01 · AI Resume Shortlister (`/products/resume-shortlister`)
+- **Category Tag**: `01 · Talent Intelligence · Sub-second Screening`
+- **Accent Tone**: Electric Mint (`#1EF4B4` / `#06845A`)
+- **The Problem**: Recruiting teams waste 20+ hours per week manually scanning PDFs, while traditional keyword ATS filters drop high-potential engineering talent.
+- **The Outcome**: Contextual skills evaluation and weighted qualification scoring completed in `< 0.35s / PDF`.
+- **Deliverables**:
+  1. Multi-format ingestion (PDF, DOCX, TXT) with in-memory parsing.
+  2. Weighted semantic scorecards matching job descriptions to actual shipped projects.
+  3. Structured ATS-compatible JSON export and clean decision badges (`Recommended` / `Review Needed`).
+  4. Ephemeral privacy guarantee: zero permanent storage; resumes purged from memory immediately upon score generation.
+
+### 02 · Course Note-Taker (`/products/course-note-taker`)
+- **Category Tag**: `02 · Academic Synthesis · Audio → LaTeX`
+- **Accent Tone**: Lavender (`#C6B5FF`)
+- **The Problem**: Students and technical researchers drown in hours of recorded lectures, struggling to manually transcribe complex mathematical equations and core concepts.
+- **The Outcome**: Automated transcript distillation into structured Markdown study briefs, KaTeX mathematical formulas, and active recall flashcards.
+- **Deliverables**:
+  1. Acoustic speech-to-text with domain-specific vocabulary tuning.
+  2. Real-time LaTeX formula extraction and rendering (e.g. `\Delta U = Q - W`).
+  3. Interactive 3D flip flashcards for spaced repetition.
+  4. Multi-tier export: Markdown, PDF, and Anki-compatible decks.
+
+### 03 · Community Chat Digest (`/products/chat-digest`)
+- **Category Tag**: `03 · Signal Synthesis · 4,800 Msgs → 3 Decisions`
+- **Accent Tone**: Coral (`#FF7755`)
+- **The Problem**: Engineering leaders and founders spend hours scrolling unread Slack, Discord, and Telegram channels, missing critical blockers and customer bug reports.
+- **The Outcome**: High-ratio token compression (94% reduction) filtering idle noise into clear executive decision digests with assigned owners.
+- **Deliverables**:
+  1. Multi-platform webhook integrations (Slack, Discord, Telegram).
+  2. Automated noise filtering, meme removal, and deduplication.
+  3. Decision & action-item extraction with GitHub issue cross-linking.
+  4. Daily 8:00 AM executive brief delivered directly to email or private DM.
+
+### 04 · Smart Dainik News (`/products/smart-dainik-news`)
+- **Category Tag**: `04 · Civic Intelligence · Bilingual Verification`
+- **Accent Tone**: Laser Emerald (`#34D399`) / Sky Cyan (`#75D3DA`)
+- **The Problem**: Aspirants across regional India lose government employment opportunities due to sensationalized, clickbait news blogs and expired registration dead-ends.
+- **The Outcome**: Verified, bilingual (Hindi & English) public employment briefs with verified eligibility criteria, fee structures, and official portal links.
+- **Deliverables**:
+  1. Autonomous daily scraping of official state and central gazettes.
+  2. Real-time bilingual translation and simplification into plain vernacular Hindi and English.
+  3. Deadline countdown trackers and eligibility requirement matrices.
+  4. Direct verification badges linking only to official `.gov.in` and `.nic.in` domains.
 
 ---
 
-## 4. AI Skill Mission (`/mission`)
+## 3. Dimension 2: Bespoke Enterprise Intelligence (`/services`)
 
-A core pillar of NorAI is regional community impact in Uttar Pradesh:
+For organizations requiring private infrastructure and custom agent workflows, NorAI acts as an end-to-end engineering partner:
 
-- Delivering free, hands-on computational and AI literacy workshops to students in regional colleges and polytechnics across 75 districts.
-- Founder-led masterclasses covering local model execution, modern web engineering, and practical AI tools.
-- Grassroots vernacular inclusion to make modern technology accessible in everyday Hindi and regional dialects.
+| Capability | Focus Area | Deliverables & Scope |
+| :--- | :--- | :--- |
+| **Private On-Premises Inference** | Security & Air-Gapped LLMs | Dedicated VPC enclaves, local vLLM / Ollama clusters, zero data egress to US cloud providers. |
+| **Deterministic RAG Architectures** | Data Retrieval | Hybrid dense/sparse vector indexing (Milvus / Qdrant), strict citation grounding, zero hallucinations. |
+| **Model Context Protocol (MCP) Systems**| Autonomous Agent Orchestration| Custom MCP server design, secure tool invocation frameworks, and human-in-the-loop validation checkpoints. |
+| **Enterprise Workflow Automation** | Process Engineering | Legacy ERP & CRM integration, scheduled ETL pipelines, and synthetic evaluation suites. |
 
----
-
-## 5. Core Philosophy & Product Values
-
-When building features, writing copy, or extending functionality, keep these foundational values in mind:
-
-- **Speed & Responsiveness:** Software should feel instantaneous. Strive for low latency and snappy feedback loops across all user interactions.
-- **Hardware Honesty & Transparency:** Avoid vague buzzwords or fabricated claims. Expose real telemetry (processing time in milliseconds, verified status, JSON payloads) when helpful.
-- **Privacy by Default:** Prioritize ephemeral processing and minimize data storage. Users should trust that their files and messages remain their own.
-- **Immediate Utility:** Let users test and experience the value of tools quickly with minimal onboarding friction.
-- **Clear, Grounded Voice:** Communicate like pragmatic engineers who take pride in their craft—calm, confident, and direct.
+### How Engagements Run: The 3-Step Protocol
+1. **01 · Two-Week Diagnostic**: Fixed-scope audit of your technical bottlenecks, data availability, and latency requirements. Priced before work begins.
+2. **02 · Build & Integration**: Rapid deployment of production code directly into your repository and cloud environment.
+3. **03 · Sovereign Handover**: Your team receives full source code, runbooks, Docker manifests, and weights. You own the system permanently.
 
 ---
 
-## 6. How to Use This Context
+## 4. Dimension 3: Grassroots Literacy & Bharat Mission (`/mission`)
 
-This document is intended to give contributors, engineers, and AI agents a clear mental model of what NorAI does, who it serves, and what makes it distinct. Use this context to inspire great ideas, craft relevant copy, and design useful features that align with the company's authentic mission.
+NorAI is founded on the conviction that state-of-the-art computational intelligence must not be confined to elite metropolitan enclaves.
+
+### The 75-District UP Initiative
+- **The Commitment**: Conducting 100% free, in-person and asynchronous coding bootcamps and AI agent workshops across all 75 districts of Uttar Pradesh.
+- **The Curriculum**:
+  - Foundational Python and TypeScript programming.
+  - Building production MCP tools and agent workflows from scratch.
+  - Practical open-source model deployment on consumer-grade hardware.
+- **Regional Accessibility**: Instruction and documentation published concurrently in English and Hindi.

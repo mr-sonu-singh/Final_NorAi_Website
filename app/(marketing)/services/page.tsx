@@ -1,26 +1,13 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import { Container } from '@/components/foundation/Container';
-import { Button } from '@/components/atoms/Button';
 import { Link } from '@/components/atoms/Link';
-import { MeshGradient } from '@/components/atoms/MeshGradient';
-import { MagneticButton } from '@/components/atoms/MagneticButton';
-import {
-  AnimatedSection,
-  Reveal,
-  StaggerGrid,
-  StaggerItem,
-} from '@/components/foundation/AnimatedSection';
-import { TextReveal } from '@/components/foundation/TextReveal';
 import {
   ArrowRight,
-  ShieldCheck,
   CheckCircle2,
-  Zap,
   Lock,
-  Layers,
   Clock,
-  Sparkles,
+  Zap,
   Server,
   FileCheck,
 } from 'lucide-react';
@@ -29,7 +16,7 @@ import { buildMetadata, getServiceJsonLd, getBreadcrumbListJsonLd, JsonLd } from
 
 export const metadata: Metadata = buildMetadata({
   path: '/services',
-  title: 'Bespoke Enterprise AI Solutions',
+  title: 'Bespoke Enterprise Deliverables — Built to change what happens',
   description:
     'Custom RAG pipelines, MCP tool servers, and high-throughput private VPC inference architectures engineered for enterprise scale and zero hallucination.',
 });
@@ -81,6 +68,9 @@ const PRACTICE_PREVIEWS = [
     summary:
       'Zero-egress stream parsing, layout-aware PDF tokenization, and sub-second extraction pipelines in transient RAM.',
     metric: 'P95 Latency < 350ms',
+    bandClass: 'border-l-4 border-l-[var(--mint)]',
+    accent: 'var(--mint)',
+    accentInk: 'var(--mint-ink)',
   },
   {
     number: '02',
@@ -89,6 +79,9 @@ const PRACTICE_PREVIEWS = [
     summary:
       'Enterprise hybrid vector search (pgvector + BM25), Model Context Protocol (MCP) tool servers, and grounded citation verification.',
     metric: '99.95% Citation Grounding',
+    bandClass: 'border-l-4 border-l-[var(--lavender)]',
+    accent: 'var(--lavender)',
+    accentInk: '#4e3a8c',
   },
   {
     number: '03',
@@ -97,6 +90,9 @@ const PRACTICE_PREVIEWS = [
     summary:
       'Dedicated vLLM and TensorRT-LLM container deployments operating inside your private VPC with zero data egress.',
     metric: 'Sub-100ms Inference',
+    bandClass: 'border-l-4 border-l-[var(--coral)]',
+    accent: 'var(--coral)',
+    accentInk: '#b83818',
   },
   {
     number: '04',
@@ -105,320 +101,397 @@ const PRACTICE_PREVIEWS = [
     summary:
       'WebGPU compute shaders, Three.js/WGSL, tactile spatial interaction models, and multi-modal sensory telemetry for spatial data. Led by Japan VR/AR Summit finalist.',
     metric: '60fps WebGPU Compute',
+    bandClass: 'border-l-4 border-l-[var(--sky)]',
+    accent: 'var(--sky)',
+    accentInk: '#16656e',
   },
 ];
 
 export default function ServicesPage() {
   const breadcrumbs = [
     { name: 'Home', path: '/' },
-    { name: 'Services', path: '/services' },
+    { name: 'Deliverables', path: '/services' },
   ];
 
   return (
-    <div className="text-text-primary min-h-screen font-sans bg-surface-canvas selection:bg-accent-primary selection:text-white">
+    <div className="min-h-screen font-sans bg-[#f5f5f0] text-[var(--pine)] selection:bg-[var(--mint)] selection:text-[var(--pine)]">
       <JsonLd schema={getServiceJsonLd()} />
       <JsonLd schema={getBreadcrumbListJsonLd(breadcrumbs)} />
 
       {/* =========================================================================
-          HERO SECTION: High-Craft Editorial Command Stage (Surface A)
+          BEAT 1: AURORA HERO CHAMBER (.phero)
           ========================================================================= */}
-      <section className="relative pt-16 pb-20 md:pt-28 md:pb-28 border-b border-border-subtle overflow-hidden bg-surface-canvas">
-        <MeshGradient intensity="subtle" />
+      <section className="relative pt-12 pb-16 sm:pt-20 sm:pb-20 overflow-hidden border-b border-[var(--line)]">
+        {/* Soft Organic Aurora Glow Orbs */}
+        <div
+          className="aurora__orb -top-32 -left-20 w-[450px] h-[450px] bg-[var(--mint)]/15"
+          aria-hidden="true"
+        />
+        <div
+          className="aurora__orb -top-20 right-0 w-[500px] h-[500px] bg-[var(--lavender)]/12"
+          aria-hidden="true"
+        />
 
-        <Container size="default" className="relative z-10">
-          <div className="max-w-4xl space-y-7 text-left">
-            {/* Eyebrow Pill */}
-            <Reveal delay={0} y={16}>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-accent-50 border border-accent-primary/20 text-accent-primary text-xs font-mono font-semibold">
-                <span className="w-1.5 h-1.5 rounded-full bg-accent-primary" />
-                <span>Bespoke Enterprise Systems · Dedicated VPC Deployments</span>
-              </div>
-            </Reveal>
+        <Container size="default" className="relative z-10 max-w-[1240px] mx-auto px-4 sm:px-6">
+          <div className="max-w-4xl space-y-6 text-left">
+            {/* Monospace Eyebrow Tag */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--pine-08)] border border-[var(--line)] text-xs font-mono text-[var(--pine)]">
+              <span className="w-2 h-2 rounded-full bg-[var(--mint-ink)] animate-pulse" aria-hidden="true" />
+              <span className="tracking-wide uppercase font-medium">
+                02 · DELIVERABLES &amp; ENTERPRISE SYSTEMS · SYSTEMS YOU OWN
+              </span>
+            </div>
 
             {/* Kinetic Display Headline */}
-            <h1
-              aria-label="Bespoke AI solutions engineered for your stack."
-              className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal text-text-primary leading-[1.02] tracking-display"
-            >
-              <TextReveal
-                text="Bespoke AI solutions"
-                splitBy="word"
-                as="span"
-                stagger={0.08}
-                duration={0.7}
-              />{' '}
-              <br />
-              <span className="italic text-accent-primary font-normal inline-block">
-                <TextReveal
-                  text="engineered for your stack."
-                  splitBy="word"
-                  as="span"
-                  delay={0.2}
-                  stagger={0.08}
-                  duration={0.7}
-                />
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[var(--pine)] leading-[1.04] tracking-tight">
+              Bespoke AI solutions. <br />
+              <span className="relative inline-block text-[var(--mint-ink)]">
+                Engineered for your stack.
+                <svg
+                  className="absolute -bottom-2 sm:-bottom-3 left-0 w-full h-3 sm:h-4 text-[var(--mint)]"
+                  viewBox="0 0 240 40"
+                  fill="none"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M3 33C50 12 150 5 237 22"
+                    stroke="currentColor"
+                    strokeWidth="5"
+                    strokeLinecap="round"
+                  />
+                </svg>
               </span>
             </h1>
 
-            {/* Body Copy with Fluid Clamp */}
-            <Reveal delay={0.32} y={18}>
-              <p className="fluid-lead text-text-secondary leading-relaxed max-w-2xl font-normal text-pretty">
-                From high-accuracy hybrid RAG pipelines to standardized Model Context Protocol (MCP)
-                servers and deterministic background worker queues, we engineer reliable
-                intelligence that never hallucinates.
-              </p>
-            </Reveal>
+            <p className="text-lg sm:text-xl text-[var(--pine)]/80 leading-relaxed max-w-2xl font-normal text-pretty">
+              From high-accuracy hybrid RAG pipelines to standardized Model Context Protocol (MCP)
+              servers and deterministic background queues, we engineer reliable systems you own.
+            </p>
 
-            {/* Telemetry Guarantee Strip */}
-            <Reveal delay={0.46} y={16}>
-              <div className="pt-2 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl">
-                <div className="p-3 rounded-xl bg-surface-panel border border-border-subtle flex items-center gap-2.5 text-xs text-text-primary">
-                  <Lock className="w-4 h-4 text-accent-secondary shrink-0" />
-                  <span className="font-mono text-[11px]">Dedicated VPC &amp; Air-Gap</span>
-                </div>
-                <div className="p-3 rounded-xl bg-surface-panel border border-border-subtle flex items-center gap-2.5 text-xs text-text-primary">
-                  <Clock className="w-4 h-4 text-accent-primary shrink-0" />
-                  <span className="font-mono text-[11px]">3–5 Day Rapid PoC Sprint</span>
-                </div>
-                <div className="p-3 rounded-xl bg-surface-panel border border-border-subtle flex items-center gap-2.5 text-xs text-text-primary">
-                  <Zap className="w-4 h-4 text-accent-primary shrink-0" />
-                  <span className="font-mono text-[11px]">Sub-200ms P95 Latency SLA</span>
-                </div>
+            {/* Telemetry Guarantees */}
+            <div className="pt-2 flex flex-wrap gap-3 text-xs font-mono text-[var(--pine)]">
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#fffdf7] border border-[var(--line)] shadow-xs">
+                <Lock className="w-4 h-4 text-[var(--mint-ink)]" />
+                <span>Dedicated VPC &amp; Air-Gap</span>
               </div>
-            </Reveal>
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#fffdf7] border border-[var(--line)] shadow-xs">
+                <Clock className="w-4 h-4 text-[var(--mint-ink)]" />
+                <span>3–5 Day Rapid PoC Sprint</span>
+              </div>
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#fffdf7] border border-[var(--line)] shadow-xs">
+                <Zap className="w-4 h-4 text-[var(--mint-ink)]" />
+                <span>Sub-200ms P95 Latency SLA</span>
+              </div>
+            </div>
           </div>
         </Container>
       </section>
 
       {/* =========================================================================
-          SECTION 2: BESPOKE INTERACTIVE ENGINEERING DIRECTORY (Surface B)
+          BEAT 2: 4-PRACTICE PREVIEW CARDS (Guaranteed E2E Contract)
+          Must display all 4 practice previews before interactive viewer
           ========================================================================= */}
-      <AnimatedSection className="py-20 md:py-28 bg-surface-canvas border-b border-border-subtle">
-        <Container size="default">
-          <div className="space-y-10">
-            <Reveal delay={0} y={20}>
-              <div className="max-w-2xl text-left space-y-3">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-50 border border-accent-primary/20 text-accent-primary text-xs font-mono font-semibold">
-                  <Layers className="w-3.5 h-3.5" />
-                  <span>Interactive Solution Matrix</span>
-                </div>
-                <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-normal text-text-primary leading-tight tracking-display">
-                  Engineered practices for <br />
-                  <span className="italic text-accent-primary font-normal">
-                    mission-critical scale.
-                  </span>
-                </h2>
-                <p className="fluid-body text-text-secondary leading-relaxed max-w-xl text-pretty">
-                  Explore our four core engineering practices. Inspect the execution topology,
-                  review the typed TypeScript contracts, and scope your dedicated architecture.
-                </p>
-              </div>
-            </Reveal>
+      <section className="py-14 sm:py-20 border-b border-[var(--line)]">
+        <Container size="wide" className="max-w-[1240px] mx-auto px-4 sm:px-6">
+          <div className="max-w-2xl mb-10 text-left space-y-2">
+            <span className="font-mono text-xs text-[var(--pine)]/60 uppercase tracking-wider font-semibold block">
+              ENGINEERED CAPABILITIES
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-[var(--pine)] tracking-tight">
+              Mission-critical scale practices.
+            </h2>
+            <p className="text-sm sm:text-base text-[var(--pine)]/75">
+              Explore our core practices across data ingestion, deterministic retrieval, sovereign VPC inference, and WebGPU spatial computing.
+            </p>
+          </div>
 
-            {/* Static 4-Practice Overview Grid (All capabilities immediately scannable) */}
-            <Reveal delay={0.1} y={16}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                {PRACTICE_PREVIEWS.map((p) => (
-                  <div
-                    key={p.number}
-                    className="p-5 rounded-2xl bg-surface-panel border border-border-subtle hover:border-border-strong transition-all flex flex-col justify-between text-left space-y-4 group"
-                  >
-                    <div className="space-y-2.5">
-                      <div className="flex items-center justify-between border-b border-border-subtle pb-2.5">
-                        <span className="font-mono text-xs font-bold text-accent-primary">
-                          {p.number}
-                        </span>
-                        <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-surface-panel-subtle text-text-muted border border-border-subtle">
-                          {p.tag}
-                        </span>
-                      </div>
-                      <h3 className="font-display text-lg font-normal text-text-primary group-hover:text-accent-primary transition-colors leading-snug">
-                        {p.title}
-                      </h3>
-                      <p className="text-xs text-text-secondary leading-relaxed">{p.summary}</p>
-                    </div>
-                    <div className="pt-2 border-t border-border-subtle text-[11px] font-mono text-accent-secondary font-medium">
-                      {p.metric}
-                    </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {PRACTICE_PREVIEWS.map((p) => (
+              <div
+                key={p.number}
+                className="rounded-[22px] bg-[#fffdf7] border border-[var(--line)] p-6 flex flex-col justify-between space-y-5 shadow-xs hover:shadow-lg transition-all duration-200 group"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between border-b border-[var(--line)] pb-2.5">
+                    <span className="font-mono text-xs font-bold text-[var(--pine)]/60">
+                      {p.number}
+                    </span>
+                    <span className="font-mono text-[10px] font-semibold px-2 py-0.5 rounded-full bg-[var(--pine-08)] text-[var(--pine)]">
+                      {p.tag}
+                    </span>
                   </div>
-                ))}
-              </div>
-            </Reveal>
 
-            <Reveal delay={0.15} y={24}>
-              <ServicesDirectory />
-            </Reveal>
+                  <h3 className="font-display text-lg font-bold text-[var(--pine)] group-hover:text-[var(--mint-ink)] transition-colors leading-snug">
+                    {p.title}
+                  </h3>
+
+                  <p className="text-xs sm:text-sm text-[var(--pine)]/75 leading-relaxed">
+                    {p.summary}
+                  </p>
+                </div>
+
+                <div className="pt-3 border-t border-[var(--line)] text-xs font-mono font-semibold text-[var(--mint-ink)]">
+                  {p.metric}
+                </div>
+              </div>
+            ))}
           </div>
         </Container>
-      </AnimatedSection>
+      </section>
 
       {/* =========================================================================
-          SECTION 3: CONNECTED 3-PHASE DELIVERY ROADMAP (Surface A)
+          BEAT 3: AUDENS FULL-WIDTH COLORED HORIZONTAL BANDS
+          Signature full-width colored bands (.band--mint, .band--lavender, etc.)
           ========================================================================= */}
-      <AnimatedSection className="py-20 md:py-28 bg-surface-panel border-b border-border-subtle">
-        <Container size="default">
-          <Reveal delay={0} y={20}>
-            <div className="max-w-2xl mb-14 text-left space-y-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-panel-subtle border border-border-subtle text-accent-primary text-xs font-mono font-semibold">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>The Engineering Engagement Protocol</span>
+      <section className="border-b border-[var(--line)]">
+        {/* Band 01: Ingestion & Vectorization (Mint) */}
+        <div className="bg-[#072929] text-[#f5f5f0] py-14 sm:py-18 border-b border-[var(--pine-20)] relative overflow-hidden">
+          <div className="absolute top-0 left-0 bottom-0 w-2 bg-[var(--mint)]" />
+          <Container size="wide" className="max-w-[1240px] mx-auto px-6 sm:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-5 space-y-3">
+                <span className="font-mono text-xs text-[var(--mint)] font-bold tracking-wider uppercase">
+                  BAND 01 · DATA EXTRACTION
+                </span>
+                <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#f5f5f0] tracking-tight">
+                  Multi-Format Ingestion &amp; Stream Extraction
+                </h3>
+                <p className="text-sm sm:text-base text-[var(--bone-70)] leading-relaxed">
+                  High-throughput layout-aware document parsers operating purely in transient RAM. Instant PDF, DOCX, and scan extraction with zero cold-storage retention.
+                </p>
               </div>
-              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-normal text-text-primary leading-tight tracking-display">
-                How we partner with <br />
-                <span className="italic text-accent-primary font-normal">technical teams.</span>
-              </h2>
-              <p className="fluid-body text-text-secondary leading-relaxed max-w-xl text-pretty">
-                A predictable, milestone-driven framework designed to deliver a verified
-                proof-of-concept in days, not quarters.
-              </p>
+              <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="p-4 rounded-xl bg-[var(--forest)]/50 border border-[var(--line)] space-y-1">
+                  <span className="font-mono text-xs text-[var(--mint)] font-semibold">P95 Latency</span>
+                  <p className="text-xs text-[var(--bone-70)]">&lt; 350ms per multi-page vectorization payload</p>
+                </div>
+                <div className="p-4 rounded-xl bg-[var(--forest)]/50 border border-[var(--line)] space-y-1">
+                  <span className="font-mono text-xs text-[var(--mint)] font-semibold">Security SLA</span>
+                  <p className="text-xs text-[var(--bone-70)]">Ephemeral RAM processing with zero external egress</p>
+                </div>
+              </div>
             </div>
-          </Reveal>
+          </Container>
+        </div>
 
-          {/* Connected Sprint Pipeline with Double-Bezel Cards */}
-          <StaggerGrid className="grid grid-cols-1 md:grid-cols-3 gap-6 relative" stagger={0.15}>
+        {/* Band 02: Deterministic RAG (Lavender) */}
+        <div className="bg-[#072929] text-[#f5f5f0] py-14 sm:py-18 border-b border-[var(--pine-20)] relative overflow-hidden">
+          <div className="absolute top-0 left-0 bottom-0 w-2 bg-[var(--lavender)]" />
+          <Container size="wide" className="max-w-[1240px] mx-auto px-6 sm:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-5 space-y-3">
+                <span className="font-mono text-xs text-[var(--lavender)] font-bold tracking-wider uppercase">
+                  BAND 02 · DETERMINISTIC RETRIEVAL
+                </span>
+                <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#f5f5f0] tracking-tight">
+                  Deterministic RAG &amp; Agent Orchestration
+                </h3>
+                <p className="text-sm sm:text-base text-[var(--bone-70)] leading-relaxed">
+                  Hybrid vector search (pgvector + BM25) coupled with Model Context Protocol (MCP) tool servers. Every token is anchored to traceable document citations.
+                </p>
+              </div>
+              <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="p-4 rounded-xl bg-[var(--forest)]/50 border border-[var(--line)] space-y-1">
+                  <span className="font-mono text-xs text-[var(--lavender)] font-semibold">Citation Grounding</span>
+                  <p className="text-xs text-[var(--bone-70)]">99.95% verified grounding with hallucination abort triggers</p>
+                </div>
+                <div className="p-4 rounded-xl bg-[var(--forest)]/50 border border-[var(--line)] space-y-1">
+                  <span className="font-mono text-xs text-[var(--lavender)] font-semibold">Tool Protocol</span>
+                  <p className="text-xs text-[var(--bone-70)]">Standardized MCP servers compatible with Claude, Cursor, and custom LLM runtimes</p>
+                </div>
+              </div>
+            </div>
+          </Container>
+        </div>
+
+        {/* Band 03: Private VPC & Local Inference (Coral) */}
+        <div className="bg-[#072929] text-[#f5f5f0] py-14 sm:py-18 border-b border-[var(--pine-20)] relative overflow-hidden">
+          <div className="absolute top-0 left-0 bottom-0 w-2 bg-[var(--coral)]" />
+          <Container size="wide" className="max-w-[1240px] mx-auto px-6 sm:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-5 space-y-3">
+                <span className="font-mono text-xs text-[var(--coral)] font-bold tracking-wider uppercase">
+                  BAND 03 · SOVEREIGN ENCLAVES
+                </span>
+                <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#f5f5f0] tracking-tight">
+                  Private VPC &amp; Air-Gapped Inference
+                </h3>
+                <p className="text-sm sm:text-base text-[var(--bone-70)] leading-relaxed">
+                  Dedicated vLLM and TensorRT-LLM container deployments running behind AWS PrivateLink, GCP VPC-SC, or bare-metal GPU clusters you control.
+                </p>
+              </div>
+              <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="p-4 rounded-xl bg-[var(--forest)]/50 border border-[var(--line)] space-y-1">
+                  <span className="font-mono text-xs text-[var(--coral)] font-semibold">Inference Latency</span>
+                  <p className="text-xs text-[var(--bone-70)]">Sub-100ms TTFT on private FP8 / INT4 quantized models</p>
+                </div>
+                <div className="p-4 rounded-xl bg-[var(--forest)]/50 border border-[var(--line)] space-y-1">
+                  <span className="font-mono text-xs text-[var(--coral)] font-semibold">Egress Guarantee</span>
+                  <p className="text-xs text-[var(--bone-70)]">Zero external bytes transmitted to third-party model providers</p>
+                </div>
+              </div>
+            </div>
+          </Container>
+        </div>
+
+        {/* Band 04: Spatial & Immersive Systems (Sky) */}
+        <div className="bg-[#072929] text-[#f5f5f0] py-14 sm:py-18 relative overflow-hidden">
+          <div className="absolute top-0 left-0 bottom-0 w-2 bg-[var(--sky)]" />
+          <Container size="wide" className="max-w-[1240px] mx-auto px-6 sm:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-5 space-y-3">
+                <span className="font-mono text-xs text-[var(--sky)] font-bold tracking-wider uppercase">
+                  BAND 04 · SPATIAL &amp; AR/VR
+                </span>
+                <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#f5f5f0] tracking-tight">
+                  Spatial &amp; Immersive Systems (AR/VR)
+                </h3>
+                <p className="text-sm sm:text-base text-[var(--bone-70)] leading-relaxed">
+                  WebGPU compute shaders, Three.js/WGSL render pipelines, and tactile spatial interaction telemetry for immersive enterprise applications.
+                </p>
+              </div>
+              <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="p-4 rounded-xl bg-[var(--forest)]/50 border border-[var(--line)] space-y-1">
+                  <span className="font-mono text-xs text-[var(--sky)] font-semibold">Rendering Performance</span>
+                  <p className="text-xs text-[var(--bone-70)]">60fps locked on WebGPU &amp; Three.js canvas shaders</p>
+                </div>
+                <div className="p-4 rounded-xl bg-[var(--forest)]/50 border border-[var(--line)] space-y-1">
+                  <span className="font-mono text-xs text-[var(--sky)] font-semibold">Research Lineage</span>
+                  <p className="text-xs text-[var(--bone-70)]">Led by Japan VR/AR Summit finalist with WebXR spatial telemetry</p>
+                </div>
+              </div>
+            </div>
+          </Container>
+        </div>
+      </section>
+
+      {/* =========================================================================
+          BEAT 4: INTERACTIVE SOLUTION MATRIX (ServicesDirectory)
+          ========================================================================= */}
+      <section className="py-14 sm:py-20 border-b border-[var(--line)]">
+        <Container size="wide" className="max-w-[1240px] mx-auto px-4 sm:px-6">
+          <div className="mb-10 text-left space-y-2">
+            <span className="font-mono text-xs text-[var(--pine)]/60 uppercase tracking-wider font-semibold block">
+              EXPLORE ARCHITECTURAL SCHEMAS
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-[var(--pine)] tracking-tight">
+              Interactive Solution Matrix.
+            </h2>
+          </div>
+          <ServicesDirectory />
+        </Container>
+      </section>
+
+      {/* =========================================================================
+          BEAT 5: 3-PHASE DELIVERY RAILWAY
+          ========================================================================= */}
+      <section className="py-16 sm:py-24 border-b border-[var(--line)]">
+        <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
+          <div className="max-w-2xl mb-12 text-left space-y-2">
+            <span className="font-mono text-xs text-[var(--pine)]/60 uppercase tracking-wider font-semibold block">
+              DELIVERY PROTOCOL
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-[var(--pine)] tracking-tight">
+              How we partner with engineering teams.
+            </h2>
+            <p className="text-sm sm:text-base text-[var(--pine)]/75">
+              A predictable, milestone-driven framework designed to deliver a verified proof-of-concept in days, not quarters.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {ENGAGEMENT_STEPS.map((step) => {
               const StepIcon = step.icon;
               return (
-                <StaggerItem key={step.title} className="h-full">
-                  <div className="p-2 rounded-3xl bg-surface-canvas/80 border border-border-strong shadow-sm h-full flex flex-col justify-between group hover:border-accent-primary/40 transition-colors">
-                    <div className="rounded-[calc(1.5rem-0.25rem)] bg-surface-panel border border-border-subtle p-6 sm:p-7 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)] space-y-5 h-full flex flex-col justify-between">
-                      <div className="space-y-4">
-                        {/* Step Header */}
-                        <div className="flex items-center justify-between">
-                          <span className="font-mono text-xs font-bold text-accent-primary px-2.5 py-0.5 rounded bg-accent-50 border border-accent-primary/20">
-                            {step.phase}
-                          </span>
-                          <span className="font-mono text-[11px] text-accent-secondary font-medium bg-sage-100/70 border border-accent-secondary/20 px-2 py-0.5 rounded">
-                            {step.timeline}
-                          </span>
-                        </div>
+                <div
+                  key={step.title}
+                  className="rounded-[22px] bg-[#fffdf7] border border-[var(--line)] p-7 flex flex-col justify-between space-y-6 shadow-xs group hover:shadow-lg transition-shadow"
+                >
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-xs font-bold px-2.5 py-0.5 rounded-full bg-[var(--pine)] text-[#f5f5f0]">
+                        {step.phase}
+                      </span>
+                      <span className="font-mono text-xs font-semibold px-2.5 py-0.5 rounded-full bg-[var(--pine-08)] text-[var(--pine)]">
+                        {step.timeline}
+                      </span>
+                    </div>
 
-                        {/* Title & Icon */}
-                        <div className="space-y-1.5">
-                          <div className="flex items-center gap-2">
-                            <div className="w-7 h-7 rounded-lg bg-surface-panel-subtle flex items-center justify-center text-accent-primary shrink-0">
-                              <StepIcon className="w-3.5 h-3.5" />
-                            </div>
-                            <h3 className="font-display text-xl sm:text-2xl text-text-primary font-normal leading-snug">
-                              {step.title}
-                            </h3>
-                          </div>
-                          <p className="text-xs text-text-secondary leading-relaxed pt-1">
-                            {step.desc}
-                          </p>
+                    <div className="space-y-1.5">
+                      <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-lg bg-[var(--porcelain)] flex items-center justify-center text-[var(--pine)]">
+                          <StepIcon className="w-4 h-4" />
                         </div>
+                        <h3 className="font-display text-xl font-bold text-[var(--pine)] leading-snug">
+                          {step.title}
+                        </h3>
                       </div>
+                      <p className="text-xs sm:text-sm text-[var(--pine)]/75 leading-relaxed pt-1">
+                        {step.desc}
+                      </p>
+                    </div>
 
-                      {/* Deliverables Checklist */}
-                      <div className="space-y-2 pt-4 border-t border-border-subtle">
-                        <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-text-muted block">
-                          Key Deliverables:
-                        </span>
-                        <div className="space-y-1.5">
-                          {step.deliverables.map((item, dIdx) => (
-                            <div
-                              key={dIdx}
-                              className="flex items-start gap-2 text-xs text-text-primary"
-                            >
-                              <CheckCircle2 className="w-3.5 h-3.5 text-accent-secondary shrink-0 mt-0.5" />
-                              <span className="text-[11px] font-medium leading-tight">{item}</span>
-                            </div>
-                          ))}
-                        </div>
+                    <div className="space-y-2 pt-4 border-t border-[var(--line)]">
+                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[var(--pine)]/50 block">
+                        Key Deliverables:
+                      </span>
+                      <div className="space-y-1.5">
+                        {step.deliverables.map((item, dIdx) => (
+                          <div key={dIdx} className="flex items-start gap-2 text-xs text-[var(--pine)]/85">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-[var(--mint-ink)] shrink-0 mt-0.5" />
+                            <span className="font-medium leading-tight">{item}</span>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </div>
-                </StaggerItem>
+                </div>
               );
             })}
-          </StaggerGrid>
+          </div>
         </Container>
-      </AnimatedSection>
+      </section>
 
       {/* =========================================================================
-          SECTION 4: PRE-FOOTER HIGH-CONVERSION CONSOLE (Surface A)
+          BEAT 6: CLOSING CONIC DISPATCH (.gradient-card)
           ========================================================================= */}
-      <AnimatedSection
-        as="aside"
-        aria-label="Schedule technical consultation"
-        className="py-20 md:py-28 bg-surface-canvas"
-      >
-        <Container size="default">
-          <div className="p-2 sm:p-3 rounded-3xl bg-surface-panel/40 border border-border-strong shadow-lg">
-            <div className="rounded-[calc(1.5rem-0.25rem)] bg-surface-panel border border-border-subtle p-8 sm:p-12 md:p-16 text-center shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)] relative overflow-hidden">
-              <div
-                className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(200,90,50,0.04)_0%,transparent_70%)]"
-                aria-hidden="true"
-              />
+      <section className="py-16 sm:py-24">
+        <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
+          <div className="gradient-card max-w-4xl mx-auto text-center">
+            <div className="gradient-card__inner p-8 sm:p-12 space-y-6">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--mint)]/20 border border-[var(--mint-ink)]/20 text-xs font-mono font-bold text-[var(--mint-ink)] dark:text-[var(--mint)] uppercase tracking-wider">
+                Direct Engineering Engagement
+              </div>
 
-              <div className="max-w-2xl mx-auto space-y-7 relative z-10">
-                {/* Direct Engineering Badge */}
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-panel-subtle border border-border-subtle text-accent-primary text-xs font-mono font-semibold">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent-primary" />
-                  <span>Direct Engineering Engagement</span>
-                </div>
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--pine)] dark:text-[var(--bone)] tracking-tight leading-tight">
+                Have a custom AI workflow in mind?
+              </h2>
 
-                <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-normal text-text-primary leading-tight tracking-display">
-                  Have a custom AI workflow <br />
-                  <span className="italic text-accent-primary font-normal">in mind?</span>
-                </h2>
+              <p className="text-base sm:text-lg text-[var(--pine)]/75 dark:text-[var(--bone-70)] max-w-2xl mx-auto leading-relaxed font-normal">
+                Connect directly with our core engineering team to scope your technical architecture,
+                latency requirements, and 5-day proof-of-concept sprint.
+              </p>
 
-                <p className="fluid-body text-text-secondary leading-relaxed max-w-xl mx-auto text-pretty">
-                  Connect directly with our core engineering team to scope your technical
-                  architecture, latency requirements, and proof-of-concept sprint.
-                </p>
-
-                {/* Assurance Card */}
-                <div className="rounded-2xl border border-border-subtle bg-surface-canvas/90 p-4 sm:p-5 text-left shadow-sm max-w-lg mx-auto flex items-start gap-3">
-                  <ShieldCheck className="w-5 h-5 text-accent-secondary shrink-0 mt-0.5" />
-                  <div className="text-xs space-y-0.5">
-                    <span className="font-semibold text-text-primary block">
-                      Zero-Commitment Technical Scoping
-                    </span>
-                    <p className="text-text-secondary leading-relaxed">
-                      Every consultation produces an explicit architecture diagram, latency budget,
-                      and concrete proof-of-concept scope with zero vendor lock-in.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Dual Action CTAs with Magnetic Pull */}
-                <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-3">
-                  <Link
-                    href="/contact?service=enterprise-consultation"
-                    className="w-full sm:w-auto"
-                  >
-                    <MagneticButton strength={14} className="w-full sm:w-auto">
-                      <Button
-                        variant="primary"
-                        size="lg"
-                        className="w-full sm:w-auto justify-between group shadow-accent hover:shadow-hover hover:-translate-y-0.5 active:scale-[0.98] transition-all cursor-pointer btn-tactile pl-6 pr-2.5 py-2.5"
-                      >
-                        <span className="font-semibold text-sm">
-                          Schedule Technical Consultation
-                        </span>
-                        <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center transition-transform group-hover:translate-x-1 group-hover:-translate-y-0.5 ml-3">
-                          <ArrowRight className="w-4 h-4 text-white" />
-                        </span>
-                      </Button>
-                    </MagneticButton>
-                  </Link>
-
-                  <Link href="/products" className="w-full sm:w-auto">
-                    <Button
-                      variant="secondary"
-                      size="lg"
-                      className="w-full sm:w-auto justify-center hover:-translate-y-0.5 active:scale-[0.98] transition-all cursor-pointer text-sm"
-                    >
-                      Explore 4 live tools
-                    </Button>
-                  </Link>
-                </div>
+              <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Link
+                  href="/contact?service=enterprise-consultation"
+                  className="btn btn--solid w-full sm:w-auto h-12 px-7 text-sm font-semibold shadow-md"
+                >
+                  <span>Schedule Technical Consultation</span>
+                  <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
+                </Link>
+                <Link
+                  href="/products"
+                  className="btn btn--ghost w-full sm:w-auto h-12 px-6 text-sm font-medium"
+                >
+                  <span>Explore 4 live tools &rarr;</span>
+                </Link>
               </div>
             </div>
           </div>
         </Container>
-      </AnimatedSection>
+      </section>
     </div>
   );
 }

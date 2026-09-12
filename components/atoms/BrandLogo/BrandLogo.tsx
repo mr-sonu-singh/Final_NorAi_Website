@@ -31,7 +31,6 @@ const sizeMap = {
  */
 export function BrandLogo({ size = 'md', variant = 'full', className }: BrandLogoProps) {
   const { mark, text, gap } = sizeMap[size];
-  const isInverted = variant === 'inverted';
 
   const markSvg = (
     <svg
@@ -43,18 +42,25 @@ export function BrandLogo({ size = 'md', variant = 'full', className }: BrandLog
       className={cn(mark, 'shrink-0 select-none')}
       aria-hidden="true"
     >
-      {/* Refined squircle tile */}
-      <rect width="32" height="32" rx="8" fill={isInverted ? '#FDFBF7' : '#0D253D'} />
+      {/* Refined obsidian squircle tile */}
+      <rect
+        width="32"
+        height="32"
+        rx="8"
+        fill="#141824"
+        stroke="rgba(255, 255, 255, 0.15)"
+        strokeWidth="1"
+      />
       {/* Crisp geometric N lettermark */}
       <path
         d="M9 22.5V9.5L23 22.5V9.5"
-        stroke={isInverted ? '#0D253D' : '#FDFBF7'}
+        stroke="#F8FAFC"
         strokeWidth="2.4"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      {/* Terracotta accent mark */}
-      <circle cx="23" cy="9.5" r="2" fill="#C2553A" />
+      {/* High-Voltage Mint accent mark */}
+      <circle cx="23" cy="9.5" r="2" fill="#2EFCC2" />
     </svg>
   );
 
@@ -67,9 +73,8 @@ export function BrandLogo({ size = 'md', variant = 'full', className }: BrandLog
       {markSvg}
       <span
         className={cn(
-          'font-display font-normal tracking-tight leading-none',
+          'font-display font-normal tracking-tight leading-none text-text-primary',
           text,
-          isInverted ? 'text-[#FDFBF7]' : 'text-ink-primary',
         )}
       >
         NorAI

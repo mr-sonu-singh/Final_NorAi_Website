@@ -1,16 +1,14 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import { Container } from '@/components/foundation/Container';
-import { Section } from '@/components/foundation/Section';
-import { Reveal } from '@/components/foundation/AnimatedSection';
 import { ContactFormClient } from './ContactFormClient';
-import { Mail, MapPin, Clock, ShieldCheck, Zap } from 'lucide-react';
+import { Mail, MapPin, Clock, ShieldCheck, Server } from 'lucide-react';
 import { buildMetadata, getBreadcrumbListJsonLd, JsonLd } from '@/lib/seo';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = buildMetadata({
   path: '/contact',
-  title: 'Contact Engineering & Studio — NorAI Technologies',
+  title: 'Contact Engineering & Studio — Built to change what happens',
   description:
     'Discuss your enterprise AI pipeline, schedule an architecture consultation, or explore our micro-SaaS tools directly with NorAI founding engineers.',
 });
@@ -40,119 +38,192 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-[calc(100vh-140px)] bg-surface-canvas font-sans text-text-primary selection:bg-accent-primary selection:text-white flex flex-col justify-center">
+    <div className="min-h-screen font-sans bg-[#f5f5f0] text-[var(--pine)] selection:bg-[var(--mint)] selection:text-[var(--pine)]">
       <JsonLd schema={contactJsonLd} />
       <JsonLd schema={getBreadcrumbListJsonLd(breadcrumbs)} />
 
-      <Section className="relative overflow-hidden py-12 md:py-20 lg:py-24">
-        {/* Subtle Ambient Background Warmth */}
+      {/* =========================================================================
+          HERO CHAMBER (.phero)
+          ========================================================================= */}
+      <section className="relative pt-12 pb-14 sm:pt-20 sm:pb-16 overflow-hidden border-b border-[var(--line)]">
+        {/* Soft Organic Aurora Glow Orbs */}
         <div
+          className="aurora__orb -top-32 -left-20 w-[450px] h-[450px] bg-[var(--mint)]/15"
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-surface-panel/80 via-surface-panel/30 to-transparent"
+        />
+        <div
+          className="aurora__orb -top-20 right-0 w-[500px] h-[500px] bg-[var(--lavender)]/12"
+          aria-hidden="true"
         />
 
-        <Container size="default" className="relative z-10 max-w-6xl">
-          <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-14">
-            {/* Left Column: Editorial Statement & Desk Telemetry */}
-            <Reveal className="space-y-8 lg:col-span-5 lg:pt-1 text-left">
-              <div className="space-y-4">
-                <div className="inline-flex items-center gap-2 rounded-full bg-accent-50 border border-accent-primary/20 px-3.5 py-1 font-mono text-[11px] font-semibold text-accent-primary">
-                  <Zap className="h-3 w-3 text-accent-primary" />
-                  <span>DIRECT ENGINEERING DISPATCH</span>
-                </div>
+        <Container size="default" className="relative z-10 max-w-[1240px] mx-auto px-4 sm:px-6">
+          <div className="max-w-4xl space-y-6 text-left">
+            {/* Monospace Eyebrow Tag */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--pine-08)] border border-[var(--line)] text-xs font-mono text-[var(--pine)]">
+              <span className="w-2 h-2 rounded-full bg-[var(--mint-ink)] animate-pulse" aria-hidden="true" />
+              <span className="tracking-wide uppercase font-medium">
+                03 · DIRECT ENGINEERING DISPATCH · ADVICE THAT SHIPS
+              </span>
+            </div>
 
-                <h1 className="text-balance text-text-primary font-display text-[clamp(34px,4.5vw,48px)] leading-[1.08] tracking-tight">
-                  Tell us what&apos;s slowing you down.
-                </h1>
+            {/* Kinetic Display Headline */}
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[var(--pine)] leading-[1.04] tracking-tight">
+              Tell us what&apos;s slowing <br />
+              <span className="relative inline-block text-[var(--mint-ink)]">
+                you down.
+                <svg
+                  className="absolute -bottom-2 sm:-bottom-3 left-0 w-full h-3 sm:h-4 text-[var(--mint)]"
+                  viewBox="0 0 240 40"
+                  fill="none"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M3 33C50 12 150 5 237 22"
+                    stroke="currentColor"
+                    strokeWidth="5"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </span>
+            </h1>
 
-                <p className="leading-relaxed text-text-secondary font-sans text-[15px]">
-                  Whether you need high-volume document extraction, custom deterministic RAG
-                  pipelines, or want to invite us to your campus—write to us. A real engineer reads
-                  every message. We reply within one business day.
-                </p>
+            <p className="text-lg sm:text-xl text-[var(--pine)]/80 leading-relaxed max-w-2xl font-normal text-pretty">
+              Whether you need high-volume document extraction, custom deterministic RAG pipelines, or
+              want to invite us to your campus—write to us. A real engineer reads every message. We reply
+              within one business day.
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      {/* =========================================================================
+          AUDENS NEXTRAIL STEP PROTOCOL (.nextrail)
+          01 Tell us what you're building ➔ 02 Architecture review ➔ 03 We ship advice or code
+          ========================================================================= */}
+      <section className="py-8 bg-[#fffdf7] border-b border-[var(--line)]">
+        <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="flex items-start gap-3 p-4 rounded-xl bg-[var(--porcelain)] border border-[var(--line)]">
+              <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-[var(--pine)] text-[#f5f5f0]">
+                01
+              </span>
+              <div>
+                <h4 className="font-display text-sm font-bold text-[var(--pine)]">Define the Workflow</h4>
+                <p className="text-xs text-[var(--pine)]/70 mt-0.5">Share your latency, schemas, and data boundaries.</p>
               </div>
+            </div>
 
-              {/* Minimalist Editorial Desk Spec Card */}
-              <div className="rounded-3xl border border-border-strong bg-surface-panel p-6 sm:p-7 space-y-5 shadow-sm">
+            <div className="flex items-start gap-3 p-4 rounded-xl bg-[var(--porcelain)] border border-[var(--line)]">
+              <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-[var(--pine)] text-[#f5f5f0]">
+                02
+              </span>
+              <div>
+                <h4 className="font-display text-sm font-bold text-[var(--pine)]">Architecture Review</h4>
+                <p className="text-xs text-[var(--pine)]/70 mt-0.5">We scope a deterministic blueprint and latency SLA.</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-3 p-4 rounded-xl bg-[var(--porcelain)] border border-[var(--line)]">
+              <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-[var(--pine)] text-[#f5f5f0]">
+                03
+              </span>
+              <div>
+                <h4 className="font-display text-sm font-bold text-[var(--pine)]">We Ship Advice or Code</h4>
+                <p className="text-xs text-[var(--pine)]/70 mt-0.5">5-day sandbox PoC or air-gapped Docker container.</p>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* =========================================================================
+          MAIN CONTACT & TELEMETRY STAGE
+          Left: Desk Specs & Regional Telemetry | Right: Tactile Form Client
+          ========================================================================= */}
+      <section className="py-14 sm:py-20 border-b border-[var(--line)]">
+        <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-12">
+            {/* Left Column: Desk Telemetry & Physical Presence */}
+            <div className="space-y-6 lg:col-span-5 text-left">
+              {/* Desk Telemetry Card */}
+              <div className="rounded-[22px] border border-[var(--line)] bg-[#fffdf7] p-7 sm:p-8 space-y-6 shadow-xs">
                 {/* Active Desk Telemetry */}
-                <div className="flex items-center justify-between border-b border-border-subtle pb-4">
+                <div className="flex items-center justify-between border-b border-[var(--line)] pb-4">
                   <div className="flex items-center gap-2">
-                    <span className="flex h-2 w-2 rounded-full bg-accent-secondary animate-pulse" />
-                    <span className="font-mono text-xs font-semibold text-accent-secondary tracking-wider uppercase">
-                      DESK ACTIVE (IST)
+                    <span className="flex h-2.5 w-2.5 rounded-full bg-[var(--mint-ink)] animate-pulse" />
+                    <span className="font-mono text-xs font-bold text-[var(--mint-ink)] tracking-wider uppercase">
+                      ENGINEERING DESK ACTIVE
                     </span>
                   </div>
-                  <span className="font-mono text-[11px] text-text-secondary">
-                    Mon–Sat · 9 AM – 7 PM
+                  <span className="font-mono text-xs text-[var(--pine)]/60">
+                    Mon–Sat · 9 AM – 7 PM IST
                   </span>
                 </div>
 
-                {/* Structured Channels */}
+                {/* Direct Channels */}
                 <div className="space-y-4">
                   <div className="space-y-1">
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-text-muted block font-semibold">
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--pine)]/50 block font-semibold">
                       Direct Email
                     </span>
                     <a
                       href="mailto:noraitechnologies@gmail.com"
-                      className="font-mono text-[13px] font-medium text-accent-primary hover:underline transition-colors inline-flex items-center gap-2 break-all"
+                      className="font-mono text-sm font-semibold text-[var(--mint-ink)] hover:underline transition-colors inline-flex items-center gap-2 break-all"
                     >
-                      <Mail
-                        className="h-3.5 w-3.5 shrink-0 text-accent-primary"
-                        aria-hidden="true"
-                      />
+                      <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
                       <span>noraitechnologies@gmail.com</span>
                     </a>
                   </div>
 
                   <div className="space-y-1">
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-text-muted block font-semibold">
-                      Engineering Studio
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--pine)]/50 block font-semibold">
+                      Primary Engineering Studio
                     </span>
-                    <p className="font-sans text-[13px] text-text-primary flex items-center gap-2">
-                      <MapPin className="h-3.5 w-3.5 text-text-muted shrink-0" aria-hidden="true" />
-                      <span>Uttar Pradesh, India</span>
+                    <p className="text-sm text-[var(--pine)] flex items-center gap-2 font-medium">
+                      <MapPin className="h-4 w-4 text-[var(--pine)]/60 shrink-0" aria-hidden="true" />
+                      <span>NCR Hub (Noida &amp; Gurugram) · Uttar Pradesh</span>
+                    </p>
+                  </div>
+
+                  <div className="space-y-1">
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--pine)]/50 block font-semibold">
+                      Grassroots Mission Desk
+                    </span>
+                    <p className="text-sm text-[var(--pine)] flex items-center gap-2 font-medium">
+                      <Server className="h-4 w-4 text-[var(--pine)]/60 shrink-0" aria-hidden="true" />
+                      <span>Lucknow Regional AI Telemetry Center</span>
                     </p>
                   </div>
                 </div>
 
-                {/* Honest Reply & Confidentiality Highlights */}
-                <div className="pt-4 border-t border-border-subtle space-y-3">
-                  <div className="flex items-start gap-2.5 text-[12px] text-text-secondary leading-normal">
-                    <Clock
-                      className="h-3.5 w-3.5 text-accent-secondary shrink-0 mt-0.5"
-                      aria-hidden="true"
-                    />
+                {/* Direct SLA Guarantees */}
+                <div className="pt-4 border-t border-[var(--line)] space-y-3">
+                  <div className="flex items-start gap-2.5 text-xs text-[var(--pine)]/80 leading-normal">
+                    <Clock className="h-4 w-4 text-[var(--mint-ink)] shrink-0 mt-0.5" aria-hidden="true" />
                     <span>
-                      <strong className="font-semibold text-text-primary">Honest Reply:</strong> A
-                      real engineer reads every message. We reply within one business day.
+                      <strong className="font-semibold text-[var(--pine)]">Honest Reply:</strong> A real engineer reads every message. We reply within one business day.
                     </span>
                   </div>
-                  <div className="flex items-start gap-2.5 text-[12px] text-text-secondary leading-normal">
-                    <ShieldCheck
-                      className="h-3.5 w-3.5 text-accent-secondary shrink-0 mt-0.5"
-                      aria-hidden="true"
-                    />
+                  <div className="flex items-start gap-2.5 text-xs text-[var(--pine)]/80 leading-normal">
+                    <ShieldCheck className="h-4 w-4 text-[var(--mint-ink)] shrink-0 mt-0.5" aria-hidden="true" />
                     <span>
-                      <strong className="font-semibold text-text-primary">
-                        Confidential &amp; Direct:
-                      </strong>{' '}
-                      Zero sales bots, zero automated deflection queues, and strict privacy.
+                      <strong className="font-semibold text-[var(--pine)]">Strict Confidentiality:</strong> Zero sales bots, zero automated deflection queues, and strict NDA-level privacy.
                     </span>
                   </div>
                 </div>
               </div>
-            </Reveal>
+            </div>
 
             {/* Right Column: Clean Form Container */}
             <div className="lg:col-span-7">
-              <Reveal delay={0.08}>
+              <div className="rounded-[22px] border border-[var(--line)] bg-[#fffdf7] p-6 sm:p-8 shadow-xs">
                 <ContactFormClient />
-              </Reveal>
+              </div>
             </div>
           </div>
         </Container>
-      </Section>
+      </section>
     </div>
   );
 }

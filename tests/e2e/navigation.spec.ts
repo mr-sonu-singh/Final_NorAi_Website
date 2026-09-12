@@ -13,9 +13,9 @@ test.describe('Navigation & Interactive Flows', () => {
     });
 
     const navLinks = [
-      { name: 'Tools', expectedPath: '/products' },
-      { name: 'Services', expectedPath: '/services' },
-      { name: 'Team', expectedPath: '/team' },
+      { name: 'Capabilities', expectedPath: '/products' },
+      { name: 'Deliverables', expectedPath: '/services' },
+      { name: 'About', expectedPath: '/team' },
       { name: 'Contact', expectedPath: '/contact' },
     ];
 
@@ -80,14 +80,15 @@ test.describe('Navigation & Interactive Flows', () => {
       page,
     }) => {
       for (const { name, path } of [
-        { name: 'Team', path: '/team' },
-        { name: 'Tools', path: '/products' },
+        { name: 'About', path: '/team' },
+        { name: 'Capabilities', path: '/products' },
       ]) {
         const link = page
           .locator('nav[aria-label="Main Navigation"]')
           .getByRole('link', { name, exact: true });
+        await expect(link).toBeVisible();
         await link.click();
-        await expect(page).toHaveURL(new RegExp(path));
+        await expect(page).toHaveURL(new RegExp(path), { timeout: 15000 });
 
         const mainContent = page.locator('#main-content');
         await expect(mainContent).toBeVisible();
@@ -99,7 +100,7 @@ test.describe('Navigation & Interactive Flows', () => {
       }
 
       // Navigate to /team via footer link
-      const teamLink = page.locator('footer').getByRole('link', { name: /Team/i });
+      const teamLink = page.locator('footer').getByRole('link', { name: /Team Story|Team/i });
       await teamLink.click();
       await expect(page).toHaveURL(/\/team/, { timeout: 15000 });
       await expect(page.locator('#main-content')).toBeVisible();
@@ -110,8 +111,10 @@ test.describe('Navigation & Interactive Flows', () => {
     test('primary and secondary CTA header links navigate correctly', async ({ page }) => {
       const header = page.locator('header[data-testid="header-organism"]');
 
-      // Primary CTA: "Start Free Sandbox"
-      const exploreBtn = header.getByRole('link', { name: /Start Free Sandbox|Explore|Demo/i });
+      // Primary CTA: "Try Free Sandbox" or "Start Free Sandbox"
+      const exploreBtn = header.getByRole('link', {
+        name: /Try Free Sandbox|Start Free Sandbox|Explore|Demo/i,
+      });
       if (await exploreBtn.isVisible()) {
         const href = await exploreBtn.getAttribute('href');
         expect(href).toBeTruthy();
@@ -161,7 +164,7 @@ test.describe('Navigation & Interactive Flows', () => {
       await expect(mobileMenu).toBeVisible();
 
       // Verify links exist inside mobile menu
-      const mobileToolsLink = mobileMenu.getByRole('link', { name: 'Tools', exact: true });
+      const mobileToolsLink = mobileMenu.getByRole('link', { name: 'Capabilities', exact: true });
       await expect(mobileToolsLink).toBeVisible();
 
       // Close drawer via toggle button
@@ -190,11 +193,11 @@ test.describe('Navigation & Interactive Flows', () => {
       const ritualsSection = page.locator('#operating-rituals');
       await expect(ritualsSection).toBeVisible();
       await expect(ritualsSection).toContainText('How we build software.');
-      await expect(ritualsSection).toContainText('Founders write the code & answer support');
-      await expect(ritualsSection).toContainText('Hardware honesty, exposed latency');
-      await expect(ritualsSection).toContainText('Shipped weekly on a deterministic rhythm');
-      await expect(ritualsSection).toContainText('Field Fridays across Uttar Pradesh');
-      await expect(ritualsSection).toContainText('Meet the founding team on /team');
+      await expect(ritualsSection).toContainText('Direct Access to the Builders');
+      await expect(ritualsSection).toContainText('Total Transparency & Privacy');
+      await expect(ritualsSection).toContainText('Rapid Improvements, Shipped Frequently');
+      await expect(ritualsSection).toContainText('Upskilling Local Communities');
+      await expect(ritualsSection).toContainText('Meet our engineering team on /team');
 
       // Ensure old founder roster is NOT on the homepage
       await expect(page.locator('#team-origin')).toHaveCount(0);
@@ -202,7 +205,7 @@ test.describe('Navigation & Interactive Flows', () => {
 
     test('homepage capability arc Open Tool navigates to tool detail', async ({ page }) => {
       await page.goto('/');
-      const openToolLink = page.locator('a[href="/products/resume-shortlister"]').first();
+      const openToolLink = page.locator('[data-testid="capability-link-resume-shortlister"]');
       await expect(openToolLink).toBeVisible();
       await openToolLink.click();
       await expect(page).toHaveURL(/\/products\/resume-shortlister/);

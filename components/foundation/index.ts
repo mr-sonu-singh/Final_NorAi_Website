@@ -11,3 +11,5 @@ export * from './CountUp';
 export * from './DrawLine';
 export * from './CrossFade';
 export * from './PageTransition';
+export * from './KineticWaveMarquee';
+
