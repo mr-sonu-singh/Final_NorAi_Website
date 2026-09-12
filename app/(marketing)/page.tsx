@@ -3,9 +3,8 @@ import type { Metadata } from 'next';
 import { Container } from '@/components/foundation/Container';
 import { KineticWaveMarquee } from '@/components/foundation';
 import { Link } from '@/components/atoms/Link';
-import { Reveal } from '@/components/foundation/AnimatedSection';
 import {
-  HeroStudioWorkbench,
+  HeroChamber,
   AudensCapabilityBento,
   ThreeDimensionsRail,
   SectorLedger,
@@ -28,114 +27,9 @@ export default function HomePage() {
 
       {/* =========================================================================
           BEAT 1: AURORA HERO CHAMBER (Audens .phero)
-          Multi-color organic blurred radiant orbs + kinetic display headline + hand CTA
+          Single-column centered chamber with atmospheric aurora orbs & executive authority
           ========================================================================= */}
-      <section className="relative pt-12 pb-16 sm:pt-16 sm:pb-24 overflow-hidden border-b border-[var(--line)]">
-        {/* Soft Organic Aurora Glow Orbs */}
-        <div
-          className="aurora__orb -top-32 -left-20 w-[450px] h-[450px] bg-[var(--mint)]/15"
-          aria-hidden="true"
-        />
-        <div
-          className="aurora__orb -top-20 right-0 w-[500px] h-[500px] bg-[var(--lavender)]/12"
-          aria-hidden="true"
-        />
-
-        <Container size="default" className="relative z-10 max-w-[1240px] mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-            {/* Left Narrative Column */}
-            <div className="lg:col-span-6 space-y-6 text-left">
-              {/* Monospace Eyebrow Tag */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--pine-08)] border border-[var(--line)] text-xs font-mono text-[var(--pine)]">
-                <span className="w-2 h-2 rounded-full bg-[var(--mint-ink)] animate-pulse" aria-hidden="true" />
-                <span className="tracking-wide uppercase font-medium">01 · Sovereign Intelligence · Advice that ships</span>
-              </div>
-
-              {/* Kinetic Display Headline with SVG Underline Flourish */}
-              <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[var(--pine)] leading-[1.04] tracking-tight">
-                Built to change <br />
-                what <span className="relative inline-block text-[var(--mint-ink)]">
-                  happens.
-                  <svg
-                    className="absolute -bottom-2 sm:-bottom-3 left-0 w-full h-3 sm:h-4 text-[var(--mint)]"
-                    viewBox="0 0 240 40"
-                    fill="none"
-                    preserveAspectRatio="none"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M4 26 C 60 6, 150 6, 236 22"
-                      stroke="currentColor"
-                      strokeWidth="6"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
-              </h1>
-
-              {/* High-Conviction Subhead */}
-              <Reveal delay={0.1} y={10}>
-                <p className="text-[var(--pine)]/75 text-base sm:text-lg leading-relaxed max-w-xl text-pretty">
-                  Four single-purpose autonomous tools and private enterprise intelligence pipelines.
-                  Sub-second latency, zero data retention, and systems you own.
-                </p>
-              </Reveal>
-
-              {/* Action Cluster */}
-              <Reveal delay={0.2} y={10}>
-                <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
-                  <Link
-                    href="/contact"
-                    className="btn btn--solid text-sm sm:text-base h-12 px-6 shadow-sm group"
-                  >
-                    <span>Book a diagnostic</span>
-                    <svg
-                      className="btn__hand w-4 h-4 text-current transition-transform duration-200 group-hover:rotate-12 group-hover:scale-110"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11m0-1.5a1.5 1.5 0 0 1 3 0V11m0-1a1.5 1.5 0 0 1 3 0v4.5a6 6 0 0 1-6 6h-1.2a5 5 0 0 1-3.8-1.8L4 16.2a1.5 1.5 0 0 1 2.2-2L8 16V8.5a1.5 1.5 0 0 1 1-1.4"
-                        stroke="currentColor"
-                        strokeWidth="1.8"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </Link>
-
-                  <a
-                    href="#tools"
-                    className="btn btn--ghost text-sm sm:text-base h-12 px-6"
-                  >
-                    Explore All 4 Tools ↓
-                  </a>
-                </div>
-              </Reveal>
-
-              {/* Trust & Sovereignty Guarantee */}
-              <div className="pt-4 flex items-center gap-4 text-xs font-mono text-[var(--pine)]/85 font-medium">
-                <span className="flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--mint-ink)]" />
-                  Ephemeral in-memory processing
-                </span>
-                <span>·</span>
-                <span className="flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--mint-ink)]" />
-                  Zero external training egress
-                </span>
-              </div>
-            </div>
-
-            {/* Right Column: Live Interactive Chassis Preview */}
-            <div className="lg:col-span-6 w-full">
-              <HeroStudioWorkbench />
-            </div>
-          </div>
-        </Container>
-      </section>
+      <HeroChamber />
 
       {/* =========================================================================
           BEAT 2: THREE DIMENSIONS CONVERSATION RAIL (Audens Staggered Chat Slots)

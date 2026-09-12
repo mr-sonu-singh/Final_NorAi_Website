@@ -3,6 +3,7 @@ export * from './sections/Header';
 export * from './sections/Footer';
 export * from './sections/ContactSection';
 export * from './sections/ComparisonTable';
+export * from './sections/HeroChamber';
 
 // Active Cards
 export * from './cards/BlogCard';
