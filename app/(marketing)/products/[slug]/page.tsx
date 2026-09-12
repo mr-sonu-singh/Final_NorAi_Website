@@ -129,93 +129,39 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
         </Container>
       </section>
 
-      {/* Pricing Tiers for this tool */}
-      {product.pricing && product.pricing.length > 0 && (
-        <section className="py-16 md:py-24 bg-canvas-paper border-b border-[rgba(13,37,61,0.08)]">
-          <Container size="default">
-            <div className="max-w-2xl mb-12">
-              <h2 className="font-display text-3xl sm:text-4xl text-ink-primary font-normal">
-                Predictable pricing.
+      {/* Option B: Free to Start Commitments & Enterprise Scoping */}
+      <section className="py-16 md:py-20 bg-canvas-paper border-b border-[rgba(13,37,61,0.08)]">
+        <Container size="default">
+          <div className="rounded-2xl border border-[rgba(13,37,61,0.12)] bg-canvas-base p-8 sm:p-10 flex flex-col md:flex-row md:items-center justify-between gap-6 text-left shadow-sm">
+            <div className="space-y-2 max-w-xl">
+              <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded bg-accent-50 border border-accent-500/20 text-accent-500 text-xs font-mono font-semibold">
+                <span>OPTION B · FREE TO START</span>
+              </div>
+              <h2 className="font-display text-2xl sm:text-3xl text-ink-primary font-normal">
+                Ready to deploy {product.title}?
               </h2>
-              <p className="mt-2 text-base text-ink-body">
-                Simple monthly plans. Scale as your volume grows.
+              <p className="text-sm text-ink-body leading-relaxed">
+                Free to start with 50 sandbox credits and zero credit card required. For dedicated API endpoints, custom parser schemas, or private VPC enclaves, talk directly to our engineering team.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {product.pricing.map((tier, idx) => (
-                <div
-                  key={idx}
-                  className={`rounded-2xl p-8 flex flex-col justify-between transition-all ${
-                    tier.highlighted
-                      ? 'bg-canvas-base border-2 border-accent-500 shadow-md'
-                      : 'bg-canvas-base border border-[rgba(13,37,61,0.12)] shadow-sm'
-                  }`}
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <h3 className="font-display text-2xl text-ink-primary font-normal">{tier.tier}</h3>
-                      {tier.highlighted && (
-                        <span className="px-2.5 py-0.5 rounded-full bg-accent-50 text-accent-500 text-xs font-bold">
-                          Popular
-                        </span>
-                      )}
-                    </div>
-                    <div className="mb-4">
-                      <span className="font-display text-4xl text-ink-primary font-normal">{tier.price}</span>
-                    </div>
-                    <p className="text-xs text-ink-secondary mb-6 leading-relaxed">{tier.desc}</p>
-
-                    <div className="space-y-2.5 pt-4 border-t border-[rgba(13,37,61,0.08)]">
-                      {tier.features.map((feat, fIdx) => (
-                        <div key={fIdx} className="flex items-start gap-2 text-xs text-ink-body">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-accent-secondary shrink-0 mt-0.5" />
-                          <span>{feat}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="pt-8">
-                    <Link
-                      href="/contact"
-                      className={`w-full inline-flex items-center justify-center py-2.5 px-4 rounded-lg text-sm font-semibold transition-all ${
-                        tier.highlighted
-                          ? 'bg-accent-500 text-white hover:bg-accent-600 shadow-sm'
-                          : 'border border-[rgba(13,37,61,0.15)] bg-canvas-paper text-ink-primary hover:border-accent-500 hover:text-accent-500'
-                      }`}
-                    >
-                      Get Started
-                    </Link>
-                  </div>
-                </div>
-              ))}
+            <div className="shrink-0 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <Link
+                href={`/contact?tool=${product.slug}`}
+                className="inline-flex items-center justify-center py-2.5 px-5 rounded-lg text-sm font-semibold bg-accent-500 text-white hover:bg-accent-600 transition-colors shadow-sm"
+              >
+                Talk to an engineer &rarr;
+              </Link>
+              <Link
+                href="/docs"
+                className="inline-flex items-center justify-center py-2.5 px-4 rounded-lg text-sm font-semibold border border-[rgba(13,37,61,0.15)] bg-canvas-paper text-ink-primary hover:border-accent-500 hover:text-accent-500 transition-colors"
+              >
+                API Reference
+              </Link>
             </div>
-          </Container>
-        </section>
-      )}
-
-      {/* FAQ Section */}
-      {product.faq && product.faq.length > 0 && (
-        <section className="py-16 md:py-24 bg-canvas-base">
-          <Container size="narrow">
-            <div className="max-w-2xl mb-12">
-              <h2 className="font-display text-3xl sm:text-4xl text-ink-primary font-normal">
-                Frequently Asked Questions
-              </h2>
-            </div>
-
-            <div className="space-y-4">
-              {product.faq.map((faqItem, idx) => (
-                <div key={idx} className="rounded-xl bg-canvas-paper border border-[rgba(13,37,61,0.1)] p-6 shadow-sm">
-                  <h3 className="font-semibold text-base text-ink-primary mb-2">{faqItem.question}</h3>
-                  <p className="text-sm text-ink-body leading-relaxed">{faqItem.answer}</p>
-                </div>
-              ))}
-            </div>
-          </Container>
-        </section>
-      )}
+          </div>
+        </Container>
+      </section>
     </div>
   );
 }

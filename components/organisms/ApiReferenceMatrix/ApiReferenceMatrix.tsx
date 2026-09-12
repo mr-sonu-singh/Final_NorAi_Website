@@ -172,7 +172,11 @@ export function ApiReferenceMatrix() {
             </button>
           </div>
 
-          <pre className="font-mono text-xs text-emerald-300/95 overflow-x-auto leading-relaxed p-2 max-h-72">
+          <pre
+            tabIndex={0}
+            aria-label="Code snippet"
+            className="font-mono text-xs text-emerald-300/95 overflow-x-auto leading-relaxed p-2 max-h-72 focus:outline-none focus:ring-1 focus:ring-emerald-400/30"
+          >
             {activeCode}
           </pre>
 

@@ -15,7 +15,6 @@ import {
   Shield,
   Code2,
   Workflow,
-  FileCheck,
   Zap,
   Lock,
   Boxes,
@@ -49,232 +48,180 @@ interface Practice {
 
 const PRACTICES: Practice[] = [
   {
-    id: 'rag-systems',
-    title: 'RAG Systems & Vector Search',
-    category: 'Knowledge Retrieval',
+    id: 'document-ingestion',
+    title: 'Multi-Format Ingestion & Stream Extraction',
+    category: 'Enterprise Ingestion',
     tagline:
-      'Enterprise vector search pipelines, hybrid retrieval, and multi-document indexing engines for high-accuracy internal knowledge search.',
+      'Zero-egress stream parsing, layout-aware PDF tokenization, and sub-second extraction pipelines for complex document formats.',
     problem:
-      'Off-the-shelf chatbots hallucinate when queried on thousands of internal PDFs, Notion wikis, and technical documents.',
+      'Legacy OCR systems fail on multi-column layouts, tables, and mixed documents, stalling high-volume workflows.',
     solution:
-      'We build hybrid vector + BM25 keyword search engines with grounded citation verification, ensuring zero false retrieval.',
-    sla: 'P95 Latency < 180ms · 99.95% Precision',
-    security: 'Zero-Retention RAM · Air-Gapped VPC',
+      'We engineer layout-aware neural tokenizers and stream extraction workers that process documents in transient RAM with sub-second response times.',
+    sla: 'P95 Latency < 350ms · Zero Data Retention',
+    security: 'RAM Flushed Post-Parse · Air-Gapped Docker Ready',
     topology: {
-      flowLabel: 'Pipeline Flow: Ingestion ➔ Semantic Vectorizer ➔ Hybrid Ranker ➔ Verified Output',
+      flowLabel: 'Ingestion Pipeline: Stream Receiver ➔ Layout-Aware OCR ➔ Zod Validation ➔ Webhook Relay',
       nodes: [
-        { title: 'Multi-Format Ingestion', subtitle: 'PDF / Wiki / SQL / Docs', category: 'Ingress', icon: Layers },
-        { title: 'Layout-Aware Vectorizer', subtitle: 'pgvector / Qdrant Embeddings', category: 'Embedding Engine', icon: Cpu },
-        { title: 'Hybrid Dense + BM25 Ranker', subtitle: 'Citation Grounding Gate', category: 'Verification Gate', icon: Shield },
-        { title: 'Grounded JSON Output', subtitle: 'Deterministic Schema Response', category: 'Egress API', icon: CheckCircle2 },
+        { title: 'Stream Receiver', subtitle: 'PDF / DOCX / Audio / Gazette', category: 'Ingress Queue', icon: Layers },
+        { title: 'Spatial Tokenizer', subtitle: 'Column & Bounding Box Aware', category: 'Layout Engine', icon: Cpu },
+        { title: 'Zod Validation Gate', subtitle: 'Deterministic Typed Contract', category: 'Security Gate', icon: Shield },
+        { title: 'Downstream Dispatch', subtitle: 'Sub-Second Webhook Callback', category: 'Egress API', icon: CheckCircle2 },
       ],
     },
-    codeContract: `// NorAI RAG Knowledge Retrieval Pipeline Contract
+    codeContract: `// NorAI Stream Ingestion & Layout-Aware Extraction Contract
 import { z } from 'zod';
 
-export const RetrievalQuerySchema = z.object({
-  query: z.string().min(3),
-  collection: z.enum(['legal-docs', 'financial-filings', 'internal-wiki']),
-  filters: z.record(z.string(), z.unknown()).optional(),
-  topK: z.number().int().min(1).max(20).default(5),
-  rerankModel: z.literal('cohere-rerank-v3').default('cohere-rerank-v3'),
-  minCitationConfidence: z.number().min(0.85).default(0.92),
+export const IngestionStreamSchema = z.object({
+  payloadId: z.string().uuid(),
+  documentType: z.enum(['application/pdf', 'application/docx', 'text/plain', 'audio/wav']),
+  byteSize: z.number().max(50_000_000), // 50MB transient limit
+  preserveSpatialColumns: z.boolean().default(true),
+  outputContract: z.literal('ZOD_TYPED_EXTRACT'),
 });
 
-export type RetrievalResponse = {
-  answer: string;
-  citations: Array<{
-    sourceId: string;
-    pageNumber: number;
-    verifiedQuote: string;
-    similarityScore: number;
-  }>;
-  processingLatencyMs: number;
-  ephemeralRamReleased: boolean;
+export type IngestionResult = {
+  status: 'PROCESSED_EPHEMERAL';
+  latencyMs: number;
+  extractedFields: Record<string, string | number>;
+  ramFlushed: true;
 };`,
     deliverables: [
-      'Custom chunking strategies tailored to your document schema',
-      'Hybrid vector DB infrastructure (pgvector / Qdrant / Pinecone)',
-      'Sub-200ms retrieval latency with citation verification',
-      'On-premise or isolated VPC deployment container',
+      'Multi-format ingestion pipeline (PDF, DOCX, Gazette, Audio)',
+      'Spatial layout preservation preventing column and table text merges',
+      'Typed Zod validation before any database persistence',
+      'Air-gapped container packaging with zero internet dependency',
     ],
-    cta: 'Scope RAG Architecture',
-    href: '/contact?service=rag-systems',
+    cta: 'Talk to us',
+    href: '/contact?service=document-ingestion',
   },
   {
-    id: 'mcp-integration',
-    title: 'Model Context Protocol (MCP) Servers',
-    category: 'Protocol Tooling',
+    id: 'rag-orchestration',
+    title: 'Deterministic RAG & Agent Orchestration',
+    category: 'Knowledge Retrieval & MCP',
     tagline:
-      'Standardized MCP tool and resource servers connecting LLMs and Claude directly to your private databases and internal APIs.',
+      'Enterprise hybrid vector search, Model Context Protocol (MCP) servers, and grounded citation verification for zero hallucination.',
     problem:
-      'Connecting AI assistants to internal databases requires brittle custom connectors that break with every API update.',
+      'Off-the-shelf chatbots hallucinate on complex internal policies and require brittle ad-hoc connectors.',
     solution:
-      'We engineer official Model Context Protocol (MCP) tool servers with secure sandbox execution and typed tool schemas.',
-    sla: 'Sub-Second Tool Dispatch · Zero Schema Drift',
+      'We build hybrid dense + BM25 keyword search engines paired with standardized Model Context Protocol (MCP) tool servers.',
+    sla: 'P95 Latency < 180ms · 99.95% Citation Grounding',
     security: 'Sandboxed Stdio / SSE · Granular RBAC',
     topology: {
-      flowLabel: 'MCP Topology: Intent Router ➔ MCP Tool Bus ➔ Security Interceptor ➔ Atomic Commit',
+      flowLabel: 'Pipeline Flow: Query Ingress ➔ Semantic Vectorizer ➔ Hybrid Ranker ➔ MCP Tool Bus',
       nodes: [
-        { title: 'Schema Introspection', subtitle: 'PostgreSQL / ERP / REST', category: 'Discovery', icon: Workflow },
-        { title: 'Hardened MCP Server Bus', subtitle: 'TypeScript / Python Runtime', category: 'Core Engine', icon: Server },
-        { title: 'RBAC Security Interceptor', subtitle: 'Sandboxed Guardrails & Log', category: 'Security Gate', icon: Lock },
-        { title: 'Agent Client Dispatch', subtitle: 'Claude / Cursor / Webhooks', category: 'Client Execution', icon: Boxes },
+        { title: 'Multi-Document Ingest', subtitle: 'Internal Wiki / SQL / PDFs', category: 'Ingress', icon: Layers },
+        { title: 'Hybrid Dense Vectorizer', subtitle: 'pgvector + BM25 Keyword Search', category: 'Embedding Engine', icon: Cpu },
+        { title: 'Citation Grounding Gate', subtitle: 'Source Confidence Filter (≥0.92)', category: 'Verification Gate', icon: Shield },
+        { title: 'MCP Tool Bus', subtitle: 'Claude / Cursor / IDE Dispatch', category: 'Client Execution', icon: Boxes },
       ],
     },
-    codeContract: `// NorAI Model Context Protocol (MCP) Tool Contract
+    codeContract: `// NorAI Hybrid RAG & MCP Protocol Contract
 import { z } from 'zod';
 
 export const MCPToolDefinition = {
-  name: 'execute_analytics_query_sandboxed',
-  description: 'Execute read-only sanitized analytics query with tenant isolation',
+  name: 'query_internal_knowledge_base',
+  description: 'Search verified internal engineering documentation with grounded citations',
   parameters: z.object({
-    sql: z.string().refine((q) => !/insert|update|delete|drop/i.test(q), {
-      message: 'Write operations are strictly forbidden on read-only replica',
-    }),
-    timeoutMs: z.number().max(5000).default(3000),
+    query: z.string().min(3),
+    collection: z.enum(['architecture-specs', 'compliance-audits', 'api-contracts']),
+    minConfidence: z.number().min(0.85).default(0.92),
   }),
   securityPolicy: {
-    rbacRequired: ['read:analytics'],
-    auditLogged: true,
+    tenantIsolation: true,
     allowNetworkEgress: false,
+    auditLogged: true,
   },
 };`,
     deliverables: [
-      'Production-grade TypeScript / Python MCP tool servers',
-      'Granular authorization & read/write access policies',
-      'Standardized tool declarations and JSON schema contracts',
-      'Full test harness and mock testing suite',
+      'Hybrid vector DB infrastructure (pgvector / Qdrant) with Reciprocal Rank Fusion',
+      'Standardized Model Context Protocol (MCP) tool servers for engineering teams',
+      'Deterministic citation verification guaranteeing zero false answers',
+      'Private on-prem or isolated cloud deployment',
     ],
-    cta: 'Integrate MCP Server',
-    href: '/contact?service=mcp-integration',
+    cta: 'Talk to us',
+    href: '/contact?service=rag-orchestration',
   },
   {
-    id: 'llm-optimization',
-    title: 'LLM Stack Optimization & Cost Auditing',
-    category: 'Model Optimization',
+    id: 'private-vpc',
+    title: 'Private VPC & Air-Gapped Inference',
+    category: 'Sovereign Infrastructure',
     tagline:
-      'Evaluate model performance, optimize prompt pipelines, eliminate token waste, and implement latency benchmarks across your LLM infrastructure.',
+      'Dedicated vLLM and TensorRT-LLM container deployments operating inside your private VPC or on-premise hardware with zero data egress.',
     problem:
-      'Unoptimized LLM calls burn through thousands of dollars monthly while suffering from 5+ second latency delays.',
+      'Enterprise IP, defense data, and customer privacy forbid sending proprietary payloads to public cloud API providers.',
     solution:
-      'We audit prompt token density, implement semantic response caching, and route queries to smaller, fine-tuned deterministic models.',
-    sla: '40%–70% Spend Cut · P95 Latency < 600ms',
-    security: 'Zero Data Retention · On-Prem vLLM Ready',
+      'We deploy hardened, quantized open-weight inference engines within your private VPC boundary with zero outbound internet access.',
+    sla: 'Sub-100ms Inference · 99.99% Hardware Uptime',
+    security: 'Air-Gapped Docker/Helm · Zero Third-Party Egress',
     topology: {
-      flowLabel: 'Optimization Pipeline: Token Profiling ➔ Semantic Cache ➔ Model Tiering ➔ Telemetry HUD',
+      flowLabel: 'Sovereign Topology: Private Gateway ➔ vLLM Enclave ➔ Ephemeral DRAM ➔ Internal Microservice',
       nodes: [
-        { title: 'Token Density Profiler', subtitle: 'Prompt Schema Analysis', category: 'Audit Layer', icon: FileCheck },
-        { title: 'Semantic In-Memory Cache', subtitle: 'Sub-5ms Exact / Fuzzy Hit', category: 'Cache Engine', icon: Zap },
-        { title: 'Model Tiering Router', subtitle: 'vLLM 8B vs. Frontier Tier', category: 'Dynamic Routing', icon: Cpu },
-        { title: 'Cost & Latency Dashboard', subtitle: 'Real-Time Telemetry Log', category: 'Observability', icon: CheckCircle2 },
+        { title: 'Private VPC Ingress', subtitle: 'AWS / GCP / Azure PrivateLink', category: 'Network Enclave', icon: Lock },
+        { title: 'Quantized vLLM Core', subtitle: 'FP8 / AWQ Tensor Parallel Engine', category: 'Compute Cluster', icon: Server },
+        { title: 'Ephemeral DRAM Isolation', subtitle: 'Transient Memory Flush (0B Disk)', category: 'Memory Security', icon: Shield },
+        { title: 'Internal Gateway API', subtitle: 'Sub-100ms Microservice Response', category: 'Private Egress', icon: CheckCircle2 },
       ],
     },
-    codeContract: `// NorAI Semantic Cache & Model Tiering Router
-export interface OptimizationTelemetry {
-  promptTokenReductionRatio: number; // e.g., 0.62 (62% reduction)
-  semanticCacheStatus: 'HIT' | 'MISS' | 'SYNTHESIZED';
-  routedModel: 'vllm-llama3-70b-fp8' | 'claude-3-5-sonnet' | 'local-lora-8b';
-  p95LatencyMs: number;
-  costSavedPerMonthUSD: number;
-  accuracyRetentionScore: number; // 0.998
+    codeContract: `// NorAI Sovereign VPC Enclave Specification
+export interface SovereignClusterSpec {
+  vpcId: string; // e.g., vpc-0a4b9c1d2e3f
+  isolatedSubnet: 'private-isolated-airgapped';
+  computeEngine: 'vllm-tensorrt-fp8';
+  multiGpuTensorParallel: 2 | 4 | 8;
+  outboundEgressRules: []; // Strictly zero external IP egress
+  diskWriteAllowed: false; // Ephemeral RAM runtime only
+  slaP95Ms: 95;
 }`,
     deliverables: [
-      '40%–70% reduction in monthly foundation model API spend',
-      'P95 latency reduction from 4s down to < 600ms',
-      'Zero-loss accuracy evaluation benchmarks',
-      'Automated cost telemetry and usage dashboards',
+      'Dedicated vLLM / TensorRT-LLM cluster deployment in your private cloud',
+      'Automated multi-GPU tensor parallel scaling for peak workloads',
+      'Zero-egress network security policy validation with signed DPA',
+      'Direct infrastructure health telemetry and 99.99% uptime guarantee',
     ],
-    cta: 'Audit Your LLM Spend',
-    href: '/contact?service=llm-consulting',
+    cta: 'Talk to us',
+    href: '/contact?service=private-vpc',
   },
   {
-    id: 'custom-web-apps',
-    title: 'Custom AI Web Applications',
-    category: 'Full-Stack Web',
+    id: 'spatial-ai',
+    title: 'Spatial & Immersive Systems',
+    category: 'R&D Pilot · Spatial AI',
     tagline:
-      'Modern Next.js and React web applications powered by sub-second neural inference, dynamic UI generation, and deterministic workflow engines.',
+      'WebGPU compute shaders, Three.js/WGSL, tactile spatial interaction models, and multi-modal sensory telemetry for spatial document exploration.',
     problem:
-      'Generic AI wrapper templates lack tactile polish, responsive speed, and enterprise-grade state management.',
+      'Traditional 2D dashboard tables struggle to represent high-dimensional vector embeddings, knowledge graphs, and complex telemetry.',
     solution:
-      'We design bespoke full-stack applications with high-polish UI craft, streaming responses, and robust backend integrations.',
-    sla: '< 100ms Serverless TTFB · 60fps Fluid UI',
-    security: 'Vercel / AWS ECS / Edge Runtime',
+      'We prototype spatial canvas interactions using WebGPU compute shaders, translating high-dimensional semantic spaces into tactile, gesture-navigated 3D workspaces.',
+    sla: '60fps WebGPU Compute · Sub-16ms Frame Budget · R&D Pilot',
+    security: 'Client-Side WebGPU Shaders · Zero Remote Telemetry',
     topology: {
-      flowLabel: 'App Architecture: Design System ➔ Next.js 15 RSC ➔ Streaming Inference ➔ Production CI/CD',
+      flowLabel: 'Spatial Topology: Vector Graph ➔ WebGPU WGSL Compute ➔ Tactile Gesture Engine ➔ 60fps Viewport',
       nodes: [
-        { title: 'Design System Architecture', subtitle: 'Tactile Double-Bezel Tokens', category: 'Design Stage', icon: Layers },
-        { title: 'Next.js 15 & React 19 Client', subtitle: 'Server Components & Leaves', category: 'Frontend Layer', icon: Code2 },
-        { title: 'Serverless Inference Stream', subtitle: 'EventStream with Typed Events', category: 'Backend Engine', icon: Server },
-        { title: 'Continuous Delivery SLA', subtitle: 'Zero-Downtime Deploy Pipeline', category: 'Production Stack', icon: CheckCircle2 },
+        { title: 'Semantic Graph Ingress', subtitle: 'High-Dimensional Vector Embeddings', category: 'Data Feed', icon: Workflow },
+        { title: 'WebGPU WGSL Shaders', subtitle: 'Hardware-Accelerated Compute Pass', category: 'Compute Pass', icon: Cpu },
+        { title: 'Tactile Gesture Engine', subtitle: 'Raycast & Hand Telemetry Dispatch', category: 'Interaction', icon: Zap },
+        { title: 'Air-Gapped Canvas View', subtitle: 'Sub-16ms 60fps Native Viewport', category: 'Rendering', icon: CheckCircle2 },
       ],
     },
-    codeContract: `// NorAI Stream Inference Protocol
-export async function createStreamingInferencePipeline(req: Request) {
-  const stream = new TransformStream();
-  const writer = stream.writable.getWriter();
-
-  // Return real-time chunked response with typed headers
-  return new Response(stream.readable, {
-    headers: {
-      'Content-Type': 'text/event-stream',
-      'Cache-Control': 'no-cache',
-      'X-Accel-Buffering': 'no',
-      'X-NorAI-Inference-Engine': 'vLLM-v0.6',
-    },
-  });
-}`,
-    deliverables: [
-      'Bespoke, un-templated visual identity and tactile UI',
-      'Sub-100ms serverless endpoints with streaming outputs',
-      'Fully responsive accessible design (WCAG AAA compliant)',
-      'Clean TypeScript codebase ready for your in-house team',
-    ],
-    cta: 'Build Custom AI App',
-    href: '/contact?service=custom-web-apps',
-  },
-  {
-    id: 'business-automation',
-    title: 'Business Automation Pipelines',
-    category: 'Enterprise Automation',
-    tagline:
-      'Automate manual data entry, ERP ingestion, compliance auditing, and multi-app synchronization with fault-tolerant background workers.',
-    problem:
-      'Operations teams waste dozens of hours every week copying data across ERPs, spreadsheets, and emails.',
-    solution:
-      'We engineer deterministic background worker queues that parse unstructured documents, validate business rules, and sync downstream automatically.',
-    sla: '99.9% Pipeline Uptime · Zero Data Loss',
-    security: 'Encrypted In-Flight & Rest · SOC2 Ready',
-    topology: {
-      flowLabel: 'Automation Topology: Process Map ➔ Ingestion Worker ➔ Rule Validator ➔ ERP Webhook Sync',
-      nodes: [
-        { title: 'Workflow Contract Ingress', subtitle: 'SAP / Netsuite / Webhooks', category: 'Ingress Queue', icon: Workflow },
-        { title: 'Unstructured Parser Worker', subtitle: 'Docling / Layout OCR Engine', category: 'Parser Worker', icon: Cpu },
-        { title: 'Deterministic Validator Gate', subtitle: 'Business Rules & Schema Check', category: 'Validation Gate', icon: Shield },
-        { title: 'Downstream Sync & Audit', subtitle: 'Atomic State Commit & Alert', category: 'Execution Queue', icon: CheckCircle2 },
-      ],
-    },
-    codeContract: `// NorAI Deterministic Background Worker Contract
+    codeContract: `// NorAI Spatial AI Shader & Interaction Pipeline Contract
 import { z } from 'zod';
 
-export const WorkerJobPayload = z.object({
-  jobId: z.string().uuid(),
-  sourceSystem: z.enum(['sap_erp', 'salesforce', 'oracle_netsuite', 'webhook']),
-  payloadChecksum: z.string().length(64),
-  retryPolicy: z.object({
-    maxAttempts: z.number().default(5),
-    backoffMultiplier: z.number().default(2),
-  }),
-  auditTrailEnabled: z.boolean().default(true),
+export const SpatialCanvasPipelineSpec = z.object({
+  pipelineId: z.literal('@norai/spatial-mesh/v1'),
+  renderTarget: z.literal('WebGPU'),
+  wgslShaderComputeEnabled: z.boolean().default(true),
+  targetFramerate: z.literal(60),
+  spatialTrackingMode: z.enum(['raycast_pointer', 'hand_telemetry', 'spatial_mouse']),
+  maxVectorNodesRendered: z.number().max(50_000).default(10_000),
+  originPedigree: z.literal('Japan VR/AR Summit Research'),
 });`,
     deliverables: [
-      'Fault-tolerant worker queues with automatic retry logic',
-      'Audit log trail for compliance and human-in-the-loop review',
-      '99.9% uptime guarantees with real-time alerting',
-      'Dedicated integration support and team walkthrough',
+      'WebGPU and WGSL compute shader rendering pipeline for complex datasets',
+      'High-dimensional vector projection onto 3D interactive canvases',
+      'Tactile gesture tracking and raycast event dispatch',
+      'Grounded in founder research from Japan VR/AR Summit',
     ],
-    cta: 'Automate Business Workflows',
-    href: '/contact?service=business-automation',
+    cta: 'Talk to us',
+    href: '/contact?service=spatial-ai',
   },
 ];
 

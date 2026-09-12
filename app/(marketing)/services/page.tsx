@@ -156,7 +156,7 @@ export default function ServicesPage() {
                   <span className="italic text-accent-primary font-normal">mission-critical scale.</span>
                 </h2>
                 <p className="fluid-body text-text-secondary leading-relaxed max-w-xl text-pretty">
-                  Explore our five core engineering practices. Inspect the execution topology, review the typed TypeScript contracts, and scope your dedicated architecture.
+                  Explore our four core engineering practices. Inspect the execution topology, review the typed TypeScript contracts, and scope your dedicated architecture.
                 </p>
               </div>
             </Reveal>
@@ -260,10 +260,10 @@ export default function ServicesPage() {
               />
 
               <div className="max-w-2xl mx-auto space-y-7 relative z-10">
-                {/* Live Availability Badge */}
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent-50 border border-accent-primary/25 text-accent-primary text-xs font-mono font-semibold">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent-primary animate-pulse" />
-                  <span>Next Technical Scoping Slot: Available This Week</span>
+                {/* Direct Engineering Badge */}
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-panel-subtle border border-border-subtle text-accent-primary text-xs font-mono font-semibold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent-primary" />
+                  <span>Direct Engineering Engagement</span>
                 </div>
 
                 <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-normal text-text-primary leading-tight tracking-display">
@@ -279,9 +279,9 @@ export default function ServicesPage() {
                 <div className="rounded-2xl border border-border-subtle bg-surface-canvas/90 p-4 sm:p-5 text-left shadow-sm max-w-lg mx-auto flex items-start gap-3">
                   <ShieldCheck className="w-5 h-5 text-accent-secondary shrink-0 mt-0.5" />
                   <div className="text-xs space-y-0.5">
-                    <span className="font-semibold text-text-primary block">Zero-Commitment Scoping Guarantee</span>
+                    <span className="font-semibold text-text-primary block">Zero-Commitment Technical Scoping</span>
                     <p className="text-text-secondary leading-relaxed">
-                      Every audit includes a comprehensive 10-page Technical Architecture Blueprint and latency benchmark report with zero vendor lock-in.
+                      Every consultation produces an explicit architecture diagram, latency budget, and concrete proof-of-concept scope with zero vendor lock-in.
                     </p>
                   </div>
                 </div>

@@ -10,8 +10,9 @@ const A11Y_PAGES = [
   { path: '/', name: 'Homepage' },
   { path: '/products', name: 'Products Catalog' },
   { path: '/services', name: 'Enterprise Services' },
-  { path: '/pricing', name: 'Pricing & Plans' },
-  { path: '/about', name: 'About' },
+  { path: '/team', name: 'Team & Studio' },
+  { path: '/mission', name: 'AI Skill Mission' },
+  { path: '/docs', name: 'Developer Docs' },
   { path: '/contact', name: 'Contact & Inquiries' },
 ];
 
@@ -20,6 +21,7 @@ test.describe('Accessibility (a11y) Audits', () => {
     test(`audits ${name} (${path}) for zero critical or serious WCAG violations`, async ({ page }) => {
       await page.goto(path);
       await page.waitForLoadState('domcontentloaded');
+      await page.waitForTimeout(800);
 
       const results = await new AxeBuilder({ page })
         .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])

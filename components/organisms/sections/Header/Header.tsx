@@ -15,11 +15,9 @@ import { HeaderProps, HeaderCTA } from './Header.types';
 import { NavItem } from '@/types';
 
 export const DEFAULT_HEADER_NAV_ITEMS: NavItem[] = [
-  { label: 'Products', href: '/products' },
-  { label: 'Enterprise', href: '/services' },
-  { label: 'Pricing', href: '/pricing' },
-  { label: 'Mission', href: '/mission' },
-  { label: 'Company', href: '/about' },
+  { label: 'Tools', href: '/products' },
+  { label: 'Services', href: '/services' },
+  { label: 'Team', href: '/team' },
   { label: 'Contact', href: '/contact' },
 ];
 

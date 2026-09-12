@@ -13,14 +13,11 @@ const MARKETING_PAGES = [
   { path: '/products/chat-digest', name: 'Chat Digest Product' },
   { path: '/products/smart-dainik-news', name: 'Smart Dainik News Product' },
   { path: '/services', name: 'Enterprise Services' },
-  { path: '/pricing', name: 'Pricing' },
-  { path: '/about', name: 'About' },
   { path: '/team', name: 'Team' },
   { path: '/careers', name: 'Careers' },
   { path: '/contact', name: 'Contact' },
   { path: '/blog', name: 'Blog Hub' },
   { path: '/mission', name: 'AI Skill Mission' },
-  { path: '/faq', name: 'FAQ' },
   { path: '/docs', name: 'Docs Hub' },
 ];
 

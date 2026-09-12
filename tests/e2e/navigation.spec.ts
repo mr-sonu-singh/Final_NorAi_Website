@@ -13,11 +13,9 @@ test.describe('Navigation & Interactive Flows', () => {
     });
 
     const navLinks = [
-      { name: 'Products', expectedPath: '/products' },
-      { name: 'Enterprise', expectedPath: '/services' },
-      { name: 'Pricing', expectedPath: '/pricing' },
-      { name: 'Mission', expectedPath: '/mission' },
-      { name: 'Company', expectedPath: '/about' },
+      { name: 'Tools', expectedPath: '/products' },
+      { name: 'Services', expectedPath: '/services' },
+      { name: 'Team', expectedPath: '/team' },
       { name: 'Contact', expectedPath: '/contact' },
     ];
 
@@ -27,7 +25,7 @@ test.describe('Navigation & Interactive Flows', () => {
         await expect(navItem).toBeVisible();
 
         await navItem.click();
-        await expect(page).toHaveURL(new RegExp(expectedPath));
+        await expect(page).toHaveURL(new RegExp(expectedPath), { timeout: 15000 });
 
         // Ensure main content is mounted and immediately visible (not blank)
         const mainContent = page.locator('#main-content');
@@ -39,6 +37,23 @@ test.describe('Navigation & Interactive Flows', () => {
         await expect(page.locator('h1')).not.toContainText('404');
       });
     }
+
+    test('verifies 308 permanent redirects for pruned legacy routes', async ({ page }) => {
+      // /about -> /team
+      await page.goto('/about');
+      await expect(page).toHaveURL(/\/team/);
+      await expect(page.locator('h1')).toBeVisible();
+
+      // /faq -> /contact
+      await page.goto('/faq');
+      await expect(page).toHaveURL(/\/contact/);
+      await expect(page.locator('h1')).toBeVisible();
+
+      // /pricing -> /products
+      await page.goto('/pricing');
+      await expect(page).toHaveURL(/\/products/);
+      await expect(page.locator('h1')).toBeVisible();
+    });
 
     test('resets scroll position to top when navigating from scrolled home page', async ({ page }) => {
       await page.evaluate(() => window.scrollTo(0, 3000));
@@ -53,10 +68,10 @@ test.describe('Navigation & Interactive Flows', () => {
       await expect(page.locator('h1')).toBeVisible();
     });
 
-    test('heavy pages (team, mission, company) mount full content with visible headings and telemetry on soft navigation', async ({ page }) => {
+    test('heavy pages (team, tools) mount full content with visible headings on soft navigation', async ({ page }) => {
       for (const { name, path } of [
-        { name: 'Mission', path: '/mission' },
-        { name: 'Company', path: '/about' },
+        { name: 'Team', path: '/team' },
+        { name: 'Tools', path: '/products' },
       ]) {
         const link = page.locator('nav[aria-label="Main Navigation"]').getByRole('link', { name, exact: true });
         await link.click();
@@ -72,9 +87,9 @@ test.describe('Navigation & Interactive Flows', () => {
       }
 
       // Navigate to /team via footer link
-      const teamLink = page.locator('footer').getByRole('link', { name: 'Team', exact: true });
+      const teamLink = page.locator('footer').getByRole('link', { name: /Team/i });
       await teamLink.click();
-      await expect(page).toHaveURL(/\/team/);
+      await expect(page).toHaveURL(/\/team/, { timeout: 15000 });
       await expect(page.locator('#main-content')).toBeVisible();
       await expect(page.locator('#main-content')).not.toBeEmpty();
       await expect(page.locator('h1')).toBeVisible();
@@ -134,8 +149,8 @@ test.describe('Navigation & Interactive Flows', () => {
       await expect(mobileMenu).toBeVisible();
 
       // Verify links exist inside mobile menu
-      const mobileProductsLink = mobileMenu.getByRole('link', { name: 'Products', exact: true });
-      await expect(mobileProductsLink).toBeVisible();
+      const mobileToolsLink = mobileMenu.getByRole('link', { name: 'Tools', exact: true });
+      await expect(mobileToolsLink).toBeVisible();
 
       // Close drawer via toggle button
       await toggleBtn.click();

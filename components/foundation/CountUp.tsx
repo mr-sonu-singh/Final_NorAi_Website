@@ -61,18 +61,19 @@ export function CountUp({
     [resolvedDecimals]
   );
 
-  const [currentDisplay, setCurrentDisplay] = useState(() =>
-    shouldReduceMotion ? formatNumber(value) : formatNumber(startValue)
-  );
+  // Always initialize with final value so SSR, headless crawlers, and static snapshots render the true metric
+  const [currentDisplay, setCurrentDisplay] = useState(() => formatNumber(value));
+  const hasAnimatedRef = useRef(false);
 
   useEffect(() => {
-    if (shouldReduceMotion) {
+    if (shouldReduceMotion || hasAnimatedRef.current) {
       setCurrentDisplay(formatNumber(value));
       return;
     }
 
     if (!isInView) return;
 
+    hasAnimatedRef.current = true;
     const controls = animate(startValue, value, {
       duration,
       delay,

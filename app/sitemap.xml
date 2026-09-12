@@ -11,12 +11,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '',
     '/products',
     '/services',
-    '/pricing',
-    '/about',
     '/team',
+    '/mission',
     '/blog',
     '/docs',
-    '/faq',
     '/contact',
   ];
   const productRoutes = Object.keys(PRODUCTS_DATA).map((slug) => `/products/${slug}`);

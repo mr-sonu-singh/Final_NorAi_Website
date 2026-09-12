@@ -1,95 +1,116 @@
 import React from 'react';
 import Image from 'next/image';
+import type { Metadata } from 'next';
 import { Container } from '@/components/foundation/Container';
-import { Section } from '@/components/foundation/Section';
-import { Heading } from '@/components/foundation/Heading';
+import { Button } from '@/components/atoms/Button';
+import { Link } from '@/components/atoms/Link';
+import { MagneticButton } from '@/components/atoms/MagneticButton';
 import {
+  AnimatedSection,
   Reveal,
-  TextReveal,
-  CountUp,
-} from '@/components/foundation';
-import { WorkshopTrackExplorer } from '@/components/organisms/WorkshopTrackExplorer';
-import { GrassrootsTransitionsSlider } from '@/components/organisms/GrassrootsTransitionsSlider';
-import { MissionActionDock } from '@/components/organisms/MissionActionDock';
+  StaggerGrid,
+  StaggerItem,
+} from '@/components/foundation/AnimatedSection';
+import { TextReveal } from '@/components/foundation/TextReveal';
+import { CountUp } from '@/components/foundation/CountUp';
 import {
   ArrowRight,
-  MapPin,
   Sparkles,
-  Landmark,
-  Languages,
-  ShieldCheck,
-  Building2,
+  Users,
+  GraduationCap,
+  Terminal,
+  CheckCircle2,
+  Heart,
+  MapPin,
 } from 'lucide-react';
-import { buildMetadata } from '@/lib/seo';
+import { buildMetadata, getBreadcrumbListJsonLd, JsonLd } from '@/lib/seo';
 
-export const metadata = buildMetadata({
+export const metadata: Metadata = buildMetadata({
   path: '/mission',
-  title: 'AI Skill Mission & Regional Enablement Movement',
+  title: 'AI Skill Mission — Computational Literacy Across Uttar Pradesh',
   description:
     'Democratizing everyday AI literacy and deterministic engineering across 75 districts of Uttar Pradesh. 100% free workshops for students, youth, and village citizens.',
 });
 
-const ADAPTATION_FACTORS = [
+const COMMUNITY_TIERS = [
   {
-    category: 'Target Demographics',
-    rural: 'Village elders, rural youth, local shopkeepers, women self-help groups, first-time digital citizens.',
-    town: 'Undergraduate engineers, polytechnic diploma students, aspiring tech founders in regional hubs.',
+    tier: 'TIER 01',
+    badge: 'Rural & Village Citizens',
+    title: 'Everyday Vernacular Literacy',
+    desc: 'Bringing Hindi voice interfaces, government welfare navigation, and digital fraud prevention to village elders, self-help groups, and local tradespeople.',
+    metric: '₹0 Cost · Vernacular Delivery',
+    icon: Users,
+    highlights: [
+      'Hindi voice prompts for crop advisory & mandi rates',
+      'Digital scam detection & online payment safety',
+      'Government welfare portal navigation',
+    ],
   },
   {
-    category: 'Primary Curriculum',
-    rural: 'Everyday AI: ChatGPT & Gemini Hindi voice prompts, government welfare navigation, and digital fraud/scam safety.',
-    town: 'Model Context Protocol (MCP) servers, local vLLM open-weight serving, vector search, and type-safe API deployment.',
+    tier: 'TIER 02',
+    badge: 'Secondary & College Students',
+    title: 'Academic & Foundation Mastery',
+    desc: 'Teaching high school and collegiate students how to turn AI into a tireless personal tutor, extract structured notes from messy lectures, and build rigorous study habits.',
+    metric: 'Free Scholar Sandbox Access',
+    icon: GraduationCap,
+    highlights: [
+      'Lecture note-taking & structured flashcard extraction',
+      'STEM homework verification without hallucination',
+      'Foundational programming fundamentals',
+    ],
   },
   {
-    category: 'Infrastructure & Tech',
-    rural: 'Smartphone-first, low-bandwidth optimized, offline tool demonstrations, projector-led community sessions.',
-    town: 'Campus computer labs, live code sandboxes, API key security, Git repositories, and local edge GPU hardware.',
-  },
-  {
-    category: 'Immediate Takeaway',
-    rural: 'Independence in drafting formal letters, verifying agricultural advice, and recognizing online fraud.',
-    town: 'Automated study flashcard engines, deployable AI micro-SaaS portfolio apps, and verified internship pathways.',
-  },
-];
-
-const GOVERNMENT_ROADMAP = [
-  {
-    phase: 'PHASE 01',
-    status: 'Active Deployment',
-    statusVariant: 'active',
-    title: 'Grassroots & Campus Hub Pilots',
-    desc: 'Founder-led masterclasses across regional colleges, polytechnics, and village clusters across eastern and central Uttar Pradesh.',
-    regions: ['Gorakhpur', 'Lucknow', 'Varanasi', 'Meerut', 'Prayagraj'],
-    milestone: '500+ Regional Participants Reached',
-  },
-  {
-    phase: 'PHASE 02',
-    status: 'Scaling Cohort',
-    statusVariant: 'scaling',
-    title: 'District-Level Collegiate Network',
-    desc: 'Establishing recurring monthly AI engineering and literacy clinics across 25+ Tier-2/3 district hubs with partner laboratories.',
-    regions: ['25+ Target District Hubs', 'Polytechnic Labs', 'B.Tech Chapters'],
-    milestone: '25+ Institutional Partners',
-  },
-  {
-    phase: 'PHASE 03',
-    status: 'Strategic Blueprint',
-    statusVariant: 'blueprint',
-    title: 'Statewide UP Government Partnership',
-    desc: 'Collaborating with the UP Skill Development Mission and IT Department to standardize vernacular AI curricula across all 75 districts.',
-    regions: ['All 75 UP Districts', 'UPSDM Alignment', 'Public-Private Scale'],
-    milestone: 'Statewide Public-Private Impact',
+    tier: 'TIER 03',
+    badge: 'Collegiate Builders & Engineers',
+    title: 'Deterministic Systems Engineering',
+    desc: 'Direct founder-led masterclasses for ambitious undergraduate engineers: Model Context Protocol (MCP) servers, local vLLM serving, vector databases, and typed APIs.',
+    metric: 'Direct Founder Mentorship',
+    icon: Terminal,
+    highlights: [
+      'Model Context Protocol (MCP) server authoring',
+      'Local open-weight vLLM serving & prompt engineering',
+      'Type-safe Zod runtime contracts & vector search',
+    ],
   },
 ];
 
-const IMPACT_COUNTERS = [
-  { value: 75, suffix: '', label: 'UP Districts Vision', detail: 'Statewide regional enablement target' },
-  { value: 500, suffix: '+', label: 'Participants Mentored', detail: 'Across grassroots & collegiate cohorts' },
-  { value: 0, prefix: '₹', label: 'Student Cost', detail: '100% free educational masterclasses' },
-  { value: 25, suffix: '+', label: 'Target District Hubs', detail: 'Collegiate & polytechnic network' },
+const GROUND_FACTS = [
+  {
+    value: 0,
+    prefix: '₹',
+    suffix: '',
+    label: 'Student Fee',
+    detail: '100% free workshops and materials, always',
+  },
+  {
+    value: 75,
+    prefix: '',
+    suffix: '',
+    label: 'UP Districts Scope',
+    detail: 'Statewide community outreach objective',
+  },
+  {
+    value: 500,
+    prefix: '',
+    suffix: '+',
+    label: 'Participants Mentored',
+    detail: 'Across eastern and central Uttar Pradesh',
+  },
+  {
+    value: 100,
+    prefix: '',
+    suffix: '%',
+    label: 'Founder-Led Delivery',
+    detail: 'Taught directly by the 5 founding engineers',
+  },
 ];
 
 export default function MissionPage() {
+  const breadcrumbs = [
+    { name: 'Home', path: '/' },
+    { name: 'Mission', path: '/mission' },
+  ];
+
   const missionJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'EducationalOccupationalProgram',
@@ -104,103 +125,41 @@ export default function MissionPage() {
   };
 
   return (
-    <div className="min-h-screen bg-canvas-base text-ink-primary font-sans selection:bg-accent-500 selection:text-white">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(missionJsonLd) }}
-      />
+    <div className="text-text-primary min-h-screen font-sans bg-surface-canvas selection:bg-accent-primary selection:text-white">
+      <JsonLd schema={missionJsonLd} />
+      <JsonLd schema={getBreadcrumbListJsonLd(breadcrumbs)} />
 
-      {/* SECTION 1: EDITORIAL HERO & HIGH-DENSITY TELEMETRY RIBBON */}
-      <Section className="relative pt-12 pb-14 md:pt-20 md:pb-20 border-b border-[rgba(20,28,43,0.08)] overflow-hidden">
-        {/* Subtle Archival Warmth Gradient */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-canvas-paper/70 to-transparent"
-        />
+      {/* =========================================================================
+          BEAT 1: HERO MANIFESTO & DOCUMENTARY FRAME
+          ========================================================================= */}
+      <section className="relative pt-16 pb-14 md:pt-24 md:pb-20 border-b border-border-subtle overflow-hidden bg-surface-canvas">
+        <Container size="default" className="relative z-10 space-y-12">
+          <div className="max-w-4xl space-y-6 text-left">
+            <Reveal delay={0} y={16}>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-accent-50 border border-accent-primary/20 text-accent-primary text-xs font-mono font-semibold">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>NorAI Skill Mission · Uttar Pradesh</span>
+              </div>
+            </Reveal>
 
-        <Container size="default" className="relative z-10 space-y-10">
-          {/* Hero Statement & Narrative */}
-          <div className="max-w-4xl space-y-5 text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-canvas-sunken border border-[rgba(20,28,43,0.08)] text-terra-600 text-xs font-mono font-semibold">
-              <MapPin className="w-3 h-3" aria-hidden="true" />
-              <span>Statewide Youth Upliftment &amp; Grassroots AI Movement · Uttar Pradesh</span>
-            </div>
-
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-ink-primary leading-[1.05] tracking-tight">
-              <TextReveal text="Democratizing AI" as="span" /> <br />
-              <span className="italic text-terra-600 font-normal">
-                from villages to tech hubs.
+            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal text-text-primary leading-[1.02] tracking-display">
+              <TextReveal text="Computational literacy" as="span" /> <br />
+              <span className="italic text-accent-primary font-normal">
+                <TextReveal text="for all 75 districts." as="span" delay={0.2} />
               </span>
             </h1>
 
-            <p className="text-base sm:text-lg text-ink-body leading-relaxed max-w-2xl font-normal font-sans">
-              Artificial intelligence should not be a metro-only privilege. We conduct tailored,
-              zero-cost workshops across rural communities, regional schools, and collegiate tech
-              hubs in Uttar Pradesh—teaching everyday AI literacy to elders, academic mastery to
-              students, and production-grade engineering to builders.
-            </p>
-
-            {/* Primary Action Dispatch */}
-            <div className="pt-2 flex flex-wrap items-center gap-3">
-              <a
-                href="#join-mission"
-                className="inline-flex items-center gap-2 rounded-xl bg-[#141C2B] px-5 py-3 font-sans text-xs sm:text-sm font-semibold text-[#F5F0EA] hover:bg-[#1F2B3E] transition-all active:scale-[0.98] group"
-              >
-                <span>Bring NorAI to Your Campus / Village</span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-              </a>
-
-              <a
-                href="#workshop-tracks"
-                className="inline-flex items-center gap-2 rounded-xl border border-[rgba(20,28,43,0.12)] bg-canvas-paper px-5 py-3 font-sans text-xs sm:text-sm font-semibold text-ink-primary hover:bg-canvas-sunken transition-all active:scale-[0.98]"
-              >
-                <span>Explore Workshop Tracks &amp; Syllabi</span>
-              </a>
-            </div>
+            <Reveal delay={0.2} y={18}>
+              <p className="fluid-lead text-text-secondary leading-relaxed max-w-2xl font-normal text-pretty">
+                Artificial intelligence should never be a metro-only privilege. We conduct zero-cost, hands-on workshops across rural communities, regional schools, and collegiate tech hubs in Uttar Pradesh—empowering everyday citizens, students, and young builders.
+              </p>
+            </Reveal>
           </div>
 
-          {/* High-Density Live Impact Telemetry Strip */}
-          <div className="space-y-3">
-            <div className="flex items-center justify-between px-1 text-xs font-mono text-ink-secondary">
-              <div className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-sage-500 animate-pulse" />
-                <span className="font-semibold text-sage-800 uppercase tracking-wider">
-                  MISSION TELEMETRY ACTIVE
-                </span>
-              </div>
-              <span>Status: Direct Founder-Led Deployments</span>
-            </div>
-
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-              {IMPACT_COUNTERS.map((item) => (
-                <div
-                  key={item.label}
-                  className="rounded-xl border border-[rgba(20,28,43,0.08)] bg-canvas-paper p-4 sm:p-5 space-y-1"
-                >
-                  <div className="font-display text-2xl sm:text-3xl md:text-4xl text-ink-primary font-normal flex items-baseline">
-                    <CountUp
-                      value={item.value}
-                      prefix={item.prefix}
-                      suffix={item.suffix}
-                      duration={1.6}
-                      className="font-display text-2xl sm:text-3xl md:text-4xl text-ink-primary font-normal"
-                    />
-                  </div>
-                  <div className="font-sans text-xs font-semibold text-ink-primary">
-                    {item.label}
-                  </div>
-                  <p className="font-mono text-[11px] text-ink-secondary leading-tight">
-                    {item.detail}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Archival Specimen Documentary Frame */}
-          <Reveal delay={0.15}>
-            <figure className="relative overflow-hidden rounded-2xl border border-[rgba(20,28,43,0.08)] bg-canvas-paper">
-              <div className="relative aspect-[21/9] sm:aspect-[21/8] w-full overflow-hidden bg-canvas-sunken">
+          {/* Documentary Photo Frame */}
+          <Reveal delay={0.3} y={24}>
+            <figure className="relative overflow-hidden rounded-3xl border border-border-strong bg-surface-panel shadow-sm">
+              <div className="relative aspect-[16/9] w-full overflow-hidden bg-surface-panel-subtle">
                 <Image
                   src="/images/about/skill-mission.jpg"
                   alt="NorAI Skill Mission hands-on AI engineering masterclass in a regional college classroom in Uttar Pradesh"
@@ -210,211 +169,193 @@ export default function MissionPage() {
                   sizes="(max-width: 1200px) 100vw, 1200px"
                 />
               </div>
-              <figcaption className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-t border-[rgba(20,28,43,0.06)] bg-canvas-paper px-4 py-2.5 text-[11px] font-mono text-ink-secondary">
+              <figcaption className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-t border-border-subtle bg-surface-panel/90 px-6 py-3.5 text-xs font-mono text-text-secondary text-left">
                 <span className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-terra-500" />
-                  <span>Specimen UP-75-AI · Classroom Masterclass · Eastern UP Hub</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent-primary" />
+                  <span>Hands-on Engineering Masterclass · Regional College Cohort, Uttar Pradesh</span>
                 </span>
-                <span className="text-sage-700 font-medium">Democratizing Deterministic Engineering</span>
+                <span className="text-accent-secondary font-medium">Democratizing Engineering Beyond Metros</span>
               </figcaption>
             </figure>
           </Reveal>
         </Container>
-      </Section>
+      </section>
 
-      {/* SECTION 2: THE ACTION BLUEPRINT — 3-PILLAR HIGH-DENSITY BENTO */}
-      <Section className="py-14 md:py-20 border-b border-[rgba(20,28,43,0.08)] bg-canvas-paper">
+      {/* =========================================================================
+          BEAT 2: THREE COMMUNITY TIERS
+          ========================================================================= */}
+      <AnimatedSection className="py-20 md:py-28 border-b border-border-subtle bg-surface-panel">
         <Container size="default">
-          <div className="max-w-3xl mb-10 text-left space-y-2">
-            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-terra-600">
-              The Action Blueprint
+          <div className="max-w-3xl mb-14 text-left space-y-3">
+            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-accent-primary">
+              Three Grassroots Tiers
             </span>
-            <Heading as="h2" variant="display-lg" className="text-ink-primary font-normal">
-              Three grassroots transformations.
-            </Heading>
-            <p className="text-sm md:text-base text-ink-body font-sans">
-              How NorAI calibrates its pedagogy to bridge specific regional divides—from village
-              literacy to production software systems.
+            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-normal text-text-primary leading-tight tracking-display">
+              Calibrated pedagogy for every divide.
+            </h2>
+            <p className="fluid-body text-text-secondary leading-relaxed max-w-xl text-pretty">
+              We never parachute generic corporate slide decks into regional classrooms. Every session is designed specifically for its audience.
             </p>
           </div>
 
-          {/* High-Density 3-Column Bento Grid */}
-          <GrassrootsTransitionsSlider />
-        </Container>
-      </Section>
+          <StaggerGrid className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left" stagger={0.12}>
+            {COMMUNITY_TIERS.map((tier) => {
+              const Icon = tier.icon;
+              return (
+                <StaggerItem key={tier.tier} className="h-full">
+                  <div className="p-2 rounded-3xl bg-surface-canvas/80 border border-border-strong shadow-sm h-full flex flex-col justify-between hover:border-accent-primary/40 transition-colors">
+                    <div className="rounded-[calc(1.5rem-0.25rem)] bg-surface-panel border border-border-subtle p-7 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)] space-y-5 h-full flex flex-col justify-between">
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between">
+                          <span className="font-mono text-xs font-bold text-accent-primary px-2.5 py-0.5 rounded bg-accent-50 border border-accent-primary/20">
+                            {tier.tier}
+                          </span>
+                          <div className="w-8 h-8 rounded-lg bg-surface-panel-subtle border border-border-subtle text-accent-primary flex items-center justify-center">
+                            <Icon className="w-4 h-4" />
+                          </div>
+                        </div>
 
-      {/* SECTION 3: WIDESCREEN WORKSHOP TRACK & SYLLABUS WORKBENCH */}
-      <Section id="workshop-tracks" className="py-14 md:py-20 bg-canvas-base border-b border-[rgba(20,28,43,0.08)] scroll-mt-20">
-        <Container size="default">
-          <div className="max-w-3xl mb-10 text-left space-y-2">
-            <span className="font-mono text-xs font-semibold text-terra-600 uppercase tracking-wider">
-              Curriculum Architecture
-            </span>
-            <Heading as="h2" variant="display-lg" className="text-ink-primary font-normal">
-              Tailored workshop tracks &amp; live syllabi.
-            </Heading>
-            <p className="text-sm md:text-base text-ink-body font-sans">
-              Select a demographic tier and toggle delivery contexts to explore modules,
-              prerequisites, and tangible take-home projects.
-            </p>
-          </div>
+                        <div className="space-y-1">
+                          <span className="text-[11px] font-mono text-accent-secondary font-medium block">
+                            {tier.badge}
+                          </span>
+                          <h3 className="font-display text-2xl text-text-primary font-normal leading-snug">
+                            {tier.title}
+                          </h3>
+                        </div>
 
-          {/* Interactive Workshop Track Organism */}
-          <WorkshopTrackExplorer />
-        </Container>
-      </Section>
+                        <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
+                          {tier.desc}
+                        </p>
 
-      {/* SECTION 4: DUAL-ENVIRONMENT GROUND EXECUTION MATRIX */}
-      <Section className="py-14 md:py-20 bg-canvas-paper border-b border-[rgba(20,28,43,0.08)]">
-        <Container size="default">
-          <div className="max-w-3xl mb-10 text-left space-y-2">
-            <span className="font-mono text-xs font-semibold text-sage-800 uppercase tracking-wider">
-              On-Ground Execution Rigor
-            </span>
-            <Heading as="h2" variant="display-lg" className="text-ink-primary font-normal">
-              How we adapt to geography &amp; digital readiness.
-            </Heading>
-            <p className="text-sm md:text-base text-ink-body font-sans">
-              We never parachute a generic metro slide deck into a village or regional college.
-              Every element of the session—from language to network architecture—is tailored to the
-              ground reality.
-            </p>
-          </div>
+                        <div className="space-y-1.5 pt-2 border-t border-border-subtle">
+                          {tier.highlights.map((hl) => (
+                            <div key={hl} className="flex items-start gap-2 text-xs text-text-primary">
+                              <CheckCircle2 className="w-3.5 h-3.5 text-accent-secondary shrink-0 mt-0.5" />
+                              <span className="text-[11px] font-medium leading-tight">{hl}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
 
-          {/* Precision Comparison Ledger */}
-          <div className="overflow-hidden rounded-2xl border border-[rgba(20,28,43,0.08)] bg-canvas-base">
-            <div className="grid grid-cols-1 md:grid-cols-12 border-b border-[rgba(20,28,43,0.08)] bg-canvas-sunken p-4 font-mono text-xs font-semibold text-ink-primary text-left">
-              <div className="md:col-span-3 text-ink-secondary">OPERATIONAL DIMENSION</div>
-              <div className="md:col-span-4 text-terra-600 flex items-center gap-1.5 pt-2 md:pt-0">
-                <Languages className="w-3.5 h-3.5" aria-hidden="true" />
-                <span>RURAL &amp; VILLAGE DEPLOYMENT</span>
-              </div>
-              <div className="md:col-span-5 text-sage-800 flex items-center gap-1.5 pt-2 md:pt-0">
-                <Building2 className="w-3.5 h-3.5" aria-hidden="true" />
-                <span>TOWN &amp; COLLEGIATE DEPLOYMENT</span>
-              </div>
-            </div>
-
-            <div className="divide-y divide-[rgba(20,28,43,0.06)] text-left">
-              {ADAPTATION_FACTORS.map((factor, idx) => (
-                <div
-                  key={factor.category}
-                  className="grid grid-cols-1 md:grid-cols-12 gap-4 p-5 md:p-6 hover:bg-canvas-paper/60 transition-colors"
-                >
-                  <div className="md:col-span-3 space-y-1">
-                    <span className="font-mono text-[10px] text-ink-secondary block">
-                      DIMENSION 0{idx + 1}
-                    </span>
-                    <div className="font-sans font-semibold text-sm text-ink-primary">
-                      {factor.category}
+                      <div className="pt-4 border-t border-border-subtle flex items-center justify-between text-xs font-mono text-accent-secondary font-semibold">
+                        <span>{tier.metric}</span>
+                        <Heart className="w-3.5 h-3.5 text-accent-primary" />
+                      </div>
                     </div>
                   </div>
-                  <div className="md:col-span-4 text-xs md:text-sm text-ink-body leading-relaxed font-sans">
-                    {factor.rural}
-                  </div>
-                  <div className="md:col-span-5 text-xs md:text-sm text-ink-body leading-relaxed font-sans">
-                    {factor.town}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+                </StaggerItem>
+              );
+            })}
+          </StaggerGrid>
         </Container>
-      </Section>
+      </AnimatedSection>
 
-      {/* SECTION 5: STATEWIDE UP ROADMAP & CONNECTED MILESTONE LEDGER */}
-      <Section id="statewide-vision" className="py-14 md:py-20 bg-canvas-base border-b border-[rgba(20,28,43,0.08)] scroll-mt-20">
+      {/* =========================================================================
+          BEAT 3: GROUND FACTS & OUTREACH REALITY
+          ========================================================================= */}
+      <AnimatedSection className="py-20 md:py-28 border-b border-border-subtle bg-surface-canvas">
         <Container size="default">
-          <div className="max-w-3xl mb-12 text-left space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-canvas-sunken border border-[rgba(20,28,43,0.08)] text-terra-600 text-xs font-mono font-semibold">
-              <Landmark className="w-3.5 h-3.5" aria-hidden="true" />
-              <span>Statewide Vision · Uttar Pradesh Skill Mission</span>
-            </div>
-
-            <Heading as="h2" variant="display-lg" className="text-ink-primary font-normal">
-              Partnering for statewide scale across 75 districts.
-            </Heading>
-
-            <p className="text-base text-ink-body leading-relaxed font-sans">
-              Our long-term objective is to collaborate directly with the{' '}
-              <strong className="text-ink-primary font-semibold">Uttar Pradesh Government</strong>, state skill development initiatives, and
-              regional technical boards to transform Uttar Pradesh into India&rsquo;s premier
-              grassroots AI talent hub.
+          <div className="max-w-3xl mb-14 text-left space-y-3">
+            <span className="font-mono text-xs font-semibold uppercase tracking-wider text-accent-secondary">
+              Verified Ground Reality
+            </span>
+            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-normal text-text-primary leading-tight tracking-display">
+              Four grounded commitments.
+            </h2>
+            <p className="fluid-body text-text-secondary leading-relaxed max-w-xl text-pretty">
+              Zero corporate vanity metrics. We measure our impact by real classroom hours, verified local code repositories, and genuine accessibility.
             </p>
           </div>
 
-          {/* Connected Linear Milestone Timeline Ledger */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-            {GOVERNMENT_ROADMAP.map((item) => (
-              <div
-                key={item.phase}
-                className="rounded-2xl bg-canvas-paper border border-[rgba(20,28,43,0.08)] p-6 sm:p-7 flex flex-col justify-between space-y-6 hover:border-[rgba(20,28,43,0.16)] transition-colors"
-              >
-                <div className="space-y-3.5">
-                  <div className="flex items-center justify-between border-b border-[rgba(20,28,43,0.06)] pb-3">
-                    <span className="font-mono text-xs font-bold text-terra-600 tracking-wider">
-                      {item.phase}
-                    </span>
-                    <span className="font-mono text-[11px] px-2 py-0.5 rounded bg-canvas-sunken text-ink-secondary border border-[rgba(20,28,43,0.06)]">
-                      {item.status}
-                    </span>
-                  </div>
-
-                  <h3 className="font-display text-2xl text-ink-primary font-normal leading-tight">
-                    {item.title}
-                  </h3>
-
-                  <p className="text-xs sm:text-sm text-ink-body leading-relaxed font-sans">
-                    {item.desc}
-                  </p>
-
-                  <div className="flex flex-wrap gap-1.5 pt-1">
-                    {item.regions.map((reg) => (
-                      <span
-                        key={reg}
-                        className="font-mono text-[10px] px-2 py-0.5 rounded bg-canvas-base text-ink-secondary border border-[rgba(20,28,43,0.06)]"
-                      >
-                        {reg}
-                      </span>
-                    ))}
+          <StaggerGrid className="grid grid-cols-2 md:grid-cols-4 gap-4 text-left" stagger={0.1}>
+            {GROUND_FACTS.map((fact) => (
+              <StaggerItem key={fact.label} className="h-full">
+                <div className="p-2 rounded-2xl bg-surface-panel/50 border border-border-strong shadow-sm h-full flex flex-col justify-between">
+                  <div className="rounded-xl bg-surface-panel border border-border-subtle p-5 space-y-2 h-full flex flex-col justify-between">
+                    <div>
+                      <div className="font-display text-3xl sm:text-4xl text-text-primary font-normal flex items-baseline">
+                        <CountUp
+                          value={fact.value}
+                          prefix={fact.prefix}
+                          suffix={fact.suffix}
+                          duration={1.6}
+                          className="font-display text-3xl sm:text-4xl text-text-primary font-normal"
+                        />
+                      </div>
+                      <div className="font-sans text-xs font-semibold text-text-primary pt-1">
+                        {fact.label}
+                      </div>
+                    </div>
+                    <p className="font-mono text-[11px] text-text-secondary leading-tight pt-1">
+                      {fact.detail}
+                    </p>
                   </div>
                 </div>
+              </StaggerItem>
+            ))}
+          </StaggerGrid>
+        </Container>
+      </AnimatedSection>
 
-                <div className="pt-3.5 border-t border-[rgba(20,28,43,0.06)] text-xs font-mono text-sage-800 font-semibold flex items-center justify-between">
-                  <span>{item.milestone}</span>
-                  <ShieldCheck className="w-4 h-4 text-sage-600" aria-hidden="true" />
+      {/* =========================================================================
+          BEAT 4: REQUEST A WORKSHOP CTA CONSOLE
+          ========================================================================= */}
+      <AnimatedSection as="aside" aria-label="Request an on-campus masterclass" className="py-20 md:py-28 bg-surface-panel">
+        <Container size="default">
+          <div className="p-2 sm:p-3 rounded-3xl bg-surface-canvas/80 border border-border-strong shadow-lg">
+            <div className="rounded-[calc(1.5rem-0.25rem)] bg-surface-panel border border-border-subtle p-8 sm:p-12 md:p-16 text-center shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)] relative overflow-hidden">
+              <div
+                className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(200,90,50,0.04)_0%,transparent_70%)]"
+                aria-hidden="true"
+              />
+
+              <div className="max-w-2xl mx-auto space-y-6 relative z-10">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent-50 border border-accent-primary/25 text-accent-primary text-xs font-mono font-semibold">
+                  <MapPin className="w-3.5 h-3.5" />
+                  <span>Bring NorAI to Your Institution</span>
+                </div>
+
+                <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-normal text-text-primary leading-tight tracking-display">
+                  Host an on-campus <br />
+                  <span className="italic text-accent-primary font-normal">AI masterclass.</span>
+                </h2>
+
+                <p className="fluid-body text-text-secondary leading-relaxed max-w-xl mx-auto text-pretty">
+                  Are you a college principal, department chair, polytechnic educator, or community leader in Uttar Pradesh? Invite our engineering team to conduct a 100% free, hands-on workshop on your campus.
+                </p>
+
+                <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+                  <Link href="/contact?subject=mission-workshop" className="w-full sm:w-auto">
+                    <MagneticButton strength={14} className="w-full sm:w-auto">
+                      <Button
+                        variant="primary"
+                        size="lg"
+                        className="w-full sm:w-auto justify-between group shadow-accent hover:shadow-hover hover:-translate-y-0.5 active:scale-[0.98] transition-all cursor-pointer btn-tactile pl-6 pr-2.5 py-2.5"
+                      >
+                        <span className="font-semibold text-sm">Request Free Campus Masterclass</span>
+                        <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center transition-transform group-hover:translate-x-1 group-hover:-translate-y-0.5 ml-3">
+                          <ArrowRight className="w-4 h-4 text-white" />
+                        </span>
+                      </Button>
+                    </MagneticButton>
+                  </Link>
+
+                  <Link href="/team" className="w-full sm:w-auto">
+                    <Button
+                      variant="secondary"
+                      size="lg"
+                      className="w-full sm:w-auto justify-center hover:-translate-y-0.5 active:scale-[0.98] transition-all cursor-pointer text-sm"
+                    >
+                      Meet the founding team
+                    </Button>
+                  </Link>
                 </div>
               </div>
-            ))}
-          </div>
-        </Container>
-      </Section>
-
-      {/* SECTION 6: INTERACTIVE 4-PERSONA ACTION DOCK (CONVERSION ENGINE) */}
-      <Section id="join-mission" className="py-16 md:py-24 bg-canvas-paper scroll-mt-20">
-        <Container size="default">
-          <div className="max-w-3xl mb-10 text-left space-y-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-canvas-sunken border border-[rgba(20,28,43,0.08)] text-terra-600 text-xs font-mono font-semibold">
-              <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
-              <span>Multi-Stakeholder Participation Hub</span>
             </div>
-
-            <Heading as="h2" variant="display-lg" className="text-ink-primary font-normal">
-              Become part of the mission.
-            </Heading>
-
-            <p className="text-sm md:text-base text-ink-body leading-relaxed font-sans">
-              Whether you are a college department chair, Gram Pradhan, CSR leader, or student
-              builder—select your pathway below to host a workshop, sponsor compute, or join the
-              cohort.
-            </p>
           </div>
-
-          {/* Interactive 4-Persona Action Dock */}
-          <MissionActionDock />
         </Container>
-      </Section>
+      </AnimatedSection>
     </div>
   );
 }
-

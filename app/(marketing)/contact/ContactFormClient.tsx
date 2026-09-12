@@ -255,9 +255,9 @@ export function ContactFormClient() {
           </button>
         </div>
 
-        <div className="flex items-center gap-2 font-mono text-[11px] text-sage-700 bg-sage-50 border border-sage-200/80 px-2.5 py-1 rounded-md self-start sm:self-auto">
-          <span className="h-1.5 w-1.5 rounded-full bg-sage-500 animate-pulse" />
-          <span>Priority Triage · 4h SLA</span>
+        <div className="flex items-center gap-2 font-mono text-[11px] text-accent-secondary bg-surface-panel-subtle border border-border-subtle px-2.5 py-1 rounded-md self-start sm:self-auto">
+          <span className="h-1.5 w-1.5 rounded-full bg-accent-secondary" />
+          <span>Engineer Triage · 1-Day Reply</span>
         </div>
       </div>
 
@@ -525,7 +525,7 @@ export function ContactFormClient() {
             </button>
 
             <span className="font-mono text-[11px] text-ink-secondary">
-              Direct inbox · Reply within 4h
+              Direct founder inbox · Reply within 1 business day
             </span>
           </div>
 
@@ -533,7 +533,7 @@ export function ContactFormClient() {
           <div className="pt-4 border-t border-[rgba(13,37,61,0.06)] flex items-center gap-2 text-[12px] text-ink-secondary">
             <ShieldCheck className="h-4 w-4 text-sage-600 shrink-0" aria-hidden="true" />
             <span>
-              All submissions are strictly protected under enterprise NDA protocols. Read our{' '}
+              Your information is kept strictly confidential and never shared. Read our{' '}
               <Link
                 href="/privacy"
                 className="font-medium text-ink-primary underline underline-offset-2 hover:text-terra-600 transition-colors"

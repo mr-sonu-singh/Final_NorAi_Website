@@ -1,30 +1,102 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { Container } from '@/components/foundation/Container';
 import { Button } from '@/components/atoms/Button';
 import { Link } from '@/components/atoms/Link';
-import { AnimatedSection, Reveal } from '@/components/foundation/AnimatedSection';
-import { TextReveal } from '@/components/foundation/TextReveal';
+import { Reveal } from '@/components/foundation/AnimatedSection';
 import { MagneticButton } from '@/components/atoms/MagneticButton';
-import { InteractiveCircuitTrace, TaglineReveal } from '@/components/molecules';
-import { ArrowRight } from 'lucide-react';
 import {
-  HeroStudioWorkbench,
-  HardwareTelemetryLedger,
-  ProductStudio,
-  RoiCalculator,
-  SkillMissionSection,
-  ArchitecturalSpecMatrix,
-  HomeFaqAccordion,
-} from '@/components/organisms';
+  ArrowRight,
+  ShieldCheck,
+  Zap,
+  CheckCircle2,
+  FileText,
+  Headphones,
+  MessageSquare,
+  Newspaper,
+  Cpu,
+} from 'lucide-react';
+import { HeroStudioWorkbench } from '@/components/organisms';
 import { buildMetadata, getOrganizationJsonLd, getLocalBusinessJsonLd, JsonLd } from '@/lib/seo';
 
 export const metadata: Metadata = buildMetadata({
   path: '/',
-  title: 'NorAI Technologies — Deterministic AI Pipelines & Enterprise Automation',
+  title: 'NorAI Technologies — Intelligence Meets Action',
   description:
-    'Eliminate manual document drag with sub-second, deterministic AI pipelines. Verified JSON schemas, ephemeral RAM data isolation, and air-gapped private VPC deployments.',
+    'Four single-purpose AI tools. Sub-second execution, zero data retention, and clean, reliable outputs. Engineered in Uttar Pradesh, India.',
 });
+
+const TOOLS_ARC = [
+  {
+    number: '01',
+    badge: 'v1.0',
+    slug: 'resume-shortlister',
+    title: 'AI Resume Shortlister',
+    category: 'Recruitment AI',
+    tagline: 'Screen hundreds of engineering resumes in seconds with sub-second vector scoring and weighted skills matching.',
+    metric: '< 0.35s / PDF',
+    icon: FileText,
+  },
+  {
+    number: '02',
+    badge: 'v1.0',
+    slug: 'course-note-taker',
+    title: 'Course Note-Taker',
+    category: 'EdTech & Study AI',
+    tagline: 'Transform raw lecture recordings, videos, and slides into structured study outlines, LaTeX math, and flashcards.',
+    metric: 'Real-Time Audio NLP',
+    icon: Headphones,
+  },
+  {
+    number: '03',
+    badge: 'v1.0',
+    slug: 'chat-digest',
+    title: 'Community Chat Digest',
+    category: 'Community AI',
+    tagline: 'Condense thousands of unread Discord, Slack, and Telegram messages into 2-minute executive action briefs.',
+    metric: '2m Executive Brief',
+    icon: MessageSquare,
+  },
+  {
+    number: '04',
+    badge: 'v1.0',
+    slug: 'smart-dainik-news',
+    title: 'Smart Dainik News',
+    category: 'Regional Intelligence',
+    tagline: 'Hyper-local public employment alerts and government gazette notifications clustered across Hindi and English feeds.',
+    metric: 'Bilingual NLP',
+    icon: Newspaper,
+  },
+];
+
+const FOUNDERS = [
+  {
+    name: 'Dhruw Singh',
+    role: 'Infrastructure & Reliability',
+    image: '/images/team/dhruw-singh.jpg',
+  },
+  {
+    name: 'Sonu Singh',
+    role: 'Spatial & Immersive UI',
+    image: '/images/team/sonu-singh.jpg',
+  },
+  {
+    name: 'Annanta Singh',
+    role: 'Linguistic Models & NLP',
+    image: '/images/team/annanta-singh.jpg',
+  },
+  {
+    name: 'Rishabh Singh',
+    role: 'Systems & Pipeline Core',
+    image: '/images/team/rishabh-singh.jpg',
+  },
+  {
+    name: 'Gourav Singh',
+    role: 'Full-Stack Architecture',
+    image: '/images/team/gourav-singh.jpg',
+  },
+];
 
 export default function HomePage() {
   return (
@@ -33,8 +105,8 @@ export default function HomePage() {
       <JsonLd schema={getLocalBusinessJsonLd()} />
 
       {/* =========================================================================
-          BEAT 1: HERO (High-Impact Living Command Stage with 4-Tool Sandbox)
-          Linear & Vercel Inspired 6/6 Split Layout with Zero Fold Cutoff
+          BEAT 1: HERO COMMAND STAGE
+          Terminal Living Workbench + Direct Proposition + Static Trust Chips
           ========================================================================= */}
       <section className="relative pt-8 pb-10 sm:pt-12 sm:pb-14 md:pt-14 md:pb-16 overflow-hidden bg-surface-canvas border-b border-border-subtle">
         <Container size="default" className="relative z-10">
@@ -43,32 +115,24 @@ export default function HomePage() {
             <div className="lg:col-span-6 space-y-5 text-left">
               {/* Borderless Minimalist Eyebrow */}
               <p className="text-xs font-mono font-semibold uppercase tracking-[0.14em] text-accent-primary">
-                NorAI Technologies · Tools · Services · Community Mission
+                NorAI Technologies · Tools · Services · Studio
               </p>
 
-              {/* Headline in Instrument Serif with TextReveal */}
-              <h1
-                aria-label="Frontier AI tools and services. Rooted in community growth."
-                className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-normal text-text-primary leading-[1.05] tracking-display text-balance"
-              >
-                <TextReveal text="Frontier AI" splitBy="word" as="span" stagger={0.08} duration={0.7} /> <br />
-                <span className="font-normal inline-block text-text-primary">
-                  <TextReveal text="tools & services." splitBy="word" as="span" delay={0.16} stagger={0.08} duration={0.7} />
-                </span> <br />
-                <span className="italic text-accent-primary font-normal inline-block">
-                  <TextReveal text="Rooted in community growth." splitBy="word" as="span" delay={0.32} stagger={0.08} duration={0.7} />
-                </span>
+              {/* Headline */}
+              <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-text-primary leading-[1.05] tracking-display text-balance">
+                Intelligence <br />
+                <span className="italic text-accent-primary font-normal">Meets Action.</span>
               </h1>
 
-              {/* Lede */}
-              <Reveal delay={0.32} y={16}>
+              {/* Audience-Readable Subhead */}
+              <Reveal delay={0.15} y={12}>
                 <p className="fluid-lead text-text-secondary font-normal leading-relaxed max-w-xl text-pretty">
-                  NorAI builds high-velocity autonomous tools, bespoke enterprise pipelines, and grassroots computational literacy. From sub-second document triage to statewide builder training across Uttar Pradesh, we engineer deterministic AI with zero data retention and physical-world reliability.
+                  Four single-purpose AI tools. Sub-second execution, zero data retention, and clean, reliable outputs. Engineered in Uttar Pradesh for teams that reject black-box magic.
                 </p>
               </Reveal>
 
-              {/* Primary Action + Secondary Scoping */}
-              <Reveal delay={0.46} y={16}>
+              {/* Primary Actions */}
+              <Reveal delay={0.25} y={12}>
                 <div className="pt-1 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                   <Link href="/products" className="w-full sm:w-auto">
                     <MagneticButton strength={12} className="w-full sm:w-auto">
@@ -94,27 +158,24 @@ export default function HomePage() {
                 </div>
               </Reveal>
 
-              {/* SLA / Hardware Guarantees */}
-              <Reveal delay={0.60} y={14}>
-                <div className="pt-1 flex flex-wrap items-center gap-3 text-xs text-text-muted font-mono">
-                  <Link href="/products" className="no-underline hover:text-accent-primary transition-colors">
-                    <span>4 Autonomous Tools</span>
-                  </Link>
-                  <span className="text-border-strong select-none">/</span>
-                  <Link href="/services" className="no-underline hover:text-accent-primary transition-colors">
-                    <span>Dedicated Enterprise VPC</span>
-                  </Link>
-                  <span className="text-border-strong select-none">/</span>
-                  <Link href="/mission" className="no-underline hover:text-accent-primary transition-colors">
-                    <span>75-District UP Skill Mission</span>
-                  </Link>
+              {/* Two Static Trust Chips (CLS = 0, no hydration zeros) */}
+              <Reveal delay={0.35} y={10}>
+                <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-mono text-text-secondary">
+                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface-panel border border-border-subtle">
+                    <Zap className="w-3.5 h-3.5 text-accent-primary" />
+                    <span>P95 &lt; 0.35s Latency</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-surface-panel border border-border-subtle">
+                    <ShieldCheck className="w-3.5 h-3.5 text-accent-secondary" />
+                    <span>0 Bytes Data Retained</span>
+                  </div>
                 </div>
               </Reveal>
             </div>
 
             {/* Right Product Demo: Multi-Tool Living Sandbox (6 cols on desktop) */}
             <div className="lg:col-span-6 relative">
-              <Reveal delay={0.35} y={24}>
+              <Reveal delay={0.2} y={16}>
                 <HeroStudioWorkbench />
               </Reveal>
             </div>
@@ -123,169 +184,283 @@ export default function HomePage() {
       </section>
 
       {/* =========================================================================
-          BEAT 2: HARDWARE TELEMETRY LEDGER (Teenage Engineering Honesty)
+          BEAT 2: TOOLS CAPABILITY ARC (Audens-Style Router)
+          Scannable, compact, non-duplicative routing arc
           ========================================================================= */}
-      <HardwareTelemetryLedger />
-
-      {/* =========================================================================
-          BEAT 3: MANDATORY TAGLINE REVEAL (Skill Rule B11)
-          Apple & Stripe Press Reading Cadence
-          ========================================================================= */}
-      <TaglineReveal />
-
-      {/* =========================================================================
-          BEAT 4: FLAGSHIP MICRO-SAAS BENTO WORKBENCHES (Widescreen 1380px Stage)
-          ========================================================================= */}
-      <AnimatedSection id="product-studio" className="py-14 md:py-20 bg-surface-canvas border-b border-border-subtle">
-        <Container size="wide">
-          <Reveal delay={0} y={24}>
-            <div className="max-w-2xl mb-12 text-left space-y-3">
-              <p className="text-xs font-mono font-semibold uppercase tracking-[0.14em] text-accent-primary">
-                Autonomous Workbenches
-              </p>
-
-              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-normal text-text-primary leading-tight tracking-display">
-                Purpose-built tools. <br />
-                <span className="font-medium text-text-primary">Zero operational drag.</span>
-              </h2>
-              <p className="fluid-body text-text-secondary leading-relaxed max-w-xl text-pretty">
-                No bloated all-in-one platforms. Each utility does exactly one operational job with deterministic accuracy, sub-second speed, and ephemeral memory isolation.
-              </p>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.2} y={28}>
-            <ProductStudio />
-          </Reveal>
-        </Container>
-      </AnimatedSection>
-
-      {/* =========================================================================
-          BEAT 5: EXECUTION PIPELINE & OPERATIONAL ROI DIAGNOSTIC
-          ========================================================================= */}
-      <AnimatedSection className="py-14 md:py-20 bg-surface-panel border-b border-border-subtle" id="pipeline-roi">
+      <section className="py-16 md:py-24 bg-surface-panel border-b border-border-subtle" id="capabilities">
         <Container size="default">
-          <Reveal delay={0} y={20}>
-            <div className="max-w-2xl mb-12 text-left space-y-3">
-              <p className="text-xs font-mono font-semibold uppercase tracking-[0.14em] text-accent-primary">
-                Execution Architecture &amp; Savings
-              </p>
-
-              <h3 className="font-display text-3xl sm:text-4xl md:text-5xl font-normal text-text-primary leading-tight">
-                Quantified efficiency. <br />
-                <span className="font-medium text-text-primary">Sub-second payload execution.</span>
-              </h3>
-              <p className="text-sm md:text-base text-text-secondary leading-relaxed max-w-xl">
-                Trace payload execution through ingest, neural vector scoring, and ephemeral flush — then calculate your organization&apos;s annual payroll reclamation.
-              </p>
-            </div>
-          </Reveal>
-
-          {/* Connected Pipeline Trace */}
-          <div className="mb-14">
-            <InteractiveCircuitTrace />
+          <div className="max-w-2xl mb-12 text-left space-y-3">
+            <p className="text-xs font-mono font-semibold uppercase tracking-[0.14em] text-accent-primary">
+              The Capability Arc
+            </p>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-normal text-text-primary leading-tight tracking-tight">
+              Purpose-built tools. <br />
+              <span className="font-medium text-text-primary">Zero operational drag.</span>
+            </h2>
+            <p className="text-sm md:text-base text-text-secondary leading-relaxed max-w-xl text-pretty">
+              Each utility solves exactly one operational bottleneck with deterministic accuracy, sub-second speed, and ephemeral memory isolation.
+            </p>
           </div>
 
-          {/* ROI Calculator */}
-          <div className="pt-8 border-t border-border-subtle">
-            <RoiCalculator />
-          </div>
-        </Container>
-      </AnimatedSection>
-
-      {/* =========================================================================
-          BEAT 6: AI SKILL MISSION & COMMUNITY UPLIFTMENT (Premier Centerpiece)
-          Democratizing AI literacy & production engineering across Uttar Pradesh
-          ========================================================================= */}
-      <SkillMissionSection />
-
-      {/* =========================================================================
-          BEAT 8: ARCHITECTURAL SPEC MATRIX & TECHNICAL ARCHITECTURE FAQ
-          ========================================================================= */}
-      <AnimatedSection className="py-14 md:py-20 bg-surface-panel border-b border-border-subtle" id="spec-matrix">
-        <Container size="default">
-          <Reveal delay={0} y={20}>
-            <div className="max-w-2xl mb-12 text-left space-y-3">
-              <p className="text-xs font-mono font-semibold uppercase tracking-[0.14em] text-accent-primary">
-                Verifiable Standards
-              </p>
-
-              <h3 className="font-display text-3xl sm:text-4xl md:text-5xl font-normal text-text-primary leading-tight">
-                Deterministic standards. <br />
-                <span className="font-medium text-text-primary">Direct technical answers.</span>
-              </h3>
-              <p className="text-sm md:text-base text-text-secondary leading-relaxed max-w-xl">
-                Review our verifiable SLA guarantees, zero-logging data isolation specs, and integration guidelines.
-              </p>
-            </div>
-          </Reveal>
-
-          <div className="space-y-14">
-            <ArchitecturalSpecMatrix />
-            <div className="pt-10 border-t border-border-subtle">
-              <HomeFaqAccordion />
-            </div>
-          </div>
-        </Container>
-      </AnimatedSection>
-
-      {/* =========================================================================
-          BEAT 9: DUAL-FUNNEL CLOSING CONSOLE & TESTIMONIAL PROOF
-          ========================================================================= */}
-      <AnimatedSection as="aside" aria-label="Get started" role="complementary" className="py-14 md:py-20 bg-surface-canvas">
-        <Container size="default">
-          <div className="rounded-xl bg-surface-panel border border-border-strong p-6 sm:p-10 md:p-12 text-center relative overflow-hidden">
-            <div className="max-w-2xl mx-auto space-y-8 relative z-10">
-              <p className="text-xs font-mono font-semibold uppercase tracking-[0.14em] text-accent-primary">
-                Immediate Access
-              </p>
-
-              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-normal text-text-primary leading-tight tracking-display">
-                Ready to eliminate <br />
-                <span className="font-medium text-text-primary">manual operational drag?</span>
-              </h2>
-
-              <p className="fluid-body text-text-secondary leading-relaxed max-w-xl mx-auto text-pretty">
-                Deploy any of our self-serve tools right now with 50 free parse credits, or schedule a direct architectural audit with our core engineering team for private VPC deployments.
-              </p>
-
-              {/* Micro-Testimonial Card */}
-              <div className="rounded-xl border border-border-subtle bg-surface-canvas p-5 sm:p-6 text-left max-w-lg mx-auto space-y-3">
-                <p className="font-sans text-sm text-text-secondary leading-relaxed italic text-pretty">
-                  &ldquo;NorAI cut our candidate screening time from 4 hours to under 15 minutes with verified skill schema matching and zero false positives.&rdquo;
-                </p>
-                <div className="flex items-center justify-between border-t border-border-subtle pt-3 text-xs">
-                  <div>
-                    <p className="font-semibold text-text-primary">Talent Acquisition Lead</p>
-                    <p className="text-text-muted">Regional Logistics &amp; Supply Platform</p>
+          {/* Scalable Capability Arc List */}
+          <div className="divide-y divide-border-subtle border-t border-b border-border-subtle">
+            {TOOLS_ARC.map((tool) => {
+              const Icon = tool.icon;
+              return (
+                <div
+                  key={tool.slug}
+                  className="py-6 sm:py-7 flex flex-col md:flex-row md:items-center justify-between gap-4 group hover:bg-surface-canvas/40 px-2 sm:px-4 -mx-2 sm:-mx-4 rounded-lg transition-colors"
+                >
+                  <div className="flex items-start sm:items-center gap-4 min-w-0">
+                    <span className="font-mono text-xs font-bold text-accent-primary shrink-0 pt-0.5 sm:pt-0">
+                      {tool.number}
+                    </span>
+                    <div className="w-9 h-9 rounded-lg bg-surface-panel-subtle flex items-center justify-center text-text-primary shrink-0">
+                      <Icon className="w-4 h-4" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <h3 className="font-sans text-base sm:text-lg font-semibold text-text-primary">
+                          {tool.title}
+                        </h3>
+                        <span className="font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-surface-canvas border border-border-subtle text-text-secondary">
+                          {tool.badge}
+                        </span>
+                        <span className="text-xs text-text-muted hidden sm:inline">·</span>
+                        <span className="text-xs text-text-muted hidden sm:inline">
+                          {tool.category}
+                        </span>
+                      </div>
+                      <p className="text-xs sm:text-sm text-text-secondary mt-1 leading-relaxed max-w-2xl text-pretty">
+                        {tool.tagline}
+                      </p>
+                    </div>
                   </div>
-                  <span className="font-mono text-[11px] text-text-muted font-medium">
-                    Verified Production User
-                  </span>
+
+                  <div className="flex items-center justify-between md:justify-end gap-4 shrink-0 pl-8 md:pl-0">
+                    <span className="font-mono text-xs text-accent-secondary font-medium tabular-nums">
+                      {tool.metric}
+                    </span>
+                    <Link
+                      href={`/products/${tool.slug}`}
+                      className="font-medium text-xs sm:text-sm text-accent-primary hover:text-accent-hover inline-flex items-center gap-1 group/link"
+                    >
+                      <span>Open Tool</span>
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-0.5" />
+                    </Link>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="pt-6 flex items-center justify-between text-xs font-mono text-text-muted">
+            <span>Free to start · 50 sandbox credits · No card required</span>
+            <Link href="/products" className="text-text-secondary hover:text-accent-primary transition-colors">
+              Explore All Tools &rarr;
+            </Link>
+          </div>
+        </Container>
+      </section>
+
+      {/* =========================================================================
+          BEAT 3: WHO WE ARE (Positive Identity & Craft)
+          Five Builders, Uttar Pradesh Regional Hub, Positive Ownership Framing
+          ========================================================================= */}
+      <section className="py-16 md:py-24 bg-surface-canvas border-b border-border-subtle" id="team-origin">
+        <Container size="default">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+            <div className="lg:col-span-5 space-y-4 text-left">
+              <p className="text-xs font-mono font-semibold uppercase tracking-[0.14em] text-accent-primary">
+                Studio Craft &amp; Identity
+              </p>
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-normal text-text-primary leading-tight tracking-tight">
+                Five builders in <br />
+                <span className="font-medium text-text-primary">Uttar Pradesh.</span>
+              </h2>
+              <p className="text-sm sm:text-base text-text-secondary leading-relaxed text-pretty">
+                Every pipeline authored, deployed, and supported directly by the five founding engineers in Uttar Pradesh. We design software instruments with physical-world reliability, mathematical discipline, and radical transparency.
+              </p>
+              <div className="pt-2">
+                <Link href="/team" className="font-semibold text-accent-primary hover:text-accent-hover inline-flex items-center gap-1 text-sm">
+                  <span>Meet the founding team &rarr;</span>
+                </Link>
+              </div>
+            </div>
+
+            <div className="lg:col-span-7">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3.5 sm:gap-4">
+                {FOUNDERS.map((founder) => (
+                  <div
+                    key={founder.name}
+                    className="p-3 sm:p-4 rounded-xl bg-surface-panel border border-border-subtle space-y-3 text-left hover:border-border-strong transition-colors"
+                  >
+                    <div className="relative aspect-square w-full rounded-lg overflow-hidden bg-surface-panel-subtle">
+                      <Image
+                        src={founder.image}
+                        alt={founder.name}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 50vw, 33vw"
+                      />
+                    </div>
+                    <div>
+                      <h4 className="font-sans font-semibold text-xs sm:text-sm text-text-primary">
+                        {founder.name}
+                      </h4>
+                      <p className="font-mono text-[11px] text-text-secondary mt-0.5">
+                        {founder.role}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+
+                {/* Studio Location Card */}
+                <div className="p-3 sm:p-4 rounded-xl bg-surface-panel-subtle/50 border border-border-subtle flex flex-col justify-between text-left space-y-2">
+                  <div>
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-accent-primary font-semibold block">
+                      Regional Hub
+                    </span>
+                    <h4 className="font-sans font-semibold text-xs sm:text-sm text-text-primary mt-1">
+                      Uttar Pradesh, India
+                    </h4>
+                  </div>
+                  <p className="font-mono text-[11px] text-text-muted">
+                    100% In-House Engineering
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* =========================================================================
+          BEAT 4: SERVICES INVITATION LINE
+          Single calm horizontal invitation bar
+          ========================================================================= */}
+      <section className="py-12 md:py-16 bg-surface-panel border-b border-border-subtle">
+        <Container size="default">
+          <div className="rounded-2xl bg-surface-canvas border border-border-strong p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 text-left">
+            <div className="space-y-1.5 max-w-xl">
+              <span className="font-mono text-xs font-semibold uppercase tracking-wider text-accent-primary">
+                Bespoke Systems &amp; Private Inference
+              </span>
+              <h3 className="font-display text-2xl sm:text-3xl text-text-primary font-normal">
+                Custom pipelines, private inference, spatial systems.
+              </h3>
+              <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
+                Dedicated VPC enclaves, air-gapped container deployments, and custom Model Context Protocol (MCP) integrations scoped directly with our engineers.
+              </p>
+            </div>
+
+            <div className="shrink-0">
+              <Link href="/contact?service=enterprise">
+                <Button variant="primary" size="md" className="whitespace-nowrap cursor-pointer">
+                  <span>Talk to an engineer &rarr;</span>
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* =========================================================================
+          BEAT 5: MISSION / REGIONAL IMPACT (Single Calm Section)
+          Differentiated Headline + Documentary Classroom Frame
+          ========================================================================= */}
+      <section className="py-16 md:py-24 bg-surface-canvas border-b border-border-subtle" id="mission-overview">
+        <Container size="default">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div className="lg:col-span-6 space-y-4 text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-panel border border-border-strong text-accent-primary text-xs font-mono font-semibold">
+                <Cpu className="w-3.5 h-3.5" />
+                <span>AI SKILL MISSION · UTTAR PRADESH</span>
+              </div>
+
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-normal text-text-primary leading-tight tracking-tight">
+                Rooted in <br />
+                <span className="italic text-accent-primary font-normal">community impact.</span>
+              </h2>
+
+              <p className="text-sm sm:text-base text-text-secondary leading-relaxed text-pretty">
+                Frontier technology cannot remain an elite metro privilege. We partner with non-profits, colleges, and rural panchayats to deliver 100% free, hands-on computational literacy across Uttar Pradesh.
+              </p>
+
+              <div className="pt-2 flex flex-wrap gap-4 text-xs font-mono text-text-secondary">
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-accent-secondary" />
+                  <span>₹0 Cost to Students</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-accent-secondary" />
+                  <span>75 Target Districts</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4 text-accent-secondary" />
+                  <span>Founder-Led Masterclasses</span>
                 </div>
               </div>
 
-              {/* Dual Action: Primary CTA + Secondary Link */}
+              <div className="pt-2">
+                <Link href="/mission" className="font-semibold text-accent-primary hover:text-accent-hover inline-flex items-center gap-1 text-sm">
+                  <span>Explore Skill Mission roadmap &rarr;</span>
+                </Link>
+              </div>
+            </div>
+
+            <div className="lg:col-span-6">
+              <figure className="relative rounded-2xl overflow-hidden border border-border-subtle bg-surface-panel shadow-sm">
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface-panel-subtle">
+                  <Image
+                    src="/images/about/skill-mission.jpg"
+                    alt="NorAI on-ground AI coding and engineering workshop in Uttar Pradesh"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                </div>
+                <figcaption className="p-3 text-left font-mono text-[11px] text-text-muted bg-surface-panel border-t border-border-subtle">
+                  Classroom reality: Founder-led AI engineering clinic in a regional college
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* =========================================================================
+          BEAT 6: HONEST CLOSING DISPATCH
+          Honest Framing, No Synthetic Metrics, Direct Leads
+          ========================================================================= */}
+      <section className="py-16 md:py-24 bg-surface-panel">
+        <Container size="default">
+          <div className="rounded-2xl bg-surface-canvas border border-border-strong p-8 sm:p-12 text-center relative overflow-hidden">
+            <div className="max-w-2xl mx-auto space-y-6 relative z-10">
+              <p className="text-xs font-mono font-semibold uppercase tracking-[0.14em] text-accent-primary">
+                Direct Engineering Dispatch
+              </p>
+
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-normal text-text-primary leading-tight tracking-display">
+                Tell us what&apos;s <br />
+                <span className="font-medium text-text-primary">slowing you down.</span>
+              </h2>
+
+              <p className="fluid-body text-text-secondary leading-relaxed max-w-xl mx-auto text-pretty">
+                Whether you need high-volume candidate screening, lecture note synthesis, or a dedicated private VPC pipeline—a real engineer reads every message. We reply within one business day.
+              </p>
+
+              {/* Dual Action */}
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
                 <Link href="/products" className="w-full sm:w-auto">
-                  <MagneticButton strength={12} className="w-full sm:w-auto">
-                    <Button
-                      variant="primary"
-                      size="lg"
-                      className="w-full sm:w-auto justify-center group active:scale-[0.98] transition-transform cursor-pointer whitespace-nowrap"
-                    >
-                      <span>Start Free Sandbox (50 Credits)</span>
-                      <ArrowRight className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-1" />
-                    </Button>
-                  </MagneticButton>
+                  <Button variant="primary" size="lg" className="w-full sm:w-auto justify-center cursor-pointer whitespace-nowrap">
+                    <span>Start Free Sandbox (50 Credits)</span>
+                    <ArrowRight className="w-4 h-4 ml-1.5" />
+                  </Button>
                 </Link>
-                <Link href="/contact?service=enterprise-audit" className="w-full sm:w-auto">
-                  <Button
-                    variant="secondary"
-                    size="lg"
-                    className="w-full sm:w-auto justify-center active:scale-[0.98] transition-transform cursor-pointer whitespace-nowrap"
-                  >
-                    Schedule Architecture Audit &rarr;
+                <Link href="/contact" className="w-full sm:w-auto">
+                  <Button variant="secondary" size="lg" className="w-full sm:w-auto justify-center cursor-pointer whitespace-nowrap">
+                    Write to NorAI &rarr;
                   </Button>
                 </Link>
               </div>
@@ -301,7 +476,7 @@ export default function HomePage() {
             </div>
           </div>
         </Container>
-      </AnimatedSection>
+      </section>
     </div>
   );
 }

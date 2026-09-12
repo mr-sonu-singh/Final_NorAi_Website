@@ -15,34 +15,30 @@ import { SocialLinkItem } from '@/components/molecules/SocialLinks/SocialLinks.t
 
 export const DEFAULT_FOOTER_COLUMNS: FooterColumn[] = [
   {
-    title: 'Products',
+    title: 'Tools',
     links: [
-      { label: 'All Products', href: '/products' },
-      { label: 'Resume Shortlister', href: '/products/resume-shortlister' },
+      { label: 'All Tools', href: '/products' },
+      { label: 'AI Resume Shortlister', href: '/products/resume-shortlister' },
       { label: 'Course Note-Taker', href: '/products/course-note-taker' },
       { label: 'Chat Digest AI', href: '/products/chat-digest' },
       { label: 'Smart Dainik News', href: '/products/smart-dainik-news' },
-      { label: 'Pricing', href: '/pricing' },
     ],
   },
   {
-    title: 'Company',
+    title: 'Company & Studio',
     links: [
-      { label: 'Our Story', href: '/about' },
+      { label: 'The Team', href: '/team' },
+      { label: 'Enterprise Services', href: '/services' },
       { label: 'AI Skill Mission', href: '/mission' },
-      { label: 'Team', href: '/team' },
       { label: 'Careers', href: '/careers' },
-      { label: 'Custom AI services', href: '/services' },
-      { label: 'Contact', href: '/contact' },
+      { label: 'Contact Desk', href: '/contact' },
     ],
   },
   {
-    title: 'Resources',
+    title: 'Developer',
     links: [
-      { label: 'Blog & Insights', href: '/blog' },
-      { label: 'Campus Workshops', href: '/mission#workshops' },
-      { label: 'Documentation', href: '/docs' },
-      { label: 'Help & FAQ', href: '/faq' },
+      { label: 'Documentation & Schemas', href: '/docs' },
+      { label: 'Technical Blog', href: '/blog' },
     ],
   },
   {
