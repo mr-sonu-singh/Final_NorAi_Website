@@ -1,122 +1,109 @@
-# NorAI Official Web — Audens-Style Master Redesign Plan (`REDESIGN_PLAN.md`)
+# NorAI Official Web — Audens Replicator Master Plan (`REDESIGN_PLAN.md`)
 
-> **Master Strategic Goal**: Rebuild the NorAI web platform to completely replicate the design, theme, components, narrative flow, and high-conviction editorial style of [**Audens.ai**](https://audens.ai), adapted for NorAI's 3 Dimensions (Sovereign Everyday Tools, Bespoke Enterprise Intelligence, and Grassroots Bharat Mission).
-
----
-
-## Master Architecture Checklist
-
-- [x] **PHASE 1: Foundation Clean Slate**
-  - [x] 1.1: Complete research and crawl of all 24 URLs on `audens.ai`
-  - [x] 1.2: Rewrite [`DESIGN.md`](file:///home/gourav/coding/startup/NorAi_Ofiicial_Web/DESIGN.md) (Deep Pine & Porcelain + High-Voltage Jewels)
-  - [x] 1.3: Rewrite [`PRODUCT.md`](file:///home/gourav/coding/startup/NorAi_Ofiicial_Web/PRODUCT.md) (NorAI 3 Dimensions in Audens high-conviction voice)
-  - [x] 1.4: Rewrite [`AGENTS.md`](file:///home/gourav/coding/startup/NorAi_Ofiicial_Web/AGENTS.md) (and mirror to `CLAUDE.md`, `GEMINI.md`)
-  - [x] 1.5: Rewrite [`REDESIGN_PLAN.md`](file:///home/gourav/coding/startup/NorAi_Ofiicial_Web/REDESIGN_PLAN.md) (this master plan)
-
-- [x] **PHASE 2: Core Design Engine & CSS Tokens (`app/globals.css`)**
-  - [x] 2.1: Implement exact Audens CSS variables (`--pine`, `--porcelain`, `--surface`, `--bone`, `--mint`, `--lavender`, `--coral`, `--sky`, `--butter`, `--pink`)
-  - [x] 2.2: Configure typography tokens (`Cabinet Grotesk` / `Outfit` display, `General Sans` / `Plus Jakarta Sans` body, `JetBrains Mono`)
-  - [x] 2.3: Configure signature cubic-bezier easings (`--ease: cubic-bezier(.65,0,.35,1)`, `--ease-bounce: cubic-bezier(.33,1.4,.6,1)`)
-  - [x] 2.4: Implement core Audens utility patterns (`.navpill`, `.btn--mint`, `.btn--solid`, `.ledger`, `.artledger`, `.stepflow`, `.nextrail`, `.gradient-card`, `.aurora__orb`)
-
-- [x] **PHASE 3: Site Shell Architecture**
-  - [x] 3.1: **Header (`Header.tsx`)**: Rebuild into Audens 66px floating capsule nav with backdrop blur, magnetic pill hover tabs, bottom progress line (`.nav-progress`), and pill CTA with animated hand SVG (`.btn__hand`)
-  - [x] 3.2: **Footer (`Footer.tsx`)**: Rebuild into Audens Deep Pine `#072929` container with bold headline ("Built to change what happens"), multi-column directory, and legal status bar
-
-- [x] **PHASE 4: Homepage Narrative Reconstruction (`app/(marketing)/page.tsx`)**
-  - [x] 4.1: **Aurora Hero Chamber (`.phero`)**: Organic multi-color blurred gradient orbs with staggered word-by-word kinetic headline and wave hand CTA
-  - [x] 4.2: **Three Dimensions Chat Rail (`.section--dark.dotgrid`)**: Pitch pine canvas with 3 staggered conversational chat slots (`.chat-slot`), each with an animated 3-dot typing indicator (`<i></i><i></i><i></i>`) revealing Consumer, Enterprise, and Bharat answers
-  - [x] 4.3: **The Manifest Shift Rail**: Word-by-word reading statement ("Every business is faster now...")
-  - [x] 4.4: **Kinetic Wave Marquee (`KineticWaveMarquee.tsx`)**: Animated undulating SVG sine wave path with repeating high-conviction slogan
-  - [x] 4.5: **Capability Bento Grid (`AudensCapabilityBento.tsx`)**: 2-column asymmetric cards with number badges (`01`, `02`), tag pills, micro-vignette interactive simulators, and progressive disclosure drawers
-  - [x] 4.6: **The Enterprise Sector Ledger (`SectorLedger.tsx`)**: Interactive horizontal numbered rows with promise statements and hover slide arrows
-  - [x] 4.7: **Operating Rituals Rail (`OperatingRitualsRail.tsx`)**: Visualized high-cadence engineering practices and grassroots regional commitment without founder roster
-  - [x] 4.8: **Closing Dispatch (`.gradient-card`)**: High-voltage rotating conic gradient border enclosing "Talk to an Engineer" call to action
-
-- [x] **PHASE 5: Subpages Replication**
-  - [x] 5.1: `/products` (Index with category grouping and interactive ledger preview)
-  - [x] 5.2: `/products/[slug]` (Canonical capability template: `.phero`, `.pstage` preview chassis, definition, problem, deliverables bento, `.stepflow`, outcome, and next capability link)
-  - [x] 5.3: `/services` (Full-width colored horizontal bands + 3-stage delivery protocol)
-  - [x] 5.4: `/team` (Team narrative, founding builders roster, and operational rituals)
-  - [x] 5.5: `/contact` (Order nextrail `01 / 02 / 03`, clean form, NCR/Lucknow desk addresses, privacy-conscious telemetry)
-  - [x] 5.6: `/blog` (The Canonical blog ledger, featured article card, tag badges, and reading time)
-  - [x] 5.7: `/mission` (Grassroots 75-district regional impact radar with interactive explorer)
-
-- [x] **PHASE 6: Verification, Accessibility & Performance**
-  - [x] 6.1: Zero TypeScript compilation errors (`npx tsc --noEmit`)
-  - [x] 6.2: Zero ESLint warnings (`npm run lint`)
-  - [x] 6.3: Clean production build (`npm run build` — 38/38 static pages generated)
-  - [x] 6.4: Playwright e2e navigation suite passes (`15/15 passed`)
-  - [x] 6.5: Zero Axe accessibility violations (WCAG 2.1 AA/AAA compliance)
+> **Strategic North Star**: Rebuild the NorAI web platform to fully embody the craftsmanship, spatial restraint, typographic power, and high-voltage jewel palette of [**Audens.ai**](https://audens.ai), grounded in the 12 critical friction points identified in `report.md`.
 
 ---
 
-## Detailed Implementation Specifications
+## Master Architecture & Phased Roadmap
 
-### Section 2: Core Design Engine & CSS Tokens (`app/globals.css`)
-
-Update `app/globals.css` with exact Audens custom properties:
-```css
-:root {
-  --pine: #072929;
-  --forest: #1e3c3b;
-  --porcelain: #f5f5f0;
-  --bone: #ebeae1;
-  --surface: #fffdf7;
-
-  --pine-70: rgba(7, 41, 41, 0.7);
-  --pine-50: rgba(7, 41, 41, 0.5);
-  --pine-20: rgba(7, 41, 41, 0.2);
-  --pine-12: rgba(7, 41, 41, 0.12);
-  --pine-08: rgba(7, 41, 41, 0.08);
-
-  --bone-70: rgba(235, 234, 225, 0.7);
-  --bone-50: rgba(235, 234, 225, 0.5);
-  --bone-20: rgba(235, 234, 225, 0.2);
-
-  --mint: #1ef4b4;
-  --mint-ink: #06845a;
-  --lavender: #c6b5ff;
-  --butter: #ffe9b5;
-  --coral: #ff7755;
-  --sky: #75d3da;
-  --pink: #ff69b4;
-
-  --ink: #072929;
-  --muted: rgba(7, 41, 41, 0.65);
-  --line: rgba(7, 41, 41, 0.12);
-
-  --r-card: 22px;
-  --r-pill: 999px;
-  --r-sm: 8px;
-  --maxw: 1240px;
-
-  --ease: cubic-bezier(0.65, 0, 0.35, 1);
-  --ease-bounce: cubic-bezier(0.33, 1.4, 0.6, 1);
-}
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│                     6-PHASE EXECUTION ROADMAP                          │
+├────────────────────────────────────────────────────────────────────────┤
+│  PHASE 1: NAVIGATION & SHELL STREAMLINING                              │
+│  ├── Delete dead anchor href="/#mission" from Header and Footer        │
+│  ├── Remove redundant "Contact" text link; retain "Book a call" CTA    │
+│  └── Enforce clean 5-item pill hierarchy with bottom scroll progress   │
+│                                                                        │
+│  PHASE 2: DESIGN SYSTEM & CONTRAST REMEDIATION                         │
+│  ├── Purge rogue tokens: #07080D pitch obsidian, terra-500             │
+│  ├── Fix invisible text in .gradient-card__inner across all 6 subpages │
+│  └── Verify 100% WCAG AAA contrast across pine and porcelain           │
+│                                                                        │
+│  PHASE 3: HOMEPAGE HERO DE-BLOAT                                       │
+│  ├── Remove 47KB HeroStudioWorkbench from homepage hero                │
+│  ├── Implement single-column Aurora Hero with 2-line conviction lede   │
+│  └── Restore sub-second paint speed and spatial breathing room         │
+│                                                                        │
+│  PHASE 4: CAPABILITY ARC TRANSFORMATION                                │
+│  ├── Replace 1,800px AudensCapabilityBento with sleek CapabilityArc    │
+│  ├── Convert heavy interactive widgets into 260px telemetry cards      │
+│  └── Eliminate collapsible accordion drawers from homepage             │
+│                                                                        │
+│  PHASE 5: INSERT GRASSROOTS BHARAT MISSION BEAT                        │
+│  ├── Build dedicated BharatMissionBeat.tsx section before closing CTA  │
+│  ├── Feature the 3 community tiers (Citizens, Students, Builders)      │
+│  └── Link to /mission for district impact radar and workshop signups   │
+│                                                                        │
+│  PHASE 6: SUBPAGE ALIGNMENT & SINGLE-RESPONSIBILITY VERIFICATION       │
+│  ├── Re-anchor /products as the sole home for interactive tool sandboxes│
+│  ├── Re-anchor /services as the sole home for enterprise RAG/MCP specs │
+│  └── Conduct final cross-browser visual verification                   │
+└────────────────────────────────────────────────────────────────────────┘
 ```
 
-### Section 3: Floating Nav Capsule (`Header.tsx`)
-
-Rebuild `components/organisms/Header/Header.tsx` to match Audens's exact navigation:
-1. Outer wrapper: `.navshell` sticky top-0 with `z-index: 100`.
-2. Inner pill: `.wrap.navpill` with height 66px, border-radius 999px, background `rgba(245, 245, 240, 0.85)` (or `rgba(7, 41, 41, 0.85)` in dark sections), backdrop blur 18px.
-3. Links: Capabilities, Approach, Deliverables, About, The Canonical.
-4. Button: `.btn.btn--solid` with wave hand icon (`.btn__hand`).
-5. Progress bar: `.nav-progress` line at the bottom of the pill that dynamically fills in `--mint` based on scroll depth.
-
-### Section 4: Three Dimensions Conversation Rail
-
-Implement the signature Audens staggered conversational chat slots:
-- Slot 1 (Mint): "Aditya asks: Which candidate actually shipped backend microservices?" ➔ Revealed: AI Resume Shortlister scorecard.
-- Slot 2 (Lavender): "CTO asks: Can we run sovereign inference without AWS data egress?" ➔ Revealed: Private on-premises VPC enclave.
-- Slot 3 (Butter): "Student asks: Where do I start learning autonomous agent code for free?" ➔ Revealed: 75-district Bharat coding workshop.
-- Include animated 3-dot typing indicator (`<i></i><i></i><i></i>`) for realistic conversational cadence.
-
 ---
 
-## Verification & Acceptance Criteria
+## Phase-by-Phase Implementation Details
 
-1. **Visual Accuracy**: Every section reflects the spacing, border radii (`22px`), colors, and micro-interactions of Audens.ai.
-2. **Zero Regressions**: Anchor `#tools` and Playwright test selectors are retained. All 4 micro-vignettes are fully functional.
-3. **Accessibility**: All text contrast exceeds WCAG AA (4.5:1), keyboard focus indicators are distinct and high-visibility, and motion respects `prefers-reduced-motion`.
+### Phase 1: Navigation Pill & Shell Streamlining
+- **Target Files**: `components/organisms/sections/Header/Header.tsx`, `config/navigation.ts`, `Footer.tsx`
+- **Actions**:
+  1. Update `DEFAULT_HEADER_NAV_ITEMS` to exactly 5 links:
+     - `Capabilities` (`/products`)
+     - `Approach` (`/services#operating-rituals` or `/approach`)
+     - `Deliverables` (`/services`)
+     - `About` (`/team`)
+     - `The Canonical` (`/blog`)
+  2. Remove dead anchor `{ label: 'Approach', href: '/#mission' }`.
+  3. Remove redundant text link `{ label: 'Contact', href: '/contact' }` from the pill; the primary button `Book a call` is the singular contact point.
+  4. Fix footer links to eliminate broken anchors.
+
+### Phase 2: Design Token & Contrast Remediation
+- **Target Files**: `app/globals.css`, `team/page.tsx`, `services/page.tsx`, `products/[slug]/page.tsx`, `products/ProductsIndexClient.tsx`, `blog/BlogIndexClient.tsx`, `mission/page.tsx`, `ContactFormClient.tsx`
+- **Actions**:
+  1. In `app/globals.css`, remove rogue `--surface-canvas: #07080d` and `--surface-panel: #0d1017`. Re-anchor everything to `--porcelain: #f5f5f0` and `--pine: #072929`.
+  2. In all 6 marketing subpages, replace `text-[var(--pine)] dark:text-[var(--bone)]` inside `.gradient-card__inner` with explicit high-contrast tokens (`text-[var(--bone)]` or style `.gradient-card__inner` with ivory surface and pine text).
+  3. Purge all `terra-*` classes from `ContactFormClient.tsx`. Use `--mint-ink`, `--pine`, and `--line`.
+
+### Phase 3: Homepage Hero Teardown
+- **Target File**: `app/(marketing)/page.tsx`
+- **Actions**:
+  1. Excise `<HeroStudioWorkbench />` and its 6-column split container.
+  2. Implement the clean, centered `HeroChamber` blueprint:
+     - Organic blurred multi-color aurora glow orbs (`.aurora__orb`).
+     - Monospace eyebrow tag: `SOVEREIGN AI SYSTEMS · BHARAT & ENTERPRISE`.
+     - Giant display headline: *"Software you own. Intelligence that stays."*
+     - 2-sentence lede with generous negative space.
+     - Dual pill buttons (`Book a diagnostic` with hand icon + `Explore the capabilities →`).
+     - Monospace trust badges (`0 cloud training egress · Sub-second execution · Your keys, your stack`).
+
+### Phase 4: Capability Arc Transformation
+- **Target Files**: `components/organisms/AudensCapabilityBento/...`, `app/(marketing)/page.tsx`
+- **Actions**:
+  1. Replace the bulky 2x2 bento grid with `CapabilityArc.tsx`.
+  2. For each of the 4 sovereign tools (Resume Shortlister, Course Note-Taker, Chat Digest, Smart Dainik), create a fixed-height (260px) illustrative telemetry card:
+     - Top bar with category and live pulsing dot.
+     - Telemetry badge (e.g. `0.28s / PDF · 96/100 VERIFIED`).
+     - 2-sentence plain-spoken copy.
+     - Direct arrow link to `/products/[slug]`.
+  3. Remove all collapsible accordion drawers and heavy interactive widgets from the homepage.
+
+### Phase 5: Grassroots Bharat Mission Section Insertion
+- **Target Files**: `components/organisms/sections/BharatMissionBeat.tsx`, `app/(marketing)/page.tsx`
+- **Actions**:
+  1. Create `BharatMissionBeat.tsx` as a full-width deep pine section placed immediately before Beat 7 (`#closing-dispatch`).
+  2. Feature the 3 community tiers:
+     - Tier 01: Village Citizens (Vernacular Hindi literacy, welfare navigation).
+     - Tier 02: Collegiate Students (Free scholar lecture synthesis, KaTeX).
+     - Tier 03: Undergraduate Builders (Founder-led MCP and local inference bootcamps).
+  3. Include the commitment banner: `75 Districts Committed ✦ ₹0 Student Cost ✦ Vernacular Hindi Delivery`.
+  4. Link to `/mission` for district schedules and details.
+
+### Phase 6: Subpage Alignment & Verification
+- **Target Files**: `app/(marketing)/products/...`, `app/(marketing)/services/...`, `app/(marketing)/mission/...`
+- **Actions**:
+  1. Verify `/products` hosts the complete interactive tool sandboxes.
+  2. Verify `/services` cleanly details enterprise RAG, private VPC inference, and MCP topologies.
+  3. Verify `/mission` details the 75-district radar.
+  4. Run full build and visual checks to ensure zero contrast drops, zero dead links, and complete responsive polish.

@@ -1,72 +1,68 @@
-# NorAI Official Web — Project Progress & Evolution Context
+# NorAI Official Web — Project Progress & Context Summary
 
-## 1. Project Overview & Original Legacy Baseline
+## 1. Executive Summary & Active Design Direction
 
-**NorAI Technologies** is an AI products and enterprise automation startup operating out of its regional hub in **Uttar Pradesh, India**. NorAI builds lightweight micro-SaaS utilities (AI Resume Shortlister, Course Note-Taker, Community Chat Digest, Smart Government Job News) and bespoke enterprise AI pipelines.
+**NorAI Technologies** is an independent sovereign AI engineering practice and grassroots civic mission operating from Uttar Pradesh, India. NorAI builds private enterprise intelligence pipelines and sovereign everyday micro-tools, while democratizing computational literacy across 75 districts of Uttar Pradesh.
 
-### Initial Legacy Architecture & Styling Constraints
-
-- **Framework:** Next.js 15 App Router, React 19, TypeScript, Tailwind CSS v4.
-- **Legacy Aesthetics:** Deep near-black canvas (`#030712`), generic blue radial glows (`rgba(59,130,246,0.15)`), 3D tilt cards (`TiltCard`), standard framework default colors (`#10B981` Emerald), and legacy placeholders (such as hardware ZK proof badges).
+The web platform's active benchmark is **[Audens.ai](https://audens.ai)**. All legacy visual experiments—including deep pitch obsidian (`#07080D`), dark slate cards (`#0D1017`), terracotta (`terra-500`), and warm parchment (`#F5F0EA`)—have been superseded by the **Audens Pine & Porcelain Design System**.
 
 ---
 
-## 2. The Impeccable Design Standard & Token System Baseline
+## 2. Core Architecture & Design DNA
 
-### The Quality Protocol (Loop for Every Page)
+### 2.1 Surfaces & Palettes
+- **Porcelain Canvas (`--porcelain: #f5f5f0`)**: The tactile, light editorial canvas.
+- **Ivory Surface (`--surface: #fffdf7`)**: Elevated card and container surface.
+- **Deep Pine (`--pine: #072929`)**: Signature dark background and light-surface display ink.
+- **Forest (`--forest: #1e3c3b`)**: Elevated dark card surface.
+- **Bone (`--bone: #ebeae1`)**: High-contrast text and dividers on pine.
+- **High-Voltage Mint (`--mint: #1ef4b4`)**: Core brand accent and glow frequency.
+- **Mint Ink (`--mint-ink: #06845a`)**: WCAG AAA compliant text on porcelain.
+- **Jewel Accents**: Lavender (`#c6b5ff`), Butter (`#ffe9b5`), Coral (`#ff7755`), Sky (`#75d3da`), Pink (`#ff69b4`).
 
-To transform the website from generic AI startup tropes into a bespoke, state-of-the-art visual experience, every page undergoes a strict 5-step loop:
-`Critique → User Approval → Implementation → Vercel Guidelines Review → Fixes & Visual Verification`.
-
-### Derived Bespoke Design Tokens (Site-Wide Baseline)
-
-- **Canvas Base (`--bg-page` / `--ds-background-100`):** `#F5F0EA` (Warm Parchment — pure editorial paper canvas).
-- **Elevated Surfaces (`--bg-elevated` / `--ds-background-200`):** `#FDFBF7` (Clean Paper — 1px hairline border containers `rgba(13,37,61,0.08)` to `0.12`).
-- **Recessed Surfaces (`--bg-sunken` / `--ds-background-300`):** `#EDE7DF` (Recessed Sand — inputs, sunken tracks).
-- **Primary Ink (`--color-ink-primary` / `--ds-text-100`):** `#0D253D` (Deep Navy Ink).
-- **Body Prose (`--color-ink-body` / `--ds-text-200`):** `#3D4F5F` (Muted Slate).
-- **Primary Accent (`--accent-primary`):** `#C2553A` (Burnt Terracotta).
-- **Status / Verified Accent (`--accent-secondary` / `--accent-mono`):** `#5B8A72` (Forest Sage — for live indicators, latency badges, and status tags).
-- **Regional Accent (`--accent-tertiary`):** `#B8860B` (Dark Goldenrod).
-- **Typography:** `Instrument Serif` (Display headings 400), `Plus Jakarta Sans` (Body prose 400/500/600), `JetBrains Mono` (Technical SLAs and metadata 500 tabular-nums).
-
----
-
-## 3. Rebuild Status & Execution Log
-
-| Phase / Page                                               | Rebuild Objective                                               | Key Architectural & Design Changes                                                                                                                                                                                                                                                                                                                                          | Status      |
-| :--------------------------------------------------------- | :-------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------- |
-| **Homepage (`/`)**                                         | Establish token baseline & hero signature                       | Added `Instrument Serif`, Burnt Terracotta (`#C2553A`), hairline workbench cards, interactive `CandidateScreenerWorkbench`.                                                                                                                                                                                                                                                 | ✅ Complete |
-| **Phase 1 (`/pricing`)**                                   | Audit numbers & purge placeholders                              | Purged fictional "ZK Proofs" for _Custom Model Fine-Tuning & Private Connectors_, added static throughput brackets, audited 5k/50k/unlimited request limits.                                                                                                                                                                                                                | ✅ Complete |
-| **Phase 2 (`/services`)**                                  | Solve 8-product grid monotony                                   | Transformed flat 2x2 grids into an **Asymmetrical Architecture Matrix** + Solution Architecture Selector Bar.                                                                                                                                                                                                                                                               | ✅ Complete |
-| **Phase 3 (`/about`)**                                     | Human origin story & regional hub                               | Preserved 100% authentic Uttar Pradesh, India hub facts. Reconciled founder biographies with `WorkshopRoster`.                                                                                                                                                                                                                                                              | ✅ Complete |
-| **Phase 4 (`/team`)**                                      | Awwwards-grade Studio & Team Rebuild                            | Replaced all dummy info with verified team (Dhruw Singh, Sonu Singh, Annanta Singh, Rishabh Singh, Gourav Singh), 35mm documentary photography, interactive `TeamWorkshopDirectory` with discipline filters & dual-view switcher, 4 operating rituals, and `TechnicalArtifactsLedger`.                                                                                      | ✅ Complete |
-| **Phase 6 (`/blog`)**                                      | Content hub & article reader                                    | High-contrast typography, reading time badges, stateful category routing (`[ALL]`, `[AI ORCHESTRATION]`, `[SPATIAL]`, `[OPERATIONS]`), high-contrast code snippet reader.                                                                                                                                                                                                   | ✅ Complete |
-| **Phase 7 (`/privacy` & `/terms`)**                        | Legal & compliance templates                                    | Structured legal typography, sticky document index sidebar, updated organization metadata (NorAI Technologies Pvt. Ltd., Uttar Pradesh, India), `#C2553A` accents.                                                                                                                                                                                                          | ✅ Complete |
-| **Phase 8 (`/products` & `/services`)**                    | Split products & services                                       | Trimmed `/services` down to consultative enterprise offerings; created `/products` self-serve catalog & `/products/[slug]` detail routes; synchronized primary navigation.                                                                                                                                                                                                  | ✅ Complete |
-| **Phase 9 (`/services` 8-Offering Expansion)**             | 3-Tier service maturity matrix                                  | Expanded `/services` to offerings categorized into distinct visual tiers.                                                                                                                                                                                                                                                                                                   | ✅ Complete |
-| **Phase 10 (`/blog`, `/docs`, `/faq`)**                    | Information Architecture & Content Pages                        | Created `/blog` index & `/blog/[slug]` editorial reader, `/docs` product reference guide, and `/faq` searchable Q&A hub.                                                                                                                                                                                                                                                    | ✅ Complete |
-| **Phase 11 (Nav & Footer Audit)**                          | Global navigation & footer sync                                 | Audited and synchronized Header/Footer links across all active pages (`/`, `/products`, `/services`, `/pricing`, `/about`, `/team`, `/blog`, `/contact`, `/careers`).                                                                                                                                                                                                       | ✅ Complete |
-| **Phase 13 (Production Polish & Launch Readiness)**        | Accessibility, SEO Metadata, Sitemap & Final Verification       | Audited WCAG AAA contrast, keyboard focus rings, semantic `<h1>` hierarchy, form label associations, server-side `buildMetadata` exports.                                                                                                                                                                                                                                   | ✅ Complete |
-| **Phase 14 (Anti-AI-Slop & Dead Code Purge)**              | Strict Codebase Cleanse & RSC Migration                         | Purged 76 unconfigured story files, 15 unused organism sections, 12 dead molecules, 8 dead atoms, and dead React context providers (`ThemeTokenProvider`, `BackgroundProvider`). Converted marketing route roots (`/`, `/products`, `/services`) to React Server Components (RSC) with isolated client leaves. Streamlined Footer and standardized canonical product slugs. | ✅ Complete |
-| **Phase 15 (Context Foundation)**                          | Standardize `.md` Context Architecture                          | Initialized unified context architecture across markdown documents.                                                                                                                                                                                                                                                                                                         | ✅ Complete |
-| **Phase 16 (Security Headers & Hardening — Session 10)**   | HTTP Headers, Zod Hardening, Rate Limiting & Input Sanitization | Configured strict CSP, HSTS, X-Frame-Options, Permissions-Policy in `next.config.ts`. Added HTML sanitization, in-memory IP sliding window rate limiter, hardened contact form Zod schema & Nodemailer handling, and audited `.env` / `.env.example`.                                                                                                                       | ✅ Complete |
-| **Phase 17 (Documentation Distillation & Agent Autonomy)** | Distill PRODUCT.md, DESIGN.md, and AGENTS.md                    | Updated core markdown files to serve as clean, context-rich references rather than restrictive constraint lists. Aligned documentation with the distilled site structure and empowered agent creativity.                                                                                                                                                                    | ✅ Complete |
+### 2.2 Core Layout Archetypes
+- **The Telemetry Vignette (`.vig` / `.pstage`)**: Compact (260px) illustrative capability windows with live indicator dots.
+- **The Horizontal Ledger (`.ledger`)**: Borderless rows with circular hover-rotating arrows.
+- **The 4-Stage Process Flow (`.stepflow`)**: Connected circular node rails for operating rituals.
+- **The Conic Closing Dispatch (`.gradient-card`)**: 14s rotating conic border enclosing high-contrast conversion CTA.
 
 ---
 
-## 4. Grounding Context Files Matrix
+## 3. The Three Dimensions & Product Portfolio
 
-Key markdown context files for engineers and AI agents operating on this repository:
-
-1. **`PRODUCT.md`**: Core mission, Uttar Pradesh hub, 4 flagship tools, enterprise solutions, and product values.
-2. **`DESIGN.md`**: "Parchment & Terracotta" aesthetic ethos, typography roles, and key design tokens.
-3. **`AGENTS.md`** (mirrored to `CLAUDE.md` and `GEMINI.md`): Tech stack, directory layout, key conventions, and creative autonomy guidelines.
-4. **`README.md`**: High-level repository overview, architecture, and development commands.
-5. **`project_progress_context.md`**: Chronological build history, milestone tracking, and architectural status.
+1. **Dimension 1: Sovereign Everyday Tools**
+   - **AI Resume Shortlister**: Sub-second vector scoring for verified engineering depth.
+   - **Course Note-Taker**: Lecture audio to KaTeX notes and active recall flashcards.
+   - **Community Chat Digest**: Condensing thousands of unread messages into 3 executive decisions.
+   - **Smart Dainik News**: Bilingual regional gazette alerts and citizen welfare notifications.
+2. **Dimension 2: Bespoke Enterprise Intelligence**
+   - **Air-Gapped Private VPC Inference**: Local clusters with zero cloud egress.
+   - **Deterministic RAG**: Citing source documents on every single claim.
+   - **Model Context Protocol (MCP)**: Secure agent tool servers with human-in-the-loop validation.
+3. **Dimension 3: Grassroots 75-District Bharat Mission**
+   - Free vernacular literacy for village citizens.
+   - Free scholar sandboxes for collegiate students.
+   - Direct founder-led developer masterclasses across 75 districts of Uttar Pradesh.
 
 ---
 
-## 5. Security & Dependency Notes
+## 4. Current State & Immediate Redesign Priorities
 
-- **Dependency Security Audit (August 2026):** 3 known high-severity advisories exist in Next.js's internal nested dependencies (`postcss` 8.4.31 and `sharp` 0.34.5 under `next@15.5.22`). No direct patch is available without a major Next 16 upgrade. Real-world risk is low (build-time image/CSS processing only; no user-uploaded binary content in current scope). Revisit upon Next.js 16 major release.
+The repository audit (`report.md`) established the following 6 priority milestones now tracked in `REDESIGN_PLAN.md`:
+
+1. **Header & Navigation Streamlining**:
+   - Remove dead anchor `/#mission`.
+   - Remove redundant `Contact` text link; retain the primary solid pill button `Book a call`.
+2. **Contrast & Color Purge**:
+   - Fix dark-on-dark invisible text in `.gradient-card__inner` across 6 marketing pages.
+   - Purge `#07080D` obsidian and `terra-*` classes.
+3. **Hero De-Bloat**:
+   - Remove the 47KB `HeroStudioWorkbench` from the homepage.
+   - Deploy the clean, single-column Aurora Hero with high-conviction typography.
+4. **Capability Arc Simplification**:
+   - Replace the 1,800px bento grid with compact 260px telemetry rows.
+   - Relocate interactive sandboxes to `/products/[slug]`.
+5. **Grassroots Bharat Mission Beat**:
+   - Insert dedicated `<BharatMissionBeat />` section before the closing dispatch.
+6. **Subpage Single-Responsibility Routing**:
+   - Ensure `/products`, `/services`, `/mission`, `/team`, and `/contact` each fulfill their distinct role without redundant overlap.

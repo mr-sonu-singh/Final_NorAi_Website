@@ -4,92 +4,84 @@
 
 ---
 
-## 1. Project Overview & Architectural Role
+## 1. Project Overview & Mission
 
-Welcome to the **NorAI Technologies** official web platform (`testing` branch). This repository powers the marketing site, interactive capability simulators, enterprise intelligence catalog, and documentation for NorAI.
+You are working on the official web platform for **NorAI Technologies** (`/home/gourav/coding/startup/NorAi_Ofiicial_Web`, running locally on `http://localhost:3000`).
 
-The web platform is engineered to replicate the craftsmanship, typographic weight, spatial pacing, and editorial authority of [**Audens.ai**](https://audens.ai). Every component, transition, color token, and layout beat must reflect the standard of a top-tier design engineering studio.
+NorAI is an independent sovereign AI engineering practice and grassroots civic mission in Uttar Pradesh, India. The web platform's aesthetic and operational benchmark is **[Audens.ai](https://audens.ai)**—celebrated for its extreme editorial restraint, spacious breathing room, atmospheric aurora glows, and high-voltage jewel accents against deep pine and porcelain surfaces.
 
 ---
 
-## 2. Technology Stack & Core Concepts
+## 2. Technology Stack & Environment
 
 - **Framework**: [Next.js 15](https://nextjs.org/) App Router
 - **UI Runtime**: [React 19](https://react.dev/)
 - **Language**: [TypeScript](https://www.typescriptlang.org/) (Strict Mode)
-- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) with CSS custom properties in `app/globals.css`
-- **Component Primitives**: [Radix UI](https://www.radix-ui.com/)
-- **Motion & Physics**: [Framer Motion](https://www.framer.com/motion/) (with `prefers-reduced-motion` support)
-- **Icons**: [Lucide React](https://lucide.dev/) + Custom inline Audens-style SVGs
-- **Data Validation**: [Zod](https://zod.dev/)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) + CSS custom properties in `app/globals.css`
+- **Animation & Physics**: [Framer Motion / Motion](https://motion.dev/) (with `prefers-reduced-motion` compliance)
+- **Icons**: [Lucide React](https://lucide.dev/) + Custom Audens-style inline SVGs
+- **Validation**: [Zod](https://zod.dev/)
 
 ---
 
-## 3. Design System & Token Principles
+## 3. Core Craft Principles & Guiding Directions
 
-Always adhere to the design system outlined in [`DESIGN.md`](file:///home/gourav/coding/startup/NorAi_Ofiicial_Web/DESIGN.md):
+### 3.1 Guiding Directions Over Rigid Dogma
+- Do **not** impose rigid, formulaic templates or harsh micro-constraints that stifle creative polish.
+- Strive for **quiet authority, visceral craft, and emotional weight**.
+- When designing or editing a section, always ask: *Does this look like a cluttered SaaS dashboard, or does it feel like an elite, high-conviction engineering firm?*
 
-- **Palette**: Deep Pine (`var(--pine: #072929)`), Porcelain (`var(--porcelain: #f5f5f0)`), Bone (`var(--bone: #ebeae1)`), White Surface (`var(--surface: #fffdf7)`).
-- **High-Voltage Jewels**:
-  - Electric Mint: `var(--mint: #1ef4b4)` & `var(--mint-ink: #06845a)`
-  - Lavender: `var(--lavender: #c6b5ff)`
-  - Butter Yellow: `var(--butter: #ffe9b5)`
-  - Coral: `var(--coral: #ff7755)`
-  - Sky Cyan: `var(--sky: #75d3da)`
-  - Hot Pink: `var(--pink: #ff69b4)`
-- **Geometry**: `--r-card: 22px`, `--r-pill: 999px`, `--r-sm: 8px`.
-- **Micro-Interaction Rules (Emil Kowalski Craft)**:
-  - Never use `transition: all`. Always specify properties: `transition: transform 200ms var(--ease), background 200ms var(--ease)`.
-  - Buttons and tactile cards must have `active:scale-[0.97]` or `0.98`.
-  - Ensure 100% semantic HTML is kept in the DOM for search indexers and screen readers (use CSS grid animation for progressive disclosure).
+### 3.2 Strict Deduplication & Single Responsibility
+- **Every page and section has exactly one job.**
+- The homepage introduces the narrative arc and previews capabilities with compact 260px telemetry cards.
+- Subpages (`/products`, `/services`, `/mission`) provide deep interactive exploration.
+- If an explanation has been made in one section, **never repeat it in another section**.
 
----
+### 3.3 Flawless WCAG AAA Contrast
+- **Light Surfaces (`#f5f5f0` / `#fffdf7`)**: Use Deep Pine (`#072929`) for headings and body. Use Mint Ink (`#06845a`) for badges and accent links.
+- **Dark Surfaces (`#072929` / `#1e3c3b`)**: Use Bone (`#ebeae1`) for headings and body. Use High-Voltage Mint (`#1ef4b4`) or Lavender (`#c6b5ff`) for accents.
+- **Critical Warning**: Never use `text-[var(--pine)] dark:text-[var(--bone)]` inside a container with a fixed dark background (like `.gradient-card__inner`). This causes 1.0:1 invisible dark-on-dark text in light mode!
 
-## 4. Repository Structure
+### 3.4 Atmosphere & Feel Over Walls of Text
+- Replace paragraphs of technical throat-clearing with punchy 2-sentence clarity.
+- Let generous vertical spacing (`clamp(56px, 7vw, 104px)`), organic blurred aurora glows, and live monospace telemetry indicators do the heavy lifting.
 
-```
-NorAi_Ofiicial_Web/
-├── app/                          # Next.js App Router root
-│   ├── (marketing)/              # Marketing routes (Home, Products, Services, Team, etc.)
-│   ├── (content)/                # Content hub (Blog, Docs, FAQ, The Canonical)
-│   ├── (legal)/                  # Legal & compliance (Privacy, Terms)
-│   ├── api/                      # Route handlers & server endpoints
-│   ├── globals.css               # Audens CSS tokens, easing functions, and utilities
-│   └── layout.tsx                # Root layout, fonts, and global metadata
-├── components/                   # Component architecture
-│   ├── foundation/               # Base primitives (Container, Grid, Section)
-│   ├── atoms/                    # Fundamental elements (Button, Badge, Link, Input, MathRenderer)
-│   ├── molecules/                # Multi-part patterns (Card, FormField, SearchBar, LedgerRow)
-│   ├── organisms/                # Complex sections (Header, Footer, AudensCapabilityBento, WaveMarquee)
-│   └── templates/                # Full page layout wrappers
-├── config/                       # Site configuration, metadata, and navigation routes
-├── lib/                          # Data catalogs, validation schemas, and SEO helpers
-│   ├── schemas/                  # Zod input schemas
-│   └── seo/                      # Dynamic metadata & OpenGraph generators
-├── public/                       # Static brand assets and images
-└── tests/                        # Playwright e2e tests
-```
+### 3.5 Clean Navigation Discipline
+- The floating `.navpill` contains exactly 5 links (`Capabilities`, `Approach`, `Deliverables`, `About`, `The Canonical`) and 1 solid action button (`Book a call`).
+- Never include dead anchors (e.g. `/#mission`). Never include "Contact" as both a text link and a button in the same pill.
 
 ---
 
-## 5. Development & Verification Workflow
+## 4. Canonical Design Tokens Quick Reference
 
-Run standard verification commands to ensure zero regressions:
+```css
+/* Core Surfaces */
+--pine: #072929;        /* Deep pine green dark surface / light primary text */
+--forest: #1e3c3b;      /* Elevated dark card surface */
+--porcelain: #f5f5f0;   /* Primary light canvas */
+--surface: #fffdf7;     /* Warm ivory card & modal surface */
+--bone: #ebeae1;        /* Crisp off-white text on pine */
 
-```bash
-# Typecheck TypeScript
-npx tsc --noEmit
+/* High-Voltage Jewel Accents */
+--mint: #1ef4b4;        /* Core high-voltage mint key */
+--mint-ink: #06845a;    /* High-contrast mint for light surfaces */
+--lavender: #c6b5ff;    /* EdTech / LaTeX */
+--butter: #ffe9b5;      /* Bharat mission & civic alerts */
+--coral: #ff7755;       /* Community digest */
+--sky: #75d3da;         /* Stream ingestion */
 
-# Run ESLint
-npm run lint
-
-# Build production bundle
-npm run build
-
-# Run end-to-end Playwright tests
-npx playwright test
+/* Geometry */
+--r-card: 22px;
+--r-pill: 999px;
+--container: 1240px;
 ```
 
-### Critical Preservation Rules:
-- When modifying or rebuilding sections, always preserve anchor IDs like `id="tools"` and test selectors like `data-testid="capability-link-resume-shortlister"` so automated test suites continue passing seamlessly.
-- Ensure all interactive controls meet WCAG 2.1 AA contrast standards (minimum 4.5:1 for normal text, 3:1 for large text) and provide 48px touch targets.
+---
+
+## 5. Pre-Commit Verification Checklist
+
+Before completing any task in this codebase:
+1. **Contrast Check**: Verify that all text is clearly readable in both default (light) and dark modes. Zero contrast drops.
+2. **Link Integrity**: Ensure every link in the header, footer, and cards points to a real, existing route or valid ID.
+3. **No Bento Bloat**: Ensure the homepage is uncluttered and fast; interactive sandboxes belong on `/products/[slug]`.
+4. **Build & Type Check**: Verify `npm run build` or `npm run type-check` passes cleanly.
