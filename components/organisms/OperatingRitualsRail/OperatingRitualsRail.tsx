@@ -98,7 +98,7 @@ export function OperatingRitualsRail() {
             return (
               <div
                 key={pillar.id}
-                className="group relative flex flex-col justify-between rounded-xl p-3 -m-3 transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-surface-panel/70 active:scale-[0.985]"
+                className="group relative flex flex-col justify-between rounded-xl p-3 -m-3 transition-[background-color,transform] duration-160 ease-out hover:bg-surface-panel/70 active:scale-[0.98]"
               >
                 <div>
                   {/* Row 1: Node on the rail */}
@@ -110,7 +110,7 @@ export function OperatingRitualsRail() {
                     />
 
                     {/* [ + ] Node Marker */}
-                    <div className="relative z-10 inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-surface-canvas border border-border-strong text-[11px] font-mono text-text-muted transition-all duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:border-accent-primary/60 group-hover:text-accent-primary group-hover:shadow-xs">
+                    <div className="relative z-10 inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-surface-canvas border border-border-strong text-[11px] font-mono text-text-muted transition-[border-color,color,box-shadow] duration-160 ease-out group-hover:border-accent-primary/60 group-hover:text-accent-primary group-hover:shadow-xs">
                       <span className="opacity-40 select-none">[</span>
                       <span className="text-accent-primary font-bold text-xs inline-block transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:rotate-90">
                         +
@@ -160,7 +160,7 @@ export function OperatingRitualsRail() {
           <span>Uttar Pradesh, India · 100% In-House Engineering</span>
         </div>
         <div className="flex items-center gap-4">
-          <Link href="/about" className="hover:text-accent-primary transition-colors">
+          <Link href="/team" className="hover:text-accent-primary transition-colors">
             Our Principles &rarr;
           </Link>
           <Link

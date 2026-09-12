@@ -6,6 +6,7 @@ export * from './sections/ComparisonTable';
 export * from './sections/HeroChamber';
 export * from './sections/CapabilityArc';
 export * from './sections/BharatMissionBeat';
+export * from './sections/ClosingDispatch';
 
 // Active Cards
 export * from './cards/BlogCard';
