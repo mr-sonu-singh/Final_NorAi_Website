@@ -1,7 +1,6 @@
 // Active Molecules
 export * from './Accordion';
 export * from './Alert';
-export * from './BrandLogo';
 export * from './Breadcrumb';
 export * from './EmptyState';
 export * from './ErrorState';
