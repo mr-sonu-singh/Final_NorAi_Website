@@ -252,7 +252,7 @@ export function ProductsIndexClient() {
                           <Icon className="w-6 h-6" />
                         </div>
                         <div>
-                          <span className="font-mono text-xs text-[var(--pine)]/60 font-semibold tracking-wider block">
+                          <span className="font-mono text-xs text-[var(--mint-ink)] font-bold tracking-wider block">
                             TOOL {tool.number}
                           </span>
                           <span
@@ -295,7 +295,7 @@ export function ProductsIndexClient() {
                     {/* Technical Specs Strip */}
                     <div className="grid grid-cols-2 gap-2 text-xs font-mono pt-3 border-t border-[var(--line)]">
                       <div className="p-3 rounded-xl bg-[var(--porcelain)] border border-[var(--line)]">
-                        <span className="text-[10px] text-[var(--pine)]/50 uppercase tracking-wider block font-semibold">
+                        <span className="text-[10px] text-[var(--pine)]/85 uppercase tracking-wider block font-semibold">
                           INPUT
                         </span>
                         <span className="text-[var(--pine)] text-xs font-medium mt-0.5 block truncate">
@@ -303,7 +303,7 @@ export function ProductsIndexClient() {
                         </span>
                       </div>
                       <div className="p-3 rounded-xl bg-[var(--porcelain)] border border-[var(--line)]">
-                        <span className="text-[10px] text-[var(--pine)]/50 uppercase tracking-wider block font-semibold">
+                        <span className="text-[10px] text-[var(--pine)]/85 uppercase tracking-wider block font-semibold">
                           OUTPUT
                         </span>
                         <span className="text-[var(--pine)] text-xs font-medium mt-0.5 block truncate">
@@ -315,7 +315,7 @@ export function ProductsIndexClient() {
 
                   {/* Card Action */}
                   <div className="pt-4 flex items-center justify-between border-t border-[var(--line)]">
-                    <span className="font-mono text-xs text-[var(--pine)]/60">
+                    <span className="font-mono text-xs text-[var(--pine)]/85">
                       Free to start · 50 sandbox credits
                     </span>
                     <Link
@@ -345,16 +345,16 @@ export function ProductsIndexClient() {
       <section className="py-16 sm:py-24">
         <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="gradient-card max-w-4xl mx-auto text-center">
-            <div className="gradient-card__inner p-8 sm:p-12 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--mint)]/20 border border-[var(--mint-ink)]/20 text-xs font-mono font-bold text-[var(--mint-ink)] dark:text-[var(--mint)] uppercase tracking-wider">
+            <div className="gradient-card__inner p-8 sm:p-12 space-y-6 bg-[#fffdf7] text-[var(--pine)]">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--pine-08)] border border-[var(--line)] text-xs font-mono font-bold text-[var(--mint-ink)] uppercase tracking-wider">
                 High-Volume Capacity &amp; Private Deployments
               </div>
 
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--pine)] dark:text-[var(--bone)] tracking-tight leading-tight">
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--pine)] tracking-tight leading-tight">
                 Need dedicated endpoints or private VPC hosting?
               </h2>
 
-              <p className="text-base sm:text-lg text-[var(--pine)]/75 dark:text-[var(--bone-70)] max-w-2xl mx-auto leading-relaxed font-normal">
+              <p className="text-base sm:text-lg text-[var(--pine)]/75 max-w-2xl mx-auto leading-relaxed font-normal">
                 All four tools provide dedicated REST API endpoints, custom latency SLAs, and air-gapped
                 Docker/Helm containers running inside your private VPC with zero external training egress.
               </p>
@@ -362,14 +362,14 @@ export function ProductsIndexClient() {
               <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
                   href="/contact?service=enterprise-capacity"
-                  className="btn btn--solid w-full sm:w-auto h-12 px-7 text-sm font-semibold shadow-md"
+                  className="btn btn--solid w-full sm:w-auto h-12 px-7 text-sm font-semibold shadow-xs active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out"
                 >
                   <span>Talk to an engineer</span>
-                  <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="w-4 h-4 ml-1 transition-transform duration-160 group-hover:translate-x-1" />
                 </Link>
                 <Link
                   href="/services"
-                  className="btn btn--ghost w-full sm:w-auto h-12 px-6 text-sm font-medium"
+                  className="btn btn--ghost w-full sm:w-auto h-12 px-6 text-sm font-medium text-[var(--pine)] hover:bg-[var(--pine-08)] active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out"
                 >
                   <span>Explore Deliverables &rarr;</span>
                 </Link>

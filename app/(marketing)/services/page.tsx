@@ -195,7 +195,7 @@ export default function ServicesPage() {
       <section className="py-14 sm:py-20 border-b border-[var(--line)]">
         <Container size="wide" className="max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="max-w-2xl mb-10 text-left space-y-2">
-            <span className="font-mono text-xs text-[var(--pine)]/60 uppercase tracking-wider font-semibold block">
+            <span className="font-mono text-xs text-[var(--mint-ink)] uppercase tracking-wider font-bold block">
               ENGINEERED CAPABILITIES
             </span>
             <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-[var(--pine)] tracking-tight">
@@ -214,7 +214,7 @@ export default function ServicesPage() {
               >
                 <div className="space-y-3">
                   <div className="flex items-center justify-between border-b border-[var(--line)] pb-2.5">
-                    <span className="font-mono text-xs font-bold text-[var(--pine)]/60">
+                    <span className="font-mono text-xs font-bold text-[var(--pine)]/85">
                       {p.number}
                     </span>
                     <span className="font-mono text-[10px] font-semibold px-2 py-0.5 rounded-full bg-[var(--pine-08)] text-[var(--pine)]">
@@ -372,7 +372,7 @@ export default function ServicesPage() {
       <section className="py-14 sm:py-20 border-b border-[var(--line)]">
         <Container size="wide" className="max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="mb-10 text-left space-y-2">
-            <span className="font-mono text-xs text-[var(--pine)]/60 uppercase tracking-wider font-semibold block">
+            <span className="font-mono text-xs text-[var(--mint-ink)] uppercase tracking-wider font-bold block">
               EXPLORE ARCHITECTURAL SCHEMAS
             </span>
             <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-[var(--pine)] tracking-tight">
@@ -384,12 +384,12 @@ export default function ServicesPage() {
       </section>
 
       {/* =========================================================================
-          BEAT 5: 3-PHASE DELIVERY RAILWAY
+          BEAT 5: 3-PHASE DELIVERY RAILWAY (OPERATING RITUALS)
           ========================================================================= */}
-      <section className="py-16 sm:py-24 border-b border-[var(--line)]">
+      <section id="operating-rituals" className="py-16 sm:py-24 border-b border-[var(--line)] scroll-mt-24">
         <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="max-w-2xl mb-12 text-left space-y-2">
-            <span className="font-mono text-xs text-[var(--pine)]/60 uppercase tracking-wider font-semibold block">
+            <span className="font-mono text-xs text-[var(--mint-ink)] uppercase tracking-wider font-bold block">
               DELIVERY PROTOCOL
             </span>
             <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-[var(--pine)] tracking-tight">
@@ -433,7 +433,7 @@ export default function ServicesPage() {
                     </div>
 
                     <div className="space-y-2 pt-4 border-t border-[var(--line)]">
-                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[var(--pine)]/50 block">
+                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[var(--pine)]/80 block">
                         Key Deliverables:
                       </span>
                       <div className="space-y-1.5">
@@ -459,16 +459,16 @@ export default function ServicesPage() {
       <section className="py-16 sm:py-24">
         <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="gradient-card max-w-4xl mx-auto text-center">
-            <div className="gradient-card__inner p-8 sm:p-12 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--mint)]/20 border border-[var(--mint-ink)]/20 text-xs font-mono font-bold text-[var(--mint-ink)] dark:text-[var(--mint)] uppercase tracking-wider">
+            <div className="gradient-card__inner p-8 sm:p-12 space-y-6 bg-[#fffdf7] text-[var(--pine)]">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--pine-08)] border border-[var(--line)] text-xs font-mono font-bold text-[var(--mint-ink)] uppercase tracking-wider">
                 Direct Engineering Engagement
               </div>
 
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--pine)] dark:text-[var(--bone)] tracking-tight leading-tight">
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--pine)] tracking-tight leading-tight">
                 Have a custom AI workflow in mind?
               </h2>
 
-              <p className="text-base sm:text-lg text-[var(--pine)]/75 dark:text-[var(--bone-70)] max-w-2xl mx-auto leading-relaxed font-normal">
+              <p className="text-base sm:text-lg text-[var(--pine)]/75 max-w-2xl mx-auto leading-relaxed font-normal">
                 Connect directly with our core engineering team to scope your technical architecture,
                 latency requirements, and 5-day proof-of-concept sprint.
               </p>
@@ -476,16 +476,16 @@ export default function ServicesPage() {
               <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
                   href="/contact?service=enterprise-consultation"
-                  className="btn btn--solid w-full sm:w-auto h-12 px-7 text-sm font-semibold shadow-md"
+                  className="btn btn--solid w-full sm:w-auto h-12 px-7 text-sm font-semibold shadow-xs active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out"
                 >
                   <span>Schedule Technical Consultation</span>
-                  <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="w-4 h-4 ml-1 transition-transform duration-160 group-hover:translate-x-1" />
                 </Link>
                 <Link
                   href="/products"
-                  className="btn btn--ghost w-full sm:w-auto h-12 px-6 text-sm font-medium"
+                  className="btn btn--ghost w-full sm:w-auto h-12 px-6 text-sm font-medium text-[var(--pine)] hover:bg-[var(--pine-08)] active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out"
                 >
-                  <span>Explore 4 live tools &rarr;</span>
+                  <span>Explore 4 live tools</span>
                 </Link>
               </div>
             </div>

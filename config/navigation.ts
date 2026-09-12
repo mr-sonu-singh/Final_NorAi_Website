@@ -1,12 +1,15 @@
 import { routes } from './routes';
+import { NavItem } from '@/types';
 
-export const mainNav = [
-  { title: 'Tools', href: routes.products },
-  { title: 'Solutions', href: routes.services },
-  { title: 'Community', href: '/mission' as const },
-  { title: 'About', href: routes.team },
-  { title: 'Contact', href: routes.contact },
-] as const;
+export const AUDENS_HEADER_NAV_ITEMS: NavItem[] = [
+  { label: 'Capabilities', href: routes.products },
+  { label: 'Approach', href: `${routes.services}#operating-rituals` },
+  { label: 'Deliverables', href: routes.services },
+  { label: 'About', href: routes.team },
+  { label: 'The Canonical', href: routes.blog },
+];
+
+export const mainNav = AUDENS_HEADER_NAV_ITEMS;
 
 export const footerNav = {
   tools: [

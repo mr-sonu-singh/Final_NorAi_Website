@@ -116,7 +116,7 @@ export default function HomePage() {
               </Reveal>
 
               {/* Trust & Sovereignty Guarantee */}
-              <div className="pt-4 flex items-center gap-4 text-xs font-mono text-[var(--pine)]/60">
+              <div className="pt-4 flex items-center gap-4 text-xs font-mono text-[var(--pine)]/85 font-medium">
                 <span className="flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-[var(--mint-ink)]" />
                   Ephemeral in-memory processing

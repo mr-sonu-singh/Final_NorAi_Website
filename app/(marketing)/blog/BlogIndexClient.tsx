@@ -192,7 +192,7 @@ export function BlogIndexClient({ posts }: BlogIndexClientProps) {
                   <span className="px-3 py-1 rounded-full bg-[var(--mint)]/20 border border-[var(--mint-ink)]/20 text-xs font-mono font-bold text-[var(--mint-ink)] uppercase tracking-wider">
                     FEATURED DISPATCH · {featured.category}
                   </span>
-                  <span className="font-mono text-xs text-[var(--pine)]/50 flex items-center gap-1.5">
+                  <span className="font-mono text-xs text-[var(--pine)]/85 flex items-center gap-1.5">
                     <Clock className="w-3.5 h-3.5" />
                     {featured.readTime}
                   </span>
@@ -207,7 +207,7 @@ export function BlogIndexClient({ posts }: BlogIndexClientProps) {
                 </p>
 
                 <div className="pt-4 flex items-center justify-between border-t border-[var(--line)]">
-                  <span className="font-mono text-xs text-[var(--pine)]/60">
+                  <span className="font-mono text-xs text-[var(--pine)]/85 font-medium">
                     By {featured.author} · {featured.date}
                   </span>
                   <span className="btn btn--mint h-9 px-4 text-xs font-semibold">
@@ -253,13 +253,13 @@ export function BlogIndexClient({ posts }: BlogIndexClientProps) {
               >
                 <div className="space-y-2 max-w-2xl">
                   <div className="flex items-center gap-3">
-                    <span className="font-mono text-xs font-bold text-[var(--pine)]/50">
+                    <span className="font-mono text-xs font-bold text-[var(--pine)]/85">
                       {String(idx + 1).padStart(2, '0')}
                     </span>
                     <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-[var(--pine-08)] text-[var(--pine)]">
                       {post.category}
                     </span>
-                    <span className="font-mono text-[11px] text-[var(--pine)]/50 flex items-center gap-1">
+                    <span className="font-mono text-[11px] text-[var(--pine)]/85 flex items-center gap-1">
                       <Clock className="w-3 h-3" />
                       {post.readTime}
                     </span>
@@ -269,12 +269,12 @@ export function BlogIndexClient({ posts }: BlogIndexClientProps) {
                     {post.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-[var(--pine)]/70 leading-relaxed line-clamp-2">
+                  <p className="text-xs sm:text-sm text-[var(--pine)]/75 leading-relaxed line-clamp-2">
                     {post.excerpt}
                   </p>
                 </div>
 
-                <div className="shrink-0 flex items-center gap-4 text-xs font-mono text-[var(--pine)]/60">
+                <div className="shrink-0 flex items-center gap-4 text-xs font-mono text-[var(--pine)]/85 font-medium">
                   <span>{post.date}</span>
                   <div className="w-9 h-9 rounded-full bg-[var(--pine-08)] flex items-center justify-center text-[var(--pine)] group-hover:bg-[var(--mint)] group-hover:text-[var(--pine)] transition-colors">
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
@@ -287,7 +287,7 @@ export function BlogIndexClient({ posts }: BlogIndexClientProps) {
               <div className="p-16 text-center space-y-3">
                 <BookOpen className="w-8 h-8 text-[var(--pine)]/30 mx-auto" />
                 <p className="font-display text-xl font-bold text-[var(--pine)]">No dispatches match your filter.</p>
-                <p className="text-xs text-[var(--pine)]/60 max-w-sm mx-auto">
+                <p className="text-xs text-[var(--pine)]/80 max-w-sm mx-auto">
                   Try searching with different terms or reset your category selection.
                 </p>
               </div>
@@ -302,16 +302,16 @@ export function BlogIndexClient({ posts }: BlogIndexClientProps) {
       <section className="py-16 sm:py-24">
         <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="gradient-card max-w-4xl mx-auto text-center">
-            <div className="gradient-card__inner p-8 sm:p-12 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--mint)]/20 border border-[var(--mint-ink)]/20 text-xs font-mono font-bold text-[var(--mint-ink)] dark:text-[var(--mint)] uppercase tracking-wider">
+            <div className="gradient-card__inner p-8 sm:p-12 space-y-6 bg-[#fffdf7] text-[var(--pine)]">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--pine-08)] border border-[var(--line)] text-xs font-mono font-bold text-[var(--mint-ink)] uppercase tracking-wider">
                 Direct Engineering Telemetry
               </div>
 
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--pine)] dark:text-[var(--bone)] tracking-tight leading-tight">
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--pine)] tracking-tight leading-tight">
                 Want to publish a benchmark with NorAI?
               </h2>
 
-              <p className="text-base sm:text-lg text-[var(--pine)]/75 dark:text-[var(--bone-70)] max-w-2xl mx-auto leading-relaxed font-normal">
+              <p className="text-base sm:text-lg text-[var(--pine)]/75 max-w-2xl mx-auto leading-relaxed font-normal">
                 We regularly collaborate with university researchers, open-source maintainers, and enterprise
                 architects to co-publish reproducible benchmarks on local LLM runtimes.
               </p>
@@ -319,13 +319,13 @@ export function BlogIndexClient({ posts }: BlogIndexClientProps) {
               <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
                   href="/contact"
-                  className="btn btn--solid w-full sm:w-auto h-12 px-7 text-sm font-semibold shadow-md"
+                  className="btn btn--solid w-full sm:w-auto h-12 px-7 text-sm font-semibold shadow-xs active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out"
                 >
                   <span>Pitch an Analysis &rarr;</span>
                 </Link>
                 <Link
                   href="/products"
-                  className="btn btn--ghost w-full sm:w-auto h-12 px-6 text-sm font-medium"
+                  className="btn btn--ghost w-full sm:w-auto h-12 px-6 text-sm font-medium text-[var(--pine)] hover:bg-[var(--pine-08)] active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out"
                 >
                   <span>Explore 4 live tools</span>
                 </Link>

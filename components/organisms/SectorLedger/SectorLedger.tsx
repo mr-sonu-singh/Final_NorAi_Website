@@ -89,7 +89,7 @@ export function SectorLedger() {
                 <span className="font-display font-bold text-lg sm:text-xl text-[var(--pine)] group-hover:text-[var(--forest)] transition-colors">
                   {item.name}
                 </span>
-                <span className="text-xs sm:text-sm text-[var(--pine)]/60 font-normal">
+                <span className="text-xs sm:text-sm text-[var(--pine)]/80 font-normal">
                   {item.promise}
                 </span>
               </div>
@@ -102,7 +102,7 @@ export function SectorLedger() {
               </div>
 
               {/* Slide Arrow */}
-              <div className="ledger__arrow text-[var(--pine)]/50">
+              <div className="ledger__arrow text-[var(--pine)]/80">
                 <ArrowRight className="w-5 h-5" />
               </div>
             </Link>

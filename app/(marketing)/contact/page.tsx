@@ -156,7 +156,7 @@ export default function ContactPage() {
                       ENGINEERING DESK ACTIVE
                     </span>
                   </div>
-                  <span className="font-mono text-xs text-[var(--pine)]/60">
+                  <span className="font-mono text-xs text-[var(--pine)]/80">
                     Mon–Sat · 9 AM – 7 PM IST
                   </span>
                 </div>
@@ -164,7 +164,7 @@ export default function ContactPage() {
                 {/* Direct Channels */}
                 <div className="space-y-4">
                   <div className="space-y-1">
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--pine)]/50 block font-semibold">
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--pine)]/80 block font-semibold">
                       Direct Email
                     </span>
                     <a
@@ -177,21 +177,21 @@ export default function ContactPage() {
                   </div>
 
                   <div className="space-y-1">
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--pine)]/50 block font-semibold">
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--pine)]/80 block font-semibold">
                       Primary Engineering Studio
                     </span>
                     <p className="text-sm text-[var(--pine)] flex items-center gap-2 font-medium">
-                      <MapPin className="h-4 w-4 text-[var(--pine)]/60 shrink-0" aria-hidden="true" />
+                      <MapPin className="h-4 w-4 text-[var(--pine)]/80 shrink-0" aria-hidden="true" />
                       <span>NCR Hub (Noida &amp; Gurugram) · Uttar Pradesh</span>
                     </p>
                   </div>
 
                   <div className="space-y-1">
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--pine)]/50 block font-semibold">
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-[var(--pine)]/80 block font-semibold">
                       Grassroots Mission Desk
                     </span>
                     <p className="text-sm text-[var(--pine)] flex items-center gap-2 font-medium">
-                      <Server className="h-4 w-4 text-[var(--pine)]/60 shrink-0" aria-hidden="true" />
+                      <Server className="h-4 w-4 text-[var(--pine)]/80 shrink-0" aria-hidden="true" />
                       <span>Lucknow Regional AI Telemetry Center</span>
                     </p>
                   </div>

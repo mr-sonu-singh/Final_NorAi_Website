@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
+import { motion, AnimatePresence, useReducedMotion, useScroll, useSpring } from 'motion/react';
 
 import { Link } from '@/components/atoms/Link';
 import { BrandLogo } from '@/components/atoms/BrandLogo';
@@ -12,15 +12,9 @@ import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { cn } from '@/lib/utils';
 import { HeaderProps, HeaderCTA } from './Header.types';
 import { NavItem } from '@/types';
+import { AUDENS_HEADER_NAV_ITEMS } from '@/config/navigation';
 
-export const DEFAULT_HEADER_NAV_ITEMS: NavItem[] = [
-  { label: 'Capabilities', href: '/products' },
-  { label: 'Approach', href: '/#mission' },
-  { label: 'Deliverables', href: '/services' },
-  { label: 'About', href: '/team' },
-  { label: 'The Canonical', href: '/blog' },
-  { label: 'Contact', href: '/contact' },
-];
+export const DEFAULT_HEADER_NAV_ITEMS: NavItem[] = AUDENS_HEADER_NAV_ITEMS;
 
 export const DEFAULT_HEADER_PRIMARY_CTA: HeaderCTA = {
   label: 'Book a call',
@@ -37,12 +31,19 @@ export function Header({
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [liveAnnouncement, setLiveAnnouncement] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const pathname = usePathname();
   const isDesktop = useMediaQuery('(min-width: 1024px)');
   const prevIsDesktop = useRef(isDesktop);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
+
+  // Offload scroll progress to GPU-accelerated motion values without React re-renders
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
 
   // Automatically close mobile menu when route changes
   useEffect(() => {
@@ -60,19 +61,11 @@ export function Header({
     prevIsDesktop.current = isDesktop;
   }, [isDesktop]);
 
-  // Handle scroll listener for sticky variant and bottom progress indicator
+  // Handle subtle sticky shadow threshold without re-rendering on every pixel
   useEffect(() => {
     function handleScroll() {
-      if (window.scrollY > 15) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (totalHeight > 0) {
-        setScrollProgress(Math.min(1, Math.max(0, window.scrollY / totalHeight)));
-      }
+      const scrolled = window.scrollY > 15;
+      setIsScrolled((prev) => (prev !== scrolled ? scrolled : prev));
     }
 
     handleScroll();
@@ -180,7 +173,7 @@ export function Header({
           <div className="flex items-center gap-3 shrink-0">
             <Link
               href="/"
-              className="group inline-flex items-center gap-2.5 active:scale-[0.98] transition-transform"
+              className="group inline-flex items-center gap-2.5 active:scale-[0.97] transition-transform duration-160 ease-out"
               aria-label="NorAI Home"
             >
               <BrandLogo size="md" />
@@ -201,9 +194,9 @@ export function Header({
                   href={item.href}
                   variant="unstyled"
                   className={cn(
-                    'relative px-4 py-2 text-sm font-medium no-underline rounded-full transition-all duration-200 font-sans',
+                    'relative px-4 py-2 text-sm font-medium no-underline rounded-full font-sans transition-[color,background-color,transform] duration-160 ease-out active:scale-[0.97]',
                     isActive
-                      ? 'bg-[var(--mint)] text-[var(--pine)] font-semibold shadow-sm'
+                      ? 'bg-[var(--mint)] text-[var(--pine)] font-semibold shadow-xs'
                       : 'text-[var(--pine)]/80 dark:text-[var(--bone)]/80 hover:text-[var(--pine)] dark:hover:text-[var(--bone)] hover:bg-[var(--pine-08)] dark:hover:bg-[var(--bone-20)]',
                   )}
                   aria-current={isActive ? 'page' : undefined}
@@ -220,7 +213,7 @@ export function Header({
             {secondaryCta && (
               <Link
                 href={secondaryCta.href}
-                className="btn btn--ghost text-xs h-10 px-4"
+                className="btn btn--ghost text-xs h-10 px-4 active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out"
               >
                 {secondaryCta.label}
               </Link>
@@ -228,7 +221,7 @@ export function Header({
             {primaryCta && (
               <Link
                 href={primaryCta.href}
-                className="btn btn--solid text-sm h-10 px-5 shadow-sm group"
+                className="btn btn--solid text-sm h-10 px-5 shadow-xs group active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out"
               >
                 <span>{primaryCta.label}</span>
                 <svg
@@ -259,7 +252,7 @@ export function Header({
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-menu"
               onClick={toggleMobileMenu}
-              className="p-2 rounded-full text-[var(--pine)] dark:text-[var(--bone)] hover:bg-[var(--pine-08)] dark:hover:bg-[var(--bone-20)] active:scale-95 transition-transform cursor-pointer pointer-events-auto"
+              className="p-2 rounded-full text-[var(--pine)] dark:text-[var(--bone)] hover:bg-[var(--pine-08)] dark:hover:bg-[var(--bone-20)] active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out cursor-pointer pointer-events-auto"
             >
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 {isMobileMenuOpen ? (
@@ -278,11 +271,11 @@ export function Header({
           </div>
         </nav>
 
-        {/* Audens Bottom Progress Line */}
-        <div
+        {/* Audens Bottom Progress Line (Off-main-thread GPU Motion Transform) */}
+        <motion.div
           className="nav-progress"
           aria-hidden="true"
-          style={{ transform: `scaleX(${scrollProgress})` }}
+          style={{ scaleX: shouldReduceMotion ? scrollYProgress : scaleX }}
         />
       </div>
 
@@ -295,10 +288,10 @@ export function Header({
             role="dialog"
             aria-modal="true"
             aria-label="Mobile Navigation Menu"
-            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -8, scale: 0.98 }}
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -6, scale: 0.96 }}
             animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
-            exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -8, scale: 0.98 }}
-            transition={{ duration: 0.2, ease: [0.65, 0, 0.35, 1] }}
+            exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -6, scale: 0.96 }}
+            transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
             className="pointer-events-auto mx-auto max-w-5xl mt-2 rounded-[22px] border border-[var(--line)] bg-[#f5f5f0]/95 dark:bg-[#072929]/95 backdrop-blur-2xl p-5 shadow-2xl lg:hidden text-[var(--pine)] dark:text-[var(--bone)]"
           >
             <div className="flex flex-col gap-2">
@@ -312,7 +305,7 @@ export function Header({
                     variant="unstyled"
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={cn(
-                      'px-4 py-3 text-base font-medium rounded-xl transition-colors border-b border-[var(--line)]/50',
+                      'px-4 py-3 text-base font-medium rounded-xl border-b border-[var(--line)]/50 transition-[background-color,transform] duration-160 ease-out active:scale-[0.97]',
                       isActive
                         ? 'bg-[var(--mint)] text-[var(--pine)] font-semibold'
                         : 'hover:bg-[var(--pine-08)] dark:hover:bg-[var(--bone-20)]',
@@ -328,7 +321,7 @@ export function Header({
                 <Link
                   href={primaryCta?.href || '/contact'}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="btn btn--mint w-full h-11 text-base shadow-sm"
+                  className="btn btn--solid w-full h-11 text-base shadow-xs active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out"
                 >
                   <span>{primaryCta?.label || 'Book a call'}</span>
                   <svg

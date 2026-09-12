@@ -14,9 +14,10 @@ test.describe('Navigation & Interactive Flows', () => {
 
     const navLinks = [
       { name: 'Capabilities', expectedPath: '/products' },
+      { name: 'Approach', expectedPath: '/services#operating-rituals' },
       { name: 'Deliverables', expectedPath: '/services' },
       { name: 'About', expectedPath: '/team' },
-      { name: 'Contact', expectedPath: '/contact' },
+      { name: 'The Canonical', expectedPath: '/blog' },
     ];
 
     for (const { name, expectedPath } of navLinks) {
@@ -42,6 +43,39 @@ test.describe('Navigation & Interactive Flows', () => {
       });
     }
 
+    test('enforces exact 5 canonical nav links and purges Contact text link and /#mission', async ({
+      page,
+    }) => {
+      const desktopNavLinks = page.locator(
+        'nav[aria-label="Main Navigation"] div.hidden.lg\\:flex.gap-1 a',
+      );
+      await expect(desktopNavLinks).toHaveCount(5);
+
+      const navTexts = await desktopNavLinks.allTextContents();
+      expect(navTexts.map((t) => t.trim())).toEqual([
+        'Capabilities',
+        'Approach',
+        'Deliverables',
+        'About',
+        'The Canonical',
+      ]);
+
+      // Assert redundant contact text link is gone from nav list
+      const contactTextLink = desktopNavLinks.getByRole('link', { name: 'Contact', exact: true });
+      await expect(contactTextLink).toHaveCount(0);
+
+      // Assert primary CTA button is present and links to /contact
+      const primaryCta = page
+        .locator('header[data-testid="header-organism"]')
+        .getByRole('link', { name: /Book a call/i });
+      await expect(primaryCta).toBeVisible();
+      await expect(primaryCta).toHaveAttribute('href', '/contact');
+
+      // Assert no dead /#mission anchor anywhere on page
+      const deadMissionAnchors = page.locator('a[href="/#mission"]');
+      await expect(deadMissionAnchors).toHaveCount(0);
+    });
+
     test('verifies 308 permanent redirects for pruned legacy routes', async ({ page }) => {
       // /about -> /team
       await page.goto('/about');
@@ -59,16 +93,16 @@ test.describe('Navigation & Interactive Flows', () => {
       await expect(page.locator('h1')).toBeVisible();
     });
 
-    test('resets scroll position to top when navigating from scrolled home page', async ({
+    test('resets scroll position to top when navigating from scrolled home page via Book a call CTA', async ({
       page,
     }) => {
       await page.evaluate(() => window.scrollTo(0, 3000));
       await page.waitForTimeout(200);
 
-      const contactLink = page
-        .locator('nav[aria-label="Main Navigation"]')
-        .getByRole('link', { name: 'Contact', exact: true });
-      await contactLink.click();
+      const bookCallBtn = page
+        .locator('header[data-testid="header-organism"]')
+        .getByRole('link', { name: /Book a call/i });
+      await bookCallBtn.click();
       await expect(page).toHaveURL(/\/contact/);
 
       const scrollY = await page.evaluate(() => window.scrollY);

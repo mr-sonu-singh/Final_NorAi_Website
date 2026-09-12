@@ -33,14 +33,14 @@ export function VignetteResumeScore() {
   const strokeDashoffset = circumference - (SAMPLE_CANDIDATE.score / 100) * circumference;
 
   return (
-    <div className="w-full rounded-xl bg-[#090C13] border border-white/10 overflow-hidden shadow-2xl transition-all duration-200 hover:border-white/20 select-none">
+    <div className="w-full rounded-xl bg-[var(--forest)] border border-white/10 overflow-hidden shadow-2xl transition-all duration-200 hover:border-white/20 select-none">
       {/* Window Chrome Header */}
-      <div className="flex items-center justify-between px-3.5 py-2.5 border-b border-white/8 bg-[#0B0E17]/90 backdrop-blur-sm">
+      <div className="flex items-center justify-between px-3.5 py-2.5 border-b border-white/8 bg-[var(--pine)]/90 backdrop-blur-sm">
         <div className="flex items-center gap-1.5">
           <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]/80" aria-hidden="true" />
           <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]/80" aria-hidden="true" />
           <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]/80" aria-hidden="true" />
-          <span className="ml-2 font-mono text-[10px] uppercase tracking-wider text-text-muted">
+          <span className="ml-2 font-mono text-[10px] uppercase tracking-wider text-white/70">
             APPLICANT REVIEW · SENIOR DEVELOPER
           </span>
         </div>
@@ -59,11 +59,11 @@ export function VignetteResumeScore() {
               <span className="font-semibold text-sm sm:text-base text-white truncate">
                 {SAMPLE_CANDIDATE.name}
               </span>
-              <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-white/10 text-text-secondary">
+              <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-white/10 text-white/80">
                 {SAMPLE_CANDIDATE.experience}
               </span>
             </div>
-            <p className="text-xs text-text-muted">{SAMPLE_CANDIDATE.role}</p>
+            <p className="text-xs text-white/70">{SAMPLE_CANDIDATE.role}</p>
           </div>
 
           {/* Saturated Circular Match Gauge */}
@@ -96,7 +96,7 @@ export function VignetteResumeScore() {
               </span>
             </div>
             <div className="hidden sm:block text-right">
-              <span className="block font-mono text-[10px] uppercase text-text-muted">Confidence</span>
+              <span className="block font-mono text-[10px] uppercase text-white/60">Confidence</span>
               <span className="text-xs font-semibold text-[#2EFCC2]">High Fit</span>
             </div>
           </div>
@@ -104,7 +104,7 @@ export function VignetteResumeScore() {
 
         {/* Why It Matched (Visual Chips) */}
         <div className="space-y-1.5">
-          <span className="font-mono text-[10px] uppercase tracking-wider text-text-muted">
+          <span className="font-mono text-[10px] uppercase tracking-wider text-white/70">
             Key Qualifications Verified
           </span>
           <div className="flex flex-col gap-1.5">
@@ -116,14 +116,14 @@ export function VignetteResumeScore() {
                 className={`w-full flex items-center justify-between text-left px-2.5 py-1.5 rounded-md border text-xs font-sans transition-all duration-150 active:scale-[0.98] ${
                   activeChip === idx
                     ? 'bg-[#2EFCC2]/10 border-[#2EFCC2]/40 text-[#2EFCC2]'
-                    : 'bg-white/[0.02] border-white/5 text-text-secondary hover:border-white/15 hover:text-white'
+                    : 'bg-white/[0.02] border-white/5 text-white/80 hover:border-white/15 hover:text-white'
                 }`}
               >
                 <div className="flex items-center gap-2 min-w-0">
                   <Check className="w-3.5 h-3.5 text-[#2EFCC2] shrink-0" />
                   <span className="truncate">{chip}</span>
                 </div>
-                <span className="font-mono text-[10px] text-text-muted ml-2 shrink-0">
+                <span className="font-mono text-[10px] text-white/60 ml-2 shrink-0">
                   {idx === 0 ? '100%' : idx === 1 ? '98%' : '94%'}
                 </span>
               </button>
@@ -147,7 +147,7 @@ export function VignetteResumeScore() {
         </div>
 
         {/* Plain-English Trust Note */}
-        <div className="flex items-center justify-center gap-1.5 pt-1 text-[11px] text-text-muted border-t border-white/5">
+        <div className="flex items-center justify-center gap-1.5 pt-1 text-[11px] text-white/70 border-t border-white/5">
           <ShieldCheck className="w-3.5 h-3.5 text-[#2EFCC2]" />
           <span>🔒 Resumes deleted automatically after review. Zero data retention.</span>
         </div>

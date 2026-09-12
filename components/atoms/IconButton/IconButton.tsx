@@ -9,11 +9,11 @@ import { IconButtonProps } from './IconButton.types';
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    'bg-terra-500 text-white shadow-accent hover:bg-terra-600 hover:-translate-y-px active:translate-y-0 active:scale-[0.98]',
+    'bg-[var(--pine)] text-[var(--bone)] shadow-sm hover:bg-[var(--forest)] hover:-translate-y-px active:translate-y-0 active:scale-[0.98]',
   secondary:
-    'bg-transparent border border-line-strong text-ink-primary shadow-sm hover:border-line-accent hover:text-terra-600 hover:bg-terra-50 active:scale-[0.98]',
-  ghost: 'bg-transparent text-ink-body hover:bg-terra-50 hover:text-terra-600 active:scale-[0.98]',
-  dark: 'bg-terra-700 text-white shadow-md hover:bg-terra-600 active:scale-[0.98]',
+    'bg-transparent border border-line-strong text-ink-primary shadow-xs hover:border-line-accent hover:text-[var(--mint-ink)] hover:bg-[rgba(6,132,90,0.06)] active:scale-[0.98]',
+  ghost: 'bg-transparent text-ink-body hover:bg-[rgba(7,41,41,0.06)] hover:text-ink-primary active:scale-[0.98]',
+  dark: 'bg-[var(--pine)] text-[var(--bone)] shadow-sm hover:bg-[var(--forest)] active:scale-[0.98]',
   danger: 'bg-error-600 text-white hover:bg-error-600/90 active:scale-[0.98]',
 };
 

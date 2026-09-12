@@ -159,7 +159,7 @@ export function ThreeDimensionsRail() {
                         {dim.speaker}
                       </span>
                       {/* Animated 3-dot typing indicator */}
-                      <span className="typing-dots text-[var(--mint)]" aria-label="Typing">
+                      <span className="typing-dots text-[var(--mint)]" role="status" aria-label="Typing">
                         <i />
                         <i />
                         <i />

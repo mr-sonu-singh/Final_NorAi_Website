@@ -230,7 +230,7 @@ export function HeroStudioWorkbench() {
             <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E] border border-[#DEA123]/60 shadow-[0_0_8px_rgba(255,189,46,0.35)]" />
             <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F] border border-[#1AAB29]/60 shadow-[0_0_8px_rgba(39,201,63,0.35)]" />
           </div>
-          <span className="font-mono text-xs font-semibold text-text-primary tracking-tight whitespace-nowrap">
+          <span className="font-mono text-xs font-semibold text-white tracking-tight whitespace-nowrap">
             NorAI Studio
           </span>
         </div>
@@ -263,7 +263,7 @@ export function HeroStudioWorkbench() {
                   'relative flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg font-medium transition-[transform,color] duration-150 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2EFCC2] z-10 cursor-pointer active:scale-[0.97]',
                   isSelected
                     ? 'text-white font-semibold'
-                    : 'text-text-secondary hover:text-text-primary hover:bg-white/[0.04]',
+                    : 'text-white/75 hover:text-white hover:bg-white/[0.04]',
                 )}
               >
                 {isSelected && (
@@ -309,8 +309,8 @@ export function HeroStudioWorkbench() {
             {/* Subheader */}
             <div className="flex items-center justify-between px-4 sm:px-5 py-2.5 bg-[#07080D]/70 border-b border-white/[0.08] text-xs">
               <div className="flex items-center gap-2">
-                <span className="font-semibold text-text-primary">AI Resume Shortlister</span>
-                <span className="text-[11px] font-mono text-text-secondary hidden sm:inline">
+                <span className="font-semibold text-white">AI Resume Shortlister</span>
+                <span className="text-[11px] font-mono text-white/80 hidden sm:inline">
                   · Verified Vector Scoring · Top Match First
                 </span>
               </div>
@@ -323,7 +323,7 @@ export function HeroStudioWorkbench() {
                     'relative px-2.5 py-0.5 rounded-md text-[11px] font-medium transition-colors z-10 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#2EFCC2]',
                     resumeSubTab === 'scorecard'
                       ? 'text-[#2EFCC2] font-semibold'
-                      : 'text-text-secondary hover:text-text-primary',
+                      : 'text-white/75 hover:text-white',
                   )}
                 >
                   {resumeSubTab === 'scorecard' && (
@@ -346,7 +346,7 @@ export function HeroStudioWorkbench() {
                     'relative px-2.5 py-0.5 rounded-md text-[11px] font-medium transition-colors z-10 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#2EFCC2]',
                     resumeSubTab === 'highlights'
                       ? 'text-[#2EFCC2] font-semibold'
-                      : 'text-text-secondary hover:text-text-primary',
+                      : 'text-white/75 hover:text-white',
                   )}
                 >
                   {resumeSubTab === 'highlights' && (
@@ -386,7 +386,7 @@ export function HeroStudioWorkbench() {
                     >
                       <div className="space-y-1 min-w-0">
                         <div className="flex items-center gap-2.5 flex-wrap">
-                          <span className="font-sans font-semibold text-sm text-text-primary">
+                          <span className="font-sans font-semibold text-sm text-white">
                             {cand.name}
                           </span>
                           <span
@@ -400,8 +400,8 @@ export function HeroStudioWorkbench() {
                             {cand.score}% Match
                           </span>
                         </div>
-                        <p className="text-xs text-text-secondary leading-snug truncate">
-                          {cand.role} · <span className="font-mono text-text-secondary font-medium">{cand.experience}</span>
+                        <p className="text-xs text-white/80 leading-snug truncate">
+                          {cand.role} · <span className="font-mono text-white/80 font-medium">{cand.experience}</span>
                         </p>
                       </div>
 
@@ -426,7 +426,7 @@ export function HeroStudioWorkbench() {
               {resumeSubTab === 'scorecard' ? (
                 <div className="rounded-xl bg-[#0D1017] border border-white/[0.08] p-4 space-y-3">
                   <div className="flex items-center justify-between text-xs">
-                    <div className="flex items-center gap-2 font-mono font-medium text-text-primary">
+                    <div className="flex items-center gap-2 font-mono font-medium text-white">
                       <Sparkles className="w-3.5 h-3.5 text-[#2EFCC2]" />
                       <span>Hiring Recommendation Rationale</span>
                     </div>
@@ -442,7 +442,7 @@ export function HeroStudioWorkbench() {
                     </span>
                   </div>
 
-                  <p className="text-xs text-text-secondary leading-relaxed">
+                  <p className="text-xs text-white/80 leading-relaxed">
                     {selectedCandidate.rationale}
                   </p>
 
@@ -450,7 +450,7 @@ export function HeroStudioWorkbench() {
                     {selectedCandidate.skills.map((skill, idx) => (
                       <span
                         key={idx}
-                        className="px-2.5 py-1 rounded-lg bg-[#141824] text-[11px] font-medium text-text-primary border border-white/10"
+                        className="px-2.5 py-1 rounded-lg bg-[#141824] text-[11px] font-medium text-white border border-white/10"
                       >
                         {skill}
                       </span>
@@ -464,12 +464,12 @@ export function HeroStudioWorkbench() {
                       <Check className="w-3.5 h-3.5" />
                       <span>Key Verified Achievements</span>
                     </div>
-                    <span className="font-mono text-xs text-text-muted">
+                    <span className="font-mono text-xs text-white/70">
                       {selectedCandidate.name}
                     </span>
                   </div>
 
-                  <ul className="space-y-2 text-xs text-text-secondary">
+                  <ul className="space-y-2 text-xs text-white/80">
                     {selectedCandidate.highlights.map((item, idx) => (
                       <li key={idx} className="flex items-start gap-2">
                         <span className="text-[#2EFCC2] shrink-0 mt-0.5">✓</span>
@@ -483,7 +483,7 @@ export function HeroStudioWorkbench() {
 
             {/* Footer Bar */}
             <div className="flex items-center justify-between px-4 sm:px-5 py-2.5 bg-[#07080D]/70 border-t border-white/[0.08] text-xs">
-              <div className="text-text-secondary flex items-center gap-2">
+              <div className="text-white/80 flex items-center gap-2">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#2EFCC2]" />
                 <span>Screened in seconds · Resumes deleted immediately after review</span>
               </div>
@@ -515,7 +515,7 @@ export function HeroStudioWorkbench() {
             {/* Subheader */}
             <div className="flex items-center justify-between px-4 sm:px-5 py-2.5 bg-[#07080D]/70 border-b border-white/[0.08] text-xs">
               <div className="flex items-center gap-2">
-                <span className="font-semibold text-text-primary">AI Course Note-Taker</span>
+                <span className="font-semibold text-white">AI Course Note-Taker</span>
                 <span className="text-[11px] font-mono text-[#D8B4FE] bg-[#D8B4FE]/10 px-2.5 py-0.5 rounded-full border border-[#D8B4FE]/20">
                   100% Free for Students
                 </span>
@@ -540,10 +540,10 @@ export function HeroStudioWorkbench() {
                       )}
                     </button>
                     <div>
-                      <p className="text-xs font-semibold text-text-primary">
+                      <p className="text-xs font-semibold text-white">
                         Physics 101: Energy Conservation &amp; Thermodynamics
                       </p>
-                      <p className="text-[11px] font-mono text-text-secondary">
+                      <p className="text-[11px] font-mono text-white/80">
                         08:42 / 54:00 · 1.5x Speed Clean Synthesis
                       </p>
                     </div>
@@ -574,13 +574,13 @@ export function HeroStudioWorkbench() {
                     </span>
                     <span className="text-[10px] font-mono text-[#2EFCC2]">Verified ✓</span>
                   </div>
-                  <div className="p-2.5 rounded-lg bg-[#141824] text-text-primary border border-white/10 flex items-center justify-center min-h-[46px]">
+                  <div className="p-2.5 rounded-lg bg-[#141824] text-white border border-white/10 flex items-center justify-center min-h-[46px]">
                     <MathRenderer
                       math="\Delta U = Q - W"
                       displayMode={false}
                     />
                   </div>
-                  <div className="text-[11px] text-text-secondary leading-relaxed">
+                  <div className="text-[11px] text-white/80 leading-relaxed">
                     <MathText text="First Law of Thermodynamics: Internal energy change ($\Delta U$) equals heat added ($Q$) minus work done ($W$)." />
                   </div>
                 </div>
@@ -594,7 +594,7 @@ export function HeroStudioWorkbench() {
                   className="text-left rounded-xl bg-[#0D1017] border border-[#D8B4FE]/30 hover:border-[#D8B4FE]/60 p-3.5 space-y-2 transition-[transform,background-color,border-color] duration-150 ease-out hover:bg-[#111422] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D8B4FE] active:scale-[0.97]"
                 >
                   <div className="flex items-center justify-between text-xs">
-                    <span className="font-mono font-semibold text-text-primary">
+                    <span className="font-mono font-semibold text-white">
                       Interactive Study Card
                     </span>
                     <span className="text-[10px] font-mono text-[#D8B4FE] bg-[#D8B4FE]/10 px-2 py-0.5 rounded-full border border-[#D8B4FE]/20">
@@ -614,7 +614,7 @@ export function HeroStudioWorkbench() {
                         <span className="text-[10px] font-mono text-[#2EFCC2] uppercase font-bold">
                           Answer
                         </span>
-                        <p className="text-xs text-text-primary font-medium leading-snug">
+                        <p className="text-xs text-white font-medium leading-snug">
                           <MathText text="$Q$ represents the net heat energy transferred into the thermodynamic system." />
                         </p>
                       </motion.div>
@@ -627,10 +627,10 @@ export function HeroStudioWorkbench() {
                         transition={{ duration: 0.2 }}
                         className="space-y-1 min-h-[46px] flex flex-col justify-center"
                       >
-                        <span className="text-[10px] font-mono text-text-secondary uppercase">
+                        <span className="text-[10px] font-mono text-white/80 uppercase">
                           Question (Card #01)
                         </span>
-                        <p className="text-xs text-text-primary font-medium leading-snug">
+                        <p className="text-xs text-white font-medium leading-snug">
                           In the First Law formula, what physical quantity does $Q$ denote?
                         </p>
                       </motion.div>
@@ -642,7 +642,7 @@ export function HeroStudioWorkbench() {
 
             {/* Footer Bar */}
             <div className="flex items-center justify-between px-4 sm:px-5 py-2.5 bg-[#07080D]/70 border-t border-white/[0.08] text-xs">
-              <div className="text-text-secondary flex items-center gap-2">
+              <div className="text-white/80 flex items-center gap-2">
                 <GraduationCap className="w-3.5 h-3.5 text-[#D8B4FE]" />
                 <span>Turns 2-hour lecture audio &amp; slides into structured notes &amp; flashcards</span>
               </div>
@@ -674,8 +674,8 @@ export function HeroStudioWorkbench() {
             {/* Subheader */}
             <div className="flex items-center justify-between px-4 sm:px-5 py-2.5 bg-[#07080D]/70 border-b border-white/[0.08] text-xs">
               <div className="flex items-center gap-2">
-                <span className="font-semibold text-text-primary">Community Chat Digest</span>
-                <span className="text-[11px] font-mono text-text-muted hidden sm:inline">
+                <span className="font-semibold text-white">Community Chat Digest</span>
+                <span className="text-[11px] font-mono text-white/70 hidden sm:inline">
                   · 4,820 unread messages ➔ 3 key decisions
                 </span>
               </div>
@@ -696,7 +696,7 @@ export function HeroStudioWorkbench() {
                         'relative px-2.5 py-0.5 rounded-md text-[11px] font-medium capitalize transition-colors z-10 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#FFA07A]',
                         isPlatActive
                           ? 'text-[#FFA07A] font-semibold'
-                          : 'text-text-secondary hover:text-text-primary',
+                          : 'text-white/75 hover:text-white',
                       )}
                     >
                       {isPlatActive && (
@@ -717,15 +717,15 @@ export function HeroStudioWorkbench() {
               {/* Tangible Outcome Metrics Bar */}
               <div className="grid grid-cols-3 gap-2.5 text-left">
                 <div className="p-3 rounded-xl bg-[#0D1017] border border-white/[0.08]">
-                  <span className="text-[10px] font-mono text-text-secondary block">
+                  <span className="text-[10px] font-mono text-white/80 block">
                     Messages Condensed
                   </span>
-                  <span className="font-mono tabular-nums text-sm sm:text-base text-text-primary font-bold">
+                  <span className="font-mono tabular-nums text-sm sm:text-base text-white font-bold">
                     4,820 ➔ 3 Briefs
                   </span>
                 </div>
                 <div className="p-3 rounded-xl bg-[#0D1017] border border-white/[0.08]">
-                  <span className="text-[10px] font-mono text-text-secondary block">
+                  <span className="text-[10px] font-mono text-white/80 block">
                     Time Saved
                   </span>
                   <span className="font-mono tabular-nums text-sm sm:text-base text-[#FFA07A] font-bold">
@@ -733,7 +733,7 @@ export function HeroStudioWorkbench() {
                   </span>
                 </div>
                 <div className="p-3 rounded-xl bg-[#0D1017] border border-white/[0.08]">
-                  <span className="text-[10px] font-mono text-text-secondary block">
+                  <span className="text-[10px] font-mono text-white/80 block">
                     Action Items Identified
                   </span>
                   <span className="font-mono tabular-nums text-sm sm:text-base text-[#2EFCC2] font-bold">
@@ -749,10 +749,10 @@ export function HeroStudioWorkbench() {
                     LAUNCHED
                   </span>
                   <div className="min-w-0 flex-1">
-                    <p className="text-xs text-text-primary font-medium">
+                    <p className="text-xs text-white font-medium">
                       Payment gateway upgrade deployed successfully with zero customer downtime.
                     </p>
-                    <p className="text-[11px] text-text-muted mt-0.5">
+                    <p className="text-[11px] text-white/70 mt-0.5">
                       All webhooks verified · 100% operational
                     </p>
                   </div>
@@ -763,10 +763,10 @@ export function HeroStudioWorkbench() {
                     RESOLVED
                   </span>
                   <div className="min-w-0 flex-1">
-                    <p className="text-xs text-text-primary font-medium">
+                    <p className="text-xs text-white font-medium">
                       Mobile checkout bug resolved by core team; push update dispatched to users.
                     </p>
-                    <p className="text-[11px] text-text-muted mt-0.5">
+                    <p className="text-[11px] text-white/70 mt-0.5">
                       Fixed in 18 minutes · 0 error reports since patch
                     </p>
                   </div>
@@ -777,10 +777,10 @@ export function HeroStudioWorkbench() {
                     ASSIGNED
                   </span>
                   <div className="min-w-0 flex-1">
-                    <p className="text-xs text-text-primary font-medium">
+                    <p className="text-xs text-white font-medium">
                       Documentation and API reference review assigned to team leads for Friday release.
                     </p>
-                    <p className="text-[11px] text-text-muted mt-0.5">
+                    <p className="text-[11px] text-white/70 mt-0.5">
                       Assigned to @infra-team &amp; @design
                     </p>
                   </div>
@@ -790,7 +790,7 @@ export function HeroStudioWorkbench() {
 
             {/* Footer Bar */}
             <div className="flex items-center justify-between px-4 sm:px-5 py-2.5 bg-[#07080D]/70 border-t border-white/[0.08] text-xs">
-              <div className="text-text-secondary flex items-center gap-2">
+              <div className="text-white/80 flex items-center gap-2">
                 <Clock className="w-3.5 h-3.5 text-[#FFA07A]" />
                 <span>Read daily team updates in 90 seconds instead of an hour</span>
               </div>
@@ -822,7 +822,7 @@ export function HeroStudioWorkbench() {
             {/* Subheader */}
             <div className="flex items-center justify-between px-4 sm:px-5 py-2.5 bg-[#07080D]/70 border-b border-white/[0.08] text-xs">
               <div className="flex items-center gap-2">
-                <span className="font-semibold text-text-primary">Smart Dainik News</span>
+                <span className="font-semibold text-white">Smart Dainik News</span>
                 <span className="text-[11px] font-mono text-[#34D399] bg-[#34D399]/10 px-2 py-0.5 rounded-full border border-[#34D399]/20">
                   Verified Regional Gazette Alerts
                 </span>
@@ -840,7 +840,7 @@ export function HeroStudioWorkbench() {
                     'relative px-2.5 py-0.5 rounded-md text-[11px] font-medium transition-colors z-10 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#34D399]',
                     newsLang === 'hi'
                       ? 'text-[#34D399] font-semibold'
-                      : 'text-text-secondary hover:text-text-primary',
+                      : 'text-white/75 hover:text-white',
                   )}
                 >
                   {newsLang === 'hi' && (
@@ -866,7 +866,7 @@ export function HeroStudioWorkbench() {
                     'relative px-2.5 py-0.5 rounded-md text-[11px] font-medium transition-colors z-10 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#34D399]',
                     newsLang === 'en'
                       ? 'text-[#34D399] font-semibold'
-                      : 'text-text-secondary hover:text-text-primary',
+                      : 'text-white/75 hover:text-white',
                   )}
                 >
                   {newsLang === 'en' && (
@@ -900,12 +900,12 @@ export function HeroStudioWorkbench() {
                 </div>
 
                 <div>
-                  <h4 className="font-sans font-semibold text-sm sm:text-base text-text-primary">
+                  <h4 className="font-sans font-semibold text-sm sm:text-base text-white">
                     {newsLang === 'hi'
                       ? 'सहायक समीक्षा अधिकारी (RO/ARO) भर्ती २०२६ — ४११ पद'
                       : 'Assistant Review Officer (RO/ARO) Recruitment 2026 — 411 Posts'}
                   </h4>
-                  <p className="text-xs text-text-secondary mt-1 leading-relaxed">
+                  <p className="text-xs text-white/80 mt-1 leading-relaxed">
                     {newsLang === 'hi'
                       ? 'आयु सीमा २१-४० वर्ष, स्नातक डिग्री अनिवार्य, आवेदन की अंतिम तिथि १५ सितंबर २०२६। ओ-लेवल प्रमाण पत्र अनिवार्य।'
                       : 'Age limit 21–40 years, Graduate degree required, Final application deadline Sep 15, 2026. O-Level Certificate mandatory.'}
@@ -914,13 +914,13 @@ export function HeroStudioWorkbench() {
 
                 {/* Eligibility Badges */}
                 <div className="flex flex-wrap items-center gap-2 pt-1">
-                  <span className="px-2.5 py-1 rounded-lg bg-[#141824] text-[11px] font-mono text-text-primary border border-white/10">
+                  <span className="px-2.5 py-1 rounded-lg bg-[#141824] text-[11px] font-mono text-white border border-white/10">
                     🎓 {newsLang === 'hi' ? 'स्नातक डिग्री' : 'Graduate Degree'}
                   </span>
-                  <span className="px-2.5 py-1 rounded-lg bg-[#141824] text-[11px] font-mono text-text-primary border border-white/10">
+                  <span className="px-2.5 py-1 rounded-lg bg-[#141824] text-[11px] font-mono text-white border border-white/10">
                     📅 {newsLang === 'hi' ? 'आयु: २१-४० वर्ष' : 'Age: 21–40 Yrs'}
                   </span>
-                  <span className="px-2.5 py-1 rounded-lg bg-[#141824] text-[11px] font-mono text-text-primary border border-white/10">
+                  <span className="px-2.5 py-1 rounded-lg bg-[#141824] text-[11px] font-mono text-white border border-white/10">
                     💰 {newsLang === 'hi' ? 'वेतन लेवल-७ (₹४४,९००+)' : 'Pay Level-7 (₹44,900+)'}
                   </span>
                 </div>
@@ -930,7 +930,7 @@ export function HeroStudioWorkbench() {
                   <div className="flex items-center gap-1.5 font-mono text-[11px] text-[#34D399]">
                     <span>{newsLang === 'hi' ? 'आवेदन पोर्टल सत्यापित ✓ (uppsc.up.nic.in)' : 'Official Apply Portal Verified ✓'}</span>
                   </div>
-                  <span className="text-[11px] font-mono text-text-muted">
+                  <span className="text-[11px] font-mono text-white/70">
                     {newsLang === 'hi' ? 'अंतिम तिथि: ४ दिन, १२ घंटे शेष' : 'Deadline: 4 days, 12 hours remaining'}
                   </span>
                 </div>
@@ -939,7 +939,7 @@ export function HeroStudioWorkbench() {
 
             {/* Footer Bar */}
             <div className="flex items-center justify-between px-4 sm:px-5 py-2.5 bg-[#07080D]/70 border-t border-white/[0.08] text-xs">
-              <div className="text-text-secondary flex items-center gap-2">
+              <div className="text-white/80 flex items-center gap-2">
                 <Briefcase className="w-3.5 h-3.5 text-[#34D399]" />
                 <span>Verified regional employment alerts with zero fake news or broken links</span>
               </div>

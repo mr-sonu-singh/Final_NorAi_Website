@@ -28,7 +28,7 @@ export const DEFAULT_FOOTER_COLUMNS: FooterColumn[] = [
   {
     title: 'Company',
     links: [
-      { label: 'Approach', href: '/#mission' },
+      { label: 'Approach', href: '/services#operating-rituals' },
       { label: 'Deliverables', href: '/services' },
       { label: 'Team & Story', href: '/team' },
       { label: 'The Canonical', href: '/blog' },

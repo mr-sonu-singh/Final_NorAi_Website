@@ -160,7 +160,7 @@ export default function MissionPage() {
                   <span className="font-mono text-xs font-semibold text-[var(--mint-ink)] uppercase mt-0.5 block">
                     {fact.label}
                   </span>
-                  <p className="text-[11px] text-[var(--pine)]/65 mt-1 leading-tight">{fact.detail}</p>
+                  <p className="text-[11px] text-[var(--pine)]/75 mt-1 leading-tight">{fact.detail}</p>
                 </div>
               ))}
             </div>
@@ -183,7 +183,7 @@ export default function MissionPage() {
       <section className="py-16 sm:py-24 border-b border-[var(--line)]">
         <Container size="wide" className="max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="max-w-2xl mb-12 text-left space-y-2">
-            <span className="font-mono text-xs text-[var(--pine)]/60 uppercase tracking-wider font-semibold block">
+            <span className="font-mono text-xs text-[var(--mint-ink)] uppercase tracking-wider font-bold block">
               THREE-TIER COMMUNITY ARCHITECTURE
             </span>
             <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-[var(--pine)] tracking-tight">
@@ -204,7 +204,7 @@ export default function MissionPage() {
                 >
                   <div className="space-y-4">
                     <div className="flex items-center justify-between border-b border-[var(--line)] pb-3">
-                      <span className="font-mono text-xs font-bold text-[var(--pine)]/60">
+                      <span className="font-mono text-xs font-bold text-[var(--pine)]/85">
                         {tier.tier}
                       </span>
                       <span className="font-mono text-[10px] font-semibold px-2.5 py-0.5 rounded-full bg-[var(--pine-08)] text-[var(--pine)]">
@@ -252,16 +252,16 @@ export default function MissionPage() {
       <section className="py-16 sm:py-24">
         <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="gradient-card max-w-4xl mx-auto text-center">
-            <div className="gradient-card__inner p-8 sm:p-12 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--mint)]/20 border border-[var(--mint-ink)]/20 text-xs font-mono font-bold text-[var(--mint-ink)] dark:text-[var(--mint)] uppercase tracking-wider">
+            <div className="gradient-card__inner p-8 sm:p-12 space-y-6 bg-[#fffdf7] text-[var(--pine)]">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--pine-08)] border border-[var(--line)] text-xs font-mono font-bold text-[var(--mint-ink)] uppercase tracking-wider">
                 100% Free Campus &amp; Village Workshops
               </div>
 
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--pine)] dark:text-[var(--bone)] tracking-tight leading-tight">
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--pine)] tracking-tight leading-tight">
                 Invite NorAI to your district.
               </h2>
 
-              <p className="text-base sm:text-lg text-[var(--pine)]/75 dark:text-[var(--bone-70)] max-w-2xl mx-auto leading-relaxed font-normal">
+              <p className="text-base sm:text-lg text-[var(--pine)]/75 max-w-2xl mx-auto leading-relaxed font-normal">
                 Whether you are a university dean, youth club coordinator, or local district official, we bring
                 the syllabus, the hardware, and the engineers to you at ₹0 cost.
               </p>
@@ -269,13 +269,13 @@ export default function MissionPage() {
               <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
                   href="/contact?track=mission"
-                  className="btn btn--solid w-full sm:w-auto h-12 px-7 text-sm font-semibold shadow-md"
+                  className="btn btn--solid w-full sm:w-auto h-12 px-7 text-sm font-semibold shadow-xs active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out"
                 >
                   <span>Request a Campus Workshop &rarr;</span>
                 </Link>
                 <Link
                   href="/products"
-                  className="btn btn--ghost w-full sm:w-auto h-12 px-6 text-sm font-medium"
+                  className="btn btn--ghost w-full sm:w-auto h-12 px-6 text-sm font-medium text-[var(--pine)] hover:bg-[var(--pine-08)] active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out"
                 >
                   <span>Explore 4 live tools</span>
                 </Link>

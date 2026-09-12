@@ -25,13 +25,13 @@
   --pine-08: rgba(7, 41, 41, 0.08);
 
   /* Bone / Dark Mode Opacity Gradients */
-  --bone-70: rgba(235, 234, 225, 0.7);
-  --bone-50: rgba(235, 234, 225, 0.5);
+  --bone-70: rgba(235, 234, 225, 0.75);
+  --bone-50: rgba(235, 234, 225, 0.72);
   --bone-20: rgba(235, 234, 225, 0.2);
 
   /* High-Voltage Jewel Tokens */
   --mint: #1ef4b4;
-  --mint-ink: #06845a;
+  --mint-ink: #046a47;
   --lavender: #c6b5ff;
   --butter: #ffe9b5;
   --coral: #ff7755;
@@ -54,80 +54,80 @@
   --ease-bounce: cubic-bezier(0.33, 1.4, 0.6, 1);
 
   /* ==========================================================================
-     BASE SURFACES (Deep Obsidian Architecture - Zero Muddy Grays)
+     BASE SURFACES (Canonical Audens Pine & Porcelain Architecture)
      ========================================================================== */
-  --surface-canvas: #07080d; /* Pitch obsidian with 1% midnight undertone */
-  --surface-panel: #0d1017; /* Container cards and section enclosures */
-  --surface-panel-elevated: #141824; /* Modals, flyouts, and active tab states */
-  --surface-panel-subtle: #11141e; /* Inset wells, preview boxes, and code tracks */
-  --surface-hover: #191e2e; /* Interactive item hover state */
-  --surface-active: #20273a; /* Pressed and active button states */
+  --surface-canvas: var(--porcelain);
+  --surface-panel: var(--surface);
+  --surface-panel-elevated: var(--surface);
+  --surface-panel-subtle: rgba(7, 41, 41, 0.04);
+  --surface-hover: rgba(7, 41, 41, 0.08);
+  --surface-active: rgba(7, 41, 41, 0.12);
 
   /* ==========================================================================
      TYPOGRAPHY & CONTENT (High-Contrast White & Slate)
      ========================================================================== */
-  --text-primary: #f8fafc; /* 98% Crisp white for headings & key data (17.5:1 contrast) */
-  --text-secondary: #94a3b8; /* Neutral slate for body text & explanations (7.2:1 contrast) */
-  --text-muted: #738294; /* Calibrated slate: 4.85:1 on #07080D, 4.62:1 on #0D1017 (WCAG AA Compliant) */
-  --text-inverse: #07080d; /* Dark text when placed on solid bright jewel buttons */
+  --text-primary: var(--pine);
+  --text-secondary: var(--pine-70);
+  --text-muted: var(--muted);
+  --text-inverse: var(--bone);
 
   /* ==========================================================================
      HAIRLINE BORDERS & LASER SHEENS
      ========================================================================== */
-  --border-subtle: rgba(255, 255, 255, 0.08); /* 1px crisp resting card boundary */
-  --border-strong: rgba(255, 255, 255, 0.16); /* Interactive controls & input fields */
-  --border-highlight: rgba(255, 255, 255, 0.32); /* Focused, active, and hovered cards */
+  --border-subtle: rgba(7, 41, 41, 0.08);
+  --border-strong: rgba(7, 41, 41, 0.16);
+  --border-highlight: rgba(7, 41, 41, 0.32);
   --border-hairline: var(--border-subtle);
 
   /* ==========================================================================
      CALIBRATED HIGH-VOLTAGE JEWEL TOKENS (Each Entity Owns Its Color)
      ========================================================================== */
-  --jewel-mint: #2efcc2; /* Resume Shortlister & Velocity (13.8:1 - AAA) */
-  --jewel-mint-soft: rgba(46, 252, 194, 0.12);
+  --jewel-mint: var(--mint);
+  --jewel-mint-soft: rgba(30, 244, 180, 0.14);
 
-  --jewel-lavender: #d8b4fe; /* Course Note-Taker & LaTeX (9.8:1 - AAA) */
-  --jewel-lavender-soft: rgba(216, 180, 254, 0.12);
+  --jewel-lavender: var(--lavender);
+  --jewel-lavender-soft: rgba(198, 181, 255, 0.14);
 
-  --jewel-coral: #ffa07a; /* Community Chat Digest (8.5:1 - AAA) */
-  --jewel-coral-soft: rgba(255, 160, 122, 0.12);
+  --jewel-coral: var(--coral);
+  --jewel-coral-soft: rgba(255, 119, 85, 0.14);
 
-  --jewel-emerald: #34d399; /* Smart Dainik Regional News (9.4:1 - AAA) */
+  --jewel-emerald: #34d399;
   --jewel-emerald-soft: rgba(52, 211, 153, 0.12);
 
-  --jewel-amber: #fbbf24; /* Enterprise Solutions & Private Infra (11.2:1 - AAA) */
-  --jewel-amber-soft: rgba(251, 191, 36, 0.12);
+  --jewel-amber: var(--butter);
+  --jewel-amber-soft: rgba(255, 233, 181, 0.14);
 
-  --jewel-pink: #f472b6; /* Uttar Pradesh Grassroots Mission (7.6:1 - AA) */
-  --jewel-pink-soft: rgba(244, 114, 182, 0.12);
+  --jewel-pink: var(--pink);
+  --jewel-pink-soft: rgba(255, 105, 180, 0.14);
 
   /* Primary Interactive Action Token */
-  --accent-primary: var(--jewel-mint);
-  --accent-hover: #1edba4;
+  --accent-primary: var(--mint-ink);
+  --accent-hover: #056e4b;
   --accent-subtle: var(--jewel-mint-soft);
-  --accent-mono: var(--jewel-mint);
-  --accent-secondary: var(--jewel-lavender);
+  --accent-mono: var(--mint-ink);
+  --accent-secondary: #5542a6;
   --accent-secondary-soft: var(--jewel-lavender-soft);
-  --accent-tertiary: var(--jewel-amber);
+  --accent-tertiary: #875a00;
   --accent-tertiary-soft: var(--jewel-amber-soft);
 
   /* ==========================================================================
      BACKWARDS-COMPATIBILITY & LEGACY ALIASES
      ========================================================================== */
-  --ds-background-100: var(--surface-canvas);
-  --ds-background-200: var(--surface-panel);
-  --ds-background-300: var(--surface-panel-subtle);
+  --ds-background-100: var(--porcelain);
+  --ds-background-200: var(--surface);
+  --ds-background-300: rgba(7, 41, 41, 0.04);
   --ds-background-400: var(--surface-hover);
-  --ds-text-100: var(--text-primary);
-  --ds-text-200: var(--text-secondary);
-  --ds-text-300: var(--text-muted);
-  --ds-interactive: var(--accent-primary);
-  --ds-focus-color: var(--jewel-mint);
-  --bg-page: var(--surface-canvas);
-  --bg-elevated: var(--surface-panel);
-  --bg-sunken: var(--surface-panel-subtle);
-  --bg-dark: #07080d;
-  --bg-dark-elevated: #0d1017;
-  --bg-header: rgba(7, 8, 13, 0.85);
+  --ds-text-100: var(--pine);
+  --ds-text-200: var(--pine-70);
+  --ds-text-300: var(--muted);
+  --ds-interactive: var(--pine);
+  --ds-focus-color: var(--mint-ink);
+  --bg-page: var(--porcelain);
+  --bg-elevated: var(--surface);
+  --bg-sunken: rgba(7, 41, 41, 0.04);
+  --bg-dark: var(--pine);
+  --bg-dark-elevated: var(--forest);
+  --bg-header: rgba(245, 245, 240, 0.88);
 
   --primary-50: #0d1017;
   --primary-100: #141824;
@@ -284,7 +284,7 @@
   /* --- Shadows (Obsidian elevation & laser rim lighting) --- */
   --ds-shadow-border-base: 0 0 0 1px rgba(255, 255, 255, 0.08);
   --ds-shadow-border: var(--ds-shadow-border-base);
-  --ds-focus-ring: 0 0 0 2px #07080d, 0 0 0 4px rgba(255, 255, 255, 0.8);
+  --ds-focus-ring: 0 0 0 2px var(--surface), 0 0 0 4px var(--mint-ink);
 
   --ds-shadow-small: 0 1px 3px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06);
   --ds-shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.08);
@@ -1266,7 +1266,7 @@ kbd.key-cap {
 
 .btn--solid {
   background: var(--pine);
-  color: var(--porcelain);
+  color: var(--bone);
   border: 1.5px solid transparent;
 }
 
@@ -1342,7 +1342,8 @@ kbd.key-cap {
   background: var(--mint);
   transform-origin: left;
   transform: scaleX(0);
-  transition: transform 0.1s linear;
+  pointer-events: none;
+  will-change: transform;
 }
 
 /* The Sector Ledger */
@@ -1493,7 +1494,8 @@ kbd.key-cap {
 .gradient-card__inner {
   position: relative;
   z-index: 1;
-  background: var(--pine);
+  background: var(--surface);
+  color: var(--pine);
   border-radius: calc(var(--r-card) - 2px);
   padding: clamp(32px, 5vw, 64px);
 }

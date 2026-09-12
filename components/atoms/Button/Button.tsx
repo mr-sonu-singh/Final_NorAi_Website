@@ -7,11 +7,11 @@ import { Spinner } from '../Spinner';
 import { ButtonProps, ButtonVariant, ButtonSize } from './Button.types';
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: 'bg-terra-500 text-white shadow-none hover:bg-terra-600 active:scale-[0.98] font-medium',
+  primary: 'bg-[var(--pine)] text-[var(--bone)] shadow-none hover:bg-[var(--forest)] active:scale-[0.98] font-medium',
   secondary:
     'bg-surface-panel border border-border-strong text-text-primary shadow-none font-medium hover:border-border-highlight hover:bg-surface-hover active:scale-[0.98]',
   ghost: 'bg-transparent text-text-primary font-medium hover:bg-surface-hover active:scale-[0.98]',
-  dark: 'bg-[#141C2B] text-white shadow-none font-medium hover:bg-[#1F2B3E] active:scale-[0.98]',
+  dark: 'bg-[var(--pine)] text-[var(--bone)] shadow-none font-medium hover:bg-[var(--forest)] active:scale-[0.98]',
   danger: 'bg-error-600 text-white font-medium hover:bg-error-600/90 active:scale-[0.98]',
 };
 
@@ -62,7 +62,7 @@ export function Button({
       onClick={handleClick}
       className={cn(
         'inline-flex items-center justify-center font-sans transition-[transform,opacity,color,background-color,border-color,box-shadow] duration-[var(--duration-fast)] ease-[var(--ease-smooth)] select-none',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-terra-500 focus-visible:ring-offset-canvas-paper',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--mint-ink)] focus-visible:ring-offset-canvas-paper',
         variantClasses[variant],
         sizeClasses[size],
         fullWidth && 'w-full',

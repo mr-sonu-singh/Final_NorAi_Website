@@ -65,11 +65,11 @@ const TRIAGE_TRACKS: TrackOption[] = [
 ];
 
 const inputClasses = [
-  'w-full rounded-lg border border-[rgba(13,37,61,0.12)] bg-canvas-pure px-4 py-3',
-  'font-sans text-[14px] text-ink-primary placeholder:text-ink-secondary/60',
-  'transition-all duration-150',
-  'hover:border-[rgba(13,37,61,0.22)]',
-  'focus:border-terra-500 focus:outline-none focus:ring-2 focus:ring-terra-500/15',
+  'w-full rounded-lg border border-[var(--line)] bg-[#fffdf7] px-4 py-3',
+  'font-sans text-[14px] text-[var(--pine)] placeholder:text-[var(--pine)]/40',
+  'transition-[border-color,box-shadow] duration-160 ease-out',
+  'hover:border-[var(--pine-50)]',
+  'focus:border-[var(--mint-ink)] focus:outline-none focus:ring-2 focus:ring-[var(--mint)]/20',
 ].join(' ');
 
 function FieldLabel({
@@ -87,11 +87,11 @@ function FieldLabel({
     <div className="flex items-center justify-between mb-1.5 select-none">
       <label
         htmlFor={htmlFor}
-        className="font-mono text-[11px] font-semibold uppercase tracking-wider text-ink-primary"
+        className="font-mono text-[11px] font-semibold uppercase tracking-wider text-[var(--pine)]"
       >
         {children}
         {required && (
-          <span className="ml-1 text-terra-600" aria-hidden="true">
+          <span className="ml-1 text-[var(--coral)]" aria-hidden="true">
             *
           </span>
         )}
@@ -241,7 +241,7 @@ export function ContactFormClient() {
                 : 'text-ink-secondary hover:text-ink-primary',
             )}
           >
-            <Send className="h-3.5 w-3.5 text-terra-600" />
+            <Send className="h-3.5 w-3.5 text-[var(--mint-ink)]" />
             <span>Direct Dispatch</span>
           </button>
           <button
@@ -259,8 +259,8 @@ export function ContactFormClient() {
           </button>
         </div>
 
-        <div className="flex items-center gap-2 font-mono text-[11px] text-accent-secondary bg-surface-panel-subtle border border-border-subtle px-2.5 py-1 rounded-md self-start sm:self-auto">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent-secondary" />
+        <div className="flex items-center gap-2 font-mono text-[11px] text-[var(--mint-ink)] bg-[rgba(6,132,90,0.08)] border border-[rgba(6,132,90,0.2)] px-2.5 py-1 rounded-md self-start sm:self-auto font-medium">
+          <span className="h-1.5 w-1.5 rounded-full bg-[var(--mint-ink)]" />
           <span>Engineer Triage · 1-Day Reply</span>
         </div>
       </div>
@@ -270,7 +270,7 @@ export function ContactFormClient() {
         <div className="py-2 space-y-6">
           <div className="rounded-xl border border-[rgba(13,37,61,0.08)] bg-canvas-pure p-6 sm:p-7 space-y-4">
             <div className="space-y-1.5">
-              <span className="font-mono text-[11px] uppercase tracking-wider text-terra-600 font-semibold">
+              <span className="font-mono text-[11px] uppercase tracking-wider text-[var(--mint-ink)] font-semibold">
                 Architecture Consultation
               </span>
               <h3 className="font-display text-2xl text-ink-primary">
@@ -285,7 +285,7 @@ export function ContactFormClient() {
             <div className="pt-3 border-t border-[rgba(13,37,61,0.06)] flex flex-col sm:flex-row sm:items-center gap-3">
               <a
                 href="mailto:noraitechnologies@gmail.com?subject=Schedule%2020-Min%20Architecture%20Review"
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-terra-500 px-5 py-2.5 font-sans text-xs font-semibold text-white shadow-xs hover:bg-terra-600 active:scale-[0.99] transition-all"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--pine)] px-5 py-2.5 font-sans text-xs font-semibold text-[var(--bone)] shadow-xs hover:bg-[var(--forest)] active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out"
               >
                 <span>Request Calendar Invite</span>
                 <ArrowUpRight className="h-4 w-4" />
@@ -322,7 +322,7 @@ export function ContactFormClient() {
               <span className="block font-mono text-[10px] uppercase tracking-wider text-ink-secondary">
                 Dispatch Reference
               </span>
-              <span className="font-mono text-xs font-bold text-terra-600">{referenceId}</span>
+              <span className="font-mono text-xs font-bold text-[var(--mint-ink)]">{referenceId}</span>
             </div>
             <button
               type="button"
@@ -374,14 +374,14 @@ export function ContactFormClient() {
                     className={cn(
                       'flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg border text-center transition-all',
                       isSelected
-                        ? 'border-terra-500 bg-terra-50/80 text-terra-800 font-semibold shadow-xs'
-                        : 'border-[rgba(13,37,61,0.08)] bg-canvas-pure text-ink-secondary hover:text-ink-primary hover:border-[rgba(13,37,61,0.18)]',
+                        ? 'border-[var(--mint-ink)] bg-[var(--mint)]/10 text-[var(--pine)] font-semibold shadow-xs'
+                        : 'border-[var(--line)] bg-[#fffdf7] text-[var(--pine)]/70 hover:text-[var(--pine)] hover:border-[var(--pine-50)]',
                     )}
                   >
                     <Icon
                       className={cn(
                         'h-3.5 w-3.5 shrink-0',
-                        isSelected ? 'text-terra-600' : 'text-ink-secondary',
+                        isSelected ? 'text-[var(--mint-ink)]' : 'text-[var(--pine)]/60',
                       )}
                     />
                     <span className="font-sans text-xs whitespace-nowrap">{track.label}</span>
@@ -487,10 +487,10 @@ export function ContactFormClient() {
 
           {error && (
             <div
-              className="flex items-start justify-between gap-4 rounded-lg border border-terra-300 bg-terra-50 p-4"
+              className="flex items-start justify-between gap-4 rounded-lg border border-[var(--coral)]/30 bg-[var(--coral)]/10 p-4"
               role="alert"
             >
-              <p className="text-xs text-terra-700">{error}</p>
+              <p className="text-xs text-[var(--coral)] font-medium">{error}</p>
             </div>
           )}
 
@@ -500,7 +500,7 @@ export function ContactFormClient() {
               type="submit"
               disabled={submitting}
               aria-busy={submitting}
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-terra-500 px-6 py-3 font-sans text-[14px] font-semibold text-white shadow-xs transition-all duration-150 hover:bg-terra-600 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--pine)] px-6 py-3 font-sans text-[14px] font-semibold text-[var(--bone)] shadow-xs transition-[transform,background-color] duration-160 ease-out hover:bg-[var(--forest)] active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer"
             >
               {submitting ? (
                 <>
@@ -513,7 +513,7 @@ export function ContactFormClient() {
               ) : (
                 <>
                   <span>Dispatch Message</span>
-                  <Send className="h-3.5 w-3.5" aria-hidden="true" />
+                  <Send className="h-3.5 w-3.5 text-[var(--mint)]" aria-hidden="true" />
                 </>
               )}
             </button>
@@ -530,7 +530,7 @@ export function ContactFormClient() {
               Your information is kept strictly confidential and never shared. Read our{' '}
               <Link
                 href="/privacy"
-                className="font-medium text-ink-primary underline underline-offset-2 hover:text-terra-600 transition-colors"
+                className="font-medium text-ink-primary underline underline-offset-2 hover:text-[var(--mint-ink)] transition-colors"
               >
                 privacy policy
               </Link>

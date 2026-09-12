@@ -14,6 +14,8 @@ const A11Y_PAGES = [
   { path: '/mission', name: 'AI Skill Mission' },
   { path: '/docs', name: 'Developer Docs' },
   { path: '/contact', name: 'Contact & Inquiries' },
+  { path: '/blog', name: 'The Canonical Blog' },
+  { path: '/products/resume-shortlister', name: 'Product Detail (Resume Shortlister)' },
 ];
 
 test.describe('Accessibility (a11y) Audits', () => {

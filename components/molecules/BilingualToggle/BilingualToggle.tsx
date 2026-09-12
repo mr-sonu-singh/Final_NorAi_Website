@@ -79,7 +79,7 @@ export function BilingualToggle({
       aria-label="Select Language"
       onKeyDown={handleKeyDown}
       className={cn(
-        'relative inline-flex items-center rounded-full bg-[#0D1017] border border-white/10 p-0.5 shadow-inner select-none',
+        'relative inline-flex items-center rounded-full bg-[var(--surface)] border border-[var(--line)] p-0.5 shadow-xs select-none',
         className,
       )}
     >
@@ -95,11 +95,11 @@ export function BilingualToggle({
             aria-label={`${lang.label} (${lang.nativeLabel})`}
             onClick={() => handleSelect(lang.id)}
             className={cn(
-              'relative z-10 inline-flex items-center justify-center rounded-full font-medium transition-[transform,color] duration-150 active:scale-[0.96] outline-none focus-visible:ring-1 focus-visible:ring-jewel-mint cursor-pointer',
+              'relative z-10 inline-flex items-center justify-center rounded-full font-medium transition-[transform,color] duration-150 active:scale-[0.96] outline-none focus-visible:ring-2 focus-visible:ring-[var(--mint-ink)] cursor-pointer',
               isSmall ? 'px-2.5 py-1 text-xs' : 'px-3 py-1 text-xs',
               isSelected
-                ? 'text-jewel-mint font-semibold'
-                : 'text-text-secondary hover:text-text-primary',
+                ? 'text-[var(--bone)] font-semibold'
+                : 'text-[var(--pine)]/75 hover:text-[var(--pine)]',
             )}
           >
             {isSelected && (
@@ -110,7 +110,7 @@ export function BilingualToggle({
                     ? { duration: 0 }
                     : { type: 'spring', stiffness: 450, damping: 32 }
                 }
-                className="absolute inset-0 z-[-1] rounded-full bg-[#141824] border border-white/10 shadow-[0_1px_4px_rgba(0,0,0,0.5)]"
+                className="absolute inset-0 z-[-1] rounded-full bg-[var(--pine)] shadow-xs"
                 aria-hidden="true"
               />
             )}

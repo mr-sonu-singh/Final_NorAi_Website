@@ -17,8 +17,8 @@ const SAMPLE_ACTIONS: DigestAction[] = [
   {
     id: 'act-1',
     tag: 'LAUNCHED',
-    tagColor: '#34D399',
-    tagBg: 'rgba(52, 211, 153, 0.12)',
+    tagColor: '#4ADE80',
+    tagBg: 'rgba(74, 222, 128, 0.08)',
     title: 'Payment gateway upgrade deployed successfully to production.',
     time: '11:42 AM',
     owner: '@devops-lead',
@@ -26,8 +26,8 @@ const SAMPLE_ACTIONS: DigestAction[] = [
   {
     id: 'act-2',
     tag: 'RESOLVED',
-    tagColor: '#FFA07A',
-    tagBg: 'rgba(255, 160, 122, 0.12)',
+    tagColor: '#FFB699',
+    tagBg: 'rgba(255, 182, 153, 0.08)',
     title: 'Mobile Safari session expiry bug fixed and verified by QA.',
     time: '01:15 PM',
     owner: '@core-eng',
@@ -35,8 +35,8 @@ const SAMPLE_ACTIONS: DigestAction[] = [
   {
     id: 'act-3',
     tag: 'ASSIGNED',
-    tagColor: '#D8B4FE',
-    tagBg: 'rgba(216, 180, 254, 0.12)',
+    tagColor: '#E9D5FF',
+    tagBg: 'rgba(233, 213, 255, 0.08)',
     title: 'API documentation and security audit assigned to team leads.',
     time: '03:30 PM',
     owner: '@tech-lead',
@@ -52,14 +52,14 @@ export function VignetteChatDigest() {
   };
 
   return (
-    <div className="w-full rounded-xl bg-[#090C13] border border-white/10 overflow-hidden shadow-2xl transition-all duration-200 hover:border-white/20 select-none">
+    <div className="w-full rounded-xl bg-[var(--forest)] border border-white/10 overflow-hidden shadow-2xl transition-all duration-200 hover:border-white/20 select-none">
       {/* Window Chrome Header */}
-      <div className="flex items-center justify-between px-3.5 py-2.5 border-b border-white/8 bg-[#0B0E17]/90 backdrop-blur-sm">
+      <div className="flex items-center justify-between px-3.5 py-2.5 border-b border-white/8 bg-[var(--pine)]/90 backdrop-blur-sm">
         <div className="flex items-center gap-1.5">
           <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]/80" aria-hidden="true" />
           <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]/80" aria-hidden="true" />
           <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]/80" aria-hidden="true" />
-          <span className="ml-2 font-mono text-[10px] uppercase tracking-wider text-text-muted">
+          <span className="ml-2 font-mono text-[10px] uppercase tracking-wider text-white/70">
             DAILY BRIEF · #{activeChannel.toUpperCase()}-UPDATES
           </span>
         </div>
@@ -82,7 +82,7 @@ export function VignetteChatDigest() {
               3 Key Decisions
             </span>
           </div>
-          <span className="px-2 py-0.5 rounded font-mono text-[10px] font-semibold bg-[#FFA07A]/20 text-[#FFA07A] shrink-0">
+          <span className="px-2 py-0.5 rounded font-mono text-[10px] font-bold bg-white/10 text-white shrink-0">
             99.2% Condensed
           </span>
         </div>
@@ -95,7 +95,7 @@ export function VignetteChatDigest() {
             className={`px-2.5 py-1 rounded-md text-[11px] font-mono transition-all duration-150 active:scale-[0.97] cursor-pointer ${
               activeChannel === 'engineering'
                 ? 'bg-white/10 text-white font-medium border border-white/15'
-                : 'text-text-secondary hover:text-white'
+                : 'text-white/70 hover:text-white'
             }`}
           >
             #engineering-updates
@@ -106,7 +106,7 @@ export function VignetteChatDigest() {
             className={`px-2.5 py-1 rounded-md text-[11px] font-mono transition-all duration-150 active:scale-[0.97] cursor-pointer ${
               activeChannel === 'product'
                 ? 'bg-white/10 text-white font-medium border border-white/15'
-                : 'text-text-secondary hover:text-white'
+                : 'text-white/70 hover:text-white'
             }`}
           >
             #product-launches
@@ -144,15 +144,15 @@ export function VignetteChatDigest() {
                       >
                         {action.tag}
                       </span>
-                      <span className="font-mono text-[10px] text-text-muted">{action.owner}</span>
+                      <span className="font-mono text-[10px] text-white/70">{action.owner}</span>
                     </div>
                     <p className="text-xs text-white leading-snug">{action.title}</p>
                   </div>
                   <div className="flex flex-col items-end gap-1 shrink-0">
-                    <span className="font-mono text-[9px] text-text-muted">{action.time}</span>
+                    <span className="font-mono text-[9px] text-white/60">{action.time}</span>
                     <CheckCircle2
                       className={`w-3.5 h-3.5 transition-colors ${
-                        isRead ? 'text-[#34D399]' : 'text-text-muted hover:text-white'
+                        isRead ? 'text-[#34D399]' : 'text-white/60 hover:text-white'
                       }`}
                     />
                   </div>
@@ -163,7 +163,7 @@ export function VignetteChatDigest() {
         </div>
 
         {/* Efficiency Tag */}
-        <div className="flex items-center justify-between pt-1 text-[11px] font-mono text-text-muted border-t border-white/5">
+        <div className="flex items-center justify-between pt-1 text-[11px] font-mono text-white/70 border-t border-white/5">
           <div className="flex items-center gap-1.5 text-[#FFA07A]">
             <Zap className="w-3.5 h-3.5" />
             <span className="font-medium">Read in 90 seconds instead of 45 minutes</span>

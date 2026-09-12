@@ -122,7 +122,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
         <Container size="default" className="relative z-10 max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="max-w-4xl space-y-6 text-left">
             {/* Breadcrumb Navigation */}
-            <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono text-[var(--pine)]/60">
+            <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono text-[var(--pine)]/85">
               <Link href="/" className="hover:text-[var(--pine)] transition-colors">
                 Home
               </Link>
@@ -194,7 +194,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
         <Container size="wide" className="max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
-              <span className="font-mono text-xs text-[var(--pine)]/60 uppercase tracking-wider font-semibold">
+              <span className="font-mono text-xs text-[var(--mint-ink)] uppercase tracking-wider font-bold">
                 NEURAL WORKBENCH · SANDBOX ENVIRONMENT
               </span>
               <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--pine)] mt-0.5">
@@ -222,7 +222,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
       <section className="py-16 sm:py-20 border-b border-[var(--line)]">
         <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="max-w-2xl mb-10">
-            <span className="font-mono text-xs text-[var(--pine)]/60 uppercase tracking-wider font-semibold block">
+            <span className="font-mono text-xs text-[var(--mint-ink)] uppercase tracking-wider font-bold block">
               ARCHITECTURE RATIONALE
             </span>
             <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-[var(--pine)] mt-1">
@@ -276,7 +276,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
       <section className="py-16 sm:py-20 border-b border-[var(--line)]">
         <Container size="wide" className="max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="max-w-2xl mb-12">
-            <span className="font-mono text-xs text-[var(--pine)]/60 uppercase tracking-wider font-semibold block">
+            <span className="font-mono text-xs text-[var(--mint-ink)] uppercase tracking-wider font-bold block">
               TECHNICAL DELIVERABLES
             </span>
             <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-[var(--pine)] mt-1">
@@ -291,7 +291,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
                 className="rounded-[22px] bg-[#fffdf7] border border-[var(--line)] p-6 flex flex-col justify-between space-y-4 shadow-xs"
               >
                 <div className="space-y-2">
-                  <span className="font-mono text-xs font-bold text-[var(--pine)]/50 block">
+                  <span className="font-mono text-xs font-bold text-[var(--pine)]/85 block">
                     0{fIdx + 1}
                   </span>
                   <h3 className="font-display text-lg font-bold text-[var(--pine)]">
@@ -321,7 +321,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
           <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
             <div className="nextrail rounded-[22px] bg-[#fffdf7] border border-[var(--line)] p-8 sm:p-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6 shadow-xs group hover:border-[var(--pine)]/30 transition-colors">
               <div className="space-y-2">
-                <span className="nextrail__n font-mono text-xs font-bold text-[var(--pine)]/50 uppercase tracking-wider block">
+                <span className="nextrail__n font-mono text-xs font-bold text-[var(--mint-ink)] uppercase tracking-wider block">
                   Next Capability in Sequence
                 </span>
                 <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-[var(--pine)]">
@@ -350,16 +350,16 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
       <section className="py-16 sm:py-24">
         <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="gradient-card max-w-4xl mx-auto text-center">
-            <div className="gradient-card__inner p-8 sm:p-12 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--mint)]/20 border border-[var(--mint-ink)]/20 text-xs font-mono font-bold text-[var(--mint-ink)] dark:text-[var(--mint)] uppercase tracking-wider">
+            <div className="gradient-card__inner p-8 sm:p-12 space-y-6 bg-[#fffdf7] text-[var(--pine)]">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--pine-08)] border border-[var(--line)] text-xs font-mono font-bold text-[var(--mint-ink)] uppercase tracking-wider">
                 Option B · Free to Start
               </div>
 
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--pine)] dark:text-[var(--bone)] tracking-tight leading-tight">
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--pine)] tracking-tight leading-tight">
                 Ready to deploy {product.title}?
               </h2>
 
-              <p className="text-base sm:text-lg text-[var(--pine)]/75 dark:text-[var(--bone-70)] max-w-2xl mx-auto leading-relaxed font-normal">
+              <p className="text-base sm:text-lg text-[var(--pine)]/75 max-w-2xl mx-auto leading-relaxed font-normal">
                 Free to start with 50 sandbox credits and zero credit card required. For dedicated
                 REST API endpoints, custom parser schemas, or private VPC enclaves, talk directly to our
                 engineering team.
@@ -368,14 +368,14 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
               <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
                   href={`/contact?tool=${product.slug}`}
-                  className="btn btn--solid w-full sm:w-auto h-12 px-7 text-sm font-semibold shadow-md"
+                  className="btn btn--solid w-full sm:w-auto h-12 px-7 text-sm font-semibold shadow-xs active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out"
                 >
                   <span>Talk to an engineer</span>
-                  <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="w-4 h-4 ml-1 transition-transform duration-160 group-hover:translate-x-1" />
                 </Link>
                 <Link
                   href="/products"
-                  className="btn btn--ghost w-full sm:w-auto h-12 px-6 text-sm font-medium"
+                  className="btn btn--ghost w-full sm:w-auto h-12 px-6 text-sm font-medium text-[var(--pine)] hover:bg-[var(--pine-08)] active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out"
                 >
                   <span>&larr; Back to Capabilities Index</span>
                 </Link>

@@ -136,13 +136,13 @@ export function DistrictImpactRadar() {
         {/* District Selector List */}
         <div className="lg:col-span-6 space-y-4 text-left">
           <div className="relative">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--bone-50)]" />
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--bone-70)]" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search district or division (e.g. Varanasi, Lucknow)..."
-              className="w-full h-10 pl-10 pr-4 rounded-xl bg-[var(--forest)]/70 border border-[var(--line)] text-xs text-[#f5f5f0] placeholder:text-[var(--bone-50)] focus:outline-none focus:border-[var(--mint)] transition-colors"
+              className="w-full h-10 pl-10 pr-4 rounded-xl bg-[var(--forest)]/70 border border-[var(--line)] text-xs text-[#f5f5f0] placeholder:text-[var(--bone-70)] focus:outline-none focus:border-[var(--mint)] transition-colors"
             />
           </div>
 
@@ -162,10 +162,10 @@ export function DistrictImpactRadar() {
                   )}
                 >
                   <div className="flex items-center gap-2.5">
-                    <MapPin className={cn('w-4 h-4 shrink-0', isSelected ? 'text-[var(--mint)]' : 'text-[var(--bone-50)]')} />
+                    <MapPin className={cn('w-4 h-4 shrink-0', isSelected ? 'text-[var(--mint)]' : 'text-[var(--bone-70)]')} />
                     <div>
                       <span className="font-display text-sm font-bold text-[#f5f5f0] block">{d.name}</span>
-                      <span className="text-[10px] font-mono text-[var(--bone-50)]">Division: {d.division}</span>
+                      <span className="text-[10px] font-mono text-[var(--bone-70)]">Division: {d.division}</span>
                     </div>
                   </div>
 
@@ -174,7 +174,7 @@ export function DistrictImpactRadar() {
                       'text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full uppercase',
                       d.status === 'Active' && 'bg-[var(--mint)]/20 text-[var(--mint)]',
                       d.status === 'Expanding' && 'bg-[var(--lavender)]/20 text-[var(--lavender)]',
-                      d.status === 'Scheduled' && 'bg-[var(--bone-20)] text-[var(--bone-70)]',
+                      d.status === 'Scheduled' && 'bg-white/10 text-white/90 font-medium',
                     )}
                   >
                     {d.status}
@@ -203,7 +203,7 @@ export function DistrictImpactRadar() {
             </div>
 
             <div className="space-y-2">
-              <span className="text-xs font-mono text-[var(--bone-50)] uppercase font-semibold block">
+              <span className="text-xs font-mono text-[var(--bone-70)] uppercase font-semibold block">
                 Regional Model Specialization
               </span>
               <p className="text-sm sm:text-base text-[var(--bone)] leading-relaxed font-medium">

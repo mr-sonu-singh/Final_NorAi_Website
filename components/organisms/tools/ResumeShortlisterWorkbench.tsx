@@ -1346,11 +1346,11 @@ export function ResumeShortlisterWorkbench() {
                         'px-3 py-1 rounded-lg text-xs font-medium transition-all whitespace-nowrap flex items-center gap-2 outline-none',
                         'focus-visible:ring-2 focus-visible:ring-accent-500 active:scale-[0.97]',
                         isSelected
-                          ? 'bg-[#0D253D] text-white shadow-sm font-semibold ring-1 ring-[#0D253D]'
-                          : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed border border-[rgba(13,37,61,0.08)]',
+                          ? 'bg-[var(--pine)] text-[var(--bone)] shadow-sm font-semibold ring-1 ring-[var(--pine)]'
+                          : 'bg-[var(--surface)] text-[var(--pine)] hover:bg-[var(--porcelain)] border border-[var(--line)]',
                       )}
                     >
-                      <span className="font-mono text-[10px] opacity-75">#{idx + 1}</span>
+                      <span className="font-mono text-[10px] font-bold text-[var(--pine)]">#{idx + 1}</span>
                       <span className="truncate max-w-[120px] font-sans">{cand.name}</span>
                       <span
                         className={cn(
@@ -1724,11 +1724,11 @@ export function ResumeShortlisterWorkbench() {
                             'px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all whitespace-nowrap flex items-center gap-2 outline-none',
                             'focus-visible:ring-2 focus-visible:ring-accent-500 active:scale-[0.97]',
                             isSelected
-                              ? 'bg-[#0D253D] text-white font-semibold shadow-sm ring-1 ring-[#0D253D]'
-                              : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed border border-[rgba(13,37,61,0.08)]',
+                              ? 'bg-[var(--pine)] text-[var(--bone)] font-semibold shadow-sm ring-1 ring-[var(--pine)]'
+                              : 'bg-[var(--surface)] text-[var(--pine)] hover:bg-[var(--porcelain)] border border-[var(--line)]',
                           )}
                         >
-                          <span className="font-mono text-[10px] opacity-75">#{idx + 1}</span>
+                          <span className="font-mono text-[10px] font-bold text-[var(--pine)]">#{idx + 1}</span>
                           <span>{cand.name}</span>
                           <span
                             className={cn(

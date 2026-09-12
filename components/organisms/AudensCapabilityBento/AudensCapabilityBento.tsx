@@ -127,7 +127,7 @@ function BentoCard({ product }: { product: BentoProductCardProps }) {
 
   return (
     <div
-      className="product-card rounded-2xl bg-[#0D1017] border border-white/10 overflow-hidden flex flex-col justify-between transition-colors duration-200 hover:border-white/20 relative group"
+      className="product-card rounded-2xl bg-[var(--pine)] border border-white/10 overflow-hidden flex flex-col justify-between transition-colors duration-200 hover:border-white/20 relative group"
       style={{
         boxShadow: '0 4px 20px -2px rgba(0, 0, 0, 0.5)',
       }}
@@ -142,17 +142,17 @@ function BentoCard({ product }: { product: BentoProductCardProps }) {
             <Icon className="w-4 h-4" />
           </div>
           <div>
-            <span className="font-mono text-xs font-bold text-text-primary tracking-wider">
+            <span className="font-mono text-xs font-bold text-white tracking-wider">
               TOOL {product.number}
             </span>
-            <span className="text-text-muted text-xs mx-1.5">·</span>
-            <span className="font-mono text-[11px] uppercase tracking-wider text-text-secondary">
+            <span className="text-white/40 text-xs mx-1.5">·</span>
+            <span className="font-mono text-[11px] uppercase tracking-wider text-white/70">
               {product.category}
             </span>
           </div>
         </div>
 
-        <span className="font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-white/5 border border-white/10 text-text-secondary">
+        <span className="font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-white/10 border border-white/15 text-white/90 font-medium">
           {product.badge}
         </span>
       </div>
@@ -166,6 +166,7 @@ function BentoCard({ product }: { product: BentoProductCardProps }) {
       <div className="p-5 sm:p-6 pt-0 space-y-2">
         <Link
           href={`/products/${product.slug}`}
+          variant="unstyled"
           data-testid={`capability-link-${product.slug}`}
           className="group/title inline-block no-underline"
         >
@@ -173,7 +174,7 @@ function BentoCard({ product }: { product: BentoProductCardProps }) {
             {product.title}
           </h3>
         </Link>
-        <p className="text-sm text-text-secondary leading-relaxed text-pretty">
+        <p className="text-sm text-white/80 leading-relaxed text-pretty">
           {product.tagline}
         </p>
 
@@ -184,7 +185,7 @@ function BentoCard({ product }: { product: BentoProductCardProps }) {
             onClick={() => setIsExpanded(!isExpanded)}
             aria-expanded={isExpanded}
             aria-controls={drawerId}
-            className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-text-primary hover:text-white transition-colors duration-150 py-1.5 px-2.5 -ml-2.5 rounded-lg hover:bg-white/5 cursor-pointer active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-[#2EFCC2] focus-visible:outline-none focus-visible:ring-offset-2 focus-visible:ring-offset-[#07080D]"
+            className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-white/90 hover:text-white transition-colors duration-150 py-1.5 px-2.5 -ml-2.5 rounded-lg hover:bg-white/5 cursor-pointer active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-[var(--mint)] focus-visible:outline-none focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--pine)]"
           >
             <span>{isExpanded ? 'Hide Details' : 'Read Full Details'}</span>
             <ChevronDown
@@ -199,15 +200,15 @@ function BentoCard({ product }: { product: BentoProductCardProps }) {
         <div
           id={drawerId}
           data-expanded={isExpanded}
-          className="bento-drawer-grid border-t border-white/5 mt-2"
+          className="bento-drawer-grid border-t border-white/10 mt-2"
         >
           <div className="bento-drawer-content pt-4 space-y-4">
             {/* Feature Checklist */}
             <div className="space-y-2">
-              <span className="font-mono text-[10px] uppercase tracking-wider text-text-muted">
+              <span className="font-mono text-[10px] uppercase tracking-wider text-white/60">
                 Engineered Capabilities
               </span>
-              <ul className="space-y-2 text-xs text-text-secondary">
+              <ul className="space-y-2 text-xs text-white/80">
                 {product.features.map((feat, idx) => (
                   <li key={idx} className="flex items-start gap-2">
                     <CheckCircle2
@@ -221,7 +222,7 @@ function BentoCard({ product }: { product: BentoProductCardProps }) {
             </div>
 
             {/* Ephemeral Privacy Guarantee */}
-            <div className="flex items-center gap-2 p-2.5 rounded-lg bg-white/[0.02] border border-white/5 text-[11px] text-text-muted">
+            <div className="flex items-center gap-2 p-2.5 rounded-lg bg-white/[0.04] border border-white/10 text-[11px] text-white/75">
               <ShieldCheck style={{ color: product.accentColor }} className="w-4 h-4 shrink-0" />
               <span>{product.privacyNote}</span>
             </div>
@@ -231,7 +232,7 @@ function BentoCard({ product }: { product: BentoProductCardProps }) {
               <Link
                 href={`/products/${product.slug}`}
                 data-testid={`capability-drawer-link-${product.slug}`}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-sans font-semibold text-xs text-[#07080D] transition-[transform,background-color] duration-150 ease-out active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-[#2EFCC2] focus-visible:outline-none cursor-pointer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-sans font-bold text-xs text-[var(--pine)] transition-[transform,background-color] duration-150 ease-out active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-[var(--mint)] focus-visible:outline-none cursor-pointer"
                 style={{ backgroundColor: product.accentColor }}
               >
                 <span>Try Free Sandbox</span>
@@ -254,16 +255,16 @@ export function AudensCapabilityBento() {
       <Container size="default">
         {/* Section Header */}
         <div className="max-w-2xl mb-12 text-left space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-text-secondary">
-            <span className="w-2 h-2 rounded-full bg-[#2EFCC2] animate-pulse" aria-hidden="true" />
-            <span className="tracking-wide uppercase font-medium">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--surface)] border border-[var(--line)] text-xs font-mono text-[var(--mint-ink)] font-semibold shadow-xs">
+            <span className="w-2 h-2 rounded-full bg-[var(--mint-ink)] animate-pulse" aria-hidden="true" />
+            <span className="tracking-wide uppercase">
               The Capability Bento · Four Tools, One Problem Each
             </span>
           </div>
 
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-text-primary leading-tight tracking-tight">
             Four focused tools. <br />
-            <span className="text-[#2EFCC2]">Each solves one operational problem.</span>
+            <span className="text-[var(--mint-ink)]">Each solves one operational problem.</span>
           </h2>
 
           <p className="text-sm sm:text-base text-text-secondary leading-relaxed max-w-xl text-pretty">
@@ -284,7 +285,7 @@ export function AudensCapabilityBento() {
         <div className="mt-10 pt-6 border-t border-border-subtle flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-text-muted">
           <div className="flex flex-wrap items-center gap-3">
             <span className="flex items-center gap-1.5 text-text-secondary">
-              <Zap className="w-3.5 h-3.5 text-[#2EFCC2]" />
+              <Zap className="w-3.5 h-3.5 text-[var(--mint-ink)]" />
               <span>50 Free Sandbox Credits</span>
             </span>
             <span className="text-border-strong hidden sm:inline select-none">/</span>
@@ -295,7 +296,7 @@ export function AudensCapabilityBento() {
 
           <Link
             href="/products"
-            className="text-text-secondary hover:text-[#2EFCC2] transition-colors inline-flex items-center gap-1 group font-medium"
+            className="text-text-secondary hover:text-[var(--mint-ink)] transition-colors inline-flex items-center gap-1 group font-medium"
           >
             <span>Explore Complete Product Catalog</span>
             <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />

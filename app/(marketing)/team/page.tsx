@@ -213,7 +213,7 @@ export default function TeamPage() {
       <section className="py-14 sm:py-20 border-b border-[var(--line)]">
         <Container size="wide" className="max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="max-w-2xl mb-12 text-left space-y-2">
-            <span className="font-mono text-xs text-[var(--pine)]/60 uppercase tracking-wider font-semibold block">
+            <span className="font-mono text-xs text-[var(--mint-ink)] uppercase tracking-wider font-bold block">
               FOUNDING STUDIO ENGINEERS
             </span>
             <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-[var(--pine)] tracking-tight">
@@ -247,13 +247,13 @@ export default function TeamPage() {
                           </span>
                         </div>
                       </div>
-                      <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-[var(--pine-08)] text-[var(--pine)]/70">
+                      <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-[var(--pine-08)] text-[var(--pine)]/85">
                         {builder.discipline}
                       </span>
                     </div>
 
-                    <div className="space-y-1 text-xs font-mono text-[var(--pine)]/60">
-                      <span className="text-[10px] uppercase font-bold tracking-wider text-[var(--pine)]/40 block">
+                    <div className="space-y-1 text-xs font-mono text-[var(--pine)]/80">
+                      <span className="text-[10px] uppercase font-bold tracking-wider text-[var(--pine)]/75 block">
                         PEDIGREE
                       </span>
                       <p>{builder.pedigree}</p>
@@ -264,7 +264,7 @@ export default function TeamPage() {
                     </p>
 
                     <div className="pt-3 border-t border-[var(--line)] space-y-2">
-                      <span className="text-[10px] font-mono uppercase tracking-wider text-[var(--pine)]/50 font-bold block">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-[var(--pine)]/85 font-bold block">
                         SYSTEMS OWNED:
                       </span>
                       <div className="space-y-1">
@@ -301,7 +301,7 @@ export default function TeamPage() {
       <section className="py-16 sm:py-24 border-b border-[var(--line)]">
         <Container size="wide" className="max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="max-w-2xl mb-12 text-left space-y-2">
-            <span className="font-mono text-xs text-[var(--pine)]/60 uppercase tracking-wider font-semibold block">
+            <span className="font-mono text-xs text-[var(--mint-ink)] uppercase tracking-wider font-bold block">
               OPERATIONAL RITUALS
             </span>
             <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-[var(--pine)] tracking-tight">
@@ -319,7 +319,7 @@ export default function TeamPage() {
                 >
                   <div className="space-y-3 text-left">
                     <div className="flex items-center justify-between border-b border-[var(--line)] pb-2.5">
-                      <span className="font-mono text-xs font-bold text-[var(--pine)]/60">
+                      <span className="font-mono text-xs font-bold text-[var(--pine)]/85">
                         {ritual.number}
                       </span>
                       <RitualIcon className="w-4 h-4 text-[var(--mint-ink)]" />
@@ -347,16 +347,16 @@ export default function TeamPage() {
       <section className="py-16 sm:py-24">
         <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="gradient-card max-w-4xl mx-auto text-center">
-            <div className="gradient-card__inner p-8 sm:p-12 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--mint)]/20 border border-[var(--mint-ink)]/20 text-xs font-mono font-bold text-[var(--mint-ink)] dark:text-[var(--mint)] uppercase tracking-wider">
+            <div className="gradient-card__inner p-8 sm:p-12 space-y-6 bg-[#fffdf7] text-[var(--pine)]">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--pine-08)] border border-[var(--line)] text-xs font-mono font-bold text-[var(--mint-ink)] uppercase tracking-wider">
                 Direct Engineering Collaboration
               </div>
 
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--pine)] dark:text-[var(--bone)] tracking-tight leading-tight">
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--pine)] tracking-tight leading-tight">
                 Work directly with our founders.
               </h2>
 
-              <p className="text-base sm:text-lg text-[var(--pine)]/75 dark:text-[var(--bone-70)] max-w-2xl mx-auto leading-relaxed font-normal">
+              <p className="text-base sm:text-lg text-[var(--pine)]/75 max-w-2xl mx-auto leading-relaxed font-normal">
                 Whether you need dedicated enterprise deployment, private on-premise model enclaves,
                 or want to partner on grassroots AI research, our core builders are ready.
               </p>
@@ -364,16 +364,16 @@ export default function TeamPage() {
               <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
                   href="/contact"
-                  className="btn btn--solid w-full sm:w-auto h-12 px-7 text-sm font-semibold shadow-md"
+                  className="btn btn--solid w-full sm:w-auto h-12 px-7 text-sm font-semibold shadow-xs active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out"
                 >
                   <span>Talk to an Engineer</span>
-                  <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="w-4 h-4 ml-1 transition-transform duration-160 group-hover:translate-x-1" />
                 </Link>
                 <Link
                   href="/products"
-                  className="btn btn--ghost w-full sm:w-auto h-12 px-6 text-sm font-medium"
+                  className="btn btn--ghost w-full sm:w-auto h-12 px-6 text-sm font-medium text-[var(--pine)] hover:bg-[var(--pine-08)] active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out"
                 >
-                  <span>Explore 4 live tools &rarr;</span>
+                  <span>Explore 4 live tools</span>
                 </Link>
               </div>
             </div>

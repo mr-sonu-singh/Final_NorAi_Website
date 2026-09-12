@@ -297,8 +297,13 @@ export function TechnicalArtifactsLedger() {
         </div>
 
         {/* Code Content */}
-        <div className="p-6 overflow-x-auto bg-[#071320]">
-          <pre className="font-mono text-xs leading-relaxed text-sky-100/90 selection:bg-terra-500 selection:text-white">
+        <div
+          tabIndex={0}
+          role="region"
+          aria-label="Artifact code snippet"
+          className="p-6 overflow-x-auto bg-[var(--pine)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--mint)]"
+        >
+          <pre className="font-mono text-xs leading-relaxed text-sky-100/90 selection:bg-[var(--mint-ink)] selection:text-white">
             <code>{currentArtifact.code}</code>
           </pre>
         </div>
