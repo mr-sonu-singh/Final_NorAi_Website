@@ -16,7 +16,8 @@ export const LEGAL_POLICIES: Record<string, LegalPolicyData> = {
     slug: 'privacy-policy',
     title: 'Privacy Policy',
     lastUpdated: 'January 15, 2026',
-    description: 'Privacy Policy for NorAI Technologies zero-knowledge neural infrastructure and public web services.',
+    description:
+      'Privacy Policy for NorAI Technologies zero-knowledge neural infrastructure and public web services.',
     sections: [
       {
         heading: '1. Information We Collect',
@@ -49,7 +50,8 @@ export const LEGAL_POLICIES: Record<string, LegalPolicyData> = {
     slug: 'terms-of-service',
     title: 'Terms of Service',
     lastUpdated: 'January 15, 2026',
-    description: 'Terms of Service governing access and use of NorAI Technologies infrastructure, APIs, and digital properties.',
+    description:
+      'Terms of Service governing access and use of NorAI Technologies infrastructure, APIs, and digital properties.',
     sections: [
       {
         heading: '1. Agreement to Terms',
@@ -81,7 +83,8 @@ export const LEGAL_POLICIES: Record<string, LegalPolicyData> = {
     slug: 'cookie-policy',
     title: 'Cookie Policy',
     lastUpdated: 'January 15, 2026',
-    description: 'Cookie and telemetry policy explaining how cookies are used on the NorAI Technologies website.',
+    description:
+      'Cookie and telemetry policy explaining how cookies are used on the NorAI Technologies website.',
     sections: [
       {
         heading: '1. What Are Cookies',

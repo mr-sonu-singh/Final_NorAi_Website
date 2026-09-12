@@ -9,20 +9,23 @@
 ## 1. Executive Summary & Company Identity
 
 - **Company Legal Name**: NorAI Technologies (NorAI Technologies Pvt. Ltd.)
-- **Primary Brand Slogan**: *"AI That Actually Works"*
-- **Core Taglines**: *"Your operations, on autopilot."* · *"Purpose-built tools. Zero operational drag."* · *"Democratizing AI from villages to tech hubs."*
+- **Primary Brand Slogan**: _"AI That Actually Works"_
+- **Core Taglines**: _"Your operations, on autopilot."_ · _"Purpose-built tools. Zero operational drag."_ · _"Democratizing AI from villages to tech hubs."_
 - **Headquarters & Studio**: Uttar Pradesh, India
 - **Primary Domain**: [norai.tech](https://norai.tech) (API: `api.norai.tech`)
 - **Direct Dispatch / Contact**: `noraitechnologies@gmail.com` (Active Desk: Mon–Sat, 9:00 AM – 8:00 PM IST)
 
 ### Core Mission & Engineering Philosophy
+
 NorAI Technologies is an applied AI engineering studio born in Uttar Pradesh, India. The company was founded on a firm rejection of generic, hallucination-prone AI wrappers and bloated enterprise software. NorAI specializes in:
+
 1. **Deterministic Micro-SaaS Utilities**: Purpose-built, single-task AI tools operating with sub-second execution speeds (< 0.35s), verified Zod schema outputs, and ephemeral in-memory processing.
 2. **Bespoke Enterprise Systems**: Custom RAG architectures, official Model Context Protocol (MCP) tool servers, and private on-premise vLLM deployments.
 3. **Grassroots Regional Enablement (The NorAI Skill Mission)**: Democratizing practical AI literacy and engineering education across all 75 districts of Uttar Pradesh at zero student cost.
 
 ### The NorAI Engineering Creed
-> *“We do not build generic chatbots that guess. We engineer high-precision deterministic tools that do one job exceptionally well. Artificial intelligence shouldn’t require complex enterprise contracts or bloated software. Every tool we release must save real hours for real people—quietly, every single week.”*
+
+> _“We do not build generic chatbots that guess. We engineer high-precision deterministic tools that do one job exceptionally well. Artificial intelligence shouldn’t require complex enterprise contracts or bloated software. Every tool we release must save real hours for real people—quietly, every single week.”_
 
 ---
 
@@ -30,12 +33,12 @@ NorAI Technologies is an applied AI engineering studio born in Uttar Pradesh, In
 
 NorAI enforces four non-negotiable architectural guarantees across all software, APIs, and client systems:
 
-| Architectural Pillar | Specification & Contract | Ground Mechanism |
-| :--- | :--- | :--- |
-| **Inference Latency SLA** | **Sub-Second Execution (< 0.35s / P95 < 320ms)** | Optimized serverless runtimes, local vLLM inference, and streamlined model tokenization eliminate queue stalls. |
-| **Data Residency & Privacy** | **0 Bytes Permanent Logging (Ephemeral RAM)** | Candidate resumes, audio streams, and chat logs are processed ephemerally in volatile memory containers and wiped immediately upon response completion. Never stored, pooled, or used to train public or proprietary models. |
-| **Schema Integrity** | **100% Deterministic Typed JSON (Zod Contracts)** | Every endpoint outputs strictly validated JSON structures. Eliminates parsing fragility, format hallucinations, and downstream schema drift. |
-| **Hardware Honesty** | **Exposed Telemetry & Unit Economics** | Every tool visibly exposes execution latency (ms), token counts, ephemeral memory status, and raw JSON contracts. |
+| Architectural Pillar         | Specification & Contract                          | Ground Mechanism                                                                                                                                                                                                             |
+| :--------------------------- | :------------------------------------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Inference Latency SLA**    | **Sub-Second Execution (< 0.35s / P95 < 320ms)**  | Optimized serverless runtimes, local vLLM inference, and streamlined model tokenization eliminate queue stalls.                                                                                                              |
+| **Data Residency & Privacy** | **0 Bytes Permanent Logging (Ephemeral RAM)**     | Candidate resumes, audio streams, and chat logs are processed ephemerally in volatile memory containers and wiped immediately upon response completion. Never stored, pooled, or used to train public or proprietary models. |
+| **Schema Integrity**         | **100% Deterministic Typed JSON (Zod Contracts)** | Every endpoint outputs strictly validated JSON structures. Eliminates parsing fragility, format hallucinations, and downstream schema drift.                                                                                 |
+| **Hardware Honesty**         | **Exposed Telemetry & Unit Economics**            | Every tool visibly exposes execution latency (ms), token counts, ephemeral memory status, and raw JSON contracts.                                                                                                            |
 
 ---
 
@@ -73,14 +76,15 @@ A core pillar of NorAI is its grassroots educational initiative spanning Uttar P
 
 ### On-Ground Execution Matrix: Rural vs. Collegiate
 
-| Dimension | Rural & Village Deployment | Town & Collegiate Deployment |
-| :--- | :--- | :--- |
-| **Target Demographics** | Village elders, rural youth, local shopkeepers, women self-help groups. | Undergraduate engineers, polytechnic students, aspiring tech founders. |
-| **Primary Curriculum** | ChatGPT & Gemini Hindi voice prompts, welfare schemes, digital fraud safety. | MCP tool servers, local vLLM serving, vector databases, type-safe APIs. |
-| **Infrastructure & Tech** | Smartphone-first, low-bandwidth optimized, projector-led community sessions. | Campus computer labs, live code sandboxes, Git repos, local edge GPUs. |
-| **Takeaway Outcome** | Self-reliance in drafting formal letters, crop advisory, online scam defense. | Automated study flashcard engines, deployable AI micro-SaaS portfolio apps. |
+| Dimension                 | Rural & Village Deployment                                                    | Town & Collegiate Deployment                                                |
+| :------------------------ | :---------------------------------------------------------------------------- | :-------------------------------------------------------------------------- |
+| **Target Demographics**   | Village elders, rural youth, local shopkeepers, women self-help groups.       | Undergraduate engineers, polytechnic students, aspiring tech founders.      |
+| **Primary Curriculum**    | ChatGPT & Gemini Hindi voice prompts, welfare schemes, digital fraud safety.  | MCP tool servers, local vLLM serving, vector databases, type-safe APIs.     |
+| **Infrastructure & Tech** | Smartphone-first, low-bandwidth optimized, projector-led community sessions.  | Campus computer labs, live code sandboxes, Git repos, local edge GPUs.      |
+| **Takeaway Outcome**      | Self-reliance in drafting formal letters, crop advisory, online scam defense. | Automated study flashcard engines, deployable AI micro-SaaS portfolio apps. |
 
 ### Statewide 75-District Roadmap
+
 - **Phase 01 (Active Deployment)**: Grassroots & Campus Hub Pilots in Gorakhpur, Lucknow, Varanasi, Meerut, and Prayagraj (**500+ participants mentored**).
 - **Phase 02 (Scaling Cohort)**: Establishing monthly AI engineering clinics across **25+ Tier-2/3 district hubs** with collegiate and polytechnic partners.
 - **Phase 03 (Strategic Blueprint)**: Collaborating with the **Uttar Pradesh Skill Development Mission (UPSDM)** and the **Department of IT & Electronics** to standardize vernacular AI curricula across all **75 UP districts**.
@@ -130,6 +134,7 @@ NorAI operates with a lean core team of 5 in-house builders located in Uttar Pra
 ```
 
 ### The 4 Studio Operating Rituals
+
 1. **Ritual 01 — Founders Write Code & Answer Support**: Zero deflection bots; the engineer who wrote the schema is the one who handles issues.
 2. **Ritual 02 — Radical Hardware Honesty**: Exposed execution timing (ms), RAM isolation indicators, and raw typed JSON.
 3. **Ritual 03 — Shipped Weekly on Rhythm**: Continuous delivery with real production releases every single Monday.
@@ -172,36 +177,40 @@ NorAI provides four purpose-built micro-SaaS utilities accessible via web dashbo
 ### Detailed Tool Specifications
 
 #### 1. AI Resume Shortlister (`/products/resume-shortlister`)
+
 - **Problem**: Recruiters waste 15+ hours weekly manually scanning unstructured resumes, while manual keyword matching misses qualified talent.
 - **Solution**: High-speed neural parsing in RAM that extracts technical skill vectors, computes objective qualification scores against custom job rubrics, and emits clean ATS-ready JSON.
 - **Tiers**:
-  - *Starter* ($49/mo): 500 parses/mo, standard matching, web console.
-  - *Pro* ($149/mo): 3,000 parses/mo, custom weights, REST API access.
-  - *Scale* ($399/mo): 10,000 parses/mo, private webhook queues, 99.9% SLA.
+  - _Starter_ ($49/mo): 500 parses/mo, standard matching, web console.
+  - _Pro_ ($149/mo): 3,000 parses/mo, custom weights, REST API access.
+  - _Scale_ ($399/mo): 10,000 parses/mo, private webhook queues, 99.9% SLA.
 
 #### 2. AI Course Note-Taker (`/products/course-note-taker`)
+
 - **Problem**: 2-hour lecture recordings produce chaotic screenshots and notes that students fail to retain.
 - **Solution**: Processes video URLs (YouTube), transcript text, or audio files (MP3/WAV) into structured chapter briefs, core axioms, Anki-ready flashcards, and quizzes.
 - **Tiers**:
-  - *Starter* ($29/mo): 30 hours audio/transcripts/mo, Markdown/PDF exports.
-  - *Educator* ($99/mo): 150 hours/mo, quiz generator, API & webhooks.
-  - *Institutional* ($299/mo): 500 hours/mo, LMS integration, custom branding.
+  - _Starter_ ($29/mo): 30 hours audio/transcripts/mo, Markdown/PDF exports.
+  - _Educator_ ($99/mo): 150 hours/mo, quiz generator, API & webhooks.
+  - _Institutional_ ($299/mo): 500 hours/mo, LMS integration, custom branding.
 
 #### 3. Chat Digest & Newsletter AI (`/products/chat-digest`)
+
 - **Problem**: Community managers miss bugs, product requests, and community sentiment buried in thousands of daily chat messages.
 - **Solution**: Ingests Discord, Telegram, and Slack exports/webhooks, filters out noise, groups topics into sentiment clusters, extracts P0–P3 bugs, and generates ready-to-send newsletter drafts.
 - **Tiers**:
-  - *Community* ($39/mo): 2 channels, daily executive briefs.
-  - *Pro Manager* ($119/mo): 10 channels, newsletter generator, webhooks.
-  - *Enterprise* ($299/mo): Unlimited channels, custom sentiment models, dedicated SLA.
+  - _Community_ ($39/mo): 2 channels, daily executive briefs.
+  - _Pro Manager_ ($119/mo): 10 channels, newsletter generator, webhooks.
+  - _Enterprise_ ($299/mo): Unlimited channels, custom sentiment models, dedicated SLA.
 
 #### 4. Smart Dainik News / Regional Gazette (`/products/news-aggregator` / `smart-dainik-news`)
+
 - **Problem**: Regional public gazettes, recruitment alerts, and local news are plagued by duplicate press releases, unverified rumors, and lack of structured metadata.
 - **Solution**: Ingests regional feeds in Hindi and English, clusters syndicated stories, verifies official portal URLs, extracts salary bands and age limits into eligibility matrices, and generates executive briefs.
 - **Tiers**:
-  - *Analyst* ($59/mo): 5 keyword trackers, daily briefs, basic sentiment.
-  - *Media Hub* ($179/mo): 25 trackers, real-time webhooks, entity extraction.
-  - *Enterprise* ($449/mo): Unlimited trackers, custom NLP models, dedicated pipeline.
+  - _Analyst_ ($59/mo): 5 keyword trackers, daily briefs, basic sentiment.
+  - _Media Hub_ ($179/mo): 25 trackers, real-time webhooks, entity extraction.
+  - _Enterprise_ ($449/mo): Unlimited trackers, custom NLP models, dedicated pipeline.
 
 ---
 
@@ -210,22 +219,27 @@ NorAI provides four purpose-built micro-SaaS utilities accessible via web dashbo
 For organizations with specialized scale, custom data schemas, or strict data sovereignty, NorAI engineers bespoke solutions across five core practice areas:
 
 ### 1. RAG Systems & Vector Search
+
 - **Focus**: Hybrid dense vector + BM25 keyword search engines engineered for internal enterprise document stores (PDFs, Notion, Wikis).
 - **Deliverables**: Semantic layout-aware chunking, vector DB setup (pgvector, Qdrant, Milvus), sub-200ms retrieval latency with citation verification, and isolated VPC deployment.
 
 ### 2. Model Context Protocol (MCP) Tool Servers
+
 - **Focus**: Official Model Context Protocol (MCP) servers connecting LLMs and Claude Desktop directly to internal SQL databases, ERPs, and custom APIs.
 - **Deliverables**: Production-grade TypeScript/Python MCP servers, granular RBAC access policies, type-safe parameter validation, and full mock testing suites.
 
 ### 3. LLM Stack Optimization & Cost Auditing
+
 - **Focus**: Eliminating foundation model token waste and slashing inference latency across existing client LLM pipelines.
 - **Deliverables**: Prompt compression, semantic in-memory response caching, multi-model fallback routing, **40%–70% reduction in API spend**, and latency reduced from >4s to <600ms.
 
 ### 4. Custom AI Web Applications
+
 - **Focus**: Bespoke Next.js 15 and React 19 full-stack applications with streaming neural inference and tactile design.
 - **Deliverables**: Sub-100ms serverless endpoints, accessible WCAG AAA compliant UI, dynamic data visualization, and clean TypeScript codebases.
 
 ### 5. Business Automation Pipelines
+
 - **Focus**: Fault-tolerant background worker queues for automated document extraction, ERP synchronization, and compliance auditing.
 - **Deliverables**: Worker queues with exponential backoff (BullMQ/Redis), full audit trail, and 99.9% uptime SLAs.
 
@@ -258,6 +272,7 @@ For organizations with specialized scale, custom data schemas, or strict data so
 ```
 
 ### 3-Phase Enterprise Engagement Roadmap
+
 1. **Discovery (Technical Workflow Audit)**: Deep-dive into data bottlenecks, latency targets, and schema integration requirements.
 2. **Prototyping (3–5 Day PoC Sprint)**: Rapid development of a functional proof-of-concept pipeline in an isolated test harness using client sample datasets.
 3. **Delivery (Production Deployment & SLA)**: Seamless integration into client VPC/on-prem stack, backed by automated heartbeat monitoring and uptime guarantees.
@@ -291,11 +306,11 @@ NorAI provides transparent, predictable pricing across both self-serve bundles a
 
 ### General Micro-SaaS Subscription Tiers
 
-| Plan Tier | Monthly Price | Annual Price (Save 20%) | Monthly AI Requests | Latency SLA | Key Features Included |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Starter** | **$29 / mo** | **$23 / mo** | 5,000 requests | < 1.0s | Access to all 4 micro-SaaS tools, web console, standard email support. |
-| **Pro** | **$99 / mo** | **$79 / mo** | 50,000 requests | < 500ms | All 4 tools, webhooks & REST API access, custom scoring rules, priority support. |
-| **Enterprise** | **Custom** | **Custom** | Unlimited | < 100ms | Dedicated compute cluster, custom LoRA fine-tuning, private VPC connectors, 99.99% SLA. |
+| Plan Tier      | Monthly Price | Annual Price (Save 20%) | Monthly AI Requests | Latency SLA | Key Features Included                                                                   |
+| :------------- | :------------ | :---------------------- | :------------------ | :---------- | :-------------------------------------------------------------------------------------- |
+| **Starter**    | **$29 / mo**  | **$23 / mo**            | 5,000 requests      | < 1.0s      | Access to all 4 micro-SaaS tools, web console, standard email support.                  |
+| **Pro**        | **$99 / mo**  | **$79 / mo**            | 50,000 requests     | < 500ms     | All 4 tools, webhooks & REST API access, custom scoring rules, priority support.        |
+| **Enterprise** | **Custom**    | **Custom**              | Unlimited           | < 100ms     | Dedicated compute cluster, custom LoRA fine-tuning, private VPC connectors, 99.99% SLA. |
 
 - **Free Trial**: 14-day free trial including 1,000 API requests with zero credit card requirement.
 - **Pay-As-You-Go Overage**: Simple $0.002 per request above monthly cap with no service interruption.
@@ -309,6 +324,7 @@ Developers can integrate NorAI capabilities directly into ATS systems, LMS platf
 ### Endpoints Overview (`https://api.norai.in/v1/...`)
 
 #### 1. Candidate Evaluation API (`POST /api/v1/shortlist`)
+
 ```bash
 curl -X POST https://api.norai.in/v1/shortlist \
   -H "Authorization: Bearer norai_live_sec_key" \
@@ -318,6 +334,7 @@ curl -X POST https://api.norai.in/v1/shortlist \
 ```
 
 #### 2. Lecture Transcription & Briefs API (`POST /api/v1/notes/transcribe`)
+
 ```bash
 curl -X POST https://api.norai.in/v1/notes/transcribe \
   -H "Authorization: Bearer norai_live_sec_key" \
@@ -326,6 +343,7 @@ curl -X POST https://api.norai.in/v1/notes/transcribe \
 ```
 
 #### 3. Community Chat Digest Webhook (`POST /api/v1/digest/webhook`)
+
 ```bash
 curl -X POST https://api.norai.in/v1/digest/webhook \
   -H "Authorization: Bearer norai_live_sec_key" \
@@ -343,22 +361,23 @@ The visual and interaction identity of NorAI is built upon the **Editorial Hardw
 
 ```css
 /* Core Canvas Surfaces */
---canvas-base:     #F5F0EA; /* Heavy archival parchment */
---canvas-paper:    #FDFBF7; /* Elevated clean paper surface */
---canvas-sunken:   #EDE7DF; /* Recessed hardware track */
+--canvas-base: #f5f0ea; /* Heavy archival parchment */
+--canvas-paper: #fdfbf7; /* Elevated clean paper surface */
+--canvas-sunken: #ede7df; /* Recessed hardware track */
 
 /* Authoritative Inks */
---ink-primary:     #0D253D; /* Deep navy display & headings */
---ink-body:        #3D4F5F; /* Muted slate reading prose */
---ink-secondary:   #364757; /* Technical metadata & readouts */
+--ink-primary: #0d253d; /* Deep navy display & headings */
+--ink-body: #3d4f5f; /* Muted slate reading prose */
+--ink-secondary: #364757; /* Technical metadata & readouts */
 
 /* Signature Accents */
---accent-terra:    #C2553A; /* Primary interactive terracotta */
---accent-sage:     #5B8A72; /* Ephemeral telemetry & verified badges */
---accent-ochre:    #B8860B; /* Regional intelligence & district markers */
+--accent-terra: #c2553a; /* Primary interactive terracotta */
+--accent-sage: #5b8a72; /* Ephemeral telemetry & verified badges */
+--accent-ochre: #b8860b; /* Regional intelligence & district markers */
 ```
 
 ### Typography Hierarchy
+
 - **Display Headings**: `Instrument Serif` (Italic emphasis for signature words).
 - **Body & Interface Prose**: `Plus Jakarta Sans` (Fluid clamped sizing, clean leading).
 - **Technical & Numeric Telemetry**: `JetBrains Mono` with `tabular-nums` (Zero layout shift on dynamic counts).
@@ -368,6 +387,7 @@ The visual and interaction identity of NorAI is built upon the **Editorial Hardw
 ## 11. Summary for Autonomous AI Agents
 
 When interacting with or extending this codebase:
+
 1. **Never build generic, chatty AI features**: Every tool must have a single clear job, explicit inputs, and deterministic Zod outputs.
 2. **Respect the latency and RAM contracts**: Enforce ephemeral memory guarantees and sub-second execution SLAs.
 3. **Preserve the design tokens**: Adhere strictly to the Parchment & Terracotta palette (`bg-canvas-base`, `bg-canvas-paper`, `text-ink-primary`, `text-accent-500`) and the established typography hierarchy.

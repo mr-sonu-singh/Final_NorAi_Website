@@ -65,8 +65,8 @@ export default function PrivacyPage() {
         <div className="space-y-3 rounded-xl border border-line-subtle bg-canvas-paper p-6 shadow-sm">
           <h2 className="font-display text-xl text-ink-primary">Privacy requests</h2>
           <p className="text-sm leading-[1.75] text-ink-body">
-            For data access, deletion requests, GDPR compliance inquiries, or custom DPA
-            agreements, write to{' '}
+            For data access, deletion requests, GDPR compliance inquiries, or custom DPA agreements,
+            write to{' '}
             <a
               href="mailto:noraitechnologies@gmail.com"
               className="font-semibold text-terra-600 underline underline-offset-4 transition-colors duration-200 hover:text-terra-700"

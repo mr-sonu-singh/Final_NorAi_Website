@@ -73,7 +73,9 @@ export async function extractTextFromFile(file: File): Promise<ParsedCandidateFi
         estimatedTokens: estimateTokenCount(cleanText),
       };
     } catch {
-      throw new Error(`Could not parse text from PDF file "${name}". Please paste the resume text directly.`);
+      throw new Error(
+        `Could not parse text from PDF file "${name}". Please paste the resume text directly.`,
+      );
     }
   }
 

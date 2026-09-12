@@ -12,12 +12,7 @@ interface ApiKeyModalProps {
   onSave: (newSettings: ByokSettings) => void;
 }
 
-export function ApiKeyModal({
-  isOpen,
-  onClose,
-  settings,
-  onSave,
-}: ApiKeyModalProps) {
+export function ApiKeyModal({ isOpen, onClose, settings, onSave }: ApiKeyModalProps) {
   const [apiKey, setApiKey] = useState(settings.apiKey);
   const [showKey, setShowKey] = useState(false);
   const [preferredModel, setPreferredModel] = useState(settings.preferredModel);
@@ -61,7 +56,10 @@ export function ApiKeyModal({
               <Key className="w-5 h-5" />
             </div>
             <div>
-              <h3 id="api-key-modal-title" className="font-display text-xl text-ink-primary font-normal">
+              <h3
+                id="api-key-modal-title"
+                className="font-display text-xl text-ink-primary font-normal"
+              >
                 Bring Your Own Key (BYOK)
               </h3>
               <p className="text-xs text-ink-secondary">
@@ -86,14 +84,18 @@ export function ApiKeyModal({
             <span>Client-Side Local Storage Only</span>
           </div>
           <p className="text-[11px] leading-relaxed text-ink-secondary">
-            Your key is stored strictly inside your browser&apos;s localStorage and attached as a direct request header. It is never logged or stored in any database.
+            Your key is stored strictly inside your browser&apos;s localStorage and attached as a
+            direct request header. It is never logged or stored in any database.
           </p>
         </div>
 
         {/* Form */}
         <form onSubmit={handleSave} className="space-y-4">
           <div className="space-y-1.5">
-            <label htmlFor="gemini-api-key-input" className="block text-xs font-semibold text-ink-primary">
+            <label
+              htmlFor="gemini-api-key-input"
+              className="block text-xs font-semibold text-ink-primary"
+            >
               Google Gemini API Key
             </label>
             <div className="relative">
@@ -128,18 +130,21 @@ export function ApiKeyModal({
           </div>
 
           <div className="space-y-1.5">
-            <label htmlFor="preferred-model-select" className="block text-xs font-semibold text-ink-primary">
+            <label
+              htmlFor="preferred-model-select"
+              className="block text-xs font-semibold text-ink-primary"
+            >
               Target High-Context Model
             </label>
             <select
               id="preferred-model-select"
               value={preferredModel}
-              onChange={(e) =>
-                setPreferredModel(e.target.value as ByokSettings['preferredModel'])
-              }
+              onChange={(e) => setPreferredModel(e.target.value as ByokSettings['preferredModel'])}
               className="w-full px-3 py-2 rounded-lg bg-canvas-base border border-[rgba(13,37,61,0.15)] text-ink-primary text-xs font-mono focus:outline-none focus:ring-2 focus:ring-accent-500"
             >
-              <option value="gemini-3.5-lite">Gemini 3.5 Lite (Recommended: High-Throughput & Structured)</option>
+              <option value="gemini-3.5-lite">
+                Gemini 3.5 Lite (Recommended: High-Throughput & Structured)
+              </option>
               <option value="gemini-1.5-flash">Gemini 1.5 Flash (1M Tokens Context)</option>
               <option value="gemini-1.5-pro">Gemini 1.5 Pro (Deep Reasoning & Multimodal)</option>
             </select>
@@ -156,20 +161,10 @@ export function ApiKeyModal({
             </button>
 
             <div className="flex items-center gap-2">
-              <Button
-                type="button"
-                variant="secondary"
-                size="sm"
-                onClick={onClose}
-              >
+              <Button type="button" variant="secondary" size="sm" onClick={onClose}>
                 Cancel
               </Button>
-              <Button
-                type="submit"
-                variant="primary"
-                size="sm"
-                className="gap-1.5"
-              >
+              <Button type="submit" variant="primary" size="sm" className="gap-1.5">
                 {savedSuccess ? (
                   <>
                     <CheckCircle2 className="w-4 h-4 text-white" />

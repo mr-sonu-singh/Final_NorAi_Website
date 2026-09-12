@@ -23,10 +23,7 @@ function Word({ children, range, progress }: WordProps) {
   const color = useTransform(progress, range, ['#8491A2', '#141C2B']);
 
   return (
-    <motion.span
-      style={{ opacity, color }}
-      className="inline-block transition-colors duration-200"
-    >
+    <motion.span style={{ opacity, color }} className="inline-block transition-colors duration-200">
       {children}
     </motion.span>
   );
@@ -48,7 +45,7 @@ export function TaglineReveal({ className }: TaglineRevealProps) {
       ref={containerRef}
       className={cn(
         'py-14 md:py-20 bg-surface-canvas border-b border-border-subtle relative overflow-hidden',
-        className
+        className,
       )}
       aria-label="Core Philosophy"
     >
@@ -58,9 +55,7 @@ export function TaglineReveal({ className }: TaglineRevealProps) {
             Core Philosophy
           </p>
 
-          <h2
-            className="font-display text-4xl sm:text-5xl md:text-6xl font-normal leading-[1.12] tracking-display text-balance select-none"
-          >
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-normal leading-[1.12] tracking-display text-balance select-none">
             {shouldReduceMotion ? (
               <span className="text-text-primary">{TAGLINE}</span>
             ) : (
@@ -69,11 +64,7 @@ export function TaglineReveal({ className }: TaglineRevealProps) {
                   const start = i / words.length;
                   const end = start + 1 / words.length;
                   return (
-                    <Word
-                      key={`${word}-${i}`}
-                      range={[start, end]}
-                      progress={scrollYProgress}
-                    >
+                    <Word key={`${word}-${i}`} range={[start, end]} progress={scrollYProgress}>
                       {word}
                     </Word>
                   );

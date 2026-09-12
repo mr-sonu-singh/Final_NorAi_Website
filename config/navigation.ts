@@ -17,18 +17,14 @@ export const footerNav = {
     { title: 'Chat Digest AI', href: `${routes.products}/chat-digest` },
     { title: 'Smart News AI', href: `${routes.products}/news-aggregator` },
   ],
-  services: [
-    { title: 'Enterprise Services', href: routes.services },
-  ],
+  services: [{ title: 'Enterprise Services', href: routes.services }],
   company: [
     { title: 'About Us', href: routes.about },
     { title: 'Team', href: routes.team },
     { title: 'Careers', href: routes.careers },
     { title: 'Contact', href: routes.contact },
   ],
-  resources: [
-    { title: 'Blog', href: routes.blog },
-  ],
+  resources: [{ title: 'Blog', href: routes.blog }],
   legal: [
     { title: 'Privacy Policy', href: routes.privacy },
     { title: 'Terms of Service', href: routes.terms },

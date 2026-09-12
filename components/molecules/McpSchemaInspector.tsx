@@ -29,9 +29,24 @@ const SCHEMAS: ToolSchema[] = [
     method: 'MCP_TOOL',
     endpoint: '/v1/mcp/resume/screen',
     parameters: [
-      { name: 'document_base64', type: 'string', required: true, description: 'Raw PDF or DOCX candidate payload' },
-      { name: 'target_role', type: 'string', required: true, description: 'Role spec or job description requirements' },
-      { name: 'threshold', type: 'number', required: false, description: 'Minimum match confidence cut-off (0.0 - 1.0)' },
+      {
+        name: 'document_base64',
+        type: 'string',
+        required: true,
+        description: 'Raw PDF or DOCX candidate payload',
+      },
+      {
+        name: 'target_role',
+        type: 'string',
+        required: true,
+        description: 'Role spec or job description requirements',
+      },
+      {
+        name: 'threshold',
+        type: 'number',
+        required: false,
+        description: 'Minimum match confidence cut-off (0.0 - 1.0)',
+      },
     ],
     exampleCurl: `curl -X POST https://api.norai.in/v1/mcp/resume/screen \\
   -H "Authorization: Bearer norai_live_key_..." \\
@@ -65,9 +80,24 @@ console.log(result.topCandidates);`,
     method: 'MCP_TOOL',
     endpoint: '/v1/mcp/notes/extract',
     parameters: [
-      { name: 'media_url', type: 'string', required: true, description: 'Direct audio stream or video lecture URL' },
-      { name: 'extract_math', type: 'boolean', required: false, description: 'Extract and render KaTeX/LaTeX syntax' },
-      { name: 'generate_quiz', type: 'boolean', required: false, description: 'Generate Socratic study flashcards' },
+      {
+        name: 'media_url',
+        type: 'string',
+        required: true,
+        description: 'Direct audio stream or video lecture URL',
+      },
+      {
+        name: 'extract_math',
+        type: 'boolean',
+        required: false,
+        description: 'Extract and render KaTeX/LaTeX syntax',
+      },
+      {
+        name: 'generate_quiz',
+        type: 'boolean',
+        required: false,
+        description: 'Generate Socratic study flashcards',
+      },
     ],
     exampleCurl: `curl -X POST https://api.norai.in/v1/mcp/notes/extract \\
   -H "Authorization: Bearer norai_live_key_..." \\
@@ -93,8 +123,18 @@ console.log(result.topCandidates);`,
     method: 'MCP_TOOL',
     endpoint: '/v1/mcp/chat/digest',
     parameters: [
-      { name: 'messages_json', type: 'array', required: true, description: 'Batch of raw messages with timestamps' },
-      { name: 'sentiment_radar', type: 'boolean', required: false, description: 'Extract community sentiment distribution' },
+      {
+        name: 'messages_json',
+        type: 'array',
+        required: true,
+        description: 'Batch of raw messages with timestamps',
+      },
+      {
+        name: 'sentiment_radar',
+        type: 'boolean',
+        required: false,
+        description: 'Extract community sentiment distribution',
+      },
     ],
     exampleCurl: `curl -X POST https://api.norai.in/v1/mcp/chat/digest \\
   -H "Authorization: Bearer norai_live_key_..." \\
@@ -123,8 +163,8 @@ export function McpSchemaInspector({ className }: { className?: string }) {
       activeCodeTab === 'curl'
         ? selectedSchema.exampleCurl
         : activeCodeTab === 'typescript'
-        ? selectedSchema.exampleTs
-        : JSON.stringify(selectedSchema.exampleResponse, null, 2);
+          ? selectedSchema.exampleTs
+          : JSON.stringify(selectedSchema.exampleResponse, null, 2);
 
     navigator.clipboard.writeText(textToCopy);
     setCopied(true);
@@ -132,7 +172,12 @@ export function McpSchemaInspector({ className }: { className?: string }) {
   };
 
   return (
-    <div className={cn('rounded-2xl border border-border-strong bg-surface-panel overflow-hidden shadow-md text-left', className)}>
+    <div
+      className={cn(
+        'rounded-2xl border border-border-strong bg-surface-panel overflow-hidden shadow-md text-left',
+        className,
+      )}
+    >
       {/* Top Header */}
       <div className="bg-surface-panel-subtle/90 px-6 py-4 border-b border-border-subtle flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-2">
@@ -162,7 +207,7 @@ export function McpSchemaInspector({ className }: { className?: string }) {
                   'px-3 py-1 rounded-lg text-xs font-mono transition-all cursor-pointer',
                   isSelected
                     ? 'bg-accent-primary text-white font-semibold shadow-xs'
-                    : 'text-text-secondary hover:text-text-primary hover:bg-surface-hover'
+                    : 'text-text-secondary hover:text-text-primary hover:bg-surface-hover',
                 )}
               >
                 {schema.name}
@@ -237,7 +282,7 @@ export function McpSchemaInspector({ className }: { className?: string }) {
                   'px-2.5 py-1 rounded text-xs font-mono transition-colors cursor-pointer',
                   activeCodeTab === 'curl'
                     ? 'bg-surface-panel text-accent-primary font-semibold shadow-xs border border-border-subtle'
-                    : 'text-text-secondary hover:text-text-primary'
+                    : 'text-text-secondary hover:text-text-primary',
                 )}
               >
                 cURL
@@ -249,7 +294,7 @@ export function McpSchemaInspector({ className }: { className?: string }) {
                   'px-2.5 py-1 rounded text-xs font-mono transition-colors cursor-pointer',
                   activeCodeTab === 'typescript'
                     ? 'bg-surface-panel text-accent-primary font-semibold shadow-xs border border-border-subtle'
-                    : 'text-text-secondary hover:text-text-primary'
+                    : 'text-text-secondary hover:text-text-primary',
                 )}
               >
                 TypeScript SDK
@@ -261,7 +306,7 @@ export function McpSchemaInspector({ className }: { className?: string }) {
                   'px-2.5 py-1 rounded text-xs font-mono transition-colors cursor-pointer',
                   activeCodeTab === 'response'
                     ? 'bg-surface-panel text-accent-primary font-semibold shadow-xs border border-border-subtle'
-                    : 'text-text-secondary hover:text-text-primary'
+                    : 'text-text-secondary hover:text-text-primary',
                 )}
               >
                 JSON Response (200)
@@ -291,7 +336,8 @@ export function McpSchemaInspector({ className }: { className?: string }) {
             <pre className="text-text-primary leading-relaxed">
               {activeCodeTab === 'curl' && selectedSchema.exampleCurl}
               {activeCodeTab === 'typescript' && selectedSchema.exampleTs}
-              {activeCodeTab === 'response' && JSON.stringify(selectedSchema.exampleResponse, null, 2)}
+              {activeCodeTab === 'response' &&
+                JSON.stringify(selectedSchema.exampleResponse, null, 2)}
             </pre>
           </div>
         </div>

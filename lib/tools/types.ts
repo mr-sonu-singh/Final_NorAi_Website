@@ -49,10 +49,7 @@ export interface TelemetryMetrics {
 
 export interface ByokSettings {
   apiKey: string;
-  preferredModel:
-    | 'gemini-3.5-lite'
-    | 'gemini-1.5-flash'
-    | 'gemini-1.5-pro';
+  preferredModel: 'gemini-3.5-lite' | 'gemini-1.5-flash' | 'gemini-1.5-pro';
 }
 
 export interface ShortlistPreset {
@@ -179,7 +176,11 @@ export interface CommunityChatResult {
   totalRawMessages: number;
   filteredSignalMessages: number;
   spamFilteredPercentage: number;
-  overallSentiment: 'Bullish / Enthusiastic' | 'Healthy & Constructive' | 'Neutral' | 'Frustrated / Needs Attention';
+  overallSentiment:
+    | 'Bullish / Enthusiastic'
+    | 'Healthy & Constructive'
+    | 'Neutral'
+    | 'Frustrated / Needs Attention';
   sentimentScore: number;
   executiveBrief: string;
   topicClusters: TopicCluster[];
@@ -213,7 +214,14 @@ export interface GazetteAlertCard {
   hindiTitle: string;
   departmentOrMinistry: string;
   hindiDepartmentOrMinistry?: string;
-  category: 'Govt Employment' | 'Public Policy' | 'Civic Notice' | 'Industrial Incentive' | 'Govt Recruitment & Jobs' | 'Infrastructure & Smart City' | 'Education & Scholarships';
+  category:
+    | 'Govt Employment'
+    | 'Public Policy'
+    | 'Civic Notice'
+    | 'Industrial Incentive'
+    | 'Govt Recruitment & Jobs'
+    | 'Infrastructure & Smart City'
+    | 'Education & Scholarships';
   urgencyLevel: 'Critical Deadline' | 'Active Window' | 'Upcoming Notification';
   deadlineDate: string;
   hindiDeadlineDate?: string;
@@ -280,4 +288,3 @@ export interface DainikNewsPreset {
   sampleGazetteText: string;
   precomputedResult: DainikNewsResult;
 }
-

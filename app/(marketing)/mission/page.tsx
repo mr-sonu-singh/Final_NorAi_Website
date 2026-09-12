@@ -152,7 +152,10 @@ export default function MissionPage() {
 
             <Reveal delay={0.2} y={18}>
               <p className="fluid-lead text-text-secondary leading-relaxed max-w-2xl font-normal text-pretty">
-                Artificial intelligence should never be a metro-only privilege. We conduct zero-cost, hands-on workshops across rural communities, regional schools, and collegiate tech hubs in Uttar Pradesh—empowering everyday citizens, students, and young builders.
+                Artificial intelligence should never be a metro-only privilege. We conduct
+                zero-cost, hands-on workshops across rural communities, regional schools, and
+                collegiate tech hubs in Uttar Pradesh—empowering everyday citizens, students, and
+                young builders.
               </p>
             </Reveal>
           </div>
@@ -173,9 +176,13 @@ export default function MissionPage() {
               <figcaption className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-t border-border-subtle bg-surface-panel/90 px-6 py-3.5 text-xs font-mono text-text-secondary text-left">
                 <span className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-accent-primary" />
-                  <span>Hands-on Engineering Masterclass · Regional College Cohort, Uttar Pradesh</span>
+                  <span>
+                    Hands-on Engineering Masterclass · Regional College Cohort, Uttar Pradesh
+                  </span>
                 </span>
-                <span className="text-accent-secondary font-medium">Democratizing Engineering Beyond Metros</span>
+                <span className="text-accent-secondary font-medium">
+                  Democratizing Engineering Beyond Metros
+                </span>
               </figcaption>
             </figure>
           </Reveal>
@@ -195,7 +202,8 @@ export default function MissionPage() {
               Calibrated pedagogy for every divide.
             </h2>
             <p className="fluid-body text-text-secondary leading-relaxed max-w-xl text-pretty">
-              We never parachute generic corporate slide decks into regional classrooms. Every session is designed specifically for its audience.
+              We never parachute generic corporate slide decks into regional classrooms. Every
+              session is designed specifically for its audience.
             </p>
           </div>
 
@@ -231,7 +239,10 @@ export default function MissionPage() {
 
                         <div className="space-y-1.5 pt-2 border-t border-border-subtle">
                           {tier.highlights.map((hl) => (
-                            <div key={hl} className="flex items-start gap-2 text-xs text-text-primary">
+                            <div
+                              key={hl}
+                              className="flex items-start gap-2 text-xs text-text-primary"
+                            >
                               <CheckCircle2 className="w-3.5 h-3.5 text-accent-secondary shrink-0 mt-0.5" />
                               <span className="text-[11px] font-medium leading-tight">{hl}</span>
                             </div>
@@ -265,7 +276,8 @@ export default function MissionPage() {
               Four grounded commitments.
             </h2>
             <p className="fluid-body text-text-secondary leading-relaxed max-w-xl text-pretty">
-              Zero corporate vanity metrics. We measure our impact by real classroom hours, verified local code repositories, and genuine accessibility.
+              Zero corporate vanity metrics. We measure our impact by real classroom hours, verified
+              local code repositories, and genuine accessibility.
             </p>
           </div>
 
@@ -302,7 +314,11 @@ export default function MissionPage() {
       {/* =========================================================================
           BEAT 4: REQUEST A WORKSHOP CTA CONSOLE
           ========================================================================= */}
-      <AnimatedSection as="aside" aria-label="Request an on-campus masterclass" className="py-20 md:py-28 bg-surface-panel">
+      <AnimatedSection
+        as="aside"
+        aria-label="Request an on-campus masterclass"
+        className="py-20 md:py-28 bg-surface-panel"
+      >
         <Container size="default">
           <div className="p-2 sm:p-3 rounded-3xl bg-surface-canvas/80 border border-border-strong shadow-lg">
             <div className="rounded-[calc(1.5rem-0.25rem)] bg-surface-panel border border-border-subtle p-8 sm:p-12 md:p-16 text-center shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)] relative overflow-hidden">
@@ -323,7 +339,9 @@ export default function MissionPage() {
                 </h2>
 
                 <p className="fluid-body text-text-secondary leading-relaxed max-w-xl mx-auto text-pretty">
-                  Are you a college principal, department chair, polytechnic educator, or community leader in Uttar Pradesh? Invite our engineering team to conduct a 100% free, hands-on workshop on your campus.
+                  Are you a college principal, department chair, polytechnic educator, or community
+                  leader in Uttar Pradesh? Invite our engineering team to conduct a 100% free,
+                  hands-on workshop on your campus.
                 </p>
 
                 <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -334,7 +352,9 @@ export default function MissionPage() {
                         size="lg"
                         className="w-full sm:w-auto justify-between group shadow-accent hover:shadow-hover hover:-translate-y-0.5 active:scale-[0.98] transition-all cursor-pointer btn-tactile pl-6 pr-2.5 py-2.5"
                       >
-                        <span className="font-semibold text-sm">Request Free Campus Masterclass</span>
+                        <span className="font-semibold text-sm">
+                          Request Free Campus Masterclass
+                        </span>
                         <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center transition-transform group-hover:translate-x-1 group-hover:-translate-y-0.5 ml-3">
                           <ArrowRight className="w-4 h-4 text-white" />
                         </span>

@@ -12,7 +12,9 @@ export default defineConfig({
   timeout: 60000,
   workers: process.env.CI ? 2 : 2,
 
-  reporter: process.env.CI ? [['list'], ['html', { open: 'never' }]] : [['list'], ['html', { open: 'never' }]],
+  reporter: process.env.CI
+    ? [['list'], ['html', { open: 'never' }]]
+    : [['list'], ['html', { open: 'never' }]],
 
   use: {
     baseURL: process.env.PLAYWRIGHT_TEST_BASE_URL || 'http://127.0.0.1:3000',

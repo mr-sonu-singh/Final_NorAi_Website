@@ -4,10 +4,7 @@ import {
   ResumeShortlistOutputSchema,
   GEMINI_RESUME_SHORTLIST_RESPONSE_SCHEMA,
 } from '@/lib/tools/schemas';
-import {
-  SYSTEM_PROMPT_RESUME_SHORTLISTER,
-  buildResumeShortlistPrompt,
-} from '@/lib/tools/prompts';
+import { SYSTEM_PROMPT_RESUME_SHORTLISTER, buildResumeShortlistPrompt } from '@/lib/tools/prompts';
 import { estimateTokenCount, estimateApiCost } from '@/lib/tools/client-parser';
 import { checkRateLimit, getClientIp, getRateLimitHeaders } from '@/lib/security';
 
@@ -29,7 +26,7 @@ export async function POST(req: NextRequest) {
           error: 'RATE_LIMIT_EXCEEDED',
           message: 'Too many requests. Please wait a moment before analyzing more resumes.',
         },
-        { status: 429, headers: getRateLimitHeaders(rateLimit) }
+        { status: 429, headers: getRateLimitHeaders(rateLimit) },
       );
     }
 
@@ -43,7 +40,7 @@ export async function POST(req: NextRequest) {
           message: 'Invalid input payload. Please check required fields.',
           details: parseResult.error.flatten(),
         },
-        { status: 400, headers: getRateLimitHeaders(rateLimit) }
+        { status: 400, headers: getRateLimitHeaders(rateLimit) },
       );
     }
 
@@ -60,15 +57,13 @@ export async function POST(req: NextRequest) {
           message:
             'No Gemini API Key found. Please add your Gemini API key in the BYOK settings modal or configure GEMINI_API_KEY in your server environment.',
         },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
     // Select Gemini model
     const requestedModel =
-      (body.preferredModel as string) ||
-      process.env.GEMINI_MODEL ||
-      'gemini-3.5-lite';
+      (body.preferredModel as string) || process.env.GEMINI_MODEL || 'gemini-3.5-lite';
 
     // Map common aliases to canonical Gemini API model names
     const resolveModelName = (name: string): string => {
@@ -123,18 +118,15 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         {
           error: 'MODEL_API_ERROR',
-          message:
-            errorJson?.error?.message ||
-            `Gemini API returned status ${response.status}`,
+          message: errorJson?.error?.message || `Gemini API returned status ${response.status}`,
           details: errorJson,
         },
-        { status: response.status >= 400 && response.status < 500 ? 400 : 502 }
+        { status: response.status >= 400 && response.status < 500 ? 400 : 502 },
       );
     }
 
     const data = await response.json();
-    const candidatePart =
-      data?.candidates?.[0]?.content?.parts?.[0]?.text;
+    const candidatePart = data?.candidates?.[0]?.content?.parts?.[0]?.text;
 
     if (!candidatePart) {
       return NextResponse.json(
@@ -142,7 +134,7 @@ export async function POST(req: NextRequest) {
           error: 'EMPTY_MODEL_RESPONSE',
           message: 'The model returned an empty response. Please retry.',
         },
-        { status: 502 }
+        { status: 502 },
       );
     }
 
@@ -156,23 +148,18 @@ export async function POST(req: NextRequest) {
           message: 'Failed to parse structured JSON from model output.',
           raw: candidatePart,
         },
-        { status: 502 }
+        { status: 502 },
       );
     }
 
     // Validate structured output with Zod
     const validatedOutput = ResumeShortlistOutputSchema.safeParse(parsedOutput);
-    const finalData = validatedOutput.success
-      ? validatedOutput.data
-      : parsedOutput;
+    const finalData = validatedOutput.success ? validatedOutput.data : parsedOutput;
 
     const latencyMs = Date.now() - startTime;
     const estimatedOutputTokens = estimateTokenCount(candidatePart);
     const totalTokens = estimatedInputTokens + estimatedOutputTokens;
-    const estimatedCostUsd = estimateApiCost(
-      estimatedInputTokens,
-      estimatedOutputTokens
-    );
+    const estimatedCostUsd = estimateApiCost(estimatedInputTokens, estimatedOutputTokens);
 
     const telemetry = {
       latencyMs,
@@ -193,14 +180,13 @@ export async function POST(req: NextRequest) {
       },
     });
   } catch (err: unknown) {
-    const errorMsg =
-      err instanceof Error ? err.message : 'Internal Server Error';
+    const errorMsg = err instanceof Error ? err.message : 'Internal Server Error';
     return NextResponse.json(
       {
         error: 'INTERNAL_ERROR',
         message: errorMsg,
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

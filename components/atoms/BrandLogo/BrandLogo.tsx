@@ -29,11 +29,7 @@ const sizeMap = {
  * Clean, architectural NorAI brand mark matching the warm Stripe / New Yorker aesthetic.
  * Minimalist geometric lettermark 'N' on warm canvas paper or deep navy squircle.
  */
-export function BrandLogo({
-  size = 'md',
-  variant = 'full',
-  className,
-}: BrandLogoProps) {
+export function BrandLogo({ size = 'md', variant = 'full', className }: BrandLogoProps) {
   const { mark, text, gap } = sizeMap[size];
   const isInverted = variant === 'inverted';
 
@@ -48,12 +44,7 @@ export function BrandLogo({
       aria-hidden="true"
     >
       {/* Refined squircle tile */}
-      <rect
-        width="32"
-        height="32"
-        rx="8"
-        fill={isInverted ? '#FDFBF7' : '#0D253D'}
-      />
+      <rect width="32" height="32" rx="8" fill={isInverted ? '#FDFBF7' : '#0D253D'} />
       {/* Crisp geometric N lettermark */}
       <path
         d="M9 22.5V9.5L23 22.5V9.5"
@@ -63,12 +54,7 @@ export function BrandLogo({
         strokeLinejoin="round"
       />
       {/* Terracotta accent mark */}
-      <circle
-        cx="23"
-        cy="9.5"
-        r="2"
-        fill="#C2553A"
-      />
+      <circle cx="23" cy="9.5" r="2" fill="#C2553A" />
     </svg>
   );
 
@@ -83,7 +69,7 @@ export function BrandLogo({
         className={cn(
           'font-display font-normal tracking-tight leading-none',
           text,
-          isInverted ? 'text-[#FDFBF7]' : 'text-ink-primary'
+          isInverted ? 'text-[#FDFBF7]' : 'text-ink-primary',
         )}
       >
         NorAI

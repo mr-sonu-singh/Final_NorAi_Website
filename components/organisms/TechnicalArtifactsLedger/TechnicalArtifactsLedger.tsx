@@ -225,7 +225,9 @@ export function TechnicalArtifactsLedger() {
                 />
               )}
               <span className="relative z-10 flex items-center gap-1.5">
-                <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-terra-600' : 'text-ink-secondary'}`} />
+                <Icon
+                  className={`w-3.5 h-3.5 ${isActive ? 'text-terra-600' : 'text-ink-secondary'}`}
+                />
                 <span>{artifact.name}</span>
               </span>
             </button>

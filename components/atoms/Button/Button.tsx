@@ -7,8 +7,7 @@ import { Spinner } from '../Spinner';
 import { ButtonProps, ButtonVariant, ButtonSize } from './Button.types';
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary:
-    'bg-terra-500 text-white shadow-none hover:bg-terra-600 active:scale-[0.98] font-medium',
+  primary: 'bg-terra-500 text-white shadow-none hover:bg-terra-600 active:scale-[0.98] font-medium',
   secondary:
     'bg-surface-panel border border-border-strong text-text-primary shadow-none font-medium hover:border-border-highlight hover:bg-surface-hover active:scale-[0.98]',
   ghost: 'bg-transparent text-text-primary font-medium hover:bg-surface-hover active:scale-[0.98]',

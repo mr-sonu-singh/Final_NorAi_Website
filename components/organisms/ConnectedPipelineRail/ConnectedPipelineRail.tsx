@@ -58,7 +58,8 @@ export function ConnectedPipelineRail() {
           <span className="italic text-accent-primary font-normal">verified operations.</span>
         </h2>
         <p className="text-base md:text-lg text-text-secondary leading-relaxed">
-          Every NorAI utility follows a strict 3-stage execution contract designed for deterministic reliability, zero hallucination, and instant integration.
+          Every NorAI utility follows a strict 3-stage execution contract designed for deterministic
+          reliability, zero hallucination, and instant integration.
         </p>
       </div>
 
@@ -84,9 +85,7 @@ export function ConnectedPipelineRail() {
             const Icon = st.icon;
             return (
               <StaggerItem key={st.title} className="h-full">
-                <div
-                  className="h-full p-6 md:p-8 rounded-3xl bg-surface-panel border border-border-subtle shadow-sm hover:shadow-md hover:border-accent-primary/30 hover:-translate-y-0.5 active:scale-[0.99] transition-all duration-200 space-y-5 flex flex-col justify-between group"
-                >
+                <div className="h-full p-6 md:p-8 rounded-3xl bg-surface-panel border border-border-subtle shadow-sm hover:shadow-md hover:border-accent-primary/30 hover:-translate-y-0.5 active:scale-[0.99] transition-all duration-200 space-y-5 flex flex-col justify-between group">
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-mono font-bold text-accent-primary tracking-wider">
@@ -105,9 +104,7 @@ export function ConnectedPipelineRail() {
                       {st.title}
                     </h3>
 
-                    <p className="text-sm text-text-secondary leading-relaxed">
-                      {st.description}
-                    </p>
+                    <p className="text-sm text-text-secondary leading-relaxed">{st.description}</p>
                   </div>
 
                   <div className="pt-4 border-t border-border-subtle space-y-1.5 text-xs">

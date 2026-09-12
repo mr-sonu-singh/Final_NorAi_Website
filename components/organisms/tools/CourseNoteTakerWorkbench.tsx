@@ -29,25 +29,17 @@ import { ToolShell } from './ToolShell';
 import { ApiKeyModal } from './ApiKeyModal';
 import { MathText } from '@/components/atoms/MathRenderer';
 import { MathFormulaCard } from '@/components/molecules/MathFormulaCard';
-import {
-  CourseNotesResult,
-  ByokSettings,
-  Flashcard,
-} from '@/lib/tools/types';
+import { CourseNotesResult, ByokSettings, Flashcard } from '@/lib/tools/types';
 import { COURSE_NOTES_PRESETS } from '@/lib/tools/presets';
-import {
-  extractTextFromFile,
-  estimateTokenCount,
-} from '@/lib/tools/client-parser';
+import { extractTextFromFile, estimateTokenCount } from '@/lib/tools/client-parser';
 
 export function CourseNoteTakerWorkbench() {
   // Preset Selection
   const [activePresetId, setActivePresetId] = useState<string>(
-    COURSE_NOTES_PRESETS[0]?.id || 'preset-mit-raft'
+    COURSE_NOTES_PRESETS[0]?.id || 'preset-mit-raft',
   );
   const currentPreset =
-    COURSE_NOTES_PRESETS.find((p) => p.id === activePresetId) ||
-    COURSE_NOTES_PRESETS[0];
+    COURSE_NOTES_PRESETS.find((p) => p.id === activePresetId) || COURSE_NOTES_PRESETS[0];
 
   // Intake Dock Navigation: 'metadata' | 'ingestion' | 'synthesis'
   const [intakeTab, setIntakeTab] = useState<'metadata' | 'ingestion' | 'synthesis'>('metadata');
@@ -55,20 +47,20 @@ export function CourseNoteTakerWorkbench() {
 
   // Input Fields
   const [lectureTitle, setLectureTitle] = useState(
-    currentPreset?.precomputedResult?.lectureTitle || ''
+    currentPreset?.precomputedResult?.lectureTitle || '',
   );
   const [subject, setSubject] = useState(currentPreset?.subject || '');
   const [instructor, setInstructor] = useState(currentPreset?.instructor || '');
   const [focusMode, setFocusMode] = useState<
     'Comprehensive Study Guide' | 'Formulas & Axioms' | 'Exam Cram & Quizzes'
   >(currentPreset?.focusMode || 'Comprehensive Study Guide');
-  const [transcriptText, setTranscriptText] = useState(
-    currentPreset?.sampleTranscriptText || ''
-  );
+  const [transcriptText, setTranscriptText] = useState(currentPreset?.sampleTranscriptText || '');
 
   // Synthesis Controls
   const [flashcardCountTarget, setFlashcardCountTarget] = useState<number>(4);
-  const [quizDifficulty, setQuizDifficulty] = useState<'Standard' | 'Challenging' | 'Comprehensive'>('Standard');
+  const [quizDifficulty, setQuizDifficulty] = useState<
+    'Standard' | 'Challenging' | 'Comprehensive'
+  >('Standard');
   const [extractFormulas, setExtractFormulas] = useState<boolean>(true);
 
   // File Upload State
@@ -80,11 +72,9 @@ export function CourseNoteTakerWorkbench() {
   // Evaluation & Results State
   const [isProcessing, setIsProcessing] = useState(false);
   const [result, setResult] = useState<CourseNotesResult | null>(
-    currentPreset?.precomputedResult || null
+    currentPreset?.precomputedResult || null,
   );
-  const [activeTab, setActiveTab] = useState<
-    'notes' | 'flashcards' | 'quiz' | 'json'
-  >('notes');
+  const [activeTab, setActiveTab] = useState<'notes' | 'flashcards' | 'quiz' | 'json'>('notes');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   // Audio Waveform Scrubber & Synchronizer State
@@ -124,9 +114,7 @@ export function CourseNoteTakerWorkbench() {
       if (storedKey) {
         setByokSettings({
           apiKey: storedKey,
-          preferredModel:
-            (storedModel as ByokSettings['preferredModel']) ||
-            'gemini-3.5-lite',
+          preferredModel: (storedModel as ByokSettings['preferredModel']) || 'gemini-3.5-lite',
         });
       }
     } catch {
@@ -139,10 +127,7 @@ export function CourseNoteTakerWorkbench() {
     try {
       if (newSettings.apiKey) {
         localStorage.setItem('norai_byok_gemini_key', newSettings.apiKey);
-        localStorage.setItem(
-          'norai_byok_gemini_model',
-          newSettings.preferredModel
-        );
+        localStorage.setItem('norai_byok_gemini_model', newSettings.preferredModel);
       } else {
         localStorage.removeItem('norai_byok_gemini_key');
         localStorage.removeItem('norai_byok_gemini_model');
@@ -265,7 +250,7 @@ export function CourseNoteTakerWorkbench() {
       if (!response.ok) {
         if (response.status === 401) {
           setErrorMessage(
-            'Live lecture synthesis requires a Gemini API Key. Click "API Key" in the header to enter your key, or select a pre-computed Industry Preset below to test instantly.'
+            'Live lecture synthesis requires a Gemini API Key. Click "API Key" in the header to enter your key, or select a pre-computed Industry Preset below to test instantly.',
           );
           setIsByokModalOpen(true);
         } else {
@@ -284,11 +269,12 @@ export function CourseNoteTakerWorkbench() {
         setPlaybackProgress(0);
         setIsPlaying(false);
         setActiveChapterId(data.data.chapters?.[0]?.id || 'ch-01');
-        setLiveAnnouncement('Successfully generated study guide with LaTeX mathematical formulas and 3D flashcards.');
+        setLiveAnnouncement(
+          'Successfully generated study guide with LaTeX mathematical formulas and 3D flashcards.',
+        );
       }
     } catch (err: unknown) {
-      const msg =
-        err instanceof Error ? err.message : 'Network error communicating with API.';
+      const msg = err instanceof Error ? err.message : 'Network error communicating with API.';
       setErrorMessage(msg);
     } finally {
       setIsProcessing(false);
@@ -308,14 +294,14 @@ export function CourseNoteTakerWorkbench() {
             setIsPlaying(false);
             return 0;
           }
-          const increment = (0.5 * playbackSpeed);
+          const increment = 0.5 * playbackSpeed;
           const next = Math.min(100, prev + increment);
 
           // Auto-sync active chapter based on progress
           if (result && result.chapters.length > 0) {
             const chapterIndex = Math.min(
               result.chapters.length - 1,
-              Math.floor((next / 100) * result.chapters.length)
+              Math.floor((next / 100) * result.chapters.length),
             );
             const targetChap = result.chapters[chapterIndex];
             if (targetChap && targetChap.id !== activeChapterId) {
@@ -337,7 +323,10 @@ export function CourseNoteTakerWorkbench() {
   // Jump to specific chapter from scrubber or notes
   const handleSeekChapter = (chapterId: string, chapterIdx: number, totalChapters: number) => {
     setActiveChapterId(chapterId);
-    const targetPercent = Math.max(0, Math.min(100, (chapterIdx / Math.max(1, totalChapters)) * 100));
+    const targetPercent = Math.max(
+      0,
+      Math.min(100, (chapterIdx / Math.max(1, totalChapters)) * 100),
+    );
     setPlaybackProgress(targetPercent);
     // Switch to notes tab if on another tab so user sees the highlighted chapter
     setActiveTab('notes');
@@ -420,7 +409,10 @@ export function CourseNoteTakerWorkbench() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.setAttribute('href', url);
-    link.setAttribute('download', `norai_study_guide_${result.lectureTitle.toLowerCase().replace(/[^a-z0-9]/g, '_')}.md`);
+    link.setAttribute(
+      'download',
+      `norai_study_guide_${result.lectureTitle.toLowerCase().replace(/[^a-z0-9]/g, '_')}.md`,
+    );
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -442,12 +434,18 @@ export function CourseNoteTakerWorkbench() {
         `"${intervalTag}"`,
       ];
     });
-    const csvContent = ['"Front","Back","Category","Difficulty","SRS_Interval"', ...rows.map((r) => r.join(','))].join('\n');
+    const csvContent = [
+      '"Front","Back","Category","Difficulty","SRS_Interval"',
+      ...rows.map((r) => r.join(',')),
+    ].join('\n');
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.setAttribute('href', url);
-    link.setAttribute('download', `anki_deck_${result.lectureTitle.toLowerCase().replace(/[^a-z0-9]/g, '_')}.csv`);
+    link.setAttribute(
+      'download',
+      `anki_deck_${result.lectureTitle.toLowerCase().replace(/[^a-z0-9]/g, '_')}.csv`,
+    );
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -490,7 +488,7 @@ export function CourseNoteTakerWorkbench() {
   };
 
   const masteredCardsCount = Object.values(cardMasteryState).filter(
-    (s) => s.status === 'easy' || s.status === 'good'
+    (s) => s.status === 'easy' || s.status === 'good',
   ).length;
 
   // Quiz grading
@@ -504,13 +502,13 @@ export function CourseNoteTakerWorkbench() {
 
   const quizQuestions = result?.quiz || [];
   const correctCount = quizQuestions.filter(
-    (q) => selectedAnswers[q.id] === q.correctAnswerIndex
+    (q) => selectedAnswers[q.id] === q.correctAnswerIndex,
   ).length;
 
   // Waveform Bar Heights (Simulated dynamic waveform profile)
   const waveformBars = [
-    32, 54, 76, 45, 88, 62, 95, 40, 70, 85, 30, 60, 92, 75, 48, 80, 65, 90, 42, 68,
-    84, 52, 96, 78, 60, 88, 72, 45, 90, 64, 82, 50, 74, 98, 66, 85, 40, 70, 92, 58,
+    32, 54, 76, 45, 88, 62, 95, 40, 70, 85, 30, 60, 92, 75, 48, 80, 65, 90, 42, 68, 84, 52, 96, 78,
+    60, 88, 72, 45, 90, 64, 82, 50, 74, 98, 66, 85, 40, 70, 92, 58,
   ];
 
   return (
@@ -553,7 +551,7 @@ export function CourseNoteTakerWorkbench() {
                       'px-3 py-1.5 rounded-lg text-xs font-medium transition-all whitespace-nowrap active:scale-[0.97]',
                       isSelected
                         ? 'bg-[#0D253D] text-white shadow-xs font-semibold'
-                        : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed border border-[rgba(13,37,61,0.08)]'
+                        : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed border border-[rgba(13,37,61,0.08)]',
                     )}
                   >
                     {preset.subject}
@@ -567,7 +565,7 @@ export function CourseNoteTakerWorkbench() {
                   'px-3 py-1.5 rounded-lg text-xs font-medium transition-all whitespace-nowrap active:scale-[0.97]',
                   activePresetId === 'custom'
                     ? 'bg-[#0D253D] text-white shadow-xs font-semibold'
-                    : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed border border-[rgba(13,37,61,0.08)]'
+                    : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed border border-[rgba(13,37,61,0.08)]',
                 )}
               >
                 Custom Audio / Transcript
@@ -616,7 +614,7 @@ export function CourseNoteTakerWorkbench() {
                     'flex-1 py-1.5 rounded-lg text-center transition-all',
                     intakeTab === 'metadata'
                       ? 'bg-canvas-paper text-ink-primary font-semibold shadow-xs'
-                      : 'text-ink-secondary hover:text-ink-primary'
+                      : 'text-ink-secondary hover:text-ink-primary',
                   )}
                 >
                   1. Lecture Info
@@ -628,7 +626,7 @@ export function CourseNoteTakerWorkbench() {
                     'flex-1 py-1.5 rounded-lg text-center transition-all',
                     intakeTab === 'ingestion'
                       ? 'bg-canvas-paper text-ink-primary font-semibold shadow-xs'
-                      : 'text-ink-secondary hover:text-ink-primary'
+                      : 'text-ink-secondary hover:text-ink-primary',
                   )}
                 >
                   2. Ingestion
@@ -640,7 +638,7 @@ export function CourseNoteTakerWorkbench() {
                     'flex-1 py-1.5 rounded-lg text-center transition-all',
                     intakeTab === 'synthesis'
                       ? 'bg-canvas-paper text-ink-primary font-semibold shadow-xs'
-                      : 'text-ink-secondary hover:text-ink-primary'
+                      : 'text-ink-secondary hover:text-ink-primary',
                   )}
                 >
                   3. Studio Knobs
@@ -652,7 +650,10 @@ export function CourseNoteTakerWorkbench() {
                 <div className="space-y-3.5 animate-fadeIn">
                   <div className="space-y-1.5">
                     <div className="flex items-center justify-between">
-                      <label htmlFor="course-title-input" className="text-xs font-semibold text-ink-primary flex items-center gap-1.5">
+                      <label
+                        htmlFor="course-title-input"
+                        className="text-xs font-semibold text-ink-primary flex items-center gap-1.5"
+                      >
                         <GraduationCap className="w-3.5 h-3.5 text-accent-500" />
                         <span>Lecture Title / Topic</span>
                       </label>
@@ -673,7 +674,10 @@ export function CourseNoteTakerWorkbench() {
 
                   <div className="grid grid-cols-2 gap-3">
                     <div className="space-y-1.5">
-                      <label htmlFor="course-subject-input" className="text-xs font-semibold text-ink-primary block">
+                      <label
+                        htmlFor="course-subject-input"
+                        className="text-xs font-semibold text-ink-primary block"
+                      >
                         Subject / Domain
                       </label>
                       <input
@@ -689,7 +693,10 @@ export function CourseNoteTakerWorkbench() {
                       />
                     </div>
                     <div className="space-y-1.5">
-                      <label htmlFor="course-instructor-input" className="text-xs font-semibold text-ink-primary block">
+                      <label
+                        htmlFor="course-instructor-input"
+                        className="text-xs font-semibold text-ink-primary block"
+                      >
                         Instructor / Source
                       </label>
                       <input
@@ -707,7 +714,10 @@ export function CourseNoteTakerWorkbench() {
                   </div>
 
                   <div className="space-y-1.5 pt-0.5">
-                    <label htmlFor="course-focus-mode-select" className="text-xs font-semibold text-ink-primary block">
+                    <label
+                      htmlFor="course-focus-mode-select"
+                      className="text-xs font-semibold text-ink-primary block"
+                    >
                       Pedagogical Focus Mode
                     </label>
                     <select
@@ -718,14 +728,20 @@ export function CourseNoteTakerWorkbench() {
                           e.target.value as
                             | 'Comprehensive Study Guide'
                             | 'Formulas & Axioms'
-                            | 'Exam Cram & Quizzes'
+                            | 'Exam Cram & Quizzes',
                         )
                       }
                       className="w-full px-3 py-2 rounded-lg bg-canvas-base border border-[rgba(13,37,61,0.15)] text-ink-primary text-xs font-mono focus:outline-none focus:ring-2 focus:ring-accent-500"
                     >
-                      <option value="Comprehensive Study Guide">Comprehensive Study Guide (Detailed Chapters + Full Study Suite)</option>
-                      <option value="Formulas & Axioms">Formulas & Axioms (Heavy Math & LaTeX Extraction)</option>
-                      <option value="Exam Cram & Quizzes">Exam Cram & Quizzes (Max Flashcards & Assessment)</option>
+                      <option value="Comprehensive Study Guide">
+                        Comprehensive Study Guide (Detailed Chapters + Full Study Suite)
+                      </option>
+                      <option value="Formulas & Axioms">
+                        Formulas & Axioms (Heavy Math & LaTeX Extraction)
+                      </option>
+                      <option value="Exam Cram & Quizzes">
+                        Exam Cram & Quizzes (Max Flashcards & Assessment)
+                      </option>
                     </select>
                   </div>
 
@@ -767,9 +783,21 @@ export function CourseNoteTakerWorkbench() {
                     </span>
                     <div className="flex flex-wrap gap-1.5">
                       {[
-                        { title: 'MIT Raft Consensus', subject: 'Distributed Systems', instructor: 'Prof. Morris' },
-                        { title: 'Machine Learning & Loss', subject: 'Machine Learning', instructor: 'Stanford CS229' },
-                        { title: 'Eigenvalues & Invariants', subject: 'Linear Algebra', instructor: 'MIT 18.06' },
+                        {
+                          title: 'MIT Raft Consensus',
+                          subject: 'Distributed Systems',
+                          instructor: 'Prof. Morris',
+                        },
+                        {
+                          title: 'Machine Learning & Loss',
+                          subject: 'Machine Learning',
+                          instructor: 'Stanford CS229',
+                        },
+                        {
+                          title: 'Eigenvalues & Invariants',
+                          subject: 'Linear Algebra',
+                          instructor: 'MIT 18.06',
+                        },
                       ].map((item) => (
                         <button
                           key={item.title}
@@ -803,7 +831,7 @@ export function CourseNoteTakerWorkbench() {
                           'px-2.5 py-1 rounded-md text-[11px] font-medium transition-all',
                           transcriptInputMode === 'paste'
                             ? 'bg-[#0D253D] text-white font-semibold'
-                            : 'bg-canvas-recessed text-ink-secondary hover:text-ink-primary'
+                            : 'bg-canvas-recessed text-ink-secondary hover:text-ink-primary',
                         )}
                       >
                         Direct Transcript Editor
@@ -815,7 +843,7 @@ export function CourseNoteTakerWorkbench() {
                           'px-2.5 py-1 rounded-md text-[11px] font-medium transition-all',
                           transcriptInputMode === 'files'
                             ? 'bg-[#0D253D] text-white font-semibold'
-                            : 'bg-canvas-recessed text-ink-secondary hover:text-ink-primary'
+                            : 'bg-canvas-recessed text-ink-secondary hover:text-ink-primary',
                         )}
                       >
                         Upload Files (VTT/PDF/SRT)
@@ -829,7 +857,9 @@ export function CourseNoteTakerWorkbench() {
 
                   {/* Sample Presets Loader Toolbar */}
                   <div className="flex items-center gap-1.5 flex-wrap">
-                    <span className="text-[10px] font-mono text-ink-secondary uppercase font-semibold">Load Sample:</span>
+                    <span className="text-[10px] font-mono text-ink-secondary uppercase font-semibold">
+                      Load Sample:
+                    </span>
                     <button
                       type="button"
                       onClick={() => {
@@ -898,7 +928,9 @@ export function CourseNoteTakerWorkbench() {
                         <div className="flex flex-col items-center justify-center space-y-2 pointer-events-none">
                           <Upload className="w-6 h-6 text-accent-500" />
                           <span className="text-xs font-semibold text-ink-primary">
-                            {isParsingFiles ? 'Extracting text in-browser...' : 'Click or drag subtitle/lecture files here'}
+                            {isParsingFiles
+                              ? 'Extracting text in-browser...'
+                              : 'Click or drag subtitle/lecture files here'}
                           </span>
                           <span className="text-[11px] text-ink-secondary font-mono">
                             Supports VTT, SRT, PDF, Word, TXT, Markdown
@@ -968,7 +1000,10 @@ export function CourseNoteTakerWorkbench() {
                 <div className="space-y-3.5 animate-fadeIn">
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-xs">
-                      <label htmlFor="flashcard-slider" className="font-semibold text-ink-primary flex items-center gap-1.5">
+                      <label
+                        htmlFor="flashcard-slider"
+                        className="font-semibold text-ink-primary flex items-center gap-1.5"
+                      >
                         <Layers className="w-3.5 h-3.5 text-accent-secondary" />
                         <span>Flashcard Target Density</span>
                       </label>
@@ -989,17 +1024,26 @@ export function CourseNoteTakerWorkbench() {
                   </div>
 
                   <div className="space-y-1.5 pt-1 border-t border-[rgba(13,37,61,0.06)]">
-                    <label htmlFor="quiz-diff-select" className="text-xs font-semibold text-ink-primary block">
+                    <label
+                      htmlFor="quiz-diff-select"
+                      className="text-xs font-semibold text-ink-primary block"
+                    >
                       Quiz Assessment Rigor
                     </label>
                     <select
                       id="quiz-diff-select"
                       value={quizDifficulty}
-                      onChange={(e) => setQuizDifficulty(e.target.value as 'Standard' | 'Challenging' | 'Comprehensive')}
+                      onChange={(e) =>
+                        setQuizDifficulty(
+                          e.target.value as 'Standard' | 'Challenging' | 'Comprehensive',
+                        )
+                      }
                       className="w-full px-3 py-2 rounded-lg bg-canvas-base border border-[rgba(13,37,61,0.15)] text-ink-primary text-xs font-mono focus:outline-none focus:ring-2 focus:ring-accent-500"
                     >
                       <option value="Standard">Standard (Conceptual Verification)</option>
-                      <option value="Challenging">Challenging (Invariant Bounds & Edge Cases)</option>
+                      <option value="Challenging">
+                        Challenging (Invariant Bounds & Edge Cases)
+                      </option>
                       <option value="Comprehensive">Comprehensive (Full Theoretical Proofs)</option>
                     </select>
                   </div>
@@ -1048,7 +1092,9 @@ export function CourseNoteTakerWorkbench() {
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                   <span>Math Engine:</span>
                 </span>
-                <strong className="text-ink-primary font-semibold">KaTeX 0.16 (LaTeX Verified)</strong>
+                <strong className="text-ink-primary font-semibold">
+                  KaTeX 0.16 (LaTeX Verified)
+                </strong>
               </div>
               <div className="flex items-center justify-between text-[11px]">
                 <span>Synthesized Chapters:</span>
@@ -1079,11 +1125,15 @@ export function CourseNoteTakerWorkbench() {
                       'w-8 h-8 rounded-xl flex items-center justify-center transition-all shadow-xs active:scale-[0.95]',
                       isPlaying
                         ? 'bg-accent-500 text-white shadow-sm'
-                        : 'bg-[#0D253D] text-white hover:bg-[#16324e]'
+                        : 'bg-[#0D253D] text-white hover:bg-[#16324e]',
                     )}
                     title={isPlaying ? 'Pause Audio Playback' : 'Play Lecture Audio'}
                   >
-                    {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 ml-0.5" />}
+                    {isPlaying ? (
+                      <Pause className="w-3.5 h-3.5" />
+                    ) : (
+                      <Play className="w-3.5 h-3.5 ml-0.5" />
+                    )}
                   </button>
 
                   <div>
@@ -1116,7 +1166,7 @@ export function CourseNoteTakerWorkbench() {
                           'px-1.5 py-0.5 rounded transition-all',
                           playbackSpeed === spd
                             ? 'bg-[#0D253D] text-white font-semibold'
-                            : 'text-ink-secondary hover:text-ink-primary'
+                            : 'text-ink-secondary hover:text-ink-primary',
                         )}
                       >
                         {spd}x
@@ -1138,7 +1188,7 @@ export function CourseNoteTakerWorkbench() {
                     if (result && result.chapters.length > 0) {
                       const chapterIndex = Math.min(
                         result.chapters.length - 1,
-                        Math.floor((percent / 100) * result.chapters.length)
+                        Math.floor((percent / 100) * result.chapters.length),
                       );
                       const targetChap = result.chapters[chapterIndex];
                       if (targetChap) setActiveChapterId(targetChap.id);
@@ -1151,17 +1201,14 @@ export function CourseNoteTakerWorkbench() {
                     const isPlayed = barPercent <= playbackProgress;
 
                     return (
-                      <div
-                        key={bIdx}
-                        className="flex-1 flex items-center justify-center h-full"
-                      >
+                      <div key={bIdx} className="flex-1 flex items-center justify-center h-full">
                         <div
                           style={{ height: `${h}%` }}
                           className={cn(
                             'w-full max-w-[4px] rounded-full transition-colors duration-150',
                             isPlayed
                               ? 'bg-accent-500'
-                              : 'bg-[rgba(13,37,61,0.2)] group-hover:bg-[rgba(13,37,61,0.3)]'
+                              : 'bg-[rgba(13,37,61,0.2)] group-hover:bg-[rgba(13,37,61,0.3)]',
                           )}
                         />
                       </div>
@@ -1190,13 +1237,15 @@ export function CourseNoteTakerWorkbench() {
                           'px-2 py-1 rounded-md text-[10px] font-mono transition-all whitespace-nowrap flex items-center gap-1 border active:scale-[0.97]',
                           isCurrent
                             ? 'bg-accent-50 text-accent-600 border-accent-500/30 font-bold shadow-xs'
-                            : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary border-[rgba(13,37,61,0.08)]'
+                            : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary border-[rgba(13,37,61,0.08)]',
                         )}
                         title={`Jump to chapter: ${ch.title}`}
                       >
                         <Play className="w-2.5 h-2.5" />
                         <span>{ch.timestamp.split(' - ')[0] || ch.timestamp}</span>
-                        <span className="hidden sm:inline font-sans truncate max-w-[120px]">&bull; {ch.title}</span>
+                        <span className="hidden sm:inline font-sans truncate max-w-[120px]">
+                          &bull; {ch.title}
+                        </span>
                       </button>
                     );
                   })}
@@ -1214,7 +1263,7 @@ export function CourseNoteTakerWorkbench() {
                     'px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 active:scale-[0.97]',
                     activeTab === 'notes'
                       ? 'bg-[#0D253D] text-white shadow-xs'
-                      : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed'
+                      : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed',
                   )}
                 >
                   <BookOpen className="w-3.5 h-3.5" />
@@ -1228,7 +1277,7 @@ export function CourseNoteTakerWorkbench() {
                     'px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 active:scale-[0.97]',
                     activeTab === 'flashcards'
                       ? 'bg-[#0D253D] text-white shadow-xs'
-                      : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed'
+                      : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed',
                   )}
                 >
                   <Layers className="w-3.5 h-3.5" />
@@ -1242,7 +1291,7 @@ export function CourseNoteTakerWorkbench() {
                     'px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 active:scale-[0.97]',
                     activeTab === 'quiz'
                       ? 'bg-[#0D253D] text-white shadow-xs'
-                      : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed'
+                      : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed',
                   )}
                 >
                   <HelpCircle className="w-3.5 h-3.5" />
@@ -1256,7 +1305,7 @@ export function CourseNoteTakerWorkbench() {
                     'px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 active:scale-[0.97]',
                     activeTab === 'json'
                       ? 'bg-[#0D253D] text-white shadow-xs'
-                      : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed'
+                      : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed',
                   )}
                 >
                   <Code2 className="w-3.5 h-3.5" />
@@ -1361,7 +1410,7 @@ export function CourseNoteTakerWorkbench() {
                           'p-5 rounded-2xl bg-canvas-paper border shadow-xs space-y-3.5 transition-all duration-200',
                           isCurrent
                             ? 'border-accent-500 ring-2 ring-accent-500/20 bg-accent-50/10'
-                            : 'border-[rgba(13,37,61,0.1)] hover:border-[rgba(13,37,61,0.2)]'
+                            : 'border-[rgba(13,37,61,0.1)] hover:border-[rgba(13,37,61,0.2)]',
                         )}
                       >
                         {/* Chapter Header with Timestamp Seek Action */}
@@ -1369,7 +1418,9 @@ export function CourseNoteTakerWorkbench() {
                           <div className="flex items-center gap-2.5">
                             <button
                               type="button"
-                              onClick={() => handleSeekChapter(chapter.id, idx, result.chapters.length)}
+                              onClick={() =>
+                                handleSeekChapter(chapter.id, idx, result.chapters.length)
+                              }
                               className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-accent-50 text-accent-500 border border-accent-500/20 flex items-center gap-1 hover:bg-accent-100 transition-all active:scale-[0.97]"
                               title="Play audio from this chapter"
                             >
@@ -1399,7 +1450,10 @@ export function CourseNoteTakerWorkbench() {
                             Key Takeaways:
                           </span>
                           {chapter.keyTakeaways.map((takeaway, tIdx) => (
-                            <div key={tIdx} className="flex items-start gap-2 text-xs text-ink-body">
+                            <div
+                              key={tIdx}
+                              className="flex items-start gap-2 text-xs text-ink-body"
+                            >
                               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 mt-0.5 shrink-0" />
                               <div className="leading-relaxed">
                                 <MathText text={takeaway} />
@@ -1452,8 +1506,8 @@ export function CourseNoteTakerWorkbench() {
                           activeFlashcard.difficulty === 'Foundational'
                             ? 'bg-emerald-50 text-emerald-800'
                             : activeFlashcard.difficulty === 'Intermediate'
-                            ? 'bg-blue-50 text-blue-800'
-                            : 'bg-amber-50 text-amber-800'
+                              ? 'bg-blue-50 text-blue-800'
+                              : 'bg-amber-50 text-amber-800',
                         )}
                       >
                         {activeFlashcard.difficulty}
@@ -1490,7 +1544,9 @@ export function CourseNoteTakerWorkbench() {
                         style={{ backfaceVisibility: 'hidden' }}
                       >
                         <div className="flex items-center justify-between text-[11px] font-mono text-ink-secondary">
-                          <span className="uppercase font-bold text-accent-500">QUESTION (FRONT)</span>
+                          <span className="uppercase font-bold text-accent-500">
+                            QUESTION (FRONT)
+                          </span>
                           <span className="text-accent-500 font-semibold flex items-center gap-1">
                             <span>Space / Click to flip</span>
                             <span>&rarr;</span>
@@ -1549,7 +1605,7 @@ export function CourseNoteTakerWorkbench() {
                           'p-2.5 rounded-xl border text-xs font-semibold transition-all text-center active:scale-[0.97]',
                           cardMasteryState[activeFlashcard.id]?.status === 'again'
                             ? 'bg-rose-100 border-rose-500 text-rose-900 shadow-xs'
-                            : 'bg-rose-50/70 text-rose-800 border-rose-500/20 hover:bg-rose-100'
+                            : 'bg-rose-50/70 text-rose-800 border-rose-500/20 hover:bg-rose-100',
                         )}
                       >
                         <span className="block font-bold">Again</span>
@@ -1563,11 +1619,13 @@ export function CourseNoteTakerWorkbench() {
                           'p-2.5 rounded-xl border text-xs font-semibold transition-all text-center active:scale-[0.97]',
                           cardMasteryState[activeFlashcard.id]?.status === 'good'
                             ? 'bg-slate-200 border-slate-600 text-slate-950 shadow-xs'
-                            : 'bg-slate-100/70 text-slate-800 border-slate-500/20 hover:bg-slate-200'
+                            : 'bg-slate-100/70 text-slate-800 border-slate-500/20 hover:bg-slate-200',
                         )}
                       >
                         <span className="block font-bold">Good</span>
-                        <span className="text-[10px] font-mono text-slate-600">3 Days Interval</span>
+                        <span className="text-[10px] font-mono text-slate-600">
+                          3 Days Interval
+                        </span>
                       </button>
 
                       <button
@@ -1577,11 +1635,13 @@ export function CourseNoteTakerWorkbench() {
                           'p-2.5 rounded-xl border text-xs font-semibold transition-all text-center active:scale-[0.97]',
                           cardMasteryState[activeFlashcard.id]?.status === 'easy'
                             ? 'bg-emerald-100 border-emerald-600 text-emerald-950 shadow-xs'
-                            : 'bg-emerald-50/70 text-emerald-800 border-emerald-500/20 hover:bg-emerald-100'
+                            : 'bg-emerald-50/70 text-emerald-800 border-emerald-500/20 hover:bg-emerald-100',
                         )}
                       >
                         <span className="block font-bold">Easy</span>
-                        <span className="text-[10px] font-mono text-emerald-700">7 Days Mastery</span>
+                        <span className="text-[10px] font-mono text-emerald-700">
+                          7 Days Mastery
+                        </span>
                       </button>
                     </div>
                   </div>
@@ -1699,7 +1759,7 @@ export function CourseNoteTakerWorkbench() {
                                   'font-mono text-[10px] font-bold px-2 py-0.5 rounded uppercase',
                                   isCorrect
                                     ? 'bg-emerald-50 text-emerald-800 border border-emerald-500/30'
-                                    : 'bg-rose-50 text-rose-800 border border-rose-500/30'
+                                    : 'bg-rose-50 text-rose-800 border border-rose-500/30',
                                 )}
                               >
                                 {isCorrect ? 'Correct' : 'Incorrect'}
@@ -1741,7 +1801,7 @@ export function CourseNoteTakerWorkbench() {
                                   disabled={quizSubmitted}
                                   className={cn(
                                     'w-full text-left p-3 rounded-xl border text-xs transition-all flex items-start gap-3 active:scale-[0.99]',
-                                    optionStyle
+                                    optionStyle,
                                   )}
                                 >
                                   <span className="font-mono font-bold text-[11px] shrink-0 mt-0.5">

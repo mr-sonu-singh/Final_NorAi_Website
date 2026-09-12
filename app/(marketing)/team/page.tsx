@@ -245,7 +245,9 @@ export default function TeamPage() {
 
             <Reveal delay={0.2} y={18}>
               <p className="fluid-lead text-text-secondary leading-relaxed max-w-2xl font-normal text-pretty">
-                Every pipeline authored, deployed, and supported directly by the five founding engineers in Uttar Pradesh. No corporate bureaucracy, no deflection queues—just grounded engineering from the heart of North India.
+                Every pipeline authored, deployed, and supported directly by the five founding
+                engineers in Uttar Pradesh. No corporate bureaucracy, no deflection queues—just
+                grounded engineering from the heart of North India.
               </p>
             </Reveal>
           </div>
@@ -265,7 +267,9 @@ export default function TeamPage() {
               </div>
               <figcaption className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-t border-border-subtle bg-surface-panel/90 px-6 py-3.5 text-xs font-mono text-text-secondary text-left">
                 <span>NorAI Engineering Studio · Uttar Pradesh, India</span>
-                <span className="text-accent-primary font-medium">Ground Truth, Hard Hardware, and Fast Code</span>
+                <span className="text-accent-primary font-medium">
+                  Ground Truth, Hard Hardware, and Fast Code
+                </span>
               </figcaption>
             </figure>
           </Reveal>
@@ -287,19 +291,33 @@ export default function TeamPage() {
                 </div>
                 <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-normal text-text-primary leading-tight tracking-display">
                   Born from real <br />
-                  <span className="italic text-accent-primary font-normal">operational friction.</span>
+                  <span className="italic text-accent-primary font-normal">
+                    operational friction.
+                  </span>
                 </h2>
               </div>
 
               <div className="space-y-5 text-base md:text-lg leading-relaxed text-text-secondary text-pretty">
                 <p>
-                  NorAI began with a simple frustration. Resumes arrived faster than anyone could read them—four hundred applicants for a single position, shortlisted by hand over long weekends. Lecture recordings dissolved into chaotic screenshots across three apps and were never found again.
+                  NorAI began with a simple frustration. Resumes arrived faster than anyone could
+                  read them—four hundred applicants for a single position, shortlisted by hand over
+                  long weekends. Lecture recordings dissolved into chaotic screenshots across three
+                  apps and were never found again.
                 </p>
                 <p>
-                  None of these bottlenecks required a trillion-parameter general assistant. They needed someone to sit down and build the <strong className="text-text-primary font-medium">focused, deterministic fix</strong>—and keep it running with sub-second speed and zero hallucination.
+                  None of these bottlenecks required a trillion-parameter general assistant. They
+                  needed someone to sit down and build the{' '}
+                  <strong className="text-text-primary font-medium">
+                    focused, deterministic fix
+                  </strong>
+                  —and keep it running with sub-second speed and zero hallucination.
                 </p>
                 <p>
-                  The first tool was our <strong className="text-text-primary font-medium">AI Resume Shortlister</strong>, engineered for our own hiring. It parsed candidate documents and returned a structured, verified verdict in under 350 milliseconds. We shipped it, watched teams rely on it daily, and doubled down on single-purpose utility.
+                  The first tool was our{' '}
+                  <strong className="text-text-primary font-medium">AI Resume Shortlister</strong>,
+                  engineered for our own hiring. It parsed candidate documents and returned a
+                  structured, verified verdict in under 350 milliseconds. We shipped it, watched
+                  teams rely on it daily, and doubled down on single-purpose utility.
                 </p>
               </div>
             </Reveal>
@@ -339,16 +357,23 @@ export default function TeamPage() {
               Meet the five builders.
             </h2>
             <p className="fluid-body text-text-secondary leading-relaxed max-w-xl text-pretty">
-              Direct engineer accountability. When you use a NorAI tool or scope a custom pipeline, you work directly with the person who authored the architecture.
+              Direct engineer accountability. When you use a NorAI tool or scope a custom pipeline,
+              you work directly with the person who authored the architecture.
             </p>
           </div>
 
           {/* Builder Cards Grid */}
-          <StaggerGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left" stagger={0.12}>
+          <StaggerGrid
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left"
+            stagger={0.12}
+          >
             {BUILDERS.map((builder, idx) => {
               const Icon = builder.icon;
               return (
-                <StaggerItem key={builder.id} className={idx === 0 ? 'md:col-span-2 lg:col-span-1' : ''}>
+                <StaggerItem
+                  key={builder.id}
+                  className={idx === 0 ? 'md:col-span-2 lg:col-span-1' : ''}
+                >
                   <div className="p-2 rounded-3xl bg-surface-panel/40 border border-border-strong shadow-sm h-full flex flex-col justify-between hover:border-accent-primary/40 transition-colors">
                     <div className="rounded-[calc(1.5rem-0.25rem)] bg-surface-panel border border-border-subtle p-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)] space-y-5 h-full flex flex-col justify-between">
                       <div className="space-y-4">
@@ -398,7 +423,10 @@ export default function TeamPage() {
                           </span>
                           <div className="space-y-1">
                             {builder.systemsOwned.map((sys) => (
-                              <div key={sys} className="flex items-center gap-1.5 text-xs text-text-primary">
+                              <div
+                                key={sys}
+                                className="flex items-center gap-1.5 text-xs text-text-primary"
+                              >
                                 <CheckCircle2 className="w-3 h-3 text-accent-secondary shrink-0" />
                                 <span className="text-[11px] font-medium leading-tight">{sys}</span>
                               </div>
@@ -439,7 +467,8 @@ export default function TeamPage() {
               Our four operating rituals.
             </h2>
             <p className="fluid-body text-text-secondary leading-relaxed max-w-xl text-pretty">
-              How five builders ship reliable, sub-second tools without corporate bloat or deflection tickets.
+              How five builders ship reliable, sub-second tools without corporate bloat or
+              deflection tickets.
             </p>
           </div>
 
@@ -468,9 +497,7 @@ export default function TeamPage() {
                           {ritual.tagline}
                         </p>
 
-                        <p className="text-sm text-text-secondary leading-relaxed">
-                          {ritual.desc}
-                        </p>
+                        <p className="text-sm text-text-secondary leading-relaxed">{ritual.desc}</p>
                       </div>
 
                       <div className="pt-4 border-t border-border-subtle flex items-center justify-between text-xs font-mono text-accent-secondary font-semibold">
@@ -499,7 +526,8 @@ export default function TeamPage() {
               Three engineering invariants.
             </h2>
             <p className="fluid-body text-text-secondary leading-relaxed max-w-xl text-pretty">
-              The architectural rules enforced on every pipeline, tool, and client deployment across the NorAI stack.
+              The architectural rules enforced on every pipeline, tool, and client deployment across
+              the NorAI stack.
             </p>
           </div>
 
@@ -549,7 +577,11 @@ export default function TeamPage() {
       {/* =========================================================================
           SECTION 6: CLOSING FOUNDER DISPATCH CONSOLE
           ========================================================================= */}
-      <AnimatedSection as="aside" aria-label="Connect with our founders" className="py-20 md:py-28 bg-surface-panel">
+      <AnimatedSection
+        as="aside"
+        aria-label="Connect with our founders"
+        className="py-20 md:py-28 bg-surface-panel"
+      >
         <Container size="default">
           <div className="p-2 sm:p-3 rounded-3xl bg-surface-canvas/80 border border-border-strong shadow-lg">
             <div className="rounded-[calc(1.5rem-0.25rem)] bg-surface-panel border border-border-subtle p-8 sm:p-12 md:p-16 text-center shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)] relative overflow-hidden">
@@ -570,7 +602,9 @@ export default function TeamPage() {
                 </h2>
 
                 <p className="fluid-body text-text-secondary leading-relaxed max-w-xl mx-auto text-pretty">
-                  Whether you need bespoke multi-agent RAG pipelines, air-gapped private inference, or want to invite us to your regional campus—talk directly with our founding engineers.
+                  Whether you need bespoke multi-agent RAG pipelines, air-gapped private inference,
+                  or want to invite us to your regional campus—talk directly with our founding
+                  engineers.
                 </p>
 
                 <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">

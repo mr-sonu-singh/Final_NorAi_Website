@@ -35,21 +35,24 @@ const TRIAGE_TRACKS: TrackOption[] = [
     id: 'enterprise',
     label: 'Enterprise',
     defaultService: 'Custom Enterprise AI Pipeline',
-    placeholder: 'Describe your throughput requirements, latency targets, or custom RAG architecture...',
+    placeholder:
+      'Describe your throughput requirements, latency targets, or custom RAG architecture...',
     icon: Server,
   },
   {
     id: 'microsaas',
     label: 'Micro-SaaS',
     defaultService: 'AI Resume Shortlister & Micro-SaaS',
-    placeholder: 'Let us know which tool you are using (Resume, Notes, Digest) or what feature you need...',
+    placeholder:
+      'Let us know which tool you are using (Resume, Notes, Digest) or what feature you need...',
     icon: Layers,
   },
   {
     id: 'mission',
     label: 'Campus',
     defaultService: 'Campus Workshop & AI Skill Mission',
-    placeholder: 'Share your college/institution details, estimated cohort size, and preferred schedule...',
+    placeholder:
+      'Share your college/institution details, estimated cohort size, and preferred schedule...',
     icon: GraduationCap,
   },
   {
@@ -93,11 +96,7 @@ function FieldLabel({
           </span>
         )}
       </label>
-      {hint && (
-        <span className="font-mono text-[11px] text-ink-secondary">
-          {hint}
-        </span>
-      )}
+      {hint && <span className="font-mono text-[11px] text-ink-secondary">{hint}</span>}
     </div>
   );
 }
@@ -128,7 +127,12 @@ export function ContactFormClient() {
     const serviceParam = searchParams.get('service');
     if (serviceParam) {
       const p = serviceParam.toLowerCase();
-      if (p.includes('resume') || p.includes('note') || p.includes('chat') || p.includes('dainik')) {
+      if (
+        p.includes('resume') ||
+        p.includes('note') ||
+        p.includes('chat') ||
+        p.includes('dainik')
+      ) {
         setSelectedTrack('microsaas');
         setFormData((prev) => ({ ...prev, service: serviceParam }));
       } else if (p.includes('mission') || p.includes('workshop')) {
@@ -141,14 +145,14 @@ export function ContactFormClient() {
     }
   }, [searchParams]);
 
-  const currentTrackConfig: TrackOption =
-    TRIAGE_TRACKS.find((t) => t.id === selectedTrack) ?? {
-      id: 'enterprise',
-      label: 'Enterprise Pipeline',
-      defaultService: 'Custom Enterprise AI Pipeline',
-      placeholder: 'Describe your throughput requirements, latency targets, or custom RAG architecture...',
-      icon: Server,
-    };
+  const currentTrackConfig: TrackOption = TRIAGE_TRACKS.find((t) => t.id === selectedTrack) ?? {
+    id: 'enterprise',
+    label: 'Enterprise Pipeline',
+    defaultService: 'Custom Enterprise AI Pipeline',
+    placeholder:
+      'Describe your throughput requirements, latency targets, or custom RAG architecture...',
+    icon: Server,
+  };
 
   const handleTrackChange = (track: TrackOption) => {
     setSelectedTrack(track.id);
@@ -273,7 +277,8 @@ export function ContactFormClient() {
                 Schedule a 20-minute technical review
               </h3>
               <p className="text-[14px] leading-relaxed text-ink-secondary">
-                Connect directly with a founding engineer to review throughput bottlenecks, private VPC isolation, or custom AI pipeline architecture.
+                Connect directly with a founding engineer to review throughput bottlenecks, private
+                VPC isolation, or custom AI pipeline architecture.
               </p>
             </div>
 
@@ -301,13 +306,13 @@ export function ContactFormClient() {
             <CheckCircle2 className="h-6 w-6" aria-hidden="true" />
           </span>
           <div className="space-y-2">
-            <h2 className="font-display text-2xl text-ink-primary">
-              Dispatch Queued Successfully
-            </h2>
+            <h2 className="font-display text-2xl text-ink-primary">Dispatch Queued Successfully</h2>
             <p className="mx-auto max-w-md text-sm leading-relaxed text-ink-body">
-              Thank you, <strong className="font-semibold text-ink-primary">{formData.name}</strong>.
-              Your inquiry has been routed to our desk. A core engineer will review your note and respond to{' '}
-              <strong className="font-semibold text-ink-primary">{formData.email}</strong> within 4 business hours.
+              Thank you, <strong className="font-semibold text-ink-primary">{formData.name}</strong>
+              . Your inquiry has been routed to our desk. A core engineer will review your note and
+              respond to{' '}
+              <strong className="font-semibold text-ink-primary">{formData.email}</strong> within 4
+              business hours.
             </p>
           </div>
 
@@ -317,9 +322,7 @@ export function ContactFormClient() {
               <span className="block font-mono text-[10px] uppercase tracking-wider text-ink-secondary">
                 Dispatch Reference
               </span>
-              <span className="font-mono text-xs font-bold text-terra-600">
-                {referenceId}
-              </span>
+              <span className="font-mono text-xs font-bold text-terra-600">{referenceId}</span>
             </div>
             <button
               type="button"
@@ -381,9 +384,7 @@ export function ContactFormClient() {
                         isSelected ? 'text-terra-600' : 'text-ink-secondary',
                       )}
                     />
-                    <span className="font-sans text-xs whitespace-nowrap">
-                      {track.label}
-                    </span>
+                    <span className="font-sans text-xs whitespace-nowrap">{track.label}</span>
                   </button>
                 );
               })}
@@ -432,13 +433,8 @@ export function ContactFormClient() {
           {/* Organization and Service / Topic Grid */}
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <div>
-              <FieldLabel
-                htmlFor="contact-company"
-                hint="Optional"
-              >
-                {selectedTrack === 'mission'
-                  ? 'University / College'
-                  : 'Company / Organization'}
+              <FieldLabel htmlFor="contact-company" hint="Optional">
+                {selectedTrack === 'mission' ? 'University / College' : 'Company / Organization'}
               </FieldLabel>
               <input
                 id="contact-company"
@@ -446,9 +442,7 @@ export function ContactFormClient() {
                 type="text"
                 autoComplete="organization"
                 placeholder={
-                  selectedTrack === 'mission'
-                    ? 'IIT Kanpur / Lucknow Univ'
-                    : 'Company Name'
+                  selectedTrack === 'mission' ? 'IIT Kanpur / Lucknow Univ' : 'Company Name'
                 }
                 value={formData.company}
                 onChange={(e) => setFormData({ ...formData, company: e.target.value })}

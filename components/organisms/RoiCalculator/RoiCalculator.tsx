@@ -36,7 +36,8 @@ export function RoiCalculator() {
               <span className="font-medium text-text-primary">efficiency dividend.</span>
             </h3>
             <p className="text-base text-text-secondary leading-relaxed">
-              Adjust your operational intake volume to see how sub-second deterministic extraction eliminates manual review backlogs and cloud API token waste.
+              Adjust your operational intake volume to see how sub-second deterministic extraction
+              eliminates manual review backlogs and cloud API token waste.
             </p>
           </div>
 
@@ -112,7 +113,8 @@ export function RoiCalculator() {
                 <div className="bg-surface-panel-subtle h-full w-[4%]" title="Manual Overhead" />
               </div>
               <p className="text-[11px] text-text-secondary leading-relaxed">
-                Replaces manual copy-pasting, multi-tab ATS entry, and hallucination fact-checking with single-click deterministic pipelines.
+                Replaces manual copy-pasting, multi-tab ATS entry, and hallucination fact-checking
+                with single-click deterministic pipelines.
               </p>
             </div>
           </div>
@@ -129,7 +131,8 @@ export function RoiCalculator() {
                 <span className="text-lg font-sans text-text-muted font-normal ml-1">hrs/mo</span>
               </div>
               <p className="text-xs text-text-secondary">
-                Eliminates {Math.round(hoursSavedPerMonth / teamSize)} hours of manual document drag per operator every month.
+                Eliminates {Math.round(hoursSavedPerMonth / teamSize)} hours of manual document drag
+                per operator every month.
               </p>
             </div>
 
@@ -143,7 +146,8 @@ export function RoiCalculator() {
                 <span className="text-lg font-sans text-text-muted font-normal ml-1">/mo</span>
               </div>
               <p className="text-xs text-text-secondary">
-                Direct payroll hours reallocated to high-value candidate interviews and client strategy.
+                Direct payroll hours reallocated to high-value candidate interviews and client
+                strategy.
               </p>
             </div>
 
@@ -164,7 +168,9 @@ export function RoiCalculator() {
             {/* Metric 4: CTA Card (Navy Well) */}
             <div className="p-5 sm:p-6 rounded-xl bg-[#111722] text-[#F5F0EA] border border-white/10 space-y-3 flex flex-col justify-between">
               <div className="space-y-1.5">
-                <span className="text-[11px] font-mono text-slate-400 font-medium block">Instant Realization</span>
+                <span className="text-[11px] font-mono text-slate-400 font-medium block">
+                  Instant Realization
+                </span>
                 <h4 className="font-display text-xl text-white font-normal">
                   Claim 50 free credits
                 </h4>

@@ -29,3 +29,4 @@ export * from './MissionActionDock';
 export * from './EnterpriseBlueprint/EnterpriseBlueprintMatrix';
 export * from './HomeFaq/HomeFaqAccordion';
 export * from './RoiCalculator/RoiCalculator';
+export * from './OperatingRitualsRail/OperatingRitualsRail';

@@ -31,8 +31,8 @@ const ACCENTS = [
 export function EditorialCover({ title, seed, className }: EditorialCoverProps) {
   const h = hashSeed(seed);
   const primary = ACCENTS[h % ACCENTS.length] ?? ACCENTS[0] ?? { fill: '#C2553A', soft: '#F5E1DA' };
-  const secondary = ACCENTS[(h >> 3) % ACCENTS.length] ?? ACCENTS[1] ?? { fill: '#5B8A72', soft: '#E2EDE7' };
-
+  const secondary = ACCENTS[(h >> 3) % ACCENTS.length] ??
+    ACCENTS[1] ?? { fill: '#5B8A72', soft: '#E2EDE7' };
 
   const initial = title.trim().charAt(0).toUpperCase() || 'N';
 
@@ -63,7 +63,15 @@ export function EditorialCover({ title, seed, className }: EditorialCoverProps) 
           fill={secondary.soft}
           opacity="0.7"
         />
-        <line x1="-20" y1="52" x2="150" y2="52" stroke={primary.fill} strokeWidth="3" opacity="0.35" />
+        <line
+          x1="-20"
+          y1="52"
+          x2="150"
+          y2="52"
+          stroke={primary.fill}
+          strokeWidth="3"
+          opacity="0.35"
+        />
 
         {/* oversized serif initial */}
         <text

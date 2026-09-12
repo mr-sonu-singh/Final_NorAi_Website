@@ -48,14 +48,9 @@ export function DrawLine({
   const shouldReduceMotion = useReducedMotion();
 
   // If no custom SVG path provided, generate a responsive line
-  const d =
-    path ||
-    (orientation === 'horizontal'
-      ? 'M 0,2 L 100,2'
-      : 'M 2,0 L 2,100');
+  const d = path || (orientation === 'horizontal' ? 'M 0,2 L 100,2' : 'M 2,0 L 2,100');
 
-  const viewBox =
-    orientation === 'horizontal' ? '0 0 100 4' : '0 0 4 100';
+  const viewBox = orientation === 'horizontal' ? '0 0 100 4' : '0 0 4 100';
 
   if (shouldReduceMotion) {
     return (

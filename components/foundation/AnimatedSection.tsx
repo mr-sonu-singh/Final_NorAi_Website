@@ -146,4 +146,3 @@ export function StaggerItem({ children, className, ...props }: StaggerItemProps)
     </motion.div>
   );
 }
-

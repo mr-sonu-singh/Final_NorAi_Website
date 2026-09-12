@@ -9,8 +9,10 @@ export interface AccordionItemData {
 
 export type AccordionType = 'single' | 'multiple';
 
-export interface AccordionProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'dir'> {
+export interface AccordionProps extends Omit<
+  React.HTMLAttributes<HTMLDivElement>,
+  'defaultValue' | 'dir'
+> {
   items: AccordionItemData[];
   type?: AccordionType;
   defaultValue?: string | string[];

@@ -24,7 +24,7 @@ export async function POST(req: Request) {
         {
           status: 429,
           headers,
-        }
+        },
       );
     }
 
@@ -40,7 +40,7 @@ export async function POST(req: Request) {
         {
           status: 400,
           headers,
-        }
+        },
       );
     }
 
@@ -59,7 +59,10 @@ export async function POST(req: Request) {
     });
   } catch (error) {
     // Prevent sensitive error leakage
-    console.error('Unhandled contact route error:', error instanceof Error ? error.message : 'Unknown error');
+    console.error(
+      'Unhandled contact route error:',
+      error instanceof Error ? error.message : 'Unknown error',
+    );
 
     return NextResponse.json(
       {
@@ -68,7 +71,7 @@ export async function POST(req: Request) {
       },
       {
         status: 500,
-      }
+      },
     );
   }
 }

@@ -25,4 +25,3 @@ export const siteConfig = {
     github: 'https://github.com/noraitech',
   },
 };
-

@@ -48,7 +48,13 @@ export function ProductCard({
       data-variant={variant}
     >
       {image && (
-        <div className={cn('relative w-full overflow-hidden rounded-md bg-primary-100 mb-4', isExpanded ? 'h-64' : 'h-48')} style={{ position: 'relative', height: isExpanded ? '16rem' : '12rem' }}>
+        <div
+          className={cn(
+            'relative w-full overflow-hidden rounded-md bg-primary-100 mb-4',
+            isExpanded ? 'h-64' : 'h-48',
+          )}
+          style={{ position: 'relative', height: isExpanded ? '16rem' : '12rem' }}
+        >
           <Image
             src={image}
             alt={name}
@@ -78,10 +84,7 @@ export function ProductCard({
           {name}
         </Heading>
 
-        <Text
-          variant="body-sm"
-          className="text-primary-600 line-clamp-3"
-        >
+        <Text variant="body-sm" className="text-primary-600 line-clamp-3">
           {summary}
         </Text>
       </div>

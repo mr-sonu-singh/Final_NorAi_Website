@@ -126,7 +126,9 @@ export function EnterpriseBlueprintMatrix() {
             <span className="italic text-accent-primary font-normal">mission-critical scale.</span>
           </h2>
           <p className="text-base md:text-lg text-text-secondary leading-relaxed">
-            When off-the-shelf APIs can&apos;t satisfy strict data sovereignty, deterministic schema contracts, or sub-second latency SLAs, our core engineering team builds dedicated infrastructure.
+            When off-the-shelf APIs can&apos;t satisfy strict data sovereignty, deterministic schema
+            contracts, or sub-second latency SLAs, our core engineering team builds dedicated
+            infrastructure.
           </p>
         </div>
 
@@ -158,16 +160,14 @@ export function EnterpriseBlueprintMatrix() {
                 'p-6 rounded-2xl border text-left transition-all duration-200 space-y-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary cursor-pointer active:scale-[0.99]',
                 isSelected
                   ? 'bg-surface-panel border-accent-primary shadow-md ring-1 ring-accent-primary/20 translate-y-[-2px]'
-                  : 'bg-surface-panel/50 border-border-subtle hover:bg-surface-panel hover:border-accent-primary/30'
+                  : 'bg-surface-panel/50 border-border-subtle hover:bg-surface-panel hover:border-accent-primary/30',
               )}
             >
               <div className="flex items-center justify-between">
                 <span className="font-mono text-xs font-bold text-accent-primary">
                   {tier.tierLabel}
                 </span>
-                {isSelected && (
-                  <span className="w-2 h-2 rounded-full bg-accent-primary" />
-                )}
+                {isSelected && <span className="w-2 h-2 rounded-full bg-accent-primary" />}
               </div>
               <h3 className="font-display text-2xl text-text-primary font-normal leading-tight">
                 {tier.name}
@@ -277,7 +277,9 @@ export function EnterpriseBlueprintMatrix() {
                     size="sm"
                     className="w-full justify-center group text-xs font-semibold cursor-pointer"
                   >
-                    <span>Request Tier {selectedTier.tierLabel.replace('TIER ', '')} Specification</span>
+                    <span>
+                      Request Tier {selectedTier.tierLabel.replace('TIER ', '')} Specification
+                    </span>
                     <ArrowRight className="w-3.5 h-3.5 ml-1 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </Link>

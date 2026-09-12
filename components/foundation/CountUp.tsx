@@ -51,14 +51,14 @@ export function CountUp({
     decimals !== undefined
       ? decimals
       : value.toString().includes('.')
-      ? (value.toString().split('.')[1]?.length ?? 0)
-      : 0;
+        ? (value.toString().split('.')[1]?.length ?? 0)
+        : 0;
 
   const formatNumber = React.useCallback(
     (val: number) => {
       return val.toFixed(resolvedDecimals);
     },
-    [resolvedDecimals]
+    [resolvedDecimals],
   );
 
   // Always initialize with final value so SSR, headless crawlers, and static snapshots render the true metric
@@ -87,10 +87,7 @@ export function CountUp({
   }, [isInView, value, startValue, duration, delay, shouldReduceMotion, formatNumber]);
 
   return (
-    <span
-      ref={ref}
-      className={`inline-block font-mono tabular-nums ${className}`}
-    >
+    <span ref={ref} className={`inline-block font-mono tabular-nums ${className}`}>
       {prefix}
       {currentDisplay}
       {suffix}

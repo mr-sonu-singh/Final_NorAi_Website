@@ -86,7 +86,12 @@ const TRANSITIONS: TierTransition[] = [
     transformationText:
       'We teach Model Context Protocol (MCP) servers, local vLLM model serving, vector databases, and type-safe Next.js micro-SaaS.',
     metric: 'Direct Founder Mentorship',
-    tools: ['Model Context Protocol (MCP)', 'vLLM Local Serving', 'pgvector RAG', 'Next.js Micro-SaaS'],
+    tools: [
+      'Model Context Protocol (MCP)',
+      'vLLM Local Serving',
+      'pgvector RAG',
+      'Next.js Micro-SaaS',
+    ],
     ctaLink: '/contact?service=campus-workshop',
     ctaText: 'Bring Masterclass to Campus',
   },
@@ -167,9 +172,7 @@ export function GrassrootsTransitionsSlider() {
                       <AlertCircle className="w-3 h-3 shrink-0" aria-hidden="true" />
                       <span>{tier.realityTitle}</span>
                     </div>
-                    <p className="text-xs text-ink-body leading-relaxed">
-                      {tier.realityText}
-                    </p>
+                    <p className="text-xs text-ink-body leading-relaxed">{tier.realityText}</p>
                   </div>
 
                   {/* NorAI Transformation */}
@@ -203,7 +206,10 @@ export function GrassrootsTransitionsSlider() {
                   className="w-full inline-flex items-center justify-between px-4 py-2.5 rounded-xl border border-[rgba(20,28,43,0.12)] bg-canvas-base text-xs font-sans font-semibold text-ink-primary hover:text-terra-600 hover:border-terra-500 hover:bg-canvas-paper transition-all active:scale-[0.98] group"
                 >
                   <span>{tier.ctaText}</span>
-                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                  <ArrowRight
+                    className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5"
+                    aria-hidden="true"
+                  />
                 </NextLink>
               </div>
             </div>

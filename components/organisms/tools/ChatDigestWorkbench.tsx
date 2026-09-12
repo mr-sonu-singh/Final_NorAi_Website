@@ -27,45 +27,38 @@ import {
 import { ToolShell } from './ToolShell';
 import { ApiKeyModal } from './ApiKeyModal';
 import { MathText } from '@/components/atoms/MathRenderer';
-import {
-  CommunityChatResult,
-  ByokSettings,
-} from '@/lib/tools/types';
+import { CommunityChatResult, ByokSettings } from '@/lib/tools/types';
 import { CHAT_DIGEST_PRESETS } from '@/lib/tools/presets';
-import {
-  extractTextFromFile,
-  estimateTokenCount,
-} from '@/lib/tools/client-parser';
+import { extractTextFromFile, estimateTokenCount } from '@/lib/tools/client-parser';
 
 export function ChatDigestWorkbench() {
   // Preset Selection
   const [activePresetId, setActivePresetId] = useState<string>(
-    CHAT_DIGEST_PRESETS[0]?.id || 'preset-discord-dev'
+    CHAT_DIGEST_PRESETS[0]?.id || 'preset-discord-dev',
   );
   const currentPreset =
-    CHAT_DIGEST_PRESETS.find((p) => p.id === activePresetId) ||
-    CHAT_DIGEST_PRESETS[0];
+    CHAT_DIGEST_PRESETS.find((p) => p.id === activePresetId) || CHAT_DIGEST_PRESETS[0];
 
   // Intake Segmentation Dock: 1. Community | 2. Ingestion | 3. Signal Knobs
   const [intakeTab, setIntakeTab] = useState<'community' | 'ingestion' | 'knobs'>('community');
 
   // Form Inputs
   const [communityName, setCommunityName] = useState(
-    currentPreset?.communityName || 'SuperBase Developer Community'
+    currentPreset?.communityName || 'SuperBase Developer Community',
   );
   const [platform, setPlatform] = useState<'Discord' | 'Telegram' | 'Slack'>(
-    currentPreset?.platform || 'Discord'
+    currentPreset?.platform || 'Discord',
   );
   const [timeframe, setTimeframe] = useState<'Last 24 Hours' | 'Past 7 Days'>(
-    currentPreset?.timeframe || 'Last 24 Hours'
+    currentPreset?.timeframe || 'Last 24 Hours',
   );
-  const [chatLogText, setChatLogText] = useState(
-    currentPreset?.sampleChatLogText || ''
-  );
+  const [chatLogText, setChatLogText] = useState(currentPreset?.sampleChatLogText || '');
 
   // Signal & Triage Knobs
   const [confidenceThreshold, setConfidenceThreshold] = useState<number>(75);
-  const [noiseFilterMode, setNoiseFilterMode] = useState<'Strict' | 'Balanced' | 'Permissive'>('Balanced');
+  const [noiseFilterMode, setNoiseFilterMode] = useState<'Strict' | 'Balanced' | 'Permissive'>(
+    'Balanced',
+  );
   const [selectedChannelFilter, setSelectedChannelFilter] = useState<string>('ALL');
 
   // File Upload State
@@ -77,7 +70,7 @@ export function ChatDigestWorkbench() {
   // Processing & Results State
   const [isProcessing, setIsProcessing] = useState(false);
   const [result, setResult] = useState<CommunityChatResult | null>(
-    currentPreset?.precomputedResult || null
+    currentPreset?.precomputedResult || null,
   );
 
   // Stage Navigation Tab
@@ -88,7 +81,9 @@ export function ChatDigestWorkbench() {
 
   // Interactive Action Tracker States
   const [completedActionIds, setCompletedActionIds] = useState<Set<string>>(new Set(['bug-01']));
-  const [expandedTopicIds, setExpandedTopicIds] = useState<Set<string>>(new Set(['topic-01', 'topic-02']));
+  const [expandedTopicIds, setExpandedTopicIds] = useState<Set<string>>(
+    new Set(['topic-01', 'topic-02']),
+  );
   const [dispatchedWebhooks, setDispatchedWebhooks] = useState<Record<string, string>>({});
 
   // BYOK Settings
@@ -109,9 +104,7 @@ export function ChatDigestWorkbench() {
       if (storedKey) {
         setByokSettings({
           apiKey: storedKey,
-          preferredModel:
-            (storedModel as ByokSettings['preferredModel']) ||
-            'gemini-3.5-lite',
+          preferredModel: (storedModel as ByokSettings['preferredModel']) || 'gemini-3.5-lite',
         });
       }
     } catch {
@@ -124,10 +117,7 @@ export function ChatDigestWorkbench() {
     try {
       if (newSettings.apiKey) {
         localStorage.setItem('norai_byok_gemini_key', newSettings.apiKey);
-        localStorage.setItem(
-          'norai_byok_gemini_model',
-          newSettings.preferredModel
-        );
+        localStorage.setItem('norai_byok_gemini_model', newSettings.preferredModel);
       } else {
         localStorage.removeItem('norai_byok_gemini_key');
         localStorage.removeItem('norai_byok_gemini_model');
@@ -150,8 +140,14 @@ export function ChatDigestWorkbench() {
       setUploadedFiles([]);
       setErrorMessage(null);
       setSelectedChannelFilter('ALL');
-      setCompletedActionIds(new Set(preset.precomputedResult.actionItemsAndBugs.filter(a => a.status === 'Completed').map(a => a.id)));
-      setExpandedTopicIds(new Set(preset.precomputedResult.topicClusters.map(t => t.id)));
+      setCompletedActionIds(
+        new Set(
+          preset.precomputedResult.actionItemsAndBugs
+            .filter((a) => a.status === 'Completed')
+            .map((a) => a.id),
+        ),
+      );
+      setExpandedTopicIds(new Set(preset.precomputedResult.topicClusters.map((t) => t.id)));
     }
   };
 
@@ -233,7 +229,7 @@ export function ChatDigestWorkbench() {
       if (!response.ok) {
         if (response.status === 401) {
           setErrorMessage(
-            'Live chat synthesis requires a Gemini API Key. Click "API Key" in the header to enter your key, or test with our precomputed presets instantly.'
+            'Live chat synthesis requires a Gemini API Key. Click "API Key" in the header to enter your key, or test with our precomputed presets instantly.',
           );
           setIsByokModalOpen(true);
         } else {
@@ -247,8 +243,7 @@ export function ChatDigestWorkbench() {
         setResult(data.data);
       }
     } catch (err: unknown) {
-      const msg =
-        err instanceof Error ? err.message : 'Network error communicating with API.';
+      const msg = err instanceof Error ? err.message : 'Network error communicating with API.';
       setErrorMessage(msg);
     } finally {
       setIsProcessing(false);
@@ -355,7 +350,10 @@ export function ChatDigestWorkbench() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.setAttribute('href', url);
-    link.setAttribute('download', `norai_chat_digest_${result.communityName.toLowerCase().replace(/[^a-z0-9]/g, '_')}.md`);
+    link.setAttribute(
+      'download',
+      `norai_chat_digest_${result.communityName.toLowerCase().replace(/[^a-z0-9]/g, '_')}.md`,
+    );
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -375,12 +373,18 @@ export function ChatDigestWorkbench() {
       `"${item.reporterHandle}"`,
       `"${item.recommendedTriage.replace(/"/g, '""')}"`,
     ]);
-    const csvContent = ['"ID","Type","Priority","Title","Assignee","Status","Reporter","Triage"', ...rows.map((r) => r.join(','))].join('\n');
+    const csvContent = [
+      '"ID","Type","Priority","Title","Assignee","Status","Reporter","Triage"',
+      ...rows.map((r) => r.join(',')),
+    ].join('\n');
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.setAttribute('href', url);
-    link.setAttribute('download', `action_items_${result.communityName.toLowerCase().replace(/[^a-z0-9]/g, '_')}.csv`);
+    link.setAttribute(
+      'download',
+      `action_items_${result.communityName.toLowerCase().replace(/[^a-z0-9]/g, '_')}.csv`,
+    );
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -459,7 +463,7 @@ export function ChatDigestWorkbench() {
                       'px-3 py-1.5 rounded-lg text-xs font-medium transition-all active:scale-[0.97] whitespace-nowrap',
                       isSelected
                         ? 'bg-[#0D253D] text-white shadow-sm font-semibold'
-                        : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed border border-[rgba(13,37,61,0.08)]'
+                        : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed border border-[rgba(13,37,61,0.08)]',
                     )}
                   >
                     {preset.title}
@@ -473,7 +477,7 @@ export function ChatDigestWorkbench() {
                   'px-3 py-1.5 rounded-lg text-xs font-medium transition-all active:scale-[0.97] whitespace-nowrap',
                   activePresetId === 'custom'
                     ? 'bg-[#0D253D] text-white shadow-sm'
-                    : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed border border-[rgba(13,37,61,0.08)]'
+                    : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed border border-[rgba(13,37,61,0.08)]',
                 )}
               >
                 Custom Export (.json / .txt)
@@ -482,7 +486,11 @@ export function ChatDigestWorkbench() {
           </div>
 
           <div className="text-[11px] font-mono text-ink-secondary hidden md:block">
-            Estimated Ingestion: ~<span className="tabular-nums font-semibold">{estimateTokenCount(chatLogText).toLocaleString()}</span> tokens
+            Estimated Ingestion: ~
+            <span className="tabular-nums font-semibold">
+              {estimateTokenCount(chatLogText).toLocaleString()}
+            </span>{' '}
+            tokens
           </div>
         </div>
 
@@ -517,7 +525,7 @@ export function ChatDigestWorkbench() {
                     'flex-1 py-1.5 text-xs font-semibold rounded-lg transition-all active:scale-[0.98]',
                     intakeTab === 'community'
                       ? 'bg-canvas-paper text-ink-primary shadow-xs'
-                      : 'text-ink-secondary hover:text-ink-primary'
+                      : 'text-ink-secondary hover:text-ink-primary',
                   )}
                 >
                   1. Community
@@ -529,7 +537,7 @@ export function ChatDigestWorkbench() {
                     'flex-1 py-1.5 text-xs font-semibold rounded-lg transition-all active:scale-[0.98]',
                     intakeTab === 'ingestion'
                       ? 'bg-canvas-paper text-ink-primary shadow-xs'
-                      : 'text-ink-secondary hover:text-ink-primary'
+                      : 'text-ink-secondary hover:text-ink-primary',
                   )}
                 >
                   2. Ingestion
@@ -541,7 +549,7 @@ export function ChatDigestWorkbench() {
                     'flex-1 py-1.5 text-xs font-semibold rounded-lg transition-all active:scale-[0.98]',
                     intakeTab === 'knobs'
                       ? 'bg-canvas-paper text-ink-primary shadow-xs'
-                      : 'text-ink-secondary hover:text-ink-primary'
+                      : 'text-ink-secondary hover:text-ink-primary',
                   )}
                 >
                   3. Triage Knobs
@@ -552,7 +560,10 @@ export function ChatDigestWorkbench() {
               {intakeTab === 'community' && (
                 <div className="space-y-3.5 animate-fadeIn">
                   <div>
-                    <label htmlFor="community-name-input" className="text-xs font-semibold text-ink-primary block mb-1">
+                    <label
+                      htmlFor="community-name-input"
+                      className="text-xs font-semibold text-ink-primary block mb-1"
+                    >
                       Community / Channel Hub Name
                     </label>
                     <input
@@ -570,13 +581,18 @@ export function ChatDigestWorkbench() {
 
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label htmlFor="platform-select" className="text-xs font-semibold text-ink-primary block mb-1">
+                      <label
+                        htmlFor="platform-select"
+                        className="text-xs font-semibold text-ink-primary block mb-1"
+                      >
                         Platform Source
                       </label>
                       <select
                         id="platform-select"
                         value={platform}
-                        onChange={(e) => setPlatform(e.target.value as 'Discord' | 'Telegram' | 'Slack')}
+                        onChange={(e) =>
+                          setPlatform(e.target.value as 'Discord' | 'Telegram' | 'Slack')
+                        }
                         className="w-full px-3 py-2 rounded-lg bg-canvas-base border border-[rgba(13,37,61,0.15)] text-ink-primary text-xs font-mono focus:outline-none focus:ring-2 focus:ring-accent-500"
                       >
                         <option value="Discord">Discord Server</option>
@@ -585,13 +601,18 @@ export function ChatDigestWorkbench() {
                       </select>
                     </div>
                     <div>
-                      <label htmlFor="timeframe-select" className="text-xs font-semibold text-ink-primary block mb-1">
+                      <label
+                        htmlFor="timeframe-select"
+                        className="text-xs font-semibold text-ink-primary block mb-1"
+                      >
                         Timeframe Window
                       </label>
                       <select
                         id="timeframe-select"
                         value={timeframe}
-                        onChange={(e) => setTimeframe(e.target.value as 'Last 24 Hours' | 'Past 7 Days')}
+                        onChange={(e) =>
+                          setTimeframe(e.target.value as 'Last 24 Hours' | 'Past 7 Days')
+                        }
                         className="w-full px-3 py-2 rounded-lg bg-canvas-base border border-[rgba(13,37,61,0.15)] text-ink-primary text-xs font-mono focus:outline-none focus:ring-2 focus:ring-accent-500"
                       >
                         <option value="Last 24 Hours">Last 24 Hours</option>
@@ -614,19 +635,27 @@ export function ChatDigestWorkbench() {
                     <div className="grid grid-cols-2 gap-1.5 text-[11px]">
                       <div className="p-2 rounded-lg bg-canvas-paper border border-[rgba(13,37,61,0.06)] flex items-center gap-1.5">
                         <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                        <span className="font-medium text-ink-primary truncate">Spam & Bot Filter</span>
+                        <span className="font-medium text-ink-primary truncate">
+                          Spam & Bot Filter
+                        </span>
                       </div>
                       <div className="p-2 rounded-lg bg-canvas-paper border border-[rgba(13,37,61,0.06)] flex items-center gap-1.5">
                         <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                        <span className="font-medium text-ink-primary truncate">Action Item Tracker</span>
+                        <span className="font-medium text-ink-primary truncate">
+                          Action Item Tracker
+                        </span>
                       </div>
                       <div className="p-2 rounded-lg bg-canvas-paper border border-[rgba(13,37,61,0.06)] flex items-center gap-1.5">
                         <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                        <span className="font-medium text-ink-primary truncate">Bug & Incident Radar</span>
+                        <span className="font-medium text-ink-primary truncate">
+                          Bug & Incident Radar
+                        </span>
                       </div>
                       <div className="p-2 rounded-lg bg-canvas-paper border border-[rgba(13,37,61,0.06)] flex items-center gap-1.5">
                         <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                        <span className="font-medium text-ink-primary truncate">Sentiment & Morale</span>
+                        <span className="font-medium text-ink-primary truncate">
+                          Sentiment & Morale
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -638,7 +667,10 @@ export function ChatDigestWorkbench() {
                     </span>
                     <div className="flex flex-wrap gap-1.5">
                       {availableChannels.map((ch) => (
-                        <span key={ch} className="px-2 py-0.5 rounded text-[10px] font-mono bg-canvas-paper border border-[rgba(13,37,61,0.1)] text-ink-primary">
+                        <span
+                          key={ch}
+                          className="px-2 py-0.5 rounded text-[10px] font-mono bg-canvas-paper border border-[rgba(13,37,61,0.1)] text-ink-primary"
+                        >
                           {ch}
                         </span>
                       ))}
@@ -651,7 +683,10 @@ export function ChatDigestWorkbench() {
               {intakeTab === 'ingestion' && (
                 <div className="space-y-3 animate-fadeIn">
                   <div className="flex items-center justify-between">
-                    <label htmlFor="chatlog-textarea" className="text-xs font-semibold text-ink-primary flex items-center gap-1.5">
+                    <label
+                      htmlFor="chatlog-textarea"
+                      className="text-xs font-semibold text-ink-primary flex items-center gap-1.5"
+                    >
                       <MessageSquare className="w-3.5 h-3.5 text-accent-500" />
                       <span>Chat Logs / Raw Exports</span>
                     </label>
@@ -662,7 +697,9 @@ export function ChatDigestWorkbench() {
 
                   {/* Sample Presets Loader Toolbar */}
                   <div className="flex items-center gap-1.5 flex-wrap">
-                    <span className="text-[10px] font-mono text-ink-secondary uppercase font-semibold">Load Sample:</span>
+                    <span className="text-[10px] font-mono text-ink-secondary uppercase font-semibold">
+                      Load Sample:
+                    </span>
                     <button
                       type="button"
                       onClick={() => {
@@ -728,7 +765,11 @@ export function ChatDigestWorkbench() {
                     />
                     <div className="flex items-center justify-center gap-2 pointer-events-none text-xs text-ink-secondary">
                       <Upload className="w-4 h-4 text-accent-500 shrink-0" />
-                      <span>{isParsingFiles ? 'Parsing multi-channel logs...' : 'Drop Discord/Slack export dumps or paste logs below'}</span>
+                      <span>
+                        {isParsingFiles
+                          ? 'Parsing multi-channel logs...'
+                          : 'Drop Discord/Slack export dumps or paste logs below'}
+                      </span>
                     </div>
                   </div>
 
@@ -782,7 +823,10 @@ export function ChatDigestWorkbench() {
                 <div className="space-y-3.5 animate-fadeIn">
                   <div className="p-3.5 rounded-xl bg-canvas-base border border-[rgba(13,37,61,0.1)] space-y-2.5">
                     <div className="flex items-center justify-between">
-                      <label htmlFor="confidence-slider" className="text-xs font-semibold text-ink-primary flex items-center gap-1.5">
+                      <label
+                        htmlFor="confidence-slider"
+                        className="text-xs font-semibold text-ink-primary flex items-center gap-1.5"
+                      >
                         <Sliders className="w-3.5 h-3.5 text-accent-500" />
                         <span>Signal Confidence Threshold</span>
                       </label>
@@ -801,7 +845,8 @@ export function ChatDigestWorkbench() {
                       className="w-full accent-accent-500 cursor-pointer"
                     />
                     <p className="text-[11px] text-ink-secondary leading-snug">
-                      Messages below this threshold are categorized as noise or chatter and excluded from topic clustering.
+                      Messages below this threshold are categorized as noise or chatter and excluded
+                      from topic clustering.
                     </p>
                   </div>
 
@@ -819,7 +864,7 @@ export function ChatDigestWorkbench() {
                             'py-1.5 text-xs font-medium rounded-lg border transition-all active:scale-[0.97]',
                             noiseFilterMode === mode
                               ? 'bg-[#0D253D] text-white border-[#0D253D] font-semibold'
-                              : 'bg-canvas-paper text-ink-secondary border-[rgba(13,37,61,0.1)] hover:bg-canvas-recessed'
+                              : 'bg-canvas-paper text-ink-secondary border-[rgba(13,37,61,0.1)] hover:bg-canvas-recessed',
                           )}
                         >
                           {mode}
@@ -839,7 +884,9 @@ export function ChatDigestWorkbench() {
                         <strong className="text-ink-primary">Executive Memo + PR Tracker</strong>
                       </div>
                       <div className="p-2 rounded bg-canvas-paper border border-[rgba(13,37,61,0.06)]">
-                        <span className="text-ink-secondary block text-[10px]">Sentiment Mode:</span>
+                        <span className="text-ink-secondary block text-[10px]">
+                          Sentiment Mode:
+                        </span>
                         <strong className="text-emerald-700">Topic-by-Topic Radar</strong>
                       </div>
                     </div>
@@ -855,7 +902,9 @@ export function ChatDigestWorkbench() {
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                   <span>Target Engine:</span>
                 </span>
-                <strong className="text-ink-primary font-semibold">Gemini 3.5 Lite (Noise Filter)</strong>
+                <strong className="text-ink-primary font-semibold">
+                  Gemini 3.5 Lite (Noise Filter)
+                </strong>
               </div>
               <div className="flex items-center justify-between font-mono text-[11px]">
                 <span>Noise Reduction Rate:</span>
@@ -882,7 +931,7 @@ export function ChatDigestWorkbench() {
                     'px-3 py-1.5 rounded-lg text-xs font-semibold transition-all active:scale-[0.97] flex items-center gap-1.5',
                     activeTab === 'intelligence'
                       ? 'bg-[#0D253D] text-white shadow-sm'
-                      : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed'
+                      : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed',
                   )}
                 >
                   <TrendingUp className="w-3.5 h-3.5" />
@@ -896,7 +945,7 @@ export function ChatDigestWorkbench() {
                     'px-3 py-1.5 rounded-lg text-xs font-semibold transition-all active:scale-[0.97] flex items-center gap-1.5',
                     activeTab === 'actions'
                       ? 'bg-[#0D253D] text-white shadow-sm'
-                      : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed'
+                      : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed',
                   )}
                 >
                   <Bug className="w-3.5 h-3.5 text-accent-500" />
@@ -910,7 +959,7 @@ export function ChatDigestWorkbench() {
                     'px-3 py-1.5 rounded-lg text-xs font-semibold transition-all active:scale-[0.97] flex items-center gap-1.5',
                     activeTab === 'transcript'
                       ? 'bg-[#0D253D] text-white shadow-sm'
-                      : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed'
+                      : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed',
                   )}
                 >
                   <Sparkles className="w-3.5 h-3.5 text-amber-600" />
@@ -924,7 +973,7 @@ export function ChatDigestWorkbench() {
                     'px-3 py-1.5 rounded-lg text-xs font-semibold transition-all active:scale-[0.97] flex items-center gap-1.5',
                     activeTab === 'newsletter'
                       ? 'bg-[#0D253D] text-white shadow-sm'
-                      : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed'
+                      : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed',
                   )}
                 >
                   <Mail className="w-3.5 h-3.5 text-accent-secondary" />
@@ -938,7 +987,7 @@ export function ChatDigestWorkbench() {
                     'px-3 py-1.5 rounded-lg text-xs font-semibold transition-all active:scale-[0.97] flex items-center gap-1.5',
                     activeTab === 'json'
                       ? 'bg-[#0D253D] text-white shadow-sm'
-                      : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed'
+                      : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed',
                   )}
                 >
                   <Code2 className="w-3.5 h-3.5" />
@@ -996,7 +1045,15 @@ export function ChatDigestWorkbench() {
                         {result.communityName}
                       </h3>
                       <p className="text-xs text-ink-secondary font-mono">
-                        {result.timeframeCovered} &bull; <span className="tabular-nums font-semibold">{result.filteredSignalMessages.toLocaleString()}</span> signal messages from <span className="tabular-nums font-semibold">{result.totalRawMessages.toLocaleString()}</span> ingested
+                        {result.timeframeCovered} &bull;{' '}
+                        <span className="tabular-nums font-semibold">
+                          {result.filteredSignalMessages.toLocaleString()}
+                        </span>{' '}
+                        signal messages from{' '}
+                        <span className="tabular-nums font-semibold">
+                          {result.totalRawMessages.toLocaleString()}
+                        </span>{' '}
+                        ingested
                       </p>
                     </div>
 
@@ -1025,8 +1082,16 @@ export function ChatDigestWorkbench() {
                   {/* Signal Ratio Bar */}
                   <div className="space-y-1.5 pt-1">
                     <div className="flex items-center justify-between text-[11px] font-mono text-ink-secondary">
-                      <span>Signal Density (<span className="tabular-nums font-semibold">{result.filteredSignalMessages}</span> messages)</span>
-                      <span className="text-emerald-700 font-semibold tabular-nums">{result.spamFilteredPercentage}% Noise Filtered</span>
+                      <span>
+                        Signal Density (
+                        <span className="tabular-nums font-semibold">
+                          {result.filteredSignalMessages}
+                        </span>{' '}
+                        messages)
+                      </span>
+                      <span className="text-emerald-700 font-semibold tabular-nums">
+                        {result.spamFilteredPercentage}% Noise Filtered
+                      </span>
                     </div>
                     <div className="w-full h-2 rounded-full bg-canvas-recessed overflow-hidden">
                       <div
@@ -1051,7 +1116,7 @@ export function ChatDigestWorkbench() {
                       'px-2.5 py-1 rounded-lg text-xs font-medium font-mono transition-all active:scale-[0.97]',
                       selectedChannelFilter === 'ALL'
                         ? 'bg-[#0D253D] text-white shadow-xs'
-                        : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary border border-[rgba(13,37,61,0.08)]'
+                        : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary border border-[rgba(13,37,61,0.08)]',
                     )}
                   >
                     All Channels ({result?.topicClusters.length || 0})
@@ -1065,7 +1130,7 @@ export function ChatDigestWorkbench() {
                         'px-2.5 py-1 rounded-lg text-xs font-medium font-mono transition-all active:scale-[0.97]',
                         selectedChannelFilter === ch
                           ? 'bg-[#0D253D] text-white shadow-xs'
-                          : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary border border-[rgba(13,37,61,0.08)]'
+                          : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary border border-[rgba(13,37,61,0.08)]',
                       )}
                     >
                       {ch}
@@ -1097,8 +1162,8 @@ export function ChatDigestWorkbench() {
                                   cluster.status === 'ACTIVE DEBATE'
                                     ? 'bg-indigo-50 text-indigo-700 border border-indigo-200'
                                     : cluster.status === 'IN PROGRESS'
-                                    ? 'bg-amber-50 text-amber-700 border border-amber-200'
-                                    : 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                                      ? 'bg-amber-50 text-amber-700 border border-amber-200'
+                                      : 'bg-emerald-50 text-emerald-700 border border-emerald-200',
                                 )}
                               >
                                 {cluster.status || 'RESOLVED'}
@@ -1123,16 +1188,20 @@ export function ChatDigestWorkbench() {
                             )}
 
                             {/* Participant Handles Pill Strip */}
-                            {cluster.participantHandles && cluster.participantHandles.length > 0 && (
-                              <div className="flex items-center gap-1.5 pt-1 flex-wrap">
-                                <Users className="w-3 h-3 text-ink-secondary" />
-                                {cluster.participantHandles.map((handle) => (
-                                  <span key={handle} className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-canvas-base border border-[rgba(13,37,61,0.08)] text-ink-secondary">
-                                    {handle}
-                                  </span>
-                                ))}
-                              </div>
-                            )}
+                            {cluster.participantHandles &&
+                              cluster.participantHandles.length > 0 && (
+                                <div className="flex items-center gap-1.5 pt-1 flex-wrap">
+                                  <Users className="w-3 h-3 text-ink-secondary" />
+                                  {cluster.participantHandles.map((handle) => (
+                                    <span
+                                      key={handle}
+                                      className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-canvas-base border border-[rgba(13,37,61,0.08)] text-ink-secondary"
+                                    >
+                                      {handle}
+                                    </span>
+                                  ))}
+                                </div>
+                              )}
                           </div>
 
                           <div className="flex items-center gap-2 shrink-0">
@@ -1142,8 +1211,8 @@ export function ChatDigestWorkbench() {
                                 cluster.sentiment === 'Positive'
                                   ? 'bg-emerald-50 text-emerald-700'
                                   : cluster.sentiment === 'Mixed'
-                                  ? 'bg-amber-50 text-amber-700'
-                                  : 'bg-slate-100 text-slate-700'
+                                    ? 'bg-amber-50 text-amber-700'
+                                    : 'bg-slate-100 text-slate-700',
                               )}
                             >
                               {cluster.sentiment} {cluster.sentimentScore}%
@@ -1153,7 +1222,11 @@ export function ChatDigestWorkbench() {
                               aria-label={isExpanded ? 'Collapse topic' : 'Expand topic'}
                               className="p-1 rounded-lg hover:bg-canvas-recessed text-ink-secondary"
                             >
-                              {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                              {isExpanded ? (
+                                <ChevronUp className="w-4 h-4" />
+                              ) : (
+                                <ChevronDown className="w-4 h-4" />
+                              )}
                             </button>
                           </div>
                         </div>
@@ -1218,10 +1291,16 @@ export function ChatDigestWorkbench() {
                 <div className="space-y-4">
                   <div className="flex items-center justify-between text-xs text-ink-secondary font-mono pb-1 border-b border-[rgba(13,37,61,0.08)]">
                     <span>
-                      Total Tracked: <strong className="text-ink-primary tabular-nums">{result?.actionItemsAndBugs.length || 0}</strong>
+                      Total Tracked:{' '}
+                      <strong className="text-ink-primary tabular-nums">
+                        {result?.actionItemsAndBugs.length || 0}
+                      </strong>
                     </span>
                     <span>
-                      Completed: <strong className="text-emerald-700 tabular-nums">{completedActionIds.size}</strong>
+                      Completed:{' '}
+                      <strong className="text-emerald-700 tabular-nums">
+                        {completedActionIds.size}
+                      </strong>
                     </span>
                   </div>
 
@@ -1235,7 +1314,7 @@ export function ChatDigestWorkbench() {
                           'p-5 rounded-2xl bg-canvas-paper border transition-all space-y-3.5 shadow-sm',
                           isCompleted
                             ? 'border-emerald-500/30 bg-emerald-50/10 opacity-80'
-                            : 'border-[rgba(13,37,61,0.12)]'
+                            : 'border-[rgba(13,37,61,0.12)]',
                         )}
                       >
                         <div className="flex items-start justify-between gap-3 flex-wrap">
@@ -1247,7 +1326,7 @@ export function ChatDigestWorkbench() {
                                 'w-5 h-5 rounded flex items-center justify-center transition-colors border',
                                 isCompleted
                                   ? 'bg-emerald-600 border-emerald-600 text-white'
-                                  : 'border-[rgba(13,37,61,0.2)] hover:border-emerald-500 bg-canvas-base'
+                                  : 'border-[rgba(13,37,61,0.2)] hover:border-emerald-500 bg-canvas-base',
                               )}
                               title={isCompleted ? 'Mark as Open' : 'Mark as Completed'}
                             >
@@ -1260,8 +1339,8 @@ export function ChatDigestWorkbench() {
                                 item.priorityCode === 'P0' || item.priority === 'Urgent'
                                   ? 'bg-accent-50 text-accent-600 border border-accent-200'
                                   : item.priorityCode === 'P1' || item.priority === 'High'
-                                  ? 'bg-orange-50 text-orange-700 border border-orange-200'
-                                  : 'bg-amber-50 text-amber-700 border border-amber-200'
+                                    ? 'bg-orange-50 text-orange-700 border border-orange-200'
+                                    : 'bg-amber-50 text-amber-700 border border-amber-200',
                               )}
                             >
                               {item.priorityCode || item.priority}
@@ -1298,7 +1377,7 @@ export function ChatDigestWorkbench() {
                           <h4
                             className={cn(
                               'font-semibold text-sm text-ink-primary',
-                              isCompleted && 'line-through text-ink-secondary'
+                              isCompleted && 'line-through text-ink-secondary',
                             )}
                           >
                             {item.title}
@@ -1311,7 +1390,8 @@ export function ChatDigestWorkbench() {
                         {/* Triage & Simulated Webhook Strip */}
                         <div className="pt-2 border-t border-[rgba(13,37,61,0.06)] flex items-center justify-between gap-3 flex-wrap">
                           <div className="text-xs font-mono text-ink-secondary flex-1">
-                            <span className="font-semibold text-ink-primary">Triage Action:</span> {item.recommendedTriage}
+                            <span className="font-semibold text-ink-primary">Triage Action:</span>{' '}
+                            {item.recommendedTriage}
                           </div>
 
                           <div className="flex items-center gap-2">
@@ -1323,7 +1403,12 @@ export function ChatDigestWorkbench() {
                               <>
                                 <button
                                   type="button"
-                                  onClick={() => handleSimulateWebhook(item.id, item.targetIntegration || 'Slack')}
+                                  onClick={() =>
+                                    handleSimulateWebhook(
+                                      item.id,
+                                      item.targetIntegration || 'Slack',
+                                    )
+                                  }
                                   className="px-2.5 py-1 rounded-lg text-xs font-medium font-mono bg-canvas-base border border-[rgba(13,37,61,0.15)] hover:border-accent-500 text-ink-primary hover:text-accent-500 transition-colors active:scale-[0.97] flex items-center gap-1"
                                 >
                                   <Send className="w-3 h-3 text-accent-500" />
@@ -1344,11 +1429,16 @@ export function ChatDigestWorkbench() {
                 <div className="space-y-3">
                   <div className="p-3.5 rounded-xl bg-canvas-paper border border-[rgba(13,37,61,0.08)] flex items-center justify-between text-xs font-mono text-ink-secondary">
                     <span>
-                      Ingested Messages: <strong className="text-ink-primary tabular-nums">{filteredRawMessages.length}</strong>
+                      Ingested Messages:{' '}
+                      <strong className="text-ink-primary tabular-nums">
+                        {filteredRawMessages.length}
+                      </strong>
                     </span>
                     <span className="flex items-center gap-2">
-                      <span className="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500" /> Signal
-                      <span className="inline-block w-2.5 h-2.5 rounded-full bg-slate-300 ml-2" /> Filtered Noise
+                      <span className="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500" />{' '}
+                      Signal
+                      <span className="inline-block w-2.5 h-2.5 rounded-full bg-slate-300 ml-2" />{' '}
+                      Filtered Noise
                     </span>
                   </div>
 
@@ -1360,7 +1450,7 @@ export function ChatDigestWorkbench() {
                           'p-3.5 rounded-xl border transition-all text-xs font-mono space-y-1.5',
                           msg.isSignal
                             ? 'bg-canvas-paper border-emerald-500/30'
-                            : 'bg-canvas-recessed/40 border-transparent opacity-60'
+                            : 'bg-canvas-recessed/40 border-transparent opacity-60',
                         )}
                       >
                         <div className="flex items-center justify-between gap-2 flex-wrap text-[11px]">
@@ -1383,7 +1473,7 @@ export function ChatDigestWorkbench() {
                                 'px-2 py-0.5 rounded text-[10px] font-bold tabular-nums',
                                 msg.isSignal
                                   ? 'bg-emerald-50 text-emerald-700'
-                                  : 'bg-slate-100 text-slate-500'
+                                  : 'bg-slate-100 text-slate-500',
                               )}
                             >
                               {msg.isSignal ? `Signal ${msg.signalConfidence}%` : 'Noise'}

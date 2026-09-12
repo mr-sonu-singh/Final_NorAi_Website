@@ -91,7 +91,8 @@ export default function DocsPage() {
             </h1>
 
             <p className="fluid-lead text-text-secondary leading-relaxed max-w-2xl font-normal text-pretty">
-              Deterministic REST endpoints and typed Zod schemas for high-throughput automated workflows. Sub-350ms response budgets with ephemeral RAM memory guarantees.
+              Deterministic REST endpoints and typed Zod schemas for high-throughput automated
+              workflows. Sub-350ms response budgets with ephemeral RAM memory guarantees.
             </p>
 
             {/* Quick Stat Chips */}
@@ -172,7 +173,12 @@ export default function DocsPage() {
                 </div>
 
                 <p className="text-sm md:text-base text-text-secondary leading-relaxed">
-                  All requests to the NorAI API must be authenticated using an API bearer token in the HTTP request headers. Pass your key in the <code className="text-xs font-mono px-1.5 py-0.5 rounded bg-surface-panel border border-border-subtle text-accent-primary">Authorization</code> header.
+                  All requests to the NorAI API must be authenticated using an API bearer token in
+                  the HTTP request headers. Pass your key in the{' '}
+                  <code className="text-xs font-mono px-1.5 py-0.5 rounded bg-surface-panel border border-border-subtle text-accent-primary">
+                    Authorization
+                  </code>{' '}
+                  header.
                 </p>
 
                 {/* Base URL Box */}
@@ -195,7 +201,7 @@ export default function DocsPage() {
                     <span>HTTP/1.1</span>
                   </div>
                   <pre className="leading-relaxed">
-{`Authorization: Bearer norai_live_sec_key
+                    {`Authorization: Bearer norai_live_sec_key
 Content-Type: application/json
 Accept: application/json`}
                   </pre>
@@ -212,7 +218,8 @@ Accept: application/json`}
                     REST API Reference
                   </h2>
                   <p className="text-sm text-text-secondary">
-                    Select an endpoint below to inspect the path, request parameters, and executable code snippets in cURL and TypeScript.
+                    Select an endpoint below to inspect the path, request parameters, and executable
+                    code snippets in cURL and TypeScript.
                   </p>
                 </div>
 
@@ -229,7 +236,8 @@ Accept: application/json`}
                     3-Stage Execution Pipeline Trace
                   </h2>
                   <p className="text-sm text-text-secondary">
-                    Inspect the deterministic flow of data through our multi-format ingestion, quantized inference core, and sub-second dispatch relay.
+                    Inspect the deterministic flow of data through our multi-format ingestion,
+                    quantized inference core, and sub-second dispatch relay.
                   </p>
                 </div>
 
@@ -248,7 +256,8 @@ Accept: application/json`}
                     Typed Schemas &amp; Protocols
                   </h2>
                   <p className="text-sm text-text-secondary">
-                    Zero schema drift. Every pipeline in the NorAI ecosystem runs against strict, versioned Zod schemas before returning data to the caller.
+                    Zero schema drift. Every pipeline in the NorAI ecosystem runs against strict,
+                    versioned Zod schemas before returning data to the caller.
                   </p>
                 </div>
 
@@ -265,14 +274,18 @@ Accept: application/json`}
                     Error Handling Matrix
                   </h2>
                   <p className="text-sm text-text-secondary">
-                    All error responses return a standardized JSON envelope with an explicit error code and actionable diagnostic string.
+                    All error responses return a standardized JSON envelope with an explicit error
+                    code and actionable diagnostic string.
                   </p>
                 </div>
 
                 <div className="overflow-hidden rounded-2xl border border-border-subtle bg-surface-panel shadow-sm">
                   <div className="divide-y divide-border-subtle">
                     {ERROR_CODES.map((err) => (
-                      <div key={err.code} className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 hover:bg-surface-panel-subtle transition-colors">
+                      <div
+                        key={err.code}
+                        className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 hover:bg-surface-panel-subtle transition-colors"
+                      >
                         <div className="flex items-center gap-2.5 sm:w-48 shrink-0">
                           <span className="px-2 py-0.5 rounded font-mono text-xs font-bold bg-accent-50 text-accent-primary border border-accent-primary/20">
                             HTTP {err.code}
@@ -301,7 +314,8 @@ Accept: application/json`}
                       Need a dedicated VPC or private MCP server?
                     </h3>
                     <p className="text-sm text-text-secondary leading-relaxed max-w-xl">
-                      We package custom RAG engines, MCP tool servers, and air-gapped Docker / Helm containers directly into your cloud boundary with dedicated SLAs.
+                      We package custom RAG engines, MCP tool servers, and air-gapped Docker / Helm
+                      containers directly into your cloud boundary with dedicated SLAs.
                     </p>
                   </div>
 

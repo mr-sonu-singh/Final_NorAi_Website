@@ -81,7 +81,7 @@ test.describe('SEO & Metadata Verification', () => {
       const html = await res.text();
       const match = html.match(/<title[^>]*>([^<]+)<\/title>/i);
       expect(match).not.toBeNull();
-      const title = (match && match[1]) ? match[1].trim() : '';
+      const title = match && match[1] ? match[1].trim() : '';
       expect(title.length).toBeGreaterThan(0);
 
       if (titles.has(title)) {
@@ -122,4 +122,3 @@ test.describe('SEO & Metadata Verification', () => {
     expect(text).not.toContain('localhost:3000');
   });
 });
-

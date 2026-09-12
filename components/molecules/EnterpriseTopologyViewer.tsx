@@ -19,7 +19,8 @@ const NODES: TopologyNode[] = [
     id: 'node-vpc',
     label: 'Isolated Customer VPC',
     category: 'Security & Isolation',
-    description: 'Zero external network egress. All data stays strictly confined to your private cloud perimeter.',
+    description:
+      'Zero external network egress. All data stays strictly confined to your private cloud perimeter.',
     specs: 'AWS / GCP / Azure PrivateLink or On-Prem Bare Metal',
     status: 'ACTIVE',
   },
@@ -27,7 +28,8 @@ const NODES: TopologyNode[] = [
     id: 'node-vllm',
     label: 'Dedicated vLLM Cluster',
     category: 'Core GPU Engine',
-    description: 'High-throughput FP8/AWQ quantized inference instances tuned with custom LoRA adapters.',
+    description:
+      'High-throughput FP8/AWQ quantized inference instances tuned with custom LoRA adapters.',
     specs: 'NVIDIA H100 / A100 / L40S Tensor Cores (<320ms P95)',
     status: 'ACTIVE',
   },
@@ -35,7 +37,8 @@ const NODES: TopologyNode[] = [
     id: 'node-mcp',
     label: 'Autonomous MCP Servers',
     category: 'Ingress',
-    description: 'Model Context Protocol endpoints connecting ERPs, ATS systems, databases, and agent clients.',
+    description:
+      'Model Context Protocol endpoints connecting ERPs, ATS systems, databases, and agent clients.',
     specs: 'Strict Zod schema validation & Idempotent dispatch',
     status: 'ONLINE',
   },
@@ -53,7 +56,12 @@ export function EnterpriseTopologyViewer({ className }: { className?: string }) 
   const [selectedNode, setSelectedNode] = useState<TopologyNode>(NODES[1] as TopologyNode);
 
   return (
-    <div className={cn('rounded-2xl border border-border-strong bg-surface-panel p-6 sm:p-8 space-y-6 text-left shadow-md', className)}>
+    <div
+      className={cn(
+        'rounded-2xl border border-border-strong bg-surface-panel p-6 sm:p-8 space-y-6 text-left shadow-md',
+        className,
+      )}
+    >
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-border-subtle pb-4">
         <div>
@@ -85,7 +93,7 @@ export function EnterpriseTopologyViewer({ className }: { className?: string }) 
                 'p-4 rounded-xl border text-left transition-all cursor-pointer relative',
                 isSelected
                   ? 'bg-surface-panel-elevated border-accent-primary shadow-hover -translate-y-0.5'
-                  : 'bg-surface-canvas border-border-subtle hover:border-border-strong'
+                  : 'bg-surface-canvas border-border-subtle hover:border-border-strong',
               )}
             >
               <div className="flex items-center justify-between mb-2">

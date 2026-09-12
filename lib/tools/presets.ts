@@ -1,9 +1,4 @@
-import {
-  ShortlistPreset,
-  CourseNotesPreset,
-  ChatDigestPreset,
-  DainikNewsPreset,
-} from './types';
+import { ShortlistPreset, CourseNotesPreset, ChatDigestPreset, DainikNewsPreset } from './types';
 
 export const SHORTLIST_PRESETS: ShortlistPreset[] = [
   {
@@ -105,7 +100,8 @@ Tools: Git, Docker, Postman`,
         {
           criteriaName: 'Distributed Systems Architecture',
           weightPercentage: 35,
-          description: 'Event-driven streaming, Kafka/Redis queues, sub-50ms latency guarantees at scale.',
+          description:
+            'Event-driven streaming, Kafka/Redis queues, sub-50ms latency guarantees at scale.',
         },
         {
           criteriaName: 'Python & Async Concurrency',
@@ -137,22 +133,26 @@ Tools: Git, Docker, Postman`,
             {
               label: 'Distributed Systems Architecture',
               matchScore: 98,
-              evidence: '"Architected asynchronous event ingestion engine using Python and Redis Streams, reducing p99 latency from 140ms to 24ms." [Resume Sec 2.1]',
+              evidence:
+                '"Architected asynchronous event ingestion engine using Python and Redis Streams, reducing p99 latency from 140ms to 24ms." [Resume Sec 2.1]',
             },
             {
               label: 'Python & Async Concurrency',
               matchScore: 96,
-              evidence: '"Deep FastAPI, uvloop, and Celery mastery handling 45M+ daily API transactions." [Resume Sec 1.0]',
+              evidence:
+                '"Deep FastAPI, uvloop, and Celery mastery handling 45M+ daily API transactions." [Resume Sec 1.0]',
             },
             {
               label: 'PostgreSQL & Data Modeling',
               matchScore: 94,
-              evidence: '"Scaled distributed PostgreSQL read replicas with pgBouncer connection pooling, managing 12,000 queries/sec peak load." [Resume Sec 2.2]',
+              evidence:
+                '"Scaled distributed PostgreSQL read replicas with pgBouncer connection pooling, managing 12,000 queries/sec peak load." [Resume Sec 2.2]',
             },
             {
               label: 'DevOps & Observability',
               matchScore: 92,
-              evidence: '"Spearheaded migration to Kubernetes on AWS EKS; instituted OpenTelemetry distributed tracing across 14 microservices." [Resume Sec 2.3]',
+              evidence:
+                '"Spearheaded migration to Kubernetes on AWS EKS; instituted OpenTelemetry distributed tracing across 14 microservices." [Resume Sec 2.3]',
             },
           ],
           keyStrengths: [
@@ -183,22 +183,26 @@ Tools: Git, Docker, Postman`,
             {
               label: 'Distributed Systems Architecture',
               matchScore: 78,
-              evidence: '"Integrated automated reconciliation pipelines processing $2M+ daily transaction volume with Redis lock idempotency." [Resume Sec 2.2]',
+              evidence:
+                '"Integrated automated reconciliation pipelines processing $2M+ daily transaction volume with Redis lock idempotency." [Resume Sec 2.2]',
             },
             {
               label: 'Python & Async Concurrency',
               matchScore: 88,
-              evidence: '"Developed RESTful financial ledger APIs using Python FastAPI and SQLAlchemy with 99.98% uptime." [Resume Sec 2.1]',
+              evidence:
+                '"Developed RESTful financial ledger APIs using Python FastAPI and SQLAlchemy with 99.98% uptime." [Resume Sec 2.1]',
             },
             {
               label: 'PostgreSQL & Data Modeling',
               matchScore: 86,
-              evidence: '"Relational ledger schema design, ACID transaction isolation, and automated migration routines." [Resume Sec 2.1]',
+              evidence:
+                '"Relational ledger schema design, ACID transaction isolation, and automated migration routines." [Resume Sec 2.1]',
             },
             {
               label: 'DevOps & Observability',
               matchScore: 80,
-              evidence: '"Configured Docker CI/CD pipelines in GitLab for automated linting, security scanning, and unit testing." [Resume Sec 2.3]',
+              evidence:
+                '"Configured Docker CI/CD pipelines in GitLab for automated linting, security scanning, and unit testing." [Resume Sec 2.3]',
             },
           ],
           keyStrengths: [
@@ -232,22 +236,26 @@ Tools: Git, Docker, Postman`,
             {
               label: 'Distributed Systems Architecture',
               matchScore: 55,
-              evidence: '"Assisted senior engineers in writing Celery task queues for scheduled email reminders." [Resume Sec 2.2]',
+              evidence:
+                '"Assisted senior engineers in writing Celery task queues for scheduled email reminders." [Resume Sec 2.2]',
             },
             {
               label: 'Python & Async Concurrency',
               matchScore: 78,
-              evidence: '"Built CRUD endpoints using Django, Django REST Framework, and basic FastAPI." [Resume Sec 2.1]',
+              evidence:
+                '"Built CRUD endpoints using Django, Django REST Framework, and basic FastAPI." [Resume Sec 2.1]',
             },
             {
               label: 'PostgreSQL & Data Modeling',
               matchScore: 72,
-              evidence: '"Standard relational schema creation and Django ORM queries with PostgreSQL." [Resume Sec 2.1]',
+              evidence:
+                '"Standard relational schema creation and Django ORM queries with PostgreSQL." [Resume Sec 2.1]',
             },
             {
               label: 'DevOps & Observability',
               matchScore: 64,
-              evidence: '"Basic Docker containerization and Git workflows for development staging." [Resume Sec 3.0]',
+              evidence:
+                '"Basic Docker containerization and Git workflows for development staging." [Resume Sec 3.0]',
             },
           ],
           keyStrengths: [
@@ -387,22 +395,26 @@ Tools: PyTorch, HuggingFace, FastAPI, Docker, MLflow`,
             {
               label: 'High-Throughput LLM Inference (vLLM/Triton)',
               matchScore: 99,
-              evidence: '"Deployed vLLM inference clusters on Kubernetes utilizing AWQ 4-bit quantization, decreasing GPU memory footprint by 55% at 300+ req/sec." [Resume Sec 2.1]',
+              evidence:
+                '"Deployed vLLM inference clusters on Kubernetes utilizing AWQ 4-bit quantization, decreasing GPU memory footprint by 55% at 300+ req/sec." [Resume Sec 2.1]',
             },
             {
               label: 'Vector Search & RAG Architecture',
               matchScore: 96,
-              evidence: '"Architected enterprise RAG pipeline on Qdrant with hybrid BM25 + dense embedding reranking via Cohere Rerank." [Resume Sec 2.2]',
+              evidence:
+                '"Architected enterprise RAG pipeline on Qdrant with hybrid BM25 + dense embedding reranking via Cohere Rerank." [Resume Sec 2.2]',
             },
             {
               label: 'Kubernetes GPU Scheduling',
               matchScore: 94,
-              evidence: '"Managed multi-tenant Ray Serve and GPU node affinity on Kubernetes clusters." [Resume Sec 2.1]',
+              evidence:
+                '"Managed multi-tenant Ray Serve and GPU node affinity on Kubernetes clusters." [Resume Sec 2.1]',
             },
             {
               label: 'Observability & Guardrails',
               matchScore: 95,
-              evidence: '"Implemented custom Prometheus GPU metrics tracking KV-cache utilization and time-to-first-token (TTFT)." [Resume Sec 2.3]',
+              evidence:
+                '"Implemented custom Prometheus GPU metrics tracking KV-cache utilization and time-to-first-token (TTFT)." [Resume Sec 2.3]',
             },
           ],
           keyStrengths: [
@@ -411,7 +423,9 @@ Tools: PyTorch, HuggingFace, FastAPI, Docker, MLflow`,
             'Deep GPU telemetry instrumentation and KV-cache monitoring expertise.',
           ],
           missingRequirements: [],
-          potentialRedFlags: ['None. Directly matches senior AI platform engineering requirements.'],
+          potentialRedFlags: [
+            'None. Directly matches senior AI platform engineering requirements.',
+          ],
           interviewQuestions: [
             'How did you handle continuous batching and PagedAttention fragmentation under high concurrency spikes in vLLM?',
             'What criteria did you use to tune chunk overlap and hybrid alpha weight between BM25 and vector embeddings in Qdrant?',
@@ -431,22 +445,26 @@ Tools: PyTorch, HuggingFace, FastAPI, Docker, MLflow`,
             {
               label: 'High-Throughput LLM Inference (vLLM/Triton)',
               matchScore: 62,
-              evidence: '"Primarily uses cloud API endpoints; limited direct vLLM/Triton engine deployment." [Resume Sec 2.1]',
+              evidence:
+                '"Primarily uses cloud API endpoints; limited direct vLLM/Triton engine deployment." [Resume Sec 2.1]',
             },
             {
               label: 'Vector Search & RAG Architecture',
               matchScore: 88,
-              evidence: '"Successfully built automated document embedding ingestion pipeline using pgvector and LangChain for 1.2M PDF policy documents." [Resume Sec 2.1]',
+              evidence:
+                '"Successfully built automated document embedding ingestion pipeline using pgvector and LangChain for 1.2M PDF policy documents." [Resume Sec 2.1]',
             },
             {
               label: 'Kubernetes GPU Scheduling',
               matchScore: 70,
-              evidence: '"Managed Docker and Airflow pipelines; lighter Kubernetes GPU scheduling experience." [Resume Sec 2.3]',
+              evidence:
+                '"Managed Docker and Airflow pipelines; lighter Kubernetes GPU scheduling experience." [Resume Sec 2.3]',
             },
             {
               label: 'Observability & Guardrails',
               matchScore: 76,
-              evidence: '"Managed Airflow DAG monitoring and data pipeline validation routines." [Resume Sec 2.3]',
+              evidence:
+                '"Managed Airflow DAG monitoring and data pipeline validation routines." [Resume Sec 2.3]',
             },
           ],
           keyStrengths: [
@@ -458,7 +476,9 @@ Tools: PyTorch, HuggingFace, FastAPI, Docker, MLflow`,
             'Lacks deep vLLM/TensorRT-LLM model serving and AWQ quantization background.',
             'No direct Kubernetes GPU operator node scheduling experience.',
           ],
-          potentialRedFlags: ['Focus is primarily data engineering rather than GPU inference optimization.'],
+          potentialRedFlags: [
+            'Focus is primarily data engineering rather than GPU inference optimization.',
+          ],
           interviewQuestions: [
             'How did you benchmark retrieval latency as your pgvector index grew past 1 million vectors?',
             'What trade-offs exist between HNSW and IVFFlat index types in PostgreSQL for vector search?',
@@ -478,22 +498,26 @@ Tools: PyTorch, HuggingFace, FastAPI, Docker, MLflow`,
             {
               label: 'High-Throughput LLM Inference (vLLM/Triton)',
               matchScore: 58,
-              evidence: '"Deployed REST inference endpoints with Docker and FastAPI on single Nvidia T4 instances." [Resume Sec 2.2]',
+              evidence:
+                '"Deployed REST inference endpoints with Docker and FastAPI on single Nvidia T4 instances." [Resume Sec 2.2]',
             },
             {
               label: 'Vector Search & RAG Architecture',
               matchScore: 64,
-              evidence: '"Basic embedding lookups and RAG demos; no large-scale hybrid retrieval experience." [Resume Sec 3.0]',
+              evidence:
+                '"Basic embedding lookups and RAG demos; no large-scale hybrid retrieval experience." [Resume Sec 3.0]',
             },
             {
               label: 'Kubernetes GPU Scheduling',
               matchScore: 52,
-              evidence: '"Single-container Docker deployments on standalone EC2 GPU VMs." [Resume Sec 2.2]',
+              evidence:
+                '"Single-container Docker deployments on standalone EC2 GPU VMs." [Resume Sec 2.2]',
             },
             {
               label: 'Observability & Guardrails',
               matchScore: 60,
-              evidence: '"MLflow experiment tracking for LoRA fine-tuning hyperparameters." [Resume Sec 3.0]',
+              evidence:
+                '"MLflow experiment tracking for LoRA fine-tuning hyperparameters." [Resume Sec 3.0]',
             },
           ],
           keyStrengths: [
@@ -505,7 +529,9 @@ Tools: PyTorch, HuggingFace, FastAPI, Docker, MLflow`,
             'No Kubernetes GPU scheduling or multi-node distributed inference.',
             'No large-scale vector database production deployments.',
           ],
-          potentialRedFlags: ['Experience is focused on batch training scripts rather than low-latency production APIs.'],
+          potentialRedFlags: [
+            'Experience is focused on batch training scripts rather than low-latency production APIs.',
+          ],
           interviewQuestions: [
             'What are the memory trade-offs between LoRA rank (r) and target module selection during Llama fine-tuning?',
             'How do you calculate the VRAM requirements for serving an 8B parameter model at fp16 vs 4-bit AWQ?',
@@ -599,12 +625,14 @@ Languages: JavaScript, TypeScript, React, Next.js, HTML/CSS, Git`,
         {
           criteriaName: 'React 19 & Next.js Architecture',
           weightPercentage: 35,
-          description: 'RSC server components, App Router, leaf client component isolation, Web Workers.',
+          description:
+            'RSC server components, App Router, leaf client component isolation, Web Workers.',
         },
         {
           criteriaName: 'Design Systems & Motion Craft',
           weightPercentage: 30,
-          description: 'Token system, 5-state ergonomics, WCAG AAA accessibility, Framer Motion physics.',
+          description:
+            'Token system, 5-state ergonomics, WCAG AAA accessibility, Framer Motion physics.',
         },
         {
           criteriaName: 'Web Performance & Core Web Vitals',
@@ -631,22 +659,26 @@ Languages: JavaScript, TypeScript, React, Next.js, HTML/CSS, Git`,
             {
               label: 'React 19 & Next.js Architecture',
               matchScore: 96,
-              evidence: '"Integrated React Server Components with leaf client component boundaries, reducing JavaScript bundle size by 42%." [Resume Sec 2.3]',
+              evidence:
+                '"Integrated React Server Components with leaf client component boundaries, reducing JavaScript bundle size by 42%." [Resume Sec 2.3]',
             },
             {
               label: 'Design Systems & Motion Craft',
               matchScore: 95,
-              evidence: '"Architected multi-brand design system with 40+ atomic components used by 180+ developers across 6 product teams." [Resume Sec 2.1]',
+              evidence:
+                '"Architected multi-brand design system with 40+ atomic components used by 180+ developers across 6 product teams." [Resume Sec 2.1]',
             },
             {
               label: 'Web Performance & Core Web Vitals',
               matchScore: 94,
-              evidence: '"Optimized Core Web Vitals achieving 99 Performance Lighthouse scores and sub-80ms INP." [Resume Sec 2.2]',
+              evidence:
+                '"Optimized Core Web Vitals achieving 99 Performance Lighthouse scores and sub-80ms INP." [Resume Sec 2.2]',
             },
             {
               label: 'TypeScript & Ergonomic Contracts',
               matchScore: 91,
-              evidence: '"Engineered strict token pipelines, type-safe theme contracts, and automated accessibility regression suites." [Resume Sec 3.0]',
+              evidence:
+                '"Engineered strict token pipelines, type-safe theme contracts, and automated accessibility regression suites." [Resume Sec 3.0]',
             },
           ],
           keyStrengths: [
@@ -655,7 +687,9 @@ Languages: JavaScript, TypeScript, React, Next.js, HTML/CSS, Git`,
             'Relentless focus on Core Web Vitals (sub-80ms INP, 99 Lighthouse performance score).',
           ],
           missingRequirements: [],
-          potentialRedFlags: ['None. 7 years of deep frontend specialization and staff-level leadership.'],
+          potentialRedFlags: [
+            'None. 7 years of deep frontend specialization and staff-level leadership.',
+          ],
           interviewQuestions: [
             'How do you manage shared layout transitions and state hydration boundaries when combining React Server Components with client animation islands?',
             'What architectural strategies do you use to ensure zero layout shift (CLS: 0.0) when rendering dynamic server-streamed data?',
@@ -675,22 +709,26 @@ Languages: JavaScript, TypeScript, React, Next.js, HTML/CSS, Git`,
             {
               label: 'React 19 & Next.js Architecture',
               matchScore: 80,
-              evidence: '"Built telemetry analytics applications with Next.js and custom state hooks." [Resume Sec 2.1]',
+              evidence:
+                '"Built telemetry analytics applications with Next.js and custom state hooks." [Resume Sec 2.1]',
             },
             {
               label: 'Design Systems & Motion Craft',
               matchScore: 84,
-              evidence: '"Created reusable chart component library with dark/light theme tokens and keyboard navigation." [Resume Sec 2.2]',
+              evidence:
+                '"Created reusable chart component library with dark/light theme tokens and keyboard navigation." [Resume Sec 2.2]',
             },
             {
               label: 'Web Performance & Core Web Vitals',
               matchScore: 82,
-              evidence: '"Optimized high-frequency canvas rendering loops for real-time telemetry dashboards." [Resume Sec 2.1]',
+              evidence:
+                '"Optimized high-frequency canvas rendering loops for real-time telemetry dashboards." [Resume Sec 2.1]',
             },
             {
               label: 'TypeScript & Ergonomic Contracts',
               matchScore: 88,
-              evidence: '"Established strict TypeScript API contracts and zod validation pipelines for client-side forms." [Resume Sec 2.3]',
+              evidence:
+                '"Established strict TypeScript API contracts and zod validation pipelines for client-side forms." [Resume Sec 2.3]',
             },
           ],
           keyStrengths: [
@@ -702,7 +740,9 @@ Languages: JavaScript, TypeScript, React, Next.js, HTML/CSS, Git`,
             'Lacks extensive React Server Component App Router migration background.',
             'Less focus on multi-brand design system governance.',
           ],
-          potentialRedFlags: ['Deepest experience is focused on charting tools rather than broad full-stack design systems.'],
+          potentialRedFlags: [
+            'Deepest experience is focused on charting tools rather than broad full-stack design systems.',
+          ],
           interviewQuestions: [
             'How do you optimize React re-render lifecycles when rendering real-time streaming time-series data at 60 FPS?',
             'What patterns do you use to ensure Canvas-rendered charts remain accessible to screen readers and keyboard users?',
@@ -722,22 +762,26 @@ Languages: JavaScript, TypeScript, React, Next.js, HTML/CSS, Git`,
             {
               label: 'React 19 & Next.js Architecture',
               matchScore: 68,
-              evidence: '"Developed responsive marketing sites and customer portals using Next.js and Tailwind CSS." [Resume Sec 2.1]',
+              evidence:
+                '"Developed responsive marketing sites and customer portals using Next.js and Tailwind CSS." [Resume Sec 2.1]',
             },
             {
               label: 'Design Systems & Motion Craft',
               matchScore: 66,
-              evidence: '"Built reusable UI cards, modal dialogs, and navigation drawers." [Resume Sec 2.2]',
+              evidence:
+                '"Built reusable UI cards, modal dialogs, and navigation drawers." [Resume Sec 2.2]',
             },
             {
               label: 'Web Performance & Core Web Vitals',
               matchScore: 60,
-              evidence: '"Assisted in migrating legacy CRA codebases to Next.js pages router." [Resume Sec 2.3]',
+              evidence:
+                '"Assisted in migrating legacy CRA codebases to Next.js pages router." [Resume Sec 2.3]',
             },
             {
               label: 'TypeScript & Ergonomic Contracts',
               matchScore: 64,
-              evidence: '"Standard TypeScript component prop types and form state handlers." [Resume Sec 3.0]',
+              evidence:
+                '"Standard TypeScript component prop types and form state handlers." [Resume Sec 3.0]',
             },
           ],
           keyStrengths: [
@@ -749,7 +793,9 @@ Languages: JavaScript, TypeScript, React, Next.js, HTML/CSS, Git`,
             'No deep React Server Components or Web Worker compute experience.',
             'No formal Core Web Vitals profiling or INP optimization background.',
           ],
-          potentialRedFlags: ['Agency background with short project lifecycles rather than long-term architecture governance.'],
+          potentialRedFlags: [
+            'Agency background with short project lifecycles rather than long-term architecture governance.',
+          ],
           interviewQuestions: [
             'How do you diagnose and fix an Interaction to Next Paint (INP) bottleneck on a slow React page?',
             'What is the difference between client-side state in Zustand vs server-side cache in React Server Components?',
@@ -812,8 +858,10 @@ export const COURSE_NOTES_PRESETS: CourseNotesPreset[] = [
           formulasOrCode: [
             {
               label: 'Fault Tolerance Bound',
-              formulaOrSnippet: 'N = 2f + 1 \\implies \\text{Tolerates } f \\text{ fail-stop crashes}',
-              explanation: 'A cluster of 2f + 1 nodes can tolerate f concurrent node failures while maintaining an active quorum.',
+              formulaOrSnippet:
+                'N = 2f + 1 \\implies \\text{Tolerates } f \\text{ fail-stop crashes}',
+              explanation:
+                'A cluster of 2f + 1 nodes can tolerate f concurrent node failures while maintaining an active quorum.',
             },
           ],
         },
@@ -831,7 +879,8 @@ export const COURSE_NOTES_PRESETS: CourseNotesPreset[] = [
           formulasOrCode: [
             {
               label: 'Majority Quorum Condition',
-              formulaOrSnippet: 'V_{\\text{granted}} \\ge \\left\\lfloor \\frac{N}{2} \\right\\rfloor + 1',
+              formulaOrSnippet:
+                'V_{\\text{granted}} \\ge \\left\\lfloor \\frac{N}{2} \\right\\rfloor + 1',
               explanation: 'Strict majority required to transition from Candidate to Leader state.',
             },
           ],
@@ -850,8 +899,10 @@ export const COURSE_NOTES_PRESETS: CourseNotesPreset[] = [
           formulasOrCode: [
             {
               label: 'Log Up-to-Date Safety Rule',
-              formulaOrSnippet: '(t_{\\text{cand}} > t_{\\text{voter}}) \\lor (t_{\\text{cand}} = t_{\\text{voter}} \\land i_{\\text{cand}} \\ge i_{\\text{voter}})',
-              explanation: 'Condition required for a voter to grant its vote to a candidate in RequestVote RPC.',
+              formulaOrSnippet:
+                '(t_{\\text{cand}} > t_{\\text{voter}}) \\lor (t_{\\text{cand}} = t_{\\text{voter}} \\land i_{\\text{cand}} \\ge i_{\\text{voter}})',
+              explanation:
+                'Condition required for a voter to grant its vote to a candidate in RequestVote RPC.',
             },
           ],
         },
@@ -860,7 +911,8 @@ export const COURSE_NOTES_PRESETS: CourseNotesPreset[] = [
         {
           id: 'card-01',
           category: 'Node Roles',
-          frontPrompt: 'What happens when a Follower misses heartbeats during its election timeout window?',
+          frontPrompt:
+            'What happens when a Follower misses heartbeats during its election timeout window?',
           backAnswer:
             'It transitions to the Candidate state, increments currentTerm, votes for itself, and broadcasts RequestVote RPCs to all peers.',
           difficulty: 'Foundational',
@@ -868,7 +920,8 @@ export const COURSE_NOTES_PRESETS: CourseNotesPreset[] = [
         {
           id: 'card-02',
           category: 'Quorum Bounds',
-          frontPrompt: 'In a 5-node cluster, what is the maximum number of failed nodes that can be tolerated without halting consensus?',
+          frontPrompt:
+            'In a 5-node cluster, what is the maximum number of failed nodes that can be tolerated without halting consensus?',
           backAnswer:
             '2 nodes. A 5-node cluster requires 3 nodes (\\lfloor 5/2 \\rfloor + 1 = 3) to form a functioning majority quorum.',
           difficulty: 'Foundational',
@@ -884,7 +937,8 @@ export const COURSE_NOTES_PRESETS: CourseNotesPreset[] = [
         {
           id: 'card-04',
           category: 'Split-Brain Prevention',
-          frontPrompt: 'How does Raft guarantee that two leaders cannot be elected in the same term?',
+          frontPrompt:
+            'How does Raft guarantee that two leaders cannot be elected in the same term?',
           backAnswer:
             'Each server votes at most once per term, and a candidate must win a strict majority. Any two majorities must overlap in at least one common server.',
           difficulty: 'Advanced',
@@ -894,7 +948,8 @@ export const COURSE_NOTES_PRESETS: CourseNotesPreset[] = [
         {
           id: 'q-01',
           topic: 'Leader Election Quorum',
-          question: 'In a 7-node Raft cluster, what is the minimum number of affirmative votes a candidate requires to become Leader?',
+          question:
+            'In a 7-node Raft cluster, what is the minimum number of affirmative votes a candidate requires to become Leader?',
           options: ['3 votes', '4 votes', '5 votes', '7 votes (unanimous)'],
           correctAnswerIndex: 1,
           explanation:
@@ -980,13 +1035,17 @@ export const COURSE_NOTES_PRESETS: CourseNotesPreset[] = [
           formulasOrCode: [
             {
               label: 'Affine Forward Transform',
-              formulaOrSnippet: 'z^{[l]} = W^{[l]} a^{[l-1]} + b^{[l]}, \\quad a^{[l]} = g^{[l]}(z^{[l]})',
-              explanation: 'Linear combination of prior layer activations followed by non-linear activation function g.',
+              formulaOrSnippet:
+                'z^{[l]} = W^{[l]} a^{[l-1]} + b^{[l]}, \\quad a^{[l]} = g^{[l]}(z^{[l]})',
+              explanation:
+                'Linear combination of prior layer activations followed by non-linear activation function g.',
             },
             {
               label: 'Binary Cross-Entropy Loss',
-              formulaOrSnippet: '\\mathcal{L}(\\hat{y}, y) = -\\left[ y \\log(\\hat{y}) + (1-y) \\log(1-\\hat{y}) \\right]',
-              explanation: 'Per-sample loss measuring divergence between target label and model probability.',
+              formulaOrSnippet:
+                '\\mathcal{L}(\\hat{y}, y) = -\\left[ y \\log(\\hat{y}) + (1-y) \\log(1-\\hat{y}) \\right]',
+              explanation:
+                'Per-sample loss measuring divergence between target label and model probability.',
             },
           ],
         },
@@ -1004,13 +1063,17 @@ export const COURSE_NOTES_PRESETS: CourseNotesPreset[] = [
           formulasOrCode: [
             {
               label: 'Backprop Error Recurrence',
-              formulaOrSnippet: '\\delta^{[l]} = \\left( (W^{[l+1]})^T \\delta^{[l+1]} \\right) \\odot g\'^{[l]}(z^{[l]})',
-              explanation: 'Propagation of error vector across layers using transposed weights and Hadamard product with activation derivative.',
+              formulaOrSnippet:
+                "\\delta^{[l]} = \\left( (W^{[l+1]})^T \\delta^{[l+1]} \\right) \\odot g'^{[l]}(z^{[l]})",
+              explanation:
+                'Propagation of error vector across layers using transposed weights and Hadamard product with activation derivative.',
             },
             {
               label: 'Weight Gradient Tensor',
-              formulaOrSnippet: '\\frac{\\partial \\mathcal{J}}{\\partial W^{[l]}} = \\frac{1}{m} \\delta^{[l]} (a^{[l-1]})^T',
-              explanation: 'Average gradient across m training examples used for SGD parameter updates.',
+              formulaOrSnippet:
+                '\\frac{\\partial \\mathcal{J}}{\\partial W^{[l]}} = \\frac{1}{m} \\delta^{[l]} (a^{[l-1]})^T',
+              explanation:
+                'Average gradient across m training examples used for SGD parameter updates.',
             },
           ],
         },
@@ -1019,15 +1082,17 @@ export const COURSE_NOTES_PRESETS: CourseNotesPreset[] = [
         {
           id: 'card-01',
           category: 'Gradients',
-          frontPrompt: 'What mathematical operation links the error vector of layer l+1 to layer l in backpropagation?',
+          frontPrompt:
+            'What mathematical operation links the error vector of layer l+1 to layer l in backpropagation?',
           backAnswer:
-            'Multiplication by the transposed weight matrix (W^{[l+1]})^T followed by element-wise Hadamard multiplication with g\'(z^{[l]}).',
+            "Multiplication by the transposed weight matrix (W^{[l+1]})^T followed by element-wise Hadamard multiplication with g'(z^{[l]}).",
           difficulty: 'Intermediate',
         },
         {
           id: 'card-02',
           category: 'Loss Functions',
-          frontPrompt: 'Why is Cross-Entropy preferred over Mean Squared Error (MSE) for logistic/softmax classification?',
+          frontPrompt:
+            'Why is Cross-Entropy preferred over Mean Squared Error (MSE) for logistic/softmax classification?',
           backAnswer:
             'Cross-entropy avoids vanishing gradients in saturated sigmoid regions by canceling out exponential terms during differentiation, producing linear error scaling.',
           difficulty: 'Advanced',
@@ -1035,7 +1100,8 @@ export const COURSE_NOTES_PRESETS: CourseNotesPreset[] = [
         {
           id: 'card-03',
           category: 'Optimization',
-          frontPrompt: 'State the parameter update rule for weight matrix W^{[l]} with learning rate \\alpha.',
+          frontPrompt:
+            'State the parameter update rule for weight matrix W^{[l]} with learning rate \\alpha.',
           backAnswer:
             'W^{[l]} := W^{[l]} - \\alpha \\frac{\\partial \\mathcal{J}}{\\partial W^{[l]}} where the gradient is computed over the batch.',
           difficulty: 'Foundational',
@@ -1061,7 +1127,7 @@ export const COURSE_NOTES_PRESETS: CourseNotesPreset[] = [
           id: 'q-02',
           topic: 'Hadamard Product in Error Delta',
           question:
-            'In the recurrence relation \\delta^{[l]} = (W^{[l+1]T} \\delta^{[l+1]}) \\odot g\'^{[l]}(z^{[l]}), what does the \\odot operator denote?',
+            "In the recurrence relation \\delta^{[l]} = (W^{[l+1]T} \\delta^{[l+1]}) \\odot g'^{[l]}(z^{[l]}), what does the \\odot operator denote?",
           options: [
             'Matrix multiplication',
             'Element-wise (Hadamard) product',
@@ -1123,8 +1189,10 @@ export const COURSE_NOTES_PRESETS: CourseNotesPreset[] = [
           formulasOrCode: [
             {
               label: 'Virtual Address Bit Partition',
-              formulaOrSnippet: '\\text{VPN} = \\text{Address} \\gg 12, \\quad \\text{Offset} = \\text{Address} \\land (2^{12} - 1)',
-              explanation: 'Bitwise decomposition of a 32-bit address into a 20-bit VPN and 12-bit page offset.',
+              formulaOrSnippet:
+                '\\text{VPN} = \\text{Address} \\gg 12, \\quad \\text{Offset} = \\text{Address} \\land (2^{12} - 1)',
+              explanation:
+                'Bitwise decomposition of a 32-bit address into a 20-bit VPN and 12-bit page offset.',
             },
           ],
         },
@@ -1141,8 +1209,10 @@ export const COURSE_NOTES_PRESETS: CourseNotesPreset[] = [
           formulasOrCode: [
             {
               label: 'Effective Memory Access Time (EMAT)',
-              formulaOrSnippet: '\\text{EMAT} = h_{\\text{TLB}} \\cdot t_{\\text{TLB}} + (1 - h_{\\text{TLB}}) \\cdot (t_{\\text{TLB}} + 2 \\cdot t_{\\text{DRAM}})',
-              explanation: 'Weighted average access latency taking into account TLB hit rate h and two DRAM table lookups.',
+              formulaOrSnippet:
+                '\\text{EMAT} = h_{\\text{TLB}} \\cdot t_{\\text{TLB}} + (1 - h_{\\text{TLB}}) \\cdot (t_{\\text{TLB}} + 2 \\cdot t_{\\text{DRAM}})',
+              explanation:
+                'Weighted average access latency taking into account TLB hit rate h and two DRAM table lookups.',
             },
           ],
         },
@@ -1159,8 +1229,10 @@ export const COURSE_NOTES_PRESETS: CourseNotesPreset[] = [
           formulasOrCode: [
             {
               label: 'Working Set Condition',
-              formulaOrSnippet: 'W(t, \\Delta) = \\{ p \\in \\text{Pages} \\mid p \\text{ referenced in } [t-\\Delta, t] \\}',
-              explanation: 'Set of active memory pages required by a process in time window Delta to prevent thrashing.',
+              formulaOrSnippet:
+                'W(t, \\Delta) = \\{ p \\in \\text{Pages} \\mid p \\text{ referenced in } [t-\\Delta, t] \\}',
+              explanation:
+                'Set of active memory pages required by a process in time window Delta to prevent thrashing.',
             },
           ],
         },
@@ -1169,7 +1241,8 @@ export const COURSE_NOTES_PRESETS: CourseNotesPreset[] = [
         {
           id: 'card-01',
           category: 'Address Translation',
-          frontPrompt: 'For a 32-bit virtual address with 4KB pages, how many bits are allocated to the Page Offset?',
+          frontPrompt:
+            'For a 32-bit virtual address with 4KB pages, how many bits are allocated to the Page Offset?',
           backAnswer:
             '12 bits (2^{12} = 4096 bytes). The remaining 20 bits are allocated to the Virtual Page Number (VPN).',
           difficulty: 'Foundational',
@@ -1177,15 +1250,16 @@ export const COURSE_NOTES_PRESETS: CourseNotesPreset[] = [
         {
           id: 'card-02',
           category: 'Memory Performance',
-          frontPrompt: 'If TLB hit rate is 98%, t_TLB = 1ns, and t_DRAM = 50ns, calculate EMAT for a 2-level page table.',
-          backAnswer:
-            'EMAT = 0.98 * (1 + 50) + 0.02 * (1 + 50 + 100) = 49.98 + 3.02 = 53.0 ns.',
+          frontPrompt:
+            'If TLB hit rate is 98%, t_TLB = 1ns, and t_DRAM = 50ns, calculate EMAT for a 2-level page table.',
+          backAnswer: 'EMAT = 0.98 * (1 + 50) + 0.02 * (1 + 50 + 100) = 49.98 + 3.02 = 53.0 ns.',
           difficulty: 'Advanced',
         },
         {
           id: 'card-03',
           category: 'Page Replacement',
-          frontPrompt: 'How does the Second-Chance (Clock) page replacement algorithm handle a page with Use bit = 1?',
+          frontPrompt:
+            'How does the Second-Chance (Clock) page replacement algorithm handle a page with Use bit = 1?',
           backAnswer:
             'It clears the Use bit to 0, advances the clock hand, and gives the page a second chance instead of immediately evicting it.',
           difficulty: 'Intermediate',
@@ -1195,7 +1269,8 @@ export const COURSE_NOTES_PRESETS: CourseNotesPreset[] = [
         {
           id: 'q-01',
           topic: 'Page Table Memory Footprint',
-          question: 'Why do modern operating systems utilize multi-level page tables instead of single-level flat arrays?',
+          question:
+            'Why do modern operating systems utilize multi-level page tables instead of single-level flat arrays?',
           options: [
             'Single-level tables are slower in CPU cache lookups.',
             'Multi-level page tables only allocate page table entries for allocated virtual address ranges, saving megabytes of DRAM per process.',
@@ -1209,7 +1284,8 @@ export const COURSE_NOTES_PRESETS: CourseNotesPreset[] = [
         {
           id: 'q-02',
           topic: 'TLB Miss Penalty',
-          question: 'In a 3-level page table system without inverted hashing, how many DRAM reads occur on a complete TLB miss before the target data can be read?',
+          question:
+            'In a 3-level page table system without inverted hashing, how many DRAM reads occur on a complete TLB miss before the target data can be read?',
           options: ['1 read', '2 reads', '3 reads (1 for each page table level)', '4 reads'],
           correctAnswerIndex: 2,
           explanation:
@@ -1262,7 +1338,13 @@ export const CHAT_DIGEST_PRESETS: ChatDigestPreset[] = [
       sentimentScore: 91,
       executiveBrief:
         'Major community excitement surrounding the v2.4.0 edge streaming release. A high-priority P0 auth timeout bug during Postgres read replica failover was detected by @vikram_ops and hotfixed in under 4 hours with v2.4.1. Enterprise users welcomed the SOC2 Type II audit report, and webhook retry metadata was prioritized for Sprint 18.',
-      activeChannels: ['#dev-announcements', '#incident-response', '#sdk-help', '#product-feedback', '#trading-banter'],
+      activeChannels: [
+        '#dev-announcements',
+        '#incident-response',
+        '#sdk-help',
+        '#product-feedback',
+        '#trading-banter',
+      ],
       topicClusters: [
         {
           id: 'topic-01',
@@ -1350,7 +1432,8 @@ export const CHAT_DIGEST_PRESETS: ChatDigestPreset[] = [
           description:
             'Replica healthcheck timeout was misconfigured at 5000ms, causing auth session timeouts during replica transitions.',
           reporterHandle: '@vikram_ops',
-          recommendedTriage: 'Resolved via v2.4.1 hotfix; add automated failover latency test in CI pipeline.',
+          recommendedTriage:
+            'Resolved via v2.4.1 hotfix; add automated failover latency test in CI pipeline.',
           status: 'Completed',
           assignee: { name: 'Alex Dev', handle: '@alex_dev', role: 'Staff Backend Lead' },
           sourceMessageRef: '[11:05] #incident-response',
@@ -1428,7 +1511,8 @@ export const CHAT_DIGEST_PRESETS: ChatDigestPreset[] = [
           timestamp: '10:18',
           author: '@sarah_k',
           channel: '#sdk-help',
-          content: 'thanks! quick question: does the new Python SDK support async connection pooling?',
+          content:
+            'thanks! quick question: does the new Python SDK support async connection pooling?',
           isSignal: true,
           signalConfidence: 88,
           category: 'Question',
@@ -1438,7 +1522,8 @@ export const CHAT_DIGEST_PRESETS: ChatDigestPreset[] = [
           timestamp: '10:20',
           author: '@marcus_eng',
           channel: '#sdk-help',
-          content: '@sarah_k yes! use AsyncClient(pool_size=20). Full docs on docs.superbase.dev/python.',
+          content:
+            '@sarah_k yes! use AsyncClient(pool_size=20). Full docs on docs.superbase.dev/python.',
           isSignal: true,
           signalConfidence: 94,
           category: 'General',
@@ -1448,7 +1533,8 @@ export const CHAT_DIGEST_PRESETS: ChatDigestPreset[] = [
           timestamp: '11:05',
           author: '@vikram_ops',
           channel: '#incident-response',
-          content: '[BUG] Encountered 504 Gateway Timeout on /v1/auth/session when executing with Postgres read replica failover.',
+          content:
+            '[BUG] Encountered 504 Gateway Timeout on /v1/auth/session when executing with Postgres read replica failover.',
           isSignal: true,
           signalConfidence: 99,
           category: 'Bug',
@@ -1458,7 +1544,8 @@ export const CHAT_DIGEST_PRESETS: ChatDigestPreset[] = [
           timestamp: '11:08',
           author: '@alex_dev',
           channel: '#incident-response',
-          content: '@vikram_ops looking into this now. It looks like the replica healthcheck timeout is set to 5000ms instead of 500ms.',
+          content:
+            '@vikram_ops looking into this now. It looks like the replica healthcheck timeout is set to 5000ms instead of 500ms.',
           isSignal: true,
           signalConfidence: 96,
           category: 'Bug',
@@ -1478,7 +1565,8 @@ export const CHAT_DIGEST_PRESETS: ChatDigestPreset[] = [
           timestamp: '12:15',
           author: '@elena_ai',
           channel: '#product-feedback',
-          content: 'Feature request: Can we get automated webhook retry headers with exponential backoff metadata?',
+          content:
+            'Feature request: Can we get automated webhook retry headers with exponential backoff metadata?',
           isSignal: true,
           signalConfidence: 92,
           category: 'Feature',
@@ -1488,7 +1576,8 @@ export const CHAT_DIGEST_PRESETS: ChatDigestPreset[] = [
           timestamp: '14:40',
           author: '@david_sec',
           channel: '#dev-announcements',
-          content: 'Verified SOC2 Type II audit report is now available in developer portal for enterprise teams.',
+          content:
+            'Verified SOC2 Type II audit report is now available in developer portal for enterprise teams.',
           isSignal: true,
           signalConfidence: 95,
           category: 'Announcement',
@@ -1498,7 +1587,8 @@ export const CHAT_DIGEST_PRESETS: ChatDigestPreset[] = [
           timestamp: '15:20',
           author: '@vikram_ops',
           channel: '#incident-response',
-          content: 'Update: v2.4.1 hotfix resolved the auth session timeout! Confirmed working under 2,000 req/sec load.',
+          content:
+            'Update: v2.4.1 hotfix resolved the auth session timeout! Confirmed working under 2,000 req/sec load.',
           isSignal: true,
           signalConfidence: 99,
           category: 'Bug',
@@ -1629,7 +1719,8 @@ export const CHAT_DIGEST_PRESETS: ChatDigestPreset[] = [
           timestamp: 'Mon 09:30',
           author: '@dr_siddharth',
           channel: '#vllm-deployments',
-          content: 'We observed a 12% KV-cache memory fragmentation issue on vLLM v0.5.2 when serving long context prompts (>16k tokens).',
+          content:
+            'We observed a 12% KV-cache memory fragmentation issue on vLLM v0.5.2 when serving long context prompts (>16k tokens).',
           isSignal: true,
           signalConfidence: 94,
           category: 'Bug',
@@ -1639,7 +1730,8 @@ export const CHAT_DIGEST_PRESETS: ChatDigestPreset[] = [
           timestamp: 'Mon 10:15',
           author: '@priya_data',
           channel: '#prompt-craft',
-          content: 'Benchmarking Qdrant hybrid retrieval: BM25 + dense text-embedding-3-large with reciprocal rank fusion yields a 91.4% MRR@10.',
+          content:
+            'Benchmarking Qdrant hybrid retrieval: BM25 + dense text-embedding-3-large with reciprocal rank fusion yields a 91.4% MRR@10.',
           isSignal: true,
           signalConfidence: 97,
           category: 'Feature',
@@ -1649,7 +1741,8 @@ export const CHAT_DIGEST_PRESETS: ChatDigestPreset[] = [
           timestamp: 'Tue 14:20',
           author: '@karan_dev',
           channel: '#model-inference',
-          content: '[P0 CRITICAL] Ray Serve worker pods crashlooping due to OOM when AWQ model weights reload concurrently across 4 GPU nodes.',
+          content:
+            '[P0 CRITICAL] Ray Serve worker pods crashlooping due to OOM when AWQ model weights reload concurrently across 4 GPU nodes.',
           isSignal: true,
           signalConfidence: 99,
           category: 'Bug',
@@ -1665,8 +1758,7 @@ export const CHAT_DIGEST_PRESETS: ChatDigestPreset[] = [
           '@priya_data for comprehensive Reciprocal Rank Fusion retrieval metrics',
           '@sarah_k for comparative tool-calling precision evaluations',
         ],
-        closingCallToAction:
-          'Review the latest GPU deployment guide in our documentation portal.',
+        closingCallToAction: 'Review the latest GPU deployment guide in our documentation portal.',
       },
       telemetry: {
         latencyMs: 310,
@@ -1777,7 +1869,8 @@ export const CHAT_DIGEST_PRESETS: ChatDigestPreset[] = [
           timestamp: '08:45',
           author: '@ayush_up',
           channel: '#upsc-tech-alerts',
-          content: 'Official UPPSC Assistant Engineer (1,450 posts) notification is out. Pay Level 10 (₹56,100 - ₹1,77,500).',
+          content:
+            'Official UPPSC Assistant Engineer (1,450 posts) notification is out. Pay Level 10 (₹56,100 - ₹1,77,500).',
           isSignal: true,
           signalConfidence: 98,
           category: 'Announcement',
@@ -1787,7 +1880,8 @@ export const CHAT_DIGEST_PRESETS: ChatDigestPreset[] = [
           timestamp: '09:10',
           author: '@rohit_dev',
           channel: '#freelance-gigs',
-          content: 'Seeking Next.js 15 developer for government agri-portal dashboard in Lucknow. ₹80k budget for 3-week sprint.',
+          content:
+            'Seeking Next.js 15 developer for government agri-portal dashboard in Lucknow. ₹80k budget for 3-week sprint.',
           isSignal: true,
           signalConfidence: 94,
           category: 'Feature',
@@ -1797,7 +1891,8 @@ export const CHAT_DIGEST_PRESETS: ChatDigestPreset[] = [
           timestamp: '10:30',
           author: '@ananya_ai',
           channel: '#hackathon-sync',
-          content: 'Our team is building a bilingual Hindi/English voice assistant for Panchayat grievance redressal using NorAI MCP server!',
+          content:
+            'Our team is building a bilingual Hindi/English voice assistant for Panchayat grievance redressal using NorAI MCP server!',
           isSignal: true,
           signalConfidence: 96,
           category: 'Feature',
@@ -1895,15 +1990,19 @@ export const DAINIK_NEWS_PRESETS: DainikNewsPreset[] = [
           hindiVacanciesOrScope: '1,450 पद (सिविल: 820, इलेक्ट्रिकल: 380, मैकेनिकल: 250)',
           salaryBandOrBudget: 'Pay Level 10 (₹56,100 - ₹1,77,500)',
           hindiSalaryBandOrBudget: 'पे-मैट्रिक्स लेवल 10 (₹56,100 - ₹1,77,500)',
-          eligibilitySnippet: 'B.E. / B.Tech in Civil/EE/ME from recognized University; Age: 21-40 yrs (UP Relaxations apply)',
-          hindiEligibilitySnippet: 'मान्यता प्राप्त विश्वविद्यालय से सिविल/इलेक्ट्रिकल/मैकेनिकल में बी.ई./बी.टेक; आयु: 21-40 वर्ष (छूट लागू)',
+          eligibilitySnippet:
+            'B.E. / B.Tech in Civil/EE/ME from recognized University; Age: 21-40 yrs (UP Relaxations apply)',
+          hindiEligibilitySnippet:
+            'मान्यता प्राप्त विश्वविद्यालय से सिविल/इलेक्ट्रिकल/मैकेनिकल में बी.ई./बी.टेक; आयु: 21-40 वर्ष (छूट लागू)',
           officialPortalUrl: 'https://uppsc.up.nic.in',
           verifiedSourceRef: 'Advt No: A-3/E-1/2026',
           officialSealReference: 'UPPSC Official Dispatch A-3/E-1/2026',
           verificationSealNumber: 'SEAL-UPPSC-2026-AE-091',
           isVerifiedOfficial: true,
-          antiRumorNote: 'Offline forms and third-party fee links are fraudulent and legally void. Apply exclusively through uppsc.up.nic.in.',
-          hindiAntiRumorNote: 'ऑफलाइन फॉर्म और किसी तीसरे पक्ष के लिंक पूर्णतः अमान्य एवं फर्जी हैं। केवल uppsc.up.nic.in पर आवेदन करें।',
+          antiRumorNote:
+            'Offline forms and third-party fee links are fraudulent and legally void. Apply exclusively through uppsc.up.nic.in.',
+          hindiAntiRumorNote:
+            'ऑफलाइन फॉर्म और किसी तीसरे पक्ष के लिंक पूर्णतः अमान्य एवं फर्जी हैं। केवल uppsc.up.nic.in पर आवेदन करें।',
           minAge: 21,
           maxAge: 40,
           requiredDegrees: [
@@ -1937,15 +2036,19 @@ export const DAINIK_NEWS_PRESETS: DainikNewsPreset[] = [
           postOrNotification: 'Assistant Engineer (Civil/Electrical/Mechanical)',
           hindiPostOrNotification: 'सहायक अभियंता (सिविल/इलेक्ट्रिकल/मैकेनिकल)',
           ageCriteria: '21 to 40 Years (5-year relaxation for SC/ST/OBC of UP, 10-year for PwD)',
-          hindiAgeCriteria: '21 से 40 वर्ष (उत्तर प्रदेश के SC/ST/OBC हेतु 5 वर्ष तथा दिव्यांग हेतु 10 वर्ष की छूट)',
+          hindiAgeCriteria:
+            '21 से 40 वर्ष (उत्तर प्रदेश के SC/ST/OBC हेतु 5 वर्ष तथा दिव्यांग हेतु 10 वर्ष की छूट)',
           qualification: 'B.E. / B.Tech degree in relevant engineering branch (Civil, EE, ME)',
           hindiQualification: 'संबंधित इंजीनियरिंग शाखा (Civil, EE, ME) में बी.ई. / बी.टेक. उपाधि',
-          reservationQuotas: 'Vertical (SC 21%, ST 2%, OBC 27%, EWS 10%) & Horizontal (Women 20%, Ex-Servicemen 5%)',
-          hindiReservationQuotas: 'उ.प्र. शासन के नियमानुसार लंबवत एवं क्षैतिज आरक्षण (SC 21%, ST 2%, OBC 27%, EWS 10%)',
+          reservationQuotas:
+            'Vertical (SC 21%, ST 2%, OBC 27%, EWS 10%) & Horizontal (Women 20%, Ex-Servicemen 5%)',
+          hindiReservationQuotas:
+            'उ.प्र. शासन के नियमानुसार लंबवत एवं क्षैतिज आरक्षण (SC 21%, ST 2%, OBC 27%, EWS 10%)',
           applicationFee: '₹225 (Gen/OBC/EWS), ₹105 (SC/ST), ₹25 (PwD)',
           hindiApplicationFee: '₹225 (सामान्य/OBC/EWS), ₹105 (SC/ST), ₹25 (दिव्यांग)',
           selectionProcess: 'Prelims Exam (375 M) -> Mains Written (750 M) -> Interview (100 M)',
-          hindiSelectionProcess: 'प्रारंभिक परीक्षा (375 अंक) -> मुख्य लिखित परीक्षा (750 अंक) -> साक्षात्कार (100 अंक)',
+          hindiSelectionProcess:
+            'प्रारंभिक परीक्षा (375 अंक) -> मुख्य लिखित परीक्षा (750 अंक) -> साक्षात्कार (100 अंक)',
         },
       ],
       factValidationNotes: [
@@ -2023,15 +2126,19 @@ export const DAINIK_NEWS_PRESETS: DainikNewsPreset[] = [
           hindiVacanciesOrScope: '₹12,400 करोड़ कुल आवंटन (लक्ष्य: 45 औद्योगिक हब)',
           salaryBandOrBudget: 'Up to 25% Capital Subsidy (Max ₹50 Cr per unit)',
           hindiSalaryBandOrBudget: '25% तक पूंजीगत अनुदान (प्रति इकाई अधिकतम ₹50 करोड़)',
-          eligibilitySnippet: 'Registered IT/ESDM & Logistics Entities in UP; Min ₹25 Cr investment for IT, ₹50 Cr for Logistics',
-          hindiEligibilitySnippet: 'उ.प्र. में पंजीकृत IT/ESDM एवं लॉजिस्टिक्स इकाइयां; IT हेतु न्यूनतम ₹25 करोड़ एवं लॉजिस्टिक्स हेतु ₹50 करोड़ निवेश',
+          eligibilitySnippet:
+            'Registered IT/ESDM & Logistics Entities in UP; Min ₹25 Cr investment for IT, ₹50 Cr for Logistics',
+          hindiEligibilitySnippet:
+            'उ.प्र. में पंजीकृत IT/ESDM एवं लॉजिस्टिक्स इकाइयां; IT हेतु न्यूनतम ₹25 करोड़ एवं लॉजिस्टिक्स हेतु ₹50 करोड़ निवेश',
           officialPortalUrl: 'https://niveshmitra.up.nic.in',
           verifiedSourceRef: 'Govt Dispatch No: UPSIDA-IND/2026/P-88',
           officialSealReference: 'UPSIDA Official Dispatch P-88/2026',
           verificationSealNumber: 'SEAL-UPSIDA-INFRA-2026-088',
           isVerifiedOfficial: true,
-          antiRumorNote: 'All subsidy applications are processed exclusively online on Nivesh Mitra. Physical agent submissions are invalid.',
-          hindiAntiRumorNote: 'सभी सब्सिडी आवेदन केवल "निवेश मित्र" पोर्टल पर डिजिटल माध्यम से मान्य हैं। ऑफलाइन एजेंट आवेदन अमान्य हैं।',
+          antiRumorNote:
+            'All subsidy applications are processed exclusively online on Nivesh Mitra. Physical agent submissions are invalid.',
+          hindiAntiRumorNote:
+            'सभी सब्सिडी आवेदन केवल "निवेश मित्र" पोर्टल पर डिजिटल माध्यम से मान्य हैं। ऑफलाइन एजेंट आवेदन अमान्य हैं।',
           minAge: 18,
           maxAge: 70,
           requiredDegrees: [
@@ -2063,13 +2170,16 @@ export const DAINIK_NEWS_PRESETS: DainikNewsPreset[] = [
           ageCriteria: 'Entity must have minimum 1 year incorporation in India or UP',
           hindiAgeCriteria: 'इकाई का भारत या उत्तर प्रदेश में न्यूनतम 1 वर्ष का निगमन अनिवार्य',
           qualification: 'Minimum ₹25 Cr Capital Investment in IT Hardware/Software Facility',
-          hindiQualification: 'आईटी हार्डवेयर/सॉफ्टवेयर सुविधा में न्यूनतम ₹25 करोड़ का पूंजीगत निवेश',
+          hindiQualification:
+            'आईटी हार्डवेयर/सॉफ्टवेयर सुविधा में न्यूनतम ₹25 करोड़ का पूंजीगत निवेश',
           reservationQuotas: 'Special 10% Additional Top-Up Grant for UP Registered Startups',
-          hindiReservationQuotas: 'उत्तर प्रदेश में पंजीकृत स्टार्ट-अप्स हेतु विशेष 10% अतिरिक्त टॉप-अप अनुदान',
+          hindiReservationQuotas:
+            'उत्तर प्रदेश में पंजीकृत स्टार्ट-अप्स हेतु विशेष 10% अतिरिक्त टॉप-अप अनुदान',
           applicationFee: '₹5,000 Portal Processing Fee (Digital payment on Nivesh Mitra)',
           hindiApplicationFee: '₹5,000 पोर्टल प्रोसेसिंग शुल्क (निवेश मित्र पर डिजिटल भुगतान)',
           selectionProcess: 'State Empowered Committee (SEC) DPR Review -> Fast-Track Sanction',
-          hindiSelectionProcess: 'राज्य अधिकार प्राप्त समिति (SEC) द्वारा डीपीआर समीक्षा -> त्वरित संस्तुति',
+          hindiSelectionProcess:
+            'राज्य अधिकार प्राप्त समिति (SEC) द्वारा डीपीआर समीक्षा -> त्वरित संस्तुति',
         },
       ],
       factValidationNotes: [
@@ -2147,15 +2257,19 @@ export const DAINIK_NEWS_PRESETS: DainikNewsPreset[] = [
           hindiVacanciesOrScope: '2,40,000 छात्र-छात्राएं लाभान्वित (बजट: ₹1,850 करोड़)',
           salaryBandOrBudget: '100% Tuition Fee + ₹12,000/yr Academic Stipend',
           hindiSalaryBandOrBudget: '100% शिक्षण शुल्क प्रतिपूर्ति + ₹12,000/वर्ष भत्ता',
-          eligibilitySnippet: 'UP Domicile; Family Income <= ₹2.5L/yr; Enrolled in recognized College/B.Tech/Diploma',
-          hindiEligibilitySnippet: 'उ.प्र. अधिवास; वार्षिक पारिवारिक आय ₹2.5 लाख से कम; मान्यता प्राप्त कॉलेज/डिप्लोमा/डिग्री में नामांकित',
+          eligibilitySnippet:
+            'UP Domicile; Family Income <= ₹2.5L/yr; Enrolled in recognized College/B.Tech/Diploma',
+          hindiEligibilitySnippet:
+            'उ.प्र. अधिवास; वार्षिक पारिवारिक आय ₹2.5 लाख से कम; मान्यता प्राप्त कॉलेज/डिप्लोमा/डिग्री में नामांकित',
           officialPortalUrl: 'https://scholarship.up.gov.in',
           verifiedSourceRef: 'Notification No: SCHOLARSHIP-UP-SWD/2026/892',
           officialSealReference: 'UP-SWD Dispatch #892/2026',
           verificationSealNumber: 'SEAL-UP-SWD-SCHOLARSHIP-892',
           isVerifiedOfficial: true,
-          antiRumorNote: 'Scholarship registration is 100% free of charge. Never share your Aadhaar OTP or bank login credentials with any agent.',
-          hindiAntiRumorNote: 'छात्रवृत्ति पंजीकरण पूर्णतः निःशुल्क है। किसी भी व्यक्ति या साइबर कैफे के साथ अपना आधार ओटीपी या बैंक पासवर्ड साझा न करें।',
+          antiRumorNote:
+            'Scholarship registration is 100% free of charge. Never share your Aadhaar OTP or bank login credentials with any agent.',
+          hindiAntiRumorNote:
+            'छात्रवृत्ति पंजीकरण पूर्णतः निःशुल्क है। किसी भी व्यक्ति या साइबर कैफे के साथ अपना आधार ओटीपी या बैंक पासवर्ड साझा न करें।',
           minAge: 16,
           maxAge: 35,
           requiredDegrees: [
@@ -2184,16 +2298,24 @@ export const DAINIK_NEWS_PRESETS: DainikNewsPreset[] = [
         {
           postOrNotification: 'Post-Matric Technical & Professional Degree Scholarship',
           hindiPostOrNotification: 'दशमोत्तर तकनीकी एवं व्यावसायिक डिग्री छात्रवृत्ति',
-          ageCriteria: 'Enrolled in valid academic year (No rigid upper age bar for genuine students)',
-          hindiAgeCriteria: 'वैध शैक्षणिक सत्र में नामांकित (नियमित विद्यार्थियों हेतु कोई कठोर अधिकतम आयु सीमा नहीं)',
-          qualification: 'Class 12th Passed + Active admission in recognized UP institution / AICTE approved college',
-          hindiQualification: 'कक्षा 12 उत्तीर्ण + उ.प्र. में मान्यता प्राप्त संस्थान / एआईसीटीई अनुमोदित कॉलेज में सक्रिय प्रवेश',
-          reservationQuotas: 'All categories eligible with family income <= ₹2,50,000/annum (SC, ST, OBC, Gen, Minority)',
-          hindiReservationQuotas: 'समस्त वर्गों हेतु पारिवारिक वार्षिक आय ₹2.5 लाख से कम होना अनिवार्य (SC, ST, OBC, सामान्य, अल्पसंख्यक)',
+          ageCriteria:
+            'Enrolled in valid academic year (No rigid upper age bar for genuine students)',
+          hindiAgeCriteria:
+            'वैध शैक्षणिक सत्र में नामांकित (नियमित विद्यार्थियों हेतु कोई कठोर अधिकतम आयु सीमा नहीं)',
+          qualification:
+            'Class 12th Passed + Active admission in recognized UP institution / AICTE approved college',
+          hindiQualification:
+            'कक्षा 12 उत्तीर्ण + उ.प्र. में मान्यता प्राप्त संस्थान / एआईसीटीई अनुमोदित कॉलेज में सक्रिय प्रवेश',
+          reservationQuotas:
+            'All categories eligible with family income <= ₹2,50,000/annum (SC, ST, OBC, Gen, Minority)',
+          hindiReservationQuotas:
+            'समस्त वर्गों हेतु पारिवारिक वार्षिक आय ₹2.5 लाख से कम होना अनिवार्य (SC, ST, OBC, सामान्य, अल्पसंख्यक)',
           applicationFee: '₹0 (Completely Free of Cost)',
           hindiApplicationFee: '₹0 (पूर्णतः निःशुल्क)',
-          selectionProcess: 'Online Aadhaar e-KYC Verification -> College Verification -> District Committee Direct DBT',
-          hindiSelectionProcess: 'ऑनलाइन आधार e-KYC सत्यापन -> संस्थान सत्यापन -> जिला समिति द्वारा प्रत्यक्ष DBT अंतरण',
+          selectionProcess:
+            'Online Aadhaar e-KYC Verification -> College Verification -> District Committee Direct DBT',
+          hindiSelectionProcess:
+            'ऑनलाइन आधार e-KYC सत्यापन -> संस्थान सत्यापन -> जिला समिति द्वारा प्रत्यक्ष DBT अंतरण',
         },
       ],
       factValidationNotes: [
@@ -2213,4 +2335,3 @@ export const DAINIK_NEWS_PRESETS: DainikNewsPreset[] = [
     },
   },
 ];
-

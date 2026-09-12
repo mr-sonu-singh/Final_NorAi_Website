@@ -4,7 +4,12 @@ import type { Metadata } from 'next';
 import { PRODUCTS_DATA } from '@/lib/products';
 import { Container } from '@/components/foundation/Container';
 import { Link } from '@/components/atoms/Link';
-import { buildMetadata, getSoftwareApplicationJsonLd, getBreadcrumbListJsonLd, JsonLd } from '@/lib/seo';
+import {
+  buildMetadata,
+  getSoftwareApplicationJsonLd,
+  getBreadcrumbListJsonLd,
+  JsonLd,
+} from '@/lib/seo';
 import { ProductInteractiveView } from '@/components/organisms/ProductDetail/ProductInteractiveView';
 import {
   FileText,
@@ -141,7 +146,9 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
                 Ready to deploy {product.title}?
               </h2>
               <p className="text-sm text-ink-body leading-relaxed">
-                Free to start with 50 sandbox credits and zero credit card required. For dedicated API endpoints, custom parser schemas, or private VPC enclaves, talk directly to our engineering team.
+                Free to start with 50 sandbox credits and zero credit card required. For dedicated
+                API endpoints, custom parser schemas, or private VPC enclaves, talk directly to our
+                engineering team.
               </p>
             </div>
 

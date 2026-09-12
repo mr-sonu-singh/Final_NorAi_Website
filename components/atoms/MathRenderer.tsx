@@ -240,11 +240,7 @@ function cleanLatexString(raw: string): string {
  * Primary MathRenderer Atom: Compiles LaTeX to static HTML via KaTeX
  * with strict error catching and seamless fallback to Unicode mathematical formatting.
  */
-export function MathRenderer({
-  math,
-  displayMode = false,
-  className,
-}: MathRendererProps) {
+export function MathRenderer({ math, displayMode = false, className }: MathRendererProps) {
   const html = useMemo(() => {
     const cleaned = cleanLatexString(math);
     if (!cleaned) return '';
@@ -276,7 +272,7 @@ export function MathRenderer({
         className={cn(
           'font-mono font-medium tracking-tight text-ink-primary',
           displayMode ? 'block text-center py-2 text-sm' : 'inline text-xs',
-          className
+          className,
         )}
       >
         {unicodeFallback}
@@ -289,7 +285,7 @@ export function MathRenderer({
       className={cn(
         'inline-math select-text',
         displayMode && 'block text-center my-1.5 overflow-x-auto scrollbar-none',
-        className
+        className,
       )}
       dangerouslySetInnerHTML={{ __html: html }}
     />
@@ -302,7 +298,8 @@ export function MathRenderer({
  */
 function SubMathSegment({ text }: { text: string }) {
   // Pattern to split on parenthesized equations or math macro clusters
-  const MACRO_SPLIT_REGEX = /(\([^\)]*?\\[a-zA-Z]+[^\)]*?\)|\\lfloor[\s\S]*?\\rfloor|\\lceil[\s\S]*?\\rceil|\\\w+(?:\{[^{}]*?\})*(?:\s*[\+\-\=\<\>\*\/\^]\s*(?:\\\w+(?:\{[^{}]*?\})*|[a-zA-Z0-9]+))*)/;
+  const MACRO_SPLIT_REGEX =
+    /(\([^\)]*?\\[a-zA-Z]+[^\)]*?\)|\\lfloor[\s\S]*?\\rfloor|\\lceil[\s\S]*?\\rceil|\\\w+(?:\{[^{}]*?\})*(?:\s*[\+\-\=\<\>\*\/\^]\s*(?:\\\w+(?:\{[^{}]*?\})*|[a-zA-Z0-9]+))*)/;
 
   const parts = text.split(MACRO_SPLIT_REGEX);
 
@@ -333,13 +330,7 @@ function SubMathSegment({ text }: { text: string }) {
  * or inline LaTeX macros (e.g. \lfloor N/2 \rfloor + 1, \implies) and renders
  * math inline with KaTeX while preserving surrounding prose.
  */
-export function MathText({
-  text,
-  className,
-}: {
-  text: string;
-  className?: string;
-}) {
+export function MathText({ text, className }: { text: string; className?: string }) {
   const renderedElements = useMemo(() => {
     if (!text) return null;
 

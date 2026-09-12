@@ -116,7 +116,9 @@ export function HeroStudioWorkbench() {
   const [flashcardFlipped, setFlashcardFlipped] = useState(false);
 
   // Community Digest simulator state
-  const [activeCommunityPlatform, setActiveCommunityPlatform] = useState<'discord' | 'telegram' | 'slack'>('discord');
+  const [activeCommunityPlatform, setActiveCommunityPlatform] = useState<
+    'discord' | 'telegram' | 'slack'
+  >('discord');
 
   // Smart Dainik News simulator state
   const [newsLang, setNewsLang] = useState<'hi' | 'en'>('hi');
@@ -146,7 +148,11 @@ export function HeroStudioWorkbench() {
       } else if (e.key === '4') {
         setActiveTool('news');
         setLiveAnnouncement('Switched to Smart Dainik News tool.');
-      } else if (e.key.toLowerCase() === 'c' && resumeSubTab === 'json' && activeTool === 'resume') {
+      } else if (
+        e.key.toLowerCase() === 'c' &&
+        resumeSubTab === 'json' &&
+        activeTool === 'resume'
+      ) {
         handleCopyJson();
       }
     };
@@ -207,7 +213,7 @@ export function HeroStudioWorkbench() {
                   'relative flex items-center justify-center gap-1 px-2.5 py-1 rounded-md font-medium transition-all duration-150 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary z-10 cursor-pointer active:scale-[0.98]',
                   isSelected
                     ? 'text-white font-semibold'
-                    : 'text-text-secondary hover:text-text-primary hover:bg-surface-hover/50'
+                    : 'text-text-secondary hover:text-text-primary hover:bg-surface-hover/50',
                 )}
               >
                 {isSelected && (
@@ -219,12 +225,14 @@ export function HeroStudioWorkbench() {
                 )}
                 <Icon className="w-3.5 h-3.5 shrink-0" />
                 <span className="hidden min-[380px]:inline">{tool.label}</span>
-                <kbd className={cn(
-                  'hidden sm:inline-block ml-1 font-mono text-[9px] px-1 py-0.2 rounded border leading-none',
-                  isSelected
-                    ? 'bg-white/10 text-white/80 border-white/20'
-                    : 'bg-surface-panel text-text-muted border-border-subtle'
-                )}>
+                <kbd
+                  className={cn(
+                    'hidden sm:inline-block ml-1 font-mono text-[9px] px-1 py-0.2 rounded border leading-none',
+                    isSelected
+                      ? 'bg-white/10 text-white/80 border-white/20'
+                      : 'bg-surface-panel text-text-muted border-border-subtle',
+                  )}
+                >
                   {tool.hotkey}
                 </kbd>
               </button>
@@ -261,7 +269,12 @@ export function HeroStudioWorkbench() {
               <div className="flex items-center gap-1 bg-surface-panel p-0.5 rounded border border-border-subtle relative">
                 {(['scorecard', 'vectors', 'json'] as const).map((tab) => {
                   const isTabActive = resumeSubTab === tab;
-                  const label = tab === 'scorecard' ? 'Scorecard' : tab === 'vectors' ? 'Vectors' : 'JSON Schema';
+                  const label =
+                    tab === 'scorecard'
+                      ? 'Scorecard'
+                      : tab === 'vectors'
+                        ? 'Vectors'
+                        : 'JSON Schema';
                   return (
                     <button
                       key={tab}
@@ -271,7 +284,7 @@ export function HeroStudioWorkbench() {
                         'relative px-2 py-0.5 rounded text-[11px] font-medium transition-colors z-10 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent-primary',
                         isTabActive
                           ? 'text-accent-primary font-semibold'
-                          : 'text-text-secondary hover:text-text-primary'
+                          : 'text-text-secondary hover:text-text-primary',
                       )}
                     >
                       {isTabActive && (
@@ -306,7 +319,7 @@ export function HeroStudioWorkbench() {
                           'w-full text-left p-3 rounded-lg border transition-all duration-150 flex items-center justify-between gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary cursor-pointer active:scale-[0.99]',
                           isSelected
                             ? 'bg-surface-panel border-border-strong ring-1 ring-border-strong'
-                            : 'bg-surface-panel-subtle/30 border-border-subtle hover:bg-surface-panel-subtle/60 hover:border-border-strong'
+                            : 'bg-surface-panel-subtle/30 border-border-subtle hover:bg-surface-panel-subtle/60 hover:border-border-strong',
                         )}
                       >
                         <div className="space-y-1 min-w-0">
@@ -319,14 +332,13 @@ export function HeroStudioWorkbench() {
                             </span>
                           </div>
                           <p className="text-xs text-text-secondary">
-                            {cand.role} · <span className="font-mono tabular-nums">{cand.experience}</span>
+                            {cand.role} ·{' '}
+                            <span className="font-mono tabular-nums">{cand.experience}</span>
                           </p>
                         </div>
 
                         <div className="shrink-0 text-right">
-                          <span className="text-xs font-mono text-text-muted">
-                            {cand.status}
-                          </span>
+                          <span className="text-xs font-mono text-text-muted">{cand.status}</span>
                         </div>
                       </button>
                     );
@@ -432,7 +444,11 @@ export function HeroStudioWorkbench() {
             <div className="flex items-center justify-between px-4 sm:px-5 py-2.5 bg-surface-panel-subtle/40 border-t border-border-subtle text-xs">
               <div className="text-text-secondary">
                 <span>
-                  Parsed in <span className="font-mono tabular-nums font-semibold text-text-primary">&lt; 0.35s</span> / PDF
+                  Parsed in{' '}
+                  <span className="font-mono tabular-nums font-semibold text-text-primary">
+                    &lt; 0.35s
+                  </span>{' '}
+                  / PDF
                 </span>
               </div>
               <Link
@@ -468,7 +484,9 @@ export function HeroStudioWorkbench() {
                   100% Free for Students
                 </span>
               </div>
-              <span className="font-mono text-accent-secondary text-[11px]">Audio/Video Ingestion</span>
+              <span className="font-mono text-accent-secondary text-[11px]">
+                Audio/Video Ingestion
+              </span>
             </div>
 
             <div className="p-4 sm:p-5 space-y-4">
@@ -482,11 +500,19 @@ export function HeroStudioWorkbench() {
                       className="w-8 h-8 rounded-full bg-accent-primary hover:bg-accent-hover text-white flex items-center justify-center shadow-accent transition-all active:scale-95 cursor-pointer focus-visible:ring-2 focus-visible:ring-accent-primary"
                       aria-label={isPlayingAudio ? 'Pause Lecture Audio' : 'Play Lecture Audio'}
                     >
-                      {isPlayingAudio ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 ml-0.5" />}
+                      {isPlayingAudio ? (
+                        <Pause className="w-3.5 h-3.5" />
+                      ) : (
+                        <Play className="w-3.5 h-3.5 ml-0.5" />
+                      )}
                     </button>
                     <div>
-                      <p className="text-xs font-semibold text-text-primary">MIT 8.02: Maxwell&apos;s Equations & Electromagnetism</p>
-                      <p className="text-[11px] font-mono text-text-secondary">04:12 / 52:30 · 1.5x Speed Neural Filtered</p>
+                      <p className="text-xs font-semibold text-text-primary">
+                        MIT 8.02: Maxwell&apos;s Equations & Electromagnetism
+                      </p>
+                      <p className="text-[11px] font-mono text-text-secondary">
+                        04:12 / 52:30 · 1.5x Speed Neural Filtered
+                      </p>
                     </div>
                   </div>
                   <span className="font-mono tabular-nums text-xs text-accent-primary font-semibold px-2 py-0.5 rounded bg-accent-50 border border-accent-primary/20">
@@ -510,14 +536,20 @@ export function HeroStudioWorkbench() {
                 {/* LaTeX Math Extraction */}
                 <div className="rounded-xl bg-surface-panel border border-border-subtle p-3.5 space-y-2">
                   <div className="flex items-center justify-between text-xs">
-                    <span className="font-mono font-semibold text-accent-primary">LaTeX Formula Extraction</span>
+                    <span className="font-mono font-semibold text-accent-primary">
+                      LaTeX Formula Extraction
+                    </span>
                     <span className="text-[10px] font-mono text-accent-secondary">Verified</span>
                   </div>
                   <div className="p-2.5 rounded bg-surface-panel-subtle/60 text-text-primary border border-border-subtle flex items-center justify-center min-h-[44px]">
-                    <MathRenderer math="\nabla \times \mathbf{E} = -\frac{\partial \mathbf{B}}{\partial t}" displayMode={false} />
+                    <MathRenderer
+                      math="\nabla \times \mathbf{E} = -\frac{\partial \mathbf{B}}{\partial t}"
+                      displayMode={false}
+                    />
                   </div>
                   <p className="text-[11px] text-text-secondary">
-                    Faraday&apos;s Law of Induction: Time-varying magnetic fields induce circulating electric fields.
+                    Faraday&apos;s Law of Induction: Time-varying magnetic fields induce circulating
+                    electric fields.
                   </p>
                 </div>
 
@@ -528,7 +560,9 @@ export function HeroStudioWorkbench() {
                   className="text-left rounded-xl bg-surface-panel border border-accent-primary/30 hover:border-accent-primary p-3.5 space-y-2 transition-all hover:shadow-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
                 >
                   <div className="flex items-center justify-between text-xs">
-                    <span className="font-mono font-semibold text-text-primary">Interactive Study Card</span>
+                    <span className="font-mono font-semibold text-text-primary">
+                      Interactive Study Card
+                    </span>
                     <span className="text-[10px] font-mono text-accent-primary">Click to Flip</span>
                   </div>
                   <AnimatePresence mode="wait">
@@ -541,7 +575,9 @@ export function HeroStudioWorkbench() {
                         transition={{ duration: 0.36 }}
                         className="space-y-1"
                       >
-                        <span className="text-[10px] font-mono text-accent-secondary uppercase">Answer</span>
+                        <span className="text-[10px] font-mono text-accent-secondary uppercase">
+                          Answer
+                        </span>
                         <p className="text-xs text-text-primary font-medium">
                           <MathText text="The displacement current term $\mu_0 \varepsilon_0 \frac{\partial \mathbf{E}}{\partial t}$ was added by Maxwell to satisfy conservation of charge." />
                         </p>
@@ -555,9 +591,12 @@ export function HeroStudioWorkbench() {
                         transition={{ duration: 0.36 }}
                         className="space-y-1"
                       >
-                        <span className="text-[10px] font-mono text-text-secondary uppercase">Question (Card #04)</span>
+                        <span className="text-[10px] font-mono text-text-secondary uppercase">
+                          Question (Card #04)
+                        </span>
                         <p className="text-xs text-text-primary font-medium">
-                          What critical term did Maxwell add to Ampère&apos;s Law to unify electricity and magnetism?
+                          What critical term did Maxwell add to Ampère&apos;s Law to unify
+                          electricity and magnetism?
                         </p>
                       </motion.div>
                     )}
@@ -600,7 +639,9 @@ export function HeroStudioWorkbench() {
             <div className="flex items-center justify-between px-4 sm:px-5 py-2.5 bg-surface-canvas border-b border-border-subtle text-xs">
               <div className="flex items-center gap-2">
                 <span className="font-semibold text-text-primary">Community Chat Digest</span>
-                <span className="text-[11px] font-mono text-text-muted">4,820 messages condensed to 3 briefs</span>
+                <span className="text-[11px] font-mono text-text-muted">
+                  4,820 messages condensed to 3 briefs
+                </span>
               </div>
 
               {/* Platform toggles */}
@@ -616,7 +657,7 @@ export function HeroStudioWorkbench() {
                         'relative px-2 py-0.5 rounded text-[11px] font-medium capitalize transition-colors z-10 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent-primary',
                         isPlatActive
                           ? 'text-accent-primary font-semibold'
-                          : 'text-text-secondary hover:text-text-primary'
+                          : 'text-text-secondary hover:text-text-primary',
                       )}
                     >
                       {isPlatActive && (
@@ -637,16 +678,28 @@ export function HeroStudioWorkbench() {
               {/* Digest Metrics Strip */}
               <div className="grid grid-cols-3 gap-2 text-left">
                 <div className="p-2.5 rounded-lg bg-surface-panel-subtle/40 border border-border-subtle">
-                  <span className="text-[10px] font-mono text-text-secondary block">Compression Ratio</span>
-                  <span className="font-mono tabular-nums text-base text-text-primary font-semibold">94.8%</span>
+                  <span className="text-[10px] font-mono text-text-secondary block">
+                    Compression Ratio
+                  </span>
+                  <span className="font-mono tabular-nums text-base text-text-primary font-semibold">
+                    94.8%
+                  </span>
                 </div>
                 <div className="p-2.5 rounded-lg bg-surface-panel-subtle/40 border border-border-subtle">
-                  <span className="text-[10px] font-mono text-text-secondary block">Community Sentiment</span>
-                  <span className="font-mono tabular-nums text-base text-accent-secondary font-semibold">82% Positive</span>
+                  <span className="text-[10px] font-mono text-text-secondary block">
+                    Community Sentiment
+                  </span>
+                  <span className="font-mono tabular-nums text-base text-accent-secondary font-semibold">
+                    82% Positive
+                  </span>
                 </div>
                 <div className="p-2.5 rounded-lg bg-surface-panel-subtle/40 border border-border-subtle">
-                  <span className="text-[10px] font-mono text-text-secondary block">Action Items Found</span>
-                  <span className="font-mono tabular-nums text-base text-accent-primary font-semibold">6 Tasks</span>
+                  <span className="text-[10px] font-mono text-text-secondary block">
+                    Action Items Found
+                  </span>
+                  <span className="font-mono tabular-nums text-base text-accent-primary font-semibold">
+                    6 Tasks
+                  </span>
                 </div>
               </div>
 
@@ -661,7 +714,9 @@ export function HeroStudioWorkbench() {
                   </span>
                 </div>
                 <p className="text-xs text-text-secondary leading-relaxed">
-                  Key discussion: 42 developers benchmarked the new FP8 quantization kernel. General consensus: 2.1x throughput gain on RTX 4090 with zero loss in JSON schema strictness.
+                  Key discussion: 42 developers benchmarked the new FP8 quantization kernel. General
+                  consensus: 2.1x throughput gain on RTX 4090 with zero loss in JSON schema
+                  strictness.
                 </p>
 
                 {/* Action item card */}
@@ -669,7 +724,9 @@ export function HeroStudioWorkbench() {
                   <div className="text-text-primary font-medium">
                     <span>Action: Release benchmark guide for TensorRT-LLM integration</span>
                   </div>
-                  <span className="text-[10px] font-mono text-text-muted">Assigned: @infra-team</span>
+                  <span className="text-[10px] font-mono text-text-muted">
+                    Assigned: @infra-team
+                  </span>
                 </div>
               </div>
             </div>
@@ -722,7 +779,7 @@ export function HeroStudioWorkbench() {
                     'relative px-2 py-0.5 rounded text-[11px] font-medium transition-colors z-10 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent-primary',
                     newsLang === 'hi'
                       ? 'text-accent-primary font-semibold'
-                      : 'text-text-secondary hover:text-text-primary'
+                      : 'text-text-secondary hover:text-text-primary',
                   )}
                 >
                   {newsLang === 'hi' && (
@@ -741,7 +798,7 @@ export function HeroStudioWorkbench() {
                     'relative px-2 py-0.5 rounded text-[11px] font-medium transition-colors z-10 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent-primary',
                     newsLang === 'en'
                       ? 'text-accent-primary font-semibold'
-                      : 'text-text-secondary hover:text-text-primary'
+                      : 'text-text-secondary hover:text-text-primary',
                   )}
                 >
                   {newsLang === 'en' && (
@@ -761,7 +818,9 @@ export function HeroStudioWorkbench() {
               <div className="rounded-xl bg-surface-panel border border-border-subtle p-4 space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-xs font-semibold px-2 py-0.5 rounded bg-accent-50 text-accent-primary border border-accent-primary/20">
-                    {newsLang === 'hi' ? 'उत्तर प्रदेश लोक सेवा आयोग' : 'UP Public Service Commission'}
+                    {newsLang === 'hi'
+                      ? 'उत्तर प्रदेश लोक सेवा आयोग'
+                      : 'UP Public Service Commission'}
                   </span>
                   <span className="font-mono text-xs text-accent-secondary font-medium">
                     {newsLang === 'hi' ? 'सत्यापित अधिसूचना' : 'Verified Gazette'}

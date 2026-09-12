@@ -123,10 +123,14 @@ export async function submitContactForm(rawData: unknown): Promise<ServiceRespon
         `.trim(),
       });
     } catch (err) {
-      console.error('Email dispatch error (credentials masked):', err instanceof Error ? err.message : 'Unknown error');
+      console.error(
+        'Email dispatch error (credentials masked):',
+        err instanceof Error ? err.message : 'Unknown error',
+      );
       return {
         success: false,
-        message: 'Could not send message at this moment. Please try again or reach out directly at noraitechnologies@gmail.com.',
+        message:
+          'Could not send message at this moment. Please try again or reach out directly at noraitechnologies@gmail.com.',
       };
     }
   } else {

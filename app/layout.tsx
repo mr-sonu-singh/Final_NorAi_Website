@@ -1,7 +1,12 @@
 import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans, Instrument_Serif, JetBrains_Mono } from 'next/font/google';
 import { buildMetadata, getOrganizationJsonLd, getWebSiteJsonLd, JsonLd } from '@/lib/seo';
-import { MotionProvider, SmoothScrollProvider, AnalyticsProvider, ToastProvider } from '@/providers';
+import {
+  MotionProvider,
+  SmoothScrollProvider,
+  AnalyticsProvider,
+  ToastProvider,
+} from '@/providers';
 import './globals.css';
 
 const jakarta = Plus_Jakarta_Sans({
@@ -43,7 +48,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${jakarta.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}>
+    <html
+      lang="en"
+      className={`${jakarta.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
+    >
       <head>
         <JsonLd schema={getOrganizationJsonLd()} />
         <JsonLd schema={getWebSiteJsonLd()} />

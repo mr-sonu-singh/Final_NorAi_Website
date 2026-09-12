@@ -45,7 +45,7 @@ export function KnobSwitch({
         >
           {/* Knurled Outer Edge */}
           <div className="absolute inset-0.5 rounded-full border border-border-subtle knurled-texture opacity-40 group-hover:opacity-70 transition-opacity" />
-          
+
           {/* Center Indicator Notch */}
           <motion.div
             className="w-1.5 h-1.5 rounded-full bg-accent-primary shadow-sm"
@@ -68,7 +68,7 @@ export function KnobSwitch({
                   'px-2 py-1 rounded-md text-xs font-mono transition-all cursor-pointer',
                   isActive
                     ? 'bg-accent-primary text-white font-semibold shadow-sm'
-                    : 'text-text-secondary hover:text-text-primary hover:bg-surface-hover'
+                    : 'text-text-secondary hover:text-text-primary hover:bg-surface-hover',
                 )}
               >
                 {option.shortLabel || option.label}

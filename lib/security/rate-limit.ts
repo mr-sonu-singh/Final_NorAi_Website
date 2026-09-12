@@ -45,10 +45,7 @@ function pruneStaleRecords(maxAgeMs: number = 30 * 60 * 1000) {
 /**
  * Checks and records a request against the rate limit window.
  */
-export function checkRateLimit(
-  key: string,
-  options: RateLimitOptions = {}
-): RateLimitResult {
+export function checkRateLimit(key: string, options: RateLimitOptions = {}): RateLimitResult {
   const maxRequests = options.maxRequests ?? 5;
   const windowMs = options.windowMs ?? 15 * 60 * 1000;
   const now = Date.now();
@@ -77,9 +74,7 @@ export function checkRateLimit(
   const remaining = Math.max(0, maxRequests - record.timestamps.length);
   const oldestTimestamp = record.timestamps[0] ?? now;
   const reset = oldestTimestamp + windowMs;
-  const retryAfterSeconds = isAllowed
-    ? 0
-    : Math.max(1, Math.ceil((reset - now) / 1000));
+  const retryAfterSeconds = isAllowed ? 0 : Math.max(1, Math.ceil((reset - now) / 1000));
 
   return {
     success: isAllowed,

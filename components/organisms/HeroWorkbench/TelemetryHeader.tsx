@@ -19,11 +19,20 @@ const REGIONS: EdgeRegion[] = [
 
 export function TelemetryHeader({ className }: { className?: string }) {
   const [activeRegionIndex, setActiveRegionIndex] = useState(0);
-  const activeRegion = REGIONS[activeRegionIndex] || { id: 'noida', name: 'DEL/Noida Edge', latencyMs: 18, status: 'OPTIMAL' as const };
-
+  const activeRegion = REGIONS[activeRegionIndex] || {
+    id: 'noida',
+    name: 'DEL/Noida Edge',
+    latencyMs: 18,
+    status: 'OPTIMAL' as const,
+  };
 
   return (
-    <div className={cn('bg-surface-panel-subtle/90 border-b border-border-subtle py-1.5 px-4 text-center', className)}>
+    <div
+      className={cn(
+        'bg-surface-panel-subtle/90 border-b border-border-subtle py-1.5 px-4 text-center',
+        className,
+      )}
+    >
       <div className="flex items-center justify-center gap-3 text-[11px] font-mono text-text-secondary flex-wrap">
         {/* Live Status indicator */}
         <div className="flex items-center gap-1.5 text-accent-secondary font-semibold">
@@ -31,7 +40,9 @@ export function TelemetryHeader({ className }: { className?: string }) {
           <span>SYS: {activeRegion.status}</span>
         </div>
 
-        <span className="text-text-muted/40" aria-hidden="true">|</span>
+        <span className="text-text-muted/40" aria-hidden="true">
+          |
+        </span>
 
         {/* Region Selector Pill */}
         <div className="flex items-center gap-1">
@@ -42,25 +53,32 @@ export function TelemetryHeader({ className }: { className?: string }) {
             className="hover:text-text-primary underline decoration-dotted underline-offset-2 transition-colors cursor-pointer"
             title="Click to cycle edge region benchmark"
           >
-            {activeRegion.name}: <span className="font-semibold text-text-primary">{activeRegion.latencyMs}ms</span>
+            {activeRegion.name}:{' '}
+            <span className="font-semibold text-text-primary">{activeRegion.latencyMs}ms</span>
           </button>
         </div>
 
-        <span className="text-text-muted/40" aria-hidden="true">|</span>
+        <span className="text-text-muted/40" aria-hidden="true">
+          |
+        </span>
 
         <span className="flex items-center gap-1">
           <Zap className="w-3 h-3 text-accent-primary" />
           <span>P95 SLA &lt; 320ms</span>
         </span>
 
-        <span className="text-text-muted/40" aria-hidden="true">|</span>
+        <span className="text-text-muted/40" aria-hidden="true">
+          |
+        </span>
 
         <span className="flex items-center gap-1">
           <ShieldCheck className="w-3 h-3 text-accent-secondary" />
           <span>ZERO-EGRESS EPHEMERAL RAM</span>
         </span>
 
-        <span className="text-text-muted/40" aria-hidden="true">|</span>
+        <span className="text-text-muted/40" aria-hidden="true">
+          |
+        </span>
 
         <span className="text-accent-primary font-semibold">100% DETERMINISTIC JSON</span>
       </div>

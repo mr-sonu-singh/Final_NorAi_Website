@@ -12,7 +12,6 @@ import { cn } from '@/lib/utils';
 import { FooterProps, FooterColumn } from './Footer.types';
 import { SocialLinkItem } from '@/components/molecules/SocialLinks/SocialLinks.types';
 
-
 export const DEFAULT_FOOTER_COLUMNS: FooterColumn[] = [
   {
     title: 'Tools',
@@ -68,8 +67,7 @@ export const DEFAULT_FOOTER_SOCIAL_LINKS: SocialLinkItem[] = [
   },
 ];
 
-export const DEFAULT_LEGAL_TEXT =
-  '© 2026 NorAI Technologies Pvt. Ltd. All rights reserved.';
+export const DEFAULT_LEGAL_TEXT = '© 2026 NorAI Technologies Pvt. Ltd. All rights reserved.';
 
 export function Footer({
   columns = DEFAULT_FOOTER_COLUMNS,
@@ -87,15 +85,18 @@ export function Footer({
       data-testid="footer-organism"
     >
       <Container size="default" className="relative z-10">
-
         {/* Brand Wordmark & Top Row */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-12 border-b border-white/10">
           <div className="space-y-3">
-            <Link href="/" className="inline-flex items-center gap-3 group active:scale-[0.98] transition-transform">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-3 group active:scale-[0.98] transition-transform"
+            >
               <BrandLogo variant="inverted" size="lg" />
             </Link>
             <p className="text-slate-400 text-sm max-w-sm">
-              Purpose-built micro-SaaS utilities and enterprise AI systems engineered with conviction.
+              Purpose-built micro-SaaS utilities and enterprise AI systems engineered with
+              conviction.
             </p>
           </div>
 

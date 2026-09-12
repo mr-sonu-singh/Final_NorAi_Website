@@ -11,11 +11,7 @@ import { EmptyState } from '@/components/molecules/EmptyState';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 import { cn } from '@/lib/utils';
-import {
-  ComparisonTableProps,
-  ComparisonCellValue,
-  ComparisonRow,
-} from './ComparisonTable.types';
+import { ComparisonTableProps, ComparisonCellValue, ComparisonRow } from './ComparisonTable.types';
 
 export function ComparisonTable({
   heading,
@@ -51,9 +47,7 @@ export function ComparisonTable({
     }
 
     return (
-      <span className="font-mono text-sm font-medium text-ink-primary tabular-nums">
-        {value}
-      </span>
+      <span className="font-mono text-sm font-medium text-ink-primary tabular-nums">{value}</span>
     );
   };
 
@@ -103,9 +97,7 @@ export function ComparisonTable({
         >
           <div className="space-y-0.5">
             <span className="text-sm font-medium text-ink-primary">{row.label}</span>
-            {row.hint && (
-              <p className="text-xs text-ink-secondary">{row.hint}</p>
-            )}
+            {row.hint && <p className="text-xs text-ink-secondary">{row.hint}</p>}
           </div>
         </th>
         {columns.map((col) => (
@@ -113,7 +105,8 @@ export function ComparisonTable({
             key={`${row.id}-${col.id}`}
             className={cn(
               'p-4 text-center align-middle',
-              col.highlighted && (rowIndex % 2 === 0 ? 'bg-accent-subtle/25' : 'bg-accent-subtle/35'),
+              col.highlighted &&
+                (rowIndex % 2 === 0 ? 'bg-accent-subtle/25' : 'bg-accent-subtle/35'),
             )}
           >
             {renderCellContent(row.values[col.id])}

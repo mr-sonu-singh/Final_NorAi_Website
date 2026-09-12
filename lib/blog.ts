@@ -68,7 +68,8 @@ export const BLOG_POSTS: Record<string, BlogPostData> = {
   'ai-agent-orchestration-architecture': {
     slug: 'ai-agent-orchestration-architecture',
     title: 'Architecting Deterministic AI Agent Workflows for Scale',
-    excerpt: 'An in-depth analysis of multi-agent state transition machines, structured JSON schema validation, automated self-healing repair loops, and fault-tolerant background execution queues.',
+    excerpt:
+      'An in-depth analysis of multi-agent state transition machines, structured JSON schema validation, automated self-healing repair loops, and fault-tolerant background execution queues.',
     author: 'Gourav Singh',
     authorRole: 'Founder & AI Systems Architect',
     date: 'January 15, 2026',
@@ -78,7 +79,8 @@ export const BLOG_POSTS: Record<string, BlogPostData> = {
     tags: ['State Machines', 'TypeScript', 'Zod', 'Multi-Agent', 'Orchestration'],
     relatedProduct: {
       name: 'Bespoke Enterprise AI Solutions',
-      description: 'Deploy deterministic, private-VPC agent pipelines with sub-second execution targets.',
+      description:
+        'Deploy deterministic, private-VPC agent pipelines with sub-second execution targets.',
       href: '/services',
       badge: 'Enterprise Architecture',
     },
@@ -93,7 +95,8 @@ export const BLOG_POSTS: Record<string, BlogPostData> = {
         callout: {
           type: 'warning',
           title: 'The Unstructured Text Antipattern',
-          content: 'Never allow agent nodes in an automation DAG to communicate via freeform natural language strings. All inter-agent telemetry must pass through strictly typed, zero-schema-drift JSON contracts.',
+          content:
+            'Never allow agent nodes in an automation DAG to communicate via freeform natural language strings. All inter-agent telemetry must pass through strictly typed, zero-schema-drift JSON contracts.',
         },
       },
       {
@@ -147,12 +150,14 @@ export interface StateTransitionContext<TInput, TOutput> {
             ['JSON Mode (Standard OpenAI)', '4.8%', '32.1%', '640ms'],
             ['NorAI Zod DAG + Self-Healing Loop', '0.02%', '98.4%', '340ms'],
           ],
-          caption: 'Benchmark comparison of schema compliance across 50,000 real-world document extraction tasks.',
+          caption:
+            'Benchmark comparison of schema compliance across 50,000 real-world document extraction tasks.',
         },
         callout: {
           type: 'takeaway',
           title: 'Key Architecture Insight',
-          content: 'Schema repair prompts must include both the invalid raw JSON and the exact path of the failing Zod error. Do not ask the model to regenerate the entire payload from scratch.',
+          content:
+            'Schema repair prompts must include both the invalid raw JSON and the exact path of the failing Zod error. Do not ask the model to regenerate the entire payload from scratch.',
         },
       },
       {
@@ -197,7 +202,8 @@ export async function processCandidateIntake(rawText: string) {
   'rag-vector-search-best-practices': {
     slug: 'rag-vector-search-best-practices',
     title: 'Best Practices for Hybrid Vector Search & RAG Retrieval',
-    excerpt: 'Key strategies for document chunking, hybrid keyword-dense embedding indexing, Reciprocal Rank Fusion (RRF), and grounded context validation in enterprise knowledge search.',
+    excerpt:
+      'Key strategies for document chunking, hybrid keyword-dense embedding indexing, Reciprocal Rank Fusion (RRF), and grounded context validation in enterprise knowledge search.',
     author: 'Gourav Singh',
     authorRole: 'Founder & AI Systems Architect',
     date: 'January 04, 2026',
@@ -207,7 +213,8 @@ export async function processCandidateIntake(rawText: string) {
     tags: ['RAG', 'Vector Search', 'Embeddings', 'BM25', 'Milvus', 'Qdrant'],
     relatedProduct: {
       name: 'Enterprise Knowledge Hub & RAG',
-      description: 'Zero-hallucination document intelligence pipelines for proprietary enterprise data.',
+      description:
+        'Zero-hallucination document intelligence pipelines for proprietary enterprise data.',
       href: '/services',
       badge: 'High-Throughput RAG',
     },
@@ -222,7 +229,8 @@ export async function processCandidateIntake(rawText: string) {
         callout: {
           type: 'warning',
           title: 'The Semantic Blindspot',
-          content: 'Dense embeddings excel at conceptual similarity (e.g., "vacation policy" ≈ "annual leave"), but struggle with exact alphanumeric strings like part numbers ("A-7809-X") or financial line items.',
+          content:
+            'Dense embeddings excel at conceptual similarity (e.g., "vacation policy" ≈ "annual leave"), but struggle with exact alphanumeric strings like part numbers ("A-7809-X") or financial line items.',
         },
       },
       {
@@ -307,7 +315,8 @@ export function buildSemanticContextString(chunk: StructuredChunk): string {
         callout: {
           type: 'takeaway',
           title: 'Production Tip',
-          content: 'Always limit the generation context to top-5 reranked chunks rather than stuffing 50 chunks into a 128k context window. Concentrated relevance produces fewer hallucinations and reduces generation latency by up to 60%.',
+          content:
+            'Always limit the generation context to top-5 reranked chunks rather than stuffing 50 chunks into a 128k context window. Concentrated relevance produces fewer hallucinations and reduces generation latency by up to 60%.',
         },
       },
     ],
@@ -316,7 +325,8 @@ export function buildSemanticContextString(chunk: StructuredChunk): string {
   'mcp-protocol-developer-tooling': {
     slug: 'mcp-protocol-developer-tooling',
     title: 'Connecting Developer Tools via Model Context Protocol (MCP)',
-    excerpt: 'Understanding standard MCP tool servers, secure resource handlers, JSON-RPC communication, and how AI assistants interact safely with local databases and APIs.',
+    excerpt:
+      'Understanding standard MCP tool servers, secure resource handlers, JSON-RPC communication, and how AI assistants interact safely with local databases and APIs.',
     author: 'Sonu Singh',
     authorRole: 'Head of Developer Tooling',
     date: 'December 20, 2025',
@@ -341,7 +351,8 @@ export function buildSemanticContextString(chunk: StructuredChunk): string {
         callout: {
           type: 'takeaway',
           title: 'The MCP Core Triad',
-          content: 'MCP standardizes three key primitives: Tools (executable functions with typed schemas), Resources (readable data feeds like files or database records), and Prompts (reusable workflow templates).',
+          content:
+            'MCP standardizes three key primitives: Tools (executable functions with typed schemas), Resources (readable data feeds like files or database records), and Prompts (reusable workflow templates).',
         },
       },
       {
@@ -396,7 +407,8 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         callout: {
           type: 'warning',
           title: 'Security Vulnerability Alert',
-          content: 'Never run an MCP server with unrestricted root or admin permissions. Always implement rate limiting, payload redaction, and strict sandbox paths.',
+          content:
+            'Never run an MCP server with unrestricted root or admin permissions. Always implement rate limiting, payload redaction, and strict sandbox paths.',
         },
       },
     ],
@@ -405,7 +417,8 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
   'automated-resume-screening-patterns': {
     slug: 'automated-resume-screening-patterns',
     title: 'Automating Candidate Screening: Skill Extraction Patterns',
-    excerpt: 'Technical insights into parsing multi-format resume documents, extracting verified candidate qualifications, and computing objective match scores in sub-350ms pipelines.',
+    excerpt:
+      'Technical insights into parsing multi-format resume documents, extracting verified candidate qualifications, and computing objective match scores in sub-350ms pipelines.',
     author: 'Gourav Singh',
     authorRole: 'Founder & AI Systems Architect',
     date: 'December 05, 2025',
@@ -430,7 +443,8 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         callout: {
           type: 'takeaway',
           title: 'Sub-350ms Execution Target',
-          content: 'By pairing local layout analysis with pre-compiled skill taxonomy vectors, NorAI processes a 3-page resume and generates a structured scorecard in under 350 milliseconds.',
+          content:
+            'By pairing local layout analysis with pre-compiled skill taxonomy vectors, NorAI processes a 3-page resume and generates a structured scorecard in under 350 milliseconds.',
         },
       },
       {
@@ -474,7 +488,8 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
   'operational-discipline-devops-reliability': {
     slug: 'operational-discipline-devops-reliability',
     title: 'Operational Redundancy and Fail-Safe Engineering Principles',
-    excerpt: 'Applying multi-tier fallback systems, automated database heartbeats, and strict DevSecOps redundancy across high-availability background workers.',
+    excerpt:
+      'Applying multi-tier fallback systems, automated database heartbeats, and strict DevSecOps redundancy across high-availability background workers.',
     author: 'Dhruw Singh',
     authorRole: 'Infrastructure & Reliability Lead',
     date: 'November 18, 2025',
@@ -500,10 +515,21 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
           headers: ['Tier Level', 'Target Hardware', 'Fallback Trigger', 'Latency Target'],
           rows: [
             ['Tier 1: Primary', 'Dedicated vLLM GPU Cluster (VPC)', 'Normal Operation', '< 280ms'],
-            ['Tier 2: Hot Standby', 'Secondary Hosted API (Anthropic/OpenAI)', 'Tier 1 Latency > 1200ms or 5xx', '< 650ms'],
-            ['Tier 3: Asynchronous DLQ', 'Persistent Redis / BullMQ Queue', 'Global Provider Outage', 'Job Queued (SLA: 5m)'],
+            [
+              'Tier 2: Hot Standby',
+              'Secondary Hosted API (Anthropic/OpenAI)',
+              'Tier 1 Latency > 1200ms or 5xx',
+              '< 650ms',
+            ],
+            [
+              'Tier 3: Asynchronous DLQ',
+              'Persistent Redis / BullMQ Queue',
+              'Global Provider Outage',
+              'Job Queued (SLA: 5m)',
+            ],
           ],
-          caption: 'Three-tier fallback routing topology deployed across NorAI enterprise services.',
+          caption:
+            'Three-tier fallback routing topology deployed across NorAI enterprise services.',
         },
       },
       {
@@ -560,7 +586,8 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
   'deploying-open-weight-llms-vllm-awq': {
     slug: 'deploying-open-weight-llms-vllm-awq',
     title: 'Deploying Open-Weight LLMs Locally with vLLM, AWQ & FlashAttention-2',
-    excerpt: 'A complete blueprint for running high-throughput, low-latency open-source models (Llama 3.3, DeepSeek, Qwen 2.5) on private infrastructure with AWQ 4-bit quantization.',
+    excerpt:
+      'A complete blueprint for running high-throughput, low-latency open-source models (Llama 3.3, DeepSeek, Qwen 2.5) on private infrastructure with AWQ 4-bit quantization.',
     author: 'Gourav Singh',
     authorRole: 'Founder & AI Systems Architect',
     date: 'January 28, 2026',
@@ -585,7 +612,8 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         callout: {
           type: 'takeaway',
           title: 'The Cost Disparity at Scale',
-          content: 'At 20 million tokens per day, self-hosting a quantized 70B model on two NVIDIA L40S GPUs reduces monthly inference expenditure from $6,200/mo (cloud API) to under $950/mo (bare-metal server lease).',
+          content:
+            'At 20 million tokens per day, self-hosting a quantized 70B model on two NVIDIA L40S GPUs reduces monthly inference expenditure from $6,200/mo (cloud API) to under $950/mo (bare-metal server lease).',
         },
       },
       {
@@ -596,7 +624,12 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
           'Activation-aware Weight Quantization (AWQ) preserves the top 1% of salient weights that protect reasoning accuracy while compressing the remaining 99% into 4-bit integers. This fits a 70B model into under 38GB of VRAM with zero perceptible degradation on standard benchmark suites.',
         ],
         table: {
-          headers: ['Quantization Format', 'VRAM Footprint', 'Tokens/sec (Batch 1)', 'MMLU Accuracy'],
+          headers: [
+            'Quantization Format',
+            'VRAM Footprint',
+            'Tokens/sec (Batch 1)',
+            'MMLU Accuracy',
+          ],
           rows: [
             ['FP16 (Uncompressed)', '142 GB (2x A100 80GB)', '34 tok/s', '82.4%'],
             ['GPTQ 4-bit', '41 GB (1x A100 80GB)', '52 tok/s', '81.1%'],
@@ -635,7 +668,8 @@ python3 -m vllm.entrypoints.openai.api_server \\
   'multimodal-audio-video-synthesis-latex': {
     slug: 'multimodal-audio-video-synthesis-latex',
     title: 'Multi-Modal Audio & Video Synthesis: Timestamped Chunking & LaTeX Math Extraction',
-    excerpt: 'How NorAI built the Course Note-Taker ingestion engine to parse 2-hour university lectures into timestamped summaries, definition glossaries, and clean LaTeX mathematical formula cards.',
+    excerpt:
+      'How NorAI built the Course Note-Taker ingestion engine to parse 2-hour university lectures into timestamped summaries, definition glossaries, and clean LaTeX mathematical formula cards.',
     author: 'Sonu Singh',
     authorRole: 'Head of Developer Tooling',
     date: 'February 08, 2026',
@@ -645,7 +679,8 @@ python3 -m vllm.entrypoints.openai.api_server \\
     tags: ['Multi-Modal', 'Audio', 'Whisper', 'LaTeX', 'KaTeX', 'Study Tools'],
     relatedProduct: {
       name: 'Course Note-Taker',
-      description: 'Turn hours of video lectures and audio into structured study notes and flashcards.',
+      description:
+        'Turn hours of video lectures and audio into structured study notes and flashcards.',
       href: '/products/course-note-taker',
       badge: 'Live Micro-SaaS',
     },
@@ -660,7 +695,8 @@ python3 -m vllm.entrypoints.openai.api_server \\
         callout: {
           type: 'takeaway',
           title: 'Acoustic Chunking Strategy',
-          content: 'Instead of slicing audio by fixed 60-second intervals, audio must be split on conversational pause boundaries (>600ms silence) to prevent clipping words midway.',
+          content:
+            'Instead of slicing audio by fixed 60-second intervals, audio must be split on conversational pause boundaries (>600ms silence) to prevent clipping words midway.',
         },
       },
       {
@@ -696,7 +732,8 @@ python3 -m vllm.entrypoints.openai.api_server \\
   'zero-hallucination-enterprise-guardrails': {
     slug: 'zero-hallucination-enterprise-guardrails',
     title: 'Zero-Hallucination Guardrails in Enterprise Pipelines with Structured Outputs',
-    excerpt: 'Eliminating probabilistic failure modes in mission-critical banking, legal, and HR automation with schema-enforced generation and verification circuits.',
+    excerpt:
+      'Eliminating probabilistic failure modes in mission-critical banking, legal, and HR automation with schema-enforced generation and verification circuits.',
     author: 'Gourav Singh',
     authorRole: 'Founder & AI Systems Architect',
     date: 'February 19, 2026',
@@ -706,7 +743,8 @@ python3 -m vllm.entrypoints.openai.api_server \\
     tags: ['Guardrails', 'Reliability', 'Zod', 'Compliance', 'Enterprise'],
     relatedProduct: {
       name: 'Bespoke Enterprise AI Solutions',
-      description: 'Deploy deterministic, zero-hallucination automation pipelines with SLA guarantees.',
+      description:
+        'Deploy deterministic, zero-hallucination automation pipelines with SLA guarantees.',
       href: '/services',
       badge: 'Enterprise Architecture',
     },
@@ -721,7 +759,8 @@ python3 -m vllm.entrypoints.openai.api_server \\
         callout: {
           type: 'warning',
           title: 'The Temperature Myth',
-          content: 'Setting model temperature to 0.0 reduces output randomness but does NOT eliminate hallucinations. Structural constraints and citation grounding are mandatory.',
+          content:
+            'Setting model temperature to 0.0 reduces output randomness but does NOT eliminate hallucinations. Structural constraints and citation grounding are mandatory.',
         },
       },
       {
@@ -734,9 +773,24 @@ python3 -m vllm.entrypoints.openai.api_server \\
         table: {
           headers: ['Guardrail Layer', 'Mechanism', 'Failure Prevention Rate', 'Overhead'],
           rows: [
-            ['Grammar-Constrained Sampling', 'Token Masking via CFG', '100% Schema Compliance', '0ms'],
-            ['Deterministic Zod Validation', 'Runtime Post-Parse Typecheck', '100% Type Safety', '< 2ms'],
-            ['Citation Grounding Check', 'Cross-Encoder Claim Verifier', '96.8% Fact Verification', '40ms'],
+            [
+              'Grammar-Constrained Sampling',
+              'Token Masking via CFG',
+              '100% Schema Compliance',
+              '0ms',
+            ],
+            [
+              'Deterministic Zod Validation',
+              'Runtime Post-Parse Typecheck',
+              '100% Type Safety',
+              '< 2ms',
+            ],
+            [
+              'Citation Grounding Check',
+              'Cross-Encoder Claim Verifier',
+              '96.8% Fact Verification',
+              '40ms',
+            ],
           ],
           caption: 'Multi-layer guardrail defense in NorAI deterministic pipelines.',
         },
@@ -747,7 +801,8 @@ python3 -m vllm.entrypoints.openai.api_server \\
   'vernacular-nlp-hindi-english-gazette-parsing': {
     slug: 'vernacular-nlp-hindi-english-gazette-parsing',
     title: 'Vernacular NLP: Engineering Hindi-English Code-Mixed Speech & Public Gazette Parsing',
-    excerpt: 'How NorAI built the Smart Dainik News ingestion pipeline to parse complex Indian public employment gazettes, Hindi PDF tables, and code-mixed vernacular announcements.',
+    excerpt:
+      'How NorAI built the Smart Dainik News ingestion pipeline to parse complex Indian public employment gazettes, Hindi PDF tables, and code-mixed vernacular announcements.',
     author: 'Dhruw Singh',
     authorRole: 'Infrastructure & Reliability Lead',
     date: 'February 24, 2026',
@@ -757,7 +812,8 @@ python3 -m vllm.entrypoints.openai.api_server \\
     tags: ['Vernacular NLP', 'Hindi NLP', 'Smart Dainik', 'Gazettes', 'Regional AI'],
     relatedProduct: {
       name: 'Smart Dainik News & Job Digest',
-      description: 'Verified public employment alerts and regional policy summaries for North India.',
+      description:
+        'Verified public employment alerts and regional policy summaries for North India.',
       href: '/products/smart-dainik-news',
       badge: 'Public Utility',
     },
@@ -772,7 +828,8 @@ python3 -m vllm.entrypoints.openai.api_server \\
         callout: {
           type: 'takeaway',
           title: 'Regional Mission Grounding',
-          content: 'Built from our engineering hub in Uttar Pradesh, Smart Dainik News bridges this gap by transforming complex gazettes into structured, instant mobile alerts in plain language.',
+          content:
+            'Built from our engineering hub in Uttar Pradesh, Smart Dainik News bridges this gap by transforming complex gazettes into structured, instant mobile alerts in plain language.',
         },
       },
       {

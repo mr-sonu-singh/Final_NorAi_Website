@@ -18,7 +18,9 @@ const A11Y_PAGES = [
 
 test.describe('Accessibility (a11y) Audits', () => {
   for (const { path, name } of A11Y_PAGES) {
-    test(`audits ${name} (${path}) for zero critical or serious WCAG violations`, async ({ page }) => {
+    test(`audits ${name} (${path}) for zero critical or serious WCAG violations`, async ({
+      page,
+    }) => {
       await page.goto(path);
       await page.waitForLoadState('domcontentloaded');
       await page.waitForTimeout(800);
@@ -61,9 +63,7 @@ test.describe('Accessibility (a11y) Audits', () => {
     await page.goto('/contact');
     await page.waitForLoadState('domcontentloaded');
 
-    const formAxeResults = await new AxeBuilder({ page })
-      .include('form')
-      .analyze();
+    const formAxeResults = await new AxeBuilder({ page }).include('form').analyze();
 
     expect(formAxeResults.violations).toEqual([]);
   });

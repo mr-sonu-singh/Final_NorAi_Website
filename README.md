@@ -65,31 +65,41 @@ NorAi_Ofiicial_Web/
 ## 🛠️ Getting Started
 
 ### 1. Prerequisites
+
 - Node.js `18.18+` or `20+`
 - npm, pnpm, or yarn
 
 ### 2. Installation
+
 Clone the repository and install dependencies:
+
 ```bash
 npm install
 ```
 
 ### 3. Environment Variables
+
 Copy `.env.example` to `.env`:
+
 ```bash
 cp .env.example .env
 ```
+
 Configure your environment variables:
+
 ```env
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 CONTACT_EMAIL_RECIPIENT=contact@noraitech.com
 ```
 
 ### 4. Development Server
+
 Start the local development server:
+
 ```bash
 npm run dev
 ```
+
 Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
 ---
@@ -117,10 +127,11 @@ npm start
 
 ## 🎨 Design System & Context Guidelines
 
-All design standards, typography scales, color tokens, and anti-slop rules are strictly defined in:
-- [`PRODUCT.md`](PRODUCT.md) — Product vision, target personas, taxonomy, and anti-references.
-- [`DESIGN.md`](DESIGN.md) — Design tokens, color system, typography scale, 5-state ergonomics, and anti-slop checklist.
-- [`AGENTS.md`](AGENTS.md) — 3-layer architecture, coding conventions, and agent execution protocol.
+Key project context, design guidelines, and technical references are documented in:
+
+- [`PRODUCT.md`](PRODUCT.md) — Product mission, the 4 flagship tools, enterprise services, and core values.
+- [`DESIGN.md`](DESIGN.md) — "Parchment & Terracotta" design ethos, typography system, and CSS tokens reference.
+- [`AGENTS.md`](AGENTS.md) (mirrored to `CLAUDE.md` and `GEMINI.md`) — Tech stack, directory architecture, key conventions, and developer guidelines.
 - [`project_progress_context.md`](project_progress_context.md) — Complete phase roadmap and rebuild execution history.
 
 ---
@@ -128,5 +139,6 @@ All design standards, typography scales, color tokens, and anti-slop rules are s
 ## 🚢 Deployment
 
 This platform is configured for continuous zero-config deployment on **Vercel**:
+
 1. Push changes to `main`.
 2. Vercel automatically builds the production bundle with Edge runtime and image optimization.

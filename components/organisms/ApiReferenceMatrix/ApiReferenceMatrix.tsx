@@ -20,7 +20,8 @@ const ENDPOINTS: Endpoint[] = [
     method: 'POST',
     path: '/api/v1/shortlist',
     title: 'Resume Shortlister API',
-    description: 'Upload candidate resume binary or plain text against structured job requirement specifications.',
+    description:
+      'Upload candidate resume binary or plain text against structured job requirement specifications.',
     curl: `curl -X POST https://api.norai.in/v1/shortlist \\
   -H "Authorization: Bearer norai_live_sec_key" \\
   -H "Content-Type: multipart/form-data" \\
@@ -45,7 +46,8 @@ console.log(result.composite_score); // 0.962`,
     method: 'POST',
     path: '/api/v1/notes/transcribe',
     title: 'Course Note-Taker API',
-    description: 'Transform lecture audio, video files, or YouTube links into timestamped outlines and flashcard decks.',
+    description:
+      'Transform lecture audio, video files, or YouTube links into timestamped outlines and flashcard decks.',
     curl: `curl -X POST https://api.norai.in/v1/notes/transcribe \\
   -H "Authorization: Bearer norai_live_sec_key" \\
   -H "Content-Type: application/json" \\
@@ -66,7 +68,8 @@ console.log(notes.chapter_outlines);`,
     method: 'POST',
     path: '/api/v1/digest/webhook',
     title: 'Chat Digest Ingestion Webhook',
-    description: 'Stream unread Slack, Discord, or Telegram messages for 24-hour executive clustering.',
+    description:
+      'Stream unread Slack, Discord, or Telegram messages for 24-hour executive clustering.',
     curl: `curl -X POST https://api.norai.in/v1/digest/webhook \\
   -H "Authorization: Bearer norai_live_sec_key" \\
   -H "Content-Type: application/json" \\
@@ -114,7 +117,7 @@ export function ApiReferenceMatrix() {
                   'w-full text-left p-4 rounded-xl border transition-all',
                   isSelected
                     ? 'bg-canvas-paper border-accent-500/80 shadow-md ring-1 ring-accent-500/20'
-                    : 'bg-canvas-paper/40 border-[rgba(13,37,61,0.08)] hover:bg-canvas-paper'
+                    : 'bg-canvas-paper/40 border-[rgba(13,37,61,0.08)] hover:bg-canvas-paper',
                 )}
               >
                 <div className="flex items-center gap-2 mb-1">
@@ -125,12 +128,8 @@ export function ApiReferenceMatrix() {
                     {ep.path}
                   </span>
                 </div>
-                <h4 className="font-display text-lg text-ink-primary font-normal">
-                  {ep.title}
-                </h4>
-                <p className="text-xs text-ink-secondary line-clamp-2 mt-1">
-                  {ep.description}
-                </p>
+                <h4 className="font-display text-lg text-ink-primary font-normal">{ep.title}</h4>
+                <p className="text-xs text-ink-secondary line-clamp-2 mt-1">{ep.description}</p>
               </button>
             );
           })}
@@ -145,7 +144,9 @@ export function ApiReferenceMatrix() {
                 onClick={() => setLanguage('curl')}
                 className={cn(
                   'px-3 py-1 rounded font-mono',
-                  language === 'curl' ? 'bg-white/10 text-white font-bold' : 'text-slate-400 hover:text-white'
+                  language === 'curl'
+                    ? 'bg-white/10 text-white font-bold'
+                    : 'text-slate-400 hover:text-white',
                 )}
               >
                 cURL
@@ -155,7 +156,9 @@ export function ApiReferenceMatrix() {
                 onClick={() => setLanguage('ts')}
                 className={cn(
                   'px-3 py-1 rounded font-mono',
-                  language === 'ts' ? 'bg-white/10 text-white font-bold' : 'text-slate-400 hover:text-white'
+                  language === 'ts'
+                    ? 'bg-white/10 text-white font-bold'
+                    : 'text-slate-400 hover:text-white',
                 )}
               >
                 TypeScript SDK
@@ -167,7 +170,11 @@ export function ApiReferenceMatrix() {
               onClick={handleCopy}
               className="inline-flex items-center gap-1 text-slate-300 hover:text-white transition-colors"
             >
-              {copied ? <Check className="w-3.5 h-3.5 text-[#5B8A72]" /> : <Copy className="w-3.5 h-3.5" />}
+              {copied ? (
+                <Check className="w-3.5 h-3.5 text-[#5B8A72]" />
+              ) : (
+                <Copy className="w-3.5 h-3.5" />
+              )}
               <span>{copied ? 'Copied snippet' : 'Copy'}</span>
             </button>
           </div>

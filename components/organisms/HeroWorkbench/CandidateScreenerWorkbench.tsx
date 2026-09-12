@@ -114,12 +114,15 @@ export function CandidateScreenerWorkbench() {
 
   const handleSelectCandidate = (cand: Candidate) => {
     setSelectedCandidate(cand);
-    setLiveAnnouncement(`Selected candidate ${cand.name}, ${cand.score}% match, status: ${cand.status}.`);
+    setLiveAnnouncement(
+      `Selected candidate ${cand.name}, ${cand.score}% match, status: ${cand.status}.`,
+    );
   };
 
   const handleTabChange = (tab: 'scorecard' | 'vectors' | 'json') => {
     setActiveTab(tab);
-    const tabLabel = tab === 'scorecard' ? 'Scorecard' : tab === 'vectors' ? 'Skill Vectors' : 'JSON Contract';
+    const tabLabel =
+      tab === 'scorecard' ? 'Scorecard' : tab === 'vectors' ? 'Skill Vectors' : 'JSON Contract';
     setLiveAnnouncement(`Switched to ${tabLabel} view.`);
   };
 
@@ -159,7 +162,11 @@ export function CandidateScreenerWorkbench() {
           </div>
 
           {/* Tab Switcher with 5-State Ergonomics */}
-          <div role="tablist" aria-label="Candidate Screener Views" className="flex items-center rounded-lg bg-surface-panel p-0.5 border border-border-subtle text-xs">
+          <div
+            role="tablist"
+            aria-label="Candidate Screener Views"
+            className="flex items-center rounded-lg bg-surface-panel p-0.5 border border-border-subtle text-xs"
+          >
             <button
               type="button"
               role="tab"
@@ -169,7 +176,7 @@ export function CandidateScreenerWorkbench() {
                 'px-2.5 py-1 rounded-md font-medium transition-[background-color,color,transform] duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary focus-visible:ring-offset-1 cursor-pointer active:scale-[0.97]',
                 activeTab === 'scorecard'
                   ? 'bg-text-primary text-surface-canvas shadow-xs'
-                  : 'text-text-secondary hover:text-text-primary hover:bg-surface-hover'
+                  : 'text-text-secondary hover:text-text-primary hover:bg-surface-hover',
               )}
             >
               Scorecard
@@ -183,7 +190,7 @@ export function CandidateScreenerWorkbench() {
                 'px-2.5 py-1 rounded-md font-medium transition-[background-color,color,transform] duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary focus-visible:ring-offset-1 cursor-pointer active:scale-[0.97]',
                 activeTab === 'vectors'
                   ? 'bg-text-primary text-surface-canvas shadow-xs'
-                  : 'text-text-secondary hover:text-text-primary hover:bg-surface-hover'
+                  : 'text-text-secondary hover:text-text-primary hover:bg-surface-hover',
               )}
             >
               Skill Vectors
@@ -197,7 +204,7 @@ export function CandidateScreenerWorkbench() {
                 'px-2.5 py-1 rounded-md font-medium transition-[background-color,color,transform] duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary focus-visible:ring-offset-1 cursor-pointer active:scale-[0.97]',
                 activeTab === 'json'
                   ? 'bg-text-primary text-surface-canvas shadow-xs'
-                  : 'text-text-secondary hover:text-text-primary hover:bg-surface-hover'
+                  : 'text-text-secondary hover:text-text-primary hover:bg-surface-hover',
               )}
             >
               JSON Contract
@@ -209,7 +216,11 @@ export function CandidateScreenerWorkbench() {
         <CrossFade activeKey={activeTab}>
           {/* Scorecard Tab */}
           {activeTab === 'scorecard' && (
-            <div className="p-4 sm:p-5 md:p-6 space-y-4" role="tabpanel" aria-label="Candidate Scorecard">
+            <div
+              className="p-4 sm:p-5 md:p-6 space-y-4"
+              role="tabpanel"
+              aria-label="Candidate Scorecard"
+            >
               {/* Candidate Interactive Rows */}
               <div className="space-y-2.5" role="listbox" aria-label="Screened candidates list">
                 {CANDIDATES.map((cand) => {
@@ -225,7 +236,7 @@ export function CandidateScreenerWorkbench() {
                         'w-full text-left p-3.5 rounded-xl border transition-[transform,background-color,border-color,box-shadow] duration-150 ease-out flex items-center justify-between gap-3 sm:gap-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary focus-visible:ring-offset-2 cursor-pointer active:scale-[0.985]',
                         isSelected
                           ? 'bg-surface-panel-elevated border-accent-primary/80 shadow-md ring-1 ring-accent-primary/20 -translate-y-px'
-                          : 'bg-surface-canvas/60 border-border-subtle hover:bg-surface-hover hover:border-accent-primary/30'
+                          : 'bg-surface-canvas/60 border-border-subtle hover:bg-surface-hover hover:border-accent-primary/30',
                       )}
                     >
                       <div className="space-y-1 min-w-0">
@@ -238,7 +249,8 @@ export function CandidateScreenerWorkbench() {
                           </span>
                         </div>
                         <p className="text-xs text-text-secondary">
-                          {cand.role} · <span className="font-mono tabular-nums">{cand.experience}</span>
+                          {cand.role} ·{' '}
+                          <span className="font-mono tabular-nums">{cand.experience}</span>
                         </p>
                       </div>
 
@@ -249,8 +261,8 @@ export function CandidateScreenerWorkbench() {
                             cand.status === 'Top Candidate'
                               ? 'bg-sage-100/70 text-accent-secondary font-semibold'
                               : cand.status === 'Shortlisted'
-                              ? 'bg-accent-50 text-accent-primary'
-                              : 'bg-surface-panel-subtle text-text-secondary'
+                                ? 'bg-accent-50 text-accent-primary'
+                                : 'bg-surface-panel-subtle text-text-secondary',
                           )}
                         >
                           {cand.status}
@@ -291,7 +303,11 @@ export function CandidateScreenerWorkbench() {
 
           {/* Skill Vectors Tab */}
           {activeTab === 'vectors' && (
-            <div className="p-4 sm:p-5 md:p-6 space-y-5" role="tabpanel" aria-label="Skill Vector Alignment">
+            <div
+              className="p-4 sm:p-5 md:p-6 space-y-5"
+              role="tabpanel"
+              aria-label="Skill Vector Alignment"
+            >
               <div className="space-y-1">
                 <div className="flex items-center justify-between">
                   <h4 className="font-display text-lg text-text-primary font-normal">
@@ -329,11 +345,17 @@ export function CandidateScreenerWorkbench() {
 
           {/* JSON Schema Tab */}
           {activeTab === 'json' && (
-            <div className="p-4 sm:p-5 relative bg-text-primary text-surface-canvas rounded-b-xl" role="tabpanel" aria-label="JSON Contract Payload">
+            <div
+              className="p-4 sm:p-5 relative bg-text-primary text-surface-canvas rounded-b-xl"
+              role="tabpanel"
+              aria-label="JSON Contract Payload"
+            >
               <div className="flex justify-between items-center pb-2 mb-2 border-b border-white/10 text-xs text-slate-300">
                 <div className="flex items-center gap-2">
                   <Terminal className="w-3.5 h-3.5 text-accent-secondary" />
-                  <span className="font-mono text-[11px] text-emerald-400">POST /api/v1/shortlist/batch-104</span>
+                  <span className="font-mono text-[11px] text-emerald-400">
+                    POST /api/v1/shortlist/batch-104
+                  </span>
                   <span className="font-mono tabular-nums text-[10px] px-1.5 py-0.5 rounded bg-white/10 text-slate-300">
                     238ms
                   </span>
@@ -369,7 +391,11 @@ export function CandidateScreenerWorkbench() {
           <div className="flex items-center gap-2 text-text-secondary">
             <Zap className="w-3.5 h-3.5 text-accent-primary" />
             <span>
-              Parsed in <span className="font-mono tabular-nums font-semibold text-text-primary">&lt; 0.35s</span> / PDF
+              Parsed in{' '}
+              <span className="font-mono tabular-nums font-semibold text-text-primary">
+                &lt; 0.35s
+              </span>{' '}
+              / PDF
             </span>
           </div>
           <Link

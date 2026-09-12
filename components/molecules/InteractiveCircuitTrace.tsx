@@ -19,7 +19,11 @@ const STAGES: Stage[] = [
     step: '01',
     title: 'Multi-Format Ingestion',
     subtitle: 'Zero-Egress Stream Parser',
-    specs: ['PDF / DOCX / TXT Parsing', 'Audio / Video Whisper Ingestion', 'Webhook & Telegram Listeners'],
+    specs: [
+      'PDF / DOCX / TXT Parsing',
+      'Audio / Video Whisper Ingestion',
+      'Webhook & Telegram Listeners',
+    ],
     badge: '< 45ms cold start',
   },
   {
@@ -27,7 +31,11 @@ const STAGES: Stage[] = [
     step: '02',
     title: 'Deterministic Neural Core',
     subtitle: 'Quantized vLLM & Guardrails',
-    specs: ['FP8 / AWQ LoRA Inference', 'Strict Zod Schema Enforcement', 'Zero Hallucination Validation'],
+    specs: [
+      'FP8 / AWQ LoRA Inference',
+      'Strict Zod Schema Enforcement',
+      'Zero Hallucination Validation',
+    ],
     badge: '100% JSON Guarantee',
   },
   {
@@ -35,7 +43,11 @@ const STAGES: Stage[] = [
     step: '03',
     title: 'Actionable Dispatch',
     subtitle: 'Sub-Second Payload Relay',
-    specs: ['MCP Server Endpoint Response', 'Ephemeral RAM Flushed (0B Egress)', 'Immediate Webhook Callbacks'],
+    specs: [
+      'MCP Server Endpoint Response',
+      'Ephemeral RAM Flushed (0B Egress)',
+      'Immediate Webhook Callbacks',
+    ],
     badge: 'P95 < 320ms',
   },
 ];
@@ -74,7 +86,7 @@ export function InteractiveCircuitTrace({ className }: { className?: string }) {
                 'relative z-10 p-6 rounded-xl transition-[background-color,border-color,transform] duration-150 ease-out cursor-pointer border text-left active:scale-[0.985]',
                 isActive
                   ? 'bg-surface-panel border-border-strong ring-1 ring-border-strong'
-                  : 'bg-surface-panel border-border-subtle hover:border-border-strong hover:bg-surface-hover/50'
+                  : 'bg-surface-panel border-border-subtle hover:border-border-strong hover:bg-surface-hover/50',
               )}
             >
               {/* Step indicator */}
@@ -82,9 +94,7 @@ export function InteractiveCircuitTrace({ className }: { className?: string }) {
                 <span className="text-xs font-mono font-bold text-accent-primary">
                   STAGE {stage.step}
                 </span>
-                <span className="text-[11px] font-mono text-text-muted">
-                  {stage.badge}
-                </span>
+                <span className="text-[11px] font-mono text-text-muted">{stage.badge}</span>
               </div>
 
               {/* Title and Subtitle */}

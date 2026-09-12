@@ -14,10 +14,7 @@ export interface MeshGradientProps {
  * Uses blurred organic blobs in terracotta, warm peach, sand, and sage tones.
  * Automatically respects prefers-reduced-motion.
  */
-export function MeshGradient({
-  className = '',
-  intensity = 'medium',
-}: MeshGradientProps) {
+export function MeshGradient({ className = '', intensity = 'medium' }: MeshGradientProps) {
   const shouldReduceMotion = useReducedMotion();
 
   const opacityMap = {
@@ -31,10 +28,7 @@ export function MeshGradient({
       aria-hidden="true"
       className={`absolute inset-0 overflow-hidden pointer-events-none z-0 ${className}`}
     >
-      <div
-        className={`absolute inset-0 ${opacityMap[intensity]}`}
-        style={{ filter: 'blur(60px)' }}
-      >
+      <div className={`absolute inset-0 ${opacityMap[intensity]}`} style={{ filter: 'blur(60px)' }}>
         {/* Blob 1: Terracotta primary */}
         <div
           className={`absolute -top-[10%] right-[10%] w-[450px] h-[450px] rounded-full bg-[#E8927C]/30 ${

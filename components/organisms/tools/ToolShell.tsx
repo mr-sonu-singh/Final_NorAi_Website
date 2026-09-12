@@ -63,7 +63,7 @@ export function ToolShell({
     <div
       className={cn(
         'w-full rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] shadow-sm text-left font-sans transition-all duration-200',
-        className
+        className,
       )}
     >
       {/* =========================================================================
@@ -164,7 +164,7 @@ export function ToolShell({
               'focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-page active:scale-[0.97]',
               hasCustomKey
                 ? 'bg-canvas-paper border-emerald-500/30 text-emerald-800 hover:bg-emerald-50/50'
-                : 'bg-canvas-paper border-[rgba(13,37,61,0.15)] text-ink-secondary hover:text-ink-primary hover:border-accent-500'
+                : 'bg-canvas-paper border-[rgba(13,37,61,0.15)] text-ink-secondary hover:text-ink-primary hover:border-accent-500',
             )}
             title="Configure Custom Gemini API Key"
           >
@@ -207,7 +207,9 @@ export function ToolShell({
 
           <div className="hidden sm:flex items-center gap-1.5 text-emerald-700">
             <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-            <span className="font-medium text-[11px]">Ephemeral RAM Flushed (0 Bytes Retained)</span>
+            <span className="font-medium text-[11px]">
+              Ephemeral RAM Flushed (0 Bytes Retained)
+            </span>
           </div>
         </div>
 
@@ -248,4 +250,3 @@ export function ToolShell({
     </div>
   );
 }
-

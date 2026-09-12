@@ -19,12 +19,7 @@ import {
 } from 'lucide-react';
 
 export type DisciplineType =
-  | 'all'
-  | 'operations'
-  | 'ar-vr'
-  | 'orchestration'
-  | 'design'
-  | 'marketing';
+  'all' | 'operations' | 'ar-vr' | 'orchestration' | 'design' | 'marketing';
 
 export interface TeamMember {
   id: string;
@@ -54,7 +49,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
     degree: 'B.Sc',
     pedigree: 'Retd. Indian Army (Corps of Signals) · 30 Years Distinguished Military Service',
     bio: 'Retd. Indian Army (Corps of Signals) after 30 years of distinguished military service. Leads strategic operations and administrative leadership.',
-    focus: 'Operational discipline, institutional governance, administrative architecture, and zero-compromise execution rigor.',
+    focus:
+      'Operational discipline, institutional governance, administrative architecture, and zero-compromise execution rigor.',
     systemsOwned: [
       'Strategic Operations & Governance',
       'Institutional & State Outreach',
@@ -82,7 +78,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
     degree: 'BCA',
     pedigree: 'Spatial Computing Specialist · Returned from Japan VR/AR Summit',
     bio: 'Returned from Japan VR/AR Summit. Specializes in spatial computing, immersive tech, and modern AI model pipelines.',
-    focus: 'Spatial computing architectures, immersive 3D interfaces, multi-modal interaction models, and next-generation sensory pipelines.',
+    focus:
+      'Spatial computing architectures, immersive 3D interfaces, multi-modal interaction models, and next-generation sensory pipelines.',
     systemsOwned: [
       'Spatial Computing Engine',
       'Immersive 3D Interaction Pipeline',
@@ -110,7 +107,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
     degree: 'B.Com',
     pedigree: 'Brand Development & Inbound Growth Specialist',
     bio: 'Drives brand development, inbound marketing pipelines, SEO strategies, and corporate client acquisition.',
-    focus: 'Inbound customer acquisition funnels, digital product positioning, search engine optimization, and enterprise partnership outreach.',
+    focus:
+      'Inbound customer acquisition funnels, digital product positioning, search engine optimization, and enterprise partnership outreach.',
     systemsOwned: [
       'Inbound Acquisition Engine',
       'Product Positioning Strategy',
@@ -138,7 +136,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
     degree: 'B.Tech',
     pedigree: 'UI/UX Architect & Visual Rendering Specialist',
     bio: 'Focuses on UI/UX architecture, visual rendering, interactive frontend design, and product aesthetics.',
-    focus: 'Design systems architecture, visual rendering, tactile parchment & terracotta component craft, and WCAG AAA accessibility.',
+    focus:
+      'Design systems architecture, visual rendering, tactile parchment & terracotta component craft, and WCAG AAA accessibility.',
     systemsOwned: [
       'Parchment & Terracotta Design Tokens',
       'Tactile Hardware UI Atoms & Molecules',
@@ -166,7 +165,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
     degree: 'B.Tech',
     pedigree: 'Agent Systems Architect & Autonomous Workflows Specialist',
     bio: 'Builds AI agents, workflows, and automation using modern AI models, ensuring smart, reliable, and scalable AI solutions.',
-    focus: 'Deterministic multi-agent state machines, structured Zod schema contracts, ephemeral RAM isolation, and sub-second tool execution.',
+    focus:
+      'Deterministic multi-agent state machines, structured Zod schema contracts, ephemeral RAM isolation, and sub-second tool execution.',
     systemsOwned: [
       'AI Resume Shortlister Core Engine',
       'Course Note-Taker Extraction Pipeline',
@@ -299,7 +299,7 @@ function TiltCard({
       mouseX.set(x);
       mouseY.set(y);
     },
-    [shouldReduceMotion, mouseX, mouseY]
+    [shouldReduceMotion, mouseX, mouseY],
   );
 
   const handleMouseLeave = useCallback(() => {
@@ -521,7 +521,10 @@ export function TeamWorkshopDirectory() {
                   </div>
 
                   {/* Systems & Bottom Actions — with staggered chip reveal */}
-                  <div className="space-y-4 pt-2 border-t border-[rgba(13,37,61,0.08)]" style={{ transform: 'translateZ(10px)' }}>
+                  <div
+                    className="space-y-4 pt-2 border-t border-[rgba(13,37,61,0.08)]"
+                    style={{ transform: 'translateZ(10px)' }}
+                  >
                     {/* Systems Chips — Staggered entrance */}
                     <div className="space-y-1.5">
                       <span className="font-mono text-[10px] uppercase tracking-wider text-ink-secondary block font-semibold">
@@ -696,7 +699,10 @@ export function TeamWorkshopDirectory() {
                 animate="visible"
               >
                 {/* Top Bar with Close */}
-                <motion.div variants={modalSectionVariants} className="flex items-center justify-between border-b border-[rgba(13,37,61,0.08)] pb-4">
+                <motion.div
+                  variants={modalSectionVariants}
+                  className="flex items-center justify-between border-b border-[rgba(13,37,61,0.08)] pb-4"
+                >
                   <div className="flex items-center gap-2">
                     <span className="font-mono text-xs uppercase tracking-wider text-terra-600 font-semibold">
                       Engineering Profile
@@ -717,7 +723,10 @@ export function TeamWorkshopDirectory() {
                 </motion.div>
 
                 {/* Profile Header */}
-                <motion.div variants={modalSectionVariants} className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+                <motion.div
+                  variants={modalSectionVariants}
+                  className="flex flex-col sm:flex-row items-start sm:items-center gap-5"
+                >
                   <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden border border-[rgba(13,37,61,0.12)] bg-canvas-recessed shrink-0 shadow-sm">
                     <Image
                       src={selectedMember.image}
@@ -747,14 +756,15 @@ export function TeamWorkshopDirectory() {
                 </motion.div>
 
                 {/* Verified Biography */}
-                <motion.div variants={modalSectionVariants} className="space-y-2 rounded-2xl bg-canvas-base border border-[rgba(13,37,61,0.08)] p-4">
+                <motion.div
+                  variants={modalSectionVariants}
+                  className="space-y-2 rounded-2xl bg-canvas-base border border-[rgba(13,37,61,0.08)] p-4"
+                >
                   <span className="font-mono text-xs font-semibold uppercase tracking-wider text-ink-secondary flex items-center gap-1.5">
                     <Sparkles className="w-3.5 h-3.5 text-terra-500" />
                     <span>Verified Background</span>
                   </span>
-                  <p className="text-sm text-ink-body leading-relaxed">
-                    {selectedMember.bio}
-                  </p>
+                  <p className="text-sm text-ink-body leading-relaxed">{selectedMember.bio}</p>
                 </motion.div>
 
                 {/* Core Responsibility & Operating Tenet */}

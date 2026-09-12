@@ -29,7 +29,8 @@ const FAQS: FAQItem[] = [
   },
   {
     id: 'faq-integrations',
-    question: 'Can NorAI integrate directly with our existing ATS (Greenhouse, Lever, Zoho) and Slack/Discord?',
+    question:
+      'Can NorAI integrate directly with our existing ATS (Greenhouse, Lever, Zoho) and Slack/Discord?',
     answer:
       'Yes. All four micro-SaaS utilities and enterprise pipelines expose typed REST endpoints and webhooks. Our Resume Shortlister syncs candidate scorecards directly to your ATS via standard webhooks, while our Chat Digest dispatches formatted briefs directly into your private Slack or Discord channels.',
     icon: Terminal,
@@ -43,7 +44,8 @@ const FAQS: FAQItem[] = [
   },
   {
     id: 'faq-mission',
-    question: 'What is the NorAI Skill Mission and how can regional institutions in Uttar Pradesh participate?',
+    question:
+      'What is the NorAI Skill Mission and how can regional institutions in Uttar Pradesh participate?',
     answer:
       'Headquartered in Uttar Pradesh, NorAI conducts hands-on, zero-cost AI engineering bootcamps and hackathons for regional colleges, polytechnics, and schools. We also grant 100% free student access to our AI Course Note-Taker. College leaders can request an on-campus masterclass via our Mission portal.',
     icon: GraduationCap,
@@ -63,7 +65,8 @@ export function HomeFaqAccordion() {
           <span className="font-medium text-text-primary">engineering questions.</span>
         </h2>
         <p className="text-base text-text-secondary leading-relaxed max-w-xl mx-auto">
-          Radical transparency on model architecture, sub-second latency targets, privacy guarantees, and regional integration.
+          Radical transparency on model architecture, sub-second latency targets, privacy
+          guarantees, and regional integration.
         </p>
       </div>
 
@@ -76,16 +79,12 @@ export function HomeFaqAccordion() {
       >
         {FAQS.map((faq) => {
           return (
-            <Accordion.Item
-              key={faq.id}
-              value={faq.id}
-              className="group py-1"
-            >
+            <Accordion.Item key={faq.id} value={faq.id} className="group py-1">
               <Accordion.Header className="flex">
                 <Accordion.Trigger
                   className={cn(
                     'flex items-center justify-between gap-4 w-full py-4 sm:py-5 text-left transition-colors duration-150 font-sans focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary cursor-pointer active:scale-[0.995]',
-                    'hover:text-accent-primary'
+                    'hover:text-accent-primary',
                   )}
                 >
                   <span className="font-sans font-medium text-base sm:text-lg text-text-primary leading-snug group-hover:text-accent-primary transition-colors">
@@ -99,9 +98,7 @@ export function HomeFaqAccordion() {
               </Accordion.Header>
 
               <Accordion.Content className="accordion-content overflow-hidden pb-5 pt-1 text-sm sm:text-base text-text-secondary leading-relaxed">
-                <p className="max-w-2xl leading-relaxed">
-                  {faq.answer}
-                </p>
+                <p className="max-w-2xl leading-relaxed">{faq.answer}</p>
               </Accordion.Content>
             </Accordion.Item>
           );

@@ -38,7 +38,8 @@ export const PRODUCTS_DATA: Record<string, ProductData> = {
     title: 'AI Resume Shortlister',
     badge: 'Recruitment Automation',
     tagline: 'Automated candidate screening and match scoring for high-volume hiring teams.',
-    excerpt: 'Parse PDF/Word resumes, extract core engineering skills, and generate objective qualification scores matched against your job specifications.',
+    excerpt:
+      'Parse PDF/Word resumes, extract core engineering skills, and generate objective qualification scores matched against your job specifications.',
     latency: '< 0.35s',
     iconName: 'Sparkles',
     problem: [
@@ -89,34 +90,52 @@ export const PRODUCTS_DATA: Record<string, ProductData> = {
         tier: 'Starter',
         price: '$49/mo',
         desc: 'Ideal for early-stage startups hiring 5-10 roles per month.',
-        features: ['500 Resume Parses/mo', 'Standard Skill Matching', 'Dashboard Access', 'Email Support'],
+        features: [
+          '500 Resume Parses/mo',
+          'Standard Skill Matching',
+          'Dashboard Access',
+          'Email Support',
+        ],
       },
       {
         tier: 'Pro',
         price: '$149/mo',
         desc: 'For growing teams requiring API access and ATS integration.',
-        features: ['3,000 Resume Parses/mo', 'Custom Skill Weighting', 'REST API Access', 'Priority SLA Support'],
+        features: [
+          '3,000 Resume Parses/mo',
+          'Custom Skill Weighting',
+          'REST API Access',
+          'Priority SLA Support',
+        ],
         highlighted: true,
       },
       {
         tier: 'Scale',
         price: '$399/mo',
         desc: 'High-volume recruiting agencies & enterprise HR operations.',
-        features: ['10,000 Resume Parses/mo', 'Private Webhook Queues', 'Dedicated Support', '99.9% Uptime SLA'],
+        features: [
+          '10,000 Resume Parses/mo',
+          'Private Webhook Queues',
+          'Dedicated Support',
+          '99.9% Uptime SLA',
+        ],
       },
     ],
     faq: [
       {
         question: 'What file formats does the AI Resume Shortlister support?',
-        answer: 'The parser supports PDF, Microsoft Word (.doc, .docx), and plain text (.txt) candidate resumes.',
+        answer:
+          'The parser supports PDF, Microsoft Word (.doc, .docx), and plain text (.txt) candidate resumes.',
       },
       {
         question: 'Is candidate data stored or used for AI model training?',
-        answer: 'No. All candidate files are processed ephemerally in RAM and flushed immediately upon response completion in accordance with our Zero Persistent Logging security standard.',
+        answer:
+          'No. All candidate files are processed ephemerally in RAM and flushed immediately upon response completion in accordance with our Zero Persistent Logging security standard.',
       },
       {
         question: 'Can I connect the API to my existing ATS software?',
-        answer: 'Yes! Our REST API returns standard JSON payloads that integrate seamlessly with greenhouse, Lever, Workday, or custom HR portals.',
+        answer:
+          'Yes! Our REST API returns standard JSON payloads that integrate seamlessly with greenhouse, Lever, Workday, or custom HR portals.',
       },
     ],
   },
@@ -126,8 +145,10 @@ export const PRODUCTS_DATA: Record<string, ProductData> = {
     id: 'TOOL_02',
     title: 'AI Course Note-Taker',
     badge: 'EdTech Summarization',
-    tagline: 'Transform lecture audio, video transcripts, and slides into study briefs & flashcards.',
-    excerpt: 'Convert hours of educational content into structured chapter summaries, interactive flashcards, key takeaways, and self-assessment quizzes.',
+    tagline:
+      'Transform lecture audio, video transcripts, and slides into study briefs & flashcards.',
+    excerpt:
+      'Convert hours of educational content into structured chapter summaries, interactive flashcards, key takeaways, and self-assessment quizzes.',
     latency: '< 0.41s',
     iconName: 'Zap',
     problem: [
@@ -178,30 +199,47 @@ export const PRODUCTS_DATA: Record<string, ProductData> = {
         tier: 'Starter',
         price: '$29/mo',
         desc: 'Perfect for individual students and self-learners.',
-        features: ['30 Hours Lecture Processing/mo', 'Markdown & PDF Exports', 'Flashcard Generator', 'Community Support'],
+        features: [
+          '30 Hours Lecture Processing/mo',
+          'Markdown & PDF Exports',
+          'Flashcard Generator',
+          'Community Support',
+        ],
       },
       {
         tier: 'Educator',
         price: '$99/mo',
         desc: 'Designed for course creators and university teaching assistants.',
-        features: ['150 Hours Processing/mo', 'Quiz Generator', 'API & Webhook Access', 'Priority Support'],
+        features: [
+          '150 Hours Processing/mo',
+          'Quiz Generator',
+          'API & Webhook Access',
+          'Priority Support',
+        ],
         highlighted: true,
       },
       {
         tier: 'Institutional',
         price: '$299/mo',
         desc: 'For universities, LMS platforms, and online academies.',
-        features: ['500 Hours Processing/mo', 'LMS Integration', 'Custom Branding', '99.9% Uptime SLA'],
+        features: [
+          '500 Hours Processing/mo',
+          'LMS Integration',
+          'Custom Branding',
+          '99.9% Uptime SLA',
+        ],
       },
     ],
     faq: [
       {
         question: 'Can I upload video files directly or do I need a transcript?',
-        answer: 'You can provide video transcript text, YouTube links, or standard MP3/WAV audio files for automated processing.',
+        answer:
+          'You can provide video transcript text, YouTube links, or standard MP3/WAV audio files for automated processing.',
       },
       {
         question: 'Are flashcards exportable to study apps like Anki?',
-        answer: 'Yes! Generated flashcards can be exported as CSV, JSON, or text formats compatible with Anki and Quizlet.',
+        answer:
+          'Yes! Generated flashcards can be exported as CSV, JSON, or text formats compatible with Anki and Quizlet.',
       },
     ],
   },
@@ -212,7 +250,8 @@ export const PRODUCTS_DATA: Record<string, ProductData> = {
     title: 'Chat Digest & Newsletter AI',
     badge: 'Community Summarization',
     tagline: 'Digest noisy community chat channels into daily executive briefs & newsletters.',
-    excerpt: 'Extract actionable feedback, sentiment trends, product bugs, and top discussion topics from Telegram, Discord, and Slack channels.',
+    excerpt:
+      'Extract actionable feedback, sentiment trends, product bugs, and top discussion topics from Telegram, Discord, and Slack channels.',
     latency: '< 0.28s',
     iconName: 'Cpu',
     problem: [
@@ -263,30 +302,47 @@ export const PRODUCTS_DATA: Record<string, ProductData> = {
         tier: 'Community',
         price: '$39/mo',
         desc: 'For indie creators & single community channels.',
-        features: ['2 Channels Connected', 'Daily Digest Briefs', 'Spam Filtering', 'Email Support'],
+        features: [
+          '2 Channels Connected',
+          'Daily Digest Briefs',
+          'Spam Filtering',
+          'Email Support',
+        ],
       },
       {
         tier: 'Pro Manager',
         price: '$119/mo',
         desc: 'For active Web3, SaaS, and open-source communities.',
-        features: ['10 Channels Connected', 'Newsletter Generator', 'Webhook Notifications', 'Priority Support'],
+        features: [
+          '10 Channels Connected',
+          'Newsletter Generator',
+          'Webhook Notifications',
+          'Priority Support',
+        ],
         highlighted: true,
       },
       {
         tier: 'Enterprise',
         price: '$299/mo',
         desc: 'For multi-brand organizations with large community operations.',
-        features: ['Unlimited Channels', 'Custom Sentiment Models', 'Dedicated Account Manager', 'SLA Guarantees'],
+        features: [
+          'Unlimited Channels',
+          'Custom Sentiment Models',
+          'Dedicated Account Manager',
+          'SLA Guarantees',
+        ],
       },
     ],
     faq: [
       {
         question: 'Does the tool read private messages or user data?',
-        answer: 'No. The bot only accesses public messages in channels where it is explicitly installed or text transcripts provided via API.',
+        answer:
+          'No. The bot only accesses public messages in channels where it is explicitly installed or text transcripts provided via API.',
       },
       {
         question: 'Can I schedule automated daily email digests?',
-        answer: 'Yes! You can configure automated daily or weekly email dispatches sent to your team at designated times.',
+        answer:
+          'Yes! You can configure automated daily or weekly email dispatches sent to your team at designated times.',
       },
     ],
   },
@@ -297,7 +353,8 @@ export const PRODUCTS_DATA: Record<string, ProductData> = {
     title: 'Smart Dainik News',
     badge: 'Regional Intelligence',
     tagline: 'Hyper-local regional news curation & topic tracking with sentiment briefings.',
-    excerpt: 'Track sector trends, local news events, and market intelligence categorized by geographic relevance and sentiment metrics.',
+    excerpt:
+      'Track sector trends, local news events, and market intelligence categorized by geographic relevance and sentiment metrics.',
     latency: '< 0.45s',
     iconName: 'Layers',
     problem: [
@@ -348,30 +405,47 @@ export const PRODUCTS_DATA: Record<string, ProductData> = {
         tier: 'Analyst',
         price: '$59/mo',
         desc: 'For researchers and independent media analysts.',
-        features: ['5 Keyword Trackers', 'Daily News Briefings', 'Basic Sentiment Analysis', 'Email Support'],
+        features: [
+          '5 Keyword Trackers',
+          'Daily News Briefings',
+          'Basic Sentiment Analysis',
+          'Email Support',
+        ],
       },
       {
         tier: 'Media Hub',
         price: '$179/mo',
         desc: 'For regional newsrooms and corporate PR teams.',
-        features: ['25 Keyword Trackers', 'Real-Time Webhooks', 'Advanced Entity Extraction', 'Priority Support'],
+        features: [
+          '25 Keyword Trackers',
+          'Real-Time Webhooks',
+          'Advanced Entity Extraction',
+          'Priority Support',
+        ],
         highlighted: true,
       },
       {
         tier: 'Enterprise',
         price: '$449/mo',
         desc: 'For large media networks and institutional market intelligence.',
-        features: ['Unlimited Trackers', 'Custom NLP Models', 'Dedicated Data Pipeline', '99.9% Uptime SLA'],
+        features: [
+          'Unlimited Trackers',
+          'Custom NLP Models',
+          'Dedicated Data Pipeline',
+          '99.9% Uptime SLA',
+        ],
       },
     ],
     faq: [
       {
         question: 'Which regional languages are supported?',
-        answer: 'The news aggregator supports English, Hindi, and major Indian regional language news feeds.',
+        answer:
+          'The news aggregator supports English, Hindi, and major Indian regional language news feeds.',
       },
       {
         question: 'Can I export news data via REST API?',
-        answer: 'Yes! All curated news clusters and sentiment metrics are accessible via REST API endpoints.',
+        answer:
+          'Yes! All curated news clusters and sentiment metrics are accessible via REST API endpoints.',
       },
     ],
   },
@@ -387,6 +461,3 @@ if (PRODUCTS_DATA['chat-digest']) {
 if (PRODUCTS_DATA['smart-dainik-news']) {
   PRODUCTS_DATA['news-aggregator'] = PRODUCTS_DATA['smart-dainik-news'];
 }
-
-
-

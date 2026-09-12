@@ -38,7 +38,7 @@ export function WaveformCanvas({
           isVisibleRef.current = entry.isIntersecting;
         }
       },
-      { threshold: 0.05 }
+      { threshold: 0.05 },
     );
     observer.observe(canvas);
 

@@ -20,8 +20,12 @@ test.describe('Navigation & Interactive Flows', () => {
     ];
 
     for (const { name, expectedPath } of navLinks) {
-      test(`navigates to ${name} (${expectedPath}) successfully without blank screen`, async ({ page }) => {
-        const navItem = page.locator('nav[aria-label="Main Navigation"]').getByRole('link', { name, exact: true });
+      test(`navigates to ${name} (${expectedPath}) successfully without blank screen`, async ({
+        page,
+      }) => {
+        const navItem = page
+          .locator('nav[aria-label="Main Navigation"]')
+          .getByRole('link', { name, exact: true });
         await expect(navItem).toBeVisible();
 
         await navItem.click();
@@ -55,11 +59,15 @@ test.describe('Navigation & Interactive Flows', () => {
       await expect(page.locator('h1')).toBeVisible();
     });
 
-    test('resets scroll position to top when navigating from scrolled home page', async ({ page }) => {
+    test('resets scroll position to top when navigating from scrolled home page', async ({
+      page,
+    }) => {
       await page.evaluate(() => window.scrollTo(0, 3000));
       await page.waitForTimeout(200);
 
-      const contactLink = page.locator('nav[aria-label="Main Navigation"]').getByRole('link', { name: 'Contact', exact: true });
+      const contactLink = page
+        .locator('nav[aria-label="Main Navigation"]')
+        .getByRole('link', { name: 'Contact', exact: true });
       await contactLink.click();
       await expect(page).toHaveURL(/\/contact/);
 
@@ -68,12 +76,16 @@ test.describe('Navigation & Interactive Flows', () => {
       await expect(page.locator('h1')).toBeVisible();
     });
 
-    test('heavy pages (team, tools) mount full content with visible headings on soft navigation', async ({ page }) => {
+    test('heavy pages (team, tools) mount full content with visible headings on soft navigation', async ({
+      page,
+    }) => {
       for (const { name, path } of [
         { name: 'Team', path: '/team' },
         { name: 'Tools', path: '/products' },
       ]) {
-        const link = page.locator('nav[aria-label="Main Navigation"]').getByRole('link', { name, exact: true });
+        const link = page
+          .locator('nav[aria-label="Main Navigation"]')
+          .getByRole('link', { name, exact: true });
         await link.click();
         await expect(page).toHaveURL(new RegExp(path));
 
@@ -206,10 +218,16 @@ test.describe('Navigation & Interactive Flows', () => {
       await expect(contactBtn).toHaveAttribute('href', '/contact');
     });
 
-    test('services page displays all 4 practice previews before interactive viewer', async ({ page }) => {
+    test('services page displays all 4 practice previews before interactive viewer', async ({
+      page,
+    }) => {
       await page.goto('/services');
-      await expect(page.locator('text=Multi-Format Ingestion & Stream Extraction').first()).toBeVisible();
-      await expect(page.locator('text=Deterministic RAG & Agent Orchestration').first()).toBeVisible();
+      await expect(
+        page.locator('text=Multi-Format Ingestion & Stream Extraction').first(),
+      ).toBeVisible();
+      await expect(
+        page.locator('text=Deterministic RAG & Agent Orchestration').first(),
+      ).toBeVisible();
       await expect(page.locator('text=Private VPC & Air-Gapped Inference').first()).toBeVisible();
       await expect(page.locator('text=Spatial & Immersive Systems (AR/VR)').first()).toBeVisible();
 
@@ -220,4 +238,3 @@ test.describe('Navigation & Interactive Flows', () => {
     });
   });
 });
-

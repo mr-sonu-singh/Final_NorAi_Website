@@ -34,7 +34,6 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
     }
   }, [pathname]);
 
-
   useEffect(() => {
     // Under prefers-reduced-motion, bypass smooth scrolling completely
     if (prefersReducedMotion) {

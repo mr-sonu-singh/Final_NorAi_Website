@@ -140,16 +140,32 @@ export default function ServicesPage() {
               aria-label="Bespoke AI solutions engineered for your stack."
               className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal text-text-primary leading-[1.02] tracking-display"
             >
-              <TextReveal text="Bespoke AI solutions" splitBy="word" as="span" stagger={0.08} duration={0.7} /> <br />
+              <TextReveal
+                text="Bespoke AI solutions"
+                splitBy="word"
+                as="span"
+                stagger={0.08}
+                duration={0.7}
+              />{' '}
+              <br />
               <span className="italic text-accent-primary font-normal inline-block">
-                <TextReveal text="engineered for your stack." splitBy="word" as="span" delay={0.2} stagger={0.08} duration={0.7} />
+                <TextReveal
+                  text="engineered for your stack."
+                  splitBy="word"
+                  as="span"
+                  delay={0.2}
+                  stagger={0.08}
+                  duration={0.7}
+                />
               </span>
             </h1>
 
             {/* Body Copy with Fluid Clamp */}
             <Reveal delay={0.32} y={18}>
               <p className="fluid-lead text-text-secondary leading-relaxed max-w-2xl font-normal text-pretty">
-                From high-accuracy hybrid RAG pipelines to standardized Model Context Protocol (MCP) servers and deterministic background worker queues, we engineer reliable intelligence that never hallucinates.
+                From high-accuracy hybrid RAG pipelines to standardized Model Context Protocol (MCP)
+                servers and deterministic background worker queues, we engineer reliable
+                intelligence that never hallucinates.
               </p>
             </Reveal>
 
@@ -188,10 +204,13 @@ export default function ServicesPage() {
                 </div>
                 <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-normal text-text-primary leading-tight tracking-display">
                   Engineered practices for <br />
-                  <span className="italic text-accent-primary font-normal">mission-critical scale.</span>
+                  <span className="italic text-accent-primary font-normal">
+                    mission-critical scale.
+                  </span>
                 </h2>
                 <p className="fluid-body text-text-secondary leading-relaxed max-w-xl text-pretty">
-                  Explore our four core engineering practices. Inspect the execution topology, review the typed TypeScript contracts, and scope your dedicated architecture.
+                  Explore our four core engineering practices. Inspect the execution topology,
+                  review the typed TypeScript contracts, and scope your dedicated architecture.
                 </p>
               </div>
             </Reveal>
@@ -206,7 +225,9 @@ export default function ServicesPage() {
                   >
                     <div className="space-y-2.5">
                       <div className="flex items-center justify-between border-b border-border-subtle pb-2.5">
-                        <span className="font-mono text-xs font-bold text-accent-primary">{p.number}</span>
+                        <span className="font-mono text-xs font-bold text-accent-primary">
+                          {p.number}
+                        </span>
                         <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-surface-panel-subtle text-text-muted border border-border-subtle">
                           {p.tag}
                         </span>
@@ -214,9 +235,7 @@ export default function ServicesPage() {
                       <h3 className="font-display text-lg font-normal text-text-primary group-hover:text-accent-primary transition-colors leading-snug">
                         {p.title}
                       </h3>
-                      <p className="text-xs text-text-secondary leading-relaxed">
-                        {p.summary}
-                      </p>
+                      <p className="text-xs text-text-secondary leading-relaxed">{p.summary}</p>
                     </div>
                     <div className="pt-2 border-t border-border-subtle text-[11px] font-mono text-accent-secondary font-medium">
                       {p.metric}
@@ -249,7 +268,8 @@ export default function ServicesPage() {
                 <span className="italic text-accent-primary font-normal">technical teams.</span>
               </h2>
               <p className="fluid-body text-text-secondary leading-relaxed max-w-xl text-pretty">
-                A predictable, milestone-driven framework designed to deliver a verified proof-of-concept in days, not quarters.
+                A predictable, milestone-driven framework designed to deliver a verified
+                proof-of-concept in days, not quarters.
               </p>
             </div>
           </Reveal>
@@ -296,7 +316,10 @@ export default function ServicesPage() {
                         </span>
                         <div className="space-y-1.5">
                           {step.deliverables.map((item, dIdx) => (
-                            <div key={dIdx} className="flex items-start gap-2 text-xs text-text-primary">
+                            <div
+                              key={dIdx}
+                              className="flex items-start gap-2 text-xs text-text-primary"
+                            >
                               <CheckCircle2 className="w-3.5 h-3.5 text-accent-secondary shrink-0 mt-0.5" />
                               <span className="text-[11px] font-medium leading-tight">{item}</span>
                             </div>
@@ -315,7 +338,11 @@ export default function ServicesPage() {
       {/* =========================================================================
           SECTION 4: PRE-FOOTER HIGH-CONVERSION CONSOLE (Surface A)
           ========================================================================= */}
-      <AnimatedSection as="aside" aria-label="Schedule technical consultation" className="py-20 md:py-28 bg-surface-canvas">
+      <AnimatedSection
+        as="aside"
+        aria-label="Schedule technical consultation"
+        className="py-20 md:py-28 bg-surface-canvas"
+      >
         <Container size="default">
           <div className="p-2 sm:p-3 rounded-3xl bg-surface-panel/40 border border-border-strong shadow-lg">
             <div className="rounded-[calc(1.5rem-0.25rem)] bg-surface-panel border border-border-subtle p-8 sm:p-12 md:p-16 text-center shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)] relative overflow-hidden">
@@ -337,30 +364,39 @@ export default function ServicesPage() {
                 </h2>
 
                 <p className="fluid-body text-text-secondary leading-relaxed max-w-xl mx-auto text-pretty">
-                  Connect directly with our core engineering team to scope your technical architecture, latency requirements, and proof-of-concept sprint.
+                  Connect directly with our core engineering team to scope your technical
+                  architecture, latency requirements, and proof-of-concept sprint.
                 </p>
 
                 {/* Assurance Card */}
                 <div className="rounded-2xl border border-border-subtle bg-surface-canvas/90 p-4 sm:p-5 text-left shadow-sm max-w-lg mx-auto flex items-start gap-3">
                   <ShieldCheck className="w-5 h-5 text-accent-secondary shrink-0 mt-0.5" />
                   <div className="text-xs space-y-0.5">
-                    <span className="font-semibold text-text-primary block">Zero-Commitment Technical Scoping</span>
+                    <span className="font-semibold text-text-primary block">
+                      Zero-Commitment Technical Scoping
+                    </span>
                     <p className="text-text-secondary leading-relaxed">
-                      Every consultation produces an explicit architecture diagram, latency budget, and concrete proof-of-concept scope with zero vendor lock-in.
+                      Every consultation produces an explicit architecture diagram, latency budget,
+                      and concrete proof-of-concept scope with zero vendor lock-in.
                     </p>
                   </div>
                 </div>
 
                 {/* Dual Action CTAs with Magnetic Pull */}
                 <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-3">
-                  <Link href="/contact?service=enterprise-consultation" className="w-full sm:w-auto">
+                  <Link
+                    href="/contact?service=enterprise-consultation"
+                    className="w-full sm:w-auto"
+                  >
                     <MagneticButton strength={14} className="w-full sm:w-auto">
                       <Button
                         variant="primary"
                         size="lg"
                         className="w-full sm:w-auto justify-between group shadow-accent hover:shadow-hover hover:-translate-y-0.5 active:scale-[0.98] transition-all cursor-pointer btn-tactile pl-6 pr-2.5 py-2.5"
                       >
-                        <span className="font-semibold text-sm">Schedule Technical Consultation</span>
+                        <span className="font-semibold text-sm">
+                          Schedule Technical Consultation
+                        </span>
                         <span className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center transition-transform group-hover:translate-x-1 group-hover:-translate-y-0.5 ml-3">
                           <ArrowRight className="w-4 h-4 text-white" />
                         </span>

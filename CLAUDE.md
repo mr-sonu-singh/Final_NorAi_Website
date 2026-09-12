@@ -1,99 +1,93 @@
-# NorAI Agent Operating Instructions (`AGENTS.md`)
+# NorAI Agent & Developer Guide (`AGENTS.md`)
 
-> **Notice:** This file is mirrored identically across `CLAUDE.md`, `AGENTS.md`, and `GEMINI.md` to ensure a consistent, unified operating standard across all AI engineering environments.
+> **Notice:** This file is mirrored identically across `CLAUDE.md`, `AGENTS.md`, and `GEMINI.md` to ensure a consistent, unified operating context across all AI engineering environments.
 
-You operate within a **3-layer architecture** that separates concerns to maximize reliability. LLMs are probabilistic, whereas business logic, frontend layouts, and engineering verifications are deterministic. This system resolves that mismatch.
+## 1. Project Overview & Role
+
+Welcome to the **NorAI Technologies** official web platform. This repository powers the marketing site, product showcases, interactive sandboxes, and documentation for NorAI's autonomous tools and enterprise services.
+
+As an AI agent or engineer working in this codebase, your role is to help build, refine, and maintain high-quality, performant, and visually engaging web experiences. You are empowered to make thoughtful design, architectural, and copy decisions that serve the project's goals.
 
 ---
 
-## 1. The 3-Layer Architecture
+## 2. Technology Stack & Core Concepts
+
+- **Framework**: [Next.js 15](https://nextjs.org/) App Router
+- **UI Runtime**: [React 19](https://react.dev/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/) (Strict Mode)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) with CSS custom properties in `app/globals.css`
+- **Component Primitives**: [Radix UI](https://www.radix-ui.com/)
+- **Motion & Physics**: [Framer Motion](https://www.framer.com/motion/) (with `prefers-reduced-motion` support)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Data Validation**: [Zod](https://zod.dev/)
+
+### Key Conventions
+
+- **Server Components by Default**: Keep marketing pages, static content, and layout shells as React Server Components (RSC) for optimal load times and SEO.
+- **Client Components for Interactivity**: Use `'use client'` on interactive leaves (e.g., interactive workbenches, filter tabs, copy buttons, modal dialogs).
+- **Design Tokens**: Prefer using the semantic CSS variables (`var(--surface-canvas)`, `var(--text-primary)`, `var(--accent-primary)`, etc.) or corresponding Tailwind token classes to maintain visual consistency with the "Parchment & Terracotta" design system.
+
+---
+
+## 3. Repository Structure
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ LAYER 1: DIRECTIVE (The "What & Why")                                       │
-│ • Root context: PRODUCT.md (Strategy), DESIGN.md (Design System Tokens)     │
-│ • Domain-specific SOPs in directives/ (e.g., ingestion, benchmarks)         │
-│ • Defines user intent, functional guardrails, and non-negotiable boundaries │
-└──────────────────────────────────────┬──────────────────────────────────────┘
-                                       │
-┌──────────────────────────────────────▼──────────────────────────────────────┐
-│ LAYER 2: ORCHESTRATION (The "Decision Engine")                              │
-│ • This is you. Intelligent routing, plan creation, and skill dispatch       │
-│ • Calls execution tools, delegates to specialized skills, and handles errors│
-│ • Never guesses or performs manual error-prone tasks in head                │
-└──────────────────────────────────────┬──────────────────────────────────────┘
-                                       │
-┌──────────────────────────────────────▼──────────────────────────────────────┐
-│ LAYER 3: EXECUTION (The "Deterministic Workhorse")                          │
-│ • Deterministic automation scripts in execution/                            │
-│ • Typecheckers (npx tsc --noEmit), linters (npm run lint), Playwright tests │
-│ • Next.js 15 compiler, React 19 SSR/RSC runtime, Chrome DevTools MCP        │
-└─────────────────────────────────────────────────────────────────────────────┘
+NorAi_Ofiicial_Web/
+├── app/                          # Next.js App Router root
+│   ├── (marketing)/              # Marketing routes (Home, Products, Services, Team, etc.)
+│   ├── (content)/                # Content hub (Blog, Docs, FAQ)
+│   ├── (legal)/                  # Legal & compliance (Privacy, Terms)
+│   ├── api/                      # Route handlers & server endpoints
+│   ├── globals.css               # Design tokens, font definitions, and utility classes
+│   └── layout.tsx                # Root layout, fonts, and global metadata
+├── components/                   # Component architecture
+│   ├── foundation/               # Base primitives (Container, Grid, Section)
+│   ├── atoms/                    # Fundamental elements (Button, Badge, Link, Input)
+│   ├── molecules/                # Multi-part patterns (Card, FormField, SearchBar)
+│   ├── organisms/                # Complex sections (Header, Footer, HeroStudioWorkbench)
+│   └── templates/                # Full page layout wrappers
+├── config/                       # Site configuration, metadata, and navigation routes
+├── lib/                          # Data catalogs, validation schemas, and SEO helpers
+│   ├── schemas/                  # Zod input schemas
+│   └── seo/                      # Dynamic metadata & OpenGraph generators
+└── public/                       # Static brand assets and images
 ```
 
 ---
 
-## 2. Specialized Frontend Skills Dispatch Matrix
+## 4. Context & Reference Files
 
-When modifying, polishing, or creating UI components, do not write generic, uninspired frontend code. You have access to specialized domain skills in your environment. Route tasks according to this matrix:
+When you need deeper context about specific aspects of the project, consult these files:
 
-| Task / Domain | Primary Skill to Consult | What the Skill Governs |
-| :--- | :--- | :--- |
-| **Landing Page & Marketing Sections** | `/landing-page-design` | Hero compositions, high-conversion section sequencing, visual rhythm, value proposition copy cadence, CTA ergonomics. |
-| **Micro-Interactions & Animation Polish** | `/emil-design-eng` / `/animate` | Fluid spring physics, layout transitions, interactive button states, gesture feedback, optical balance. |
-| **Editorial & Calm Bento Layouts** | `/minimalist-ui` | Subtle grid hierarchies, warm monochrome surfaces, clean typographic contrast, quiet density. |
-| **Comprehensive UI/UX Audits & Refinement** | `/impeccable` | Anti-slop checks, typography scales, contrast verification, responsive audits, edge-case states. |
-| **Complex Browser-Rendered Web Artifacts** | `/web-design-engineer` | Full-stack interactive visual artifacts, dashboard shells, data visualization, browser QA. |
-| **Live Browser Testing & Inspections** | `/browser-testing-with-devtools` | DOM inspections, console error monitoring, layout shift verification, responsive viewport checks via Chrome DevTools. |
+- [`PRODUCT.md`](file:///home/gourav/coding/startup/NorAi_Ofiicial_Web/PRODUCT.md): Overview of NorAI, the 4 flagship tools, enterprise services, and product mission.
+- [`DESIGN.md`](file:///home/gourav/coding/startup/NorAi_Ofiicial_Web/DESIGN.md): Visual ethos, typography hierarchy, and core color tokens.
+- [`project_progress_context.md`](file:///home/gourav/coding/startup/NorAi_Ofiicial_Web/project_progress_context.md): Chronological history of milestones, rebuild phases, and project context.
 
-> [!TIP]
-> **Skill Autonomy Guideline:** `DESIGN.md` provides **tokens and principles**, not micromanaged boilerplate code. When you invoke specialized frontend skills, give them full creative freedom to determine layout structure, motion curves, and component hierarchies within the semantic token boundaries.
+You also have access to specialized skills in your environment (e.g., landing page craft, micro-interactions, minimalist UI, DevTools testing). Feel free to draw on these skills whenever they are helpful for the task at hand.
 
 ---
 
-## 3. Engineering & Architectural Standards
+## 5. Development & Verification Workflow
 
-### A. Next.js 15 App Router & React 19
-- **Server Components by Default:** Keep marketing pages, layout shells, and static content as React Server Components (RSC).
-- **Leaf Client Components:** Confine `'use client'` strictly to interactive leaves (e.g., interactive workbenches, hotkey listeners, tabs, audio scrubbers).
-- **Zero Cumulative Layout Shift (CLS = 0):** Always reserve explicit dimensions for media, dynamic telemetry, and asynchronous states.
-- **Accessibility & Semantics:** Ensure proper HTML5 semantic tags, keyboard tab indexing, focus management, and WCAG AAA color contrast for body copy.
+Run standard verification commands to ensure code correctness when making changes:
 
-### B. Styling & Design Token Consumption
-- Derive all styling properties from the canonical tokens defined in `DESIGN.md` and `app/globals.css`:
-  - Canvas: `--surface-canvas`, `--surface-panel`, `--surface-panel-subtle`.
-  - Ink: `--text-primary`, `--text-secondary`, `--text-muted`.
-  - Accents: `--accent-primary` (Terracotta), `--accent-secondary` (Sage), `--accent-tertiary` (Goldenrod).
-  - Borders: `--border-subtle`, `--border-strong`, `--border-highlight`.
-- Avoid arbitrary hardcoded color values. Use CSS variables or Tailwind token classes that map to the design system.
+```bash
+# Typecheck TypeScript
+npx tsc --noEmit
 
-### C. Browser Testing & Visual Verification (Playwright & Chrome DevTools)
-Use each tool for the task it is best at:
-- **Playwright (Default for Screenshots & Visual Regression):** Always use **Playwright** as the default tool for visual screenshot testing and automated regressions (`tests/e2e/visual.spec.ts`). Playwright is purpose-built for deterministic baseline diffing (`toHaveScreenshot()`), animation freezing (`animations: 'disabled'`), parallel multi-viewport validation (desktop & mobile), and CI test gating.
-- **Chrome DevTools MCP (Live Inspection & Diagnostics):** Use **Chrome DevTools** for live, exploratory runtime debugging—inspecting computed CSS values, traversing active DOM elements, monitoring live console errors/warnings, evaluating ad-hoc browser scripts, and profiling layout shifts (CLS) during interactive development.
+# Run ESLint
+npm run lint
+
+# Format code
+npm run format:write
+```
 
 ---
 
-## 4. The Self-Annealing Quality Loop
+## 6. Philosophy of Creative Autonomy
 
-When any build breaks, a type error occurs, or visual feedback fails:
-1. **Root-Cause Analysis:** Read error messages, TypeScript diagnostics, and DevTools console logs carefully. Do not patch symptoms with quick hacks.
-2. **Deterministic Fix:** Address the root cause in the affected component or script.
-3. **Deterministic Verification:** Always verify before declaring completion:
-   ```bash
-   npx tsc --noEmit
-   npm run lint
-   npx playwright test tests/e2e/visual.spec.ts # For UI/layout modifications
-   ```
-4. **Document Learnings:** If the issue revealed a systemic edge case or an unwritten pattern, update the corresponding markdown directive in `directives/` or `DESIGN.md`.
+This project values craftsmanship, speed, and creative problem-solving:
 
----
-
-## 5. File Organization & Boundaries
-
-- **`PRODUCT.md`**: Defines business intent, personas, value propositions, and conversion funnels. Contains **zero CSS, layout, or component code**.
-- **`DESIGN.md`**: Defines aesthetic ethos, design tokens, typography scales, surface archetypes, and interaction guardrails. Provides **principles and tokens**, not rigid ASCII art.
-- **`AGENTS.md` (mirrored to `CLAUDE.md` and `GEMINI.md`)**: Defines operating protocols, skill routing, engineering standards, and verification checklists.
-- **`directives/`**: Living Standard Operating Procedures (SOPs) for domain-specific operational workflows (e.g., data ingestion, pipeline benchmarks).
-- **`execution/`**: Deterministic automation scripts and benchmarks.
-- **`.tmp/`**: Temporary build artifacts and scratch exports (ignored by git).
+- **Think Critically**: Suggest and implement improvements to layout, visual hierarchy, ergonomics, and accessibility that make the site feel premium and delightful.
+- **Keep It Simple & Distilled**: Favor clean, readable code and clear UI rather than unnecessary complexity.
+- **Empowered Execution**: You do not need to follow rigid or bureaucratic multi-step procedures for every edit. Understand the user's intent, execute with care, and verify that the results look and work great.

@@ -21,7 +21,8 @@ export const FOUNDERS: Founder[] = [
     role: 'Founder & Head of Strategic Operations',
     degree: 'B.Sc',
     pedigree: 'Retd. Indian Army (Corps of Signals) · 30 Years Distinguished Military Service',
-    focus: 'Operational discipline, institutional governance, administrative leadership, and execution rigor.',
+    focus:
+      'Operational discipline, institutional governance, administrative leadership, and execution rigor.',
     bio: 'Retd. Indian Army (Corps of Signals) after 30 years of distinguished military service. Leads strategic operations and administrative leadership.',
     image: '/images/team/dhruw-singh.jpg',
     icon: ShieldCheck,
@@ -31,7 +32,8 @@ export const FOUNDERS: Founder[] = [
     role: 'Co-Founder & AR-VR / AI Engineer',
     degree: 'BCA',
     pedigree: 'Spatial Computing Specialist · Returned from Japan VR/AR Summit',
-    focus: 'Spatial computing, immersive tech, multi-modal interaction, and modern AI model pipelines.',
+    focus:
+      'Spatial computing, immersive tech, multi-modal interaction, and modern AI model pipelines.',
     bio: 'Returned from Japan VR/AR Summit. Specializes in spatial computing, immersive tech, and modern AI model pipelines.',
     image: '/images/team/sonu-singh.jpg',
     icon: Cpu,
@@ -41,7 +43,8 @@ export const FOUNDERS: Founder[] = [
     role: 'Digital Marketing Lead',
     degree: 'B.Com',
     pedigree: 'Brand Development & Inbound Growth Specialist',
-    focus: 'Brand development, inbound marketing pipelines, SEO strategies, and corporate client acquisition.',
+    focus:
+      'Brand development, inbound marketing pipelines, SEO strategies, and corporate client acquisition.',
     bio: 'Drives brand development, inbound marketing pipelines, SEO strategies, and corporate client acquisition.',
     image: '/images/team/annanta-singh.jpg',
     icon: TrendingUp,
@@ -51,7 +54,8 @@ export const FOUNDERS: Founder[] = [
     role: 'Design & Visualisation Lead',
     degree: 'B.Tech',
     pedigree: 'UI/UX Architect & Visual Rendering Specialist',
-    focus: 'UI/UX architecture, visual rendering, interactive frontend design, and product aesthetics.',
+    focus:
+      'UI/UX architecture, visual rendering, interactive frontend design, and product aesthetics.',
     bio: 'Focuses on UI/UX architecture, visual rendering, interactive frontend design, and product aesthetics.',
     image: '/images/team/rishabh-singh.jpg',
     icon: Palette,
@@ -62,7 +66,8 @@ export const FOUNDERS: Founder[] = [
     degree: 'B.Tech',
     pedigree: 'Agent Systems Architect & Autonomous Workflows Specialist',
     bio: 'Builds AI agents, workflows, and automation using modern AI models, ensuring smart, reliable, and scalable AI solutions.',
-    focus: 'AI agents, autonomous workflows, deterministic schema validation, and scalable model orchestration.',
+    focus:
+      'AI agents, autonomous workflows, deterministic schema validation, and scalable model orchestration.',
     image: '/images/team/gourav-singh.jpg',
     icon: Bot,
   },
@@ -117,9 +122,7 @@ export function WorkshopRoster() {
                     {founder.focus}
                   </span>
                 </p>
-                <p className="text-sm md:text-base text-ink-body leading-relaxed">
-                  {founder.bio}
-                </p>
+                <p className="text-sm md:text-base text-ink-body leading-relaxed">{founder.bio}</p>
               </div>
             </div>
           );

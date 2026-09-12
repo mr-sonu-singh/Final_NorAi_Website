@@ -22,13 +22,13 @@ import { cn } from '@/lib/utils';
 import { GazetteAlertCard } from '@/lib/tools/types';
 
 export type SurfaceDStatusType =
-  | 'verified'          // Cache HIT / 2xx OK -> "Up to Date (Verified)"
-  | 'checking'          // Cache MISS / Staging -> "Checking for Updates"
-  | 'refreshing'        // STALE / Revalidating -> "Refreshing Listing"
-  | 'new-alert'         // PRERENDER -> "New Alert Available"
-  | 'deadline-urgent'   // 4xx WARN -> "Deadline Approaching"
-  | 'board-review'      // Triage Staging -> "Under Review by Board"
-  | 'unavailable';      // 5xx ERROR -> "Temporarily Unavailable"
+  | 'verified' // Cache HIT / 2xx OK -> "Up to Date (Verified)"
+  | 'checking' // Cache MISS / Staging -> "Checking for Updates"
+  | 'refreshing' // STALE / Revalidating -> "Refreshing Listing"
+  | 'new-alert' // PRERENDER -> "New Alert Available"
+  | 'deadline-urgent' // 4xx WARN -> "Deadline Approaching"
+  | 'board-review' // Triage Staging -> "Under Review by Board"
+  | 'unavailable'; // 5xx ERROR -> "Temporarily Unavailable"
 
 export interface SmartDainikAlertCardProps {
   card?: Partial<GazetteAlertCard>;
@@ -55,13 +55,17 @@ const DEFAULT_CARD_DATA: GazetteAlertCard = {
   hindiVacanciesOrScope: '19,200 पद (आरक्षी एवं फायरमैन)',
   salaryBandOrBudget: 'Pay Level 3 (₹21,700 – ₹69,100 / month)',
   hindiSalaryBandOrBudget: 'वेतनमान पे मैट्रिक्स लेवल 3 (₹21,700 – ₹69,100)',
-  eligibilitySnippet: 'Candidate must have passed 12th Standard (Intermediate) from a recognized board. Minimum age is 18 years and maximum age is 22 years.',
-  hindiEligibilitySnippet: 'अभ्यर्थी किसी मान्यता प्राप्त बोर्ड से 12वीं (इंटरमीडिएट) उत्तीर्ण होना चाहिए। न्यूनतम आयु 18 वर्ष एवं अधिकतम 22 वर्ष निर्धारित है।',
+  eligibilitySnippet:
+    'Candidate must have passed 12th Standard (Intermediate) from a recognized board. Minimum age is 18 years and maximum age is 22 years.',
+  hindiEligibilitySnippet:
+    'अभ्यर्थी किसी मान्यता प्राप्त बोर्ड से 12वीं (इंटरमीडिएट) उत्तीर्ण होना चाहिए। न्यूनतम आयु 18 वर्ष एवं अधिकतम 22 वर्ष निर्धारित है।',
   officialPortalUrl: 'https://uppbpb.gov.in',
   verifiedSourceRef: 'Gazette Dispatch UP-POL-2026/088',
   officialSealReference: 'Advt. No. PRPB-1(88)/2026',
-  antiRumorNote: 'Official advertisement published on uppbpb.gov.in. No offline application forms are accepted.',
-  hindiAntiRumorNote: 'आधिकारिक विज्ञापन uppbpb.gov.in पर जारी। कोई भी ऑफलाइन फॉर्म स्वीकार्य नहीं है।',
+  antiRumorNote:
+    'Official advertisement published on uppbpb.gov.in. No offline application forms are accepted.',
+  hindiAntiRumorNote:
+    'आधिकारिक विज्ञापन uppbpb.gov.in पर जारी। कोई भी ऑफलाइन फॉर्म स्वीकार्य नहीं है।',
   minAge: 18,
   maxAge: 22,
   requiredDegrees: ['12th Pass (Intermediate)', '10+2 Any Stream'],
@@ -96,7 +100,9 @@ export function SmartDainikAlertCard({
   const [isEligibilityOpen, setIsEligibilityOpen] = useState(false);
   const [userAge, setUserAge] = useState<number>(20);
   const [userCategory, setUserCategory] = useState<'General' | 'EWS' | 'OBC' | 'SC/ST'>('General');
-  const [userEducation, setUserEducation] = useState<'12th Pass' | 'Graduate' | 'Below 12th'>('12th Pass');
+  const [userEducation, setUserEducation] = useState<'12th Pass' | 'Graduate' | 'Below 12th'>(
+    '12th Pass',
+  );
 
   // Copy feedback state
   const [copiedLink, setCopiedLink] = useState(false);
@@ -183,7 +189,7 @@ export function SmartDainikAlertCard({
     <article
       className={cn(
         'w-full max-w-2xl mx-auto rounded-2xl bg-[#FAF7F2] border border-[#141C2B]/12 shadow-sm text-[#141C2B] overflow-hidden transition-all',
-        className
+        className,
       )}
     >
       {/* 1. TOP HEADER STRIP: Notice Reference & Language Pill Switcher */}
@@ -192,7 +198,10 @@ export function SmartDainikAlertCard({
         <div className="flex items-center gap-2">
           <Building2 className="w-4 h-4 text-[#526075] shrink-0" />
           <span className="text-[13px] font-mono text-[#526075]">
-            Notice Reference ID: <strong className="text-[#141C2B] font-semibold">{mergedCard.officialSealReference || 'Advt. 04-Exam/2026'}</strong>
+            Notice Reference ID:{' '}
+            <strong className="text-[#141C2B] font-semibold">
+              {mergedCard.officialSealReference || 'Advt. 04-Exam/2026'}
+            </strong>
           </span>
         </div>
 
@@ -205,7 +214,7 @@ export function SmartDainikAlertCard({
               'min-h-[38px] px-3 py-1.5 rounded-lg text-[13px] font-medium transition-all active:scale-[0.98]',
               language === 'bilingual'
                 ? 'bg-[#141C2B] text-[#F5F0EA] font-semibold shadow-xs'
-                : 'text-[#526075] hover:text-[#141C2B]'
+                : 'text-[#526075] hover:text-[#141C2B]',
             )}
             aria-label="View Bilingual English and Hindi"
           >
@@ -218,7 +227,7 @@ export function SmartDainikAlertCard({
               'min-h-[38px] px-3 py-1.5 rounded-lg text-[13px] font-medium transition-all active:scale-[0.98]',
               language === 'english'
                 ? 'bg-[#141C2B] text-[#F5F0EA] font-semibold shadow-xs'
-                : 'text-[#526075] hover:text-[#141C2B]'
+                : 'text-[#526075] hover:text-[#141C2B]',
             )}
             aria-label="View in English"
           >
@@ -231,7 +240,7 @@ export function SmartDainikAlertCard({
               'min-h-[38px] px-3 py-1.5 rounded-lg text-[13px] font-medium transition-all active:scale-[0.98]',
               language === 'hindi'
                 ? 'bg-[#141C2B] text-[#F5F0EA] font-semibold shadow-xs'
-                : 'text-[#526075] hover:text-[#141C2B]'
+                : 'text-[#526075] hover:text-[#141C2B]',
             )}
             aria-label="View in Hindi Devanagari"
           >
@@ -250,9 +259,7 @@ export function SmartDainikAlertCard({
                 ? mergedCard.hindiDepartmentOrMinistry || mergedCard.departmentOrMinistry
                 : mergedCard.departmentOrMinistry}
             </span>
-            <div className="flex items-center gap-2 pt-0.5">
-              {renderPlainLanguageBadge()}
-            </div>
+            <div className="flex items-center gap-2 pt-0.5">{renderPlainLanguageBadge()}</div>
           </div>
 
           {/* Days Remaining Pill */}
@@ -277,7 +284,9 @@ export function SmartDainikAlertCard({
             <h4
               className={cn(
                 'text-[#526075] font-medium leading-relaxed',
-                language === 'hindi' ? 'text-lg sm:text-xl font-bold text-[#141C2B]' : 'text-[15px] pt-0.5'
+                language === 'hindi'
+                  ? 'text-lg sm:text-xl font-bold text-[#141C2B]'
+                  : 'text-[15px] pt-0.5',
               )}
             >
               {mergedCard.hindiTitle}
@@ -317,9 +326,7 @@ export function SmartDainikAlertCard({
               <GraduationCap className="w-4 h-4 text-[#C85A32]" />
               <span>Qualification</span>
             </div>
-            <div className="text-base font-bold text-[#141C2B]">
-              12th Pass (10+2)
-            </div>
+            <div className="text-base font-bold text-[#141C2B]">12th Pass (10+2)</div>
           </div>
         </div>
 
@@ -340,9 +347,7 @@ export function SmartDainikAlertCard({
         <div className="p-3.5 rounded-xl bg-[#FFFBEB] border border-[#D97706]/30 text-[#78350F] flex items-start gap-3">
           <ShieldCheck className="w-5 h-5 text-[#D97706] shrink-0 mt-0.5" />
           <div className="space-y-0.5 text-[13px] leading-relaxed">
-            <strong className="font-semibold block text-[#92400E]">
-              Verified Official Notice
-            </strong>
+            <strong className="font-semibold block text-[#92400E]">Verified Official Notice</strong>
             <p>
               {language === 'hindi'
                 ? mergedCard.hindiAntiRumorNote || mergedCard.antiRumorNote
@@ -410,7 +415,10 @@ export function SmartDainikAlertCard({
                 {/* Category & Qualification Selectors */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="space-y-1">
-                    <label htmlFor="card-user-category" className="text-[13px] font-medium text-[#141C2B] block">
+                    <label
+                      htmlFor="card-user-category"
+                      className="text-[13px] font-medium text-[#141C2B] block"
+                    >
                       Reservation Category
                     </label>
                     <select
@@ -427,7 +435,10 @@ export function SmartDainikAlertCard({
                   </div>
 
                   <div className="space-y-1">
-                    <label htmlFor="card-user-edu" className="text-[13px] font-medium text-[#141C2B] block">
+                    <label
+                      htmlFor="card-user-edu"
+                      className="text-[13px] font-medium text-[#141C2B] block"
+                    >
                       Your Highest Education
                     </label>
                     <select
@@ -449,7 +460,7 @@ export function SmartDainikAlertCard({
                     'p-3.5 rounded-xl border text-[14px] flex items-start gap-3',
                     isOverallEligible
                       ? 'bg-[#ECFDF5] border-[#059669]/30 text-[#065F46]'
-                      : 'bg-[#FEF2F2] border-[#DC2626]/30 text-[#991B1B]'
+                      : 'bg-[#FEF2F2] border-[#DC2626]/30 text-[#991B1B]',
                   )}
                 >
                   {isOverallEligible ? (
@@ -464,8 +475,8 @@ export function SmartDainikAlertCard({
                           ? `Eligible to Apply (Using ${relaxationYears}-year ${userCategory} relaxation)`
                           : 'You are Eligible to Apply'
                         : !isAgeValid
-                        ? `Age limit exceeded (Maximum age for ${userCategory} is ${maxAllowedAge} years)`
-                        : '12th Pass is required for this post'}
+                          ? `Age limit exceeded (Maximum age for ${userCategory} is ${maxAllowedAge} years)`
+                          : '12th Pass is required for this post'}
                     </strong>
                     <p className="text-[13px]">
                       {isOverallEligible
@@ -501,7 +512,7 @@ export function SmartDainikAlertCard({
                 'w-full min-h-[48px] px-4 py-2.5 rounded-xl border-2 font-semibold text-[14px] flex items-center justify-center gap-2 transition-all active:scale-[0.99]',
                 alertSaved
                   ? 'bg-[#ECFDF5] border-[#059669] text-[#065F46]'
-                  : 'bg-[#FAF7F2] border-[#141C2B]/15 text-[#141C2B] hover:bg-[#ECE5DA]'
+                  : 'bg-[#FAF7F2] border-[#141C2B]/15 text-[#141C2B] hover:bg-[#ECE5DA]',
               )}
             >
               {alertSaved ? (

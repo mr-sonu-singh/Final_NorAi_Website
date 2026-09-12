@@ -32,25 +32,17 @@ import {
 } from 'lucide-react';
 import { ToolShell } from './ToolShell';
 import { ApiKeyModal } from './ApiKeyModal';
-import {
-  CandidateEvaluation,
-  ResumeShortlistResult,
-  ByokSettings,
-} from '@/lib/tools/types';
+import { CandidateEvaluation, ResumeShortlistResult, ByokSettings } from '@/lib/tools/types';
 import { SHORTLIST_PRESETS } from '@/lib/tools/presets';
-import {
-  extractTextFromFile,
-  estimateTokenCount,
-} from '@/lib/tools/client-parser';
+import { extractTextFromFile, estimateTokenCount } from '@/lib/tools/client-parser';
 
 export function ResumeShortlisterWorkbench() {
   // Active Preset State
   const [activePresetId, setActivePresetId] = useState<string>(
-    SHORTLIST_PRESETS[0]?.id || 'preset-backend-sr'
+    SHORTLIST_PRESETS[0]?.id || 'preset-backend-sr',
   );
   const currentPreset =
-    SHORTLIST_PRESETS.find((p) => p.id === activePresetId) ||
-    SHORTLIST_PRESETS[0];
+    SHORTLIST_PRESETS.find((p) => p.id === activePresetId) || SHORTLIST_PRESETS[0];
 
   // Intake Dock Navigation Tab: 'criteria' | 'resumes' | 'weights'
   const [intakeTab, setIntakeTab] = useState<'criteria' | 'resumes' | 'weights'>('criteria');
@@ -60,15 +52,11 @@ export function ResumeShortlisterWorkbench() {
 
   // Inputs
   const [jobTitle, setJobTitle] = useState(currentPreset?.jobTitle || '');
-  const [jobDescription, setJobDescription] = useState(
-    currentPreset?.jobDescription || ''
-  );
+  const [jobDescription, setJobDescription] = useState(currentPreset?.jobDescription || '');
   const [customWeights, setCustomWeights] = useState<{ [skill: string]: number }>(
-    currentPreset?.customWeights || {}
+    currentPreset?.customWeights || {},
   );
-  const [resumesText, setResumesText] = useState(
-    currentPreset?.sampleResumesText || ''
-  );
+  const [resumesText, setResumesText] = useState(currentPreset?.sampleResumesText || '');
   const [minThreshold, setMinThreshold] = useState<number>(75);
 
   // New custom skill key input
@@ -83,14 +71,14 @@ export function ResumeShortlisterWorkbench() {
   // Evaluation & Results State
   const [isProcessing, setIsProcessing] = useState(false);
   const [result, setResult] = useState<ResumeShortlistResult | null>(
-    currentPreset?.precomputedResult || null
+    currentPreset?.precomputedResult || null,
   );
   const [selectedCandidateId, setSelectedCandidateId] = useState<string>(
-    currentPreset?.precomputedResult?.candidates[0]?.id || 'cand-01'
+    currentPreset?.precomputedResult?.candidates[0]?.id || 'cand-01',
   );
-  const [activeTab, setActiveTab] = useState<
-    'leaderboard' | 'matrix' | 'inspector' | 'json'
-  >('leaderboard');
+  const [activeTab, setActiveTab] = useState<'leaderboard' | 'matrix' | 'inspector' | 'json'>(
+    'leaderboard',
+  );
 
   // Inline Leaderboard Accordion Expanded IDs
   const [expandedCards, setExpandedCards] = useState<Record<string, boolean>>({});
@@ -119,9 +107,7 @@ export function ResumeShortlisterWorkbench() {
       if (storedKey) {
         setByokSettings({
           apiKey: storedKey,
-          preferredModel:
-            (storedModel as ByokSettings['preferredModel']) ||
-            'gemini-3.5-lite',
+          preferredModel: (storedModel as ByokSettings['preferredModel']) || 'gemini-3.5-lite',
         });
       }
     } catch {
@@ -135,10 +121,7 @@ export function ResumeShortlisterWorkbench() {
     try {
       if (newSettings.apiKey) {
         localStorage.setItem('norai_byok_gemini_key', newSettings.apiKey);
-        localStorage.setItem(
-          'norai_byok_gemini_model',
-          newSettings.preferredModel
-        );
+        localStorage.setItem('norai_byok_gemini_model', newSettings.preferredModel);
       } else {
         localStorage.removeItem('norai_byok_gemini_key');
         localStorage.removeItem('norai_byok_gemini_model');
@@ -162,7 +145,9 @@ export function ResumeShortlisterWorkbench() {
       setUploadedFiles([]);
       setExpandedCards({});
       setErrorMessage(null);
-      setLiveAnnouncement(`Loaded preset ${preset.category}: ${preset.title} with ${preset.precomputedResult.candidates.length} profiles.`);
+      setLiveAnnouncement(
+        `Loaded preset ${preset.category}: ${preset.title} with ${preset.precomputedResult.candidates.length} profiles.`,
+      );
     }
   };
 
@@ -258,13 +243,11 @@ export function ResumeShortlisterWorkbench() {
     ) {
       setTimeout(() => {
         setResult(currentPreset.precomputedResult);
-        setSelectedCandidateId(
-          currentPreset.precomputedResult.candidates[0]?.id || 'cand-01'
-        );
+        setSelectedCandidateId(currentPreset.precomputedResult.candidates[0]?.id || 'cand-01');
         setIsProcessing(false);
         setActiveTab('leaderboard');
         setLiveAnnouncement(
-          `Evaluation complete for ${currentPreset.jobTitle}. Evaluated ${currentPreset.precomputedResult.candidates.length} candidates, ${currentPreset.precomputedResult.shortlistedCount} shortlisted.`
+          `Evaluation complete for ${currentPreset.jobTitle}. Evaluated ${currentPreset.precomputedResult.candidates.length} candidates, ${currentPreset.precomputedResult.shortlistedCount} shortlisted.`,
         );
       }, 350);
       return;
@@ -316,12 +299,11 @@ export function ResumeShortlisterWorkbench() {
         }
         setActiveTab('leaderboard');
         setLiveAnnouncement(
-          `Evaluation complete for ${data.data.jobTitle}. Evaluated ${data.data.candidates.length} candidates, ${data.data.shortlistedCount} shortlisted.`
+          `Evaluation complete for ${data.data.jobTitle}. Evaluated ${data.data.candidates.length} candidates, ${data.data.shortlistedCount} shortlisted.`,
         );
       }
     } catch (err: unknown) {
-      const msg =
-        err instanceof Error ? err.message : 'Network error communicating with API.';
+      const msg = err instanceof Error ? err.message : 'Network error communicating with API.';
       setErrorMessage(msg);
       setLiveAnnouncement(`Error: ${msg}`);
     } finally {
@@ -361,7 +343,16 @@ export function ResumeShortlisterWorkbench() {
 
   const handleDownloadCsv = () => {
     if (!result) return;
-    const headers = ['Candidate ID', 'Name', 'Role', 'Experience', 'Score', 'Status', 'Tier', 'Verdict'];
+    const headers = [
+      'Candidate ID',
+      'Name',
+      'Role',
+      'Experience',
+      'Score',
+      'Status',
+      'Tier',
+      'Verdict',
+    ];
     const rows = result.candidates.map((c) => {
       const tierInfo = getCandidateTier(c.compositeScore, minThreshold);
       return [
@@ -467,8 +458,7 @@ export function ResumeShortlisterWorkbench() {
   };
 
   const selectedCandidate: CandidateEvaluation | undefined =
-    result?.candidates.find((c) => c.id === selectedCandidateId) ||
-    result?.candidates[0];
+    result?.candidates.find((c) => c.id === selectedCandidateId) || result?.candidates[0];
 
   const candidateCount = result?.candidates.length || 0;
 
@@ -556,14 +546,16 @@ export function ResumeShortlisterWorkbench() {
                       'focus-visible:ring-2 focus-visible:ring-accent-500 active:scale-[0.97]',
                       isSelected
                         ? 'bg-[#0D253D] text-white shadow-sm font-semibold ring-1 ring-[#0D253D]'
-                        : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed border border-[rgba(13,37,61,0.08)]'
+                        : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed border border-[rgba(13,37,61,0.08)]',
                     )}
                   >
                     <span>{preset.category}</span>
                     <span
                       className={cn(
                         'text-[10px] font-mono px-1.5 py-0.2 rounded tabular-nums',
-                        isSelected ? 'bg-white/20 text-white' : 'bg-canvas-recessed text-ink-secondary'
+                        isSelected
+                          ? 'bg-white/20 text-white'
+                          : 'bg-canvas-recessed text-ink-secondary',
                       )}
                     >
                       {preset.precomputedResult.candidates.length} profiles
@@ -580,7 +572,7 @@ export function ResumeShortlisterWorkbench() {
                   'focus-visible:ring-2 focus-visible:ring-accent-500 active:scale-[0.97]',
                   activePresetId === 'custom'
                     ? 'bg-[#0D253D] text-white shadow-sm font-semibold ring-1 ring-[#0D253D]'
-                    : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed border border-[rgba(13,37,61,0.08)]'
+                    : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed border border-[rgba(13,37,61,0.08)]',
                 )}
               >
                 <Plus className="w-3 h-3 text-accent-500" />
@@ -593,7 +585,12 @@ export function ResumeShortlisterWorkbench() {
           <div className="flex items-center gap-3 text-[11px] font-mono text-ink-secondary">
             <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded bg-canvas-recessed/70 border border-[rgba(13,37,61,0.06)]">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
-              <span>Buffer: <strong className="tabular-nums">{parsedApplicantNames.length || candidateCount} Resumes</strong></span>
+              <span>
+                Buffer:{' '}
+                <strong className="tabular-nums">
+                  {parsedApplicantNames.length || candidateCount} Resumes
+                </strong>
+              </span>
             </div>
             <div className="hidden md:flex items-center gap-1 text-ink-secondary">
               <span>Tokens:</span>
@@ -640,7 +637,7 @@ export function ResumeShortlisterWorkbench() {
                     'focus-visible:ring-2 focus-visible:ring-accent-500 active:scale-[0.97]',
                     intakeTab === 'criteria'
                       ? 'bg-canvas-paper text-ink-primary font-semibold shadow-sm border border-[rgba(13,37,61,0.08)]'
-                      : 'text-ink-secondary hover:text-ink-primary'
+                      : 'text-ink-secondary hover:text-ink-primary',
                   )}
                 >
                   <FileText className="w-3.5 h-3.5 text-accent-500 shrink-0" />
@@ -655,7 +652,7 @@ export function ResumeShortlisterWorkbench() {
                     'focus-visible:ring-2 focus-visible:ring-accent-500 active:scale-[0.97]',
                     intakeTab === 'resumes'
                       ? 'bg-canvas-paper text-ink-primary font-semibold shadow-sm border border-[rgba(13,37,61,0.08)]'
-                      : 'text-ink-secondary hover:text-ink-primary'
+                      : 'text-ink-secondary hover:text-ink-primary',
                   )}
                 >
                   <Users className="w-3.5 h-3.5 text-accent-secondary shrink-0" />
@@ -670,7 +667,7 @@ export function ResumeShortlisterWorkbench() {
                     'focus-visible:ring-2 focus-visible:ring-accent-500 active:scale-[0.97]',
                     intakeTab === 'weights'
                       ? 'bg-canvas-paper text-ink-primary font-semibold shadow-sm border border-[rgba(13,37,61,0.08)]'
-                      : 'text-ink-secondary hover:text-ink-primary'
+                      : 'text-ink-secondary hover:text-ink-primary',
                   )}
                 >
                   <Sliders className="w-3.5 h-3.5 text-accent-500 shrink-0" />
@@ -742,7 +739,9 @@ export function ResumeShortlisterWorkbench() {
                         <Sparkles className="w-3.5 h-3.5 text-accent-500" />
                         <span>Target Competency Tags:</span>
                       </span>
-                      <span className="text-[10px] font-mono text-accent-500 font-medium">Click to inject</span>
+                      <span className="text-[10px] font-mono text-accent-500 font-medium">
+                        Click to inject
+                      </span>
                     </div>
                     <div className="flex flex-wrap gap-1.5">
                       {[
@@ -802,7 +801,7 @@ export function ResumeShortlisterWorkbench() {
                           'focus-visible:ring-2 focus-visible:ring-accent-500 active:scale-[0.97]',
                           resumesInputMode === 'files'
                             ? 'bg-[#0D253D] text-white font-semibold shadow-sm'
-                            : 'bg-canvas-recessed text-ink-secondary hover:text-ink-primary'
+                            : 'bg-canvas-recessed text-ink-secondary hover:text-ink-primary',
                         )}
                       >
                         <Upload className="w-3 h-3" />
@@ -817,7 +816,7 @@ export function ResumeShortlisterWorkbench() {
                           'focus-visible:ring-2 focus-visible:ring-accent-500 active:scale-[0.97]',
                           resumesInputMode === 'paste'
                             ? 'bg-[#0D253D] text-white font-semibold shadow-sm'
-                            : 'bg-canvas-recessed text-ink-secondary hover:text-ink-primary'
+                            : 'bg-canvas-recessed text-ink-secondary hover:text-ink-primary',
                         )}
                       >
                         <FileCode className="w-3 h-3" />
@@ -903,7 +902,7 @@ export function ResumeShortlisterWorkbench() {
                           onClick={() => {
                             setResumesText(
                               (prev) =>
-                                `${prev}\n\n--- RESUME ${parsedApplicantNames.length + 1} ---\nCandidate Name: \nCurrent Role: \nExperience: \nSkills: \n`
+                                `${prev}\n\n--- RESUME ${parsedApplicantNames.length + 1} ---\nCandidate Name: \nCurrent Role: \nExperience: \nSkills: \n`,
                             );
                             setActivePresetId('custom');
                           }}
@@ -977,7 +976,9 @@ export function ResumeShortlisterWorkbench() {
                         <Layers className="w-3.5 h-3.5 text-accent-500" />
                         <span>Rubric Archetype Presets:</span>
                       </span>
-                      <span className="text-[10px] font-mono text-accent-500 font-medium">1-Click</span>
+                      <span className="text-[10px] font-mono text-accent-500 font-medium">
+                        1-Click
+                      </span>
                     </div>
                     <div className="grid grid-cols-3 gap-1.5">
                       <button
@@ -992,8 +993,12 @@ export function ResumeShortlisterWorkbench() {
                         }}
                         className="p-1.5 rounded-lg bg-canvas-paper border border-[rgba(13,37,61,0.08)] hover:border-accent-500 text-center transition-all"
                       >
-                        <span className="text-[10px] font-semibold text-ink-primary block">Architect</span>
-                        <span className="text-[9px] font-mono text-ink-secondary">Deep Tech 70%</span>
+                        <span className="text-[10px] font-semibold text-ink-primary block">
+                          Architect
+                        </span>
+                        <span className="text-[9px] font-mono text-ink-secondary">
+                          Deep Tech 70%
+                        </span>
                       </button>
                       <button
                         type="button"
@@ -1007,7 +1012,9 @@ export function ResumeShortlisterWorkbench() {
                         }}
                         className="p-1.5 rounded-lg bg-canvas-paper border border-[rgba(13,37,61,0.08)] hover:border-accent-500 text-center transition-all"
                       >
-                        <span className="text-[10px] font-semibold text-ink-primary block">Generalist</span>
+                        <span className="text-[10px] font-semibold text-ink-primary block">
+                          Generalist
+                        </span>
                         <span className="text-[9px] font-mono text-ink-secondary">Speed 35%</span>
                       </button>
                       <button
@@ -1022,7 +1029,9 @@ export function ResumeShortlisterWorkbench() {
                         }}
                         className="p-1.5 rounded-lg bg-canvas-paper border border-[rgba(13,37,61,0.08)] hover:border-accent-500 text-center transition-all"
                       >
-                        <span className="text-[10px] font-semibold text-ink-primary block">Eng Lead</span>
+                        <span className="text-[10px] font-semibold text-ink-primary block">
+                          Eng Lead
+                        </span>
                         <span className="text-[9px] font-mono text-ink-secondary">Lead 60%</span>
                       </button>
                     </div>
@@ -1035,9 +1044,7 @@ export function ResumeShortlisterWorkbench() {
                         <Sliders className="w-3.5 h-3.5 text-accent-500" />
                         <span>Evaluation Rubric Weights</span>
                       </span>
-                      <span className="text-[10px] font-mono text-ink-secondary">
-                        Normalized
-                      </span>
+                      <span className="text-[10px] font-mono text-ink-secondary">Normalized</span>
                     </div>
 
                     <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
@@ -1138,16 +1145,26 @@ export function ResumeShortlisterWorkbench() {
                     {/* Dynamic 3-Tier Breakdown Chips */}
                     <div className="grid grid-cols-3 gap-1.5 pt-0.5 text-center font-mono text-[10px]">
                       <div className="p-2 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-500/20">
-                        <span className="block font-bold tabular-nums">{tierCategorized.tier1.length} Recommended</span>
+                        <span className="block font-bold tabular-nums">
+                          {tierCategorized.tier1.length} Recommended
+                        </span>
                         <span className="text-[9px] opacity-75">&ge; {minThreshold}%</span>
                       </div>
                       <div className="p-2 rounded-lg bg-amber-50 text-amber-800 border border-amber-500/20">
-                        <span className="block font-bold tabular-nums">{tierCategorized.tier2.length} Consider</span>
-                        <span className="text-[9px] opacity-75">{Math.max(50, minThreshold - 14)}–{minThreshold - 1}%</span>
+                        <span className="block font-bold tabular-nums">
+                          {tierCategorized.tier2.length} Consider
+                        </span>
+                        <span className="text-[9px] opacity-75">
+                          {Math.max(50, minThreshold - 14)}–{minThreshold - 1}%
+                        </span>
                       </div>
                       <div className="p-2 rounded-lg bg-slate-100 text-slate-700 border border-slate-300">
-                        <span className="block font-bold tabular-nums">{tierCategorized.tier3.length} Reject</span>
-                        <span className="text-[9px] opacity-75">&lt; {Math.max(50, minThreshold - 14)}%</span>
+                        <span className="block font-bold tabular-nums">
+                          {tierCategorized.tier3.length} Reject
+                        </span>
+                        <span className="text-[9px] opacity-75">
+                          &lt; {Math.max(50, minThreshold - 14)}%
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -1177,7 +1194,11 @@ export function ResumeShortlisterWorkbench() {
             {/* Top Navigation Tabs & Quick Export Tools */}
             <div className="px-5 py-3 bg-canvas-paper border-b border-[rgba(13,37,61,0.08)] flex items-center justify-between gap-3 flex-wrap">
               {/* Result View Switchers */}
-              <div role="tablist" aria-label="Candidate Result Views" className="flex items-center gap-1.5 flex-wrap">
+              <div
+                role="tablist"
+                aria-label="Candidate Result Views"
+                className="flex items-center gap-1.5 flex-wrap"
+              >
                 <button
                   type="button"
                   role="tab"
@@ -1191,7 +1212,7 @@ export function ResumeShortlisterWorkbench() {
                     'focus-visible:ring-2 focus-visible:ring-accent-500 active:scale-[0.97]',
                     activeTab === 'leaderboard'
                       ? 'bg-[#0D253D] text-white shadow-sm ring-1 ring-[#0D253D]'
-                      : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed'
+                      : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed',
                   )}
                 >
                   <UserCheck className="w-3.5 h-3.5 text-accent-500" />
@@ -1211,7 +1232,7 @@ export function ResumeShortlisterWorkbench() {
                     'focus-visible:ring-2 focus-visible:ring-accent-500 active:scale-[0.97]',
                     activeTab === 'matrix'
                       ? 'bg-[#0D253D] text-white shadow-sm ring-1 ring-[#0D253D]'
-                      : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed'
+                      : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed',
                   )}
                 >
                   <BarChart3 className="w-3.5 h-3.5 text-accent-secondary" />
@@ -1224,14 +1245,16 @@ export function ResumeShortlisterWorkbench() {
                   aria-selected={activeTab === 'inspector'}
                   onClick={() => {
                     setActiveTab('inspector');
-                    setLiveAnnouncement(`Switched to Candidate Scorecard inspector view for ${selectedCandidate?.name || 'candidate'}.`);
+                    setLiveAnnouncement(
+                      `Switched to Candidate Scorecard inspector view for ${selectedCandidate?.name || 'candidate'}.`,
+                    );
                   }}
                   className={cn(
                     'px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 outline-none',
                     'focus-visible:ring-2 focus-visible:ring-accent-500 active:scale-[0.97]',
                     activeTab === 'inspector'
                       ? 'bg-[#0D253D] text-white shadow-sm ring-1 ring-[#0D253D]'
-                      : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed'
+                      : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed',
                   )}
                 >
                   <Search className="w-3.5 h-3.5 text-accent-500" />
@@ -1251,7 +1274,7 @@ export function ResumeShortlisterWorkbench() {
                     'focus-visible:ring-2 focus-visible:ring-accent-500 active:scale-[0.97]',
                     activeTab === 'json'
                       ? 'bg-[#0D253D] text-white shadow-sm ring-1 ring-[#0D253D]'
-                      : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed'
+                      : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed',
                   )}
                 >
                   <Code2 className="w-3.5 h-3.5" />
@@ -1268,7 +1291,9 @@ export function ResumeShortlisterWorkbench() {
                   title="Export Ranked Batch as CSV"
                 >
                   <FileSpreadsheet className="w-3.5 h-3.5 text-accent-secondary" />
-                  <span className="text-[11px] font-medium">{copiedFormat === 'csv' ? 'Exported!' : 'CSV'}</span>
+                  <span className="text-[11px] font-medium">
+                    {copiedFormat === 'csv' ? 'Exported!' : 'CSV'}
+                  </span>
                 </button>
 
                 <button
@@ -1278,7 +1303,9 @@ export function ResumeShortlisterWorkbench() {
                   title="Download Markdown Executive Brief"
                 >
                   <Download className="w-3.5 h-3.5 text-accent-500" />
-                  <span className="text-[11px] font-medium">{copiedFormat === 'md' ? 'Exported!' : 'Markdown'}</span>
+                  <span className="text-[11px] font-medium">
+                    {copiedFormat === 'md' ? 'Exported!' : 'Markdown'}
+                  </span>
                 </button>
 
                 <button
@@ -1311,14 +1338,16 @@ export function ResumeShortlisterWorkbench() {
                       type="button"
                       onClick={() => {
                         setSelectedCandidateId(cand.id);
-                        setLiveAnnouncement(`Selected candidate #${idx + 1} ${cand.name} (${cand.compositeScore}%).`);
+                        setLiveAnnouncement(
+                          `Selected candidate #${idx + 1} ${cand.name} (${cand.compositeScore}%).`,
+                        );
                       }}
                       className={cn(
                         'px-3 py-1 rounded-lg text-xs font-medium transition-all whitespace-nowrap flex items-center gap-2 outline-none',
                         'focus-visible:ring-2 focus-visible:ring-accent-500 active:scale-[0.97]',
                         isSelected
                           ? 'bg-[#0D253D] text-white shadow-sm font-semibold ring-1 ring-[#0D253D]'
-                          : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed border border-[rgba(13,37,61,0.08)]'
+                          : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed border border-[rgba(13,37,61,0.08)]',
                       )}
                     >
                       <span className="font-mono text-[10px] opacity-75">#{idx + 1}</span>
@@ -1326,9 +1355,7 @@ export function ResumeShortlisterWorkbench() {
                       <span
                         className={cn(
                           'font-mono text-[10px] font-bold px-1.5 py-0.2 rounded tabular-nums',
-                          isSelected
-                            ? 'bg-white/20 text-white'
-                            : tierInfo.badgeBg
+                          isSelected ? 'bg-white/20 text-white' : tierInfo.badgeBg,
                         )}
                       >
                         {cand.compositeScore}%
@@ -1351,9 +1378,7 @@ export function ResumeShortlisterWorkbench() {
                     </span>
                     <span className="tabular-nums font-mono">BATCH: {result.batchId}</span>
                   </div>
-                  <p className="text-ink-body leading-relaxed">
-                    {result.summaryOverview}
-                  </p>
+                  <p className="text-ink-body leading-relaxed">{result.summaryOverview}</p>
                 </div>
               )}
 
@@ -1374,7 +1399,7 @@ export function ResumeShortlisterWorkbench() {
                           'p-5 rounded-2xl border transition-all duration-200 space-y-4 group bg-canvas-paper',
                           isSelected
                             ? 'border-accent-500 shadow-md ring-1 ring-accent-500/30'
-                            : 'border-[rgba(13,37,61,0.1)] hover:border-accent-500/50 hover:shadow-sm'
+                            : 'border-[rgba(13,37,61,0.1)] hover:border-accent-500/50 hover:shadow-sm',
                         )}
                       >
                         {/* Row Header */}
@@ -1386,7 +1411,7 @@ export function ResumeShortlisterWorkbench() {
                                 'font-mono text-xs font-bold w-6 h-6 rounded-lg flex items-center justify-center shrink-0 mt-0.5',
                                 idx === 0
                                   ? 'bg-[#0D253D] text-white'
-                                  : 'bg-canvas-recessed text-ink-secondary'
+                                  : 'bg-canvas-recessed text-ink-secondary',
                               )}
                             >
                               #{idx + 1}
@@ -1400,7 +1425,7 @@ export function ResumeShortlisterWorkbench() {
                                 <span
                                   className={cn(
                                     'font-mono text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider border',
-                                    tierInfo.badgeBg
+                                    tierInfo.badgeBg,
                                   )}
                                 >
                                   {tierInfo.label}
@@ -1418,7 +1443,12 @@ export function ResumeShortlisterWorkbench() {
                           {/* Score & Action Hub */}
                           <div className="flex items-center gap-3 self-start sm:self-center shrink-0">
                             <div className="text-right">
-                              <span className={cn('font-mono text-2xl font-bold tabular-nums block leading-tight', tierInfo.scoreColor)}>
+                              <span
+                                className={cn(
+                                  'font-mono text-2xl font-bold tabular-nums block leading-tight',
+                                  tierInfo.scoreColor,
+                                )}
+                              >
                                 {candidate.compositeScore}
                               </span>
                               <span className="font-mono text-[9px] text-ink-secondary uppercase">
@@ -1431,7 +1461,9 @@ export function ResumeShortlisterWorkbench() {
                                 type="button"
                                 onClick={(e) => toggleCardExpansion(candidate.id, e)}
                                 className="p-1.5 rounded-lg bg-canvas-base border border-[rgba(13,37,61,0.1)] text-ink-secondary hover:text-ink-primary hover:border-accent-500 transition-all text-xs outline-none focus-visible:ring-2 focus-visible:ring-accent-500 active:scale-[0.97]"
-                                title={isExpanded ? 'Collapse breakdown' : 'Quick breakdown preview'}
+                                title={
+                                  isExpanded ? 'Collapse breakdown' : 'Quick breakdown preview'
+                                }
                               >
                                 {isExpanded ? (
                                   <ChevronDown className="w-4 h-4 text-accent-500" />
@@ -1474,8 +1506,8 @@ export function ResumeShortlisterWorkbench() {
                                   vector.matchScore >= 90
                                     ? 'text-emerald-700'
                                     : vector.matchScore >= 75
-                                    ? 'text-accent-500'
-                                    : 'text-slate-600'
+                                      ? 'text-accent-500'
+                                      : 'text-slate-600',
                                 )}
                               >
                                 {vector.matchScore}%
@@ -1511,7 +1543,10 @@ export function ResumeShortlisterWorkbench() {
                                   <span>Recommended Interview Probe</span>
                                 </span>
                                 <p className="text-[11px] text-ink-body leading-snug italic">
-                                  &ldquo;{candidate.interviewQuestions[0] || 'Discuss architectural scaling strategy under peak load.'}&rdquo;
+                                  &ldquo;
+                                  {candidate.interviewQuestions[0] ||
+                                    'Discuss architectural scaling strategy under peak load.'}
+                                  &rdquo;
                                 </p>
                               </div>
                             </div>
@@ -1534,7 +1569,8 @@ export function ResumeShortlisterWorkbench() {
                         Multi-Candidate Grouped Comparative Matrix
                       </h4>
                       <p className="text-xs text-ink-secondary">
-                        Side-by-side competency dimension analysis with calibrated color thresholds and direct citations.
+                        Side-by-side competency dimension analysis with calibrated color thresholds
+                        and direct citations.
                       </p>
                     </div>
                     <div className="flex items-center gap-2">
@@ -1565,9 +1601,12 @@ export function ResumeShortlisterWorkbench() {
                     {matrixSkillLabels.map((skillLabel, sIdx) => {
                       // Calculate competency average
                       const scores = (result?.candidates || []).map(
-                        (c) => c.skillVectors.find((v) => v.label === skillLabel)?.matchScore || 0
+                        (c) => c.skillVectors.find((v) => v.label === skillLabel)?.matchScore || 0,
                       );
-                      const avgScore = scores.length > 0 ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : 0;
+                      const avgScore =
+                        scores.length > 0
+                          ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length)
+                          : 0;
 
                       return (
                         <div
@@ -1595,14 +1634,24 @@ export function ResumeShortlisterWorkbench() {
                               const tierInfo = getCandidateTier(cand.compositeScore, minThreshold);
 
                               return (
-                                <div key={cand.id} className="space-y-1.5 p-3 rounded-xl bg-canvas-base/60 border border-[rgba(13,37,61,0.05)]">
+                                <div
+                                  key={cand.id}
+                                  className="space-y-1.5 p-3 rounded-xl bg-canvas-base/60 border border-[rgba(13,37,61,0.05)]"
+                                >
                                   <div className="flex items-center justify-between text-xs">
                                     <div className="flex items-center gap-2">
-                                      <span className="font-mono text-[10px] text-ink-secondary">#{cIdx + 1}</span>
+                                      <span className="font-mono text-[10px] text-ink-secondary">
+                                        #{cIdx + 1}
+                                      </span>
                                       <span className="font-semibold text-ink-primary">
                                         {cand.name}
                                       </span>
-                                      <span className={cn('text-[9px] font-mono px-1.5 py-0.2 rounded font-bold border', tierInfo.badgeBg)}>
+                                      <span
+                                        className={cn(
+                                          'text-[9px] font-mono px-1.5 py-0.2 rounded font-bold border',
+                                          tierInfo.badgeBg,
+                                        )}
+                                      >
                                         {tierInfo.shortLabel}
                                       </span>
                                     </div>
@@ -1612,8 +1661,8 @@ export function ResumeShortlisterWorkbench() {
                                         score >= 90
                                           ? 'text-emerald-700'
                                           : score >= 75
-                                          ? 'text-accent-500'
-                                          : 'text-slate-600'
+                                            ? 'text-accent-500'
+                                            : 'text-slate-600',
                                       )}
                                     >
                                       {score}%
@@ -1628,8 +1677,8 @@ export function ResumeShortlisterWorkbench() {
                                         score >= 90
                                           ? 'bg-emerald-600'
                                           : score >= 75
-                                          ? 'bg-accent-500'
-                                          : 'bg-slate-400'
+                                            ? 'bg-accent-500'
+                                            : 'bg-slate-400',
                                       )}
                                       style={{ width: `${score}%` }}
                                     />
@@ -1676,7 +1725,7 @@ export function ResumeShortlisterWorkbench() {
                             'focus-visible:ring-2 focus-visible:ring-accent-500 active:scale-[0.97]',
                             isSelected
                               ? 'bg-[#0D253D] text-white font-semibold shadow-sm ring-1 ring-[#0D253D]'
-                              : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed border border-[rgba(13,37,61,0.08)]'
+                              : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed border border-[rgba(13,37,61,0.08)]',
                           )}
                         >
                           <span className="font-mono text-[10px] opacity-75">#{idx + 1}</span>
@@ -1684,7 +1733,7 @@ export function ResumeShortlisterWorkbench() {
                           <span
                             className={cn(
                               'font-mono text-[10px] px-1.5 py-0.2 rounded font-bold tabular-nums',
-                              isSelected ? 'bg-white/20 text-white' : tierInfo.badgeBg
+                              isSelected ? 'bg-white/20 text-white' : tierInfo.badgeBg,
                             )}
                           >
                             {cand.compositeScore}%
@@ -1696,13 +1745,21 @@ export function ResumeShortlisterWorkbench() {
 
                   {/* Candidate Hero Card Banner */}
                   {(() => {
-                    const tierInfo = getCandidateTier(selectedCandidate.compositeScore, minThreshold);
+                    const tierInfo = getCandidateTier(
+                      selectedCandidate.compositeScore,
+                      minThreshold,
+                    );
                     return (
                       <div className="p-6 rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] shadow-sm space-y-4">
                         <div className="flex items-start justify-between gap-4 flex-wrap">
                           <div>
                             <div className="flex items-center gap-2 mb-2 flex-wrap">
-                              <span className={cn('font-mono text-[10px] font-bold px-2.5 py-0.5 rounded border uppercase tracking-wider', tierInfo.badgeBg)}>
+                              <span
+                                className={cn(
+                                  'font-mono text-[10px] font-bold px-2.5 py-0.5 rounded border uppercase tracking-wider',
+                                  tierInfo.badgeBg,
+                                )}
+                              >
                                 {tierInfo.label}
                               </span>
                               <span className="font-mono text-[10px] font-semibold px-2 py-0.5 rounded bg-canvas-recessed text-ink-secondary">
@@ -1721,7 +1778,12 @@ export function ResumeShortlisterWorkbench() {
                           </div>
 
                           <div className="text-right">
-                            <span className={cn('font-mono text-4xl md:text-5xl font-bold tabular-nums block leading-tight', tierInfo.scoreColor)}>
+                            <span
+                              className={cn(
+                                'font-mono text-4xl md:text-5xl font-bold tabular-nums block leading-tight',
+                                tierInfo.scoreColor,
+                              )}
+                            >
                               {selectedCandidate.compositeScore}
                             </span>
                             <span className="font-mono text-[10px] text-ink-secondary uppercase block">
@@ -1751,9 +1813,14 @@ export function ResumeShortlisterWorkbench() {
                       </div>
                       <div className="space-y-2.5 text-xs text-ink-body">
                         {selectedCandidate.keyStrengths.map((str, sIdx) => (
-                          <div key={sIdx} className="p-2.5 rounded-xl bg-emerald-50/40 border border-emerald-500/15 flex items-start gap-2">
+                          <div
+                            key={sIdx}
+                            className="p-2.5 rounded-xl bg-emerald-50/40 border border-emerald-500/15 flex items-start gap-2"
+                          >
                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 mt-1.5 shrink-0" />
-                            <span className="leading-relaxed font-medium text-ink-primary">{str}</span>
+                            <span className="leading-relaxed font-medium text-ink-primary">
+                              {str}
+                            </span>
                           </div>
                         ))}
                       </div>
@@ -1769,11 +1836,16 @@ export function ResumeShortlisterWorkbench() {
                         {selectedCandidate.missingRequirements.length === 0 ? (
                           <div className="p-3 rounded-xl bg-canvas-base border border-[rgba(13,37,61,0.06)] text-[11px] text-ink-secondary italic flex items-center gap-2">
                             <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                            <span>No critical requirements missing against the job description.</span>
+                            <span>
+                              No critical requirements missing against the job description.
+                            </span>
                           </div>
                         ) : (
                           selectedCandidate.missingRequirements.map((gap, gIdx) => (
-                            <div key={gIdx} className="p-2.5 rounded-xl bg-accent-50/40 border border-accent-500/15 flex items-start gap-2">
+                            <div
+                              key={gIdx}
+                              className="p-2.5 rounded-xl bg-accent-50/40 border border-accent-500/15 flex items-start gap-2"
+                            >
                               <span className="w-1.5 h-1.5 rounded-full bg-accent-500 mt-1.5 shrink-0" />
                               <span className="leading-relaxed text-ink-primary">{gap}</span>
                             </div>
@@ -1787,7 +1859,10 @@ export function ResumeShortlisterWorkbench() {
                               <span>Red Flag Verification Check:</span>
                             </span>
                             {selectedCandidate.potentialRedFlags.map((rf, rIdx) => (
-                              <p key={rIdx} className="text-[11px] text-ink-secondary leading-relaxed bg-canvas-base p-2.5 rounded-lg border border-[rgba(13,37,61,0.06)]">
+                              <p
+                                key={rIdx}
+                                className="text-[11px] text-ink-secondary leading-relaxed bg-canvas-base p-2.5 rounded-lg border border-[rgba(13,37,61,0.06)]"
+                              >
                                 {rf}
                               </p>
                             ))}
@@ -1802,7 +1877,10 @@ export function ResumeShortlisterWorkbench() {
                     <div className="flex items-center justify-between border-b border-[rgba(13,37,61,0.06)] pb-2.5 flex-wrap gap-2">
                       <div className="flex items-center gap-2 text-xs font-semibold text-ink-primary">
                         <HelpCircle className="w-4 h-4 text-accent-500 shrink-0" />
-                        <span>Calibrated Technical Probing Questions ({selectedCandidate.interviewQuestions.length})</span>
+                        <span>
+                          Calibrated Technical Probing Questions (
+                          {selectedCandidate.interviewQuestions.length})
+                        </span>
                       </div>
                       <span className="text-[10px] font-mono text-ink-secondary">
                         Tailored to candidate gaps & architectural claims
@@ -1821,7 +1899,9 @@ export function ResumeShortlisterWorkbench() {
                               <span className="font-mono text-accent-500 font-bold text-sm shrink-0 mt-0.5">
                                 0{qIdx + 1}.
                               </span>
-                              <p className="leading-relaxed font-medium text-ink-primary pt-0.5">{q}</p>
+                              <p className="leading-relaxed font-medium text-ink-primary pt-0.5">
+                                {q}
+                              </p>
                             </div>
 
                             <button

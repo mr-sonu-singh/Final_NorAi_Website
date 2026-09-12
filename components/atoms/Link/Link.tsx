@@ -30,7 +30,11 @@ export function Link({
   const isWrapper = React.isValidElement(children) && typeof children.type !== 'string';
   const effectiveVariant = isWrapper ? 'unstyled' : variant;
 
-  const combinedClasses = cn('font-sans cursor-pointer', variantClasses[effectiveVariant], className);
+  const combinedClasses = cn(
+    'font-sans cursor-pointer',
+    variantClasses[effectiveVariant],
+    className,
+  );
 
   const linkContent = (
     <>

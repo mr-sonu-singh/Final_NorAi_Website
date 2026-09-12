@@ -5,25 +5,26 @@ import dynamic from 'next/dynamic';
 import { cn } from '@/lib/utils';
 import { ProductData } from '@/lib/products';
 import { Link } from '@/components/atoms/Link';
-import {
-  Sparkles,
-  BookOpen,
-  ArrowRight,
-  CheckCircle2,
-  Lock,
-  Layers,
-} from 'lucide-react';
+import { Sparkles, BookOpen, ArrowRight, CheckCircle2, Lock, Layers } from 'lucide-react';
 
 import { motion } from 'motion/react';
 
 const WorkbenchSkeleton = () => (
-  <div className="w-full min-h-[640px] rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] p-12 flex flex-col items-center justify-center space-y-4 shadow-sm" aria-busy="true" aria-live="polite">
+  <div
+    className="w-full min-h-[640px] rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.12)] p-12 flex flex-col items-center justify-center space-y-4 shadow-sm"
+    aria-busy="true"
+    aria-live="polite"
+  >
     <div className="w-12 h-12 rounded-xl bg-accent-50 text-accent-500 flex items-center justify-center shadow-xs">
       <span className="w-5 h-5 border-2 border-accent-500 border-t-transparent rounded-full animate-spin" />
     </div>
     <div className="text-center space-y-1">
-      <p className="font-mono text-xs font-semibold text-ink-primary">Initializing Neural Workbench</p>
-      <p className="font-mono text-[11px] text-ink-secondary">Loading sandbox runtime & typed schema contracts...</p>
+      <p className="font-mono text-xs font-semibold text-ink-primary">
+        Initializing Neural Workbench
+      </p>
+      <p className="font-mono text-[11px] text-ink-secondary">
+        Loading sandbox runtime & typed schema contracts...
+      </p>
     </div>
   </div>
 );
@@ -31,33 +32,33 @@ const WorkbenchSkeleton = () => (
 const ResumeShortlisterWorkbench = dynamic(
   () =>
     import('@/components/organisms/tools/ResumeShortlisterWorkbench').then(
-      (mod) => mod.ResumeShortlisterWorkbench
+      (mod) => mod.ResumeShortlisterWorkbench,
     ),
-  { loading: () => <WorkbenchSkeleton />, ssr: false }
+  { loading: () => <WorkbenchSkeleton />, ssr: false },
 );
 
 const CourseNoteTakerWorkbench = dynamic(
   () =>
     import('@/components/organisms/tools/CourseNoteTakerWorkbench').then(
-      (mod) => mod.CourseNoteTakerWorkbench
+      (mod) => mod.CourseNoteTakerWorkbench,
     ),
-  { loading: () => <WorkbenchSkeleton />, ssr: false }
+  { loading: () => <WorkbenchSkeleton />, ssr: false },
 );
 
 const ChatDigestWorkbench = dynamic(
   () =>
     import('@/components/organisms/tools/ChatDigestWorkbench').then(
-      (mod) => mod.ChatDigestWorkbench
+      (mod) => mod.ChatDigestWorkbench,
     ),
-  { loading: () => <WorkbenchSkeleton />, ssr: false }
+  { loading: () => <WorkbenchSkeleton />, ssr: false },
 );
 
 const SmartDainikNewsWorkbench = dynamic(
   () =>
     import('@/components/organisms/tools/SmartDainikNewsWorkbench').then(
-      (mod) => mod.SmartDainikNewsWorkbench
+      (mod) => mod.SmartDainikNewsWorkbench,
     ),
-  { loading: () => <WorkbenchSkeleton />, ssr: false }
+  { loading: () => <WorkbenchSkeleton />, ssr: false },
 );
 
 interface ProductInteractiveViewProps {
@@ -65,26 +66,15 @@ interface ProductInteractiveViewProps {
   slug: string;
 }
 
-export function ProductInteractiveView({
-  product,
-  slug,
-}: ProductInteractiveViewProps) {
-  const isResumeShortlister =
-    slug === 'resume-shortlister' || slug === 'ai-resume-shortlister';
-  const isCourseNoteTaker =
-    slug === 'course-note-taker' || slug === 'ai-course-note-taker';
-  const isChatDigest =
-    slug === 'chat-digest' || slug === 'community-chat-digest';
-  const isSmartDainikNews =
-    slug === 'smart-dainik-news' || slug === 'regional-dainik-news';
-  const isToolLive =
-    isResumeShortlister ||
-    isCourseNoteTaker ||
-    isChatDigest ||
-    isSmartDainikNews;
+export function ProductInteractiveView({ product, slug }: ProductInteractiveViewProps) {
+  const isResumeShortlister = slug === 'resume-shortlister' || slug === 'ai-resume-shortlister';
+  const isCourseNoteTaker = slug === 'course-note-taker' || slug === 'ai-course-note-taker';
+  const isChatDigest = slug === 'chat-digest' || slug === 'community-chat-digest';
+  const isSmartDainikNews = slug === 'smart-dainik-news' || slug === 'regional-dainik-news';
+  const isToolLive = isResumeShortlister || isCourseNoteTaker || isChatDigest || isSmartDainikNews;
 
   const [viewMode, setViewMode] = useState<'workbench' | 'specs'>(
-    isToolLive ? 'workbench' : 'specs'
+    isToolLive ? 'workbench' : 'specs',
   );
 
   return (
@@ -108,7 +98,7 @@ export function ProductInteractiveView({
               'focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-page',
               viewMode === 'workbench'
                 ? 'text-white font-bold'
-                : 'text-ink-secondary hover:text-ink-primary'
+                : 'text-ink-secondary hover:text-ink-primary',
             )}
           >
             {viewMode === 'workbench' && (
@@ -138,7 +128,7 @@ export function ProductInteractiveView({
               'focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-page',
               viewMode === 'specs'
                 ? 'text-white font-bold'
-                : 'text-ink-secondary hover:text-ink-primary'
+                : 'text-ink-secondary hover:text-ink-primary',
             )}
           >
             {viewMode === 'specs' && (
@@ -186,14 +176,17 @@ export function ProductInteractiveView({
                   {product.title} Workbench
                 </h3>
                 <p className="text-sm md:text-base text-ink-body max-w-xl mx-auto leading-relaxed">
-                  We are rolling out NorAI tools sequentially to ensure zero-hallucination guarantees and sub-second SLAs.
+                  We are rolling out NorAI tools sequentially to ensure zero-hallucination
+                  guarantees and sub-second SLAs.
                 </p>
               </div>
 
               <div className="p-4 rounded-xl bg-canvas-recessed/60 border border-[rgba(13,37,61,0.08)] max-w-md mx-auto text-xs text-left font-mono space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-ink-secondary">Engine Target:</span>
-                  <span className="text-ink-primary font-semibold">Gemini 3.5 Lite High-Context</span>
+                  <span className="text-ink-primary font-semibold">
+                    Gemini 3.5 Lite High-Context
+                  </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-ink-secondary">Data Policy:</span>
@@ -259,7 +252,10 @@ export function ProductInteractiveView({
                 </h3>
                 <div className="space-y-4">
                   {product.solution.map((sol, sIdx) => (
-                    <div key={sIdx} className="flex items-start gap-3 text-base text-ink-body leading-relaxed">
+                    <div
+                      key={sIdx}
+                      className="flex items-start gap-3 text-base text-ink-body leading-relaxed"
+                    >
                       <CheckCircle2 className="w-5 h-5 text-accent-secondary shrink-0 mt-0.5" />
                       <span>{sol}</span>
                     </div>
@@ -277,11 +273,15 @@ export function ProductInteractiveView({
               <div className="space-y-3 font-sans text-xs">
                 <div className="flex items-center justify-between p-3 rounded-lg bg-canvas-recessed/60">
                   <span className="text-ink-secondary">Inference Model</span>
-                  <span className="font-mono text-ink-primary font-medium">Gemini 3.5 Lite (1M ctx)</span>
+                  <span className="font-mono text-ink-primary font-medium">
+                    Gemini 3.5 Lite (1M ctx)
+                  </span>
                 </div>
                 <div className="flex items-center justify-between p-3 rounded-lg bg-canvas-recessed/60">
                   <span className="text-ink-secondary">Processing Mode</span>
-                  <span className="font-mono text-ink-primary font-medium">Ephemeral In-Memory</span>
+                  <span className="font-mono text-ink-primary font-medium">
+                    Ephemeral In-Memory
+                  </span>
                 </div>
                 <div className="flex items-center justify-between p-3 rounded-lg bg-canvas-recessed/60">
                   <span className="text-ink-secondary">Integration</span>
@@ -289,7 +289,9 @@ export function ProductInteractiveView({
                 </div>
                 <div className="flex items-center justify-between p-3 rounded-lg bg-canvas-recessed/60">
                   <span className="text-ink-secondary">Data Retention</span>
-                  <span className="font-mono text-emerald-700 font-medium">Zero Permanent Storage</span>
+                  <span className="font-mono text-emerald-700 font-medium">
+                    Zero Permanent Storage
+                  </span>
                 </div>
               </div>
 

@@ -5,16 +5,7 @@ import { Container } from '@/components/foundation/Container';
 import { Reveal } from '@/components/foundation/AnimatedSection';
 import { Button } from '@/components/atoms/Button';
 import { Link } from '@/components/atoms/Link';
-import {
-  ArrowRight,
-  Check,
-  Copy,
-  ShieldCheck,
-  Cpu,
-  Lock,
-  Server,
-  Terminal,
-} from 'lucide-react';
+import { ArrowRight, Check, Copy, ShieldCheck, Cpu, Lock, Server, Terminal } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 type CodeViewFormat = 'sdk' | 'zod' | 'jsonrpc';
@@ -224,7 +215,8 @@ const DEPLOYMENT_TOPOLOGIES = [
     id: 'vpc',
     title: 'Customer Private VPC',
     badge: 'Zero Public Egress',
-    description: 'Model inference operates entirely within your AWS, GCP, or Azure perimeter via dedicated PrivateLink peering. No public gateway.',
+    description:
+      'Model inference operates entirely within your AWS, GCP, or Azure perimeter via dedicated PrivateLink peering. No public gateway.',
     specs: [
       { label: 'Network Peering', val: 'AWS PrivateLink / Azure ExpressRoute' },
       { label: 'Inference SLA', val: '< 250ms P95 Cold-Start' },
@@ -236,7 +228,8 @@ const DEPLOYMENT_TOPOLOGIES = [
     id: 'onprem',
     title: 'Air-Gapped Bare Metal',
     badge: 'FIPS 140-2 Compliant',
-    description: 'Containerized Kubernetes release deployed directly on physical on-premises servers. Completely severed from external telemetry.',
+    description:
+      'Containerized Kubernetes release deployed directly on physical on-premises servers. Completely severed from external telemetry.',
     specs: [
       { label: 'Runtime Target', val: 'Air-gapped Kubernetes / Docker' },
       { label: 'Hardware Spec', val: 'NVIDIA H100 / A100 / L40S' },
@@ -248,7 +241,8 @@ const DEPLOYMENT_TOPOLOGIES = [
     id: 'dedicated',
     title: 'Dedicated Isolated Tenant',
     badge: 'Instant Provisioning',
-    description: 'Single-tenant database and dedicated vLLM GPU nodes managed by NorAI with custom token rate limits and 99.99% uptime SLA.',
+    description:
+      'Single-tenant database and dedicated vLLM GPU nodes managed by NorAI with custom token rate limits and 99.99% uptime SLA.',
     specs: [
       { label: 'Provisioning Speed', val: '< 48 Hours to Production' },
       { label: 'Concurrency SLA', val: 'Up to 50,000 req/min' },
@@ -304,7 +298,9 @@ export function EnterpriseMcpDiptych() {
             </h2>
 
             <p className="text-base sm:text-lg text-text-secondary leading-relaxed font-sans max-w-2xl text-pretty">
-              Deploy air-gapped GPU clusters directly inside your private security perimeter with zero network egress, or wire strictly typed Model Context Protocol (MCP) endpoints into Claude, Cursor, and autonomous agent loops.
+              Deploy air-gapped GPU clusters directly inside your private security perimeter with
+              zero network egress, or wire strictly typed Model Context Protocol (MCP) endpoints
+              into Claude, Cursor, and autonomous agent loops.
             </p>
           </div>
 
@@ -342,7 +338,9 @@ export function EnterpriseMcpDiptych() {
                 <Server className="w-3.5 h-3.5 text-[#956400]" />
                 <span>NETWORKING</span>
               </div>
-              <p className="text-lg sm:text-xl font-mono font-bold text-text-primary">PrivateLink</p>
+              <p className="text-lg sm:text-xl font-mono font-bold text-text-primary">
+                PrivateLink
+              </p>
               <p className="text-[11px] text-text-secondary">Zero public IP allocation</p>
             </div>
           </div>
@@ -363,12 +361,16 @@ export function EnterpriseMcpDiptych() {
               <div className="p-4 bg-surface-panel border-b border-border-subtle flex flex-col md:flex-row md:items-center justify-between gap-3">
                 <div className="space-y-0.5">
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-xs font-semibold text-text-primary">MCP Tool Registry</span>
+                    <span className="font-mono text-xs font-semibold text-text-primary">
+                      MCP Tool Registry
+                    </span>
                     <span className="px-2.5 py-0.5 rounded-full bg-surface-panel-subtle text-text-secondary border border-border-subtle text-[10px] font-mono font-medium shrink-0 whitespace-nowrap">
                       v2.4 Spec
                     </span>
                   </div>
-                  <p className="text-xs text-text-secondary">Select an agent capability to inspect schema contracts</p>
+                  <p className="text-xs text-text-secondary">
+                    Select an agent capability to inspect schema contracts
+                  </p>
                 </div>
 
                 <div className="flex items-center gap-1 bg-surface-canvas p-1 rounded-lg border border-border-subtle flex-wrap">
@@ -381,7 +383,7 @@ export function EnterpriseMcpDiptych() {
                         'px-2.5 py-1 text-xs font-mono rounded-md transition-all cursor-pointer whitespace-nowrap',
                         selectedTool.id === tool.id
                           ? 'bg-white text-text-primary font-semibold shadow-xs'
-                          : 'text-text-muted hover:text-text-primary'
+                          : 'text-text-muted hover:text-text-primary',
                       )}
                     >
                       {tool.name}
@@ -428,7 +430,9 @@ export function EnterpriseMcpDiptych() {
                         onClick={() => setActiveFormat('sdk')}
                         className={cn(
                           'px-2 py-0.5 rounded transition-all cursor-pointer',
-                          activeFormat === 'sdk' ? 'bg-white/20 text-white font-semibold' : 'text-slate-400 hover:text-white'
+                          activeFormat === 'sdk'
+                            ? 'bg-white/20 text-white font-semibold'
+                            : 'text-slate-400 hover:text-white',
                         )}
                       >
                         SDK
@@ -438,7 +442,9 @@ export function EnterpriseMcpDiptych() {
                         onClick={() => setActiveFormat('zod')}
                         className={cn(
                           'px-2 py-0.5 rounded transition-all cursor-pointer',
-                          activeFormat === 'zod' ? 'bg-white/20 text-white font-semibold' : 'text-slate-400 hover:text-white'
+                          activeFormat === 'zod'
+                            ? 'bg-white/20 text-white font-semibold'
+                            : 'text-slate-400 hover:text-white',
                         )}
                       >
                         Zod Schema
@@ -448,7 +454,9 @@ export function EnterpriseMcpDiptych() {
                         onClick={() => setActiveFormat('jsonrpc')}
                         className={cn(
                           'px-2 py-0.5 rounded transition-all cursor-pointer',
-                          activeFormat === 'jsonrpc' ? 'bg-white/20 text-white font-semibold' : 'text-slate-400 hover:text-white'
+                          activeFormat === 'jsonrpc'
+                            ? 'bg-white/20 text-white font-semibold'
+                            : 'text-slate-400 hover:text-white',
                         )}
                       >
                         JSON-RPC
@@ -488,7 +496,9 @@ export function EnterpriseMcpDiptych() {
                   <div className="flex items-center gap-3">
                     <span>Protocol: MCP / stdio &amp; SSE</span>
                     <span className="hidden sm:inline">·</span>
-                    <span className="text-amber-300/90 hidden sm:inline">Validation: Zod Guaranteed</span>
+                    <span className="text-amber-300/90 hidden sm:inline">
+                      Validation: Zod Guaranteed
+                    </span>
                   </div>
                   <div className="flex items-center gap-1.5 text-slate-400">
                     <span>Claude Desktop / Cursor Ready</span>
@@ -515,7 +525,9 @@ export function EnterpriseMcpDiptych() {
                   </span>
                 </div>
                 <p className="text-xs text-text-secondary leading-relaxed">
-                  Model endpoints accept traffic exclusively through AWS PrivateLink, Azure ExpressRoute, or GCP Cloud Interconnect. No public IP is ever assigned to inference clusters.
+                  Model endpoints accept traffic exclusively through AWS PrivateLink, Azure
+                  ExpressRoute, or GCP Cloud Interconnect. No public IP is ever assigned to
+                  inference clusters.
                 </p>
                 <div className="pt-2 border-t border-border-subtle flex items-center justify-between text-[11px] font-mono text-text-muted">
                   <span>mTLS 1.3 Encryption</span>
@@ -537,7 +549,9 @@ export function EnterpriseMcpDiptych() {
                   </span>
                 </div>
                 <p className="text-xs text-text-secondary leading-relaxed">
-                  Pinned hardware instances eliminate noisy-neighbor latency jitter. Execute quantized FP8/AWQ weights fine-tuned with custom domain LoRA adapters tailored to your nomenclature.
+                  Pinned hardware instances eliminate noisy-neighbor latency jitter. Execute
+                  quantized FP8/AWQ weights fine-tuned with custom domain LoRA adapters tailored to
+                  your nomenclature.
                 </p>
                 <div className="pt-2 border-t border-border-subtle flex items-center justify-between text-[11px] font-mono text-text-muted">
                   <span>Continuous Batching</span>
@@ -559,7 +573,9 @@ export function EnterpriseMcpDiptych() {
                   </span>
                 </div>
                 <p className="text-xs text-text-secondary leading-relaxed">
-                  Payloads and intermediate vector embeddings live strictly inside volatile GPU VRAM and are purged immediately after execution. Zero data is persisted to physical disk.
+                  Payloads and intermediate vector embeddings live strictly inside volatile GPU VRAM
+                  and are purged immediately after execution. Zero data is persisted to physical
+                  disk.
                 </p>
                 <div className="pt-2 border-t border-border-subtle flex items-center justify-between text-[11px] font-mono text-text-muted">
                   <span>Cryptographic Zero-Fill</span>
@@ -606,15 +622,15 @@ export function EnterpriseMcpDiptych() {
                     </p>
                   </div>
 
-                    <div className="pt-4 border-t border-border-subtle space-y-2 text-xs font-mono">
-                      {topo.specs.map((s, idx) => (
-                        <div key={idx} className="flex items-center justify-between text-[11px]">
-                          <span className="text-text-muted">{s.label}:</span>
-                          <span className="text-text-primary font-medium">{s.val}</span>
-                        </div>
-                      ))}
-                    </div>
+                  <div className="pt-4 border-t border-border-subtle space-y-2 text-xs font-mono">
+                    {topo.specs.map((s, idx) => (
+                      <div key={idx} className="flex items-center justify-between text-[11px]">
+                        <span className="text-text-muted">{s.label}:</span>
+                        <span className="text-text-primary font-medium">{s.val}</span>
+                      </div>
+                    ))}
                   </div>
+                </div>
               ))}
             </div>
           </div>
@@ -633,7 +649,8 @@ export function EnterpriseMcpDiptych() {
                 Scope your private enclave architecture.
               </h4>
               <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
-                Schedule a 30-minute technical evaluation with a Principal Infrastructure Architect. We benchmark your latency requirements, VPC security perimeter, and data volume.
+                Schedule a 30-minute technical evaluation with a Principal Infrastructure Architect.
+                We benchmark your latency requirements, VPC security perimeter, and data volume.
               </p>
             </div>
 

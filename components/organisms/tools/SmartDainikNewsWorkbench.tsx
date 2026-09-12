@@ -30,46 +30,38 @@ import {
 } from 'lucide-react';
 import { ToolShell } from './ToolShell';
 import { ApiKeyModal } from './ApiKeyModal';
-import {
-  DainikNewsResult,
-  GazetteAlertCard,
-  ByokSettings,
-} from '@/lib/tools/types';
+import { DainikNewsResult, GazetteAlertCard, ByokSettings } from '@/lib/tools/types';
 import { DAINIK_NEWS_PRESETS } from '@/lib/tools/presets';
-import {
-  extractTextFromFile,
-  estimateTokenCount,
-} from '@/lib/tools/client-parser';
+import { extractTextFromFile, estimateTokenCount } from '@/lib/tools/client-parser';
 import { SmartDainikAlertCard } from './SmartDainikAlertCard';
 
 export function SmartDainikNewsWorkbench() {
   // Preset Selection
   const [activePresetId, setActivePresetId] = useState<string>(
-    DAINIK_NEWS_PRESETS[0]?.id || 'preset-uppsc-gazette'
+    DAINIK_NEWS_PRESETS[0]?.id || 'preset-uppsc-gazette',
   );
   const currentPreset =
-    DAINIK_NEWS_PRESETS.find((p) => p.id === activePresetId) ||
-    DAINIK_NEWS_PRESETS[0];
+    DAINIK_NEWS_PRESETS.find((p) => p.id === activePresetId) || DAINIK_NEWS_PRESETS[0];
 
   // Intake Segmentation Dock: 1. Region & Stream | 2. Gazette Ingestion | 3. Eligibility Matcher
   const [intakeTab, setIntakeTab] = useState<'region' | 'ingestion' | 'matcher'>('region');
 
   // Form Inputs
   const [stateOrRegion, setStateOrRegion] = useState(
-    currentPreset?.stateOrRegion || 'Uttar Pradesh, India'
+    currentPreset?.stateOrRegion || 'Uttar Pradesh, India',
   );
   const [domain, setDomain] = useState(
-    currentPreset?.domain || 'Public Engineering & Technical Services'
+    currentPreset?.domain || 'Public Engineering & Technical Services',
   );
   const [languageMode, setLanguageMode] = useState<
     'Bilingual (Hindi + English)' | 'English' | 'Hindi'
   >(currentPreset?.languageMode || 'Bilingual (Hindi + English)');
-  const [gazetteText, setGazetteText] = useState(
-    currentPreset?.sampleGazetteText || ''
-  );
+  const [gazetteText, setGazetteText] = useState(currentPreset?.sampleGazetteText || '');
 
   // Active Display Language for Instant Bilingual Switcher
-  const [displayLanguage, setDisplayLanguage] = useState<'bilingual' | 'english' | 'hindi'>('bilingual');
+  const [displayLanguage, setDisplayLanguage] = useState<'bilingual' | 'english' | 'hindi'>(
+    'bilingual',
+  );
 
   // Category Filter for Regional Gazette Feed Stream
   const [selectedCategoryFilter, setSelectedCategoryFilter] = useState<string>('ALL');
@@ -77,7 +69,9 @@ export function SmartDainikNewsWorkbench() {
   // Interactive 1-Click Eligibility Criteria Matcher State
   const [userAge, setUserAge] = useState<number>(27);
   const [userDegree, setUserDegree] = useState<string>('B.Tech / B.E. (Civil Engineering)');
-  const [userCategory, setUserCategory] = useState<'General' | 'EWS' | 'OBC' | 'SC/ST' | 'PwD'>('OBC');
+  const [userCategory, setUserCategory] = useState<'General' | 'EWS' | 'OBC' | 'SC/ST' | 'PwD'>(
+    'OBC',
+  );
   const [userDomicile, setUserDomicile] = useState<'UP Resident' | 'Other State'>('UP Resident');
 
   // File Upload State
@@ -89,7 +83,7 @@ export function SmartDainikNewsWorkbench() {
   // Processing & Results
   const [isProcessing, setIsProcessing] = useState(false);
   const [result, setResult] = useState<DainikNewsResult | null>(
-    currentPreset?.precomputedResult || null
+    currentPreset?.precomputedResult || null,
   );
   const [activeTab, setActiveTab] = useState<
     'alerts' | 'matcher' | 'matrix' | 'bilingual' | 'json'
@@ -113,9 +107,7 @@ export function SmartDainikNewsWorkbench() {
       if (storedKey) {
         setByokSettings({
           apiKey: storedKey,
-          preferredModel:
-            (storedModel as ByokSettings['preferredModel']) ||
-            'gemini-3.5-lite',
+          preferredModel: (storedModel as ByokSettings['preferredModel']) || 'gemini-3.5-lite',
         });
       }
     } catch {
@@ -128,10 +120,7 @@ export function SmartDainikNewsWorkbench() {
     try {
       if (newSettings.apiKey) {
         localStorage.setItem('norai_byok_gemini_key', newSettings.apiKey);
-        localStorage.setItem(
-          'norai_byok_gemini_model',
-          newSettings.preferredModel
-        );
+        localStorage.setItem('norai_byok_gemini_model', newSettings.preferredModel);
       } else {
         localStorage.removeItem('norai_byok_gemini_key');
         localStorage.removeItem('norai_byok_gemini_model');
@@ -244,7 +233,7 @@ export function SmartDainikNewsWorkbench() {
       if (!response.ok) {
         if (response.status === 401) {
           setErrorMessage(
-            'Live gazette analysis requires a Gemini API Key. Click "API Key" in the header to enter your key, or test with our precomputed presets instantly.'
+            'Live gazette analysis requires a Gemini API Key. Click "API Key" in the header to enter your key, or test with our precomputed presets instantly.',
           );
           setIsByokModalOpen(true);
         } else {
@@ -258,8 +247,7 @@ export function SmartDainikNewsWorkbench() {
         setResult(data.data);
       }
     } catch (err: unknown) {
-      const msg =
-        err instanceof Error ? err.message : 'Network error communicating with API.';
+      const msg = err instanceof Error ? err.message : 'Network error communicating with API.';
       setErrorMessage(msg);
     } finally {
       setIsProcessing(false);
@@ -277,7 +265,7 @@ export function SmartDainikNewsWorkbench() {
     return result.alertCards.filter(
       (c) =>
         c.category === selectedCategoryFilter ||
-        (selectedCategoryFilter === 'Govt Recruitment & Jobs' && c.category === 'Govt Employment')
+        (selectedCategoryFilter === 'Govt Recruitment & Jobs' && c.category === 'Govt Employment'),
     );
   }, [result, selectedCategoryFilter]);
 
@@ -307,7 +295,7 @@ export function SmartDainikNewsWorkbench() {
     const baseMaxAge = primaryAlertCard.maxAge ?? 40;
     const relaxation =
       userDomicile === 'UP Resident'
-        ? primaryAlertCard.categoryRelaxations?.[userCategory] ?? 0
+        ? (primaryAlertCard.categoryRelaxations?.[userCategory] ?? 0)
         : 0;
     const maxPermissibleAge = baseMaxAge + relaxation;
 
@@ -318,7 +306,7 @@ export function SmartDainikNewsWorkbench() {
       requiredDegs.some(
         (deg) =>
           deg.toLowerCase().includes(userDegree.toLowerCase().slice(0, 7)) ||
-          userDegree.toLowerCase().includes(deg.toLowerCase().slice(0, 7))
+          userDegree.toLowerCase().includes(deg.toLowerCase().slice(0, 7)),
       );
 
     const isAgeValid = userAge >= minAge && userAge <= maxPermissibleAge;
@@ -330,13 +318,15 @@ export function SmartDainikNewsWorkbench() {
     if (primaryAlertCard.feeStructure) {
       if (userCategory === 'SC/ST') {
         fee = primaryAlertCard.feeStructure['SC / ST'] || '₹105';
-        hindiFee = primaryAlertCard.hindiFeeStructure?.['अनुसूचित जाति / अनुसूचित जनजाति'] || '₹105';
+        hindiFee =
+          primaryAlertCard.hindiFeeStructure?.['अनुसूचित जाति / अनुसूचित जनजाति'] || '₹105';
       } else if (userCategory === 'PwD') {
         fee = primaryAlertCard.feeStructure['PwD (Specially Abled)'] || '₹25';
         hindiFee = primaryAlertCard.hindiFeeStructure?.['दिव्यांग अभ्यर्थी'] || '₹25';
       } else {
         fee = primaryAlertCard.feeStructure['General / EWS / OBC'] || '₹225';
-        hindiFee = primaryAlertCard.hindiFeeStructure?.['सामान्य / ई.डब्ल्यू.एस. / ओ.बी.सी.'] || '₹225';
+        hindiFee =
+          primaryAlertCard.hindiFeeStructure?.['सामान्य / ई.डब्ल्यू.एस. / ओ.बी.सी.'] || '₹225';
       }
     }
 
@@ -457,7 +447,10 @@ export function SmartDainikNewsWorkbench() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.setAttribute('href', url);
-    link.setAttribute('download', `gazette_digest_${result.stateOrRegion.toLowerCase().replace(/[^a-z0-9]/g, '_')}.md`);
+    link.setAttribute(
+      'download',
+      `gazette_digest_${result.stateOrRegion.toLowerCase().replace(/[^a-z0-9]/g, '_')}.md`,
+    );
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -475,12 +468,18 @@ export function SmartDainikNewsWorkbench() {
       `"${m.applicationFee.replace(/"/g, '""')}"`,
       `"${m.selectionProcess.replace(/"/g, '""')}"`,
     ]);
-    const csvContent = ['"Post / Scheme","Age Criteria","Qualification","Reservation Quotas","Fee","Selection Process"', ...rows.map((r) => r.join(','))].join('\n');
+    const csvContent = [
+      '"Post / Scheme","Age Criteria","Qualification","Reservation Quotas","Fee","Selection Process"',
+      ...rows.map((r) => r.join(',')),
+    ].join('\n');
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.setAttribute('href', url);
-    link.setAttribute('download', `eligibility_matrix_${result.stateOrRegion.toLowerCase().replace(/[^a-z0-9]/g, '_')}.csv`);
+    link.setAttribute(
+      'download',
+      `eligibility_matrix_${result.stateOrRegion.toLowerCase().replace(/[^a-z0-9]/g, '_')}.csv`,
+    );
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -521,7 +520,7 @@ export function SmartDainikNewsWorkbench() {
                       'px-3 py-1.5 rounded-lg text-xs font-medium transition-all active:scale-[0.97] whitespace-nowrap',
                       isSelected
                         ? 'bg-[#0D253D] text-white shadow-sm font-semibold'
-                        : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed border border-[rgba(13,37,61,0.08)]'
+                        : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed border border-[rgba(13,37,61,0.08)]',
                     )}
                   >
                     {preset.id === 'preset-uppsc-gazette' && '💼 UPPSC Engineers (1,450 Posts)'}
@@ -537,7 +536,7 @@ export function SmartDainikNewsWorkbench() {
                   'px-3 py-1.5 rounded-lg text-xs font-medium transition-all active:scale-[0.97] whitespace-nowrap',
                   activePresetId === 'custom'
                     ? 'bg-[#0D253D] text-white shadow-sm'
-                    : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed border border-[rgba(13,37,61,0.08)]'
+                    : 'bg-canvas-paper text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed border border-[rgba(13,37,61,0.08)]',
                 )}
               >
                 Custom Gazette / PDF
@@ -546,7 +545,11 @@ export function SmartDainikNewsWorkbench() {
           </div>
 
           <div className="text-[11px] font-mono text-ink-secondary hidden md:block">
-            Estimated Ingestion: ~<span className="tabular-nums font-semibold">{estimateTokenCount(gazetteText).toLocaleString()}</span> tokens
+            Estimated Ingestion: ~
+            <span className="tabular-nums font-semibold">
+              {estimateTokenCount(gazetteText).toLocaleString()}
+            </span>{' '}
+            tokens
           </div>
         </div>
 
@@ -581,7 +584,7 @@ export function SmartDainikNewsWorkbench() {
                     'flex-1 py-1.5 text-xs font-semibold rounded-lg transition-all active:scale-[0.98]',
                     intakeTab === 'region'
                       ? 'bg-canvas-paper text-ink-primary shadow-xs'
-                      : 'text-ink-secondary hover:text-ink-primary'
+                      : 'text-ink-secondary hover:text-ink-primary',
                   )}
                 >
                   1. Region & Stream
@@ -593,7 +596,7 @@ export function SmartDainikNewsWorkbench() {
                     'flex-1 py-1.5 text-xs font-semibold rounded-lg transition-all active:scale-[0.98]',
                     intakeTab === 'ingestion'
                       ? 'bg-canvas-paper text-ink-primary shadow-xs'
-                      : 'text-ink-secondary hover:text-ink-primary'
+                      : 'text-ink-secondary hover:text-ink-primary',
                   )}
                 >
                   2. Gazette Ingestion
@@ -605,7 +608,7 @@ export function SmartDainikNewsWorkbench() {
                     'flex-1 py-1.5 text-xs font-semibold rounded-lg transition-all active:scale-[0.98]',
                     intakeTab === 'matcher'
                       ? 'bg-canvas-paper text-ink-primary shadow-xs'
-                      : 'text-ink-secondary hover:text-ink-primary'
+                      : 'text-ink-secondary hover:text-ink-primary',
                   )}
                 >
                   3. Eligibility Checker
@@ -616,7 +619,10 @@ export function SmartDainikNewsWorkbench() {
               {intakeTab === 'region' && (
                 <div className="space-y-4 animate-fadeIn">
                   <div>
-                    <label htmlFor="state-region-input" className="text-xs font-semibold text-ink-primary block mb-1">
+                    <label
+                      htmlFor="state-region-input"
+                      className="text-xs font-semibold text-ink-primary block mb-1"
+                    >
                       State / Jurisdiction
                     </label>
                     <input
@@ -634,7 +640,10 @@ export function SmartDainikNewsWorkbench() {
 
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label htmlFor="domain-select" className="text-xs font-semibold text-ink-primary block mb-1">
+                      <label
+                        htmlFor="domain-select"
+                        className="text-xs font-semibold text-ink-primary block mb-1"
+                      >
                         Domain Stream
                       </label>
                       <select
@@ -643,14 +652,21 @@ export function SmartDainikNewsWorkbench() {
                         onChange={(e) => setDomain(e.target.value)}
                         className="w-full px-3 py-2 rounded-lg bg-canvas-base border border-[rgba(13,37,61,0.15)] text-ink-primary text-xs font-mono focus:outline-none focus:ring-2 focus:ring-accent-500"
                       >
-                        <option value="Public Engineering & Technical Services">Govt Recruitment & Jobs</option>
-                        <option value="Infrastructure & Smart City">Infrastructure & Smart City</option>
+                        <option value="Public Engineering & Technical Services">
+                          Govt Recruitment & Jobs
+                        </option>
+                        <option value="Infrastructure & Smart City">
+                          Infrastructure & Smart City
+                        </option>
                         <option value="Education & Scholarships">Education & Scholarships</option>
                         <option value="Civic Policy & Schemes">Civic Welfare & Schemes</option>
                       </select>
                     </div>
                     <div>
-                      <label htmlFor="lang-mode-select" className="text-xs font-semibold text-ink-primary block mb-1">
+                      <label
+                        htmlFor="lang-mode-select"
+                        className="text-xs font-semibold text-ink-primary block mb-1"
+                      >
                         Primary Gazette NLP
                       </label>
                       <select
@@ -658,10 +674,7 @@ export function SmartDainikNewsWorkbench() {
                         value={languageMode}
                         onChange={(e) =>
                           setLanguageMode(
-                            e.target.value as
-                              | 'Bilingual (Hindi + English)'
-                              | 'English'
-                              | 'Hindi'
+                            e.target.value as 'Bilingual (Hindi + English)' | 'English' | 'Hindi',
                           )
                         }
                         className="w-full px-3 py-2 rounded-lg bg-canvas-base border border-[rgba(13,37,61,0.15)] text-ink-primary text-xs font-mono focus:outline-none focus:ring-2 focus:ring-accent-500"
@@ -680,14 +693,36 @@ export function SmartDainikNewsWorkbench() {
                         <Building2 className="w-3.5 h-3.5 text-accent-500" />
                         <span>Official Gazette Portals:</span>
                       </span>
-                      <span className="text-[10px] font-mono text-accent-500 font-medium">1-Click Load</span>
+                      <span className="text-[10px] font-mono text-accent-500 font-medium">
+                        1-Click Load
+                      </span>
                     </div>
                     <div className="grid grid-cols-2 gap-1.5">
                       {[
-                        { name: 'UPPSC Allahabad', sub: 'Engineering & Admin', state: 'Uttar Pradesh, India', domain: 'Public Engineering & Technical Services' },
-                        { name: 'UPSIDA Industrial', sub: 'Tech Corridors & Land', state: 'Uttar Pradesh (UPSIDA)', domain: 'Infrastructure & Smart City' },
-                        { name: 'UP Social Welfare', sub: 'Scholarships & Grants', state: 'Uttar Pradesh (SWD)', domain: 'Education & Scholarships' },
-                        { name: 'SSC North Central', sub: 'Combined Grad Level', state: 'Central Govt (Northern Region)', domain: 'Public Engineering & Technical Services' },
+                        {
+                          name: 'UPPSC Allahabad',
+                          sub: 'Engineering & Admin',
+                          state: 'Uttar Pradesh, India',
+                          domain: 'Public Engineering & Technical Services',
+                        },
+                        {
+                          name: 'UPSIDA Industrial',
+                          sub: 'Tech Corridors & Land',
+                          state: 'Uttar Pradesh (UPSIDA)',
+                          domain: 'Infrastructure & Smart City',
+                        },
+                        {
+                          name: 'UP Social Welfare',
+                          sub: 'Scholarships & Grants',
+                          state: 'Uttar Pradesh (SWD)',
+                          domain: 'Education & Scholarships',
+                        },
+                        {
+                          name: 'SSC North Central',
+                          sub: 'Combined Grad Level',
+                          state: 'Central Govt (Northern Region)',
+                          domain: 'Public Engineering & Technical Services',
+                        },
                       ].map((item) => (
                         <button
                           key={item.name}
@@ -717,7 +752,15 @@ export function SmartDainikNewsWorkbench() {
                       <span>Anti-Rumor & Gazette Verification Engine</span>
                     </div>
                     <p className="text-[11px] text-amber-800/90 leading-relaxed font-sans">
-                      All circulars are cross-referenced against whitelisted government subdomains (<code className="font-mono text-[10px] bg-amber-100/80 px-1 py-0.5 rounded">.gov.in</code>, <code className="font-mono text-[10px] bg-amber-100/80 px-1 py-0.5 rounded">.nic.in</code>) with cryptographic dispatch ID matching.
+                      All circulars are cross-referenced against whitelisted government subdomains (
+                      <code className="font-mono text-[10px] bg-amber-100/80 px-1 py-0.5 rounded">
+                        .gov.in
+                      </code>
+                      ,{' '}
+                      <code className="font-mono text-[10px] bg-amber-100/80 px-1 py-0.5 rounded">
+                        .nic.in
+                      </code>
+                      ) with cryptographic dispatch ID matching.
                     </p>
                   </div>
                 </div>
@@ -727,7 +770,10 @@ export function SmartDainikNewsWorkbench() {
               {intakeTab === 'ingestion' && (
                 <div className="space-y-3 animate-fadeIn">
                   <div className="flex items-center justify-between">
-                    <label htmlFor="gazette-textarea" className="text-xs font-semibold text-ink-primary flex items-center gap-1.5">
+                    <label
+                      htmlFor="gazette-textarea"
+                      className="text-xs font-semibold text-ink-primary flex items-center gap-1.5"
+                    >
                       <Newspaper className="w-3.5 h-3.5 text-accent-500" />
                       <span>Gazette Notification / Circular</span>
                     </label>
@@ -738,7 +784,9 @@ export function SmartDainikNewsWorkbench() {
 
                   {/* Quick Sample Presets Toolbar */}
                   <div className="flex items-center gap-1.5 flex-wrap">
-                    <span className="text-[10px] font-mono text-ink-secondary uppercase font-semibold">Load Sample:</span>
+                    <span className="text-[10px] font-mono text-ink-secondary uppercase font-semibold">
+                      Load Sample:
+                    </span>
                     <button
                       type="button"
                       onClick={() => {
@@ -801,7 +849,11 @@ export function SmartDainikNewsWorkbench() {
                     />
                     <div className="flex items-center justify-center gap-2 pointer-events-none text-xs text-ink-secondary">
                       <Upload className="w-4 h-4 text-accent-500 shrink-0" />
-                      <span>{isParsingFiles ? 'Parsing Gazette PDF in-browser...' : 'Drop PDF / Notification scan, or paste text below'}</span>
+                      <span>
+                        {isParsingFiles
+                          ? 'Parsing Gazette PDF in-browser...'
+                          : 'Drop PDF / Notification scan, or paste text below'}
+                      </span>
                     </div>
                   </div>
 
@@ -889,7 +941,10 @@ export function SmartDainikNewsWorkbench() {
 
                   {/* Degree Selector */}
                   <div>
-                    <label htmlFor="degree-select" className="text-xs font-semibold text-ink-primary block mb-1">
+                    <label
+                      htmlFor="degree-select"
+                      className="text-xs font-semibold text-ink-primary block mb-1"
+                    >
                       Highest Qualification / Degree
                     </label>
                     <select
@@ -898,20 +953,35 @@ export function SmartDainikNewsWorkbench() {
                       onChange={(e) => setUserDegree(e.target.value)}
                       className="w-full px-3 py-2 rounded-lg bg-canvas-base border border-[rgba(13,37,61,0.15)] text-ink-primary text-xs font-mono focus:outline-none focus:ring-2 focus:ring-accent-500"
                     >
-                      <option value="B.Tech / B.E. (Civil Engineering)">B.Tech / B.E. (Civil Engineering)</option>
-                      <option value="B.Tech / B.E. (Electrical Engineering)">B.Tech / B.E. (Electrical Engineering)</option>
-                      <option value="B.Tech / B.E. (Mechanical Engineering)">B.Tech / B.E. (Mechanical Engineering)</option>
-                      <option value="Undergraduate (B.Tech / B.Sc / B.Com / B.A.)">Graduation in Any Discipline (B.Sc / B.Com / B.A.)</option>
+                      <option value="B.Tech / B.E. (Civil Engineering)">
+                        B.Tech / B.E. (Civil Engineering)
+                      </option>
+                      <option value="B.Tech / B.E. (Electrical Engineering)">
+                        B.Tech / B.E. (Electrical Engineering)
+                      </option>
+                      <option value="B.Tech / B.E. (Mechanical Engineering)">
+                        B.Tech / B.E. (Mechanical Engineering)
+                      </option>
+                      <option value="Undergraduate (B.Tech / B.Sc / B.Com / B.A.)">
+                        Graduation in Any Discipline (B.Sc / B.Com / B.A.)
+                      </option>
                       <option value="Polytechnic Diploma Student">Diploma / Polytechnic</option>
-                      <option value="Registered MSME / Private Limited Company">Registered Entity / MSME Corporate Unit</option>
-                      <option value="Class 12th / Intermediate Passed">Class 12th / Intermediate</option>
+                      <option value="Registered MSME / Private Limited Company">
+                        Registered Entity / MSME Corporate Unit
+                      </option>
+                      <option value="Class 12th / Intermediate Passed">
+                        Class 12th / Intermediate
+                      </option>
                     </select>
                   </div>
 
                   {/* Category & Domicile Grid */}
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label htmlFor="category-select" className="text-xs font-semibold text-ink-primary block mb-1">
+                      <label
+                        htmlFor="category-select"
+                        className="text-xs font-semibold text-ink-primary block mb-1"
+                      >
                         Reservation Category
                       </label>
                       <select
@@ -929,7 +999,10 @@ export function SmartDainikNewsWorkbench() {
                     </div>
 
                     <div>
-                      <label htmlFor="domicile-select" className="text-xs font-semibold text-ink-primary block mb-1">
+                      <label
+                        htmlFor="domicile-select"
+                        className="text-xs font-semibold text-ink-primary block mb-1"
+                      >
                         Domicile Status
                       </label>
                       <select
@@ -945,12 +1018,14 @@ export function SmartDainikNewsWorkbench() {
                   </div>
 
                   {/* Live Quick Verdict Chip */}
-                  <div className={cn(
-                    'p-3 rounded-xl border text-xs flex items-center justify-between',
-                    eligibilityVerdict.isEligible
-                      ? 'bg-emerald-50/80 border-emerald-500/20 text-emerald-800'
-                      : 'bg-rose-50/80 border-rose-500/20 text-rose-800'
-                  )}>
+                  <div
+                    className={cn(
+                      'p-3 rounded-xl border text-xs flex items-center justify-between',
+                      eligibilityVerdict.isEligible
+                        ? 'bg-emerald-50/80 border-emerald-500/20 text-emerald-800'
+                        : 'bg-rose-50/80 border-rose-500/20 text-rose-800',
+                    )}
+                  >
                     <div className="flex items-center gap-2">
                       {eligibilityVerdict.isEligible ? (
                         <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
@@ -959,7 +1034,8 @@ export function SmartDainikNewsWorkbench() {
                       )}
                       <span className="font-semibold">
                         {eligibilityVerdict.status === 'ELIGIBLE' && 'Fully Eligible'}
-                        {eligibilityVerdict.status === 'RELAXATION_APPLIED' && 'Eligible (Relaxation Active)'}
+                        {eligibilityVerdict.status === 'RELAXATION_APPLIED' &&
+                          'Eligible (Relaxation Active)'}
                         {eligibilityVerdict.status === 'AGE_INELIGIBLE' && 'Age Bar Exceeded'}
                         {eligibilityVerdict.status === 'DEGREE_INELIGIBLE' && 'Degree Ineligible'}
                       </span>
@@ -978,13 +1054,23 @@ export function SmartDainikNewsWorkbench() {
                       <div className="p-2 rounded bg-canvas-paper border border-[rgba(13,37,61,0.06)]">
                         <span className="text-ink-secondary block text-[10px]">Age Ceiling:</span>
                         <strong className="text-ink-primary">
-                          {userCategory === 'SC/ST' ? '45 Yrs (+5)' : userCategory === 'PwD' ? '50 Yrs (+10)' : userCategory === 'OBC' ? '43 Yrs (+3)' : '40 Yrs (Max)'}
+                          {userCategory === 'SC/ST'
+                            ? '45 Yrs (+5)'
+                            : userCategory === 'PwD'
+                              ? '50 Yrs (+10)'
+                              : userCategory === 'OBC'
+                                ? '43 Yrs (+3)'
+                                : '40 Yrs (Max)'}
                         </strong>
                       </div>
                       <div className="p-2 rounded bg-canvas-paper border border-[rgba(13,37,61,0.06)]">
                         <span className="text-ink-secondary block text-[10px]">Govt Exam Fee:</span>
                         <strong className="text-emerald-700">
-                          {userCategory === 'SC/ST' ? '₹65 (Relaxed)' : userCategory === 'PwD' ? '₹25 (Online Only)' : '₹125–₹225'}
+                          {userCategory === 'SC/ST'
+                            ? '₹65 (Relaxed)'
+                            : userCategory === 'PwD'
+                              ? '₹25 (Online Only)'
+                              : '₹125–₹225'}
                         </strong>
                       </div>
                     </div>
@@ -1000,7 +1086,9 @@ export function SmartDainikNewsWorkbench() {
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                   <span>Gazette Engine:</span>
                 </span>
-                <strong className="text-ink-primary font-semibold">Gemini 3.5 Lite (Bilingual)</strong>
+                <strong className="text-ink-primary font-semibold">
+                  Gemini 3.5 Lite (Bilingual)
+                </strong>
               </div>
               <div className="flex items-center justify-between font-mono text-[11px]">
                 <span>Verified Alerts:</span>
@@ -1029,7 +1117,7 @@ export function SmartDainikNewsWorkbench() {
                       'px-3 py-1.5 rounded-lg text-xs font-semibold transition-all active:scale-[0.97] flex items-center gap-1.5',
                       activeTab === 'alerts'
                         ? 'bg-[#0D253D] text-white shadow-sm'
-                        : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed'
+                        : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed',
                     )}
                   >
                     <Briefcase className="w-3.5 h-3.5" />
@@ -1043,7 +1131,7 @@ export function SmartDainikNewsWorkbench() {
                       'px-3 py-1.5 rounded-lg text-xs font-semibold transition-all active:scale-[0.97] flex items-center gap-1.5',
                       activeTab === 'matcher'
                         ? 'bg-[#0D253D] text-white shadow-sm'
-                        : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed'
+                        : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed',
                     )}
                   >
                     <Sparkles className="w-3.5 h-3.5 text-accent-500" />
@@ -1057,7 +1145,7 @@ export function SmartDainikNewsWorkbench() {
                       'px-3 py-1.5 rounded-lg text-xs font-semibold transition-all active:scale-[0.97] flex items-center gap-1.5',
                       activeTab === 'matrix'
                         ? 'bg-[#0D253D] text-white shadow-sm'
-                        : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed'
+                        : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed',
                     )}
                   >
                     <Scale className="w-3.5 h-3.5 text-accent-500" />
@@ -1071,7 +1159,7 @@ export function SmartDainikNewsWorkbench() {
                       'px-3 py-1.5 rounded-lg text-xs font-semibold transition-all active:scale-[0.97] flex items-center gap-1.5',
                       activeTab === 'bilingual'
                         ? 'bg-[#0D253D] text-white shadow-sm'
-                        : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed'
+                        : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed',
                     )}
                   >
                     <Languages className="w-3.5 h-3.5 text-accent-secondary" />
@@ -1085,7 +1173,7 @@ export function SmartDainikNewsWorkbench() {
                       'px-3 py-1.5 rounded-lg text-xs font-semibold transition-all active:scale-[0.97] flex items-center gap-1.5',
                       activeTab === 'json'
                         ? 'bg-[#0D253D] text-white shadow-sm'
-                        : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed'
+                        : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed',
                     )}
                   >
                     <Code2 className="w-3.5 h-3.5" />
@@ -1144,7 +1232,7 @@ export function SmartDainikNewsWorkbench() {
                         'px-2.5 py-1 rounded text-xs font-semibold transition-all active:scale-[0.97]',
                         displayLanguage === 'bilingual'
                           ? 'bg-canvas-paper text-ink-primary shadow-xs'
-                          : 'text-ink-secondary hover:text-ink-primary'
+                          : 'text-ink-secondary hover:text-ink-primary',
                       )}
                     >
                       Bilingual (द्विभाषी)
@@ -1156,7 +1244,7 @@ export function SmartDainikNewsWorkbench() {
                         'px-2.5 py-1 rounded text-xs font-semibold transition-all active:scale-[0.97]',
                         displayLanguage === 'english'
                           ? 'bg-canvas-paper text-ink-primary shadow-xs'
-                          : 'text-ink-secondary hover:text-ink-primary'
+                          : 'text-ink-secondary hover:text-ink-primary',
                       )}
                     >
                       English
@@ -1168,7 +1256,7 @@ export function SmartDainikNewsWorkbench() {
                         'px-2.5 py-1 rounded text-xs font-semibold transition-all active:scale-[0.97]',
                         displayLanguage === 'hindi'
                           ? 'bg-canvas-paper text-ink-primary shadow-xs'
-                          : 'text-ink-secondary hover:text-ink-primary'
+                          : 'text-ink-secondary hover:text-ink-primary',
                       )}
                     >
                       हिन्दी
@@ -1185,7 +1273,7 @@ export function SmartDainikNewsWorkbench() {
                       'px-2 py-1 rounded-md text-[11px] font-medium transition-all active:scale-[0.97]',
                       selectedCategoryFilter === 'ALL'
                         ? 'bg-ink-primary text-white font-semibold'
-                        : 'bg-canvas-recessed text-ink-secondary hover:text-ink-primary'
+                        : 'bg-canvas-recessed text-ink-secondary hover:text-ink-primary',
                     )}
                   >
                     All Streams ({result?.alertCards.length || 0})
@@ -1197,7 +1285,7 @@ export function SmartDainikNewsWorkbench() {
                       'px-2 py-1 rounded-md text-[11px] font-medium transition-all active:scale-[0.97]',
                       selectedCategoryFilter === 'Govt Recruitment & Jobs'
                         ? 'bg-ink-primary text-white font-semibold'
-                        : 'bg-canvas-recessed text-ink-secondary hover:text-ink-primary'
+                        : 'bg-canvas-recessed text-ink-secondary hover:text-ink-primary',
                     )}
                   >
                     💼 Recruitment
@@ -1209,7 +1297,7 @@ export function SmartDainikNewsWorkbench() {
                       'px-2 py-1 rounded-md text-[11px] font-medium transition-all active:scale-[0.97]',
                       selectedCategoryFilter === 'Infrastructure & Smart City'
                         ? 'bg-ink-primary text-white font-semibold'
-                        : 'bg-canvas-recessed text-ink-secondary hover:text-ink-primary'
+                        : 'bg-canvas-recessed text-ink-secondary hover:text-ink-primary',
                     )}
                   >
                     🏗️ Smart City
@@ -1221,7 +1309,7 @@ export function SmartDainikNewsWorkbench() {
                       'px-2 py-1 rounded-md text-[11px] font-medium transition-all active:scale-[0.97]',
                       selectedCategoryFilter === 'Education & Scholarships'
                         ? 'bg-ink-primary text-white font-semibold'
-                        : 'bg-canvas-recessed text-ink-secondary hover:text-ink-primary'
+                        : 'bg-canvas-recessed text-ink-secondary hover:text-ink-primary',
                     )}
                   >
                     🎓 Scholarships
@@ -1262,10 +1350,14 @@ export function SmartDainikNewsWorkbench() {
                             </h3>
                           )}
                           {displayLanguage !== 'english' && (
-                            <h4 className={cn(
-                              'text-ink-secondary font-medium leading-relaxed',
-                              displayLanguage === 'hindi' ? 'font-display text-xl text-ink-primary font-normal' : 'text-xs mt-1'
-                            )}>
+                            <h4
+                              className={cn(
+                                'text-ink-secondary font-medium leading-relaxed',
+                                displayLanguage === 'hindi'
+                                  ? 'font-display text-xl text-ink-primary font-normal'
+                                  : 'text-xs mt-1',
+                              )}
+                            >
                               {result.hindiSummaryHeadline}
                             </h4>
                           )}
@@ -1297,7 +1389,10 @@ export function SmartDainikNewsWorkbench() {
                       <span>ANTI-RUMOR & OFFICIAL VERIFICATION PROTOCOL</span>
                     </div>
                     {result.factValidationNotes.map((note, nIdx) => (
-                      <div key={nIdx} className="flex items-start gap-2 text-[11px] text-ink-body font-mono leading-relaxed">
+                      <div
+                        key={nIdx}
+                        className="flex items-start gap-2 text-[11px] text-ink-body font-mono leading-relaxed"
+                      >
                         <Check className="w-3 h-3 text-emerald-600 mt-0.5 shrink-0" />
                         <span>{note}</span>
                       </div>
@@ -1330,12 +1425,14 @@ export function SmartDainikNewsWorkbench() {
               {activeTab === 'matcher' && (
                 <div className="space-y-5">
                   {/* Verdict Hero Banner */}
-                  <div className={cn(
-                    'p-6 rounded-2xl border shadow-sm space-y-3',
-                    eligibilityVerdict.isEligible
-                      ? 'bg-emerald-50/90 border-emerald-500/30 text-emerald-900'
-                      : 'bg-rose-50/90 border-rose-500/30 text-rose-900'
-                  )}>
+                  <div
+                    className={cn(
+                      'p-6 rounded-2xl border shadow-sm space-y-3',
+                      eligibilityVerdict.isEligible
+                        ? 'bg-emerald-50/90 border-emerald-500/30 text-emerald-900'
+                        : 'bg-rose-50/90 border-rose-500/30 text-rose-900',
+                    )}
+                  >
                     <div className="flex items-start justify-between gap-4 flex-wrap">
                       <div className="flex items-center gap-3">
                         {eligibilityVerdict.isEligible ? (
@@ -1357,16 +1454,22 @@ export function SmartDainikNewsWorkbench() {
                             </span>
                           </div>
                           <h3 className="text-xl font-bold font-display mt-0.5">
-                            {eligibilityVerdict.status === 'ELIGIBLE' && 'QUALIFIED & ELIGIBLE TO APPLY'}
-                            {eligibilityVerdict.status === 'RELAXATION_APPLIED' && 'ELIGIBLE WITH CATEGORY AGE RELAXATION'}
-                            {eligibilityVerdict.status === 'AGE_INELIGIBLE' && 'AGE THRESHOLD EXCEEDED'}
-                            {eligibilityVerdict.status === 'DEGREE_INELIGIBLE' && 'DEGREE PREREQUISITE MISMATCH'}
+                            {eligibilityVerdict.status === 'ELIGIBLE' &&
+                              'QUALIFIED & ELIGIBLE TO APPLY'}
+                            {eligibilityVerdict.status === 'RELAXATION_APPLIED' &&
+                              'ELIGIBLE WITH CATEGORY AGE RELAXATION'}
+                            {eligibilityVerdict.status === 'AGE_INELIGIBLE' &&
+                              'AGE THRESHOLD EXCEEDED'}
+                            {eligibilityVerdict.status === 'DEGREE_INELIGIBLE' &&
+                              'DEGREE PREREQUISITE MISMATCH'}
                           </h3>
                         </div>
                       </div>
 
                       <div className="p-3 rounded-xl bg-white/80 border border-current/10 font-mono text-right">
-                        <span className="text-[10px] uppercase block text-ink-secondary">Fee Payable</span>
+                        <span className="text-[10px] uppercase block text-ink-secondary">
+                          Fee Payable
+                        </span>
                         <span className="text-lg font-bold text-accent-500 tabular-nums">
                           {eligibilityVerdict.applicableFee}
                         </span>
@@ -1374,8 +1477,12 @@ export function SmartDainikNewsWorkbench() {
                     </div>
 
                     <p className="text-xs font-medium leading-relaxed pt-1">
-                      {displayLanguage === 'hindi' ? eligibilityVerdict.hindiAgeMessage : eligibilityVerdict.ageMessage}{' '}
-                      {displayLanguage === 'hindi' ? eligibilityVerdict.hindiDegreeMessage : eligibilityVerdict.degreeMessage}
+                      {displayLanguage === 'hindi'
+                        ? eligibilityVerdict.hindiAgeMessage
+                        : eligibilityVerdict.ageMessage}{' '}
+                      {displayLanguage === 'hindi'
+                        ? eligibilityVerdict.hindiDegreeMessage
+                        : eligibilityVerdict.degreeMessage}
                     </p>
                   </div>
 
@@ -1384,29 +1491,39 @@ export function SmartDainikNewsWorkbench() {
                     {/* Age Criteria */}
                     <div className="p-4 rounded-xl bg-canvas-paper border border-[rgba(13,37,61,0.08)] space-y-1.5">
                       <div className="flex items-center justify-between text-xs">
-                        <span className="font-mono text-[10px] uppercase font-bold text-accent-500">1. Age Window & Relaxation</span>
+                        <span className="font-mono text-[10px] uppercase font-bold text-accent-500">
+                          1. Age Window & Relaxation
+                        </span>
                         <Clock className="w-3.5 h-3.5 text-ink-secondary" />
                       </div>
                       <p className="text-xs text-ink-body leading-relaxed">
-                        {displayLanguage === 'hindi' ? eligibilityVerdict.hindiAgeMessage : eligibilityVerdict.ageMessage}
+                        {displayLanguage === 'hindi'
+                          ? eligibilityVerdict.hindiAgeMessage
+                          : eligibilityVerdict.ageMessage}
                       </p>
                     </div>
 
                     {/* Degree Verification */}
                     <div className="p-4 rounded-xl bg-canvas-paper border border-[rgba(13,37,61,0.08)] space-y-1.5">
                       <div className="flex items-center justify-between text-xs">
-                        <span className="font-mono text-[10px] uppercase font-bold text-accent-500">2. Degree Qualification</span>
+                        <span className="font-mono text-[10px] uppercase font-bold text-accent-500">
+                          2. Degree Qualification
+                        </span>
                         <GraduationCap className="w-3.5 h-3.5 text-ink-secondary" />
                       </div>
                       <p className="text-xs text-ink-body leading-relaxed">
-                        {displayLanguage === 'hindi' ? eligibilityVerdict.hindiDegreeMessage : eligibilityVerdict.degreeMessage}
+                        {displayLanguage === 'hindi'
+                          ? eligibilityVerdict.hindiDegreeMessage
+                          : eligibilityVerdict.degreeMessage}
                       </p>
                     </div>
 
                     {/* Reservation & Quotas */}
                     <div className="p-4 rounded-xl bg-canvas-paper border border-[rgba(13,37,61,0.08)] space-y-1.5">
                       <div className="flex items-center justify-between text-xs">
-                        <span className="font-mono text-[10px] uppercase font-bold text-accent-500">3. Quota & Domicile Status</span>
+                        <span className="font-mono text-[10px] uppercase font-bold text-accent-500">
+                          3. Quota & Domicile Status
+                        </span>
                         <Building2 className="w-3.5 h-3.5 text-ink-secondary" />
                       </div>
                       <p className="text-xs text-ink-body leading-relaxed">
@@ -1419,11 +1536,15 @@ export function SmartDainikNewsWorkbench() {
                     {/* Application Fee */}
                     <div className="p-4 rounded-xl bg-canvas-paper border border-[rgba(13,37,61,0.08)] space-y-1.5">
                       <div className="flex items-center justify-between text-xs">
-                        <span className="font-mono text-[10px] uppercase font-bold text-accent-500">4. Application Fee</span>
+                        <span className="font-mono text-[10px] uppercase font-bold text-accent-500">
+                          4. Application Fee
+                        </span>
                         <Award className="w-3.5 h-3.5 text-ink-secondary" />
                       </div>
                       <p className="text-xs text-ink-body leading-relaxed">
-                        {displayLanguage === 'hindi' ? eligibilityVerdict.hindiFeeMessage : eligibilityVerdict.feeMessage}
+                        {displayLanguage === 'hindi'
+                          ? eligibilityVerdict.hindiFeeMessage
+                          : eligibilityVerdict.feeMessage}
                       </p>
                     </div>
                   </div>
@@ -1436,15 +1557,23 @@ export function SmartDainikNewsWorkbench() {
                     <div className="space-y-2 text-xs text-ink-body">
                       <div className="flex items-center gap-2.5 p-2 rounded-lg bg-canvas-base border border-[rgba(13,37,61,0.06)]">
                         <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                        <span>1. Complete One-Time Registration (OTR) on official state commission portal.</span>
+                        <span>
+                          1. Complete One-Time Registration (OTR) on official state commission
+                          portal.
+                        </span>
                       </div>
                       <div className="flex items-center gap-2.5 p-2 rounded-lg bg-canvas-base border border-[rgba(13,37,61,0.06)]">
                         <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                        <span>2. Upload scanned degree marksheet and category certificate issued by UP authority.</span>
+                        <span>
+                          2. Upload scanned degree marksheet and category certificate issued by UP
+                          authority.
+                        </span>
                       </div>
                       <div className="flex items-center gap-2.5 p-2 rounded-lg bg-canvas-base border border-[rgba(13,37,61,0.06)]">
                         <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                        <span>3. Submit fee online via net banking / SBI e-pay before the fee deadline.</span>
+                        <span>
+                          3. Submit fee online via net banking / SBI e-pay before the fee deadline.
+                        </span>
                       </div>
                     </div>
 
@@ -1474,7 +1603,9 @@ export function SmartDainikNewsWorkbench() {
                       className="p-5 rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.1)] shadow-sm space-y-3"
                     >
                       <h4 className="font-display text-lg text-ink-primary font-normal border-b border-[rgba(13,37,61,0.08)] pb-2">
-                        {displayLanguage === 'hindi' ? row.hindiPostOrNotification || row.postOrNotification : row.postOrNotification}
+                        {displayLanguage === 'hindi'
+                          ? row.hindiPostOrNotification || row.postOrNotification
+                          : row.postOrNotification}
                       </h4>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
@@ -1483,7 +1614,9 @@ export function SmartDainikNewsWorkbench() {
                             Age Criteria & Relaxation:
                           </span>
                           <p className="text-ink-body leading-relaxed">
-                            {displayLanguage === 'hindi' ? row.hindiAgeCriteria || row.ageCriteria : row.ageCriteria}
+                            {displayLanguage === 'hindi'
+                              ? row.hindiAgeCriteria || row.ageCriteria
+                              : row.ageCriteria}
                           </p>
                         </div>
 
@@ -1492,7 +1625,9 @@ export function SmartDainikNewsWorkbench() {
                             Educational Qualification:
                           </span>
                           <p className="text-ink-body leading-relaxed">
-                            {displayLanguage === 'hindi' ? row.hindiQualification || row.qualification : row.qualification}
+                            {displayLanguage === 'hindi'
+                              ? row.hindiQualification || row.qualification
+                              : row.qualification}
                           </p>
                         </div>
 
@@ -1501,7 +1636,9 @@ export function SmartDainikNewsWorkbench() {
                             Reservation Quotas:
                           </span>
                           <p className="text-ink-body leading-relaxed">
-                            {displayLanguage === 'hindi' ? row.hindiReservationQuotas || row.reservationQuotas : row.reservationQuotas}
+                            {displayLanguage === 'hindi'
+                              ? row.hindiReservationQuotas || row.reservationQuotas
+                              : row.reservationQuotas}
                           </p>
                         </div>
 
@@ -1510,10 +1647,16 @@ export function SmartDainikNewsWorkbench() {
                             Application Fee & Process:
                           </span>
                           <p className="text-ink-body leading-relaxed">
-                            Fee: {displayLanguage === 'hindi' ? row.hindiApplicationFee || row.applicationFee : row.applicationFee}
+                            Fee:{' '}
+                            {displayLanguage === 'hindi'
+                              ? row.hindiApplicationFee || row.applicationFee
+                              : row.applicationFee}
                           </p>
                           <p className="text-[11px] text-ink-secondary pt-0.5">
-                            Selection: {displayLanguage === 'hindi' ? row.hindiSelectionProcess || row.selectionProcess : row.selectionProcess}
+                            Selection:{' '}
+                            {displayLanguage === 'hindi'
+                              ? row.hindiSelectionProcess || row.selectionProcess
+                              : row.selectionProcess}
                           </p>
                         </div>
                       </div>

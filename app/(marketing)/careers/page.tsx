@@ -2,7 +2,13 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { Container } from '@/components/foundation/Container';
 import { Heading } from '@/components/foundation/Heading';
-import { Reveal, StaggerGrid, StaggerItem, AnimatedSection, TextReveal } from '@/components/foundation';
+import {
+  Reveal,
+  StaggerGrid,
+  StaggerItem,
+  AnimatedSection,
+  TextReveal,
+} from '@/components/foundation';
 import { MeshGradient } from '@/components/atoms/MeshGradient';
 import { Button } from '@/components/atoms/Button';
 import { Link } from '@/components/atoms/Link';
@@ -150,7 +156,9 @@ export default function CareersPage() {
 
             {/* Lead Prose */}
             <p className="fluid-lead text-ink-body font-normal leading-relaxed max-w-2xl mx-auto text-pretty">
-              We are a lean engineering team operating out of Uttar Pradesh, India. Zero bureaucracy, zero throwaway prototypes — just high-precision AI utilities that real people rely on every single day.
+              We are a lean engineering team operating out of Uttar Pradesh, India. Zero
+              bureaucracy, zero throwaway prototypes — just high-precision AI utilities that real
+              people rely on every single day.
             </p>
           </div>
         </Container>
@@ -169,7 +177,8 @@ export default function CareersPage() {
               Where we are hiring
             </Heading>
             <p className="fluid-body text-ink-body leading-relaxed max-w-xl text-pretty">
-              We keep our team small on purpose. If your craft aligns with one of our core practices below, we would love to review your work and past code repositories.
+              We keep our team small on purpose. If your craft aligns with one of our core practices
+              below, we would love to review your work and past code repositories.
             </p>
           </div>
 
@@ -187,14 +196,19 @@ export default function CareersPage() {
                     <div className="space-y-3">
                       <div>
                         <div className="flex flex-wrap items-center gap-2.5 mb-1">
-                          <h3 id={`role-${area.role.toLowerCase().replace(/\s+/g, '-')}`} className="font-display text-2xl text-ink-primary font-normal">
+                          <h3
+                            id={`role-${area.role.toLowerCase().replace(/\s+/g, '-')}`}
+                            className="font-display text-2xl text-ink-primary font-normal"
+                          >
                             {area.title}
                           </h3>
                           <span className="font-mono text-xs font-medium text-accent-secondary bg-sage-100/70 border border-accent-secondary/20 px-2 py-0.5 rounded">
                             {area.type}
                           </span>
                         </div>
-                        <p className="max-w-2xl text-sm leading-relaxed text-ink-body">{area.desc}</p>
+                        <p className="max-w-2xl text-sm leading-relaxed text-ink-body">
+                          {area.desc}
+                        </p>
                       </div>
 
                       {/* Tech stack tags */}
@@ -238,7 +252,10 @@ export default function CareersPage() {
               Built for craft, speed, and real utility
             </Heading>
             <p className="fluid-body text-ink-body leading-relaxed text-pretty">
-              NorAI builds software that solves unglamorous problems exceptionally well: screening hundreds of resumes in sub-second bursts, turning multi-hour lectures into revision cards, distilling noisy community channels into action points, and clustering vernacular news feeds.
+              NorAI builds software that solves unglamorous problems exceptionally well: screening
+              hundreds of resumes in sub-second bursts, turning multi-hour lectures into revision
+              cards, distilling noisy community channels into action points, and clustering
+              vernacular news feeds.
             </p>
           </div>
 
@@ -250,7 +267,9 @@ export default function CareersPage() {
                 className="rounded-2xl border border-[rgba(13,37,61,0.08)] bg-canvas-paper p-6 shadow-sm hover:shadow-md hover:border-accent-500/30 transition-all duration-200 flex flex-col justify-between space-y-4"
               >
                 <div className="space-y-3">
-                  <span className={`inline-flex h-10 w-10 items-center justify-center rounded-xl ${perk.tone}`}>
+                  <span
+                    className={`inline-flex h-10 w-10 items-center justify-center rounded-xl ${perk.tone}`}
+                  >
                     <perk.icon className="h-5 w-5" aria-hidden="true" />
                   </span>
                   <h3 className="text-base font-semibold text-ink-primary">{perk.title}</h3>
@@ -275,7 +294,8 @@ export default function CareersPage() {
               How we hire
             </Heading>
             <p className="fluid-body text-ink-body leading-relaxed max-w-xl text-pretty">
-              We respect your time. No 6-round marathon interviews, no whiteboard trivia — just direct technical evaluation of what you have built and can build.
+              We respect your time. No 6-round marathon interviews, no whiteboard trivia — just
+              direct technical evaluation of what you have built and can build.
             </p>
           </div>
 
@@ -299,7 +319,11 @@ export default function CareersPage() {
       {/* =========================================================================
           GENERAL APPLICATION CTA
           ========================================================================= */}
-      <aside aria-label="General Application" role="complementary" className="py-20 md:py-28 bg-canvas-base">
+      <aside
+        aria-label="General Application"
+        role="complementary"
+        className="py-20 md:py-28 bg-canvas-base"
+      >
         <Container size="narrow">
           <Reveal>
             <div className="rounded-3xl border border-[rgba(13,37,61,0.12)] bg-canvas-paper p-8 sm:p-12 text-center shadow-lg space-y-6 relative overflow-hidden">
@@ -311,13 +335,19 @@ export default function CareersPage() {
                   Nothing that fits your exact title?
                 </Heading>
                 <p className="fluid-body text-ink-body leading-relaxed max-w-lg mx-auto text-pretty">
-                  We are always eager to connect with exceptional full-stack engineers, AI researchers, and systems builders. Tell us about the hardest problem you have solved.
+                  We are always eager to connect with exceptional full-stack engineers, AI
+                  researchers, and systems builders. Tell us about the hardest problem you have
+                  solved.
                 </p>
               </div>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
                 <Link href="/contact" className="w-full sm:w-auto">
-                  <Button variant="primary" size="lg" className="w-full sm:w-auto justify-center group shadow-accent hover:shadow-hover">
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    className="w-full sm:w-auto justify-center group shadow-accent hover:shadow-hover"
+                  >
                     <span>Send general application</span>
                     <ArrowRight className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-1" />
                   </Button>

@@ -111,9 +111,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             {post.title}
           </h1>
 
-          <p className="mt-4 text-[17px] leading-relaxed text-ink-body font-sans">
-            {post.excerpt}
-          </p>
+          <p className="mt-4 text-[17px] leading-relaxed text-ink-body font-sans">{post.excerpt}</p>
 
           <div className="mt-6 flex flex-wrap items-center gap-4 pt-4 border-t border-[rgba(13,37,61,0.08)]">
             <div className="flex items-center gap-3">
@@ -122,9 +120,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <p className="font-sans text-[14px] font-semibold text-ink-primary">
                   {post.author}
                 </p>
-                <p className="font-sans text-[12px] text-ink-secondary">
-                  {post.authorRole}
-                </p>
+                <p className="font-sans text-[12px] text-ink-secondary">{post.authorRole}</p>
               </div>
             </div>
 
@@ -160,10 +156,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                       {relatedPost.category}
                     </span>
                     <h3 className="mt-2 font-display text-xl leading-snug text-ink-primary transition-colors group-hover:text-terra-600">
-                      <NextLink
-                        href={`/blog/${relatedPost.slug}`}
-                        className="outline-none"
-                      >
+                      <NextLink href={`/blog/${relatedPost.slug}`} className="outline-none">
                         {relatedPost.title}
                       </NextLink>
                     </h3>

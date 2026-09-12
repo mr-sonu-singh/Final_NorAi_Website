@@ -11,34 +11,34 @@
   /* ==========================================================================
      DESIGN.md §2.1 Base Neutrals & Structural Surfaces
      ========================================================================== */
-  --surface-canvas: #F5F0EA;              /* Warm parchment paper canvas */
-  --surface-panel: #FAF7F2;               /* Lighter warm paper container / card surface */
-  --surface-panel-elevated: #FFFFFF;      /* Popovers, modals, flyout drawers */
-  --surface-panel-subtle: #EBE3D8;        /* Inset wells, code blocks, parameter tables */
-  --surface-hover: #ECE5DA;               /* Interactive row/button hover state */
-  --surface-active: #E0D5C5;              /* Pressed/active state */
+  --surface-canvas: #f5f0ea; /* Warm parchment paper canvas */
+  --surface-panel: #faf7f2; /* Lighter warm paper container / card surface */
+  --surface-panel-elevated: #ffffff; /* Popovers, modals, flyout drawers */
+  --surface-panel-subtle: #ebe3d8; /* Inset wells, code blocks, parameter tables */
+  --surface-hover: #ece5da; /* Interactive row/button hover state */
+  --surface-active: #e0d5c5; /* Pressed/active state */
 
   /* Interactive Accent (DESIGN.md §2.1) - Calibrated for WCAG AA 4.5:1 contrast across all surfaces */
-  --accent-primary: #A63F1C;              /* Burnt terracotta interactive accent (4.8:1+ contrast) */
-  --accent-hover: #913617;                /* Terracotta hover state */
+  --accent-primary: #a63f1c; /* Burnt terracotta interactive accent (4.8:1+ contrast) */
+  --accent-hover: #913617; /* Terracotta hover state */
   --accent-subtle: rgba(166, 63, 28, 0.12); /* Terracotta tint for badges/selection */
-  --accent-mono: #2E634A;                 /* Forest Sage secondary telemetry (4.9:1+ contrast) */
-  --accent-secondary: #2E634A;
-  --accent-secondary-soft: #E2EDE7;
-  --accent-tertiary: #996B00;             /* Dark Goldenrod */
-  --accent-tertiary-soft: #FFF4D6;
+  --accent-mono: #2e634a; /* Forest Sage secondary telemetry (4.9:1+ contrast) */
+  --accent-secondary: #2e634a;
+  --accent-secondary-soft: #e2ede7;
+  --accent-tertiary: #996b00; /* Dark Goldenrod */
+  --accent-tertiary-soft: #fff4d6;
 
   /* Borders & Dividers (DESIGN.md §2.1) */
-  --border-subtle: rgba(20, 28, 43, 0.08);   /* Calibrated 1px hairline divider */
-  --border-strong: rgba(20, 28, 43, 0.16);   /* Active tabs, focus states, card edges */
-  --border-highlight: rgba(20, 28, 43, 0.32);/* Sticky headers, selected items */
+  --border-subtle: rgba(20, 28, 43, 0.08); /* Calibrated 1px hairline divider */
+  --border-strong: rgba(20, 28, 43, 0.16); /* Active tabs, focus states, card edges */
+  --border-highlight: rgba(20, 28, 43, 0.32); /* Sticky headers, selected items */
   --border-hairline: var(--border-subtle);
 
   /* Content / Foreground (DESIGN.md §2.1) */
-  --text-primary: #141C2B;                /* Deep navy ink for primary headings and data values */
-  --text-secondary: #475467;              /* Descriptive copy, labels, inactive tabs (5.5:1 contrast) */
-  --text-muted: #4F5E72;                  /* Secondary metadata, line numbers, disabled items (4.9:1 contrast) */
-  --text-inverse: #F5F0EA;                /* Light parchment text on solid dark/accent elements */
+  --text-primary: #141c2b; /* Deep navy ink for primary headings and data values */
+  --text-secondary: #475467; /* Descriptive copy, labels, inactive tabs (5.5:1 contrast) */
+  --text-muted: #4f5e72; /* Secondary metadata, line numbers, disabled items (4.9:1 contrast) */
+  --text-inverse: #f5f0ea; /* Light parchment text on solid dark/accent elements */
 
   /* Legacy aliases for backwards compatibility across existing components */
   --ds-background-100: var(--surface-canvas);
@@ -53,41 +53,40 @@
   --bg-page: var(--surface-canvas);
   --bg-elevated: var(--surface-panel);
   --bg-sunken: var(--surface-panel-subtle);
-  --bg-dark: #141C2B;
-  --bg-dark-elevated: #1F2B3E;
+  --bg-dark: #141c2b;
+  --bg-dark-elevated: #1f2b3e;
 
   /* ==========================================================================
      DESIGN.md §2.2 Status, Telemetry & Severity Tokens
      ========================================================================== */
-  --status-error-bg: rgba(220, 38, 38, 0.10);
+  --status-error-bg: rgba(220, 38, 38, 0.1);
   --status-error-border: rgba(220, 38, 38, 0.25);
-  --status-error-text: #B91C1C;
-  --status-error-solid: #DC2626;
+  --status-error-text: #b91c1c;
+  --status-error-solid: #dc2626;
 
-  --status-warn-bg: rgba(217, 119, 6, 0.10);
+  --status-warn-bg: rgba(217, 119, 6, 0.1);
   --status-warn-border: rgba(217, 119, 6, 0.25);
-  --status-warn-text: #B45309;
-  --status-warn-solid: #D97706;
+  --status-warn-text: #b45309;
+  --status-warn-solid: #d97706;
 
-  --status-success-bg: rgba(5, 150, 105, 0.10);
+  --status-success-bg: rgba(5, 150, 105, 0.1);
   --status-success-border: rgba(5, 150, 105, 0.25);
   --status-success-text: #047857;
   --status-success-solid: #059669;
 
-  --status-info-bg: rgba(79, 70, 229, 0.10);
+  --status-info-bg: rgba(79, 70, 229, 0.1);
   --status-info-border: rgba(79, 70, 229, 0.25);
-  --status-info-text: #4338CA;
-  --status-info-solid: #4F46E5;
+  --status-info-text: #4338ca;
+  --status-info-solid: #4f46e5;
 
   --badge-cache-hit-bg: rgba(5, 150, 105, 0.12);
   --badge-cache-hit-text: #047857;
   --badge-cache-miss-bg: rgba(217, 119, 6, 0.12);
-  --badge-cache-miss-text: #B45309;
+  --badge-cache-miss-text: #b45309;
   --badge-cache-stale-bg: rgba(100, 116, 139, 0.12);
   --badge-cache-stale-text: #475569;
 
   --glow-warm: 200, 90, 50;
-
 
   /* --- Status colors --- */
   --status-blue: #4a7b9d; /* Muted info — the only blue allowed */
@@ -295,10 +294,10 @@
   --color-canvas-pure: #ffffff;
   --color-canvas-recessed: #ede7df;
 
-  --color-ink-primary: #141C2B;
+  --color-ink-primary: #141c2b;
   --color-ink-body: #526075;
   --color-ink-secondary: #526075;
-  --color-ink-disabled: #5C6B7E;
+  --color-ink-disabled: #5c6b7e;
 
   --color-terra-50: #faeee9;
   --color-terra-100: #f5e1da;
@@ -552,7 +551,13 @@ kbd {
 .hairline-divider-gradient {
   height: 1px;
   width: 100%;
-  background: linear-gradient(90deg, transparent 0%, rgba(13, 37, 61, 0.12) 25%, rgba(13, 37, 61, 0.12) 75%, transparent 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(13, 37, 61, 0.12) 25%,
+    rgba(13, 37, 61, 0.12) 75%,
+    transparent 100%
+  );
 }
 
 /* Fluid typography utilities */
@@ -616,7 +621,8 @@ kbd {
   animation: var(--duration-exit, 150ms) cubic-bezier(0.16, 1, 0.3, 1) vt-fade reverse;
 }
 ::view-transition-new(.fade-in) {
-  animation: var(--duration-enter, 210ms) cubic-bezier(0.16, 1, 0.3, 1) var(--duration-exit, 150ms) both vt-fade;
+  animation: var(--duration-enter, 210ms) cubic-bezier(0.16, 1, 0.3, 1) var(--duration-exit, 150ms)
+    both vt-fade;
 }
 
 /* Directional Slide Navigation */
@@ -629,7 +635,8 @@ kbd {
 ::view-transition-new(.nav-forward) {
   --slide-offset: 40px;
   animation:
-    var(--duration-enter, 210ms) cubic-bezier(0.16, 1, 0.3, 1) var(--duration-exit, 150ms) both vt-fade,
+    var(--duration-enter, 210ms) cubic-bezier(0.16, 1, 0.3, 1) var(--duration-exit, 150ms) both
+      vt-fade,
     var(--duration-move, 300ms) cubic-bezier(0.16, 1, 0.3, 1) both vt-slide;
 }
 
@@ -642,7 +649,8 @@ kbd {
 ::view-transition-new(.nav-back) {
   --slide-offset: -40px;
   animation:
-    var(--duration-enter, 210ms) cubic-bezier(0.16, 1, 0.3, 1) var(--duration-exit, 150ms) both vt-fade,
+    var(--duration-enter, 210ms) cubic-bezier(0.16, 1, 0.3, 1) var(--duration-exit, 150ms) both
+      vt-fade,
     var(--duration-move, 300ms) cubic-bezier(0.16, 1, 0.3, 1) both vt-slide;
 }
 
@@ -700,10 +708,10 @@ kbd {
   animation: accordion-up 150ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 
-
 /* Audio Waveform Equalizer Animations */
 @keyframes waveform-bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: scaleY(0.25);
   }
   50% {
@@ -780,7 +788,9 @@ html.lenis body {
 .well-inset-elevated {
   background-color: var(--surface-panel);
   border: 1px solid var(--border-strong);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 2px 8px rgba(20, 28, 43, 0.04);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 2px 8px rgba(20, 28, 43, 0.04);
 }
 
 /* Knurled Metal / Stepped Switch Pattern */
@@ -802,13 +812,19 @@ html.lenis body {
 
 /* Tactile Physical Button Click Reaction (Emil Kowalski Standard: scale 0.97 on active) */
 .btn-tactile {
-  box-shadow: 0 2px 0 rgba(140, 50, 20, 0.8), 0 4px 12px rgba(200, 90, 50, 0.25);
-  transition: transform 0.12s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.12s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow:
+    0 2px 0 rgba(140, 50, 20, 0.8),
+    0 4px 12px rgba(200, 90, 50, 0.25);
+  transition:
+    transform 0.12s cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 0.12s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .btn-tactile:active {
   transform: scale(0.97) translateY(1px);
-  box-shadow: 0 0 0 rgba(140, 50, 20, 0.8), 0 1px 3px rgba(200, 90, 50, 0.15);
+  box-shadow:
+    0 0 0 rgba(140, 50, 20, 0.8),
+    0 1px 3px rgba(200, 90, 50, 0.15);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -843,7 +859,7 @@ html.lenis body {
 
 .prose-editorial p {
   line-height: 1.8;
-  color: #2D3748;
+  color: #2d3748;
 }
 
 .prose-editorial strong {
@@ -869,25 +885,25 @@ html.lenis body {
 
 /* Washed-out spot pastels (§4 Color Palette) */
 .badge-pastel-red {
-  background-color: #FDEBEC;
-  color: #9F2F2D;
+  background-color: #fdebec;
+  color: #9f2f2d;
   border: 1px solid rgba(159, 47, 45, 0.15);
 }
 
 .badge-pastel-blue {
-  background-color: #E1F3FE;
-  color: #1F6C9F;
+  background-color: #e1f3fe;
+  color: #1f6c9f;
   border: 1px solid rgba(31, 108, 159, 0.15);
 }
 
 .badge-pastel-green {
-  background-color: #EDF3EC;
+  background-color: #edf3ec;
   color: #346538;
   border: 1px solid rgba(52, 101, 56, 0.15);
 }
 
 .badge-pastel-yellow {
-  background-color: #FBF3DB;
+  background-color: #fbf3db;
   color: #956400;
   border: 1px solid rgba(149, 100, 0, 0.15);
 }
@@ -930,12 +946,8 @@ kbd.key-cap {
   padding: 2px 6px;
   border-radius: 4px;
   border: 1px solid var(--border-strong);
-  background-color: #F7F6F3;
+  background-color: #f7f6f3;
   color: var(--text-secondary);
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
   user-select: none;
 }
-
-
-
-

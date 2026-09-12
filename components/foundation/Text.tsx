@@ -2,14 +2,7 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 
 export type TextVariant =
-  | 'body-xl'
-  | 'body-lg'
-  | 'body-md'
-  | 'body-sm'
-  | 'body-xs'
-  | 'label'
-  | 'fluid-lead'
-  | 'fluid-body';
+  'body-xl' | 'body-lg' | 'body-md' | 'body-sm' | 'body-xs' | 'label' | 'fluid-lead' | 'fluid-body';
 
 export interface TextProps extends React.HTMLAttributes<HTMLElement> {
   variant?: TextVariant;

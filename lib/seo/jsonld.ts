@@ -15,7 +15,11 @@ export interface FAQItemSchema {
 /**
  * Helper component to safely render JSON-LD script tags
  */
-export function JsonLd({ schema }: { schema: Record<string, unknown> | Array<Record<string, unknown>> }) {
+export function JsonLd({
+  schema,
+}: {
+  schema: Record<string, unknown> | Array<Record<string, unknown>>;
+}) {
   return React.createElement('script', {
     type: 'application/ld+json',
     dangerouslySetInnerHTML: { __html: JSON.stringify(schema) },
@@ -173,7 +177,8 @@ export function getServiceJsonLd() {
           itemOffered: {
             '@type': 'Service',
             name: 'RAG Systems & Vector Search',
-            description: 'Enterprise vector search pipelines, hybrid retrieval, and multi-document indexing engines.',
+            description:
+              'Enterprise vector search pipelines, hybrid retrieval, and multi-document indexing engines.',
           },
         },
         {
@@ -181,7 +186,8 @@ export function getServiceJsonLd() {
           itemOffered: {
             '@type': 'Service',
             name: 'Model Context Protocol (MCP) Servers',
-            description: 'Standardized MCP tool and resource servers connecting LLMs directly to private databases.',
+            description:
+              'Standardized MCP tool and resource servers connecting LLMs directly to private databases.',
           },
         },
         {
@@ -197,7 +203,8 @@ export function getServiceJsonLd() {
           itemOffered: {
             '@type': 'Service',
             name: 'Custom AI Web Applications',
-            description: 'Full-stack Next.js and React web applications powered by sub-second neural inference.',
+            description:
+              'Full-stack Next.js and React web applications powered by sub-second neural inference.',
           },
         },
         {
@@ -205,7 +212,8 @@ export function getServiceJsonLd() {
           itemOffered: {
             '@type': 'Service',
             name: 'Business Automation Pipelines',
-            description: 'Automated data entry, ERP ingestion, and multi-app background worker queues.',
+            description:
+              'Automated data entry, ERP ingestion, and multi-app background worker queues.',
           },
         },
       ],

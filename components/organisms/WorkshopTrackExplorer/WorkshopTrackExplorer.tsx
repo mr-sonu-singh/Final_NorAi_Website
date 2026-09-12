@@ -62,9 +62,12 @@ const TRACKS: TrackData[] = [
     badgeVariant: 'ochre',
     icon: Users,
     title: 'Everyday AI Literacy for Rural Communities & Elders',
-    tagline: 'Demystifying artificial intelligence through vernacular voice tools and real-world utility.',
-    targetAudience: 'Rural citizens, elders, village youth, local artisans, small shopkeepers, and first-time digital users.',
-    prerequisites: 'Zero technical background or prior computer experience required. Just a standard smartphone.',
+    tagline:
+      'Demystifying artificial intelligence through vernacular voice tools and real-world utility.',
+    targetAudience:
+      'Rural citizens, elders, village youth, local artisans, small shopkeepers, and first-time digital users.',
+    prerequisites:
+      'Zero technical background or prior computer experience required. Just a standard smartphone.',
     duration: '1-Day Interactive Masterclass (3–4 Hours)',
     toolsCovered: [
       'ChatGPT (Voice & Hindi)',
@@ -75,7 +78,8 @@ const TRACKS: TrackData[] = [
     ],
     capstoneProject: {
       title: 'Hindi Jan-Seva Voice Letter Drafter',
-      description: 'Citizens speak in Hindi to automatically format formal administrative applications and verify welfare eligibility.',
+      description:
+        'Citizens speak in Hindi to automatically format formal administrative applications and verify welfare eligibility.',
       badge: 'Take-Home Utility',
     },
     keyOutcomes: [
@@ -87,22 +91,39 @@ const TRACKS: TrackData[] = [
     syllabus: [
       {
         title: 'Demystifying AI in Simple Hindi',
-        description: 'What is artificial intelligence really? Breaking down misconceptions without technical jargon.',
-        points: ['How AI thinks and responds', 'Safe vs. unsafe uses of AI', 'Smartphone-first access'],
+        description:
+          'What is artificial intelligence really? Breaking down misconceptions without technical jargon.',
+        points: [
+          'How AI thinks and responds',
+          'Safe vs. unsafe uses of AI',
+          'Smartphone-first access',
+        ],
       },
       {
         title: 'Voice-First Problem Solving',
-        description: 'Hands-on practice asking questions, seeking government scheme eligibility, and drafting documents.',
-        points: ['Vernacular speech inputs', 'Drafting Hindi letters & forms', 'Crop & business queries'],
+        description:
+          'Hands-on practice asking questions, seeking government scheme eligibility, and drafting documents.',
+        points: [
+          'Vernacular speech inputs',
+          'Drafting Hindi letters & forms',
+          'Crop & business queries',
+        ],
       },
       {
         title: 'Digital Safety & Fraud Prevention',
-        description: 'Empowering elders and rural citizens against emerging deepfake scams and fraudulent calls.',
-        points: ['Spotting cloned voices & scams', 'Privacy on public Wi-Fi', 'Fact-checking online news'],
+        description:
+          'Empowering elders and rural citizens against emerging deepfake scams and fraudulent calls.',
+        points: [
+          'Spotting cloned voices & scams',
+          'Privacy on public Wi-Fi',
+          'Fact-checking online news',
+        ],
       },
     ],
-    ruralAdaptation: 'Conducted in community halls or Panchayat Bhawans with projector visual aids, local dialect examples, and assisted 1-on-1 smartphone walkthroughs.',
-    townAdaptation: 'Held in local community centers and senior citizen clubs with customized workflows for household budgeting and small business administration.',
+    ruralAdaptation:
+      'Conducted in community halls or Panchayat Bhawans with projector visual aids, local dialect examples, and assisted 1-on-1 smartphone walkthroughs.',
+    townAdaptation:
+      'Held in local community centers and senior citizen clubs with customized workflows for household budgeting and small business administration.',
   },
   {
     id: 'youth',
@@ -111,8 +132,10 @@ const TRACKS: TrackData[] = [
     badgeVariant: 'sage',
     icon: GraduationCap,
     title: 'AI Productivity & Research for Young Learners',
-    tagline: 'Empowering students to turn AI into a 24/7 personal tutor, study partner, and creative accelerator.',
-    targetAudience: 'High school students, diploma candidates, and regional degree college undergraduates.',
+    tagline:
+      'Empowering students to turn AI into a 24/7 personal tutor, study partner, and creative accelerator.',
+    targetAudience:
+      'High school students, diploma candidates, and regional degree college undergraduates.',
     prerequisites: 'Basic familiarity with a smartphone or personal computer.',
     duration: '1-Day Intensive Session (4–5 Hours)',
     toolsCovered: [
@@ -124,7 +147,8 @@ const TRACKS: TrackData[] = [
     ],
     capstoneProject: {
       title: 'Autonomous STEM Exam Flashcard Generator',
-      description: 'Turns lecture audio recordings and textbook PDFs into LaTeX flashcard decks and practice quizzes in seconds.',
+      description:
+        'Turns lecture audio recordings and textbook PDFs into LaTeX flashcard decks and practice quizzes in seconds.',
       badge: 'Academic Study Engine',
     },
     keyOutcomes: [
@@ -136,22 +160,35 @@ const TRACKS: TrackData[] = [
     syllabus: [
       {
         title: 'The AI Study Engine',
-        description: 'Techniques to master complex curriculum material 3x faster with interactive interrogation.',
-        points: ['Structured inquiry frameworks', 'Socratic dialogue prompts', 'LaTeX math extraction'],
+        description:
+          'Techniques to master complex curriculum material 3x faster with interactive interrogation.',
+        points: [
+          'Structured inquiry frameworks',
+          'Socratic dialogue prompts',
+          'LaTeX math extraction',
+        ],
       },
       {
         title: 'Lecture-to-Notes Mastery',
-        description: 'Hands-on practice using NorAI Course Note-Taker to convert webinars and lectures into flashcards.',
+        description:
+          'Hands-on practice using NorAI Course Note-Taker to convert webinars and lectures into flashcards.',
         points: ['Multi-modal transcription', 'Key takeaway synthesis', 'Practice quiz generation'],
       },
       {
         title: 'Introduction to Computational Thinking',
-        description: 'Demystifying how software works and building first interactive mini-apps with AI coding tools.',
-        points: ['Prompt-to-code workflows', 'Debugging syntax errors', 'Launching first web pages'],
+        description:
+          'Demystifying how software works and building first interactive mini-apps with AI coding tools.',
+        points: [
+          'Prompt-to-code workflows',
+          'Debugging syntax errors',
+          'Launching first web pages',
+        ],
       },
     ],
-    ruralAdaptation: 'Bilingual delivery focusing on bridging English educational barriers with Hindi explanation scaffolds.',
-    townAdaptation: 'Integrated with institutional computer labs with dedicated tracks on competitive exam prep (JEE, NEET, GATE) and career resume crafting.',
+    ruralAdaptation:
+      'Bilingual delivery focusing on bridging English educational barriers with Hindi explanation scaffolds.',
+    townAdaptation:
+      'Integrated with institutional computer labs with dedicated tracks on competitive exam prep (JEE, NEET, GATE) and career resume crafting.',
   },
   {
     id: 'engineering',
@@ -160,8 +197,10 @@ const TRACKS: TrackData[] = [
     badgeVariant: 'terracotta',
     icon: Cpu,
     title: 'Deterministic AI Systems & MCP Architecture',
-    tagline: 'Moving from superficial prompt wrappers to high-accuracy, sub-second production AI engineering.',
-    targetAudience: 'Computer Science & IT students, polytechnic engineers, open-source contributors, and aspiring founders in towns and university hubs.',
+    tagline:
+      'Moving from superficial prompt wrappers to high-accuracy, sub-second production AI engineering.',
+    targetAudience:
+      'Computer Science & IT students, polytechnic engineers, open-source contributors, and aspiring founders in towns and university hubs.',
     prerequisites: 'Comfort with TypeScript, Python, or basic web development. Laptop required.',
     duration: '2-Day Live-Coding Masterclass & Hackathon',
     toolsCovered: [
@@ -173,7 +212,8 @@ const TRACKS: TrackData[] = [
     ],
     capstoneProject: {
       title: 'Local Model Context Protocol (MCP) SQLite Tool',
-      description: 'Production MCP server connecting local open-weight LLMs directly to structured databases with zero data leaks.',
+      description:
+        'Production MCP server connecting local open-weight LLMs directly to structured databases with zero data leaks.',
       badge: 'Live Hackathon Build',
     },
     keyOutcomes: [
@@ -185,27 +225,37 @@ const TRACKS: TrackData[] = [
     syllabus: [
       {
         title: 'MCP Server Architecture',
-        description: 'Writing type-safe Model Context Protocol servers in TypeScript and Python for autonomous tool routing.',
-        points: ['JSON-RPC communication', 'Type-safe schema definitions', 'Tool sandboxing & safety'],
+        description:
+          'Writing type-safe Model Context Protocol servers in TypeScript and Python for autonomous tool routing.',
+        points: [
+          'JSON-RPC communication',
+          'Type-safe schema definitions',
+          'Tool sandboxing & safety',
+        ],
       },
       {
         title: 'Local Neural Serving & vLLM',
-        description: 'Optimizing open-weight LLMs with GGUF/AWQ quantization for sub-second in-RAM execution.',
+        description:
+          'Optimizing open-weight LLMs with GGUF/AWQ quantization for sub-second in-RAM execution.',
         points: ['vLLM engine setup', 'Continuous batching', 'Memory caching strategies'],
       },
       {
         title: 'Hybrid Vector RAG Pipelines',
-        description: 'Grounding AI in custom enterprise documents using pgvector, Qdrant, and reciprocal rank fusion.',
+        description:
+          'Grounding AI in custom enterprise documents using pgvector, Qdrant, and reciprocal rank fusion.',
         points: ['Dense + sparse indexing', 'Chunking optimization', 'Citation verification'],
       },
       {
         title: 'Full-Stack Micro-SaaS Capstone',
-        description: 'Deploying a live Next.js 15 AI web application with rate limiting and deterministic error boundaries.',
+        description:
+          'Deploying a live Next.js 15 AI web application with rate limiting and deterministic error boundaries.',
         points: ['Streaming edge responses', 'Zero data retention', 'Live Vercel/VPS deploy'],
       },
     ],
-    ruralAdaptation: 'Focus on setting up lightweight local offline LLMs (Ollama) that operate without continuous high-speed broadband.',
-    townAdaptation: 'Full cloud + edge orchestration hackathon with mentorship, live portfolio code reviews, and direct interview pipelines.',
+    ruralAdaptation:
+      'Focus on setting up lightweight local offline LLMs (Ollama) that operate without continuous high-speed broadband.',
+    townAdaptation:
+      'Full cloud + edge orchestration hackathon with mentorship, live portfolio code reviews, and direct interview pipelines.',
   },
 ];
 
@@ -268,7 +318,9 @@ export function WorkshopTrackExplorer() {
             type="button"
             onClick={() => setContextMode('rural')}
             className={`relative px-2.5 py-1 rounded-lg text-xs font-mono font-semibold transition-all ${
-              contextMode === 'rural' ? 'text-terra-600' : 'text-ink-secondary hover:text-ink-primary'
+              contextMode === 'rural'
+                ? 'text-terra-600'
+                : 'text-ink-secondary hover:text-ink-primary'
             }`}
           >
             {contextMode === 'rural' && (
@@ -284,7 +336,9 @@ export function WorkshopTrackExplorer() {
             type="button"
             onClick={() => setContextMode('town')}
             className={`relative px-2.5 py-1 rounded-lg text-xs font-mono font-semibold transition-all ${
-              contextMode === 'town' ? 'text-terra-600' : 'text-ink-secondary hover:text-ink-primary'
+              contextMode === 'town'
+                ? 'text-terra-600'
+                : 'text-ink-secondary hover:text-ink-primary'
             }`}
           >
             {contextMode === 'town' && (
@@ -423,9 +477,7 @@ export function WorkshopTrackExplorer() {
                         {item.title}
                       </h5>
 
-                      <p className="text-xs text-ink-body leading-relaxed">
-                        {item.description}
-                      </p>
+                      <p className="text-xs text-ink-body leading-relaxed">{item.description}</p>
 
                       <AnimatePresence>
                         {isExpanded && (
@@ -482,8 +534,14 @@ export function WorkshopTrackExplorer() {
 
                 <div className="rounded-xl bg-canvas-base border border-[rgba(20,28,43,0.08)] p-4 space-y-2.5">
                   {activeTrack.keyOutcomes.map((outcome, idx) => (
-                    <div key={idx} className="flex items-start gap-2 text-xs text-ink-body leading-relaxed">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-sage-600 shrink-0 mt-0.5" aria-hidden="true" />
+                    <div
+                      key={idx}
+                      className="flex items-start gap-2 text-xs text-ink-body leading-relaxed"
+                    >
+                      <CheckCircle2
+                        className="w-3.5 h-3.5 text-sage-600 shrink-0 mt-0.5"
+                        aria-hidden="true"
+                      />
                       <span>{outcome}</span>
                     </div>
                   ))}
@@ -518,7 +576,10 @@ export function WorkshopTrackExplorer() {
                   className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#141C2B] px-5 py-3 font-sans text-xs font-semibold text-[#F5F0EA] hover:bg-[#1F2B3E] active:scale-[0.98] transition-all group"
                 >
                   <span>Request This Track for Your Institution</span>
-                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                  <ArrowRight
+                    className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
                 </NextLink>
               </div>
             </div>

@@ -1,5 +1,5 @@
-import type { NextConfig } from "next";
-import withBundleAnalyzer from "@next/bundle-analyzer";
+import type { NextConfig } from 'next';
+import withBundleAnalyzer from '@next/bundle-analyzer';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -15,7 +15,9 @@ const cspHeader = `
     base-uri 'self';
     form-action 'self';
     ${isDev ? '' : 'upgrade-insecure-requests;'}
-`.replace(/\s{2,}/g, ' ').trim();
+`
+  .replace(/\s{2,}/g, ' ')
+  .trim();
 
 const securityHeaders = [
   {
@@ -63,7 +65,7 @@ const nextConfig: NextConfig = {
 
   images: {
     unoptimized: true,
-    formats: ["image/webp", "image/avif"],
+    formats: ['image/webp', 'image/avif'],
   },
 
   async redirects() {
@@ -97,7 +99,7 @@ const nextConfig: NextConfig = {
 };
 
 const bundleAnalyzer = withBundleAnalyzer({
-  enabled: process.env.ANALYZE === "true",
+  enabled: process.env.ANALYZE === 'true',
 });
 
 export default bundleAnalyzer(nextConfig);

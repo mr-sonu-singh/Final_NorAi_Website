@@ -59,9 +59,7 @@ export function LegalTemplate({
                 <Heading as="h1" variant="display-xl" className="text-balance text-ink-primary">
                   {title}
                 </Heading>
-                {subtitle ? (
-                  <p className="leading-relaxed text-ink-body">{subtitle}</p>
-                ) : null}
+                {subtitle ? <p className="leading-relaxed text-ink-body">{subtitle}</p> : null}
                 {lastUpdated ? (
                   <p className="text-[13px] text-ink-secondary">Last updated {lastUpdated}</p>
                 ) : null}

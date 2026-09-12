@@ -15,7 +15,8 @@ export function ArchitecturalSpecMatrix() {
         </h3>
 
         <p className="text-base text-text-secondary leading-relaxed max-w-sm">
-          We skip the decorative AI marketing hype. Every utility is engineered with deterministic inference pipelines, strict ephemeral memory guarantees, and transparent unit economics.
+          We skip the decorative AI marketing hype. Every utility is engineered with deterministic
+          inference pipelines, strict ephemeral memory guarantees, and transparent unit economics.
         </p>
       </div>
 
@@ -36,7 +37,8 @@ export function ArchitecturalSpecMatrix() {
           </h4>
 
           <p className="text-sm text-text-secondary leading-relaxed">
-            Optimized serverless runtime ensures operations execute with immediate responses. Zero cold-start stalls or multi-minute queue backlogs.
+            Optimized serverless runtime ensures operations execute with immediate responses. Zero
+            cold-start stalls or multi-minute queue backlogs.
           </p>
 
           <div className="pt-2 text-xs font-mono text-text-muted">
@@ -59,7 +61,8 @@ export function ArchitecturalSpecMatrix() {
           </h4>
 
           <p className="text-sm text-text-secondary leading-relaxed">
-            Customer documents and voice streams are processed in transient RAM containers and wiped instantly. Never pooled, retained, or used for model training.
+            Customer documents and voice streams are processed in transient RAM containers and wiped
+            instantly. Never pooled, retained, or used for model training.
           </p>
 
           <div className="pt-2 text-xs font-mono text-text-muted">
@@ -82,7 +85,8 @@ export function ArchitecturalSpecMatrix() {
           </h4>
 
           <p className="text-sm text-text-secondary leading-relaxed">
-            Typed JSON schemas and typed REST webhooks. Seamlessly integrates into your existing Slack workflows, internal dashboards, and ATS platforms.
+            Typed JSON schemas and typed REST webhooks. Seamlessly integrates into your existing
+            Slack workflows, internal dashboards, and ATS platforms.
           </p>
 
           <div className="pt-2 text-xs font-mono text-text-muted">

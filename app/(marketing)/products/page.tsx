@@ -28,7 +28,8 @@ const CATALOG_TOOLS = [
     slug: 'resume-shortlister',
     title: 'AI Resume Shortlister',
     category: 'Recruitment AI',
-    tagline: 'Screen hundreds of engineering resumes in seconds with sub-second vector scoring and weighted skills matching.',
+    tagline:
+      'Screen hundreds of engineering resumes in seconds with sub-second vector scoring and weighted skills matching.',
     metric: '< 0.35s / PDF',
     inputFormat: 'PDF, DOCX, TXT',
     outputFormat: 'Ranked Scorecard & Validated JSON',
@@ -44,7 +45,8 @@ const CATALOG_TOOLS = [
     slug: 'course-note-taker',
     title: 'Course Note-Taker',
     category: 'EdTech & Study AI',
-    tagline: 'Transform raw lecture recordings, videos, and slide decks into executive study notes and interactive flashcards.',
+    tagline:
+      'Transform raw lecture recordings, videos, and slide decks into executive study notes and interactive flashcards.',
     metric: 'Real-Time Audio NLP',
     inputFormat: 'MP3, WAV, MP4, YouTube',
     outputFormat: 'Markdown, Notion & SRS Flashcards',
@@ -60,7 +62,8 @@ const CATALOG_TOOLS = [
     slug: 'chat-digest',
     title: 'Community Chat Digest',
     category: 'Community AI',
-    tagline: 'Condense thousands of unread Discord, Slack, and Telegram messages into structured executive briefs.',
+    tagline:
+      'Condense thousands of unread Discord, Slack, and Telegram messages into structured executive briefs.',
     metric: '2m Executive Brief',
     inputFormat: 'Discord, Slack, Telegram Exports',
     outputFormat: 'Daily Digest & Task Webhooks',
@@ -76,7 +79,8 @@ const CATALOG_TOOLS = [
     slug: 'smart-dainik-news',
     title: 'Smart Dainik News',
     category: 'Regional Intelligence',
-    tagline: 'Hyper-local regional news and public employment alerts clustered across Hindi and English feeds.',
+    tagline:
+      'Hyper-local regional news and public employment alerts clustered across Hindi and English feeds.',
     metric: 'Bilingual NLP Feeds',
     inputFormat: 'UP Gazette, Regional Wires, RSS',
     outputFormat: 'Verified Employment Alerts',
@@ -103,11 +107,14 @@ export default function ProductsPage() {
 
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-text-primary leading-[1.05] tracking-display">
               Four tools. <br />
-              <span className="italic text-accent-primary font-normal">Each solves one problem.</span>
+              <span className="italic text-accent-primary font-normal">
+                Each solves one problem.
+              </span>
             </h1>
 
             <p className="fluid-lead text-text-secondary leading-relaxed max-w-2xl font-normal text-pretty">
-              Autonomous micro-SaaS utilities engineered for high-volume operational workflows. No complex onboarding, no forced contracts, and zero permanent data retention.
+              Autonomous micro-SaaS utilities engineered for high-volume operational workflows. No
+              complex onboarding, no forced contracts, and zero permanent data retention.
             </p>
 
             <div className="pt-2 flex flex-wrap gap-4 text-xs font-mono text-text-secondary">
@@ -160,14 +167,15 @@ export default function ProductsPage() {
                       </span>
                     </div>
 
-                    <p className="text-sm text-text-secondary leading-relaxed">
-                      {tool.tagline}
-                    </p>
+                    <p className="text-sm text-text-secondary leading-relaxed">{tool.tagline}</p>
 
                     {/* Highlights List */}
                     <div className="space-y-2 pt-2 border-t border-border-subtle">
                       {tool.highlights.map((point, pIdx) => (
-                        <div key={pIdx} className="flex items-start gap-2 text-xs text-text-secondary">
+                        <div
+                          key={pIdx}
+                          className="flex items-start gap-2 text-xs text-text-secondary"
+                        >
                           <CheckCircle2 className="w-3.5 h-3.5 text-accent-secondary shrink-0 mt-0.5" />
                           <span>{point}</span>
                         </div>
@@ -182,7 +190,9 @@ export default function ProductsPage() {
                       </div>
                       <div className="p-2 rounded bg-surface-panel border border-border-subtle">
                         <span className="text-[10px] text-text-muted block">OUTPUT</span>
-                        <span className="text-text-primary text-[11px] truncate block">{tool.outputFormat}</span>
+                        <span className="text-text-primary text-[11px] truncate block">
+                          {tool.outputFormat}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -193,7 +203,11 @@ export default function ProductsPage() {
                       Free to start · 50 sandbox credits
                     </span>
                     <Link href={`/products/${tool.slug}`}>
-                      <Button variant="primary" size="md" className="group/btn cursor-pointer whitespace-nowrap">
+                      <Button
+                        variant="primary"
+                        size="md"
+                        className="group/btn cursor-pointer whitespace-nowrap"
+                      >
                         <span>Open Tool</span>
                         <ArrowRight className="w-3.5 h-3.5 ml-1.5 transition-transform group-hover/btn:translate-x-1" />
                       </Button>
@@ -218,17 +232,26 @@ export default function ProductsPage() {
                 Need dedicated endpoints or private VPC hosting?
               </h2>
               <p className="fluid-body text-text-secondary leading-relaxed max-w-xl mx-auto text-pretty">
-                All tools provide dedicated endpoints, custom rate limits, and isolated VPC instances for enterprise engineering teams.
+                All tools provide dedicated endpoints, custom rate limits, and isolated VPC
+                instances for enterprise engineering teams.
               </p>
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
                 <Link href="/contact?service=enterprise-capacity" className="w-full sm:w-auto">
-                  <Button variant="primary" size="lg" className="w-full sm:w-auto group cursor-pointer whitespace-nowrap">
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    className="w-full sm:w-auto group cursor-pointer whitespace-nowrap"
+                  >
                     <span>Talk to an engineer</span>
                     <ArrowRight className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </Link>
                 <Link href="/docs" className="w-full sm:w-auto">
-                  <Button variant="secondary" size="lg" className="w-full sm:w-auto cursor-pointer whitespace-nowrap">
+                  <Button
+                    variant="secondary"
+                    size="lg"
+                    className="w-full sm:w-auto cursor-pointer whitespace-nowrap"
+                  >
                     Read API documentation &rarr;
                   </Button>
                 </Link>

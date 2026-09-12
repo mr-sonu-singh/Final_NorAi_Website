@@ -134,7 +134,11 @@ export function ContactSection({
           )}
 
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <Heading as="h2" variant="heading-xl" className="font-bold tracking-tight text-ink-primary">
+            <Heading
+              as="h2"
+              variant="heading-xl"
+              className="font-bold tracking-tight text-ink-primary"
+            >
               {heading}
             </Heading>
           </div>
@@ -150,8 +154,20 @@ export function ContactSection({
                 />
               </div>
             ) : (
-              <div className={cn(variant === 'split' && (directEmails || socialLinks) ? 'grid grid-cols-1 lg:grid-cols-12 gap-12' : 'max-w-2xl mx-auto space-y-8')}>
-                <div className={cn(variant === 'split' && (directEmails || socialLinks) ? 'lg:col-span-7' : 'w-full')}>
+              <div
+                className={cn(
+                  variant === 'split' && (directEmails || socialLinks)
+                    ? 'grid grid-cols-1 lg:grid-cols-12 gap-12'
+                    : 'max-w-2xl mx-auto space-y-8',
+                )}
+              >
+                <div
+                  className={cn(
+                    variant === 'split' && (directEmails || socialLinks)
+                      ? 'lg:col-span-7'
+                      : 'w-full',
+                  )}
+                >
                   {isError && (
                     <div className="mb-6">
                       <Alert
@@ -164,12 +180,7 @@ export function ContactSection({
                   )}
 
                   <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-                    <FormField
-                      id="contact-name"
-                      label="Full name"
-                      error={nameError}
-                      required
-                    >
+                    <FormField id="contact-name" label="Full name" error={nameError} required>
                       <Input
                         id="contact-name"
                         value={values.name}
@@ -180,12 +191,7 @@ export function ContactSection({
                       />
                     </FormField>
 
-                    <FormField
-                      id="contact-email"
-                      label="Work email"
-                      error={emailError}
-                      required
-                    >
+                    <FormField id="contact-email" label="Work email" error={emailError} required>
                       <Input
                         id="contact-email"
                         type="email"

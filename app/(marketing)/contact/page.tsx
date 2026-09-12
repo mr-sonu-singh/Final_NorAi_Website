@@ -66,7 +66,9 @@ export default function ContactPage() {
                 </h1>
 
                 <p className="leading-relaxed text-text-secondary font-sans text-[15px]">
-                  Whether you need high-volume document extraction, custom deterministic RAG pipelines, or want to invite us to your campus—write to us. A real engineer reads every message. We reply within one business day.
+                  Whether you need high-volume document extraction, custom deterministic RAG
+                  pipelines, or want to invite us to your campus—write to us. A real engineer reads
+                  every message. We reply within one business day.
                 </p>
               </div>
 
@@ -95,7 +97,10 @@ export default function ContactPage() {
                       href="mailto:noraitechnologies@gmail.com"
                       className="font-mono text-[13px] font-medium text-accent-primary hover:underline transition-colors inline-flex items-center gap-2 break-all"
                     >
-                      <Mail className="h-3.5 w-3.5 shrink-0 text-accent-primary" aria-hidden="true" />
+                      <Mail
+                        className="h-3.5 w-3.5 shrink-0 text-accent-primary"
+                        aria-hidden="true"
+                      />
                       <span>noraitechnologies@gmail.com</span>
                     </a>
                   </div>
@@ -114,15 +119,25 @@ export default function ContactPage() {
                 {/* Honest Reply & Confidentiality Highlights */}
                 <div className="pt-4 border-t border-border-subtle space-y-3">
                   <div className="flex items-start gap-2.5 text-[12px] text-text-secondary leading-normal">
-                    <Clock className="h-3.5 w-3.5 text-accent-secondary shrink-0 mt-0.5" aria-hidden="true" />
+                    <Clock
+                      className="h-3.5 w-3.5 text-accent-secondary shrink-0 mt-0.5"
+                      aria-hidden="true"
+                    />
                     <span>
-                      <strong className="font-semibold text-text-primary">Honest Reply:</strong> A real engineer reads every message. We reply within one business day.
+                      <strong className="font-semibold text-text-primary">Honest Reply:</strong> A
+                      real engineer reads every message. We reply within one business day.
                     </span>
                   </div>
                   <div className="flex items-start gap-2.5 text-[12px] text-text-secondary leading-normal">
-                    <ShieldCheck className="h-3.5 w-3.5 text-accent-secondary shrink-0 mt-0.5" aria-hidden="true" />
+                    <ShieldCheck
+                      className="h-3.5 w-3.5 text-accent-secondary shrink-0 mt-0.5"
+                      aria-hidden="true"
+                    />
                     <span>
-                      <strong className="font-semibold text-text-primary">Confidential &amp; Direct:</strong> Zero sales bots, zero automated deflection queues, and strict privacy.
+                      <strong className="font-semibold text-text-primary">
+                        Confidential &amp; Direct:
+                      </strong>{' '}
+                      Zero sales bots, zero automated deflection queues, and strict privacy.
                     </span>
                   </div>
                 </div>

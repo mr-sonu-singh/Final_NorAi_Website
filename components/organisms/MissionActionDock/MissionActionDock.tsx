@@ -232,8 +232,14 @@ export function MissionActionDock() {
               </div>
               <ul className="space-y-2.5">
                 {activePersona.delivers.map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-2.5 text-xs md:text-sm text-ink-body leading-relaxed">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-sage-600 shrink-0 mt-0.5" aria-hidden="true" />
+                  <li
+                    key={idx}
+                    className="flex items-start gap-2.5 text-xs md:text-sm text-ink-body leading-relaxed"
+                  >
+                    <CheckCircle2
+                      className="w-3.5 h-3.5 text-sage-600 shrink-0 mt-0.5"
+                      aria-hidden="true"
+                    />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -251,7 +257,10 @@ export function MissionActionDock() {
                 </div>
                 <ul className="space-y-2">
                   {activePersona.requirements.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-xs text-ink-body leading-relaxed">
+                    <li
+                      key={idx}
+                      className="flex items-start gap-2 text-xs text-ink-body leading-relaxed"
+                    >
                       <span className="w-1.5 h-1.5 rounded-full bg-ochre-500 shrink-0 mt-1.5" />
                       <span>{item}</span>
                     </li>
@@ -265,7 +274,10 @@ export function MissionActionDock() {
                   className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#141C2B] px-5 py-3 font-sans text-xs font-semibold text-[#F5F0EA] hover:bg-[#1F2B3E] active:scale-[0.98] transition-all group"
                 >
                   <span>{activePersona.ctaLabel}</span>
-                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                  <ArrowRight
+                    className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
                 </NextLink>
               </div>
             </div>

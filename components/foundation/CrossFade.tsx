@@ -34,7 +34,11 @@ export function CrossFade({
   const shouldReduceMotion = useReducedMotion();
 
   if (shouldReduceMotion) {
-    return <div key={activeKey} className={className}>{children}</div>;
+    return (
+      <div key={activeKey} className={className}>
+        {children}
+      </div>
+    );
   }
 
   return (

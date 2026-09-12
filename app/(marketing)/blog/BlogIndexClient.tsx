@@ -46,17 +46,13 @@ export function BlogIndexClient({ posts }: BlogIndexClientProps) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  const categories = useMemo(
-    () => [...new Set(posts.map((post) => post.category))],
-    [posts],
-  );
+  const categories = useMemo(() => [...new Set(posts.map((post) => post.category))], [posts]);
 
   const sortedPosts = useMemo(() => sortByDateDesc(posts), [posts]);
 
   const filteredPosts = useMemo(() => {
     return sortedPosts.filter((post) => {
-      const matchesCategory =
-        selectedCategory === ALL_FILTER || post.category === selectedCategory;
+      const matchesCategory = selectedCategory === ALL_FILTER || post.category === selectedCategory;
       const matchesDifficulty =
         selectedDifficulty === ALL_FILTER || post.difficulty === selectedDifficulty;
 
@@ -203,7 +199,9 @@ export function BlogIndexClient({ posts }: BlogIndexClientProps) {
             {isFiltering && (
               <div className="flex items-center justify-between border-t border-[rgba(13,37,61,0.06)] pt-3 text-xs text-ink-secondary">
                 <span>
-                  Found <strong className="text-ink-primary font-semibold">{filteredPosts.length}</strong> matching notes
+                  Found{' '}
+                  <strong className="text-ink-primary font-semibold">{filteredPosts.length}</strong>{' '}
+                  matching notes
                 </span>
                 <button
                   type="button"
@@ -303,7 +301,8 @@ export function BlogIndexClient({ posts }: BlogIndexClientProps) {
                 No engineering notes matched your search criteria.
               </p>
               <p className="mx-auto mt-2 max-w-sm text-[15px] text-ink-body font-sans">
-                Try searching for broader terms like &ldquo;RAG&rdquo;, &ldquo;Zod&rdquo;, &ldquo;GPU&rdquo;, or reset your filters.
+                Try searching for broader terms like &ldquo;RAG&rdquo;, &ldquo;Zod&rdquo;,
+                &ldquo;GPU&rdquo;, or reset your filters.
               </p>
               <button
                 type="button"

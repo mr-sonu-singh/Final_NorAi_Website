@@ -37,10 +37,7 @@ export function ReadingProgressBar() {
   }, []);
 
   return (
-    <div
-      aria-hidden="true"
-      className="fixed left-0 top-0 z-50 h-[3px] w-full bg-line-subtle"
-    >
+    <div aria-hidden="true" className="fixed left-0 top-0 z-50 h-[3px] w-full bg-line-subtle">
       <div
         className="h-full bg-terra-500 transition-all duration-150 ease-out"
         style={{ width: `${progress}%` }}
@@ -68,7 +65,7 @@ export function TableOfContents({ items }: TableOfContentsProps) {
       {
         rootMargin: '-80px 0% -60% 0%',
         threshold: 0.1,
-      }
+      },
     );
 
     items.forEach((item) => {
@@ -134,9 +131,7 @@ export function CodeSnippetBlock({ snippet }: { snippet: BlogCodeSnippet }) {
       <div className="flex items-center justify-between border-b border-white/10 bg-[#0F1622] px-4 py-2.5">
         <div className="flex items-center gap-2 font-mono text-xs text-white/70">
           <Terminal className="h-3.5 w-3.5 text-terra-400" aria-hidden="true" />
-          <span className="font-medium text-white/90">
-            {snippet.filename || snippet.language}
-          </span>
+          <span className="font-medium text-white/90">{snippet.filename || snippet.language}</span>
           <span className="rounded bg-white/10 px-1.5 py-0.5 text-[10px] text-white/60">
             {snippet.language}
           </span>
@@ -197,19 +192,12 @@ export function EditorialCallout({ callout }: { callout: BlogCallout }) {
   }[callout.type];
 
   return (
-    <aside
-      className={`my-8 rounded-xl border p-5 sm:p-6 ${styles.border} shadow-sm`}
-      role="note"
-    >
+    <aside className={`my-8 rounded-xl border p-5 sm:p-6 ${styles.border} shadow-sm`} role="note">
       <div className="flex items-start gap-3.5">
         {styles.icon}
         <div className="space-y-1.5">
-          <h3 className="font-display text-lg text-ink-primary font-medium">
-            {callout.title}
-          </h3>
-          <p className="text-[15px] leading-relaxed text-ink-body">
-            {callout.content}
-          </p>
+          <h3 className="font-display text-lg text-ink-primary font-medium">{callout.title}</h3>
+          <p className="text-[15px] leading-relaxed text-ink-body">{callout.content}</p>
         </div>
       </div>
     </aside>
@@ -235,17 +223,12 @@ export function BenchmarkTable({ table }: { table: BlogTable }) {
           </thead>
           <tbody className="divide-y divide-[rgba(13,37,61,0.06)]">
             {table.rows.map((row, rIdx) => (
-              <tr
-                key={rIdx}
-                className="transition-colors hover:bg-canvas-recessed/30"
-              >
+              <tr key={rIdx} className="transition-colors hover:bg-canvas-recessed/30">
                 {row.map((cell, cIdx) => (
                   <td
                     key={cIdx}
                     className={`px-4 py-3 text-ink-body ${
-                      cIdx === 0
-                        ? 'font-medium text-ink-primary'
-                        : 'font-mono text-xs'
+                      cIdx === 0 ? 'font-medium text-ink-primary' : 'font-mono text-xs'
                     }`}
                   >
                     {cell}
@@ -295,10 +278,7 @@ export function ShareAndMetaBar({
 
   const handleShareLinkedIn = () => {
     const url = encodeURIComponent(`${window.location.origin}/blog/${slug}`);
-    window.open(
-      `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
-      '_blank'
-    );
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
   };
 
   return (
@@ -356,20 +336,12 @@ export function ShareAndMetaBar({
   );
 }
 
-export function AuthorBioCard({
-  author,
-  authorRole,
-}: {
-  author: string;
-  authorRole: string;
-}) {
+export function AuthorBioCard({ author, authorRole }: { author: string; authorRole: string }) {
   return (
     <div className="mt-10 rounded-2xl border border-[rgba(13,37,61,0.08)] bg-canvas-paper p-6 flex flex-col sm:flex-row items-start sm:items-center gap-5">
       <MonogramAvatar name={author} size="md" />
       <div className="space-y-1">
-        <p className="font-mono text-xs uppercase tracking-wider text-terra-600">
-          Published by
-        </p>
+        <p className="font-mono text-xs uppercase tracking-wider text-terra-600">Published by</p>
         <h4 className="font-display text-xl text-ink-primary">{author}</h4>
         <p className="text-[13px] text-ink-secondary">{authorRole} at NorAI Technologies</p>
       </div>
@@ -377,11 +349,7 @@ export function AuthorBioCard({
   );
 }
 
-export function ContextualProductCard({
-  product,
-}: {
-  product: BlogRelatedProduct;
-}) {
+export function ContextualProductCard({ product }: { product: BlogRelatedProduct }) {
   return (
     <div className="my-12 rounded-2xl border border-[rgba(13,37,61,0.12)] bg-gradient-to-br from-canvas-paper to-canvas-recessed/50 p-7 shadow-sm">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">

@@ -23,7 +23,8 @@ export function Heading({
   children,
   ...props
 }: HeadingProps) {
-  const isDisplay = variant === 'display-xl' || variant === 'display-lg' || variant === 'display-md';
+  const isDisplay =
+    variant === 'display-xl' || variant === 'display-lg' || variant === 'display-md';
 
   const variantClasses: Record<HeadingVariant, string> = {
     'display-xl':
@@ -46,7 +47,12 @@ export function Heading({
 
   return (
     <Component
-      className={cn('text-primary-800', isDisplay ? '' : 'font-sans', variantClasses[variant], className)}
+      className={cn(
+        'text-primary-800',
+        isDisplay ? '' : 'font-sans',
+        variantClasses[variant],
+        className,
+      )}
       {...props}
     >
       {children}

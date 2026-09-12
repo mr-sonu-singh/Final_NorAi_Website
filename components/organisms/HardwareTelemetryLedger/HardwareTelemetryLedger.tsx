@@ -24,9 +24,7 @@ export function HardwareTelemetryLedger() {
                 <span className="text-accent-primary font-sans text-xl font-normal">&lt;</span>
                 <CountUp value={0.35} decimals={2} duration={0.8} suffix="s" />
               </div>
-              <p className="text-xs font-medium text-text-secondary">
-                Sub-second parser latency
-              </p>
+              <p className="text-xs font-medium text-text-secondary">Sub-second parser latency</p>
             </div>
             <div className="pt-1">
               <span className="font-mono text-[11px] text-text-muted">
@@ -47,14 +45,10 @@ export function HardwareTelemetryLedger() {
                 <span>0</span>
                 <span className="text-accent-secondary font-sans text-lg font-semibold">Bytes</span>
               </div>
-              <p className="text-xs font-medium text-text-secondary">
-                Zero customer data to disk
-              </p>
+              <p className="text-xs font-medium text-text-secondary">Zero customer data to disk</p>
             </div>
             <div className="pt-1">
-              <span className="font-mono text-[11px] text-text-muted">
-                Ephemeral RAM
-              </span>
+              <span className="font-mono text-[11px] text-text-muted">Ephemeral RAM</span>
             </div>
           </div>
 
@@ -92,14 +86,10 @@ export function HardwareTelemetryLedger() {
               <div className="flex items-baseline gap-1 font-mono text-2xl sm:text-3xl font-bold text-text-primary tabular-nums tracking-tight">
                 <CountUp value={99.98} decimals={2} duration={0.8} suffix="%" />
               </div>
-              <p className="text-xs font-medium text-text-secondary">
-                Deterministic P99 uptime
-              </p>
+              <p className="text-xs font-medium text-text-secondary">Deterministic P99 uptime</p>
             </div>
             <div className="pt-1">
-              <span className="font-mono text-[11px] text-text-muted">
-                Active SLA
-              </span>
+              <span className="font-mono text-[11px] text-text-muted">Active SLA</span>
             </div>
           </div>
         </div>

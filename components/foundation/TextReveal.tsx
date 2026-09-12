@@ -85,42 +85,31 @@ export function TextReveal({
       whileInView="visible"
       viewport={{ once }}
     >
-      {splitBy === 'word' ? (
-        words.map((word, index) => (
-          <span
-            key={`${word}-${index}`}
-            className="inline-block overflow-hidden align-top mr-[0.28em] last:mr-0"
-          >
-            <motion.span
-              variants={itemVariants}
-              className={`inline-block ${tokenClassName}`}
+      {splitBy === 'word'
+        ? words.map((word, index) => (
+            <span
+              key={`${word}-${index}`}
+              className="inline-block overflow-hidden align-top mr-[0.28em] last:mr-0"
             >
-              {word}
-            </motion.span>
-          </span>
-        ))
-      ) : (
-        words.map((word, wordIndex) => (
-          <span
-            key={`word-${wordIndex}`}
-            className="inline-block whitespace-nowrap mr-[0.28em] last:mr-0"
-          >
-            {word.split('').map((char, charIndex) => (
-              <span
-                key={`char-${charIndex}`}
-                className="inline-block overflow-hidden align-top"
-              >
-                <motion.span
-                  variants={itemVariants}
-                  className={`inline-block ${tokenClassName}`}
-                >
-                  {char}
-                </motion.span>
-              </span>
-            ))}
-          </span>
-        ))
-      )}
+              <motion.span variants={itemVariants} className={`inline-block ${tokenClassName}`}>
+                {word}
+              </motion.span>
+            </span>
+          ))
+        : words.map((word, wordIndex) => (
+            <span
+              key={`word-${wordIndex}`}
+              className="inline-block whitespace-nowrap mr-[0.28em] last:mr-0"
+            >
+              {word.split('').map((char, charIndex) => (
+                <span key={`char-${charIndex}`} className="inline-block overflow-hidden align-top">
+                  <motion.span variants={itemVariants} className={`inline-block ${tokenClassName}`}>
+                    {char}
+                  </motion.span>
+                </span>
+              ))}
+            </span>
+          ))}
     </MotionTag>
   );
 }

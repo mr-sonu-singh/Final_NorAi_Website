@@ -51,7 +51,12 @@ export function Toast({
       </div>
 
       {actionLabel && (
-        <Button variant="ghost" size="sm" onClick={onAction} className="shrink-0 text-terra-600 hover:bg-terra-50">
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={onAction}
+          className="shrink-0 text-terra-600 hover:bg-terra-50"
+        >
           {actionLabel}
         </Button>
       )}

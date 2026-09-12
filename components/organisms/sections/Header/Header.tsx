@@ -83,7 +83,7 @@ export function Header({
     const menuEl = mobileMenuRef.current;
     if (menuEl) {
       const focusableEls = menuEl.querySelectorAll<HTMLElement>(
-        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
       );
       if (focusableEls.length > 0) {
         focusableEls[0]?.focus();
@@ -106,8 +106,8 @@ export function Header({
 
         const menuFocusables = Array.from(
           container.querySelectorAll<HTMLElement>(
-            'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
-          )
+            'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+          ),
         );
 
         // Full trap ring: [toggleBtn, ...menuFocusables]
@@ -171,7 +171,10 @@ export function Header({
       </div>
 
       <Container size="default">
-        <nav className="flex items-center justify-between min-h-[66px]" aria-label="Main Navigation">
+        <nav
+          className="flex items-center justify-between min-h-[66px]"
+          aria-label="Main Navigation"
+        >
           {/* Brand Logo & Wordmark */}
           <div className="flex items-center gap-3 shrink-0">
             <Link href="/" className="group inline-flex items-center" aria-label="NorAI Home">
@@ -182,7 +185,8 @@ export function Header({
           {/* Desktop Navigation Links (Clean Title Case Plus Jakarta Sans) */}
           <div className="hidden lg:flex items-center gap-5 xl:gap-7">
             {navItems.map((item) => {
-              const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
+              const isActive =
+                pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
               return (
                 <Link
                   key={item.href}
@@ -248,9 +252,15 @@ export function Header({
             role="dialog"
             aria-modal="true"
             aria-label="Mobile Navigation Menu"
-            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
-            animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, clipPath: 'inset(0 0 0% 0)' }}
-            exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
+            initial={
+              shouldReduceMotion ? { opacity: 0 } : { opacity: 0, clipPath: 'inset(0 0 100% 0)' }
+            }
+            animate={
+              shouldReduceMotion ? { opacity: 1 } : { opacity: 1, clipPath: 'inset(0 0 0% 0)' }
+            }
+            exit={
+              shouldReduceMotion ? { opacity: 0 } : { opacity: 0, clipPath: 'inset(0 0 100% 0)' }
+            }
             transition={{ duration: 0.18, ease: [0.23, 1, 0.32, 1] }}
             className="lg:hidden border-t border-border-subtle bg-surface-panel px-6 py-6 shadow-xl overflow-hidden"
           >
@@ -264,7 +274,9 @@ export function Header({
                     onClick={closeMobileMenu}
                     className={cn(
                       'text-sm font-mono tracking-wide py-1.5 font-medium transition-colors',
-                      isActive ? 'text-accent-primary font-semibold' : 'text-text-primary hover:text-accent-primary',
+                      isActive
+                        ? 'text-accent-primary font-semibold'
+                        : 'text-text-primary hover:text-accent-primary',
                     )}
                     aria-current={isActive ? 'page' : undefined}
                   >

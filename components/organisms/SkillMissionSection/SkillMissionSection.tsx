@@ -86,7 +86,9 @@ export function SkillMissionSection() {
             </h2>
 
             <p className="fluid-lead text-text-secondary font-normal leading-relaxed max-w-3xl text-pretty">
-              Frontier technology cannot remain confined to metro tech enclaves. We partner with non-profits, local councils, and educational institutions to deliver structured, on-ground computational literacy tailored to how people live, learn, and build.
+              Frontier technology cannot remain confined to metro tech enclaves. We partner with
+              non-profits, local councils, and educational institutions to deliver structured,
+              on-ground computational literacy tailored to how people live, learn, and build.
             </p>
           </div>
         </Reveal>
@@ -119,7 +121,8 @@ export function SkillMissionSection() {
                     Hands-on Interactive Learning in Regional Classrooms
                   </p>
                   <p className="text-xs text-white/80 font-sans leading-relaxed hidden sm:block">
-                    Bridging digital gaps through assisted, practical walkthroughs—turning everyday smartphones and community computer labs into instruments of empowerment.
+                    Bridging digital gaps through assisted, practical walkthroughs—turning everyday
+                    smartphones and community computer labs into instruments of empowerment.
                   </p>
                 </div>
 
@@ -133,11 +136,10 @@ export function SkillMissionSection() {
 
             <figcaption className="p-4 sm:p-5 bg-surface-panel border-t border-border-subtle flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-left text-xs font-mono text-text-muted">
               <span className="text-text-primary font-medium">
-                Syllabus Architecture: Tailored across literacy levels, local dialects, and available equipment.
+                Syllabus Architecture: Tailored across literacy levels, local dialects, and
+                available equipment.
               </span>
-              <span className="text-accent-primary font-semibold">
-                Scalable Regional Model
-              </span>
+              <span className="text-accent-primary font-semibold">Scalable Regional Model</span>
             </figcaption>
           </figure>
         </Reveal>
@@ -157,7 +159,8 @@ export function SkillMissionSection() {
                 </h3>
               </div>
               <p className="text-xs sm:text-sm text-text-secondary font-sans max-w-md">
-                We never force a generic slide deck. Every session is calibrated to local literacy, native language, and practical daily utility.
+                We never force a generic slide deck. Every session is calibrated to local literacy,
+                native language, and practical daily utility.
               </p>
             </div>
 
@@ -186,9 +189,7 @@ export function SkillMissionSection() {
                             {quad.title}
                           </h4>
                         </div>
-                        <p className="text-xs font-medium text-accent-primary">
-                          {quad.focus}
-                        </p>
+                        <p className="text-xs font-medium text-accent-primary">{quad.focus}</p>
                       </div>
 
                       {/* Narrative Description */}
@@ -201,7 +202,9 @@ export function SkillMissionSection() {
                     <div className="pt-4 border-t border-border-subtle flex items-start gap-2.5 text-xs text-text-primary bg-surface-panel -mx-6 sm:-mx-8 -mb-6 sm:-mb-8 p-4 sm:p-5 rounded-b-xl border-t">
                       <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                       <span className="font-sans text-text-secondary leading-normal">
-                        <strong className="text-text-primary font-semibold">Core Deliverable:</strong>{' '}
+                        <strong className="text-text-primary font-semibold">
+                          Core Deliverable:
+                        </strong>{' '}
                         {quad.deliverable}
                       </span>
                     </div>
@@ -225,7 +228,9 @@ export function SkillMissionSection() {
                 Partner with us to scale AI literacy in your region.
               </h3>
               <p className="text-xs sm:text-sm text-text-secondary leading-relaxed font-sans max-w-xl">
-                Whether you represent an NGO focused on digital inclusion, a CSR foundation, an educational trust, or a government initiative, NorAI provides turnkey on-ground workshop delivery, ground-calibrated bilingual curricula, and trained facilitators.
+                Whether you represent an NGO focused on digital inclusion, a CSR foundation, an
+                educational trust, or a government initiative, NorAI provides turnkey on-ground
+                workshop delivery, ground-calibrated bilingual curricula, and trained facilitators.
               </p>
             </div>
 

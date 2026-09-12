@@ -46,10 +46,7 @@ export function TelemetrySparkline({
           <stop offset="100%" stopColor={color} stopOpacity="0.0" />
         </linearGradient>
       </defs>
-      <polygon
-        points={areaPoints}
-        fill={`url(#sparkline-grad-${color.replace('#', '')})`}
-      />
+      <polygon points={areaPoints} fill={`url(#sparkline-grad-${color.replace('#', '')})`} />
       <polyline
         fill="none"
         stroke={color}
