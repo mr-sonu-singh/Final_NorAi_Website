@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 export const envSchema = z.object({
   // Public client-exposed variables (must be prefixed with NEXT_PUBLIC_)
-  NEXT_PUBLIC_SITE_URL: z.string().url().default('http://localhost:3000'),
+  NEXT_PUBLIC_SITE_URL: z.string().url().default('https://norai.tech'),
   NEXT_PUBLIC_ANALYTICS_ID: z.string().optional(),
 
   // Server-side contact addresses

@@ -6,6 +6,7 @@ import { Reveal } from '@/components/foundation/AnimatedSection';
 import { ContactFormClient } from './ContactFormClient';
 import { Mail, MapPin, Clock, ShieldCheck, Zap } from 'lucide-react';
 import { buildMetadata, getBreadcrumbListJsonLd, JsonLd } from '@/lib/seo';
+import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = buildMetadata({
   path: '/contact',
@@ -28,7 +29,7 @@ export default function ContactPage() {
     mainEntity: {
       '@type': 'Organization',
       name: 'NorAI Technologies Pvt. Ltd.',
-      url: 'https://norai.asia',
+      url: siteConfig.url,
       email: 'noraitechnologies@gmail.com',
       address: {
         '@type': 'PostalAddress',

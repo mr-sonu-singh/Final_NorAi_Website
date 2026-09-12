@@ -40,7 +40,7 @@ export const LEGAL_POLICIES: Record<string, LegalPolicyData> = {
       {
         heading: '4. Contact Information',
         paragraphs: [
-          'For privacy questions or data request inquiries, contact our Data Protection Officer at privacy@norai.asia or via physical mail at NorAI Technologies, Zurich Tech Park, Switzerland.',
+          'For privacy questions or data request inquiries, contact our Data Protection Officer at privacy@norai.tech or via physical mail at NorAI Technologies, Uttar Pradesh, India.',
         ],
       },
     ],

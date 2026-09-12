@@ -24,6 +24,7 @@ import {
   MapPin,
 } from 'lucide-react';
 import { buildMetadata, getBreadcrumbListJsonLd, JsonLd } from '@/lib/seo';
+import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = buildMetadata({
   path: '/mission',
@@ -120,7 +121,7 @@ export default function MissionPage() {
     provider: {
       '@type': 'Organization',
       name: 'NorAI Technologies',
-      url: 'https://norai.asia',
+      url: siteConfig.url,
     },
   };
 

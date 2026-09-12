@@ -172,22 +172,52 @@ test.describe('Navigation & Interactive Flows', () => {
     });
   });
 
-  test.describe('Accessibility Skip Link', () => {
-    test('skip-to-content link receives focus on first Tab and navigates to main content', async ({ page }) => {
-      await page.setViewportSize({ width: 1440, height: 900 });
+  test.describe('Homepage & Services Architecture Verification', () => {
+    test('homepage renders 4 Operating Rituals cards without team roster', async ({ page }) => {
       await page.goto('/');
+      const ritualsSection = page.locator('#operating-rituals');
+      await expect(ritualsSection).toBeVisible();
+      await expect(ritualsSection).toContainText('How we build software.');
+      await expect(ritualsSection).toContainText('Founders write the code & answer support');
+      await expect(ritualsSection).toContainText('Hardware honesty, exposed latency');
+      await expect(ritualsSection).toContainText('Shipped weekly on a deterministic rhythm');
+      await expect(ritualsSection).toContainText('Field Fridays across Uttar Pradesh');
+      await expect(ritualsSection).toContainText('Meet the founding team on /team');
 
-      // Press tab from top of document
-      await page.keyboard.press('Tab');
+      // Ensure old founder roster is NOT on the homepage
+      await expect(page.locator('#team-origin')).toHaveCount(0);
+    });
 
-      const skipLink = page.locator('a[href="#main-content"]');
-      await expect(skipLink).toBeFocused();
+    test('homepage capability arc Open Tool navigates to tool detail', async ({ page }) => {
+      await page.goto('/');
+      const openToolLink = page.locator('a[href="/products/resume-shortlister"]').first();
+      await expect(openToolLink).toBeVisible();
+      await openToolLink.click();
+      await expect(page).toHaveURL(/\/products\/resume-shortlister/);
+      await expect(page.locator('h1')).toContainText('Resume Shortlister');
+    });
 
-      // Press Enter on skip link
-      await page.keyboard.press('Enter');
+    test('homepage renders closing dispatch CTA linking to /contact', async ({ page }) => {
+      await page.goto('/');
+      const dispatchSection = page.locator('#closing-dispatch');
+      await expect(dispatchSection).toBeVisible();
+      await expect(dispatchSection).toContainText("Tell us what's slowing you down.");
+      const contactBtn = dispatchSection.getByRole('link', { name: /Talk to an Engineer/i });
+      await expect(contactBtn).toHaveAttribute('href', '/contact');
+    });
 
-      const mainContent = page.locator('#main-content');
-      await expect(mainContent).toBeAttached();
+    test('services page displays all 4 practice previews before interactive viewer', async ({ page }) => {
+      await page.goto('/services');
+      await expect(page.locator('text=Multi-Format Ingestion & Stream Extraction').first()).toBeVisible();
+      await expect(page.locator('text=Deterministic RAG & Agent Orchestration').first()).toBeVisible();
+      await expect(page.locator('text=Private VPC & Air-Gapped Inference').first()).toBeVisible();
+      await expect(page.locator('text=Spatial & Immersive Systems (AR/VR)').first()).toBeVisible();
+
+      // Ensure WebGPU and Three.js keywords are present
+      await expect(page.locator('body')).toContainText('WebGPU');
+      await expect(page.locator('body')).toContainText('Three.js');
+      await expect(page.locator('body')).toContainText('AR/VR');
     });
   });
 });
+

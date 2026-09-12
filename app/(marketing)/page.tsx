@@ -70,31 +70,30 @@ const TOOLS_ARC = [
   },
 ];
 
-const FOUNDERS = [
+const OPERATING_RITUALS = [
   {
-    name: 'Dhruw Singh',
-    role: 'Infrastructure & Reliability',
-    image: '/images/team/dhruw-singh.jpg',
+    number: '01',
+    title: 'Founders write the code & answer support',
+    tagline: 'Zero deflection queues · Direct engineer accountability',
+    desc: 'We do not employ deflection bots or ticket tiers. When you report an edge case or request a pipeline feature, the engineer who authored the schema fixes it.',
   },
   {
-    name: 'Sonu Singh',
-    role: 'Spatial & Immersive UI',
-    image: '/images/team/sonu-singh.jpg',
+    number: '02',
+    title: 'Hardware honesty, exposed latency',
+    tagline: 'Visible execution ms · Typed Zod schemas · No black boxes',
+    desc: 'Every tool displays its telemetry: exact parsing time in milliseconds, ephemeral RAM isolation status, and raw JSON payloads. Software should explain its mechanics transparently.',
   },
   {
-    name: 'Annanta Singh',
-    role: 'Linguistic Models & NLP',
-    image: '/images/team/annanta-singh.jpg',
+    number: '03',
+    title: 'Shipped weekly on a deterministic rhythm',
+    tagline: 'Continuous delivery · Real software every Monday',
+    desc: 'We build lightweight, single-purpose utilities released on a steady rhythm. No vaporware or pitch decks behind NDAs—just reliable software you can use in production tomorrow.',
   },
   {
-    name: 'Rishabh Singh',
-    role: 'Systems & Pipeline Core',
-    image: '/images/team/rishabh-singh.jpg',
-  },
-  {
-    name: 'Gourav Singh',
-    role: 'Full-Stack Architecture',
-    image: '/images/team/gourav-singh.jpg',
+    number: '04',
+    title: 'Field Fridays across Uttar Pradesh',
+    tagline: 'Grassroots ground truth · Real classroom testing',
+    desc: 'Every Friday, our team visits regional colleges, polytechnics, and village clusters across Uttar Pradesh—testing our tools with first-generation students and everyday citizens.',
   },
 ];
 
@@ -264,72 +263,66 @@ export default function HomePage() {
       </section>
 
       {/* =========================================================================
-          BEAT 3: WHO WE ARE (Positive Identity & Craft)
-          Five Builders, Uttar Pradesh Regional Hub, Positive Ownership Framing
+          BEAT 3: OPERATING RITUALS (How We Build Software)
+          Scannable, Calm Four-Card Row Replacing Team Roster
           ========================================================================= */}
-      <section className="py-16 md:py-24 bg-surface-canvas border-b border-border-subtle" id="team-origin">
+      <section className="py-16 md:py-24 bg-surface-canvas border-b border-border-subtle" id="operating-rituals">
         <Container size="default">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-            <div className="lg:col-span-5 space-y-4 text-left">
-              <p className="text-xs font-mono font-semibold uppercase tracking-[0.14em] text-accent-primary">
-                Studio Craft &amp; Identity
-              </p>
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-normal text-text-primary leading-tight tracking-tight">
-                Five builders in <br />
-                <span className="font-medium text-text-primary">Uttar Pradesh.</span>
-              </h2>
-              <p className="text-sm sm:text-base text-text-secondary leading-relaxed text-pretty">
-                Every pipeline authored, deployed, and supported directly by the five founding engineers in Uttar Pradesh. We design software instruments with physical-world reliability, mathematical discipline, and radical transparency.
-              </p>
-              <div className="pt-2">
-                <Link href="/team" className="font-semibold text-accent-primary hover:text-accent-hover inline-flex items-center gap-1 text-sm">
-                  <span>Meet the founding team &rarr;</span>
+          <div className="space-y-10">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 text-left">
+              <div className="space-y-3 max-w-2xl">
+                <p className="text-xs font-mono font-semibold uppercase tracking-[0.14em] text-accent-primary">
+                  Engineering Operating Rituals
+                </p>
+                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-normal text-text-primary leading-tight tracking-tight">
+                  How we build software.
+                </h2>
+                <p className="text-sm sm:text-base text-text-secondary leading-relaxed text-pretty">
+                  Four operating rituals that separate NorAI engineering from slide decks and wrappers.
+                </p>
+              </div>
+
+              <div className="shrink-0">
+                <Link
+                  href="/team"
+                  className="font-medium text-xs sm:text-sm text-accent-primary hover:text-accent-hover inline-flex items-center gap-1 group"
+                >
+                  <span>Meet the founding team on /team</span>
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
                 </Link>
               </div>
             </div>
 
-            <div className="lg:col-span-7">
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3.5 sm:gap-4">
-                {FOUNDERS.map((founder) => (
-                  <div
-                    key={founder.name}
-                    className="p-3 sm:p-4 rounded-xl bg-surface-panel border border-border-subtle space-y-3 text-left hover:border-border-strong transition-colors"
-                  >
-                    <div className="relative aspect-square w-full rounded-lg overflow-hidden bg-surface-panel-subtle">
-                      <Image
-                        src={founder.image}
-                        alt={founder.name}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 640px) 50vw, 33vw"
-                      />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+              {OPERATING_RITUALS.map((ritual) => (
+                <div
+                  key={ritual.number}
+                  className="p-5 sm:p-6 rounded-2xl bg-surface-panel border border-border-subtle hover:border-border-strong transition-all flex flex-col justify-between text-left space-y-4 group"
+                >
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between border-b border-border-subtle pb-3">
+                      <span className="font-mono text-xs font-bold text-accent-primary">
+                        {ritual.number}
+                      </span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent-secondary" />
                     </div>
-                    <div>
-                      <h4 className="font-sans font-semibold text-xs sm:text-sm text-text-primary">
-                        {founder.name}
-                      </h4>
-                      <p className="font-mono text-[11px] text-text-secondary mt-0.5">
-                        {founder.role}
-                      </p>
-                    </div>
+                    <h3 className="font-display text-lg sm:text-xl font-normal text-text-primary group-hover:text-accent-primary transition-colors leading-snug">
+                      {ritual.title}
+                    </h3>
+                    <p className="font-mono text-[11px] text-accent-secondary font-medium leading-relaxed">
+                      {ritual.tagline}
+                    </p>
+                    <p className="text-xs text-text-secondary leading-relaxed">
+                      {ritual.desc}
+                    </p>
                   </div>
-                ))}
-
-                {/* Studio Location Card */}
-                <div className="p-3 sm:p-4 rounded-xl bg-surface-panel-subtle/50 border border-border-subtle flex flex-col justify-between text-left space-y-2">
-                  <div>
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-accent-primary font-semibold block">
-                      Regional Hub
-                    </span>
-                    <h4 className="font-sans font-semibold text-xs sm:text-sm text-text-primary mt-1">
-                      Uttar Pradesh, India
-                    </h4>
-                  </div>
-                  <p className="font-mono text-[11px] text-text-muted">
-                    100% In-House Engineering
-                  </p>
                 </div>
-              </div>
+              ))}
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs font-mono text-text-muted border-t border-border-subtle pt-6">
+              <span>Uttar Pradesh, India · 100% In-House Engineering</span>
+              <span className="text-accent-primary font-medium">Deterministic Schemas · Zero Synthetic Hype</span>
             </div>
           </div>
         </Container>
@@ -433,7 +426,7 @@ export default function HomePage() {
           BEAT 6: HONEST CLOSING DISPATCH
           Honest Framing, No Synthetic Metrics, Direct Leads
           ========================================================================= */}
-      <section className="py-16 md:py-24 bg-surface-panel">
+      <section className="py-16 md:py-24 bg-surface-panel border-t border-border-subtle" id="closing-dispatch">
         <Container size="default">
           <div className="rounded-2xl bg-surface-canvas border border-border-strong p-8 sm:p-12 text-center relative overflow-hidden">
             <div className="max-w-2xl mx-auto space-y-6 relative z-10">
@@ -450,26 +443,26 @@ export default function HomePage() {
                 Whether you need high-volume candidate screening, lecture note synthesis, or a dedicated private VPC pipeline—a real engineer reads every message. We reply within one business day.
               </p>
 
-              {/* Dual Action */}
+              {/* Dual Action: Primary to /contact, Secondary to /products */}
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
-                <Link href="/products" className="w-full sm:w-auto">
+                <Link href="/contact" className="w-full sm:w-auto">
                   <Button variant="primary" size="lg" className="w-full sm:w-auto justify-center cursor-pointer whitespace-nowrap">
-                    <span>Start Free Sandbox (50 Credits)</span>
+                    <span>Talk to an Engineer</span>
                     <ArrowRight className="w-4 h-4 ml-1.5" />
                   </Button>
                 </Link>
-                <Link href="/contact" className="w-full sm:w-auto">
+                <Link href="/products" className="w-full sm:w-auto">
                   <Button variant="secondary" size="lg" className="w-full sm:w-auto justify-center cursor-pointer whitespace-nowrap">
-                    Write to NorAI &rarr;
+                    Explore All 4 Tools &rarr;
                   </Button>
                 </Link>
               </div>
 
               {/* Trust Badges Footer */}
               <div className="pt-6 border-t border-border-subtle flex flex-wrap items-center justify-center gap-3 text-xs font-mono text-text-muted">
-                <span>Sub-second response SLA</span>
+                <span>1-Day Reply Guarantee</span>
                 <span className="text-border-strong select-none">/</span>
-                <span>Ephemeral RAM isolation</span>
+                <span>Ephemeral RAM Isolation</span>
                 <span className="text-border-strong select-none">/</span>
                 <span>Engineered in Uttar Pradesh</span>
               </div>

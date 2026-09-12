@@ -12,7 +12,7 @@
 - **Primary Brand Slogan**: *"AI That Actually Works"*
 - **Core Taglines**: *"Your operations, on autopilot."* · *"Purpose-built tools. Zero operational drag."* · *"Democratizing AI from villages to tech hubs."*
 - **Headquarters & Studio**: Uttar Pradesh, India
-- **Primary Domain**: [norai.asia](https://norai.asia) (API: `api.norai.in`)
+- **Primary Domain**: [norai.tech](https://norai.tech) (API: `api.norai.tech`)
 - **Direct Dispatch / Contact**: `noraitechnologies@gmail.com` (Active Desk: Mon–Sat, 9:00 AM – 8:00 PM IST)
 
 ### Core Mission & Engineering Philosophy

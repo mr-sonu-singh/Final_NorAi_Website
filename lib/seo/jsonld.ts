@@ -66,7 +66,7 @@ export function getWebSiteJsonLd() {
       '@type': 'SearchAction',
       target: {
         '@type': 'EntryPoint',
-        urlTemplate: `${siteConfig.url}/faq?q={search_term_string}`,
+        urlTemplate: `${siteConfig.url}/products?q={search_term_string}`,
       },
       'query-input': 'required name=search_term_string',
     },

@@ -1,8 +1,9 @@
 import { BLOG_POSTS } from '@/lib/blog';
+import { siteConfig } from '@/config/site';
 
 export async function GET() {
   const posts = Object.values(BLOG_POSTS);
-  const siteUrl = 'https://norai.asia';
+  const siteUrl = siteConfig.url;
 
   const rssItemsXml = posts
     .map((post) => {

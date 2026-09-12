@@ -93,4 +93,33 @@ test.describe('SEO & Metadata Verification', () => {
 
     expect(titles.size).toBe(MARKETING_PAGES.length);
   });
+
+  test('canonical tags never contain localhost:3000', async ({ request }) => {
+    for (const { path } of MARKETING_PAGES) {
+      const res = await request.get(path);
+      expect(res.ok()).toBe(true);
+      const html = await res.text();
+      expect(html).not.toContain('http://localhost:3000');
+      expect(html).toContain('https://norai.tech');
+    }
+  });
+
+  test('sitemap.xml is valid XML pointing to norai.tech', async ({ request }) => {
+    const res = await request.get('/sitemap.xml');
+    expect(res.ok()).toBe(true);
+    const text = await res.text();
+    expect(text).toContain('<?xml');
+    expect(text).toContain('<urlset');
+    expect(text).toContain('https://norai.tech');
+    expect(text).not.toContain('localhost:3000');
+  });
+
+  test('robots.txt points to norai.tech sitemap', async ({ request }) => {
+    const res = await request.get('/robots.txt');
+    expect(res.ok()).toBe(true);
+    const text = await res.text();
+    expect(text.toLowerCase()).toContain('sitemap: https://norai.tech/sitemap.xml');
+    expect(text).not.toContain('localhost:3000');
+  });
 });
+

@@ -73,6 +73,41 @@ const ENGAGEMENT_STEPS = [
   },
 ];
 
+const PRACTICE_PREVIEWS = [
+  {
+    number: '01',
+    tag: 'DATA INGESTION',
+    title: 'Multi-Format Ingestion & Stream Extraction',
+    summary:
+      'Zero-egress stream parsing, layout-aware PDF tokenization, and sub-second extraction pipelines in transient RAM.',
+    metric: 'P95 Latency < 350ms',
+  },
+  {
+    number: '02',
+    tag: 'RAG & RETRIEVAL',
+    title: 'Deterministic RAG & Agent Orchestration',
+    summary:
+      'Enterprise hybrid vector search (pgvector + BM25), Model Context Protocol (MCP) tool servers, and grounded citation verification.',
+    metric: '99.95% Citation Grounding',
+  },
+  {
+    number: '03',
+    tag: 'SOVEREIGN CLOUD',
+    title: 'Private VPC & Air-Gapped Inference',
+    summary:
+      'Dedicated vLLM and TensorRT-LLM container deployments operating inside your private VPC with zero data egress.',
+    metric: 'Sub-100ms Inference',
+  },
+  {
+    number: '04',
+    tag: 'R&D PILOT · AR/VR',
+    title: 'Spatial & Immersive Systems (AR/VR)',
+    summary:
+      'WebGPU compute shaders, Three.js/WGSL, tactile spatial interaction models, and multi-modal sensory telemetry for spatial data. Led by Japan VR/AR Summit finalist.',
+    metric: '60fps WebGPU Compute',
+  },
+];
+
 export default function ServicesPage() {
   const breadcrumbs = [
     { name: 'Home', path: '/' },
@@ -158,6 +193,36 @@ export default function ServicesPage() {
                 <p className="fluid-body text-text-secondary leading-relaxed max-w-xl text-pretty">
                   Explore our four core engineering practices. Inspect the execution topology, review the typed TypeScript contracts, and scope your dedicated architecture.
                 </p>
+              </div>
+            </Reveal>
+
+            {/* Static 4-Practice Overview Grid (All capabilities immediately scannable) */}
+            <Reveal delay={0.1} y={16}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {PRACTICE_PREVIEWS.map((p) => (
+                  <div
+                    key={p.number}
+                    className="p-5 rounded-2xl bg-surface-panel border border-border-subtle hover:border-border-strong transition-all flex flex-col justify-between text-left space-y-4 group"
+                  >
+                    <div className="space-y-2.5">
+                      <div className="flex items-center justify-between border-b border-border-subtle pb-2.5">
+                        <span className="font-mono text-xs font-bold text-accent-primary">{p.number}</span>
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-surface-panel-subtle text-text-muted border border-border-subtle">
+                          {p.tag}
+                        </span>
+                      </div>
+                      <h3 className="font-display text-lg font-normal text-text-primary group-hover:text-accent-primary transition-colors leading-snug">
+                        {p.title}
+                      </h3>
+                      <p className="text-xs text-text-secondary leading-relaxed">
+                        {p.summary}
+                      </p>
+                    </div>
+                    <div className="pt-2 border-t border-border-subtle text-[11px] font-mono text-accent-secondary font-medium">
+                      {p.metric}
+                    </div>
+                  </div>
+                ))}
               </div>
             </Reveal>
 

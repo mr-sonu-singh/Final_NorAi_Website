@@ -183,14 +183,14 @@ export interface SovereignClusterSpec {
   },
   {
     id: 'spatial-ai',
-    title: 'Spatial & Immersive Systems',
-    category: 'R&D Pilot · Spatial AI',
+    title: 'Spatial & Immersive Systems (AR/VR)',
+    category: 'R&D Pilot · AR/VR & Spatial AI',
     tagline:
-      'WebGPU compute shaders, Three.js/WGSL, tactile spatial interaction models, and multi-modal sensory telemetry for spatial document exploration.',
+      'WebGPU compute shaders, Three.js/WGSL, tactile spatial interaction models, and multi-modal sensory telemetry for spatial data and vector exploration.',
     problem:
-      'Traditional 2D dashboard tables struggle to represent high-dimensional vector embeddings, knowledge graphs, and complex telemetry.',
+      'Traditional 2D dashboard tables struggle to represent high-dimensional vector embeddings, knowledge graphs, and complex telemetry without losing spatial depth.',
     solution:
-      'We prototype spatial canvas interactions using WebGPU compute shaders, translating high-dimensional semantic spaces into tactile, gesture-navigated 3D workspaces.',
+      'We prototype immersive spatial canvas interactions using WebGPU compute shaders and Three.js, translating high-dimensional semantic spaces into tactile, gesture-navigated 3D workspaces. Grounded in founder research recognized at the Japan VR/AR Summit.',
     sla: '60fps WebGPU Compute · Sub-16ms Frame Budget · R&D Pilot',
     security: 'Client-Side WebGPU Shaders · Zero Remote Telemetry',
     topology: {
@@ -212,13 +212,13 @@ export const SpatialCanvasPipelineSpec = z.object({
   targetFramerate: z.literal(60),
   spatialTrackingMode: z.enum(['raycast_pointer', 'hand_telemetry', 'spatial_mouse']),
   maxVectorNodesRendered: z.number().max(50_000).default(10_000),
-  originPedigree: z.literal('Japan VR/AR Summit Research'),
+  originPedigree: z.literal('Japan VR/AR Summit Finalist Research'),
 });`,
     deliverables: [
       'WebGPU and WGSL compute shader rendering pipeline for complex datasets',
-      'High-dimensional vector projection onto 3D interactive canvases',
-      'Tactile gesture tracking and raycast event dispatch',
-      'Grounded in founder research from Japan VR/AR Summit',
+      'Three.js and WebGL tactile 3D interaction models for spatial telemetry navigation',
+      'Tactile gesture tracking and raycast event dispatch for VR/AR headsets and spatial canvases',
+      'Spatial R&D prototyping led by Japan VR/AR Summit finalist engineer',
     ],
     cta: 'Talk to us',
     href: '/contact?service=spatial-ai',

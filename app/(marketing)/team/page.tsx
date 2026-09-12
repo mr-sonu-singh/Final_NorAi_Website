@@ -30,6 +30,7 @@ import {
   Layers,
 } from 'lucide-react';
 import { buildMetadata, getBreadcrumbListJsonLd, JsonLd } from '@/lib/seo';
+import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = buildMetadata({
   path: '/team',
@@ -199,11 +200,11 @@ export default function TeamPage() {
     '@context': 'https://schema.org',
     '@type': 'AboutPage',
     name: 'NorAI Founding Leadership & Engineering Team',
-    url: 'https://norai.asia/team',
+    url: `${siteConfig.url}/team`,
     mainEntity: {
       '@type': 'Organization',
       name: 'NorAI Technologies',
-      url: 'https://norai.asia',
+      url: siteConfig.url,
       location: {
         '@type': 'Place',
         name: 'Uttar Pradesh, India',

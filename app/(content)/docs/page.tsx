@@ -181,7 +181,7 @@ export default function DocsPage() {
                     Production Base URL
                   </span>
                   <div className="flex items-center justify-between bg-surface-canvas p-3 rounded-xl border border-border-subtle font-mono text-xs text-text-primary overflow-x-auto">
-                    <span>https://api.norai.asia/v1</span>
+                    <span>https://api.norai.tech/v1</span>
                     <span className="text-[10px] text-accent-secondary bg-sage-100/60 border border-accent-secondary/20 px-2 py-0.5 rounded">
                       Active
                     </span>
