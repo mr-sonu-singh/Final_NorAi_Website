@@ -9,6 +9,7 @@ import {
   ThreeDimensionsRail,
   SectorLedger,
   OperatingRitualsRail,
+  BharatMissionBeat,
 } from '@/components/organisms';
 import { buildMetadata, getOrganizationJsonLd, getLocalBusinessJsonLd, JsonLd } from '@/lib/seo';
 
@@ -74,6 +75,11 @@ export default function HomePage() {
           <OperatingRitualsRail />
         </Container>
       </section>
+
+      {/* =========================================================================
+          BEAT 6.8: GRASSROOTS BHARAT MISSION SECTION (75 Districts)
+          ========================================================================= */}
+      <BharatMissionBeat />
 
       {/* =========================================================================
           BEAT 7: CLOSING DISPATCH (.gradient-card)
