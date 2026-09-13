@@ -146,7 +146,7 @@ export function Header({
     <header
       role="banner"
       className={cn(
-        'navshell w-full z-[100] transition-[padding,transform] duration-200 pointer-events-none px-3 sm:px-6 pt-3',
+        'navshell w-full z-[100] transition-[padding,transform] duration-200 px-3 sm:px-6 pt-3',
         sticky && 'sticky top-0',
         className,
       )}

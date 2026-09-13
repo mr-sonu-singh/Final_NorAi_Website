@@ -70,7 +70,7 @@ export default function HomePage() {
       {/* =========================================================================
           BEAT 6.5: OPERATING RITUALS (How We Build Software)
           ========================================================================= */}
-      <section id="operating-rituals" className="py-20 sm:py-28 bg-[#f5f5f0] border-b border-[var(--line)]">
+      <section id="operating-rituals" className="py-20 sm:py-28 bg-[#f5f5f0] border-b border-[var(--line)] scroll-mt-24">
         <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
           <OperatingRitualsRail />
         </Container>

@@ -987,6 +987,61 @@ export const AUDENS_PROCESS_STAGES = [
 
 ---
 
+### Phase 7: Final Touch & Polish (Chromium Visual Audit Remediation)
+
+#### 7.1 Visual Audit Protocol & Chromium Screenshot Evidence
+A comprehensive visual audit of every section across desktop (1440×900, 2x scale) and mobile (375×812, 2x scale) viewports was conducted using headless Chromium via Playwright automation (`scripts/capture-visual-audit.mjs`). All 16 section captures were reviewed against the Audens design benchmark:
+
+| Capture File | Section / Page | Viewport | Visual Finding & Quality Assessment |
+| :--- | :--- | :--- | :--- |
+| `01_hero_chamber.png` | Hero Chamber | Desktop (1440) | **PASS WITH POLISH**: Atmospheric dual aurora glows (`var(--mint)/18`, `var(--lavender)/14`) render smoothly. Primary button with handwave icon and ghost pill render crisply. *Finding*: Display headline used synthetic faux-bold (`font-extrabold`) on `Instrument Serif` (natively 400-weight), causing thick stem smearing. *Remediation*: Switch to `font-normal` native serif for authentic, ultra-sharp Audens typography. |
+| `02_three_dimensions_rail.png` | 3 Dimensions Rail | Desktop (1440) | **PASS**: Staggered interactive chat slots on dark pine `#072929` surface. High contrast (13.5:1 Bone `#ebeae1`), pulsing typing indicator, and responsive telemetry badges. |
+| `03_the_shift.png` | The Manifest Shift | Desktop (1440) | **PASS**: Clean breathing room on `#f5f5f0`, punchy 2-sentence conviction statement, and mint-ink eyebrow. |
+| `04_kinetic_marquee.png` | Kinetic Marquee | Desktop (1440) | **PASS**: Continuous GPU-accelerated ticker loop with zero layout thrash or jank. |
+| `05_capability_arc.png` | Capability Arc | Desktop (1440) | **PASS WITH POLISH**: Fixed-height 260px telemetry cards with monospace metrics (`0.28s / doc`, `0 bytes retained`) render with high contrast. *Finding*: Anchor `#capabilities` lacked `scroll-mt-24`, causing section header to be occluded under floating `.navpill` on anchor jump. *Remediation*: Add `scroll-mt-24` and update `h2` to `font-normal`. |
+| `06_sector_ledger.png` | Sector Ledger | Desktop (1440) | **CRITICAL POLISH**: Horizontal numbered rows (`01`–`05`) and deliverable badges match Audens table style. *Finding*: Row titles used `font-display font-bold`, triggering faux-bold kerning splits in Chromium ("Priva te", "Verifica tion"). *Remediation*: Switch row titles to `font-sans font-semibold text-base sm:text-lg`, completely eliminating kerning defects. |
+| `07_operating_rituals.png` | Operating Rituals | Desktop (1440) | **PASS WITH POLISH**: Continuous horizontal rail with rotating `[ + ]` nodes and 4 ethos pillars. *Finding*: Anchor `#operating-rituals` needed `scroll-mt-24` for comfortable clearance below floating nav. |
+| `08_bharat_mission.png` | Bharat Mission Beat | Desktop (1440) | **CRITICAL POLISH**: 3-tier cards with mint, lavender, and coral jewel accents. *Findings*: 1) Tier card titles used `font-display font-bold`, causing severe kerning artifacts ("Verna cula r Hindi Litera cy", "Aca demic Accelera tion"). *Remediation*: Switch tier titles to `font-sans font-semibold text-lg sm:text-xl`. 2) Section anchor `#bharat-mission` needed `scroll-mt-24` to prevent top eyebrow badge occlusion. |
+| `09_closing_dispatch.png` | Closing Dispatch | Desktop (1440) | **PASS WITH POLISH**: Dynamic conic gradient border card enclosing warm ivory `#fffdf7` inner canvas with dual CTAs. *Remediation*: Add `scroll-mt-24` and set headline to `font-normal`. |
+| `10_full_homepage.png` | Full Homepage | Desktop (1440) | **PASS**: Harmonic vertical pacing (`clamp(56px, 7vw, 104px)`), seamless alternating light/dark surface transitions, and zero bento clutter. |
+| `11_products_index.png` | Products Catalog | Desktop (1440) | **PASS**: Full interactive sandboxes and filterable tool matrix correctly isolated from homepage preview. |
+| `12_services_index.png` | Services Architecture | Desktop (1440) | **PASS**: Private VPC deployment diagrams and MCP topologies rendered with clean editorial layout. |
+| `13_mission_index.png` | Bharat Mission Index | Desktop (1440) | **PASS**: 75-district telemetry radar and upcoming developer workshops intact. |
+| `14_mobile_hero.png` | Mobile Hero | Mobile (375) | **PASS**: Centered chamber stacks cleanly, dual pill buttons fit full width, monospace guarantee strip wraps naturally without overflow. |
+| `15_mobile_capabilities.png` | Mobile Capability Arc | Mobile (375) | **PASS**: 260px telemetry chassis stacks vertically above copy blocks with proper spacing. |
+| `16_mobile_bharat_mission.png`| Mobile Bharat Beat | Mobile (375) | **PASS WITH POLISH**: Single-column tier cards fit viewport with zero horizontal overflow; commitment bar stacks button cleanly. |
+
+#### 7.2 Visual Polish Implementation Specifications
+
+##### 7.2.1 Typography & Kerning Remediation
+- **Root Cause**: `Instrument_Serif` in `app/layout.tsx` is loaded strictly at weight `400`. Applying Tailwind classes `font-bold` or `font-extrabold` causes Chromium to apply synthetic faux-bolding, generating letter-spacing anomalies (kerning tears in letter pairs like `te`, `ti`, `ra`).
+- **Standard**:
+  1. Display Headlines (`HeroChamber`, `CapabilityArc`, `BharatMissionBeat`, `ClosingDispatch`): Apply `font-display font-normal` (with italic accents where appropriate).
+  2. Component Titles & Ledger Rows (`SectorLedger`, `BharatMissionBeat` tier cards): Use `font-sans font-semibold` (`Plus Jakarta Sans`), which natively supports weights 500, 600, and 700.
+
+##### 7.2.2 Anchor Offsets & Floating Nav Pill Clearance
+- **Issue**: The floating `.navpill` has `z-50` and is fixed/sticky at the top (`h-[66px]` + top margin). Clicking deep anchors (`#capabilities`, `#operating-rituals`, `#bharat-mission`, `#closing-dispatch`) scrolled section headings directly beneath the capsule.
+- **Remediation**: Added `scroll-mt-24` to all anchor sections across `CapabilityArc.tsx`, `page.tsx`, `BharatMissionBeat.tsx`, and `ClosingDispatch.tsx`.
+
+##### 7.2.3 WebKit Hit-Testing Remediation
+- **Issue**: `navshell` parent had `pointer-events-none` while `.navpill` child had `pointer-events-auto`. In WebKit (Safari), this caused composite hit-testing to pass through the capsule, allowing underlying `<main>` elements to intercept click events.
+- **Remediation**: Removed `pointer-events-none` from `navshell` in `Header.tsx`, restoring reliable pointer event delegation across all WebKit and Chromium viewports.
+
+#### 7.3 Detailed Implementation Checklist
+- [x] Run automated Chromium visual audit and capture 16 full-resolution screenshots (`scripts/capture-visual-audit.mjs`).
+- [x] Review all desktop and mobile captures against Audens aesthetic criteria.
+- [x] Eliminate synthetic faux-bold kerning splits on `SectorLedger.tsx` by transitioning row titles to `font-sans font-semibold`.
+- [x] Eliminate faux-bold artifacts on `BharatMissionBeat.tsx` tier cards by transitioning headings to `font-sans font-semibold`.
+- [x] Update display headings on `HeroChamber.tsx`, `CapabilityArc.tsx`, `BharatMissionBeat.tsx`, and `ClosingDispatch.tsx` to native `font-normal` serif.
+- [x] Apply `scroll-mt-24` across all section anchors (`#capabilities`, `#operating-rituals`, `#bharat-mission`, `#closing-dispatch`).
+- [x] Fix WebKit hit-testing by removing `pointer-events-none` from `Header.tsx`.
+- [x] Re-run Chromium visual audit to verify elimination of kerning tears and confirmed visual elegance.
+- [x] Verify complete type-safety (`npx tsc --noEmit`) and zero ESLint errors (`npm run lint`).
+- [x] Verify production build (`npm run build`, 38/38 static pages generated).
+- [x] Run Playwright automated suites across Chromium and Mobile Chrome (54/54 tests passing).
+
+---
+
 ## 5. Master Verification & Quality Gates
 
 Before any milestone is signed off, the engineering team must pass all 4 verification gates:

@@ -61,7 +61,7 @@ export function SectorLedger() {
             <span className="text-xs uppercase font-mono tracking-widest text-[var(--mint-ink)] font-semibold">
               The Enterprise & Bharat Ledger
             </span>
-            <h2 className="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-[var(--pine)] tracking-tight leading-[1.1] mt-3">
+            <h2 className="font-display font-normal text-3xl sm:text-4xl md:text-5xl text-[var(--pine)] tracking-tight leading-[1.1] mt-3">
               Where AI belongs. Where it delivers.
             </h2>
           </div>
@@ -86,7 +86,7 @@ export function SectorLedger() {
 
               {/* Title & Promise */}
               <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
-                <span className="font-display font-bold text-lg sm:text-xl text-[var(--pine)] group-hover:text-[var(--forest)] transition-colors">
+                <span className="font-sans font-semibold text-base sm:text-lg text-[var(--pine)] group-hover:text-[var(--forest)] transition-colors">
                   {item.name}
                 </span>
                 <span className="text-xs sm:text-sm text-[var(--pine)]/80 font-normal">

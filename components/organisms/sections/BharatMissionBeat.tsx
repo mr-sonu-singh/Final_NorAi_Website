@@ -13,7 +13,7 @@ export function BharatMissionBeat() {
   return (
     <section
       id="bharat-mission"
-      className="py-20 sm:py-28 bg-[#072929] text-[var(--bone)] border-b border-[var(--bone-20)] relative overflow-hidden"
+      className="py-20 sm:py-28 bg-[#072929] text-[var(--bone)] border-b border-[var(--bone-20)] relative overflow-hidden scroll-mt-24"
     >
       {/* Background Subtle Dot Matrix */}
       <div
@@ -34,7 +34,7 @@ export function BharatMissionBeat() {
             />
             <span className="tracking-widest uppercase">03 · Grassroots Bharat Mission · 75 Districts</span>
           </div>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-[var(--bone)] tracking-tight leading-[1.1]">
+          <h2 className="font-display font-normal text-3xl sm:text-4xl md:text-5xl text-[var(--bone)] tracking-tight leading-[1.1]">
             75 Districts. One Sovereign Mission. <br />
             <span className="text-[var(--mint)]">Computational literacy where it matters most.</span>
           </h2>
@@ -50,7 +50,7 @@ export function BharatMissionBeat() {
             <span className="font-mono text-xs font-bold text-[var(--mint)] px-2.5 py-1 rounded-full bg-[var(--mint)]/15 inline-block">
               TIER 01 · CITIZENS
             </span>
-            <h3 className="font-display font-bold text-xl text-[var(--bone)]">
+            <h3 className="font-sans font-semibold text-lg sm:text-xl text-[var(--bone)]">
               Vernacular Hindi Literacy
             </h3>
             <p className="text-sm text-[var(--bone-70)] leading-relaxed">
@@ -66,7 +66,7 @@ export function BharatMissionBeat() {
             <span className="font-mono text-xs font-bold text-[var(--lavender)] px-2.5 py-1 rounded-full bg-[var(--lavender)]/15 inline-block">
               TIER 02 · STUDENTS
             </span>
-            <h3 className="font-display font-bold text-xl text-[var(--bone)]">
+            <h3 className="font-sans font-semibold text-lg sm:text-xl text-[var(--bone)]">
               Academic Acceleration
             </h3>
             <p className="text-sm text-[var(--bone-70)] leading-relaxed">
@@ -82,7 +82,7 @@ export function BharatMissionBeat() {
             <span className="font-mono text-xs font-bold text-[var(--coral)] px-2.5 py-1 rounded-full bg-[var(--coral)]/15 inline-block">
               TIER 03 · BUILDERS
             </span>
-            <h3 className="font-display font-bold text-xl text-[var(--bone)]">
+            <h3 className="font-sans font-semibold text-lg sm:text-xl text-[var(--bone)]">
               Deterministic Systems Engineering
             </h3>
             <p className="text-sm text-[var(--bone-70)] leading-relaxed">

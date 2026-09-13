@@ -12,7 +12,7 @@ export function ClosingDispatch() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section id="closing-dispatch" className="py-20 sm:py-28 bg-[#f5f5f0] text-[var(--pine)]">
+    <section id="closing-dispatch" className="py-20 sm:py-28 bg-[#f5f5f0] text-[var(--pine)] scroll-mt-24">
       <Container size="default" className="max-w-[1100px] mx-auto px-4 sm:px-6">
         <div className="gradient-card p-[2px] rounded-[24px] overflow-hidden relative shadow-2xl">
           {/* Animated Conic Gradient Border */}
@@ -34,7 +34,7 @@ export function ClosingDispatch() {
               <span className="text-xs uppercase font-mono tracking-widest text-[var(--mint-ink)] font-bold">
                 THE FIRST ENGAGEMENT
               </span>
-              <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-[var(--pine)] tracking-tight">
+              <h2 className="font-display font-normal text-3xl sm:text-4xl text-[var(--pine)] tracking-tight">
                 Tell us what&apos;s slowing you down. <br className="hidden sm:inline" />
                 Bring us the operational bottleneck you are actually facing.
               </h2>

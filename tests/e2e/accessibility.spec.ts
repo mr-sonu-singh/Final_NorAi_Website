@@ -64,6 +64,7 @@ test.describe('Accessibility (a11y) Audits', () => {
   test('contact form page has accessible form control associations', async ({ page }) => {
     await page.goto('/contact');
     await page.waitForLoadState('domcontentloaded');
+    await page.waitForSelector('form');
 
     const formAxeResults = await new AxeBuilder({ page }).include('form').analyze();
 

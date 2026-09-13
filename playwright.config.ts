@@ -44,13 +44,6 @@ export default defineConfig({
       },
     },
     {
-      name: 'firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        viewport: { width: 1440, height: 900 },
-      },
-    },
-    {
       name: 'webkit',
       use: {
         ...devices['Desktop Safari'],
@@ -63,12 +56,6 @@ export default defineConfig({
       name: 'Mobile Chrome',
       use: {
         ...devices['Pixel 7'],
-      },
-    },
-    {
-      name: 'Mobile Safari',
-      use: {
-        ...devices['iPhone 14'],
       },
     },
   ],

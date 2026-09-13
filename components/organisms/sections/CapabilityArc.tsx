@@ -91,7 +91,7 @@ export function CapabilityArc() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section id="capabilities" className="py-20 sm:py-28 bg-[#f5f5f0] text-[var(--pine)] border-b border-[var(--line)]">
+    <section id="capabilities" className="py-20 sm:py-28 bg-[#f5f5f0] text-[var(--pine)] border-b border-[var(--line)] scroll-mt-24">
       <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
         <div className="max-w-2xl mb-16 space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--pine-08)] border border-[var(--pine-12)] text-xs font-mono text-[var(--pine)]">
@@ -101,7 +101,7 @@ export function CapabilityArc() {
             />
             <span className="tracking-widest uppercase font-medium">The Capability Arc · Four Sovereign Tools</span>
           </div>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--pine)] tracking-tight leading-[1.1]">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-normal text-[var(--pine)] tracking-tight leading-[1.1]">
             Four single-purpose tools. <br />
             <span className="text-[var(--mint-ink)]">Each solves one operational problem.</span>
           </h2>

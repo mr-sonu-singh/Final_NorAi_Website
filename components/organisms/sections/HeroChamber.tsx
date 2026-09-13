@@ -35,7 +35,7 @@ export function HeroChamber() {
         </div>
 
         {/* Giant Display Headline */}
-        <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[5.2rem] font-extrabold text-[var(--pine)] leading-[1.04] tracking-tight mb-8">
+        <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[5.2rem] font-normal text-[var(--pine)] leading-[1.04] tracking-tight mb-8">
           Software you own. <br />
           <span className="text-[var(--mint-ink)] relative inline-block">
             Intelligence that stays.
