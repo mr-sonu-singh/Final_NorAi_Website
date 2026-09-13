@@ -68,12 +68,15 @@ export function BrandLogo({ size = 'md', variant = 'full', className }: BrandLog
     return <span className={cn('inline-flex items-center', className)}>{markSvg}</span>;
   }
 
+  const textColor = variant === 'inverted' ? 'text-[var(--bone)]' : 'text-[var(--pine)]';
+
   return (
     <div className={cn('inline-flex items-center', gap, className)}>
       {markSvg}
       <span
         className={cn(
-          'font-display font-normal tracking-tight leading-none text-text-primary',
+          'font-display font-medium tracking-tight leading-none',
+          textColor,
           text,
         )}
       >

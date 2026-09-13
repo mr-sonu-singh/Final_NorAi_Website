@@ -87,10 +87,7 @@ export function Footer({
               className="inline-flex items-center gap-3 group active:scale-[0.98] transition-transform"
               aria-label="NorAI Home"
             >
-              <BrandLogo size="lg" />
-              <span className="font-display font-extrabold text-2xl tracking-tight text-[var(--bone)]">
-                NORAI
-              </span>
+              <BrandLogo size="lg" variant="inverted" />
             </Link>
             <p className="text-[var(--bone-70)] text-sm sm:text-base leading-relaxed max-w-sm">
               Fast, sovereign AI engineering and single-purpose utilities. Advice that ships. Systems you own.

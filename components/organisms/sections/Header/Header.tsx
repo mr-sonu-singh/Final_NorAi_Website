@@ -163,8 +163,8 @@ export function Header({
       <div
         className={cn(
           'navpill pointer-events-auto relative z-50 mx-auto max-w-5xl rounded-full border px-4 sm:px-6 py-2 transition-[background-color,border-color,box-shadow,height] duration-300 ease-out',
-          'bg-[#f5f5f0]/90 dark:bg-[#072929]/90 backdrop-blur-xl border-[var(--line)] text-[var(--pine)] dark:text-[var(--bone)]',
-          isScrolled && 'shadow-[0_12px_36px_rgba(7,41,41,0.12)] border-[var(--line)]',
+          'bg-[#fffdf7]/95 backdrop-blur-xl border-[var(--pine-12)] text-[var(--pine)] shadow-[0_8px_30px_-4px_rgba(7,41,41,0.10)]',
+          isScrolled && 'shadow-[0_14px_40px_-6px_rgba(7,41,41,0.16)] border-[var(--pine-20)]',
         )}
         style={{ height: '66px' }}
       >
@@ -177,9 +177,6 @@ export function Header({
               aria-label="NorAI Home"
             >
               <BrandLogo size="md" />
-              <span className="font-display font-extrabold text-xl tracking-tight text-[var(--pine)] dark:text-[var(--bone)]">
-                NORAI
-              </span>
             </Link>
           </div>
 
@@ -197,7 +194,7 @@ export function Header({
                     'relative px-4 py-2 text-sm font-medium no-underline rounded-full font-sans transition-[color,background-color,transform] duration-160 ease-out active:scale-[0.97]',
                     isActive
                       ? 'bg-[var(--mint)] text-[var(--pine)] font-semibold shadow-xs'
-                      : 'text-[var(--pine)]/80 dark:text-[var(--bone)]/80 hover:text-[var(--pine)] dark:hover:text-[var(--bone)] hover:bg-[var(--pine-08)] dark:hover:bg-[var(--bone-20)]',
+                      : 'text-[var(--pine)]/85 hover:text-[var(--pine)] hover:bg-[var(--pine-08)]',
                   )}
                   aria-current={isActive ? 'page' : undefined}
                 >
@@ -252,7 +249,7 @@ export function Header({
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-menu"
               onClick={toggleMobileMenu}
-              className="p-2 rounded-full text-[var(--pine)] dark:text-[var(--bone)] hover:bg-[var(--pine-08)] dark:hover:bg-[var(--bone-20)] active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out cursor-pointer pointer-events-auto"
+              className="p-2 rounded-full text-[var(--pine)] hover:bg-[var(--pine-08)] active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out cursor-pointer pointer-events-auto"
             >
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 {isMobileMenuOpen ? (
@@ -292,7 +289,7 @@ export function Header({
             animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
             exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -6, scale: 0.96 }}
             transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
-            className="pointer-events-auto mx-auto max-w-5xl mt-2 rounded-[22px] border border-[var(--line)] bg-[#f5f5f0]/95 dark:bg-[#072929]/95 backdrop-blur-2xl p-5 shadow-2xl lg:hidden text-[var(--pine)] dark:text-[var(--bone)]"
+            className="pointer-events-auto mx-auto max-w-5xl mt-2 rounded-[22px] border border-[var(--line)] bg-[#fffdf7]/98 backdrop-blur-2xl p-5 shadow-2xl lg:hidden text-[var(--pine)]"
           >
             <div className="flex flex-col gap-2">
               {navItems.map((item) => {
@@ -308,7 +305,7 @@ export function Header({
                       'px-4 py-3 text-base font-medium rounded-xl border-b border-[var(--line)]/50 transition-[background-color,transform] duration-160 ease-out active:scale-[0.97]',
                       isActive
                         ? 'bg-[var(--mint)] text-[var(--pine)] font-semibold'
-                        : 'hover:bg-[var(--pine-08)] dark:hover:bg-[var(--bone-20)]',
+                        : 'text-[var(--pine)] hover:bg-[var(--pine-08)]',
                     )}
                     aria-current={isActive ? 'page' : undefined}
                   >
