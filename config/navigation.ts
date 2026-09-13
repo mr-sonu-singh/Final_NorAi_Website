@@ -25,7 +25,7 @@ export const footerNav = {
   ],
   community: [
     { title: 'Free Student Workshops', href: '/mission' as const },
-    { title: '75 Districts Mission', href: '/mission' as const },
+    { title: 'Youth Upskilling Mission', href: '/mission' as const },
     { title: 'Team Story', href: routes.team },
   ],
   legal: [

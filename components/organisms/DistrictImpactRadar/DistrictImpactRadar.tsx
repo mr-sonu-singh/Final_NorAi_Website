@@ -103,22 +103,22 @@ export function DistrictImpactRadar() {
         <div className="space-y-2 text-left">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--mint)]/20 text-[var(--mint)] border border-[var(--mint)]/30 font-mono text-xs font-bold uppercase tracking-wider">
             <Radio className="w-3.5 h-3.5 animate-pulse" />
-            <span>75-District Bharat Telemetry Radar</span>
+            <span>Regional Youth & Local Area Telemetry</span>
           </div>
           <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#f5f5f0] tracking-tight">
-            Grassroots AI Infrastructure across Uttar Pradesh.
+            A Vision to Upskill Youth & Regional Communities.
           </h3>
           <p className="text-sm sm:text-base text-[var(--bone-70)] max-w-2xl font-normal">
-            We reject the idea that artificial intelligence should be locked in Silicon Valley or South Mumbai enclaves.
-            NorAI deploys free workshops, localized open-weight datasets, and vernacular tooling across every district.
+            We reject the idea that artificial intelligence should be locked in elite metropolitan enclaves.
+            NorAI is committed to a statewide vision: free workshops, localized open-weight tooling, and hands-on developer training for local youth and collegiate talent across Uttar Pradesh.
           </p>
         </div>
 
         {/* Aggregate Counters */}
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 shrink-0">
           <div className="p-3.5 rounded-xl bg-[var(--forest)]/60 border border-[var(--line)] text-left">
-            <span className="font-display text-2xl font-extrabold text-[var(--mint)] block">75 / 75</span>
-            <span className="text-[11px] font-mono text-[var(--bone-70)] uppercase">Districts Mapped</span>
+            <span className="font-display text-2xl font-extrabold text-[var(--mint)] block">Vision</span>
+            <span className="text-[11px] font-mono text-[var(--bone-70)] uppercase">Youth & Local Areas</span>
           </div>
           <div className="p-3.5 rounded-xl bg-[var(--forest)]/60 border border-[var(--line)] text-left">
             <span className="font-display text-2xl font-extrabold text-[var(--lavender)] block">100% Free</span>

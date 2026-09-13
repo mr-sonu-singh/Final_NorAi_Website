@@ -17,7 +17,7 @@ import { AUDENS_HEADER_NAV_ITEMS } from '@/config/navigation';
 export const DEFAULT_HEADER_NAV_ITEMS: NavItem[] = AUDENS_HEADER_NAV_ITEMS;
 
 export const DEFAULT_HEADER_PRIMARY_CTA: HeaderCTA = {
-  label: 'Book a call',
+  label: 'Book a diagnostic',
   href: '/contact',
 };
 

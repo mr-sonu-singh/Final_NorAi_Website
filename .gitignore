@@ -38,6 +38,7 @@ coverage/
 .playwright/
 playwright-report/
 test-results/
+tests/e2e/__screenshots__/
 cypress/screenshots/
 cypress/videos/
 

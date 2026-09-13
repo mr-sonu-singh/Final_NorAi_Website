@@ -837,7 +837,7 @@ python3 -m vllm.entrypoints.openai.api_server \\
         heading: 'Bilingual Entity Normalization Engine',
         paragraphs: [
           'Our pipeline extracts four core verified data points from every employment notification: Eligibility Qualifications, Age Limits with category relaxations, Important Application Deadlines, and Official Direct Submission Links.',
-          'By utilizing custom fine-tuned Devanagari OCR models paired with regex boundary detectors, we achieve 99.2% extraction accuracy across all 75 districts of Uttar Pradesh.',
+          'By utilizing custom fine-tuned Devanagari OCR models paired with regex boundary detectors, we achieve 99.2% extraction accuracy across regional publications and local gazettes.',
         ],
         codeSnippet: {
           language: 'typescript',

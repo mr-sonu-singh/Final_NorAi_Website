@@ -193,23 +193,23 @@
 
   /* --- Typography --- */
   --font-sans: var(--font-jakarta), system-ui, -apple-system, sans-serif;
-  --font-display: var(--font-instrument-serif), Georgia, 'Times New Roman', serif;
+  --font-display: var(--font-jakarta), system-ui, -apple-system, sans-serif;
   --font-mono: var(--font-jetbrains-mono), monospace;
 
   /* Editorial serif display scale (Instrument Serif renders at 400 only) */
   --text-display-xl-size: 4rem; /* 64px */
   --text-display-xl-line: 1.05;
-  --text-display-xl-weight: 400;
-  --text-display-xl-tracking: -0.02em;
+  --text-display-xl-weight: 800;
+  --text-display-xl-tracking: -0.03em;
 
   --text-display-lg-size: 2.75rem; /* 44px */
   --text-display-lg-line: 1.1;
-  --text-display-lg-weight: 400;
-  --text-display-lg-tracking: -0.02em;
+  --text-display-lg-weight: 800;
+  --text-display-lg-tracking: -0.03em;
 
   --text-display-md-size: 2.25rem; /* 36px */
   --text-display-md-line: 1.15;
-  --text-display-md-weight: 400;
+  --text-display-md-weight: 800;
   --text-display-md-tracking: -0.015em;
 
   --text-heading-xl-size: 2rem; /* 32px */

@@ -22,7 +22,7 @@ export const DEFAULT_FOOTER_COLUMNS: FooterColumn[] = [
       { label: 'Private VPC Inference', href: '/services' },
       { label: 'Deterministic RAG Systems', href: '/services' },
       { label: 'MCP Agent Workflows', href: '/services' },
-      { label: '75-District Bharat Mission', href: '/mission' },
+      { label: 'Youth Upskilling & Bharat Mission', href: '/mission' },
     ],
   },
   {
@@ -95,7 +95,7 @@ export function Footer({
             <div className="pt-2">
               <span className="inline-flex items-center gap-2 text-xs font-mono text-[var(--mint)]">
                 <span className="w-2 h-2 rounded-full bg-[var(--mint)] animate-pulse" aria-hidden="true" />
-                <span>Operating across 75 districts in Uttar Pradesh</span>
+                <span>Vision to upskill youth & local communities across UP</span>
               </span>
             </div>
           </div>

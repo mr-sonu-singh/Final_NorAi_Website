@@ -1,176 +1,218 @@
 'use client';
 
-import React from 'react';
-import { ArrowRight, Terminal, ShieldCheck, Zap, Sparkles } from 'lucide-react';
+import React, { useState } from 'react';
 import { Link } from '@/components/atoms/Link';
+import { cn } from '@/lib/utils';
+import { ArrowRight } from 'lucide-react';
 
-interface EthosPillar {
+interface RitualPillar {
   id: string;
-  number: string;
+  n: string;
+  tabLabel: string;
   title: string;
   description: string;
   tag: string;
-  icon: React.ComponentType<{ className?: string }>;
+  accentColor: string;
+  accentBg: string;
+  terminalCommand: string;
+  terminalLogs: string[];
 }
 
-const ETHOS_PILLARS: EthosPillar[] = [
+const RITUALS: RitualPillar[] = [
   {
-    id: 'direct-builders',
-    number: '01',
+    id: 'diagnostic',
+    n: '01',
+    tabLabel: '01 Diagnostic',
     title: 'Direct Access to the Builders',
     description:
-      'Zero account managers or support bots. You speak and debug directly with the engineers who write the models and systems.',
+      'Zero account managers or support bots. You speak, architect, and debug directly with the engineers who write the models and systems.',
     tag: 'Founder-Direct SLA',
-    icon: Terminal,
+    accentColor: '#06845A',
+    accentBg: 'bg-[#06845A]',
+    terminalCommand: 'norai audit --vpc-isolated --strict-citations',
+    terminalLogs: [
+      '[DIAGNOSTIC] Auditing internal document silos & latency bottlenecks...',
+      '[EVALUATION] Deterministic ROI proof delivered in 14 days. Zero cloud lock-in.',
+    ],
   },
   {
-    id: 'transparency-privacy',
-    number: '02',
-    title: 'Total Transparency & Privacy',
+    id: 'airgap',
+    n: '02',
+    tabLabel: '02 Air-Gap',
+    title: 'Total Transparency & Ephemeral RAM',
     description:
-      'Ephemeral RAM isolation. Payloads execute in sub-second memory and immediately purge with zero persistent data retention.',
+      'Payloads execute in sub-second ephemeral memory and immediately purge. Zero persistent cloud telemetry, zero model training data retention.',
     tag: '0 Bytes Retained',
-    icon: ShieldCheck,
+    accentColor: '#00E599',
+    accentBg: 'bg-[#00E599]',
+    terminalCommand: 'norai enclave --verify-airgap --strict-memory',
+    terminalLogs: [
+      '[SECURITY] Ephemeral RAM scratchpad allocated. Local VPC isolated.',
+      '[TELEMETRY] 0 bytes transmitted beyond VPC gateway. Complete sovereignty.',
+    ],
   },
   {
-    id: 'rapid-improvements',
-    number: '03',
-    title: 'Rapid Improvements, Shipped Frequently',
+    id: 'cicd',
+    n: '03',
+    tabLabel: '03 Weekly CI/CD',
+    title: 'Rapid Improvements, Shipped Weekly',
     description:
-      'Continuous delivery without waiting months. We ship verified performance patches, algorithmic updates, and optimizations weekly.',
-    tag: 'Weekly CI/CD Cadence',
-    icon: Zap,
+      'Continuous delivery without waiting months. We ship verified performance patches, algorithmic updates, and model optimizations weekly.',
+    tag: 'Weekly Ship Cadence',
+    accentColor: '#FFAE42',
+    accentBg: 'bg-[#FFAE42]',
+    terminalCommand: 'norai release --channel production --deterministic',
+    terminalLogs: [
+      '[BENCHMARK] Automated regression test suite passed: 100% deterministic.',
+      '[DEPLOYED] Weekly production optimization shipped directly to your repo.',
+    ],
   },
   {
-    id: 'local-communities',
-    number: '04',
-    title: 'Upskilling Local Communities',
+    id: 'bharat',
+    n: '04',
+    tabLabel: '04 Bharat Labs',
+    title: 'Youth & Regional AI Literacy',
     description:
-      '100% free hands-on computational literacy workshops and practical AI labs for students across regional colleges in Uttar Pradesh.',
-    tag: '75 Districts Mission',
-    icon: Sparkles,
+      'A vision to upskill local youth and collegiate scholars with 100% free hands-on computational literacy and practical AI labs.',
+    tag: '100% Free Workshops',
+    accentColor: '#C6B5FF',
+    accentBg: 'bg-[#C6B5FF]',
+    terminalCommand: 'norai grassroots --upskill-youth --local-regions',
+    terminalLogs: [
+      '[MISSION] Vision to upskill youth and regional communities active.',
+      '[CURRICULUM] Python, MCP protocol, and open-weight models taught freely.',
+    ],
   },
 ];
 
 export function OperatingRitualsRail() {
+  const [activeId, setActiveId] = useState<string>('diagnostic');
+  const activeRitual: RitualPillar = RITUALS.find((r) => r.id === activeId) || (RITUALS[0] as RitualPillar);
+
   return (
-    <div className="w-full text-left font-sans space-y-12">
-      {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-        <div className="space-y-2 max-w-xl">
-          <p className="text-xs font-mono font-semibold uppercase tracking-[0.14em] text-accent-primary">
-            How We Work · Operating Ethos
-          </p>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-normal text-text-primary leading-tight tracking-tight">
-            How we build software. <br />
-            <span className="italic text-accent-primary font-normal">
-              Direct, transparent, continuous.
-            </span>
+    <div className="w-full text-left font-sans">
+      {/* Asymmetric 2-Column Physical Tab Deck */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        
+        {/* LEFT COLUMN: Sticky Typographic Manifesto */}
+        <div className="lg:col-span-5 lg:sticky lg:top-32 space-y-6">
+          <span className="eyebrow text-xs uppercase font-mono tracking-[0.18em] text-[#06845A] font-bold block">
+            — HOW WE BUILD SOFTWARE · OPERATING RITUALS
+          </span>
+          <h2 className="font-display font-extrabold text-4xl sm:text-5xl lg:text-[3.8rem] text-[var(--pine)] tracking-tight leading-[1.04]">
+            Direct. <br />
+            Transparent. <br />
+            <span className="text-[#06845A]">Continuous.</span>
           </h2>
+          <p className="text-[var(--pine)]/80 text-base sm:text-lg leading-relaxed max-w-md">
+            Zero account managers or support bots. You speak, architect, and debug directly with the engineers who write the models.
+          </p>
+          <div className="pt-2">
+            <Link
+              href="/team"
+              className="inline-flex items-center gap-2 text-sm font-bold text-[#06845A] hover:text-[#046342] transition-colors group"
+            >
+              <span>Meet our engineering team on /team</span>
+              <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+            </Link>
+          </div>
         </div>
 
-        <div className="shrink-0">
-          <Link
-            href="/team"
-            className="font-medium text-xs sm:text-sm text-accent-primary hover:text-accent-hover inline-flex items-center gap-1 group transition-colors"
-          >
-            <span>Meet our engineering team on /team</span>
-            <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:translate-x-1" />
-          </Link>
-        </div>
-      </div>
+        {/* RIGHT COLUMN: The Physical Cascading Index Tab Deck (Archetype 2) */}
+        <div className="lg:col-span-7">
+          
+          {/* Protruding Physical Folder Tabs */}
+          <div className="flex items-end gap-1.5 sm:gap-2 overflow-x-auto pb-0 select-none scrollbar-none" role="tablist">
+            {RITUALS.map((r) => {
+              const isActive = r.id === activeId;
+              return (
+                <button
+                  key={r.id}
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={() => setActiveId(r.id)}
+                  className={cn(
+                    'px-4 sm:px-6 py-3 rounded-t-2xl font-mono text-xs font-bold transition-all duration-200 shrink-0 border-t border-x relative',
+                    isActive
+                      ? 'bg-white border-[var(--pine-20)] text-[var(--pine)] shadow-xs z-10 -mb-px pt-3.5 pb-3.5'
+                      : 'bg-[#e8e8e2]/70 border-transparent text-[var(--pine)]/60 hover:bg-[#e8e8e2] hover:text-[var(--pine)]'
+                  )}
+                >
+                  {/* Glowing color pip */}
+                  <span
+                    className="inline-block w-2 h-2 rounded-full mr-2"
+                    style={{ backgroundColor: r.accentColor }}
+                    aria-hidden="true"
+                  />
+                  <span>{r.tabLabel}</span>
+                </button>
+              );
+            })}
+          </div>
 
-      {/* Architectural Circuit Rail
-          —[ + ]——————————————[ + ]——————————————[ + ]——————————————[ + ]—
-            / 01                / 02                / 03                / 04
-      */}
-      <div className="relative pt-2">
-        {/* Continuous horizontal baseline across desktop */}
-        <div
-          aria-hidden="true"
-          className="hidden lg:block absolute top-[21px] left-0 right-0 h-px bg-border-strong pointer-events-none"
-        />
+          {/* Main Physical Archival Folder Chassis */}
+          <div className="rounded-b-3xl rounded-tr-3xl bg-white border border-[var(--pine-20)] p-8 sm:p-12 shadow-[0_16px_40px_rgba(7,41,41,0.06)] relative overflow-hidden min-h-[440px] flex flex-col justify-between">
+            
+            <div>
+              {/* Folder Header: Tag & SLA Badge */}
+              <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[var(--pine-12)] mb-8">
+                <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#06845A]">
+                  RITUAL / {activeRitual.n}
+                </span>
+                <span className="font-mono text-xs font-bold px-3 py-1 rounded-full bg-[var(--pine-08)] text-[var(--pine)] border border-[var(--pine-12)]">
+                  {activeRitual.tag}
+                </span>
+              </div>
 
-        {/* 4 Pillars Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
-          {ETHOS_PILLARS.map((pillar) => {
-            const Icon = pillar.icon;
-            return (
-              <div
-                key={pillar.id}
-                className="group relative flex flex-col justify-between rounded-xl p-3 -m-3 transition-[background-color,transform] duration-160 ease-out hover:bg-surface-panel/70 active:scale-[0.98]"
-              >
-                <div>
-                  {/* Row 1: Node on the rail */}
-                  <div className="relative flex items-center mb-4">
-                    {/* Mobile-only connecting line */}
-                    <div
-                      aria-hidden="true"
-                      className="lg:hidden absolute inset-x-0 top-1/2 -translate-y-1/2 h-px bg-border-strong pointer-events-none"
-                    />
+              {/* Ritual Title & Narrative */}
+              <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-[var(--pine)] mb-4 tracking-tight">
+                {activeRitual.title}
+              </h3>
+              <p className="text-[var(--pine)]/80 text-base leading-relaxed max-w-xl mb-8">
+                {activeRitual.description}
+              </p>
 
-                    {/* [ + ] Node Marker */}
-                    <div className="relative z-10 inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-surface-canvas border border-border-strong text-[11px] font-mono text-text-muted transition-[border-color,color,box-shadow] duration-160 ease-out group-hover:border-accent-primary/60 group-hover:text-accent-primary group-hover:shadow-xs">
-                      <span className="opacity-40 select-none">[</span>
-                      <span className="text-accent-primary font-bold text-xs inline-block transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:rotate-90">
-                        +
-                      </span>
-                      <span className="opacity-40 select-none">]</span>
-                    </div>
-                  </div>
-
-                  {/* Row 2: Editorial Index / 01 */}
-                  <div className="mb-2.5">
-                    <span className="font-mono text-xs font-semibold text-text-muted group-hover:text-accent-primary transition-colors duration-200">
-                      / {pillar.number}
-                    </span>
-                  </div>
-
-                  {/* Row 3: Pillar Title */}
-                  <h3 className="font-sans font-semibold text-base sm:text-lg text-text-primary tracking-tight leading-snug mb-2 group-hover:text-text-primary transition-colors">
-                    {pillar.title}
-                  </h3>
-
-                  {/* Row 4: Minimalist Editorial Description */}
-                  <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
-                    {pillar.description}
-                  </p>
+              {/* Live Terminal Verification Proof */}
+              <div className="rounded-2xl bg-[#072929] text-[#f5f5f0] p-5 sm:p-6 font-mono text-xs sm:text-sm border border-white/10 shadow-inner">
+                <div className="flex items-center gap-2 pb-3 mb-3 border-b border-white/10 text-white/40 text-xs">
+                  <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+                  <span className="ml-2 text-white/50">audit-terminal</span>
                 </div>
-
-                {/* Grounding Micro-Tag at bottom */}
-                <div className="pt-5 mt-6 border-t border-border-subtle flex items-center justify-between text-xs font-mono text-text-muted">
-                  <span className="inline-flex items-center gap-1.5 text-[11px] text-text-muted group-hover:text-text-secondary transition-colors">
-                    <Icon className="w-3.5 h-3.5 text-accent-secondary" />
-                    <span>{pillar.tag}</span>
-                  </span>
-                  <span className="text-[10px] text-accent-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-200 font-medium">
-                    Verified
-                  </span>
+                <div className="text-[#00E599] flex items-center gap-2 mb-2 font-bold">
+                  <span>$</span>
+                  <span>{activeRitual.terminalCommand}</span>
+                </div>
+                <div className="space-y-1 text-white/70 text-xs">
+                  {activeRitual.terminalLogs.map((log, i) => (
+                    <div key={i}>{log}</div>
+                  ))}
                 </div>
               </div>
-            );
-          })}
-        </div>
-      </div>
+            </div>
 
-      {/* Subtle Ground Truth Bar */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs font-mono text-text-muted border-t border-border-subtle pt-6">
-        <div className="flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-accent-secondary" />
-          <span>Uttar Pradesh, India · 100% In-House Engineering</span>
+            {/* Folder Footer: Action & Location */}
+            <div className="pt-8 mt-8 border-t border-[var(--pine-12)] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 font-bold text-sm text-[var(--pine)] hover:text-[#06845A] transition-colors group"
+              >
+                <span>Start a diagnostic with the builders</span>
+                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+              </Link>
+              <span className="text-xs font-mono text-[var(--pine)]/50">
+                100% IN-HOUSE ENGINEERING · BHARAT
+              </span>
+            </div>
+
+          </div>
+
         </div>
-        <div className="flex items-center gap-4">
-          <Link href="/team" className="hover:text-accent-primary transition-colors">
-            Our Principles &rarr;
-          </Link>
-          <Link
-            href="/contact"
-            className="text-accent-primary hover:text-accent-hover font-medium transition-colors"
-          >
-            Start a Conversation &rarr;
-          </Link>
-        </div>
+
       </div>
     </div>
   );
 }
+
+export default OperatingRitualsRail;

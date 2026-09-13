@@ -3,57 +3,53 @@
 import React from 'react';
 import Link from 'next/link';
 import type { Route } from 'next';
-import { useReducedMotion } from 'motion/react';
 import { Container } from '@/components/foundation/Container';
 import { HandWaveIcon } from '@/components/atoms/HandWaveIcon';
-import { cn } from '@/lib/utils';
 
 export function ClosingDispatch() {
-  const shouldReduceMotion = useReducedMotion();
-
   return (
-    <section id="closing-dispatch" className="py-20 sm:py-28 bg-[#f5f5f0] text-[var(--pine)] scroll-mt-24">
-      <Container size="default" className="max-w-[1100px] mx-auto px-4 sm:px-6">
-        <div className="gradient-card p-[2px] rounded-[24px] overflow-hidden relative shadow-2xl">
-          {/* Animated Conic Gradient Border */}
+    <section id="closing-dispatch" className="py-24 sm:py-32 bg-[#f5f5f0] text-[var(--pine)] scroll-mt-24">
+      <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
+        {/* Archetype 4: The Radiant Sunset-Mint Light Sculpture */}
+        <div
+          className="relative rounded-[32px] sm:rounded-[44px] p-8 sm:p-16 lg:p-20 overflow-hidden shadow-2xl"
+          style={{
+            background: 'linear-gradient(135deg, #FF7755 0%, #FFAE42 42%, #00E599 100%)',
+          }}
+        >
+          {/* Subtle Ambient Radial Overlay */}
           <div
-            className={cn(
-              'absolute -inset-[50%] w-[200%] h-[200%] pointer-events-none',
-              !shouldReduceMotion && 'animate-[rotateConic_14s_linear_infinite]'
-            )}
+            className="absolute inset-0 opacity-25 pointer-events-none mix-blend-overlay"
             style={{
-              background:
-                'conic-gradient(var(--mint), var(--sky), var(--lavender), var(--coral), var(--butter), var(--mint))',
+              backgroundImage: 'radial-gradient(circle at 80% 20%, white 0%, transparent 60%)',
             }}
             aria-hidden="true"
           />
 
-          {/* Inner Card - Pure Ivory Surface with Deep Pine Text */}
-          <div className="relative z-10 bg-[#fffdf7] rounded-[22px] p-8 sm:p-14 text-center sm:text-left flex flex-col md:flex-row md:items-center justify-between gap-8">
-            <div className="space-y-3 max-w-xl">
-              <span className="text-xs uppercase font-mono tracking-widest text-[var(--mint-ink)] font-bold">
-                THE FIRST ENGAGEMENT
-              </span>
-              <h2 className="font-display font-normal text-3xl sm:text-4xl text-[var(--pine)] tracking-tight">
-                Tell us what&apos;s slowing you down. <br className="hidden sm:inline" />
-                Bring us the operational bottleneck you are actually facing.
-              </h2>
-              <p className="text-[var(--pine)]/80 text-sm sm:text-base leading-relaxed">
-                A first technical conversation is with our founding engineers. We evaluate your workflow, define the exact private architecture, and quote a fixed two-week diagnostic before any bigger build.
-              </p>
-            </div>
+          <div className="relative z-10 max-w-3xl mx-auto text-center space-y-6">
+            <span className="inline-block text-xs uppercase font-mono tracking-[0.2em] text-[#072929] font-extrabold">
+              — START THE CONVERSATION
+            </span>
 
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 shrink-0">
+            <h2 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl text-[#072929] tracking-tight leading-[1.05]">
+              Bring us the problem you are actually facing.
+            </h2>
+
+            <p className="text-[#072929]/85 text-base sm:text-lg leading-relaxed max-w-xl mx-auto font-sans font-medium">
+              An initial technical conversation is one hour with our founding engineers. A straight answer: the right architecture, cost, and timeline.
+            </p>
+
+            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href={'/contact' as Route}
-                className="btn btn--solid h-12 px-7 rounded-full bg-[var(--pine)] text-[var(--bone)] hover:bg-[var(--forest)] text-base font-semibold shadow-md flex items-center justify-center gap-2 transition-[background-color,transform] duration-160 ease-out active:scale-[0.98]"
+                className="btn btn--solid h-13 px-8 rounded-full bg-[#072929] text-white hover:bg-[#0b3d3d] text-base font-bold shadow-lg flex items-center justify-center gap-2.5 transition-[background-color,transform] duration-160 ease-out active:scale-[0.98] w-full sm:w-auto"
               >
                 <span>Talk to an Engineer</span>
                 <HandWaveIcon className="w-4 h-4 text-[var(--mint)]" />
               </Link>
               <Link
                 href={'/products' as Route}
-                className="btn btn--ghost h-12 px-6 rounded-full border border-[var(--pine-20)] text-[var(--pine)] hover:bg-[var(--pine-08)] text-base font-medium flex items-center justify-center transition-[background-color,border-color,transform] duration-160 ease-out active:scale-[0.98]"
+                className="btn h-13 px-7 rounded-full bg-white/40 backdrop-blur-md border border-white/50 text-[#072929] hover:bg-white/65 text-base font-bold flex items-center justify-center transition-[background-color,border-color,transform] duration-160 ease-out active:scale-[0.98] w-full sm:w-auto"
               >
                 <span>Explore 4 Tools →</span>
               </Link>

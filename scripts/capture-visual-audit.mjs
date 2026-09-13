@@ -2,7 +2,7 @@ import { chromium } from 'playwright';
 import fs from 'fs';
 import path from 'path';
 
-const SCREENSHOT_DIR = '/home/gourav/.gemini/antigravity-ide/brain/a9c8995c-8a18-4ada-9191-28067e8f6219/screenshots';
+const SCREENSHOT_DIR = process.env.SCREENSHOT_DIR || "/home/gourav/.gemini/antigravity-ide/brain/93525f38-314e-49a9-92db-c8e280c176a5/screenshots";
 
 if (!fs.existsSync(SCREENSHOT_DIR)) {
   fs.mkdirSync(SCREENSHOT_DIR, { recursive: true });
@@ -125,6 +125,24 @@ async function runVisualAudit() {
   await page.waitForTimeout(800);
   await page.screenshot({
     path: path.join(SCREENSHOT_DIR, '13_mission_index.png'),
+    fullPage: true,
+  });
+
+  // Subpages: /team
+  console.log('Auditing /team...');
+  await page.goto('http://localhost:3000/team', { waitUntil: 'networkidle' });
+  await page.waitForTimeout(800);
+  await page.screenshot({
+    path: path.join(SCREENSHOT_DIR, '17_team_index.png'),
+    fullPage: true,
+  });
+
+  // Subpages: /blog
+  console.log('Auditing /blog...');
+  await page.goto('http://localhost:3000/blog', { waitUntil: 'networkidle' });
+  await page.waitForTimeout(800);
+  await page.screenshot({
+    path: path.join(SCREENSHOT_DIR, '18_blog_index.png'),
     fullPage: true,
   });
 

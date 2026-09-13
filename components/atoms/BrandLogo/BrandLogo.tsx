@@ -75,7 +75,7 @@ export function BrandLogo({ size = 'md', variant = 'full', className }: BrandLog
       {markSvg}
       <span
         className={cn(
-          'font-display font-medium tracking-tight leading-none',
+          'font-display font-extrabold tracking-tight leading-none',
           textColor,
           text,
         )}

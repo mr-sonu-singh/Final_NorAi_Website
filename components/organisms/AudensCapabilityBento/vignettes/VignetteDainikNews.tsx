@@ -12,7 +12,7 @@ export function VignetteDainikNews() {
       dept: 'UTTAR PRADESH TECHNICAL EDUCATION DEPT',
       title: 'UP Technical Education Dept — Junior Lecturer 2026',
       summary:
-        'Official state gazette notification for polytechnic engineering faculty recruitment across 75 districts.',
+        'Official state gazette notification for polytechnic engineering faculty recruitment across regional institutions.',
       eligibility: ['Degree / Diploma in Tech', 'Age: 21–35', 'Pay Scale: Level 9A'],
       deadline: 'Applications close in: 4 days, 12 hours',
       linkVerified: 'Official Notification Link Verified ✓',
@@ -44,7 +44,7 @@ export function VignetteDainikNews() {
         </div>
         <div className="flex items-center gap-1 text-[10px] font-mono text-[#34D399]">
           <span className="w-1.5 h-1.5 rounded-full bg-[#34D399] animate-pulse" aria-hidden="true" />
-          <span>75 Districts · No Fake News</span>
+          <span>Regional Verified · No Fake News</span>
         </div>
       </div>
 

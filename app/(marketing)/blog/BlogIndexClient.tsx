@@ -185,7 +185,7 @@ export function BlogIndexClient({ posts }: BlogIndexClientProps) {
           <Container size="wide" className="max-w-[1240px] mx-auto px-4 sm:px-6">
             <Link
               href={`/blog/${featured.slug}`}
-              className="block rounded-[22px] bg-[#fffdf7] border border-[var(--line)] p-8 sm:p-12 hover:shadow-xl hover:border-[var(--pine)]/30 transition-[transform,box-shadow,border-color] duration-300 group"
+              className="block py-10 sm:py-14 border-b border-[var(--line)] transition-colors group text-left"
             >
               <div className="max-w-3xl space-y-5 text-left">
                 <div className="flex items-center gap-3">
@@ -244,7 +244,7 @@ export function BlogIndexClient({ posts }: BlogIndexClientProps) {
             )}
           </div>
 
-          <div className="ledger rounded-[22px] bg-[#fffdf7] border border-[var(--line)] overflow-hidden shadow-xs divide-y divide-[var(--line)]">
+          <div className="ledger divide-y divide-[var(--line)] border-y border-[var(--line)]">
             {listPosts.map((post, idx) => (
               <Link
                 key={post.slug}
@@ -301,8 +301,13 @@ export function BlogIndexClient({ posts }: BlogIndexClientProps) {
           ========================================================================= */}
       <section className="py-16 sm:py-24">
         <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
-          <div className="gradient-card max-w-4xl mx-auto text-center">
-            <div className="gradient-card__inner p-8 sm:p-12 space-y-6 bg-[#fffdf7] text-[var(--pine)]">
+          <div
+            className="rounded-[32px] p-8 sm:p-14 text-center shadow-2xl relative overflow-hidden"
+            style={{
+              background: 'linear-gradient(135deg, #FF7755 0%, #FFAE42 40%, #00E599 100%)',
+            }}
+          >
+            <div className="max-w-3xl mx-auto space-y-6 text-[#072929]">
               <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--pine-08)] border border-[var(--line)] text-xs font-mono font-bold text-[var(--mint-ink)] uppercase tracking-wider">
                 Direct Engineering Telemetry
               </div>

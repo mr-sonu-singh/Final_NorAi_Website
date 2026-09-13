@@ -13,9 +13,9 @@ import { buildMetadata, getBreadcrumbListJsonLd, JsonLd } from '@/lib/seo';
 
 export const metadata: Metadata = buildMetadata({
   path: '/mission',
-  title: 'AI Skill Mission — Computational Literacy Across 75 Districts',
+  title: 'Youth Upskilling Mission — Vision for Regional AI Literacy',
   description:
-    'Democratizing everyday AI literacy and deterministic engineering across 75 districts of Uttar Pradesh. 100% free workshops for students, youth, and village citizens.',
+    'A dedicated vision to democratize AI literacy and deterministic engineering for youth, collegiate students, and local communities across Uttar Pradesh. 100% free workshops.',
 });
 
 const COMMUNITY_TIERS = [
@@ -73,9 +73,9 @@ const GROUND_FACTS = [
     detail: '100% free workshops, open-weight tooling, and materials',
   },
   {
-    value: '75',
-    label: 'Districts of UP',
-    detail: 'Complete statewide community deployment scope',
+    value: 'Vision',
+    label: 'Youth & Local Areas',
+    detail: 'Dedicated commitment to upskilling regional students and local youth',
   },
   {
     value: '1,500+',
@@ -119,15 +119,15 @@ export default function MissionPage() {
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--pine-08)] border border-[var(--line)] text-xs font-mono text-[var(--pine)]">
               <span className="w-2 h-2 rounded-full bg-[var(--mint-ink)] animate-pulse" aria-hidden="true" />
               <span className="tracking-wide uppercase font-medium">
-                03 · GRASSROOTS COMPUTATIONAL LITERACY · THE 75-DISTRICT MISSION
+                03 · GRASSROOTS COMPUTATIONAL LITERACY · VISION TO UPSKILL YOUTH
               </span>
             </div>
 
             {/* Kinetic Display Headline */}
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[var(--pine)] leading-[1.04] tracking-tight">
-              Democratizing AI literacy. <br />
+              A sovereign vision. <br />
               <span className="relative inline-block text-[var(--mint-ink)]">
-                Across all 75 districts of UP.
+                To upskill youth & local regions.
                 <svg
                   className="absolute -bottom-2 sm:-bottom-3 left-0 w-full h-3 sm:h-4 text-[var(--mint)]"
                   viewBox="0 0 240 40"

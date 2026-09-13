@@ -38,3 +38,7 @@ export * from './AudensCapabilityBento';
 export * from './ThreeDimensionsRail/ThreeDimensionsRail';
 export * from './SectorLedger/SectorLedger';
 export * from './DistrictImpactRadar/DistrictImpactRadar';
+
+export * from './SpiralCapabilitiesMatrix/SpiralCapabilitiesMatrix';
+export * from './DeliveryProtocolRail/DeliveryProtocolRail';
+export * from './SwissStudioRoster/SwissStudioRoster';
