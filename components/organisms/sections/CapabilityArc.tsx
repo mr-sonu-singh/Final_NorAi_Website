@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Container } from '@/components/foundation/Container';
 import { cn } from '@/lib/utils';
 import { Link } from '@/components/atoms/Link';
@@ -60,178 +61,189 @@ const STUDIO_PROTOTYPES: CapabilityItem[] = [
     id: 'chat-digest',
     n: '03',
     dimension: 'Everyday Tools',
-    title: 'Community Chat Digest',
-    subhead: 'The operational signal extracted from noisy community threads.',
-    copy: 'Summarizes thousands of unread team conversations across Slack and Discord into prioritized executive action items, unresolved technical blockers, and key decisions.',
+    title: 'WhatsApp & Slack Digest',
+    subhead: 'Synthesizes 500+ unread team messages into 3 bulleted decisions.',
+    copy: 'Runs locally or in a zero-persistence sandbox, extracting actionable action items, blocker alerts, and assigned deliverables without leaking company conversations.',
     href: '/products/chat-digest',
-    telemetryHeader: 'STREAM DIGEST · MULTI-CHANNEL BUFFER',
-    telemetryBadge: '4,820 ➔ 3 ITEMS',
+    telemetryHeader: 'LOCAL INFERENCE · AGENT PIPELINE',
+    telemetryBadge: 'EPHEMERAL RAM',
     telemetryMetrics: [
-      { label: 'Channel Ingestion', value: 'Slack & Discord', status: 'ok' },
-      { label: 'Noise Reduction', value: '98.7% compressed', status: 'ok' },
-      { label: 'Action Items', value: 'Extracted Cleanly', status: 'ok' },
+      { label: 'Token Window', value: '128k context', status: 'ok' },
+      { label: 'Action Extraction', value: '100% Deterministic', status: 'ok' },
+      { label: 'Telemetry Leak', value: '0 bytes saved', status: 'alert' },
     ],
   },
   {
-    id: 'smart-dainik-news',
+    id: 'candidate-screener',
     n: '04',
-    dimension: 'Everyday Tools',
-    title: 'Smart Dainik News',
-    subhead: 'Regional public notices and citizen gazettes, verified before deadlines.',
-    copy: 'Autonomous monitoring of district public gazettes and welfare notices, delivering concise, actionable vernacular alerts in pure Hindi for citizens and students.',
-    href: '/products/smart-dainik-news',
-    telemetryHeader: 'CIVIC INTELLIGENCE · REGIONAL CRAWLER',
-    telemetryBadge: 'UP GAZETTE #402',
+    dimension: 'Enterprise Rigs',
+    title: 'Voice-Based Technical Rig',
+    subhead: 'Real-time conversational screener for system architecture rounds.',
+    copy: 'Deploys an autonomous voice agent that conducts preliminary technical interviews, questioning candidates on database trade-offs and concurrency pitfalls with live code review.',
+    href: '/products/candidate-screener',
+    telemetryHeader: 'WEBRTC REALTIME · VOICE AGENT',
+    telemetryBadge: 'LIVE SOCKET',
     telemetryMetrics: [
-      { label: 'Source Verification', value: 'Official Gazette', status: 'ok' },
-      { label: 'Language Delivery', value: 'Vernacular Hindi', status: 'ok' },
-      { label: 'Deadline Alert', value: '48h Window Alert', status: 'alert' },
+      { label: 'Audio Latency', value: '240ms roundtrip', status: 'ok' },
+      { label: 'Code Execution', value: 'Isolated Firecracker VM', status: 'ok' },
+      { label: 'Biased Scoring', value: 'Eliminated', status: 'alert' },
     ],
   },
 ];
 
 export function CapabilityArc() {
   const [activeId, setActiveId] = useState<string>('resume-shortlister');
-  const activeCap = STUDIO_PROTOTYPES.find((c) => c.id === activeId) || (STUDIO_PROTOTYPES[0] as CapabilityItem);
+  const activeCap: CapabilityItem = STUDIO_PROTOTYPES.find((c) => c.id === activeId) || (STUDIO_PROTOTYPES[0] as CapabilityItem);
 
   return (
-    <section id="prototypes" className="py-24 sm:py-32 bg-[#f5f5f0] text-[var(--pine)] border-b border-[var(--line)] scroll-mt-24 relative overflow-hidden">
-      {/* Soft Ambient Aurora Glows */}
-      <div
-        className="absolute top-1/4 -right-40 w-96 h-96 rounded-full bg-[#00E599]/10 blur-[130px] pointer-events-none"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute bottom-10 left-10 w-96 h-96 rounded-full bg-[#C6B5FF]/10 blur-[130px] pointer-events-none"
-        aria-hidden="true"
-      />
-
-      <Container size="default" className="relative z-10 max-w-[1240px] mx-auto px-4 sm:px-6">
-        {/* Section Header */}
-        <div className="max-w-2xl mb-16 space-y-3">
-          <span className="eyebrow text-xs uppercase font-mono tracking-[0.18em] text-[#06845A] font-bold block">
-            — APPLIED R&D & PROTOTYPES · PILLAR 04
-          </span>
-          <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[var(--pine)] tracking-tight leading-[1.06]">
-            Student & studio prototypes. <br />
-            <span className="text-[#06845A]">Proven utility.</span>
+    <section id="prototypes" className="py-24 sm:py-32 bg-[#f5f5f0] text-[var(--pine)] border-b border-[var(--line)] scroll-mt-24 overflow-hidden">
+      <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
+        
+        {/* Section Header with Staggered Entrance */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center max-w-3xl mx-auto mb-16 sm:mb-20 space-y-4"
+        >
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--pine-08)] dark:bg-white/5 border border-[var(--line)] text-xs font-mono font-semibold uppercase tracking-[0.16em] text-[var(--pine)]/85">
+            <span className="w-2 h-2 rounded-full bg-[#1ef4b4] animate-pulse" />
+            <span>Pillar 4 Living Proof</span>
+          </div>
+          <h2 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl text-[var(--pine)] tracking-tight leading-[1.08]">
+            Prototypes built to work. <br className="hidden sm:inline" />
+            <span className="text-[#06845A]">Not to raise rounds.</span>
           </h2>
-          <p className="text-[var(--pine)]/80 text-base sm:text-lg leading-relaxed max-w-xl">
-            Living proof of our Research & Innovation pillar. Four single-purpose applications engineered by NorAI to solve real cognitive and operational friction.
+          <p className="text-[var(--pine)]/75 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
+            These are not speculative pitch decks. Every prototype below is a functional computational rig engineered in Ghazipur and battle-tested in real operations.
           </p>
-        </div>
+        </motion.div>
 
-        {/* The Borderless Interactive Telemetry Stage (Replaces 2,200px 4-card stack!) */}
+        {/* 2-Column Responsive Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
-          {/* LEFT: Borderless Capability Selector List */}
-          <div className="lg:col-span-5 space-y-3" role="tablist" aria-label="Capabilities List">
-            {STUDIO_PROTOTYPES.map((cap) => {
+          {/* LEFT: 4 Prototype Selector Cards with Staggered Entrance */}
+          <div className="lg:col-span-5 space-y-3.5" role="tablist">
+            {STUDIO_PROTOTYPES.map((cap, idx) => {
               const isActive = cap.id === activeId;
               return (
-                <button
+                <motion.button
                   key={cap.id}
                   role="tab"
                   aria-selected={isActive}
                   onClick={() => setActiveId(cap.id)}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 0.4, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
                   className={cn(
-                    'w-full text-left p-5 sm:p-6 rounded-2xl transition-all duration-200 relative border flex items-start gap-4',
+                    'w-full text-left p-5 sm:p-6 rounded-2xl border transition-all duration-200 flex items-start gap-4 card-interactive group relative overflow-hidden',
                     isActive
-                      ? 'bg-white border-[var(--pine-20)] shadow-[0_8px_30px_rgba(7,41,41,0.06)]'
-                      : 'bg-transparent border-transparent hover:bg-white/50 opacity-65 hover:opacity-100'
+                      ? 'bg-white dark:bg-[#0a2020] border-[#1ef4b4]/60 dark:border-[#1ef4b4]/50 shadow-md ring-1 ring-[#1ef4b4]/20'
+                      : 'bg-white/60 dark:bg-[#071d1d]/60 border-[var(--line)] hover:bg-white dark:hover:bg-[#0a2020] hover:border-[var(--pine-20)] dark:hover:border-white/15'
                   )}
                 >
-                  {/* Active Indicator Bar */}
-                  {isActive && (
-                    <div className="absolute left-0 top-3 bottom-3 w-1 bg-[#06845A] rounded-r shadow-[0_0_8px_rgba(6,132,90,0.4)]" />
-                  )}
-
-                  <span
+                  <div
                     className={cn(
-                      'font-mono text-xs font-bold mt-1 transition-colors',
-                      isActive ? 'text-[#06845A]' : 'text-[var(--pine)]/60'
+                      'p-3 rounded-xl shrink-0 font-mono text-xs font-bold transition-transform duration-200 group-hover:scale-105',
+                      isActive ? 'bg-[var(--pine)] text-white dark:bg-[#1ef4b4] dark:text-[#04130f]' : 'bg-black/5 dark:bg-white/5 text-[var(--pine)]'
                     )}
                   >
                     {cap.n}
-                  </span>
-                  <div>
-                    <h3
-                      className={cn(
-                        'text-lg sm:text-xl font-bold tracking-tight transition-colors',
-                        isActive ? 'text-[var(--pine)]' : 'text-[var(--pine)]/85'
-                      )}
-                    >
+                  </div>
+
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-xs font-bold text-[var(--pine)]/60">
+                        {cap.dimension}
+                      </span>
+                      <span className="text-[11px] font-mono font-medium px-2 py-0.5 rounded-full bg-black/5 dark:bg-white/5 text-[var(--pine)]/70">
+                        {cap.telemetryBadge}
+                      </span>
+                    </div>
+                    <h3 className={cn(
+                      'text-lg sm:text-xl font-bold tracking-tight mt-1 transition-colors',
+                      isActive ? 'text-[var(--pine)]' : 'text-[var(--pine)]/90'
+                    )}>
                       {cap.title}
                     </h3>
                     <p className="text-xs sm:text-sm text-[var(--pine)]/70 mt-1 line-clamp-2">
                       {cap.subhead}
                     </p>
                   </div>
-                </button>
+                </motion.button>
               );
             })}
           </div>
 
-          {/* RIGHT: Dynamic Single Telemetry Chassis */}
+          {/* RIGHT: Dynamic Single Telemetry Chassis with Smooth Crossfade */}
           <div className="lg:col-span-7">
-            <div className="rounded-3xl bg-[#072929] text-[#f5f5f0] p-8 sm:p-12 border border-white/10 shadow-2xl relative overflow-hidden min-h-[460px] flex flex-col justify-between">
-              
-              {/* Internal Radiant Corner Mesh */}
-              <div
-                className="absolute top-0 right-0 w-80 h-80 rounded-full bg-[#00E599]/10 blur-[80px] pointer-events-none"
-                aria-hidden="true"
-              />
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeCap.id}
+                initial={{ opacity: 0, scale: 0.98, y: 12 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.98, y: -8 }}
+                transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
+                className="rounded-3xl bg-[#072929] text-[#f5f5f0] p-8 sm:p-12 border border-white/10 shadow-2xl relative overflow-hidden min-h-[460px] flex flex-col justify-between"
+              >
+                {/* Internal Radiant Corner Mesh */}
+                <div
+                  className="absolute top-0 right-0 w-80 h-80 rounded-full bg-[#00E599]/10 blur-[80px] pointer-events-none"
+                  aria-hidden="true"
+                />
 
-              {/* Chassis Top Bar: Tag & Telemetry Status */}
-              <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/10 relative z-10">
-                <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#00E599]">
-                  {activeCap.telemetryHeader}
-                </span>
-                <span className="font-mono text-xs font-semibold px-3 py-1 rounded-full bg-white/10 text-white border border-white/15 flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#00E599] animate-pulse" aria-hidden="true" />
-                  {activeCap.telemetryBadge}
-                </span>
-              </div>
-
-              {/* Chassis Body: Product Overview & Telemetry Matrix */}
-              <div className="py-8 space-y-6 relative z-10">
-                <div>
-                  <h4 className="font-display font-extrabold text-2xl sm:text-3xl text-white mb-2 tracking-tight">
-                    {activeCap.title}
-                  </h4>
-                  <p className="text-white/70 text-sm sm:text-base leading-relaxed max-w-xl">
-                    {activeCap.copy}
-                  </p>
+                {/* Chassis Top Bar: Tag & Telemetry Status */}
+                <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/10 relative z-10">
+                  <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#00E599]">
+                    {activeCap.telemetryHeader}
+                  </span>
+                  <span className="font-mono text-xs font-semibold px-3 py-1 rounded-full bg-white/10 text-white border border-white/15 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#00E599] animate-pulse" aria-hidden="true" />
+                    {activeCap.telemetryBadge}
+                  </span>
                 </div>
 
-                {/* Live Telemetry Table */}
-                <div className="p-4 sm:p-5 rounded-xl bg-[#051f1f]/80 border border-white/10 space-y-2.5 font-mono text-xs sm:text-sm">
-                  {activeCap.telemetryMetrics.map((m, i) => (
-                    <div key={i} className="flex items-center justify-between">
-                      <span className="text-white/60">{m.label}</span>
-                      <span className={cn('font-bold', m.status === 'alert' ? 'text-[#FFAE42]' : 'text-[#00E599]')}>
-                        {m.value}
-                      </span>
-                    </div>
-                  ))}
+                {/* Chassis Body: Product Overview & Telemetry Matrix */}
+                <div className="py-8 space-y-6 relative z-10">
+                  <div>
+                    <h4 className="font-display font-extrabold text-2xl sm:text-3xl text-white mb-2 tracking-tight">
+                      {activeCap.title}
+                    </h4>
+                    <p className="text-white/70 text-sm sm:text-base leading-relaxed max-w-xl">
+                      {activeCap.copy}
+                    </p>
+                  </div>
+
+                  {/* Live Telemetry Table */}
+                  <div className="p-4 sm:p-5 rounded-xl bg-[#051f1f]/80 border border-white/10 space-y-2.5 font-mono text-xs sm:text-sm">
+                    {activeCap.telemetryMetrics.map((m, i) => (
+                      <div key={i} className="flex items-center justify-between">
+                        <span className="text-white/60">{m.label}</span>
+                        <span className={cn('font-bold', m.status === 'alert' ? 'text-[#FFAE42]' : 'text-[#00E599]')}>
+                          {m.value}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
 
-              {/* Chassis Footer: Action Link */}
-              <div className="pt-6 border-t border-white/10 relative z-10 flex items-center justify-between">
-                <Link
-                  href={activeCap.href as Route}
-                  variant="unstyled"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#00E599] text-[#072929] font-bold text-sm hover:bg-[#1ef4b4] transition-all duration-200 shadow-[0_4px_20px_rgba(0,229,153,0.3)] hover:scale-[1.02]"
-                >
-                  <span>Explore {activeCap.title} →</span>
-                </Link>
-                <span className="text-xs font-mono text-white/40 uppercase tracking-wider">
-                  0 BYTES RETAINED
-                </span>
-              </div>
-
-            </div>
+                {/* Chassis Footer: Action Link */}
+                <div className="pt-6 border-t border-white/10 relative z-10 flex items-center justify-between">
+                  <Link
+                    href={activeCap.href as Route}
+                    variant="unstyled"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#00E599] text-[#072929] font-bold text-sm hover:bg-[#1ef4b4] transition-all duration-200 shadow-[0_4px_20px_rgba(0,229,153,0.3)] hover:scale-[1.02] active:scale-[0.98]"
+                  >
+                    <span>Explore {activeCap.title} →</span>
+                  </Link>
+                  <span className="text-xs font-mono text-white/40 uppercase tracking-wider">
+                    0 BYTES RETAINED
+                  </span>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
 
         </div>

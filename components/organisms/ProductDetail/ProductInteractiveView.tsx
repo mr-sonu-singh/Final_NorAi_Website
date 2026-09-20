@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import { cn } from '@/lib/utils';
 import { ProductData } from '@/lib/products';
 import { Link } from '@/components/atoms/Link';
-import { Sparkles, BookOpen, ArrowRight, CheckCircle2, Lock, Layers } from 'lucide-react';
+import { Cpu, BookOpen, ArrowRight, CheckCircle2, Lock, Layers } from 'lucide-react';
 
 import { motion } from 'motion/react';
 
@@ -109,7 +109,7 @@ export function ProductInteractiveView({ product, slug }: ProductInteractiveView
                 aria-hidden="true"
               />
             )}
-            <Sparkles className="w-4 h-4 text-accent-500" />
+            <Cpu className="w-4 h-4 text-accent-500" />
             <span>Live Interactive Workbench</span>
             {isToolLive && (
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse ml-1" />

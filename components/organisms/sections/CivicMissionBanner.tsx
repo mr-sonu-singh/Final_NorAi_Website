@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { motion } from 'motion/react';
 import { Container } from '@/components/foundation/Container';
 import { ArrowRight, GraduationCap, HeartHandshake, Compass } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
@@ -31,7 +32,13 @@ export function CivicMissionBanner() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
           {/* Left Column: Monumental Mission Statement */}
-          <div className="lg:col-span-8 space-y-6 text-left">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-8 space-y-6 text-left"
+          >
             <div className="inline-flex items-center gap-2 text-xs font-mono tracking-[0.2em] uppercase text-[#1ef4b4] font-bold">
               <span className="w-2 h-2 rounded-full bg-[#1ef4b4] animate-pulse" aria-hidden="true" />
               <span>{t.civic.eyebrow}</span>
@@ -61,11 +68,17 @@ export function CivicMissionBanner() {
                 <span><strong className="text-white font-bold">{t.civic.toolsMetric}</strong></span>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right Column: High-Impact Action Card */}
-          <div className="lg:col-span-4">
-            <div className="rounded-2xl border border-white/15 bg-white/[0.04] p-7 backdrop-blur-md text-left space-y-5">
+          {/* Right Column: High-Impact Action Card with Hover Depth */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.97, y: 24 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.5, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-4"
+          >
+            <div className="rounded-2xl border border-white/15 bg-white/[0.04] p-7 backdrop-blur-md text-left space-y-5 card-interactive glow-border-mint">
               <div className="space-y-1">
                 <span className="text-xs font-mono uppercase tracking-wider text-[#1ef4b4] font-bold">
                   {t.civic.cardEyebrow}
@@ -88,7 +101,7 @@ export function CivicMissionBanner() {
                 </Link>
               </div>
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </Container>

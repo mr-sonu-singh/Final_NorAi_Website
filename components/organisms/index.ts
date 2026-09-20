@@ -9,36 +9,20 @@ export * from './sections/HeroChamber';
 export * from './sections/CapabilityArc';
 export * from './sections/BharatMissionBeat';
 export * from './sections/ClosingDispatch';
+export * from './sections/StudioManifesto';
+export * from './sections/SubpageHeroAtmosphere';
+export * from './sections/ServicesPillarsBento';
+export * from './sections/ServicesEngagementTimeline';
+export * from './sections/MissionTiersInteractive';
+
 // Active Cards
 export * from './cards/BlogCard';
 export * from './cards/ProductCard';
-// Bespoke Organisms
-export * from './HeroWorkbench/CandidateScreenerWorkbench';
-export * from './HeroWorkbench/HeroStudioWorkbench';
-export * from './HeroWorkbench/TelemetryHeader';
-export * from './HardwareTelemetryLedger/HardwareTelemetryLedger';
-export * from './EnterpriseMcpDiptych/EnterpriseMcpDiptych';
-export * from './ServicesDirectory/ServicesDirectory';
-export * from './ProductStudio/ProductStudio';
-export * from './ArchitecturalSpecMatrix/ArchitecturalSpecMatrix';
-export * from './ConnectedPipelineRail/ConnectedPipelineRail';
-export * from './WorkshopRoster/WorkshopRoster';
-export * from './TeamWorkshopDirectory';
-export * from './TechnicalArtifactsLedger';
-export * from './ApiReferenceMatrix/ApiReferenceMatrix';
-export * from './SkillMissionSection';
-export * from './WorkshopTrackExplorer';
-export * from './GrassrootsTransitionsSlider';
-export * from './MissionActionDock';
-export * from './EnterpriseBlueprint/EnterpriseBlueprintMatrix';
-export * from './HomeFaq/HomeFaqAccordion';
-export * from './RoiCalculator/RoiCalculator';
+
+// Active Bespoke Organisms
+export * from './SwissStudioRoster/SwissStudioRoster';
 export * from './OperatingRitualsRail/OperatingRitualsRail';
-export * from './AudensCapabilityBento';
-export * from './ThreeDimensionsRail/ThreeDimensionsRail';
 export * from './SectorLedger/SectorLedger';
 export * from './DistrictImpactRadar/DistrictImpactRadar';
-export * from './SpiralCapabilitiesMatrix/SpiralCapabilitiesMatrix';
-export * from './DeliveryProtocolRail/DeliveryProtocolRail';
-export * from './SwissStudioRoster/SwissStudioRoster';
-export * from './sections/StudioManifesto';
+export * from './ApiReferenceMatrix/ApiReferenceMatrix';
+export * from './TechnicalArtifactsLedger';

@@ -4,6 +4,7 @@ import { Container } from '@/components/foundation/Container';
 import { Link } from '@/components/atoms/Link';
 import { ArrowRight, ShieldCheck, Code2, GraduationCap } from 'lucide-react';
 import { SwissStudioRoster } from '@/components/organisms';
+import { SubpageHeroAtmosphere } from '@/components/organisms';
 import { buildMetadata, getWebSiteJsonLd, JsonLd } from '@/lib/seo';
 
 export const metadata: Metadata = buildMetadata({
@@ -41,50 +42,45 @@ export default function TeamPage() {
     <>
       <JsonLd schema={getWebSiteJsonLd()} />
 
-      <main id="main-content" className="min-h-screen font-sans bg-[#f5f5f0] text-[var(--pine)] selection:bg-[var(--mint)] selection:text-[var(--pine)]">
-        {/* HERO CHAMBER */}
-        <section className="relative pt-12 pb-14 sm:pt-20 sm:pb-20 overflow-hidden border-b border-[var(--line)]">
-          <div className="aurora__orb -top-32 -left-20 w-[450px] h-[450px] bg-[var(--mint)]/15" aria-hidden="true" />
-          <div className="aurora__orb -top-20 right-0 w-[500px] h-[500px] bg-[var(--lavender)]/12" aria-hidden="true" />
+      <main id="main-content" className="min-h-screen font-sans bg-[#f5f5f0] dark:bg-[#03140f] text-[var(--pine)] dark:text-[#eaf4f0] selection:bg-[#1ef4b4] selection:text-[#03140f]">
+        {/* CINEMATIC HERO CHAMBER WITH ATELIER BACKDROP */}
+        <section className="relative min-h-[65vh] lg:min-h-[72vh] flex flex-col justify-center overflow-hidden bg-[#04130f] text-[#eaf4f0] border-b border-white/10 pt-28 pb-16 sm:pt-36 sm:pb-24">
+          <SubpageHeroAtmosphere
+            imageSrc="/images/bg-team-atelier.webp"
+            imageAlt="Engineering Studio & Atelier overlooking Starry Twilight"
+            imagePosition="object-cover object-[70%_center] md:object-[75%_center]"
+            glowGradient="radial-gradient(ellipse 60% 40% at 75% 60%, rgba(255,162,77,0.22), transparent 70%), radial-gradient(ellipse 50% 50% at 20% 30%, rgba(30,244,180,0.18), transparent 70%)"
+          />
 
           <Container size="default" className="relative z-10 max-w-[1240px] mx-auto px-4 sm:px-6">
             <div className="max-w-3xl space-y-6 text-left">
-              <div className="inline-flex items-center gap-2 text-xs font-mono text-[var(--mint-ink)] font-bold tracking-widest uppercase">
-                <span className="w-2 h-2 rounded-full bg-[var(--mint-ink)] animate-pulse" aria-hidden="true" />
-                <span>— 04 · FOUNDING STUDIO &amp; ENGINEERING ETHOS</span>
+              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-black/40 border border-[#1ef4b4]/30 backdrop-blur-md shadow-xs">
+                <span className="w-2 h-2 rounded-full bg-[#1ef4b4] animate-pulse" aria-hidden="true" />
+                <span className="text-[11px] sm:text-xs font-mono tracking-[0.14em] uppercase text-[#eaf4f0]/90 font-semibold">
+                  FOUNDING STUDIO &amp; ENGINEERING ETHOS
+                </span>
               </div>
 
-              <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[var(--pine)] leading-[1.04] tracking-[-0.03em]">
-                Engineers first. <br />
-                <span className="relative inline-block text-[var(--mint-ink)]">
-                  Building outside the bubble.
-                  <svg
-                    className="absolute -bottom-2 sm:-bottom-3 left-0 w-full h-3 sm:h-4 text-[var(--mint)]"
-                    viewBox="0 0 240 40"
-                    fill="none"
-                    preserveAspectRatio="none"
-                    aria-hidden="true"
-                  >
-                    <path d="M3 33C50 12 150 5 237 22" stroke="currentColor" strokeWidth="5" strokeLinecap="round" />
-                  </svg>
-                </span>
+              <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold text-white leading-[1.04] tracking-[-0.035em]">
+                Engineers first.{' '}
+                <span className="text-[#1ef4b4]">Building outside the bubble.</span>
               </h1>
 
-              <p className="text-lg sm:text-xl text-[var(--pine)]/80 leading-relaxed max-w-2xl font-normal text-pretty">
+              <p className="text-lg sm:text-xl text-[#a8beb4] leading-relaxed max-w-2xl font-normal text-pretty">
                 Nor AI Technologies is an independent AI engineering practice based in Umarganj, Zamania, Ghazipur, Uttar Pradesh. We design pragmatic intelligence, modern web software, and train tomorrow&apos;s builders.
               </p>
 
-              <div className="pt-2 flex flex-wrap gap-3 text-xs font-mono text-[var(--pine)]">
-                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#fffdf7] border border-[var(--line)]">
-                  <ShieldCheck className="w-4 h-4 text-[var(--mint-ink)]" />
+              <div className="pt-2 flex flex-wrap gap-3 text-xs font-mono text-[#eaf4f0]">
+                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/50 border border-white/15 backdrop-blur-md shadow-xs">
+                  <ShieldCheck className="w-4 h-4 text-[#1ef4b4]" />
                   <span>Zero Executive Insulation</span>
                 </div>
-                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#fffdf7] border border-[var(--line)]">
-                  <Code2 className="w-4 h-4 text-[var(--mint-ink)]" />
+                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/50 border border-white/15 backdrop-blur-md shadow-xs">
+                  <Code2 className="w-4 h-4 text-[#7a5cff]" />
                   <span>100% In-House Code</span>
                 </div>
-                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#fffdf7] border border-[var(--line)]">
-                  <GraduationCap className="w-4 h-4 text-[var(--mint-ink)]" />
+                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/50 border border-white/15 backdrop-blur-md shadow-xs">
+                  <GraduationCap className="w-4 h-4 text-[#ffa24d]" />
                   <span>Grassroots AI Literacy</span>
                 </div>
               </div>
@@ -92,82 +88,63 @@ export default function TeamPage() {
           </Container>
         </section>
 
-        {/* SECTION 4: THE MINIMALIST SWISS STUDIO ROSTER (Non-Card Archetype) */}
+        {/* SWISS STUDIO ROSTER */}
         <SwissStudioRoster />
 
-        {/* OPERATING RITUALS (Clean Borderless Ledger) */}
+        {/* OPERATING RITUALS */}
         <section className="py-16 sm:py-24 border-b border-[var(--line)]">
           <Container size="wide" className="max-w-[1240px] mx-auto px-4 sm:px-6">
             <div className="max-w-2xl mb-12 text-left space-y-2">
-              <span className="font-mono text-xs text-[var(--mint-ink)] uppercase tracking-widest font-bold block">
-                — OPERATING RITUALS
+              <span className="font-mono text-xs text-[var(--mint-ink)] dark:text-[#1ef4b4] uppercase tracking-wider font-bold block">
+                STUDIO GOVERNANCE &amp; OPERATING DISCIPLINE
               </span>
-              <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-[var(--pine)] tracking-[-0.03em]">
-                How we work with clients and code.
+              <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-[var(--pine)] dark:text-white tracking-tight">
+                Engineering rituals that protect craft.
               </h2>
+              <p className="text-sm sm:text-base text-[var(--pine)]/75 dark:text-white/70">
+                Four non-negotiable architectural habits that ensure every client engagement ships without compromise.
+              </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
               {RITUALS.map((ritual) => (
                 <div
                   key={ritual.number}
-                  className="p-7 rounded-2xl bg-[#fffdf7] border border-[var(--line)] space-y-3 shadow-xs"
+                  className="p-7 sm:p-8 rounded-3xl bg-[#fffdf7] dark:bg-[#04130f] border border-[var(--line)] dark:border-white/10 space-y-4 shadow-sm hover:shadow-lg transition-all duration-300 group"
                 >
-                  <div className="flex items-center gap-2">
-                    <span className="font-mono text-xs font-bold text-[var(--mint-ink)]">
-                      {ritual.number}
+                  <div className="flex items-center justify-between border-b border-[var(--line)] dark:border-white/10 pb-3">
+                    <span className="font-mono text-xs font-bold px-2.5 py-1 rounded bg-[var(--pine)] text-white dark:bg-white/10">
+                      RITUAL /{ritual.number}
                     </span>
-                    <h3 className="font-display text-lg font-bold text-[var(--pine)]">
-                      {ritual.title}
-                    </h3>
+                    <span className="w-2 h-2 rounded-full bg-[#1ef4b4] opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
-                  <p className="text-xs sm:text-sm text-[var(--pine)]/75 leading-relaxed">
+                  <h3 className="font-display text-xl font-bold text-[var(--pine)] dark:text-white">
+                    {ritual.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[var(--pine)]/75 dark:text-white/70 leading-relaxed font-normal">
                     {ritual.desc}
                   </p>
                 </div>
               ))}
             </div>
-          </Container>
-        </section>
 
-        {/* CLOSING DISPATCH */}
-        <section className="py-16 sm:py-24">
-          <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
-            <div
-              className="rounded-[32px] p-8 sm:p-14 text-center shadow-2xl relative overflow-hidden"
-              style={{
-                background: 'linear-gradient(135deg, #FF7755 0%, #FFAE42 40%, #00E599 100%)',
-              }}
-            >
-              <div className="max-w-3xl mx-auto space-y-6 text-[#072929]">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#072929]/10 text-xs font-mono font-bold uppercase tracking-wider">
-                  — TALK DIRECTLY TO THE ENGINEERS
-                </div>
-
-                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
-                  Bring us the problem you are actually facing.
-                </h2>
-
-                <p className="text-base sm:text-lg opacity-90 max-w-2xl mx-auto leading-relaxed font-medium">
-                  One hour with the founding team. Zero marketing decks. A straight answer: architecture, feasibility, and costs.
+            {/* Bottom CTA Banner */}
+            <div className="mt-16 p-8 sm:p-12 rounded-3xl bg-[#04130f] border border-white/15 text-white flex flex-col sm:flex-row items-center justify-between gap-6 text-left shadow-2xl">
+              <div>
+                <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-white mb-2 tracking-tight">
+                  Speak directly with founding engineers.
+                </h3>
+                <p className="text-sm text-[#a8beb4]">
+                  Zero sales gatekeepers. We discuss system architectures and deliverables directly.
                 </p>
-
-                <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <Link
-                    href="/contact"
-                    className="w-full sm:w-auto h-12 px-8 rounded-full bg-[#072929] hover:bg-[#0c3c3c] text-white font-bold text-sm inline-flex items-center justify-center gap-2 shadow-xl active:scale-95 transition-all"
-                  >
-                    <span>Schedule an architecture call</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                  <Link
-                    href="/services"
-                    className="w-full sm:w-auto h-12 px-7 rounded-full bg-white/40 hover:bg-white/60 backdrop-blur-md border border-white/40 text-[#072929] font-bold text-sm inline-flex items-center justify-center transition-all"
-                  >
-                    <span>Explore Deliverables →</span>
-                  </Link>
-                </div>
               </div>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-[#1ef4b4] text-[#04130f] font-bold text-sm hover:bg-[#1ae0a5] transition-all duration-200 shadow-lg shadow-[#1ef4b4]/25 shrink-0 active:scale-[0.98] group"
+              >
+                <span>Initiate Studio Dialogue</span>
+                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+              </Link>
             </div>
           </Container>
         </section>

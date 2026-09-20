@@ -11,8 +11,8 @@ export const TRANSLATIONS = {
     },
     hero: {
       locationTag: 'NOR AI TECHNOLOGIES · GHAZIPUR, UTTAR PRADESH',
-      headlinePrefix: 'Engineering pragmatic intelligence.',
-      headlineHighlight: 'Building what matters.',
+      headlinePrefix: 'Intelligence',
+      headlineHighlight: 'meets action.',
       lede: 'Pragmatic AI systems, high-performance web platforms, and spatial computing environments. Engineered in Ghazipur, Uttar Pradesh, for real businesses and an AI-ready India.',
       exploreSolutions: 'Explore Solutions',
       civicMission: 'Our Civic Mission',
@@ -50,8 +50,8 @@ export const TRANSLATIONS = {
     },
     hero: {
       locationTag: 'नॉर एआई टेक्नोलॉजीज · ग़ाज़ीपुर, उत्तर प्रदेश',
-      headlinePrefix: 'व्यावहारिक बुद्धिमत्ता का निर्माण।',
-      headlineHighlight: 'जो वास्तव में उपयोगी है।',
+      headlinePrefix: 'बुद्धिमत्ता',
+      headlineHighlight: 'कर्म से मिलती है।',
       lede: 'प्रैक्टिकल एआई सिस्टम्स, आधुनिक वेब प्लेटफॉर्म्स, और स्पेशल कंप्यूटिंग। ग़ाज़ीपुर, उत्तर प्रदेश से निर्मित — वास्तविक उद्यमों और समर्थ भारत के लिए।',
       exploreSolutions: 'समाधान देखें',
       civicMission: 'हमारा सामाजिक विज़न',

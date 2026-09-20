@@ -1795,3 +1795,56 @@ html.dark .bilingual-toggle-btn[aria-checked="false"] {
 html.dark .bilingual-toggle-btn[aria-checked="false"]:hover {
   color: #ffffff !important;
 }
+
+/* Hero swoosh underline animation */
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.hero-swoosh-path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 0.95s 0.2s cubic-bezier(0.3, 0.6, 0.2, 1) forwards;
+}
+
+/* ==========================================================================
+   Motion System & Micro-Interactions (Impeccable Animate)
+   ========================================================================== */
+:root {
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-cubic: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.card-interactive {
+  transition: transform 0.28s var(--ease-out-expo), box-shadow 0.28s var(--ease-out-expo), border-color 0.28s var(--ease-out-expo);
+  will-change: transform;
+}
+
+.card-interactive:hover {
+  transform: translateY(-4px);
+}
+
+.glow-border-mint {
+  transition: border-color 0.28s var(--ease-out-expo), box-shadow 0.28s var(--ease-out-expo);
+}
+
+.glow-border-mint:hover {
+  border-color: rgba(30, 244, 180, 0.45) !important;
+  box-shadow: 0 12px 32px -8px rgba(30, 244, 180, 0.2), 0 0 16px 0 rgba(30, 244, 180, 0.15) !important;
+}
+
+.glow-border-violet {
+  transition: border-color 0.28s var(--ease-out-expo), box-shadow 0.28s var(--ease-out-expo);
+}
+
+.glow-border-violet:hover {
+  border-color: rgba(122, 92, 255, 0.45) !important;
+  box-shadow: 0 12px 32px -8px rgba(122, 92, 255, 0.2), 0 0 16px 0 rgba(122, 92, 255, 0.15) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-interactive:hover {
+    transform: none !important;
+  }
+}

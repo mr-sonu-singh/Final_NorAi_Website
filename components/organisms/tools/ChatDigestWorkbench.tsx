@@ -20,7 +20,7 @@ import {
   Sliders,
   Check,
   Filter,
-  Sparkles,
+  Cpu,
   Users,
   CheckCircle2,
 } from 'lucide-react';
@@ -625,7 +625,7 @@ export function ChatDigestWorkbench() {
                   <div className="p-3.5 rounded-xl bg-canvas-base border border-[rgba(13,37,61,0.1)] space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="text-[11px] font-mono text-ink-secondary uppercase tracking-wider font-semibold flex items-center gap-1.5">
-                        <Sparkles className="w-3.5 h-3.5 text-accent-500" />
+                        <Cpu className="w-3.5 h-3.5 text-accent-500" />
                         <span>Signal Extraction Pipeline:</span>
                       </span>
                       <span className="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded font-semibold">
@@ -962,7 +962,7 @@ export function ChatDigestWorkbench() {
                       : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed',
                   )}
                 >
-                  <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+                  <Cpu className="w-3.5 h-3.5 text-amber-600" />
                   <span>Raw Transcript ({result?.rawMessages?.length || 0})</span>
                 </button>
 
@@ -1182,7 +1182,7 @@ export function ChatDigestWorkbench() {
 
                             {cluster.impactSummary && (
                               <p className="text-xs text-accent-600 font-medium flex items-center gap-1.5">
-                                <Sparkles className="w-3.5 h-3.5 text-accent-500 shrink-0" />
+                                <Cpu className="w-3.5 h-3.5 text-accent-500 shrink-0" />
                                 <span>{cluster.impactSummary}</span>
                               </p>
                             )}

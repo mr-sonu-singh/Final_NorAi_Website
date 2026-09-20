@@ -21,7 +21,7 @@ import {
   Search,
   Plus,
   Trash2,
-  Sparkles,
+  Cpu,
   BarChart3,
   Users,
   Target,
@@ -736,7 +736,7 @@ export function ResumeShortlisterWorkbench() {
                   <div className="p-3.5 rounded-xl bg-canvas-base border border-[rgba(13,37,61,0.1)] space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="text-[11px] font-mono text-ink-secondary uppercase tracking-wider font-semibold flex items-center gap-1.5">
-                        <Sparkles className="w-3.5 h-3.5 text-accent-500" />
+                        <Cpu className="w-3.5 h-3.5 text-accent-500" />
                         <span>Target Competency Tags:</span>
                       </span>
                       <span className="text-[10px] font-mono text-accent-500 font-medium">
@@ -1373,7 +1373,7 @@ export function ResumeShortlisterWorkbench() {
                 <div className="p-4 rounded-xl bg-canvas-paper border border-[rgba(13,37,61,0.1)] shadow-sm space-y-1.5 text-xs">
                   <div className="flex items-center justify-between text-ink-secondary font-mono text-[11px]">
                     <span className="flex items-center gap-1.5 text-ink-primary font-semibold">
-                      <Sparkles className="w-3.5 h-3.5 text-accent-500" />
+                      <Cpu className="w-3.5 h-3.5 text-accent-500" />
                       <span>EXECUTIVE BATCH EVALUATION</span>
                     </span>
                     <span className="tabular-nums font-mono">BATCH: {result.batchId}</span>

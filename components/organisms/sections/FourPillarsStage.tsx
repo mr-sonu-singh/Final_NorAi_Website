@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { motion, AnimatePresence } from 'motion/react';
 import { Container } from '@/components/foundation/Container';
 import { cn } from '@/lib/utils';
 import {
@@ -78,104 +79,100 @@ const PILLARS: Pillar[] = [
     tagline: 'Interactive 3D environments running directly in the browser.',
     tag: '03 · SPATIAL COMPUTING',
     metric: '60fps In-Browser WebXR',
-    thesis: 'Why spatial computing belongs on the open web.',
+    thesis: 'Physical reality meets responsive synthetic spaces.',
     summary:
-      'Browser-based WebXR 3D experiences, spatial training visualizers, and interactive digital twins accessible on any device without mandatory headset hardware.',
+      'Immersive WebGL and WebXR spaces for product visualization, spatial commerce, and architectural walkthroughs without requiring native app downloads.',
     deliverables: [
-      'Zero-install browser WebXR spatial environments',
-      'Interactive 3D mechanical and vocational training modules',
-      'Industrial digital twins and architectural visualizers',
+      'Zero-install browser-based 3D product visualizers',
+      'Photorealistic architectural interior walkthroughs',
+      'Interactive WebXR device demos and synthetic training rigs',
     ],
-    techStack: ['Three.js', 'WebXR', 'React Three Fiber', 'WebGL', 'GLTF / GLB'],
-    accent: '#7C3AED',
-    accentSoft: 'rgba(124, 58, 237, 0.15)',
+    techStack: ['Three.js', 'React Three Fiber', 'WebXR', 'GLSL Shaders', 'WebGPU'],
+    accent: '#6D28D9',
+    accentSoft: 'rgba(109, 40, 217, 0.15)',
   },
   {
-    id: 'research-innovation',
+    id: 'civic-upskilling',
     n: '04',
     icon: Lightbulb,
-    category: 'Research & Innovation',
-    tagline: 'Applied R&D, open-weight experiments, and student prototypes.',
-    tag: '04 · APPLIED R&D',
-    metric: 'Four Live Working Tools',
-    thesis: 'Why output is not the measure of effectiveness.',
+    category: 'Civic Upskilling (Bharat)',
+    tagline: 'Empowering students and collegiate scholars in tier-2/3 regions.',
+    tag: '04 · YOUTH EMPOWERMENT',
+    metric: 'Ghazipur Grassroots Outreach',
+    thesis: 'Democratizing AI engineering beyond metro elite hubs.',
     summary:
-      'Continuous applied experimentation bridging frontier academic research with practical utility. We build single-purpose tools that solve real cognitive and operational friction.',
+      'Our dedicated civic mission based out of Ghazipur, UP. We conduct free open-weight model workshops, practical computational literacy labs, and hands-on coding intensives for local youth.',
     deliverables: [
-      'Open-weight model evaluation and on-device quantization',
-      'Production prototypes built by studio engineers and scholars',
-      'Vernacular Hindi language processing and civic gazette parsers',
+      'Hands-on open-source model workshops for provincial engineering colleges',
+      'Vernacular Hindi coding documentation and practical AI toolkits',
+      'Mentorship pipelines connecting rural scholars with modern software practice',
     ],
-    techStack: ['vLLM', 'Ollama', 'Hugging Face', 'KaTeX', 'LangChain / MCP'],
-    accent: '#C2410C',
-    accentSoft: 'rgba(194, 65, 12, 0.15)',
+    techStack: ['Open-Weights', 'Ollama', 'FastAPI', 'Next.js', 'Python'],
+    accent: '#B45309',
+    accentSoft: 'rgba(180, 83, 9, 0.15)',
   },
 ];
 
 export function FourPillarsStage() {
   const [activeId, setActiveId] = useState<string>('ai-solutions');
-  const activePillar = PILLARS.find((p) => p.id === activeId) || (PILLARS[0] as Pillar);
+  const activePillar: Pillar = PILLARS.find((p) => p.id === activeId) || (PILLARS[0] as Pillar);
 
   return (
-    <section id="pillars" className="py-24 sm:py-32 bg-[#f5f5f0] text-[var(--pine)] border-b border-[var(--line)] scroll-mt-24 relative overflow-hidden">
-      {/* Soft Ambient Radiance */}
-      <div
-        className="absolute top-1/3 -left-40 w-96 h-96 rounded-full bg-[var(--norai-blue-soft)] blur-[120px] pointer-events-none"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute bottom-10 right-0 w-96 h-96 rounded-full bg-[var(--norai-violet-soft)] blur-[120px] pointer-events-none"
-        aria-hidden="true"
-      />
-
-      <Container size="default" className="relative z-10 max-w-[1240px] mx-auto px-4 sm:px-6">
-        {/* Section Header */}
-        <div className="max-w-3xl mb-16 space-y-3 text-left">
-          <span className="eyebrow text-xs uppercase font-mono tracking-[0.18em] text-[var(--mint-ink)] font-bold block">
-            — THE 4 CORE PILLARS · PRACTICE CAPABILITIES
-          </span>
-          <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[var(--pine)] tracking-tight leading-[1.06]">
-            Architectural precision. <br />
-            <span className="text-[var(--mint-ink)]">Four grounded pillars.</span>
+    <section id="pillars" className="py-24 sm:py-32 bg-[#f5f5f0] text-[var(--pine)] border-b border-[var(--line)] scroll-mt-24 overflow-hidden">
+      <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
+        
+        {/* Section Header with Staggered Entrance */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center max-w-3xl mx-auto mb-16 sm:mb-20 space-y-4"
+        >
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--pine-08)] dark:bg-white/5 border border-[var(--line)] text-xs font-mono font-semibold uppercase tracking-[0.16em] text-[var(--pine)]/85">
+            <span className="w-2 h-2 rounded-full bg-[#1ef4b4] animate-pulse" />
+            <span>4 Core Operational Pillars</span>
+          </div>
+          <h2 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl text-[var(--pine)] tracking-tight leading-[1.08]">
+            Complete capability. <br className="hidden sm:inline" />
+            <span className="text-[#06845A]">Unified engineering craft.</span>
           </h2>
-          <p className="text-[var(--pine)]/80 text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
-            We reject vague tech buzzwords. NorAI operates across four concrete engineering domains, each backed by production code, open standards, and proven deliverables.
+          <p className="text-[var(--pine)]/75 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
+            From deterministic enterprise machine intelligence to grassroots youth upskilling in Ghazipur—every capability is built with zero fluff and complete ownership.
           </p>
-        </div>
+        </motion.div>
 
-        {/* The Asymmetric Interactive Stage */}
+        {/* 2-Column Responsive Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
-          {/* LEFT: 4 Pillar Selector Tabs */}
-          <div className="lg:col-span-5 space-y-3" role="tablist" aria-label="Four Pillars">
-            {PILLARS.map((pillar) => {
-              const isActive = pillar.id === activeId;
+          {/* LEFT: 4 Interactive Pillar Cards with Staggered Entrance */}
+          <div className="lg:col-span-5 space-y-3.5" role="tablist">
+            {PILLARS.map((pillar, idx) => {
               const Icon = pillar.icon;
+              const isActive = pillar.id === activeId;
               return (
-                <button
+                <motion.button
                   key={pillar.id}
                   role="tab"
                   aria-selected={isActive}
                   onClick={() => setActiveId(pillar.id)}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 0.4, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
                   className={cn(
-                    'w-full text-left p-5 sm:p-6 rounded-2xl transition-all duration-200 relative border flex items-start gap-4',
+                    'w-full text-left p-5 sm:p-6 rounded-2xl border transition-all duration-200 flex items-start gap-4 card-interactive group relative overflow-hidden',
                     isActive
-                      ? 'bg-[#fffdf7] border-[var(--pine-20)] shadow-[0_8px_30px_rgba(7,41,41,0.06)] scale-[1.01]'
-                      : 'bg-transparent border-transparent hover:bg-white/60 opacity-70 hover:opacity-100'
+                      ? 'bg-white dark:bg-[#0a2020] border-[#1ef4b4]/60 dark:border-[#1ef4b4]/50 shadow-md ring-1 ring-[#1ef4b4]/20'
+                      : 'bg-white/60 dark:bg-[#071d1d]/60 border-[var(--line)] hover:bg-white dark:hover:bg-[#0a2020] hover:border-[var(--pine-20)] dark:hover:border-white/15'
                   )}
                 >
-                  {/* Left Active Accent Bar */}
-                  {isActive && (
-                    <div
-                      className="absolute left-0 top-3 bottom-3 w-1.5 rounded-r shadow-xs"
-                      style={{ backgroundColor: pillar.accent }}
-                    />
-                  )}
-
-                  <div className={cn(
-                    'p-2.5 rounded-xl shrink-0 transition-colors',
-                    isActive ? 'bg-[#072929] text-white' : 'bg-black/5 text-[var(--pine)]'
-                  )}>
+                  <div
+                    className={cn(
+                      'p-3 rounded-xl shrink-0 transition-transform duration-200 group-hover:scale-105',
+                      isActive ? 'bg-[var(--pine)] text-white dark:bg-[#1ef4b4] dark:text-[#04130f]' : 'bg-black/5 dark:bg-white/5 text-[var(--pine)]'
+                    )}
+                  >
                     <Icon className="w-5 h-5" />
                   </div>
 
@@ -184,7 +181,7 @@ export function FourPillarsStage() {
                       <span className="font-mono text-xs font-bold text-[var(--pine)]/60">
                         {pillar.n}
                       </span>
-                      <span className="text-[11px] font-mono font-medium px-2 py-0.5 rounded-full bg-black/5 text-[var(--pine)]/70">
+                      <span className="text-[11px] font-mono font-medium px-2 py-0.5 rounded-full bg-black/5 dark:bg-white/5 text-[var(--pine)]/70">
                         {pillar.metric}
                       </span>
                     </div>
@@ -198,94 +195,101 @@ export function FourPillarsStage() {
                       {pillar.tagline}
                     </p>
                   </div>
-                </button>
+                </motion.button>
               );
             })}
           </div>
 
-          {/* RIGHT: Dynamic Telemetry Chassis Viewport */}
+          {/* RIGHT: Dynamic Telemetry Chassis Viewport with Smooth Crossfade */}
           <div className="lg:col-span-7">
-            <div className="rounded-3xl bg-[#072929] text-[#f5f5f0] p-8 sm:p-12 border border-white/10 shadow-2xl relative overflow-hidden min-h-[500px] flex flex-col justify-between">
-              
-              {/* Corner Mesh Glow */}
-              <div
-                className="absolute top-0 right-0 w-80 h-80 rounded-full blur-[90px] pointer-events-none opacity-20"
-                style={{ backgroundColor: activePillar.accent }}
-                aria-hidden="true"
-              />
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activePillar.id}
+                initial={{ opacity: 0, scale: 0.98, y: 12 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.98, y: -8 }}
+                transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
+                className="rounded-3xl bg-[#072929] text-[#f5f5f0] p-8 sm:p-12 border border-white/10 shadow-2xl relative overflow-hidden min-h-[500px] flex flex-col justify-between"
+              >
+                {/* Corner Mesh Glow */}
+                <div
+                  className="absolute top-0 right-0 w-80 h-80 rounded-full blur-[90px] pointer-events-none opacity-20"
+                  style={{ backgroundColor: activePillar.accent }}
+                  aria-hidden="true"
+                />
 
-              {/* Chassis Top Bar */}
-              <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/10 relative z-10">
-                <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#1ef4b4]">
-                  {activePillar.tag}
-                </span>
-                <span className="font-mono text-xs font-semibold px-3 py-1 rounded-full bg-white/10 text-white border border-white/15">
-                  {activePillar.metric}
-                </span>
-              </div>
-
-              {/* Chassis Body: Overview & Solutions Breakdown */}
-              <div className="py-8 space-y-6 relative z-10 text-left">
-                <div>
-                  <h4 className="font-display font-extrabold text-2xl sm:text-3xl text-white mb-2 tracking-tight">
-                    {activePillar.category}
-                  </h4>
-                  <p className="text-[#1ef4b4] text-xs font-mono font-semibold uppercase tracking-wider mb-2">
-                    — {activePillar.thesis}
-                  </p>
-                  <p className="text-white/75 text-sm sm:text-base leading-relaxed max-w-xl">
-                    {activePillar.summary}
-                  </p>
+                {/* Chassis Top Bar */}
+                <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/10 relative z-10">
+                  <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#1ef4b4]">
+                    {activePillar.tag}
+                  </span>
+                  <span className="font-mono text-xs font-semibold px-3 py-1 rounded-full bg-white/10 text-white border border-white/15">
+                    {activePillar.metric}
+                  </span>
                 </div>
 
-                {/* Practical Capabilities List */}
-                <div className="p-5 rounded-2xl bg-[#051f1f]/80 border border-white/10 space-y-3">
-                  <span className="text-xs font-mono uppercase tracking-wider text-white/50 block font-semibold">
-                    Core Engineering Deliverables:
-                  </span>
-                  <ul className="space-y-2">
-                    {activePillar.deliverables.map((del, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-white/90">
-                        <CheckCircle2 className="w-4 h-4 text-[#1ef4b4] shrink-0 mt-0.5" />
-                        <span>{del}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                {/* Chassis Body: Overview & Solutions Breakdown */}
+                <div className="py-8 space-y-6 relative z-10 text-left">
+                  <div>
+                    <h4 className="font-display font-extrabold text-2xl sm:text-3xl text-white mb-2 tracking-tight">
+                      {activePillar.category}
+                    </h4>
+                    <p className="text-[#1ef4b4] text-xs font-mono font-semibold uppercase tracking-wider mb-2">
+                      — {activePillar.thesis}
+                    </p>
+                    <p className="text-white/75 text-sm sm:text-base leading-relaxed max-w-xl">
+                      {activePillar.summary}
+                    </p>
+                  </div>
 
-                {/* Technology Badges */}
-                <div className="space-y-2">
-                  <span className="text-xs font-mono uppercase tracking-wider text-white/50 block">
-                    Core Tech Stack:
-                  </span>
-                  <div className="flex flex-wrap gap-2">
-                    {activePillar.techStack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2.5 py-1 rounded-md bg-white/10 border border-white/10 text-xs font-mono text-white/90"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                  {/* Practical Capabilities List */}
+                  <div className="p-5 rounded-2xl bg-[#051f1f]/80 border border-white/10 space-y-3">
+                    <span className="text-xs font-mono uppercase tracking-wider text-white/50 block font-semibold">
+                      Core Engineering Deliverables:
+                    </span>
+                    <ul className="space-y-2">
+                      {activePillar.deliverables.map((del, idx) => (
+                        <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-white/90">
+                          <CheckCircle2 className="w-4 h-4 text-[#1ef4b4] shrink-0 mt-0.5" />
+                          <span>{del}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Technology Badges */}
+                  <div className="space-y-2">
+                    <span className="text-xs font-mono uppercase tracking-wider text-white/50 block">
+                      Core Tech Stack:
+                    </span>
+                    <div className="flex flex-wrap gap-2">
+                      {activePillar.techStack.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-2.5 py-1 rounded-md bg-white/10 border border-white/10 text-xs font-mono text-white/90"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Chassis Footer */}
-              <div className="pt-6 border-t border-white/10 relative z-10 flex items-center justify-between">
-                <Link
-                  href="/services"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#1ef4b4] text-[#072929] font-bold text-sm hover:bg-white transition-all duration-160 ease-out shadow-md group"
-                >
-                  <span>Explore {activePillar.category} Solutions</span>
-                  <ArrowRight className="w-4 h-4 text-[#072929] transition-transform duration-200 group-hover:translate-x-1" />
-                </Link>
-                <span className="text-xs font-mono text-white/40 hidden sm:inline-block">
-                  NO VENDOR LOCK-IN
-                </span>
-              </div>
-
-            </div>
+                {/* Chassis Footer */}
+                <div className="pt-6 border-t border-white/10 relative z-10 flex items-center justify-between">
+                  <Link
+                    href="/services"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#1ef4b4] text-[#072929] font-bold text-sm hover:bg-white transition-all duration-160 ease-out shadow-md group active:scale-[0.98]"
+                  >
+                    <span>Explore {activePillar.category} Solutions</span>
+                    <ArrowRight className="w-4 h-4 text-[#072929] transition-transform duration-200 group-hover:translate-x-1" />
+                  </Link>
+                  <span className="text-xs font-mono text-white/40 hidden sm:inline-block">
+                    NO VENDOR LOCK-IN
+                  </span>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
 
         </div>

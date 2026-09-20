@@ -23,7 +23,7 @@ import {
   AlertCircle,
   Building2,
   GraduationCap,
-  Sparkles,
+  Cpu,
   Sliders,
   Award,
   Check,
@@ -1134,7 +1134,7 @@ export function SmartDainikNewsWorkbench() {
                         : 'text-ink-secondary hover:text-ink-primary hover:bg-canvas-recessed',
                     )}
                   >
-                    <Sparkles className="w-3.5 h-3.5 text-accent-500" />
+                    <Cpu className="w-3.5 h-3.5 text-accent-500" />
                     <span>1-Click Eligibility Check</span>
                   </button>
 
