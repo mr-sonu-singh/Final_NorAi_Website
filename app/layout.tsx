@@ -52,7 +52,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${jakarta.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
+      className={`${jakarta.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} dark`}
     >
       <head>
         <script
@@ -61,7 +61,7 @@ export default function RootLayout({
               (function() {
                 try {
                   var theme = localStorage.getItem('norai_theme');
-                  var isDark = theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+                  var isDark = theme ? theme === 'dark' : true;
                   if (isDark) {
                     document.documentElement.classList.add('dark');
                   } else {

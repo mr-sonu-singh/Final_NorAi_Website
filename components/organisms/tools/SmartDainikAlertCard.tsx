@@ -53,7 +53,7 @@ const DEFAULT_CARD_DATA: GazetteAlertCard = {
   daysRemaining: 14,
   vacanciesOrScope: '19,200 Verified Vacancies',
   hindiVacanciesOrScope: '19,200 पद (आरक्षी एवं फायरमैन)',
-  salaryBandOrBudget: 'Pay Level 3 (₹21,700 – ₹69,100 / month)',
+  salaryBandOrBudget: 'Pay Level 3 (₹21,700 – ₹69,100 per month)',
   hindiSalaryBandOrBudget: 'वेतनमान पे मैट्रिक्स लेवल 3 (₹21,700 – ₹69,100)',
   eligibilitySnippet:
     'Candidate must have passed 12th Standard (Intermediate) from a recognized board. Minimum age is 18 years and maximum age is 22 years.',

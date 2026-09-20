@@ -18,7 +18,7 @@ export function ThemeToggle({ className, size = 'sm' }: ThemeToggleProps) {
     setMounted(true);
   }, []);
 
-  const isDark = mounted ? theme === 'dark' : false;
+  const isDark = mounted ? theme === 'dark' : true;
 
   return (
     <button

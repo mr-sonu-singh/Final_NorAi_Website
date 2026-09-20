@@ -389,7 +389,7 @@ export function ResumeShortlisterWorkbench() {
 
     result.candidates.forEach((c, idx) => {
       const tierInfo = getCandidateTier(c.compositeScore, minThreshold);
-      md += `### #${idx + 1} ${c.name} — Score: ${c.compositeScore}/100 [${tierInfo.label}]\n`;
+      md += `### #${idx + 1} ${c.name} — Score: ${c.compositeScore} of 100 [${tierInfo.label}]\n`;
       md += `- **Role**: ${c.currentRole} (${c.experienceYears})\n`;
       md += `- **Status**: ${c.status}\n`;
       md += `- **Executive Verdict**: ${c.oneLineVerdict}\n`;
@@ -1452,7 +1452,7 @@ export function ResumeShortlisterWorkbench() {
                                 {candidate.compositeScore}
                               </span>
                               <span className="font-mono text-[9px] text-ink-secondary uppercase">
-                                Score / 100
+                                Score (out of 100)
                               </span>
                             </div>
 
@@ -1787,7 +1787,7 @@ export function ResumeShortlisterWorkbench() {
                               {selectedCandidate.compositeScore}
                             </span>
                             <span className="font-mono text-[10px] text-ink-secondary uppercase block">
-                              Composite Score / 100
+                              Composite Score (out of 100)
                             </span>
                           </div>
                         </div>

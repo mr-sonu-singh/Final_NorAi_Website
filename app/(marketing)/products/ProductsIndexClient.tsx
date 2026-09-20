@@ -452,7 +452,7 @@ export function ProductsIndexClient() {
                         {isSimulating ? (
                           <>
                             <Loader2 className="w-3.5 h-3.5 animate-spin text-[#1ef4b4]" />
-                            <span>Executing {simStep}/3...</span>
+                            <span>Executing step {simStep} of 3...</span>
                           </>
                         ) : (
                           <>

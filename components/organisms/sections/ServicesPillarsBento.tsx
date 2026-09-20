@@ -224,7 +224,7 @@ export function ServicesPillarsBento() {
                     <PIcon className="w-5 h-5" />
                   </div>
                   <span className="font-mono text-xs font-bold text-[var(--pine)]/50 dark:text-white/40">
-                    /{pillar.n}
+                    {pillar.n}
                   </span>
                 </div>
 

@@ -1518,7 +1518,7 @@ export function CourseNoteTakerWorkbench() {
                       <span className="text-xs">
                         Mastered:{' '}
                         <strong className="text-emerald-700 font-bold tabular-nums">
-                          {masteredCardsCount} / {totalCards}
+                          {masteredCardsCount} of {totalCards}
                         </strong>
                       </span>
                     </div>
@@ -1709,7 +1709,7 @@ export function CourseNoteTakerWorkbench() {
                       {quizSubmitted ? (
                         <div className="flex items-center gap-2">
                           <span className="font-mono text-lg font-bold text-accent-500 tabular-nums">
-                            {correctCount} / {quizQuestions.length} Correct
+                            {correctCount} of {quizQuestions.length} Correct
                           </span>
                           <Button
                             variant="secondary"

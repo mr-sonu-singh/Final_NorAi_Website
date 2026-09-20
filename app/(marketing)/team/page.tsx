@@ -114,7 +114,7 @@ export default function TeamPage() {
                 >
                   <div className="flex items-center justify-between border-b border-[var(--line)] dark:border-white/10 pb-3">
                     <span className="font-mono text-xs font-bold px-2.5 py-1 rounded bg-[var(--pine)] text-white dark:bg-white/10">
-                      RITUAL /{ritual.number}
+                      RITUAL {ritual.number}
                     </span>
                     <span className="w-2 h-2 rounded-full bg-[#1ef4b4] opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>

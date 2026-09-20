@@ -315,13 +315,13 @@ export function ChatDigestWorkbench() {
     let md = `---\ntitle: "Community Intelligence Digest - ${result.communityName}"\ntimeframe: "${result.timeframeCovered}"\nsentiment_score: ${result.sentimentScore}\ngenerated_by: "NorAI Chat Digest & Signal Engine"\n---\n\n`;
     md += `# ${result.communityName} — Community Digest\n\n`;
     md += `**Timeframe:** ${result.timeframeCovered} | **Messages Processed:** ${result.totalRawMessages.toLocaleString()} (${result.spamFilteredPercentage}% noise eliminated)\n\n`;
-    md += `**Overall Sentiment:** ${result.overallSentiment} (${result.sentimentScore}/100)\n\n`;
+    md += `**Overall Sentiment:** ${result.overallSentiment} (${result.sentimentScore} of 100)\n\n`;
     md += `## Executive Intelligence Brief\n${result.executiveBrief}\n\n`;
 
     md += `## Key Discussion Topics\n\n`;
     result.topicClusters.forEach((t) => {
       md += `### [${t.status || 'RESOLVED'}] ${t.topicName} (${t.channelOrContext})\n`;
-      md += `*Sentiment: ${t.sentiment} (${t.sentimentScore}/100) — ~${t.messageCount} messages*\n\n`;
+      md += `*Sentiment: ${t.sentiment} (${t.sentimentScore} of 100) — ~${t.messageCount} messages*\n\n`;
       if (t.impactSummary) md += `**Impact:** ${t.impactSummary}\n\n`;
       md += `${t.summary}\n\n`;
       md += `**Key Quotations:**\n`;
@@ -1069,7 +1069,7 @@ export function ChatDigestWorkbench() {
                       </div>
                       <div className="w-12 h-12 rounded-xl bg-[#0D253D] text-[#F9F6F0] flex flex-col items-center justify-center font-mono font-bold text-sm shadow-sm">
                         <span className="tabular-nums">{result.sentimentScore}</span>
-                        <span className="text-[8px] font-normal opacity-70">/100</span>
+                        <span className="text-[8px] font-normal opacity-70"> of 100</span>
                       </div>
                     </div>
                   </div>

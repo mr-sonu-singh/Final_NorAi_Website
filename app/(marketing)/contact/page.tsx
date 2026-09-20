@@ -156,7 +156,7 @@ export default function ContactPage() {
                     </span>
                     <p className="text-sm font-semibold text-[var(--pine)] dark:text-white flex items-center gap-2">
                       <Phone className="h-4 w-4 text-[var(--mint-ink)] dark:text-[#1ef4b4] shrink-0" />
-                      <span>+91 7988552179 / +91 7860818514</span>
+                      <span>+91 7988552179, +91 7860818514</span>
                     </p>
                   </div>
 
