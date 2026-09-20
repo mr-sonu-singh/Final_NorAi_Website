@@ -1,4 +1,7 @@
+'use client';
+
 import React from 'react';
+import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
 export interface BrandLogoProps {
@@ -9,70 +12,58 @@ export interface BrandLogoProps {
 
 const sizeMap = {
   sm: {
-    mark: 'w-7 h-7',
+    px: 28,
+    markClass: 'w-7 h-7',
     text: 'text-xl',
     gap: 'gap-2',
   },
   md: {
-    mark: 'w-8 h-8',
+    px: 32,
+    markClass: 'w-8 h-8',
     text: 'text-2xl',
     gap: 'gap-2.5',
   },
   lg: {
-    mark: 'w-10 h-10',
+    px: 40,
+    markClass: 'w-10 h-10',
     text: 'text-3xl',
     gap: 'gap-3',
   },
 };
 
 /**
- * Clean, architectural NorAI brand mark matching the warm Stripe / New Yorker aesthetic.
- * Minimalist geometric lettermark 'N' on warm canvas paper or deep navy squircle.
+ * Official NorAI Brand Logo incorporating the circular Royal Blue & Violet Ai Monogram.
  */
 export function BrandLogo({ size = 'md', variant = 'full', className }: BrandLogoProps) {
-  const { mark, text, gap } = sizeMap[size];
+  const { px, markClass, text, gap } = sizeMap[size];
 
-  const markSvg = (
-    <svg
-      width="32"
-      height="32"
-      viewBox="0 0 32 32"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={cn(mark, 'shrink-0 select-none')}
-      aria-hidden="true"
+  const markElement = (
+    <div
+      className={cn(
+        markClass,
+        'relative shrink-0 rounded-full overflow-hidden select-none shadow-sm flex items-center justify-center ring-1 ring-white/15',
+      )}
     >
-      {/* Refined obsidian squircle tile */}
-      <rect
-        width="32"
-        height="32"
-        rx="8"
-        fill="#141824"
-        stroke="rgba(255, 255, 255, 0.15)"
-        strokeWidth="1"
+      <Image
+        src="/norai-logo.png"
+        alt="NorAI Monogram"
+        width={px}
+        height={px}
+        priority
+        className="w-full h-full object-cover"
       />
-      {/* Crisp geometric N lettermark */}
-      <path
-        d="M9 22.5V9.5L23 22.5V9.5"
-        stroke="#F8FAFC"
-        strokeWidth="2.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      {/* High-Voltage Mint accent mark */}
-      <circle cx="23" cy="9.5" r="2" fill="#2EFCC2" />
-    </svg>
+    </div>
   );
 
   if (variant === 'mark') {
-    return <span className={cn('inline-flex items-center', className)}>{markSvg}</span>;
+    return <span className={cn('inline-flex items-center', className)}>{markElement}</span>;
   }
 
   const textColor = variant === 'inverted' ? 'text-[var(--bone)]' : 'text-[var(--pine)]';
 
   return (
     <div className={cn('inline-flex items-center', gap, className)}>
-      {markSvg}
+      {markElement}
       <span
         className={cn(
           'font-display font-extrabold tracking-tight leading-none',
@@ -85,3 +76,5 @@ export function BrandLogo({ size = 'md', variant = 'full', className }: BrandLog
     </div>
   );
 }
+
+export default BrandLogo;

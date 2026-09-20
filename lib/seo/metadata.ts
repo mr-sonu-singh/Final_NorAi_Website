@@ -1,29 +1,26 @@
 import type { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
 
-export interface BuildMetadataOptions {
+export interface PageMetadataOptions {
   title?: string;
   description?: string;
   path?: string;
-  ogImage?: string;
+  image?: string;
   noIndex?: boolean;
 }
 
-export function buildMetadata(options: BuildMetadataOptions = {}): Metadata {
-  const {
-    title,
-    description = siteConfig.description,
-    path = '',
-    ogImage = siteConfig.ogImage,
-    noIndex = false,
-  } = options;
-
-  const fullTitle = title
-    ? title.toLowerCase().includes('norai')
-      ? title
-      : `${title} — ${siteConfig.name}`
-    : siteConfig.titleTemplate;
-  const canonicalUrl = `${siteConfig.url}${path}`;
+export function buildMetadata({
+  title,
+  description = siteConfig.description,
+  path = '',
+  image,
+  noIndex = false,
+}: PageMetadataOptions = {}): Metadata {
+  const fullTitle = title ? `${title} | ${siteConfig.name}` : siteConfig.name;
+  const canonicalUrl = `${siteConfig.url}${path.startsWith('/') ? path : `/${path}`}`;
+  const ogImage = image
+    ? `${siteConfig.url}${image.startsWith('/') ? image : `/${image}`}`
+    : `${siteConfig.url}/og.png`;
 
   return {
     title: fullTitle,
@@ -42,9 +39,10 @@ export function buildMetadata(options: BuildMetadataOptions = {}): Metadata {
           url: ogImage,
           width: 1200,
           height: 630,
-          alt: siteConfig.name,
+          alt: fullTitle,
         },
       ],
+      locale: 'en_IN',
       type: 'website',
     },
     twitter: {
@@ -52,6 +50,13 @@ export function buildMetadata(options: BuildMetadataOptions = {}): Metadata {
       title: fullTitle,
       description,
       images: [ogImage],
+    },
+    icons: {
+      icon: [
+        { url: '/favicon.ico', sizes: 'any' },
+        { url: '/icon.png', type: 'image/png', sizes: '512x512' },
+      ],
+      apple: [{ url: '/apple-icon.png', sizes: '180x180', type: 'image/png' }],
     },
     robots: noIndex ? { index: false, follow: false } : { index: true, follow: true },
   };

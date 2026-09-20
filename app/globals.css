@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
 @import 'katex/dist/katex.min.css';
 @source '..';
 
@@ -1560,4 +1561,237 @@ kbd.key-cap {
     opacity: 0.8 !important;
     transform: none !important;
   }
+}
+
+/* ==========================================================================
+   DARK THEME TOKENS — Deep Obsidian Pine & Luminescent Emerald
+   Canvas: deep botanical obsidian pine (#051313).
+   Cards: elevated obsidian spruce (#0A2020 / #0F2C2C).
+   Typography: crisp porcelain bone (#F5F5F0).
+   Borders: luminescent emerald hairlines (rgba(30, 244, 180, 0.14)).
+   ========================================================================== */
+html.dark,
+.dark {
+  --pine: #f5f5f0;
+  --forest: #0a2020;
+  --porcelain: #051313;
+  --bone: #f5f5f0;
+  --surface: #0a2020;
+
+  --pine-70: rgba(245, 245, 240, 0.78);
+  --pine-50: rgba(245, 245, 240, 0.52);
+  --pine-20: rgba(245, 245, 240, 0.20);
+  --pine-12: rgba(245, 245, 240, 0.12);
+  --pine-08: rgba(245, 245, 240, 0.08);
+
+  --bone-70: rgba(245, 245, 240, 0.78);
+  --bone-50: rgba(245, 245, 240, 0.52);
+  --bone-20: rgba(245, 245, 240, 0.20);
+
+  --line: rgba(30, 244, 180, 0.14);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --border-hairline: rgba(30, 244, 180, 0.14);
+
+  --surface-canvas: #051313;
+  --surface-panel: #0a2020;
+  --surface-panel-elevated: #0f2c2c;
+  --surface-panel-subtle: rgba(255, 255, 255, 0.04);
+  --surface-hover: rgba(255, 255, 255, 0.08);
+  --surface-active: rgba(255, 255, 255, 0.12);
+
+  --text-primary: #f5f5f0;
+  --text-secondary: rgba(245, 245, 240, 0.78);
+  --text-muted: rgba(245, 245, 240, 0.55);
+
+  --bg-page: #051313;
+  --bg-elevated: #0a2020;
+  --bg-sunken: #030d0d;
+  --bg-header: rgba(10, 32, 32, 0.90);
+  --ds-background-100: #051313;
+  --ds-background-200: #0a2020;
+  --ds-text-100: #f5f5f0;
+}
+
+html.dark body {
+  background-color: #051313 !important;
+  color: #f5f5f0 !important;
+}
+
+/* Background overrides using resilient attribute selectors */
+html.dark [class*="bg-[#f5f5f0]"] {
+  background-color: #051313 !important;
+}
+
+html.dark [class*="bg-[#fffdf7]"] {
+  background-color: #0a2020 !important;
+  border-color: rgba(30, 244, 180, 0.14) !important;
+}
+
+html.dark [class*="bg-[#072929]"] {
+  background-color: #081d1d !important;
+  border-color: rgba(30, 244, 180, 0.12) !important;
+}
+
+html.dark .bg-white {
+  background-color: #0a2020 !important;
+}
+
+html.dark .text-primary-800,
+html.dark .text-forest {
+  color: #f5f5f0 !important;
+}
+
+/* Primary buttons in dark mode: glowing emerald mint with obsidian text */
+html.dark .btn--solid,
+html.dark .btn[class*="bg-[var(--pine)]"],
+html.dark [class*="btn"][class*="bg-[var(--pine)]"] {
+  background-color: #1ef4b4 !important;
+  color: #031716 !important;
+  box-shadow: 0 4px 20px -2px rgba(30, 244, 180, 0.3) !important;
+}
+
+html.dark .btn--solid svg,
+html.dark .btn[class*="bg-[var(--pine)]"] svg,
+html.dark [class*="btn"][class*="bg-[var(--pine)]"] svg {
+  color: #031716 !important;
+}
+
+html.dark .btn--ghost,
+html.dark .btn[class*="btn--ghost"],
+html.dark [class*="btn"][class*="btn--ghost"] {
+  background-color: #0a2020 !important;
+  color: #f5f5f0 !important;
+  border-color: rgba(30, 244, 180, 0.22) !important;
+}
+
+html.dark .btn--ghost svg,
+html.dark .btn[class*="btn--ghost"] svg,
+html.dark [class*="btn"][class*="btn--ghost"] svg {
+  color: #1ef4b4 !important;
+}
+
+/* Header pill in dark mode */
+html.dark header [class*="max-w-5xl"] {
+  background-color: rgba(10, 32, 32, 0.95) !important;
+  border-color: rgba(30, 244, 180, 0.16) !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6) !important;
+}
+
+html.dark header nav a {
+  color: #f5f5f0 !important;
+}
+
+html.dark header nav a[aria-current="page"] {
+  background-color: #1ef4b4 !important;
+  color: #031716 !important;
+}
+
+/* Cards & Stages in dark mode */
+html.dark [class*="border-[var(--line)]"] {
+  border-color: rgba(30, 244, 180, 0.14) !important;
+}
+
+/* Ensure headings and body copy pop with bone white clarity */
+html.dark h1,
+html.dark h2,
+html.dark h3,
+html.dark h4,
+html.dark h5,
+html.dark h6 {
+  color: #f5f5f0 !important;
+}
+
+/* Dark Mode Form Inputs, Buttons & Interactive States */
+html.dark input,
+html.dark textarea,
+html.dark select {
+  background-color: #061818 !important;
+  color: #f5f5f0 !important;
+  border-color: rgba(30, 244, 180, 0.18) !important;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: rgba(245, 245, 240, 0.4) !important;
+}
+
+html.dark input:focus,
+html.dark textarea:focus,
+html.dark select:focus {
+  border-color: #1ef4b4 !important;
+  box-shadow: 0 0 0 2px rgba(30, 244, 180, 0.2) !important;
+}
+
+html.dark button[type="submit"] {
+  background-color: #1ef4b4 !important;
+  color: #031716 !important;
+}
+
+html.dark button[type="submit"] svg {
+  color: #031716 !important;
+}
+
+/* ==========================================================================
+   OPERATING RITUALS TABS — Calibrated Dark Mode
+   ========================================================================== */
+html.dark [role="tablist"] button[aria-selected="false"],
+html.dark button[role="tab"][aria-selected="false"],
+html.dark [class*="bg-[#e8e8e2]"] {
+  background-color: #061818 !important;
+  color: rgba(245, 245, 240, 0.6) !important;
+  border-color: rgba(30, 244, 180, 0.1) !important;
+}
+
+html.dark [role="tablist"] button[aria-selected="false"]:hover,
+html.dark button[role="tab"][aria-selected="false"]:hover {
+  background-color: #0a2626 !important;
+  color: #f5f5f0 !important;
+}
+
+html.dark [role="tablist"] button[aria-selected="true"],
+html.dark button[role="tab"][aria-selected="true"] {
+  background-color: #0a2020 !important;
+  color: #f5f5f0 !important;
+  border-color: rgba(30, 244, 180, 0.25) !important;
+}
+
+html.dark #operating-rituals [class*="rounded-b-3xl"],
+html.dark [class*="rounded-b-3xl"][class*="rounded-tr-3xl"] {
+  background-color: #0a2020 !important;
+  border-color: rgba(30, 244, 180, 0.18) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* ==========================================================================
+   BILINGUAL TOGGLE — Dedicated High-Contrast Rules
+   Light: Deep pine pill (#072929) with pure white text (#ffffff).
+   Dark: Crisp porcelain white pill (#ffffff) with bold deep pine text (#072929).
+   ========================================================================== */
+.bilingual-toggle-thumb {
+  background-color: #072929 !important;
+}
+
+html.dark .bilingual-toggle-thumb {
+  background-color: #ffffff !important;
+}
+
+.bilingual-toggle-btn.bilingual-active,
+.bilingual-toggle-btn[aria-checked="true"] {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+html.dark .bilingual-toggle-btn.bilingual-active,
+html.dark .bilingual-toggle-btn[aria-checked="true"] {
+  color: #072929 !important;
+  font-weight: 700 !important;
+}
+
+html.dark .bilingual-toggle-btn[aria-checked="false"] {
+  color: rgba(245, 245, 240, 0.75) !important;
+}
+
+html.dark .bilingual-toggle-btn[aria-checked="false"]:hover {
+  color: #ffffff !important;
 }

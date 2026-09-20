@@ -9,11 +9,9 @@ export * from './sections/HeroChamber';
 export * from './sections/CapabilityArc';
 export * from './sections/BharatMissionBeat';
 export * from './sections/ClosingDispatch';
-
 // Active Cards
 export * from './cards/BlogCard';
 export * from './cards/ProductCard';
-
 // Bespoke Organisms
 export * from './HeroWorkbench/CandidateScreenerWorkbench';
 export * from './HeroWorkbench/HeroStudioWorkbench';
@@ -40,7 +38,7 @@ export * from './AudensCapabilityBento';
 export * from './ThreeDimensionsRail/ThreeDimensionsRail';
 export * from './SectorLedger/SectorLedger';
 export * from './DistrictImpactRadar/DistrictImpactRadar';
-
 export * from './SpiralCapabilitiesMatrix/SpiralCapabilitiesMatrix';
 export * from './DeliveryProtocolRail/DeliveryProtocolRail';
 export * from './SwissStudioRoster/SwissStudioRoster';
+export * from './sections/StudioManifesto';

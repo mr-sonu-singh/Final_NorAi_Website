@@ -6,6 +6,7 @@ import {
   SmoothScrollProvider,
   AnalyticsProvider,
   ToastProvider,
+  ThemeProvider,
 } from '@/providers';
 import './globals.css';
 
@@ -50,9 +51,27 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${jakarta.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
     >
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('norai_theme');
+                  var isDark = theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+                  if (isDark) {
+                    document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
         <JsonLd schema={getOrganizationJsonLd()} />
         <JsonLd schema={getWebSiteJsonLd()} />
       </head>
@@ -63,13 +82,15 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        <SmoothScrollProvider>
+        <ThemeProvider>
+          <SmoothScrollProvider>
           <MotionProvider>
             <AnalyticsProvider>
               <ToastProvider>{children}</ToastProvider>
             </AnalyticsProvider>
           </MotionProvider>
         </SmoothScrollProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

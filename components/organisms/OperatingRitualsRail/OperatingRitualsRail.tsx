@@ -1,5 +1,7 @@
 'use client';
 
+import { Container } from '@/components/foundation/Container';
+
 import React, { useState } from 'react';
 import { Link } from '@/components/atoms/Link';
 import { cn } from '@/lib/utils';
@@ -90,7 +92,9 @@ export function OperatingRitualsRail() {
   const activeRitual: RitualPillar = RITUALS.find((r) => r.id === activeId) || (RITUALS[0] as RitualPillar);
 
   return (
-    <div className="w-full text-left font-sans">
+    <section id="operating-rituals" className="py-24 sm:py-32 bg-[#f5f5f0] text-[var(--pine)] border-b border-[var(--line)] scroll-mt-24">
+      <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
+        <div className="w-full text-left font-sans">
       {/* Asymmetric 2-Column Physical Tab Deck */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
         
@@ -134,8 +138,8 @@ export function OperatingRitualsRail() {
                   className={cn(
                     'px-4 sm:px-6 py-3 rounded-t-2xl font-mono text-xs font-bold transition-all duration-200 shrink-0 border-t border-x relative',
                     isActive
-                      ? 'bg-white border-[var(--pine-20)] text-[var(--pine)] shadow-xs z-10 -mb-px pt-3.5 pb-3.5'
-                      : 'bg-[#e8e8e2]/70 border-transparent text-[var(--pine)]/60 hover:bg-[#e8e8e2] hover:text-[var(--pine)]'
+                      ? 'bg-white dark:bg-[#0a2020] border-[var(--pine-20)] dark:border-[rgba(30,244,180,0.22)] text-[var(--pine)] dark:text-[#f5f5f0] shadow-xs z-10 -mb-px pt-3.5 pb-3.5'
+                      : 'bg-[#e8e8e2]/70 dark:bg-[#071d1d] border-transparent dark:border-white/5 text-[var(--pine)]/60 dark:text-[#f5f5f0]/60 hover:bg-[#e8e8e2] dark:hover:bg-[#0a2828] hover:text-[var(--pine)] dark:hover:text-[#f5f5f0]'
                   )}
                 >
                   {/* Glowing color pip */}
@@ -151,7 +155,7 @@ export function OperatingRitualsRail() {
           </div>
 
           {/* Main Physical Archival Folder Chassis */}
-          <div className="rounded-b-3xl rounded-tr-3xl bg-white border border-[var(--pine-20)] p-8 sm:p-12 shadow-[0_16px_40px_rgba(7,41,41,0.06)] relative overflow-hidden min-h-[440px] flex flex-col justify-between">
+          <div className="rounded-b-3xl rounded-tr-3xl bg-white dark:bg-[#0a2020] border border-[var(--pine-20)] dark:border-[rgba(30,244,180,0.18)] p-8 sm:p-12 shadow-[0_16px_40px_rgba(7,41,41,0.06)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden min-h-[440px] flex flex-col justify-between">
             
             <div>
               {/* Folder Header: Tag & SLA Badge */}
@@ -159,7 +163,7 @@ export function OperatingRitualsRail() {
                 <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#06845A]">
                   RITUAL · {activeRitual.n}
                 </span>
-                <span className="font-mono text-xs font-bold px-3 py-1 rounded-full bg-[var(--pine-08)] text-[var(--pine)] border border-[var(--pine-12)]">
+                <span className="font-mono text-xs font-bold px-3 py-1 rounded-full bg-[var(--pine-08)] dark:bg-white/5 text-[var(--pine)] dark:text-[#f5f5f0] border border-[var(--pine-12)] dark:border-white/10">
                   {activeRitual.tag}
                 </span>
               </div>
@@ -211,7 +215,9 @@ export function OperatingRitualsRail() {
         </div>
 
       </div>
-    </div>
+        </div>
+      </Container>
+    </section>
   );
 }
 

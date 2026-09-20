@@ -4,8 +4,11 @@ import React from 'react';
 import Link from 'next/link';
 import { Container } from '@/components/foundation/Container';
 import { ArrowRight, GraduationCap, HeartHandshake, Compass } from 'lucide-react';
+import { useLanguage } from '@/hooks/useLanguage';
 
 export function CivicMissionBanner() {
+  const { t } = useLanguage();
+
   return (
     <section className="relative py-16 sm:py-24 bg-[#072929] text-[#f5f5f0] border-b border-white/10 overflow-hidden">
       {/* Background Subtle Dot Matrix */}
@@ -31,31 +34,31 @@ export function CivicMissionBanner() {
           <div className="lg:col-span-8 space-y-6 text-left">
             <div className="inline-flex items-center gap-2 text-xs font-mono tracking-[0.2em] uppercase text-[#1ef4b4] font-bold">
               <span className="w-2 h-2 rounded-full bg-[#1ef4b4] animate-pulse" aria-hidden="true" />
-              <span>CIVIC UPSKILLING MISSION · BHARAT & YOUTH</span>
+              <span>{t.civic.eyebrow}</span>
             </div>
 
             <h2 className="font-display font-extrabold text-2xl sm:text-4xl md:text-5xl lg:text-[2.9rem] text-[#f5f5f0] leading-[1.14] tracking-tight">
-              Empowering Millions of Youth with AI Skills —{' '}
-              <span className="text-[#1ef4b4]">Aligned with the vision of an AI-ready India.</span>
+              {t.civic.headlinePrefix}{' '}
+              <span className="text-[#1ef4b4]">{t.civic.headlineHighlight}</span>
             </h2>
 
             <p className="text-white/75 text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
-              Based in Ghazipur, Uttar Pradesh, NorAI is committed to expanding hands-on computational education, open-weight model literacy, and practical developer workshops across regional colleges and grassroots youth.
+              {t.civic.lede}
             </p>
 
             {/* Metrics Ribbon */}
             <div className="pt-4 flex flex-wrap items-center gap-6 sm:gap-8 border-t border-white/12 text-xs sm:text-sm font-mono text-white/80">
               <div className="flex items-center gap-2">
                 <GraduationCap className="w-4 h-4 text-[#1ef4b4]" />
-                <span><strong className="text-white font-bold">Grassroots Outreach</strong> for Regional Youth</span>
+                <span><strong className="text-white font-bold">{t.civic.outreachMetric}</strong></span>
               </div>
               <div className="flex items-center gap-2">
                 <Compass className="w-4 h-4 text-[#75d3da]" />
-                <span><strong className="text-white font-bold">Ghazipur & Eastern UP</strong> Roots</span>
+                <span><strong className="text-white font-bold">{t.civic.rootsMetric}</strong></span>
               </div>
               <div className="flex items-center gap-2">
                 <HeartHandshake className="w-4 h-4 text-[#ffe9b5]" />
-                <span><strong className="text-white font-bold">Vernacular Hindi</strong> AI Tools</span>
+                <span><strong className="text-white font-bold">{t.civic.toolsMetric}</strong></span>
               </div>
             </div>
           </div>
@@ -65,13 +68,13 @@ export function CivicMissionBanner() {
             <div className="rounded-2xl border border-white/15 bg-white/[0.04] p-7 backdrop-blur-md text-left space-y-5">
               <div className="space-y-1">
                 <span className="text-xs font-mono uppercase tracking-wider text-[#1ef4b4] font-bold">
-                  Educational Vision
+                  {t.civic.cardEyebrow}
                 </span>
                 <h3 className="font-display text-xl font-bold text-white">
-                  Collaborate on Student Workshops
+                  {t.civic.cardTitle}
                 </h3>
                 <p className="text-xs sm:text-sm text-white/70 leading-relaxed">
-                  Colleges, educators, and student organizers are invited to connect with us as we formulate our upcoming regional curriculums.
+                  {t.civic.cardDesc}
                 </p>
               </div>
 
@@ -80,7 +83,7 @@ export function CivicMissionBanner() {
                   href="/mission"
                   className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#1ef4b4] text-[#072929] font-bold text-sm hover:bg-white transition-all duration-160 ease-out active:scale-[0.98] shadow-md group"
                 >
-                  <span>Explore the Bharat Vision</span>
+                  <span>{t.civic.cardBtn}</span>
                   <ArrowRight className="w-4 h-4 text-[#072929] transition-transform duration-200 group-hover:translate-x-1" />
                 </Link>
               </div>

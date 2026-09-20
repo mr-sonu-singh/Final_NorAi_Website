@@ -29,7 +29,7 @@ export function BilingualToggle({
           setInternalLang(stored);
         }
       } catch {
-        // Fallback silently if localStorage access is blocked
+        // Fallback silently
       }
     }
   }, []);
@@ -79,7 +79,8 @@ export function BilingualToggle({
       aria-label="Select Language"
       onKeyDown={handleKeyDown}
       className={cn(
-        'relative inline-flex items-center rounded-full bg-[var(--surface)] border border-[var(--line)] p-0.5 shadow-xs select-none',
+        'bilingual-toggle relative inline-flex items-center rounded-full p-0.5 shadow-xs select-none',
+        'bg-[var(--surface)] dark:bg-[#061818] border border-[var(--line)] dark:border-[rgba(30,244,180,0.2)]',
         className,
       )}
     >
@@ -95,11 +96,11 @@ export function BilingualToggle({
             aria-label={`${lang.label} (${lang.nativeLabel})`}
             onClick={() => handleSelect(lang.id)}
             className={cn(
-              'relative z-10 inline-flex items-center justify-center rounded-full font-medium transition-[transform,color] duration-150 active:scale-[0.96] outline-none focus-visible:ring-2 focus-visible:ring-[var(--mint-ink)] cursor-pointer',
+              'bilingual-toggle-btn relative z-10 inline-flex items-center justify-center rounded-full font-semibold transition-[transform,color] duration-150 active:scale-[0.96] outline-none cursor-pointer',
               isSmall ? 'px-2.5 py-1 text-xs' : 'px-3 py-1 text-xs',
               isSelected
-                ? 'text-[var(--bone)] font-semibold'
-                : 'text-[var(--pine)]/75 hover:text-[var(--pine)]',
+                ? 'bilingual-active text-white dark:text-[#072929] font-bold'
+                : 'text-[#072929]/75 hover:text-[#072929] dark:text-[#f5f5f0]/75 dark:hover:text-white',
             )}
           >
             {isSelected && (
@@ -110,11 +111,11 @@ export function BilingualToggle({
                     ? { duration: 0 }
                     : { type: 'spring', stiffness: 450, damping: 32 }
                 }
-                className="absolute inset-0 z-[-1] rounded-full bg-[var(--pine)] shadow-xs"
+                className="bilingual-toggle-thumb absolute inset-0 z-[-1] rounded-full shadow-xs"
                 aria-hidden="true"
               />
             )}
-            <span>{lang.nativeLabel}</span>
+            <span className="relative z-10">{lang.nativeLabel}</span>
           </button>
         );
       })}

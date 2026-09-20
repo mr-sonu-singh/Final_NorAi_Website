@@ -29,3 +29,5 @@ export * from './TelemetrySparkline';
 export * from './KnobSwitch';
 export * from './MathRenderer';
 export * from './HandWaveIcon';
+
+export * from './ThemeToggle';

@@ -7,7 +7,9 @@ import { motion, AnimatePresence, useReducedMotion, useScroll, useSpring } from 
 import { Link } from '@/components/atoms/Link';
 import { BrandLogo } from '@/components/atoms/BrandLogo';
 import { BilingualToggle } from '@/components/molecules/BilingualToggle';
+import { ThemeToggle } from '@/components/atoms/ThemeToggle';
 import { useLockBodyScroll } from '@/hooks/useLockBodyScroll';
+import { useLanguage } from '@/hooks/useLanguage';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { cn } from '@/lib/utils';
 import { HeaderProps, HeaderCTA } from './Header.types';
@@ -22,12 +24,10 @@ export const DEFAULT_HEADER_PRIMARY_CTA: HeaderCTA = {
 };
 
 export function Header({
-  navItems = DEFAULT_HEADER_NAV_ITEMS,
-  primaryCta = DEFAULT_HEADER_PRIMARY_CTA,
-  secondaryCta,
   sticky = true,
   className,
 }: HeaderProps) {
+  const { t } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [liveAnnouncement, setLiveAnnouncement] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,7 +37,7 @@ export function Header({
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
 
-  // Offload scroll progress to GPU-accelerated motion values without React re-renders
+  // Scroll progress for top hairline indicator
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -61,7 +61,7 @@ export function Header({
     prevIsDesktop.current = isDesktop;
   }, [isDesktop]);
 
-  // Handle subtle sticky shadow threshold without re-rendering on every pixel
+  // Subtle sticky shadow threshold
   useEffect(() => {
     function handleScroll() {
       const scrolled = window.scrollY > 15;
@@ -89,87 +89,58 @@ export function Header({
 
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') {
-        event.preventDefault();
         setIsMobileMenuOpen(false);
-        setLiveAnnouncement('Mobile navigation menu closed');
-        document.getElementById('mobile-menu-toggle')?.focus();
-        return;
-      }
-
-      if (event.key === 'Tab') {
-        const toggleBtn = document.getElementById('mobile-menu-toggle');
-        const container = mobileMenuRef.current;
-        if (!container) return;
-
-        const menuFocusables = Array.from(
-          container.querySelectorAll<HTMLElement>(
-            'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
-          ),
-        );
-
-        const allFocusables = toggleBtn ? [toggleBtn, ...menuFocusables] : menuFocusables;
-        if (allFocusables.length === 0) return;
-
-        const firstFocusable = allFocusables[0];
-        const lastFocusable = allFocusables[allFocusables.length - 1];
-
-        if (event.shiftKey) {
-          if (document.activeElement === firstFocusable) {
-            event.preventDefault();
-            lastFocusable?.focus();
-          }
-        } else {
-          if (document.activeElement === lastFocusable) {
-            event.preventDefault();
-            firstFocusable?.focus();
-          }
-        }
+        setLiveAnnouncement('Navigation menu closed');
       }
     }
 
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isMobileMenuOpen]);
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen((prev) => {
-      const next = !prev;
-      setLiveAnnouncement(next ? 'Mobile navigation menu opened' : 'Mobile navigation menu closed');
-      if (!next) {
-        setTimeout(() => document.getElementById('mobile-menu-toggle')?.focus(), 50);
-      }
-      return next;
-    });
+    const nextState = !isMobileMenuOpen;
+    setIsMobileMenuOpen(nextState);
+    setLiveAnnouncement(nextState ? 'Navigation menu opened' : 'Navigation menu closed');
   };
+
+  const dynamicNavItems = [
+    { label: t.nav.solutions, href: '/services' },
+    { label: t.nav.prototypes, href: '/products' },
+    { label: t.nav.civicMission, href: '/mission' },
+    { label: t.nav.studioStory, href: '/team' },
+  ];
+
+  const dynamicCtaLabel = t.nav.startProject;
 
   return (
     <header
       role="banner"
       className={cn(
-        'navshell w-full z-[100] transition-[padding,transform] duration-200 px-3 sm:px-6 pt-3',
-        sticky && 'sticky top-0',
+        'w-full z-40 px-4 sm:px-6 pt-3 pb-1 transition-all duration-300 ease-out',
+        sticky ? 'sticky top-0' : 'relative',
         className,
       )}
       data-testid="header-organism"
-      data-scrolled={isScrolled}
-      data-sticky={sticky}
     >
-      {/* Stable live region for screen readers */}
-      <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
+      <div className="sr-only" role="status" aria-live="polite">
         {liveAnnouncement}
       </div>
 
-      {/* Floating Audens Capsule Nav Pill */}
+      {/* The Floating Pill */}
       <div
         className={cn(
-          'navpill pointer-events-auto relative z-50 mx-auto max-w-5xl rounded-full border px-4 sm:px-6 py-2 transition-[background-color,border-color,box-shadow,height] duration-300 ease-out',
-          'bg-[#fffdf7]/95 backdrop-blur-xl border-[var(--pine-12)] text-[var(--pine)] shadow-[0_8px_30px_-4px_rgba(7,41,41,0.10)]',
-          isScrolled && 'shadow-[0_14px_40px_-6px_rgba(7,41,41,0.16)] border-[var(--pine-20)]',
+          'mx-auto max-w-5xl rounded-full px-4 sm:px-6 flex items-center justify-between border transition-all duration-300 shadow-sm',
+          'bg-[#fffdf7]/95 dark:bg-[#0a2020]/95 backdrop-blur-xl border-[var(--line)] text-[var(--pine)]',
+          isScrolled && 'shadow-lg border-[var(--pine-20)]',
         )}
         style={{ height: '66px' }}
       >
-        <nav className="flex items-center justify-between gap-3 w-full" aria-label="Main Navigation">
-          {/* Brand Wordmark & Mark */}
+        <nav
+          className="flex items-center justify-between gap-3 w-full"
+          aria-label="Main Navigation"
+        >
+          {/* Brand Wordmark & Monogram */}
           <div className="flex items-center gap-3 shrink-0">
             <Link
               href="/"
@@ -180,9 +151,9 @@ export function Header({
             </Link>
           </div>
 
-          {/* Desktop Navigation Links (Audens Magnet Pill style) */}
+          {/* Desktop Navigation Links */}
           <div className="hidden lg:flex items-center gap-1">
-            {navItems.map((item) => {
+            {dynamicNavItems.map((item) => {
               const isActive =
                 pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
               return (
@@ -193,7 +164,7 @@ export function Header({
                   className={cn(
                     'relative px-4 py-2 text-sm font-medium no-underline rounded-full font-sans transition-[color,background-color,transform] duration-160 ease-out active:scale-[0.97]',
                     isActive
-                      ? 'bg-[var(--mint)] text-[var(--pine)] font-semibold shadow-xs'
+                      ? 'bg-[var(--mint)] text-[#072929] font-semibold shadow-xs'
                       : 'text-[var(--pine)]/85 hover:text-[var(--pine)] hover:bg-[var(--pine-08)]',
                   )}
                   aria-current={isActive ? 'page' : undefined}
@@ -204,44 +175,36 @@ export function Header({
             })}
           </div>
 
-          {/* Desktop Action Cluster: BilingualToggle + Primary CTA with Wave Hand */}
-          <div className="hidden lg:flex items-center gap-3">
+          {/* Desktop Controls & CTA */}
+          <div className="hidden lg:flex items-center gap-2.5">
             <BilingualToggle size="sm" />
-            {secondaryCta && (
-              <Link
-                href={secondaryCta.href}
-                className="btn btn--ghost text-xs h-10 px-4 active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out"
+            <ThemeToggle size="sm" />
+            <Link
+              href="/contact"
+              className="btn btn--solid text-sm h-10 px-5 shadow-xs group active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out"
+            >
+              <span>{dynamicCtaLabel}</span>
+              <svg
+                className="btn__hand w-4 h-4 text-current transition-transform duration-200 group-hover:rotate-12 group-hover:scale-110"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
               >
-                {secondaryCta.label}
-              </Link>
-            )}
-            {primaryCta && (
-              <Link
-                href={primaryCta.href}
-                className="btn btn--solid text-sm h-10 px-5 shadow-xs group active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out"
-              >
-                <span>{primaryCta.label}</span>
-                <svg
-                  className="btn__hand w-4 h-4 text-current transition-transform duration-200 group-hover:rotate-12 group-hover:scale-110"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11m0-1.5a1.5 1.5 0 0 1 3 0V11m0-1a1.5 1.5 0 0 1 3 0v4.5a6 6 0 0 1-6 6h-1.2a5 5 0 0 1-3.8-1.8L4 16.2a1.5 1.5 0 0 1 2.2-2L8 16V8.5a1.5 1.5 0 0 1 1-1.4"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </Link>
-            )}
+                <path
+                  d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11m0-1.5a1.5 1.5 0 0 1 3 0V11m0-1a1.5 1.5 0 0 1 3 0v4.5a6 6 0 0 1-6 6h-1.2a5 5 0 0 1-3.8-1.8L4 16.2a1.5 1.5 0 0 1 2.2-2L8 16V8.5a1.5 1.5 0 0 1 1-1.4"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </Link>
           </div>
 
-          {/* Mobile Action Controls */}
+          {/* Mobile Actions: Bilingual + Theme + Hamburger */}
           <div className="flex lg:hidden items-center gap-2">
             <BilingualToggle size="sm" />
+            <ThemeToggle size="sm" />
             <button
               id="mobile-menu-toggle"
               type="button"
@@ -268,7 +231,7 @@ export function Header({
           </div>
         </nav>
 
-        {/* Audens Bottom Progress Line (Off-main-thread GPU Motion Transform) */}
+        {/* Scroll Progress Bar at the base of the pill */}
         <motion.div
           className="nav-progress"
           aria-hidden="true"
@@ -276,7 +239,7 @@ export function Header({
         />
       </div>
 
-      {/* Mobile Slide-Down Glass Drawer */}
+      {/* Mobile Drawer Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -289,10 +252,10 @@ export function Header({
             animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
             exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -6, scale: 0.96 }}
             transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
-            className="pointer-events-auto mx-auto max-w-5xl mt-2 rounded-[22px] border border-[var(--line)] bg-[#fffdf7]/98 backdrop-blur-2xl p-5 shadow-2xl lg:hidden text-[var(--pine)]"
+            className="pointer-events-auto mx-auto max-w-5xl mt-2 rounded-[22px] border border-[var(--line)] bg-[#fffdf7]/98 dark:bg-[#0a2020]/98 backdrop-blur-2xl p-5 shadow-2xl lg:hidden text-[var(--pine)]"
           >
             <div className="flex flex-col gap-2">
-              {navItems.map((item) => {
+              {dynamicNavItems.map((item) => {
                 const isActive =
                   pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
                 return (
@@ -304,7 +267,7 @@ export function Header({
                     className={cn(
                       'px-4 py-3 text-base font-medium rounded-xl border-b border-[var(--line)]/50 transition-[background-color,transform] duration-160 ease-out active:scale-[0.97]',
                       isActive
-                        ? 'bg-[var(--mint)] text-[var(--pine)] font-semibold'
+                        ? 'bg-[var(--mint)] text-[#072929] font-semibold'
                         : 'text-[var(--pine)] hover:bg-[var(--pine-08)]',
                     )}
                     aria-current={isActive ? 'page' : undefined}
@@ -316,11 +279,11 @@ export function Header({
 
               <div className="pt-3">
                 <Link
-                  href={primaryCta?.href || '/contact'}
+                  href="/contact"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="btn btn--solid w-full h-11 text-base shadow-xs active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out"
                 >
-                  <span>{primaryCta?.label || 'Book a call'}</span>
+                  <span>{dynamicCtaLabel}</span>
                   <svg
                     className="btn__hand w-4 h-4 text-current"
                     viewBox="0 0 24 24"
@@ -344,3 +307,5 @@ export function Header({
     </header>
   );
 }
+
+export default Header;
