@@ -13,9 +13,9 @@ import { buildMetadata, getBreadcrumbListJsonLd, JsonLd } from '@/lib/seo';
 
 export const metadata: Metadata = buildMetadata({
   path: '/mission',
-  title: 'Youth Upskilling Mission — Vision for Regional AI Literacy',
+  title: 'Youth Upskilling Mission — Aligned with an AI-Ready India | NorAI',
   description:
-    'A dedicated vision to democratize AI literacy and deterministic engineering for youth, collegiate students, and local communities across Uttar Pradesh. 100% free workshops.',
+    'A dedicated vision to democratize AI literacy and deterministic engineering for collegiate students, youth, and regional communities across Uttar Pradesh.',
 });
 
 const COMMUNITY_TIERS = [
@@ -24,7 +24,7 @@ const COMMUNITY_TIERS = [
     badge: 'Rural & Village Citizens',
     title: 'Everyday Vernacular Literacy',
     desc: 'Bringing Hindi voice interfaces, government welfare navigation, and digital fraud prevention to village elders, self-help groups, and local tradespeople.',
-    metric: '₹0 Cost · Vernacular Delivery',
+    metric: 'Vernacular Delivery · Localized Learning',
     icon: Users,
     accent: 'var(--mint)',
     accentInk: 'var(--mint-ink)',
@@ -39,7 +39,7 @@ const COMMUNITY_TIERS = [
     badge: 'Secondary & College Students',
     title: 'Academic & Foundation Mastery',
     desc: 'Teaching high school and collegiate students how to turn AI into a tireless personal tutor, extract structured notes from messy lectures, and build rigorous study habits.',
-    metric: 'Free Scholar Sandbox Access',
+    metric: 'Curriculum & Sandbox Access',
     icon: GraduationCap,
     accent: 'var(--lavender)',
     accentInk: '#4e3a8c',
@@ -68,24 +68,24 @@ const COMMUNITY_TIERS = [
 
 const GROUND_FACTS = [
   {
-    value: '₹0',
-    label: 'Student Fee',
-    detail: '100% free workshops, open-weight tooling, and materials',
-  },
-  {
     value: 'Vision',
-    label: 'Youth & Local Areas',
-    detail: 'Dedicated commitment to upskilling regional students and local youth',
+    label: 'Regional Youth',
+    detail: 'Committed to bringing applied AI skills to collegiate talent across Uttar Pradesh',
   },
   {
-    value: '1,500+',
-    label: 'Scholars Mentored',
-    detail: 'Across eastern, central, and NCR corridors',
+    value: 'Studio',
+    label: 'Ghazipur Roots',
+    detail: 'Founded outside metro bubbles in Eastern UP with genuine regional conviction',
   },
   {
-    value: '100%',
-    label: 'Sovereign Open Access',
-    detail: 'Zero proprietary vendor lock-in or hidden charges',
+    value: 'Open',
+    label: 'Open Standards',
+    detail: 'Building curriculum around open-weight models, Python, and local compute',
+  },
+  {
+    value: 'Craft',
+    label: 'Applied Building',
+    detail: 'Project-based hands-on problem solving rather than passive lectures',
   },
 ];
 
@@ -100,34 +100,22 @@ export default function MissionPage() {
       <JsonLd schema={getBreadcrumbListJsonLd(breadcrumbs)} />
 
       {/* =========================================================================
-          HERO CHAMBER (.phero)
+          HERO CHAMBER WITH ASPIRATIONAL VISION
           ========================================================================= */}
-      <section className="relative pt-12 pb-16 sm:pt-20 sm:pb-20 overflow-hidden border-b border-[var(--line)]">
-        {/* Soft Organic Aurora Glow Orbs */}
-        <div
-          className="aurora__orb -top-32 -left-20 w-[450px] h-[450px] bg-[var(--mint)]/15"
-          aria-hidden="true"
-        />
-        <div
-          className="aurora__orb -top-20 right-0 w-[500px] h-[500px] bg-[var(--lavender)]/12"
-          aria-hidden="true"
-        />
-
-        <Container size="default" className="relative z-10 max-w-[1240px] mx-auto px-4 sm:px-6">
-          <div className="max-w-4xl space-y-6 text-left">
-            {/* Monospace Eyebrow Tag */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--pine-08)] border border-[var(--line)] text-xs font-mono text-[var(--pine)]">
+      <section className="relative pt-24 pb-16 sm:pt-32 sm:pb-20 border-b border-[var(--line)]">
+        <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
+          <div className="max-w-3xl text-left space-y-6">
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1 rounded-full bg-[#fffdf7] border border-[var(--line)] shadow-xs">
               <span className="w-2 h-2 rounded-full bg-[var(--mint-ink)] animate-pulse" aria-hidden="true" />
-              <span className="tracking-wide uppercase font-medium">
-                03 · GRASSROOTS COMPUTATIONAL LITERACY · VISION TO UPSKILL YOUTH
+              <span className="text-xs font-mono tracking-widest uppercase text-[var(--pine)]/85 font-semibold">
+                BHARAT YOUTH UPSKILLING MISSION · GHAZIPUR, UP
               </span>
             </div>
 
-            {/* Kinetic Display Headline */}
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[var(--pine)] leading-[1.04] tracking-tight">
-              A sovereign vision. <br />
+            <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold text-[var(--pine)] tracking-tight leading-[1.04]">
+              Empowering Millions of Youth with AI Skills.{' '}
               <span className="relative inline-block text-[var(--mint-ink)]">
-                To upskill youth & local regions.
+                Aligned with an AI-ready India.
                 <svg
                   className="absolute -bottom-2 sm:-bottom-3 left-0 w-full h-3 sm:h-4 text-[var(--mint)]"
                   viewBox="0 0 240 40"
@@ -146,8 +134,7 @@ export default function MissionPage() {
             </h1>
 
             <p className="text-lg sm:text-xl text-[var(--pine)]/80 leading-relaxed max-w-2xl font-normal text-pretty">
-              100% free workshops, localized open-weight models, and vernacular Hindi interfaces for
-              village elders, collegiate scholars, and aspiring software engineers.
+              Rooted in Ghazipur, Uttar Pradesh, NorAI is dedicated to expanding computational literacy, open developer workshops, and vernacular AI tools for students and regional communities.
             </p>
 
             {/* Ground Facts Metric Counters */}
@@ -169,7 +156,7 @@ export default function MissionPage() {
       </section>
 
       {/* =========================================================================
-          DISTRICT IMPACT RADAR SECTION
+          DISTRICT IMPACT & CURRICULUM ROADMAP SECTION
           ========================================================================= */}
       <section className="py-14 sm:py-20 border-b border-[var(--line)]">
         <Container size="wide" className="max-w-[1240px] mx-auto px-4 sm:px-6">
@@ -254,16 +241,16 @@ export default function MissionPage() {
           <div className="gradient-card max-w-4xl mx-auto text-center">
             <div className="gradient-card__inner p-8 sm:p-12 space-y-6 bg-[#fffdf7] text-[var(--pine)]">
               <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--pine-08)] border border-[var(--line)] text-xs font-mono font-bold text-[var(--mint-ink)] uppercase tracking-wider">
-                100% Free Campus &amp; Village Workshops
+                Campus & Community Workshop Vision
               </div>
 
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--pine)] tracking-tight leading-tight">
-                Invite NorAI to your district.
+                Invite NorAI to your institution.
               </h2>
 
               <p className="text-base sm:text-lg text-[var(--pine)]/75 max-w-2xl mx-auto leading-relaxed font-normal">
-                Whether you are a university dean, youth club coordinator, or local district official, we bring
-                the syllabus, the hardware, and the engineers to you at ₹0 cost.
+                Whether you are a university dean, youth club coordinator, or student organizer, we bring
+                our syllabus, engineering mentorship, and workshop frameworks directly to your campus.
               </p>
 
               <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -271,7 +258,7 @@ export default function MissionPage() {
                   href="/contact?track=mission"
                   className="btn btn--solid w-full sm:w-auto h-12 px-7 text-sm font-semibold shadow-xs active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out"
                 >
-                  <span>Request a Campus Workshop &rarr;</span>
+                  <span>Connect for an On-Campus Workshop &rarr;</span>
                 </Link>
                 <Link
                   href="/products"

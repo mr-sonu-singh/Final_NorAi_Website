@@ -17,37 +17,37 @@ interface LedgerItem {
 const LEDGER_ITEMS: LedgerItem[] = [
   {
     n: '01',
-    name: 'Private On-Premises Inference',
-    promise: 'Air-gapped local clusters with zero cloud telemetry or external data egress.',
-    deliverable: 'VPC Enclaves',
+    name: 'Document & Workflow Automation',
+    promise: 'Instant extraction of complex invoices, legal agreements, and technical resumes with zero data retention.',
+    deliverable: 'Workflow AI',
     href: '/services',
   },
   {
     n: '02',
-    name: 'Deterministic RAG Systems',
-    promise: 'Answers strictly grounded in your proprietary documents with verified citations.',
-    deliverable: 'Hybrid Milvus',
-    href: '/services',
+    name: 'Civic Intelligence & Regional Notices',
+    promise: 'Automated verification and bilingual Hindi parsing of public gazettes and citizen welfare updates.',
+    deliverable: 'Civic NLP',
+    href: '/products/smart-dainik-news',
   },
   {
     n: '03',
-    name: 'Model Context Protocol (MCP) Workflows',
-    promise: 'Secure agent tool execution with deterministic human-in-the-loop validation.',
-    deliverable: 'Production MCP',
+    name: 'Full-Stack Modern Web Platforms',
+    promise: 'Next.js 15 & React 19 digital systems engineered for sub-second speeds and 100% client code ownership.',
+    deliverable: 'Modern Web',
     href: '/services',
   },
   {
     n: '04',
-    name: 'Civic Intelligence & Regional Verification',
-    promise: 'Bilingual parsing and verification of state gazettes and citizen notices.',
-    deliverable: 'Smart Dainik',
-    href: '/products/smart-dainik-news',
+    name: 'Spatial Computing & WebXR Simulators',
+    promise: 'Interactive browser-based 3D digital twins and vocational training environments running at 60fps.',
+    deliverable: 'WebXR 3D',
+    href: '/services',
   },
   {
     n: '05',
-    name: 'Youth Upskilling & Regional AI Vision',
-    promise: '100% free coding workshops and open-weight model training dedicated to empowering local youth.',
-    deliverable: 'Grassroots Impact',
+    name: 'Youth Upskilling & Collegiate Workshops',
+    promise: 'Hands-on developer masterclasses and computational thinking workshops for students across Eastern Uttar Pradesh.',
+    deliverable: 'Civic Mission',
     href: '/mission',
   },
 ];
@@ -68,7 +68,7 @@ export function SectorLedger() {
             </h2>
           </div>
           <p className="text-[var(--pine)]/75 text-base sm:text-lg max-w-md leading-relaxed">
-            Every deployment starts with a fixed-scope diagnostic proving measurable ROI before any broader infrastructure build.
+            Real software engineering solving tangible challenges across businesses, students, and citizens.
           </p>
         </div>
 

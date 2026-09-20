@@ -3,77 +3,99 @@
 import React from 'react';
 import Link from 'next/link';
 import { Container } from '@/components/foundation/Container';
-import { HandWaveIcon } from '@/components/atoms/HandWaveIcon';
+import { EngineeringLatticeCanvas } from '@/components/atoms/EngineeringLatticeCanvas';
+import { Layers, ArrowRight, ShieldCheck, MapPin } from 'lucide-react';
 
 export function HeroChamber() {
   return (
-    <section className="relative pt-24 pb-20 sm:pt-32 sm:pb-32 overflow-hidden bg-[#f5f5f0] text-[var(--pine)] border-b border-[var(--line)]">
-      {/* Audens Multi-Color Aurora Glow Orbs */}
+    <section className="relative pt-24 pb-20 sm:pt-32 sm:pb-36 overflow-hidden bg-[#f5f5f0] text-[var(--pine)] border-b border-[var(--line)]">
+      {/* Interactive Vector Engineering Lattice */}
+      <EngineeringLatticeCanvas />
+
+      {/* Subtle Restrained Ambient Aura Orbs */}
       <div
-        className="absolute -top-24 -left-20 w-[550px] h-[550px] rounded-full bg-[var(--mint)]/18 blur-[100px] pointer-events-none"
+        className="absolute -top-28 -left-20 w-[500px] h-[500px] rounded-full bg-[var(--norai-blue-soft)] blur-[120px] pointer-events-none"
         aria-hidden="true"
       />
       <div
-        className="absolute top-10 -right-20 w-[500px] h-[500px] rounded-full bg-[var(--lavender)]/14 blur-[110px] pointer-events-none"
+        className="absolute top-1/3 -right-24 w-[480px] h-[480px] rounded-full bg-[var(--norai-violet-soft)] blur-[120px] pointer-events-none"
         aria-hidden="true"
       />
 
-      <Container size="default" className="relative z-10 max-w-[1040px] mx-auto text-center px-4 sm:px-6">
-        {/* Minimalist Typographic Overline (Pure typography with emerald dash, no box) */}
-        <div className="flex items-center justify-center gap-2 mb-8 text-xs sm:text-sm font-mono tracking-[0.18em] uppercase text-[var(--pine)]/80 font-medium">
-          <span className="w-2 h-0.5 bg-[var(--mint-ink)]" aria-hidden="true" />
-          <span>SOVEREIGN AI SYSTEMS · BHARAT &amp; ENTERPRISE</span>
+      <Container size="default" className="relative z-10 max-w-[1060px] mx-auto text-center px-4 sm:px-6">
+        {/* Architectural Location & Identity Tag */}
+        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#fffdf7] border border-[var(--line)] shadow-xs mb-8">
+          <span className="w-2 h-2 rounded-full bg-[var(--mint-ink)] animate-pulse" aria-hidden="true" />
+          <span className="text-xs font-mono tracking-[0.16em] uppercase text-[var(--pine)]/85 font-semibold">
+            NOR AI TECHNOLOGIES · GHAZIPUR, UTTAR PRADESH
+          </span>
         </div>
 
-        {/* Giant Display Headline (Cabinet Grotesk 800 with tight tracking) */}
-        <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[5.2rem] font-extrabold text-[var(--pine)] leading-[1.04] tracking-[-0.03em] mb-8">
-          Software you own. <br />
-          <span className="relative inline-block text-[var(--pine)]">
-            Intelligence that{' '}
-            <span className="relative inline-block text-[var(--pine)]">
-              stays.
-              {/* Hand-drawn organic SVG emerald highlight loop (Audens Signature Hook) */}
-              <svg
-                className="absolute -inset-x-4 -inset-y-2.5 w-[calc(100%+32px)] h-[calc(100%+20px)] pointer-events-none text-[#00E599]"
-                viewBox="0 0 160 60"
-                fill="none"
-                preserveAspectRatio="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M 14 30 C 14 12, 75 5, 146 14 C 158 22, 154 46, 122 53 C 65 58, 10 52, 5 33 C 2 18, 35 7, 85 7"
-                  stroke="currentColor"
-                  strokeWidth="3.4"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </span>
+        {/* Display Headline */}
+        <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] font-extrabold text-[var(--pine)] leading-[1.05] tracking-[-0.035em] mb-8">
+          Engineering pragmatic intelligence.{' '}
+          <span className="relative inline-block text-[var(--mint-ink)]">
+            Building what matters.
+            <svg
+              className="absolute -bottom-2 left-0 w-full h-3 text-[var(--mint)] opacity-80"
+              viewBox="0 0 240 20"
+              fill="none"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M 2 15 C 60 5, 180 5, 238 15"
+                stroke="currentColor"
+                strokeWidth="4"
+                strokeLinecap="round"
+              />
+            </svg>
           </span>
         </h1>
 
-        {/* Ruthless Copy Cut: Exactly 20 Words */}
+        {/* Approachable, Jargon-Eliminated Lede (25 words) */}
         <p className="text-[var(--pine)]/80 text-lg sm:text-xl md:text-2xl leading-relaxed max-w-2xl mx-auto mb-10 text-pretty font-normal">
-          NorAI builds private, air-gapped AI systems for enterprise infrastructure, and sovereign everyday tools for the students and citizens of Bharat.
+          Pragmatic AI systems, high-performance web platforms, and spatial computing environments. Engineered in Ghazipur, Uttar Pradesh, for real businesses and an AI-ready India.
         </p>
 
-        {/* Dual Pill Action Cluster: High-Voltage Solid Mint Primary + Ghost Secondary */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        {/* Action Buttons */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
           <Link
-            href="/contact"
-            className="btn h-12 px-8 rounded-full bg-[#00E599] text-[#072929] hover:bg-[#1ef4b4] text-base font-bold shadow-[0_10px_30px_-10px_rgba(0,229,153,0.5)] flex items-center gap-2 transition-[transform,background-color,box-shadow] duration-160 ease-out active:scale-[0.98] group"
+            href="/services"
+            className="btn h-12 px-8 rounded-full bg-[var(--pine)] text-[#f5f5f0] hover:bg-[#123838] text-base font-semibold shadow-md flex items-center gap-2.5 transition-all duration-160 ease-out active:scale-[0.98] group"
           >
-            <span>Book a diagnostic</span>
-            <HandWaveIcon className="w-4 h-4 text-[#072929] transition-transform duration-200 group-hover:rotate-12 group-hover:scale-110" />
+            <span>Explore Solutions</span>
+            <ArrowRight className="w-4 h-4 text-[#1ef4b4] transition-transform duration-200 group-hover:translate-x-1" />
           </Link>
           <Link
-            href="/products"
-            className="btn btn--ghost h-12 px-8 rounded-full border border-[var(--pine-20)] hover:bg-[var(--pine-08)] text-[var(--pine)] text-base font-medium transition-[background-color,border-color,transform] duration-160 ease-out active:scale-[0.98]"
+            href="/mission"
+            className="btn btn--ghost h-12 px-8 rounded-full border border-[var(--pine-20)] bg-[#fffdf7]/80 hover:bg-[#fffdf7] text-[var(--pine)] text-base font-medium transition-all duration-160 ease-out active:scale-[0.98] flex items-center gap-2"
           >
-            <span>Explore the capabilities →</span>
+            <span>Our Civic Mission</span>
+            <ArrowRight className="w-4 h-4 text-[var(--pine)]/60" />
           </Link>
+        </div>
+
+        {/* Micro-Telemetry Identity Strip */}
+        <div className="pt-8 border-t border-[var(--line)] flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-mono text-[var(--pine)]/70">
+          <div className="flex items-center gap-2">
+            <MapPin className="w-3.5 h-3.5 text-[var(--norai-blue)]" />
+            <span>Ghazipur Studio, UP</span>
+          </div>
+          <span className="text-[var(--pine-20)]">·</span>
+          <div className="flex items-center gap-2">
+            <Layers className="w-3.5 h-3.5 text-[var(--norai-violet)]" />
+            <span>4 Core Pillars</span>
+          </div>
+          <span className="text-[var(--pine-20)]">·</span>
+          <div className="flex items-center gap-2">
+            <ShieldCheck className="w-3.5 h-3.5 text-[var(--mint-ink)]" />
+            <span>100% Client IP Ownership</span>
+          </div>
         </div>
       </Container>
     </section>
   );
 }
+
+export default HeroChamber;

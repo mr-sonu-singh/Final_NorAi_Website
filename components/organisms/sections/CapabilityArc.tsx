@@ -23,7 +23,7 @@ interface CapabilityItem {
   }[];
 }
 
-const AUDENS_CAPABILITIES: CapabilityItem[] = [
+const STUDIO_PROTOTYPES: CapabilityItem[] = [
   {
     id: 'resume-shortlister',
     n: '01',
@@ -36,7 +36,7 @@ const AUDENS_CAPABILITIES: CapabilityItem[] = [
     telemetryBadge: '0.28s LATENCY',
     telemetryMetrics: [
       { label: 'Evaluation Speed', value: '0.28s Execution', status: 'ok' },
-      { label: 'Egress / Telemetry', value: '0 bytes retained', status: 'ok' },
+      { label: 'Data Retention', value: '0 bytes retained', status: 'ok' },
       { label: 'Keyword Stuffers', value: 'Filtered Out', status: 'alert' },
     ],
   },
@@ -53,7 +53,7 @@ const AUDENS_CAPABILITIES: CapabilityItem[] = [
     telemetryMetrics: [
       { label: 'Audio Ingestion', value: '1.2h in 8.4s', status: 'ok' },
       { label: 'LaTeX Accuracy', value: '99.4% syntax ok', status: 'ok' },
-      { label: 'Scholar Tier', value: '₹0 Student Cost', status: 'ok' },
+      { label: 'Scholar Tier', value: 'Academic Access', status: 'ok' },
     ],
   },
   {
@@ -92,10 +92,10 @@ const AUDENS_CAPABILITIES: CapabilityItem[] = [
 
 export function CapabilityArc() {
   const [activeId, setActiveId] = useState<string>('resume-shortlister');
-  const activeCap = AUDENS_CAPABILITIES.find((c) => c.id === activeId) || (AUDENS_CAPABILITIES[0] as CapabilityItem);
+  const activeCap = STUDIO_PROTOTYPES.find((c) => c.id === activeId) || (STUDIO_PROTOTYPES[0] as CapabilityItem);
 
   return (
-    <section id="capabilities" className="py-24 sm:py-32 bg-[#f5f5f0] text-[var(--pine)] border-b border-[var(--line)] scroll-mt-24 relative overflow-hidden">
+    <section id="prototypes" className="py-24 sm:py-32 bg-[#f5f5f0] text-[var(--pine)] border-b border-[var(--line)] scroll-mt-24 relative overflow-hidden">
       {/* Soft Ambient Aurora Glows */}
       <div
         className="absolute top-1/4 -right-40 w-96 h-96 rounded-full bg-[#00E599]/10 blur-[130px] pointer-events-none"
@@ -110,14 +110,14 @@ export function CapabilityArc() {
         {/* Section Header */}
         <div className="max-w-2xl mb-16 space-y-3">
           <span className="eyebrow text-xs uppercase font-mono tracking-[0.18em] text-[#06845A] font-bold block">
-            — THE CAPABILITY ARC · FOUR SOVEREIGN TOOLS
+            — APPLIED R&D & PROTOTYPES · PILLAR 04
           </span>
           <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[var(--pine)] tracking-tight leading-[1.06]">
-            Four single-purpose tools. <br />
-            <span className="text-[#06845A]">Zero busywork.</span>
+            Student & studio prototypes. <br />
+            <span className="text-[#06845A]">Proven utility.</span>
           </h2>
           <p className="text-[var(--pine)]/80 text-base sm:text-lg leading-relaxed max-w-xl">
-            Sovereign instruments designed to eliminate cognitive friction. Sub-second execution, ephemeral memory processing, and zero data retention.
+            Living proof of our Research & Innovation pillar. Four single-purpose applications engineered by NorAI to solve real cognitive and operational friction.
           </p>
         </div>
 
@@ -126,7 +126,7 @@ export function CapabilityArc() {
           
           {/* LEFT: Borderless Capability Selector List */}
           <div className="lg:col-span-5 space-y-3" role="tablist" aria-label="Capabilities List">
-            {AUDENS_CAPABILITIES.map((cap) => {
+            {STUDIO_PROTOTYPES.map((cap) => {
               const isActive = cap.id === activeId;
               return (
                 <button

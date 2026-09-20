@@ -9,7 +9,7 @@ import {
   RefreshCw,
   Calendar,
   Layers,
-  Sparkles,
+  BookOpen,
   Server,
   GraduationCap,
   Copy,
@@ -60,7 +60,7 @@ const TRIAGE_TRACKS: TrackOption[] = [
     label: 'General Inquiry',
     defaultService: 'General Technical Inquiry',
     placeholder: 'How can our engineering team assist you? Write your inquiry here...',
-    icon: Sparkles,
+    icon: BookOpen,
   },
 ];
 

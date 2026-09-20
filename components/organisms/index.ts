@@ -1,4 +1,6 @@
 // Active Sections
+export * from './sections/CivicMissionBanner';
+export * from './sections/FourPillarsStage';
 export * from './sections/Header';
 export * from './sections/Footer';
 export * from './sections/ContactSection';

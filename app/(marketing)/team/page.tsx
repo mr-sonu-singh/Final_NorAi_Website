@@ -2,13 +2,13 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { Container } from '@/components/foundation/Container';
 import { Link } from '@/components/atoms/Link';
-import { ArrowRight, ShieldCheck, Code2, Sparkles } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Code2, GraduationCap } from 'lucide-react';
 import { SwissStudioRoster } from '@/components/organisms';
 import { buildMetadata, getWebSiteJsonLd, JsonLd } from '@/lib/seo';
 
 export const metadata: Metadata = buildMetadata({
   path: '/team',
-  title: 'The Builders & Engineering Ethos — Built to change what happens',
+  title: 'Studio & Story — NorAI Technologies',
   description:
     'Meet Dhruw Singh, Sonu Singh, Annanta Singh, Rishabh Singh, and Gourav Singh—the founding engineering team driving NorAI Technologies from Uttar Pradesh, India.',
 });
@@ -57,7 +57,7 @@ export default function TeamPage() {
               <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[var(--pine)] leading-[1.04] tracking-[-0.03em]">
                 Engineers first. <br />
                 <span className="relative inline-block text-[var(--mint-ink)]">
-                  Direct accountability.
+                  Building outside the bubble.
                   <svg
                     className="absolute -bottom-2 sm:-bottom-3 left-0 w-full h-3 sm:h-4 text-[var(--mint)]"
                     viewBox="0 0 240 40"
@@ -71,8 +71,7 @@ export default function TeamPage() {
               </h1>
 
               <p className="text-lg sm:text-xl text-[var(--pine)]/80 leading-relaxed max-w-2xl font-normal text-pretty">
-                NorAI is an independent engineering firm headquartered in Uttar Pradesh. We design and
-                deliver private AI infrastructure and sovereign tools for students and citizens.
+                Nor AI Technologies is an independent AI engineering practice based in Umarganj, Zamania, Ghazipur, Uttar Pradesh. We design pragmatic intelligence, modern web software, and train tomorrow&apos;s builders.
               </p>
 
               <div className="pt-2 flex flex-wrap gap-3 text-xs font-mono text-[var(--pine)]">
@@ -85,8 +84,8 @@ export default function TeamPage() {
                   <span>100% In-House Code</span>
                 </div>
                 <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#fffdf7] border border-[var(--line)]">
-                  <Sparkles className="w-4 h-4 text-[var(--mint-ink)]" />
-                  <span>Free Grassroots Literacy</span>
+                  <GraduationCap className="w-4 h-4 text-[var(--mint-ink)]" />
+                  <span>Grassroots AI Literacy</span>
                 </div>
               </div>
             </div>

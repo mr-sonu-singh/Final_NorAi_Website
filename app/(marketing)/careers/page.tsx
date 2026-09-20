@@ -22,7 +22,7 @@ import {
   MapPin,
   Users,
   Workflow,
-  Sparkles,
+  Lightbulb,
   ShieldCheck,
   Zap,
   Clock,
@@ -97,7 +97,7 @@ const PERKS = [
     body: 'We measure output, rigor, and code reliability — not hours logged in a time tracker.',
   },
   {
-    icon: Sparkles,
+    icon: Lightbulb,
     tone: 'text-gold-600 bg-gold-100 border border-gold-300/40',
     title: 'Competitive compensation',
     body: 'Transparent regional salaries, performance incentives, and hardware/learning allowances.',

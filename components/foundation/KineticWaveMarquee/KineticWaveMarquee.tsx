@@ -7,19 +7,19 @@ export interface KineticWaveMarqueeProps {
 }
 
 const MARQUEE_ITEMS = [
-  'SOVEREIGNTY',
-  'AIR-GAPPED INFERENCE',
-  'MCP PROTOCOLS',
-  'ZERO EGRESS',
-  'YOUTH UPSKILLING',
-  'IN-MEMORY ARCHITECTURE',
-  'SYSTEMS YOU OWN',
+  'PRACTICAL AI SOLUTIONS',
+  'CUSTOM WEB SOFTWARE',
+  'SPATIAL COMPUTING (AR & VR)',
+  'APPLIED R&D',
+  'OPEN ARCHITECTURE',
+  'GHAZIPUR TO BHARAT',
+  '100% CODE OWNERSHIP',
 ];
 
 export function KineticWaveMarquee({ className = '' }: KineticWaveMarqueeProps) {
   return (
     <section
-      aria-label="NorAI Sovereign Architecture Ticker"
+      aria-label="NorAI Practice Capability Ticker"
       className={`relative w-full bg-[#051f1f] py-8 sm:py-12 overflow-hidden border-y border-white/10 select-none ${className}`}
     >
       {/* Edge gradient masks for seamless visual fading */}
@@ -33,7 +33,7 @@ export function KineticWaveMarquee({ className = '' }: KineticWaveMarqueeProps) 
       />
 
       <span className="sr-only">
-        NorAI Architectural Pillars: Sovereignty, Air-Gapped Inference, MCP Protocols, Zero Egress, Youth Upskilling, In-Memory Architecture, Systems You Own.
+        NorAI Practice Pillars: Practical AI Solutions, Custom Web Software, Spatial Computing, Applied R&D, Open Architecture, Ghazipur to Bharat, 100% Code Ownership.
       </span>
 
       {/* Looping Marquee Track */}
@@ -41,20 +41,17 @@ export function KineticWaveMarquee({ className = '' }: KineticWaveMarqueeProps) 
         aria-hidden="true"
         className="motion-reduce:hidden flex w-max kinetic-wave-track will-change-transform"
       >
-        {/* Render 2 identical groups to allow continuous seamless -50% CSS translation */}
         {[0, 1].map((groupIndex) => (
           <div key={groupIndex} className="flex items-center gap-8 sm:gap-12 shrink-0 pr-8 sm:pr-12">
             {MARQUEE_ITEMS.map((item, idx) => (
               <div
                 key={idx}
-                className="flex items-center gap-8 sm:gap-12 shrink-0 font-display font-black text-3xl sm:text-5xl md:text-6xl text-[#f5f5f0] tracking-[-0.03em] whitespace-nowrap"
+                className="flex items-center gap-8 sm:gap-12 shrink-0 font-display font-black text-2xl sm:text-4xl md:text-5xl text-[#f5f5f0] tracking-[-0.03em] whitespace-nowrap"
               >
-                <span className="hover:text-[#00E599] transition-colors duration-200 cursor-default">
+                <span className="hover:text-[#1ef4b4] transition-colors duration-200 cursor-default">
                   {item}
                 </span>
-                <span className="text-[#00E599] text-2xl sm:text-4xl drop-shadow-[0_0_12px_rgba(0,229,153,0.7)]" aria-hidden="true">
-                  ✦
-                </span>
+                <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#1ef4b4] inline-block shrink-0 shadow-[0_0_10px_rgba(30,244,180,0.5)]" aria-hidden="true" />
               </div>
             ))}
           </div>
@@ -71,7 +68,7 @@ export function KineticWaveMarquee({ className = '' }: KineticWaveMarqueeProps) 
             key={idx}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/90"
           >
-            <span className="text-[#00E599]">✦</span>
+            <span className="w-2 h-2 rounded-full bg-[#1ef4b4]" />
             <span className="font-bold tracking-wider uppercase text-xs">
               {item}
             </span>

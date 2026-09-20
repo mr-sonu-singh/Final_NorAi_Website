@@ -4,11 +4,20 @@ import { Link } from '@/components/atoms/Link';
 import { BrandLogo } from '@/components/atoms/BrandLogo';
 import { cn } from '@/lib/utils';
 import { FooterProps, FooterColumn } from './Footer.types';
-import { SocialLinkItem } from '@/components/molecules/SocialLinks/SocialLinks.types';
+import { Mail, Phone, MapPin, Globe } from 'lucide-react';
 
 export const DEFAULT_FOOTER_COLUMNS: FooterColumn[] = [
   {
-    title: 'Capabilities',
+    title: 'Solutions (4 Pillars)',
+    links: [
+      { label: 'AI Solutions & Automation', href: '/services' },
+      { label: 'Custom Modern Web Software', href: '/services' },
+      { label: 'Spatial Computing (AR / VR)', href: '/services' },
+      { label: 'Applied Research & Innovation', href: '/services' },
+    ],
+  },
+  {
+    title: 'Prototypes & Tools',
     links: [
       { label: 'AI Resume Shortlister', href: '/products/resume-shortlister' },
       { label: 'Course Note-Taker', href: '/products/course-note-taker' },
@@ -17,44 +26,17 @@ export const DEFAULT_FOOTER_COLUMNS: FooterColumn[] = [
     ],
   },
   {
-    title: 'Solutions & Mission',
+    title: 'Mission & Studio',
     links: [
-      { label: 'Private VPC Inference', href: '/services' },
-      { label: 'Deterministic RAG Systems', href: '/services' },
-      { label: 'MCP Agent Workflows', href: '/services' },
-      { label: 'Youth Upskilling & Bharat Mission', href: '/mission' },
-    ],
-  },
-  {
-    title: 'Company',
-    links: [
-      { label: 'Approach', href: '/services#operating-rituals' },
-      { label: 'Deliverables', href: '/services' },
-      { label: 'Team & Story', href: '/team' },
-      { label: 'The Canonical', href: '/blog' },
+      { label: 'Civic Upskilling Mission', href: '/mission' },
+      { label: 'Student Upskilling Initiatives', href: '/mission' },
+      { label: 'Ghazipur Studio & Team', href: '/team' },
+      { label: 'Contact & Inquiries', href: '/contact' },
     ],
   },
 ];
 
-export const DEFAULT_FOOTER_SOCIAL_LINKS: SocialLinkItem[] = [
-  {
-    label: 'Twitter / X',
-    href: 'https://twitter.com/norai',
-    icon: 'twitter',
-  },
-  {
-    label: 'GitHub',
-    href: 'https://github.com/norai',
-    icon: 'github',
-  },
-  {
-    label: 'LinkedIn',
-    href: 'https://linkedin.com/company/norai',
-    icon: 'linkedin',
-  },
-];
-
-export const DEFAULT_LEGAL_TEXT = '© 2026 NorAI Technologies · all rights reserved';
+export const DEFAULT_LEGAL_TEXT = '© 2026 Nor AI Technologies Private Limited · All Rights Reserved';
 
 export function Footer({
   columns = DEFAULT_FOOTER_COLUMNS,
@@ -71,11 +53,23 @@ export function Footer({
       data-testid="footer-organism"
     >
       <Container size="default" className="relative z-10 max-w-[1240px] mx-auto px-4 sm:px-6">
-        {/* Top Section: Audens Signature Bold Statement */}
-        <div className="pb-12 sm:pb-16 border-b border-[var(--bone-20)]">
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[var(--bone)] tracking-tight max-w-2xl leading-[1.08]">
-            Built to change what <span className="text-[var(--mint)]">happens.</span>
-          </h2>
+        {/* Top Section: Signature Bold Statement */}
+        <div className="pb-12 sm:pb-16 border-b border-[var(--bone-20)] flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="max-w-2xl">
+            <span className="text-xs font-mono uppercase tracking-[0.2em] text-[var(--mint)] font-bold block mb-3">
+              NOR AI TECHNOLOGIES PRIVATE LIMITED
+            </span>
+            <h2 className="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-[var(--bone)] tracking-tight leading-[1.08]">
+              Engineering pragmatic intelligence.{' '}
+              <span className="text-[var(--mint)]">Empowering India.</span>
+            </h2>
+          </div>
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--mint)] text-[#072929] font-bold text-sm hover:bg-white transition-colors duration-160 shadow-md shrink-0"
+          >
+            <span>Start a Project →</span>
+          </Link>
         </div>
 
         {/* Directory Grid */}
@@ -89,14 +83,20 @@ export function Footer({
             >
               <BrandLogo size="lg" variant="inverted" />
             </Link>
-            <p className="text-[var(--bone-70)] text-sm sm:text-base leading-relaxed max-w-sm">
-              Fast, sovereign AI engineering and single-purpose utilities. Advice that ships. Systems you own.
+            <p className="text-[var(--bone-70)] text-sm leading-relaxed max-w-sm">
+              Early-stage Indian AI engineering practice and civic upskilling mission. Pragmatic machine intelligence, high-performance web applications, and spatial computing.
             </p>
-            <div className="pt-2">
-              <span className="inline-flex items-center gap-2 text-xs font-mono text-[var(--mint)]">
-                <span className="w-2 h-2 rounded-full bg-[var(--mint)] animate-pulse" aria-hidden="true" />
-                <span>Vision to upskill youth & local communities across UP</span>
-              </span>
+
+            {/* Statutory Corporate Details Badge */}
+            <div className="p-4 rounded-xl bg-white/[0.04] border border-white/10 space-y-1.5 font-mono text-xs text-white/80 max-w-sm">
+              <div className="flex items-center justify-between">
+                <span className="text-white/50">CIN:</span>
+                <span className="text-[var(--mint)] font-bold">U62011UP2026PTC252801</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-white/50">PAN:</span>
+                <span className="text-white font-semibold">AAMCN1061B</span>
+              </div>
             </div>
           </div>
 
@@ -106,7 +106,7 @@ export function Footer({
               <h3 className="text-xs uppercase font-mono tracking-widest text-[var(--bone-70)] font-semibold">
                 {column.title}
               </h3>
-              <ul className="space-y-3">
+              <ul className="space-y-2.5">
                 {column.links.map((link) => (
                   <li key={link.label + link.href}>
                     <Link
@@ -125,22 +125,30 @@ export function Footer({
           {/* Contact Col */}
           <div className="space-y-4">
             <h3 className="text-xs uppercase font-mono tracking-widest text-[var(--bone-70)] font-semibold">
-              Contact
+              Ghazipur Studio Desk
             </h3>
-            <div className="space-y-3 text-sm">
-              <a
-                href="mailto:contact@norai.tech"
-                className="text-[var(--bone)] hover:text-[var(--mint)] font-medium transition-colors block break-all"
-              >
-                contact@norai.tech
-              </a>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-1.5 text-[var(--mint)] font-semibold text-sm hover:underline hover:underline-offset-4"
-              >
-                <span>Book a diagnostic</span>
-                <span aria-hidden="true">→</span>
-              </Link>
+            <div className="space-y-2.5 text-xs font-mono text-white/80">
+              <div className="flex items-start gap-2">
+                <MapPin className="w-3.5 h-3.5 text-[var(--mint)] shrink-0 mt-0.5" />
+                <span>Umarganj, Zamania, Ghazipur, UP — 232329</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Mail className="w-3.5 h-3.5 text-[var(--mint)] shrink-0" />
+                <a
+                  href="mailto:noraitechnologies@gmail.com"
+                  className="text-white hover:text-[var(--mint)] transition-colors break-all"
+                >
+                  noraitechnologies@gmail.com
+                </a>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="w-3.5 h-3.5 text-[var(--mint)] shrink-0" />
+                <span>+91 7988552179 · +91 7860818514</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Globe className="w-3.5 h-3.5 text-[var(--mint)] shrink-0" />
+                <span>www.norai.tech</span>
+              </div>
             </div>
           </div>
         </div>
@@ -150,13 +158,13 @@ export function Footer({
           <div>{legalText}</div>
           <div className="flex items-center gap-6">
             <Link href="/privacy" variant="unstyled" className="hover:text-[var(--bone)] transition-colors">
-              Privacy
+              Privacy Policy
             </Link>
             <Link href="/terms" variant="unstyled" className="hover:text-[var(--bone)] transition-colors">
-              Terms
+              Terms of Service
             </Link>
             <span className="text-[var(--bone-50)]">·</span>
-            <span>Engineered in Uttar Pradesh, India</span>
+            <span>Umarganj, Zamania, Ghazipur, Uttar Pradesh</span>
           </div>
         </div>
       </Container>

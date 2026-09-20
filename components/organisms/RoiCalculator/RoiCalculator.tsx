@@ -172,7 +172,7 @@ export function RoiCalculator() {
                   Instant Realization
                 </span>
                 <h4 className="font-display text-xl text-white font-normal">
-                  Claim 50 free credits
+                  Claim 50 starter credits
                 </h4>
                 <p className="text-xs text-slate-300 leading-relaxed">
                   Test your documents immediately in the web sandbox or book an enterprise review.
@@ -186,7 +186,7 @@ export function RoiCalculator() {
                     size="sm"
                     className="w-full justify-center group text-xs font-semibold cursor-pointer"
                   >
-                    <span>Test 50 Free Ingests</span>
+                    <span>Test 50 Sandbox Ingests</span>
                     <ArrowRight className="w-3.5 h-3.5 ml-1 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </Link>

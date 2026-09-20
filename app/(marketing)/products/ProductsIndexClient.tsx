@@ -12,7 +12,7 @@ import {
   ShieldCheck,
   CheckCircle2,
   ArrowRight,
-  Sparkles,
+  Layers,
   Zap,
   Terminal,
   Activity,
@@ -79,7 +79,7 @@ export const CATALOG_TOOLS: CatalogToolItem[] = [
     highlights: [
       'LaTeX math formula extraction and rendering',
       'Interactive 3D study flashcards with spaced repetition',
-      '100% free scholar access for students',
+      'Academic access for students & researchers',
     ],
     accent: 'var(--lavender)',
     badgeBg: 'bg-[var(--lavender)]/25',
@@ -169,7 +169,7 @@ export function ProductsIndexClient() {
 
   const activeTool: CatalogToolItem = (filteredTools.find((t) => t.slug === selectedSlug) || filteredTools[0] || CATALOG_TOOLS[0]) as CatalogToolItem;
 
-  const ActiveIcon = ICON_MAP[activeTool.slug] || Sparkles;
+  const ActiveIcon = ICON_MAP[activeTool.slug] || Layers;
 
   return (
     <div className="min-h-screen font-sans bg-[#f5f5f0] text-[var(--pine)] selection:bg-[var(--mint)] selection:text-[var(--pine)]">
@@ -182,13 +182,13 @@ export function ProductsIndexClient() {
           <div className="max-w-3xl space-y-6 text-left">
             <div className="inline-flex items-center gap-2 text-xs font-mono text-[var(--mint-ink)] font-bold tracking-widest uppercase">
               <span className="w-2 h-2 rounded-full bg-[var(--mint-ink)] animate-pulse" aria-hidden="true" />
-              <span>— 01 · SOVEREIGN CAPABILITIES CATALOG</span>
+              <span>— APPLIED R&D & PROTOTYPES · PILLAR 04</span>
             </div>
 
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[var(--pine)] leading-[1.04] tracking-[-0.03em]">
-              Four tools. <br />
+              Four applied tools. <br />
               <span className="relative inline-block text-[var(--mint-ink)]">
-                Each solves one problem.
+                Built to solve real problems.
                 <svg
                   className="absolute -bottom-2 sm:-bottom-3 left-0 w-full h-3 sm:h-4 text-[var(--mint)]"
                   viewBox="0 0 240 40"
@@ -202,8 +202,7 @@ export function ProductsIndexClient() {
             </h1>
 
             <p className="text-lg sm:text-xl text-[var(--pine)]/80 leading-relaxed max-w-2xl font-normal text-pretty">
-              Single-purpose AI instruments engineered for operational workflows. Zero cold storage,
-              sub-second in-memory vector scoring, and complete data privacy.
+              Living proof of our Research & Innovation pillar. Functional applications developed by our engineering practice and student cohorts to solve operational, academic, and civic friction.
             </p>
 
             <div className="pt-2 flex flex-wrap gap-3 text-xs font-mono text-[var(--pine)]">
@@ -267,7 +266,7 @@ export function ProductsIndexClient() {
               <div className="space-y-2">
                 {filteredTools.map((tool) => {
                   const isSelected = tool.slug === activeTool.slug;
-                  const Icon = ICON_MAP[tool.slug] || Sparkles;
+                  const Icon = ICON_MAP[tool.slug] || Layers;
 
                   return (
                     <div
@@ -423,7 +422,7 @@ export function ProductsIndexClient() {
 
                   <div className="relative z-10 pt-6 mt-6 border-t border-white/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     <span className="font-mono text-xs text-[var(--bone-70)]">
-                      Free to start · 50 sandbox credits
+                      Starter Tier · 50 sandbox credits
                     </span>
 
                     <Link

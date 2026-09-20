@@ -5,7 +5,7 @@ import { LegalTemplate } from '@/components/templates/LegalTemplate';
 
 export const metadata: Metadata = buildMetadata({
   path: '/privacy',
-  title: 'Privacy Policy — NorAi Technologies',
+  title: 'Privacy Policy — Nor AI Technologies Private Limited',
   description:
     'Understand how NorAi Technologies processes, protects, and respects user data with zero persistent logging and AES-256 encryption.',
 });
@@ -58,7 +58,7 @@ export default function PrivacyPage() {
     <LegalTemplate
       eyebrow="Legal"
       title="Privacy Policy"
-      subtitle="NorAi Technologies Pvt. Ltd. · Uttar Pradesh, India"
+      subtitle="Nor AI Technologies Private Limited · CIN: U62011UP2026PTC252801 · PAN: AAMCN1061B · Umarganj, Zamania, Ghazipur, Uttar Pradesh, India — 232329"
       lastUpdated="January 1, 2026"
       sections={PRIVACY_SECTIONS}
       footer={

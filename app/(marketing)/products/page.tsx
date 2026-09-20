@@ -5,9 +5,9 @@ import { ProductsIndexClient } from './ProductsIndexClient';
 
 export const metadata: Metadata = buildMetadata({
   path: '/products',
-  title: 'Autonomous AI Tools — Built to change what happens',
+  title: 'Applied Prototypes & Tools — NorAI Technologies',
   description:
-    'Explore instant-deploy autonomous AI tools for resume shortlisting, course note-taking, community chat digests, and smart public gazette news. Sub-second execution and zero data retention.',
+    'Explore live applied prototypes engineered by NorAI Technologies and student fellows: Resume shortlisting, lecture synthesis, community digests, and regional civic news.',
 });
 
 export default function ProductsPage() {

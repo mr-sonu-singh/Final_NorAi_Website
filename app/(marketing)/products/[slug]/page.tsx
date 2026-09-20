@@ -23,7 +23,7 @@ import {
 } from 'lucide-react';
 
 const ICON_MAP: Record<string, React.ElementType> = {
-  Sparkles: FileText,
+  FileText: FileText,
   Zap: Headphones,
   Cpu: MessageSquare,
   Layers: Newspaper,
@@ -352,7 +352,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
           <div className="gradient-card max-w-4xl mx-auto text-center">
             <div className="gradient-card__inner p-8 sm:p-12 space-y-6 bg-[#fffdf7] text-[var(--pine)]">
               <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--pine-08)] border border-[var(--line)] text-xs font-mono font-bold text-[var(--mint-ink)] uppercase tracking-wider">
-                Option B · Free to Start
+                Option B · Starter Sandbox Access
               </div>
 
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--pine)] tracking-tight leading-tight">
@@ -360,8 +360,8 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
               </h2>
 
               <p className="text-base sm:text-lg text-[var(--pine)]/75 max-w-2xl mx-auto leading-relaxed font-normal">
-                Free to start with 50 sandbox credits and zero credit card required. For dedicated
-                REST API endpoints, custom parser schemas, or private VPC enclaves, talk directly to our
+                Get started directly with 50 sandbox credits to evaluate. For dedicated
+                REST API endpoints, custom parser schemas, or tailored on-premise integration, talk directly to our
                 engineering team.
               </p>
 

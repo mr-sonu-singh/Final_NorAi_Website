@@ -235,7 +235,7 @@ function BentoCard({ product }: { product: BentoProductCardProps }) {
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-sans font-bold text-xs text-[var(--pine)] transition-[transform,background-color] duration-150 ease-out active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-[var(--mint)] focus-visible:outline-none cursor-pointer"
                 style={{ backgroundColor: product.accentColor }}
               >
-                <span>Try Free Sandbox</span>
+                <span>Launch Sandbox</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -286,7 +286,7 @@ export function AudensCapabilityBento() {
           <div className="flex flex-wrap items-center gap-3">
             <span className="flex items-center gap-1.5 text-text-secondary">
               <Zap className="w-3.5 h-3.5 text-[var(--mint-ink)]" />
-              <span>50 Free Sandbox Credits</span>
+              <span>50 Sandbox Credits</span>
             </span>
             <span className="text-border-strong hidden sm:inline select-none">/</span>
             <span>No Credit Card Required</span>

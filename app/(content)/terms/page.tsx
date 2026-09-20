@@ -6,7 +6,7 @@ import { LegalTemplate } from '@/components/templates/LegalTemplate';
 
 export const metadata: Metadata = buildMetadata({
   path: '/terms',
-  title: 'Terms of Service — NorAi Technologies',
+  title: 'Terms of Service — Nor AI Technologies Private Limited',
   description:
     'Review the Terms of Service governing the use of NorAI micro-tools, API endpoints, and enterprise automation services.',
 });
@@ -67,7 +67,7 @@ export default function TermsPage() {
     <LegalTemplate
       eyebrow="Legal"
       title="Terms of Service"
-      subtitle="NorAi Technologies Pvt. Ltd. · Uttar Pradesh, India"
+      subtitle="Nor AI Technologies Private Limited · CIN: U62011UP2026PTC252801 · PAN: AAMCN1061B · Umarganj, Zamania, Ghazipur, Uttar Pradesh, India — 232329"
       lastUpdated="January 1, 2026"
       sections={TERMS_SECTIONS}
       footer={

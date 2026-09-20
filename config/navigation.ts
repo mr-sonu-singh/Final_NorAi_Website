@@ -1,36 +1,37 @@
 import { routes } from './routes';
 import { NavItem } from '@/types';
 
-export const AUDENS_HEADER_NAV_ITEMS: NavItem[] = [
-  { label: 'Capabilities', href: routes.products },
-  { label: 'Approach', href: `${routes.services}#operating-rituals` },
-  { label: 'Deliverables', href: routes.services },
-  { label: 'About', href: routes.team },
-  { label: 'The Canonical', href: routes.blog },
+export const NORAI_HEADER_NAV_ITEMS: NavItem[] = [
+  { label: 'Solutions', href: routes.services },
+  { label: 'Prototypes', href: routes.products },
+  { label: 'Civic Mission', href: '/mission' },
+  { label: 'Studio & Story', href: routes.team },
 ];
 
-export const mainNav = AUDENS_HEADER_NAV_ITEMS;
+export const AUDENS_HEADER_NAV_ITEMS: NavItem[] = NORAI_HEADER_NAV_ITEMS;
+
+export const mainNav = NORAI_HEADER_NAV_ITEMS;
 
 export const footerNav = {
   tools: [
-    { title: 'Resume Shortlister', href: `${routes.products}/resume-shortlister` },
+    { title: 'AI Resume Shortlister', href: `${routes.products}/resume-shortlister` },
     { title: 'Course Note-Taker', href: `${routes.products}/course-note-taker` },
     { title: 'Chat Digest', href: `${routes.products}/chat-digest` },
     { title: 'Smart Dainik News', href: `${routes.products}/smart-dainik-news` },
   ],
   solutions: [
-    { title: 'Custom Automations', href: routes.services },
-    { title: 'Secure Infrastructure', href: routes.services },
-    { title: 'Business Pipelines', href: routes.services },
+    { title: 'AI Solutions & Agents', href: routes.services },
+    { title: 'Custom Modern Web Software', href: routes.services },
+    { title: 'Spatial Computing (AR / VR)', href: routes.services },
+    { title: 'Research & Innovation', href: routes.services },
   ],
   community: [
-    { title: 'Free Student Workshops', href: '/mission' as const },
     { title: 'Youth Upskilling Mission', href: '/mission' as const },
-    { title: 'Team Story', href: routes.team },
+    { title: 'Student Upskilling Initiatives', href: '/mission' as const },
+    { title: 'Ghazipur Studio & Team', href: routes.team },
   ],
   legal: [
-    { title: '100% Private Guarantee', href: routes.privacy },
+    { title: 'Privacy Policy', href: routes.privacy },
     { title: 'Terms of Service', href: routes.terms },
-    { title: 'Security Overview', href: routes.privacy },
   ],
 } as const;

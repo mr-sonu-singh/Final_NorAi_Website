@@ -22,7 +22,7 @@ const RITUALS: RitualPillar[] = [
   {
     id: 'diagnostic',
     n: '01',
-    tabLabel: '01 Diagnostic',
+    tabLabel: '01 Architecture Review',
     title: 'Direct Access to the Builders',
     description:
       'Zero account managers or support bots. You speak, architect, and debug directly with the engineers who write the models and systems.',
@@ -38,17 +38,17 @@ const RITUALS: RitualPillar[] = [
   {
     id: 'airgap',
     n: '02',
-    tabLabel: '02 Air-Gap',
+    tabLabel: '02 In-Memory Privacy',
     title: 'Total Transparency & Ephemeral RAM',
     description:
       'Payloads execute in sub-second ephemeral memory and immediately purge. Zero persistent cloud telemetry, zero model training data retention.',
     tag: '0 Bytes Retained',
     accentColor: '#00E599',
     accentBg: 'bg-[#00E599]',
-    terminalCommand: 'norai enclave --verify-airgap --strict-memory',
+    terminalCommand: 'norai test --verify-privacy --strict-memory',
     terminalLogs: [
-      '[SECURITY] Ephemeral RAM scratchpad allocated. Local VPC isolated.',
-      '[TELEMETRY] 0 bytes transmitted beyond VPC gateway. Complete sovereignty.',
+      '[SECURITY] Ephemeral RAM scratchpad allocated. Local sandbox isolated.',
+      '[TELEMETRY] 0 bytes transmitted beyond client perimeter. Complete sovereignty.',
     ],
   },
   {
@@ -73,14 +73,14 @@ const RITUALS: RitualPillar[] = [
     tabLabel: '04 Bharat Labs',
     title: 'Youth & Regional AI Literacy',
     description:
-      'A vision to upskill local youth and collegiate scholars with 100% free hands-on computational literacy and practical AI labs.',
-    tag: '100% Free Workshops',
+      'A vision to upskill local youth and collegiate scholars with hands-on computational literacy and practical AI workshops.',
+    tag: 'Civic Upskilling Vision',
     accentColor: '#C6B5FF',
     accentBg: 'bg-[#C6B5FF]',
     terminalCommand: 'norai grassroots --upskill-youth --local-regions',
     terminalLogs: [
       '[MISSION] Vision to upskill youth and regional communities active.',
-      '[CURRICULUM] Python, MCP protocol, and open-weight models taught freely.',
+      '[CURRICULUM] Python, MCP protocol, and open-weight models and practical AI tools.',
     ],
   },
 ];
@@ -157,7 +157,7 @@ export function OperatingRitualsRail() {
               {/* Folder Header: Tag & SLA Badge */}
               <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[var(--pine-12)] mb-8">
                 <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#06845A]">
-                  RITUAL / {activeRitual.n}
+                  RITUAL · {activeRitual.n}
                 </span>
                 <span className="font-mono text-xs font-bold px-3 py-1 rounded-full bg-[var(--pine-08)] text-[var(--pine)] border border-[var(--pine-12)]">
                   {activeRitual.tag}
@@ -198,7 +198,7 @@ export function OperatingRitualsRail() {
                 href="/contact"
                 className="inline-flex items-center gap-2 font-bold text-sm text-[var(--pine)] hover:text-[#06845A] transition-colors group"
               >
-                <span>Start a diagnostic with the builders</span>
+                <span>Start a project with the builders</span>
                 <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
               </Link>
               <span className="text-xs font-mono text-[var(--pine)]/50">

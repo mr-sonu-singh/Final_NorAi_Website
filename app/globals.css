@@ -80,8 +80,13 @@
   --border-hairline: var(--border-subtle);
 
   /* ==========================================================================
-     CALIBRATED HIGH-VOLTAGE JEWEL TOKENS (Each Entity Owns Its Color)
+     CALIBRATED HIGH-VOLTAGE JEWEL TOKENS & NORAI SIGNATURE ACCENTS
      ========================================================================== */
+  --norai-blue: #1e40af;
+  --norai-blue-soft: rgba(30, 64, 175, 0.12);
+  --norai-violet: #7c3aed;
+  --norai-violet-soft: rgba(124, 58, 237, 0.12);
+
   --jewel-mint: var(--mint);
   --jewel-mint-soft: rgba(30, 244, 180, 0.14);
 
