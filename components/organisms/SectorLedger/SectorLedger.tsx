@@ -59,9 +59,6 @@ export function SectorLedger() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 sm:mb-20">
           <div className="space-y-3">
-            <span className="eyebrow text-xs uppercase font-mono tracking-[0.18em] text-[#0650AD] font-bold block">
-              — The Enterprise & Bharat Ledger
-            </span>
             <h2 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl text-[var(--pine)] tracking-tight leading-[1.04]">
               Where AI belongs. <br />
               <span className="text-[#0650AD]">Where it delivers.</span>

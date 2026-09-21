@@ -9,8 +9,6 @@ import {
   Lightbulb,
   CheckCircle2,
   ArrowRight,
-  ShieldCheck,
-  Zap,
   Layers,
   Copy,
   Check,
@@ -237,9 +235,9 @@ export function ServicesPillarsBento() {
                   >
                     {pillar.title}
                   </h3>
-                  <span className="text-[11px] font-mono text-[var(--mint-ink)] dark:text-[#38BDF8] block mt-0.5">
-                    {pillar.badge}
-                  </span>
+                  <p className="text-xs text-[var(--pine)]/70 dark:text-white/60 line-clamp-1 mt-0.5">
+                    {pillar.tagline}
+                  </p>
                 </div>
               </div>
             </button>
@@ -267,17 +265,14 @@ export function ServicesPillarsBento() {
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
             {/* Left: Pillar Overview & Interactive Tab Controller */}
             <div className="lg:col-span-6 space-y-6">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3.5">
                 <div
-                  className="w-12 h-12 rounded-2xl flex items-center justify-center border border-white/15"
+                  className="w-12 h-12 rounded-2xl flex items-center justify-center border border-white/15 shrink-0"
                   style={{ background: activePillar.accentGlow, color: activePillar.accent }}
                 >
                   <Icon className="w-6 h-6" />
                 </div>
                 <div>
-                  <span className="font-mono text-xs tracking-wider uppercase font-semibold text-[#38BDF8]">
-                    PILLAR /{activePillar.n} SPECIFICATION
-                  </span>
                   <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
                     {activePillar.title}
                   </h3>
@@ -387,57 +382,42 @@ export function ServicesPillarsBento() {
               </div>
             </div>
 
-            {/* Right: Telemetry Cockpit & Direct Scope Card */}
-            <div className="lg:col-span-6 rounded-2xl bg-black/50 border border-white/10 p-6 sm:p-7 space-y-5">
-              <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                <div className="flex items-center gap-2 text-xs font-mono text-[#38BDF8]">
-                  <span className="w-2 h-2 rounded-full bg-[#38BDF8] animate-pulse" />
-                  <span>RUNTIME PROTOCOL ACTIVE</span>
-                </div>
-                <span className="font-mono text-xs text-white/60">
-                  {activePillar.sla}
-                </span>
-              </div>
+            {/* Right: Clean Engagement & Direct Scope Card */}
+            <div className="lg:col-span-6 rounded-2xl bg-black/40 border border-white/10 p-6 sm:p-8 flex flex-col justify-between min-h-[360px]">
+              <div className="space-y-4">
+                <h4 className="font-display text-xl font-bold text-white tracking-tight">
+                  Engagement &amp; Delivery Standard
+                </h4>
+                <p className="text-sm text-[#A8B6D8] leading-relaxed">
+                  Every system is engineered from scratch for your domain. Full source code repository transfer, complete IP ownership, and zero recurring vendor lock-in.
+                </p>
 
-              <div className="space-y-3 font-mono text-xs">
-                <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 space-y-1.5">
-                  <div className="text-white/60 flex items-center justify-between">
-                    <span>DEPLOYMENT ARTIFACT:</span>
-                    <span className="text-[#38BDF8]">DOCKERIZED &amp; VERIFIED</span>
+                <div className="space-y-3 pt-2 text-sm text-white/80">
+                  <div className="flex items-center gap-2.5">
+                    <CheckCircle2 className="w-4 h-4 text-[#D4C5F9] shrink-0" />
+                    <span>Direct engineering lead on architecture and deployment</span>
                   </div>
-                  <div className="text-white/60 flex items-center justify-between">
-                    <span>INTELLECTUAL PROPERTY:</span>
-                    <span className="text-white font-semibold">100% CLIENT CODE OWNERSHIP</span>
+                  <div className="flex items-center gap-2.5">
+                    <CheckCircle2 className="w-4 h-4 text-[#D4C5F9] shrink-0" />
+                    <span>Full containerized deployment to your private cloud or on-premise</span>
                   </div>
-                  <div className="text-white/60 flex items-center justify-between">
-                    <span>LATENCY VERIFICATION:</span>
-                    <span className="text-[#ffa24d]">REAL GROUND DATA PROBES</span>
-                  </div>
-                </div>
-
-                <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between text-xs">
-                  <div className="flex items-center gap-2 text-white/80">
-                    <ShieldCheck className="w-4 h-4 text-[#38BDF8]" />
-                    <span>Zero Vendor Lock-In Guaranteed</span>
-                  </div>
-                  <span className="text-white/40">·</span>
-                  <div className="flex items-center gap-2 text-white/80">
-                    <Zap className="w-4 h-4 text-[#ffa24d]" />
-                    <span>5-Day PoC Handover</span>
+                  <div className="flex items-center gap-2.5">
+                    <CheckCircle2 className="w-4 h-4 text-[#D4C5F9] shrink-0" />
+                    <span>100% client code and model weights ownership</span>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-2">
+              <div className="pt-6 border-t border-white/10 mt-6">
                 <Link
                   href="/contact"
-                  className="w-full h-12 rounded-xl bg-[#D4C5F9] hover:bg-[#E4CEF7] text-[#03091E] font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-200 active:scale-[0.98] shadow-lg shadow-[#D4C5F9]/20 group"
+                  className="w-full h-12 rounded-xl bg-[#D4C5F9] hover:bg-[#E4CEF7] text-[#03091E] font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-200 active:scale-[0.98] shadow-md group"
                 >
-                  <span>Scope a {activePillar.title.split(' ')[0]} Project</span>
+                  <span>Scope a Project</span>
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
                 </Link>
-                <p className="text-center text-[11px] font-mono text-white/50 mt-2.5">
-                  Direct senior architect response within one business day.
+                <p className="text-center text-xs text-white/50 mt-2.5">
+                  Direct senior engineer response within one business day.
                 </p>
               </div>
             </div>

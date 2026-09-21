@@ -9,7 +9,7 @@ export function StudioManifesto() {
   const { t } = useLanguage();
 
   return (
-    <section className="py-24 sm:py-36 bg-[#060919] text-[#F4F6FC] border-b border-white/10 relative overflow-hidden">
+    <section className="py-20 sm:py-28 bg-[#060919] text-[#F4F6FC] relative overflow-hidden">
       <div
         className="absolute inset-0 opacity-[0.05] pointer-events-none"
         style={{
@@ -26,9 +26,6 @@ export function StudioManifesto() {
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="eyebrow text-xs uppercase font-mono tracking-[0.2em] text-[#B278E3] font-bold block mb-8">
-            {t.manifesto.eyebrow}
-          </span>
           <p className="font-display font-bold text-2xl sm:text-4xl md:text-5xl lg:text-[3.1rem] leading-[1.18] text-[#F4F6FC] mb-12 tracking-tight">
             {t.manifesto.quote}
           </p>

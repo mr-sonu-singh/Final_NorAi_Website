@@ -27,10 +27,6 @@ export function ClosingDispatch() {
           />
 
           <div className="relative z-10 max-w-3xl mx-auto text-center space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs font-mono font-bold uppercase tracking-wider text-[#B278E3]">
-              START THE CONVERSATION
-            </div>
-
             <h2 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-[1.05]">
               Bring us the problem you are actually facing.
             </h2>

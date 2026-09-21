@@ -63,10 +63,6 @@ export default function MissionPage() {
 
         <Container size="default" className="relative z-10 max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="max-w-3xl text-left space-y-6">
-            <span className="text-[11px] sm:text-xs font-mono tracking-[0.16em] uppercase text-[#38BDF8] font-semibold block mb-2">
-              BHARAT YOUTH UPSKILLING MISSION · GHAZIPUR, UP
-            </span>
-
             <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold text-white leading-[1.04] tracking-[-0.035em]">
               Empowering Millions of Youth with AI Skills.{' '}
               <span className="text-[#38BDF8]">Aligned with an AI-ready India.</span>

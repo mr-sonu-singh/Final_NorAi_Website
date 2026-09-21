@@ -12,11 +12,6 @@ import {
   CheckCircle2,
   ArrowRight,
   Layers,
-  Activity,
-  Play,
-  Check,
-  Copy,
-  Loader2,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { SubpageHeroAtmosphere } from '@/components/organisms';
@@ -163,9 +158,6 @@ const ICON_MAP: Record<string, React.ElementType> = {
 export function ProductsIndexClient() {
   const [activeCategory, setActiveCategory] = useState('All');
   const [selectedSlug, setSelectedSlug] = useState('resume-shortlister');
-  const [isSimulating, setIsSimulating] = useState(false);
-  const [simStep, setSimStep] = useState(0);
-  const [copied, setCopied] = useState(false);
 
   const filteredTools =
     activeCategory === 'All'
@@ -177,26 +169,6 @@ export function ProductsIndexClient() {
     CATALOG_TOOLS[0]) as CatalogToolItem;
 
   const ActiveIcon = ICON_MAP[activeTool.slug] || Layers;
-
-  const handleSimulate = () => {
-    if (isSimulating) return;
-    setIsSimulating(true);
-    setSimStep(1);
-    setTimeout(() => setSimStep(2), 600);
-    setTimeout(() => setSimStep(3), 1200);
-    setTimeout(() => {
-      setIsSimulating(false);
-      setSimStep(0);
-    }, 2400);
-  };
-
-  const handleCopy = () => {
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(activeTool.telemetryStream.snippet);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    }
-  };
 
   return (
     <div className="min-h-screen font-sans bg-[#f5f5f0] dark:bg-[#060919] text-[var(--pine)] dark:text-[#F4F6FC] selection:bg-[#B278E3]/30 selection:text-[#060919]">
@@ -211,11 +183,6 @@ export function ProductsIndexClient() {
 
         <Container size="default" className="relative z-10 max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="max-w-3xl space-y-6 text-left">
-            {/* Identity Eyebrow */}
-            <span className="text-[11px] sm:text-xs font-mono tracking-[0.16em] uppercase text-[#38BDF8] font-semibold block mb-2">
-              APPLIED R&amp;D &amp; PROTOTYPES · PILLAR 04
-            </span>
-
             {/* Bold Unified Display Headline */}
             <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold text-white leading-[1.04] tracking-[-0.035em]">
               Four applied tools.{' '}
@@ -335,27 +302,7 @@ export function ProductsIndexClient() {
                           </div>
                         </div>
 
-                        {/* Live Equalizer or Metric Badge */}
-                        <div className="flex items-center gap-2">
-                          {tool.slug === 'course-note-taker' && (
-                            <div className="flex items-end gap-0.5 h-3.5" title="Live Audio Analyzer">
-                              <span className="w-1 bg-[#7a5cff] h-2 animate-pulse" />
-                              <span className="w-1 bg-[#7a5cff] h-3.5 animate-pulse" style={{ animationDelay: '150ms' }} />
-                              <span className="w-1 bg-[#7a5cff] h-1.5 animate-pulse" style={{ animationDelay: '300ms' }} />
-                            </div>
-                          )}
-                          <span
-                            className={cn(
-                              'font-mono text-[11px] px-2.5 py-1 rounded-md border whitespace-nowrap',
-                              isSelected
-                                ? 'bg-white/10 text-white border-white/15'
-                                : 'bg-[var(--pine-08)] dark:bg-white/5 text-[var(--pine)] dark:text-white/80 border-[var(--line)]'
-                            )}
-                            style={isSelected ? { color: tool.accent } : undefined}
-                          >
-                            {tool.metric}
-                          </span>
-                        </div>
+                        <ArrowRight className={cn("w-4 h-4 transition-transform group-hover:translate-x-1", isSelected ? "text-white" : "text-[var(--pine)]/40 dark:text-white/40")} />
                       </div>
                     </button>
                   );
@@ -363,7 +310,7 @@ export function ProductsIndexClient() {
               </div>
             </div>
 
-            {/* Right Column: Dynamic Live Telemetry Workbench Stage */}
+            {/* Right Column: Dynamic Tool Detail Workbench */}
             <div className="lg:col-span-7">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -374,20 +321,10 @@ export function ProductsIndexClient() {
                   transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
                   className="rounded-3xl bg-[#060919] border border-white/15 p-6 sm:p-9 text-[#f5f5f0] shadow-2xl relative overflow-hidden text-left"
                 >
-                  {/* Subtle Background Blueprint Mesh */}
-                  <div
-                    className="absolute inset-0 opacity-10 pointer-events-none"
-                    style={{
-                      backgroundImage: `radial-gradient(circle, ${activeTool.accent} 1px, transparent 1px)`,
-                      backgroundSize: '24px 24px',
-                    }}
-                    aria-hidden="true"
-                  />
-
-                  <div className="relative z-10 flex flex-wrap items-center justify-between gap-4 border-b border-white/15 pb-5">
-                    <div className="flex items-center gap-3">
+                  <div className="relative z-10 flex items-center justify-between border-b border-white/15 pb-5">
+                    <div className="flex items-center gap-3.5">
                       <div
-                        className="w-11 h-11 rounded-xl flex items-center justify-center border"
+                        className="w-12 h-12 rounded-2xl flex items-center justify-center border shrink-0"
                         style={{
                           background: `${activeTool.accent}15`,
                           borderColor: `${activeTool.accent}30`,
@@ -397,129 +334,58 @@ export function ProductsIndexClient() {
                         <ActiveIcon className="w-6 h-6" />
                       </div>
                       <div>
-                        <div className="flex items-center gap-2">
-                          <span
-                            className="font-mono text-xs font-bold"
-                            style={{ color: activeTool.accent }}
-                          >
-                            ACTIVE CONSOLE
-                          </span>
-                          <span
-                            className="w-2 h-2 rounded-full animate-pulse"
-                            style={{ background: activeTool.accent }}
-                          />
-                        </div>
+                        <span className="text-xs font-mono text-[#A8B6D8] block">
+                          {activeTool.category}
+                        </span>
                         <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
                           {activeTool.title}
                         </h2>
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-2">
-                      <button
-                        type="button"
-                        onClick={handleSimulate}
-                        disabled={isSimulating}
-                        className={cn(
-                          'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-mono font-semibold transition-all cursor-pointer border',
-                          isSimulating
-                            ? 'bg-[#38BDF8]/20 border-[#38BDF8]/40 text-[#38BDF8] animate-pulse'
-                            : 'bg-white/10 hover:bg-white/20 border-white/15 text-white'
-                        )}
-                      >
-                        {isSimulating ? (
-                          <>
-                            <Loader2 className="w-3.5 h-3.5 animate-spin text-[#38BDF8]" />
-                            <span>Executing step {simStep} of 3...</span>
-                          </>
-                        ) : (
-                          <>
-                            <Play className="w-3 h-3 text-[#38BDF8]" />
-                            <span>Simulate Execution</span>
-                          </>
-                        )}
-                      </button>
-                    </div>
-                  </div>
-
-                  <p className="relative z-10 text-sm sm:text-base text-[#A8B6D8] leading-relaxed mt-4 font-normal">
-                    {activeTool.tagline}
-                  </p>
-
-                  {/* Telemetry Stream Terminal Box */}
-                  <div className="relative z-10 my-6 rounded-2xl bg-black/60 border border-white/10 p-5 font-mono text-xs space-y-3">
-                    <div className="flex items-center justify-between border-b border-white/10 pb-2 text-[11px] text-white/60">
-                      <span className="flex items-center gap-1.5 text-[#38BDF8]">
-                        <Activity className="w-3.5 h-3.5" />
-                        <span>RUNTIME TELEMETRY STREAM</span>
-                      </span>
-                      <div className="flex items-center gap-3">
-                        <span>IN-MEMORY · 0 BYTES EGRESS</span>
-                        <button
-                          type="button"
-                          onClick={handleCopy}
-                          className="hover:text-white transition-colors cursor-pointer"
-                          title="Copy Output"
-                        >
-                          {copied ? (
-                            <span className="text-[#38BDF8] flex items-center gap-1">
-                              <Check className="w-3 h-3" /> Copied
-                            </span>
-                          ) : (
-                            <Copy className="w-3 h-3" />
-                          )}
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="space-y-1 text-xs">
-                      <div className="text-white/70">
-                        <span className="text-[#ffa24d]">SOURCE:</span>{' '}
-                        {activeTool.telemetryStream.inputSample}
-                      </div>
-                      <div className="text-white/70">
-                        <span className="text-[#38BDF8]">ENGINE:</span>{' '}
-                        {activeTool.telemetryStream.engine}
-                      </div>
-                      <div className="text-[#38BDF8] font-semibold">
-                        STATUS:{' '}
-                        {isSimulating
-                          ? `Running live probe [step ${simStep}] · 0.04s elapsed`
-                          : activeTool.telemetryStream.stat}
-                      </div>
-                    </div>
-
-                    <pre className="p-3.5 rounded-xl bg-black/80 border border-white/10 text-[#8af6cf] text-[11px] leading-relaxed overflow-x-auto whitespace-pre font-mono">
-                      {activeTool.telemetryStream.snippet}
-                    </pre>
-                  </div>
-
-                  <div className="relative z-10 space-y-2 border-t border-white/15 pt-4">
-                    {activeTool.highlights.map((point, idx) => (
-                      <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#F4F6FC]/90">
-                        <CheckCircle2 className="w-4 h-4 text-[#38BDF8] shrink-0 mt-0.5" />
-                        <span>{point}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="relative z-10 pt-6 mt-6 border-t border-white/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                    <span className="font-mono text-xs text-[#A8B6D8]">
-                      Starter Tier · 50 sandbox credits
-                    </span>
-
                     <Link
                       href={'/products/' + activeTool.slug}
-                      className="bg-[#38BDF8] hover:bg-[#E4CEF7] text-[#060919] font-bold h-11 px-6 rounded-xl inline-flex items-center gap-2 shadow-[0_10px_25px_-5px_rgba(212,197,249,0.25)] transition-all duration-200 active:scale-95 group"
+                      className="bg-[#D4C5F9] hover:bg-[#E4CEF7] text-[#03091E] font-semibold text-xs sm:text-sm h-10 px-5 rounded-xl inline-flex items-center gap-2 transition-all duration-200 active:scale-95 group shadow-sm"
                       data-testid={
                         activeTool.slug === 'resume-shortlister'
                           ? 'capability-link-resume-shortlister'
                           : undefined
                       }
                     >
-                      <span>Launch Tool</span>
-                      <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+                      <span>Launch Prototype</span>
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
                     </Link>
+                  </div>
+
+                  <p className="relative z-10 text-sm sm:text-base text-[#A8B6D8] leading-relaxed mt-5 font-normal">
+                    {activeTool.tagline}
+                  </p>
+
+                  {/* Core Capabilities Checklist */}
+                  <div className="relative z-10 space-y-3 py-6">
+                    <h3 className="text-xs font-mono uppercase tracking-wider text-white/50 font-semibold">
+                      Validated Capabilities:
+                    </h3>
+                    <div className="space-y-2.5">
+                      {activeTool.highlights.map((point, idx) => (
+                        <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-white/90">
+                          <CheckCircle2 className="w-4 h-4 text-[#38BDF8] shrink-0 mt-0.5" />
+                          <span>{point}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Clean Input & Output Contract Specs */}
+                  <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4 border-t border-white/10 text-xs font-mono">
+                    <div className="p-3.5 rounded-xl bg-white/5 border border-white/10">
+                      <span className="text-white/50 block text-[11px] mb-1">ACCEPTED INPUT</span>
+                      <span className="text-white font-medium">{activeTool.inputFormat}</span>
+                    </div>
+                    <div className="p-3.5 rounded-xl bg-white/5 border border-white/10">
+                      <span className="text-white/50 block text-[11px] mb-1">GENERATED OUTPUT</span>
+                      <span className="text-[#38BDF8] font-medium">{activeTool.outputFormat}</span>
+                    </div>
                   </div>
                 </motion.div>
               </AnimatePresence>
@@ -538,10 +404,6 @@ export function ProductsIndexClient() {
               aria-hidden="true"
             />
             <div className="relative z-10 max-w-3xl mx-auto space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-xs font-mono font-bold uppercase tracking-wider text-[#38BDF8]">
-                HIGH-VOLUME &amp; PRIVATE VPC HOSTING
-              </div>
-
               <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
                 Need a private custom prototype in production?
               </h2>

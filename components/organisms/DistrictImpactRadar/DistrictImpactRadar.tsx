@@ -80,9 +80,6 @@ export function DistrictImpactRadar() {
     <div className="rounded-[22px] bg-[#0D1226] text-[#f5f5f0] border border-[var(--line)] p-6 sm:p-10 shadow-xl overflow-hidden relative">
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-[var(--pine-20)] pb-8">
         <div className="space-y-2 text-left">
-          <span className="text-xs font-mono uppercase tracking-wider text-[var(--mint)] font-bold block mb-2">
-            Curriculum & Regional Outreach Roadmap
-          </span>
           <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#f5f5f0] tracking-tight">
             A Vision to Upskill Youth & Regional Communities.
           </h3>
@@ -168,9 +165,6 @@ export function DistrictImpactRadar() {
           <div className="space-y-4">
             <div className="flex items-center justify-between border-b border-[var(--line)] pb-3">
               <div>
-                <span className="text-[10px] font-mono uppercase tracking-wider text-[var(--mint)] font-bold block">
-                  PLANNED CURRICULUM MODULE
-                </span>
                 <h4 className="font-display text-2xl font-extrabold text-[#f5f5f0]">
                   {selectedModule.name}
                 </h4>

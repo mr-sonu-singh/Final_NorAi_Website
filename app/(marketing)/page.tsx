@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { KineticWaveMarquee } from '@/components/foundation';
 import {
   HeroChamber,
   CivicMissionBanner,
@@ -37,19 +36,16 @@ export default function HomePage() {
       {/* BEAT 4: THE STUDIO MANIFESTO (Ghazipur Conviction) */}
       <StudioManifesto />
 
-      {/* BEAT 5: KINETIC WAVE MARQUEE */}
-      <KineticWaveMarquee />
-
-      {/* BEAT 6: STUDENT & STUDIO PROTOTYPES (Pillar 4 Living Proof) */}
+      {/* BEAT 5: STUDENT & STUDIO PROTOTYPES (Pillar 4 Living Proof) */}
       <CapabilityArc />
 
-      {/* BEAT 7: INDUSTRY SECTOR LEDGER */}
+      {/* BEAT 6: INDUSTRY SECTOR LEDGER */}
       <SectorLedger />
 
-      {/* BEAT 8: OPERATING RITUALS (STUDIO PRACTICES & PHILOSOPHY) */}
+      {/* BEAT 7: OPERATING RITUALS (STUDIO PRACTICES & PHILOSOPHY) */}
       <OperatingRitualsRail />
 
-      {/* BEAT 9: CLOSING DISPATCH & GHAZIPUR OFFICE INQUIRY */}
+      {/* BEAT 8: CLOSING DISPATCH & GHAZIPUR OFFICE INQUIRY */}
       <ClosingDispatch />
     </div>
   );

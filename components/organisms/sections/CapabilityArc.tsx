@@ -96,7 +96,7 @@ export function CapabilityArc() {
   const activeCap: CapabilityItem = STUDIO_PROTOTYPES.find((c) => c.id === activeId) || (STUDIO_PROTOTYPES[0] as CapabilityItem);
 
   return (
-    <section id="prototypes" className="py-24 sm:py-32 bg-[#f5f5f0] text-[var(--pine)] border-b border-[var(--line)] scroll-mt-24 overflow-hidden">
+    <section id="prototypes" className="py-20 sm:py-28 lg:py-32 bg-[#f5f5f0] text-[var(--pine)] border-b border-[var(--line)] scroll-mt-24 overflow-hidden">
       <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
         
         {/* Section Header with Staggered Entrance */}
@@ -150,16 +150,11 @@ export function CapabilityArc() {
                   </div>
 
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono text-xs font-bold text-[var(--pine)]/60">
-                        {cap.dimension}
-                      </span>
-                      <span className="text-[11px] font-mono font-medium px-2 py-0.5 rounded-full bg-black/5 dark:bg-white/5 text-[var(--pine)]/70">
-                        {cap.telemetryBadge}
-                      </span>
-                    </div>
+                    <span className="font-mono text-xs font-bold text-[var(--pine)]/50 block">
+                      {cap.dimension}
+                    </span>
                     <h3 className={cn(
-                      'text-lg sm:text-xl font-bold tracking-tight mt-1 transition-colors',
+                      'text-lg sm:text-xl font-bold tracking-tight mt-0.5 transition-colors',
                       isActive ? 'text-[var(--pine)]' : 'text-[var(--pine)]/90'
                     )}>
                       {cap.title}
@@ -173,7 +168,7 @@ export function CapabilityArc() {
             })}
           </div>
 
-          {/* RIGHT: Dynamic Single Telemetry Chassis with Smooth Crossfade */}
+          {/* RIGHT: Dynamic Single Prototype Chassis with Smooth Crossfade */}
           <div className="lg:col-span-7">
             <AnimatePresence mode="wait">
               <motion.div
@@ -182,7 +177,7 @@ export function CapabilityArc() {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.98, y: -8 }}
                 transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
-                className="rounded-3xl bg-[#0D1226] text-[#f5f5f0] p-8 sm:p-12 border border-white/10 shadow-2xl relative overflow-hidden min-h-[460px] flex flex-col justify-between"
+                className="rounded-3xl bg-[#0D1226] text-[#f5f5f0] p-8 sm:p-12 border border-white/10 shadow-2xl relative overflow-hidden min-h-[420px] flex flex-col justify-between"
               >
                 {/* Internal Radiant Corner Mesh */}
                 <div
@@ -190,39 +185,20 @@ export function CapabilityArc() {
                   aria-hidden="true"
                 />
 
-                {/* Chassis Top Bar: Tag & Telemetry Status */}
-                <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/10 relative z-10">
-                  <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#38BDF8]">
-                    {activeCap.telemetryHeader}
+                {/* Chassis Body: Product Overview */}
+                <div className="py-4 space-y-5 relative z-10">
+                  <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#A8B6D8]">
+                    {activeCap.dimension} · Living Prototype
                   </span>
-                  <span className="font-mono text-xs font-semibold px-3 py-1 rounded-full bg-white/10 text-white border border-white/15 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#00E599] animate-pulse" aria-hidden="true" />
-                    {activeCap.telemetryBadge}
-                  </span>
-                </div>
-
-                {/* Chassis Body: Product Overview & Telemetry Matrix */}
-                <div className="py-8 space-y-6 relative z-10">
-                  <div>
-                    <h4 className="font-display font-extrabold text-2xl sm:text-3xl text-white mb-2 tracking-tight">
-                      {activeCap.title}
-                    </h4>
-                    <p className="text-white/70 text-sm sm:text-base leading-relaxed max-w-xl">
-                      {activeCap.copy}
-                    </p>
-                  </div>
-
-                  {/* Live Telemetry Table */}
-                  <div className="p-4 sm:p-5 rounded-xl bg-[#051f1f]/80 border border-white/10 space-y-2.5 font-mono text-xs sm:text-sm">
-                    {activeCap.telemetryMetrics.map((m, i) => (
-                      <div key={i} className="flex items-center justify-between">
-                        <span className="text-white/60">{m.label}</span>
-                        <span className={cn('font-bold', m.status === 'alert' ? 'text-[#FFAE42]' : 'text-[#38BDF8]')}>
-                          {m.value}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
+                  <h4 className="font-display font-extrabold text-2xl sm:text-3xl text-white tracking-tight">
+                    {activeCap.title}
+                  </h4>
+                  <p className="text-white/85 text-base sm:text-lg leading-relaxed max-w-xl">
+                    {activeCap.subhead}
+                  </p>
+                  <p className="text-white/60 text-sm sm:text-base leading-relaxed max-w-xl">
+                    {activeCap.copy}
+                  </p>
                 </div>
 
                 {/* Chassis Footer: Action Link */}
@@ -234,9 +210,6 @@ export function CapabilityArc() {
                   >
                     <span>Explore {activeCap.title} →</span>
                   </Link>
-                  <span className="text-xs font-mono text-white/40 uppercase tracking-wider">
-                    0 BYTES RETAINED
-                  </span>
                 </div>
               </motion.div>
             </AnimatePresence>

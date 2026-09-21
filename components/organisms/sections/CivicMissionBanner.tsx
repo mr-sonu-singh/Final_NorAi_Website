@@ -39,10 +39,6 @@ export function CivicMissionBanner() {
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-8 space-y-6 text-left"
           >
-            <span className="text-xs font-mono tracking-[0.2em] uppercase text-[#B278E3] font-bold block mb-2">
-              {t.civic.eyebrow}
-            </span>
-
             <h2 className="font-display font-extrabold text-2xl sm:text-4xl md:text-5xl lg:text-[2.9rem] text-[#F4F6FC] leading-[1.14] tracking-tight">
               {t.civic.headlinePrefix}{' '}
               <span className="text-[#D4C5F9]">{t.civic.headlineHighlight}</span>
@@ -79,9 +75,6 @@ export function CivicMissionBanner() {
           >
             <div className="rounded-2xl border border-white/15 bg-[#0D1226]/80 border-white/10 p-7 backdrop-blur-md text-left space-y-5 card-interactive glow-border-brand">
               <div className="space-y-1">
-                <span className="text-xs font-mono uppercase tracking-wider text-[#B278E3] font-bold">
-                  {t.civic.cardEyebrow}
-                </span>
                 <h3 className="font-display text-xl font-bold text-white">
                   {t.civic.cardTitle}
                 </h3>

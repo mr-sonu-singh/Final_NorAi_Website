@@ -29,10 +29,6 @@ export default function ContactPage() {
 
         <Container size="default" className="relative z-10 max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="max-w-3xl space-y-6 text-left">
-            <span className="text-[11px] sm:text-xs font-mono tracking-[0.16em] uppercase text-[#38BDF8] font-semibold block mb-2">
-              GHAZIPUR STUDIO DESK · DIRECT CONTACT
-            </span>
-
             <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold text-white leading-[1.04] tracking-[-0.035em]">
               Start a project.{' '}
               <span className="text-[#38BDF8]">Talk with builders.</span>

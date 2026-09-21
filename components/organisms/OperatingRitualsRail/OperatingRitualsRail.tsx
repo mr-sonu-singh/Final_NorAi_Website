@@ -101,9 +101,6 @@ export function OperatingRitualsRail() {
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               className="lg:col-span-5 lg:sticky lg:top-32 space-y-6"
             >
-              <span className="eyebrow text-xs uppercase font-mono tracking-[0.18em] text-[#0650AD] font-bold block">
-                — HOW WE BUILD SOFTWARE · OPERATING RITUALS
-              </span>
               <h2 className="font-display font-extrabold text-4xl sm:text-5xl lg:text-[3.8rem] text-[var(--pine)] tracking-tight leading-[1.04]">
                 Direct. <br />
                 Transparent. <br />
@@ -123,57 +120,35 @@ export function OperatingRitualsRail() {
               </div>
             </motion.div>
 
-            {/* RIGHT COLUMN: The Physical Cascading Index Tab Deck */}
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.5, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-7"
-            >
-              {/* Protruding Physical Folder Tabs with Fluid Sliding Indicator */}
-              <div className="flex items-end gap-1.5 sm:gap-2 overflow-x-auto pb-0 select-none scrollbar-none relative" role="tablist">
-                {RITUALS.map((r) => {
-                  const isActive = r.id === activeId;
+            {/* RIGHT COLUMN: Physical Switchboard & Folder Chassis */}
+            <div className="lg:col-span-7 space-y-4">
+              
+              {/* Top Selector Tabs */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2" role="tablist">
+                {RITUALS.map((ritual) => {
+                  const isActive = ritual.id === activeId;
                   return (
                     <button
-                      key={r.id}
+                      key={ritual.id}
                       role="tab"
                       aria-selected={isActive}
-                      onClick={() => setActiveId(r.id)}
+                      onClick={() => setActiveId(ritual.id)}
                       className={cn(
-                        'px-4 sm:px-6 py-3 rounded-t-2xl font-mono text-xs font-bold transition-colors duration-200 shrink-0 border-t border-x relative z-10',
+                        'py-3.5 px-3 rounded-2xl text-left border transition-all duration-200 font-mono text-xs cursor-pointer',
                         isActive
-                          ? 'border-[var(--pine-20)] dark:border-[rgba(30,244,180,0.22)] text-[var(--pine)] dark:text-[#f5f5f0] shadow-xs pt-3.5 pb-3.5'
-                          : 'border-transparent dark:border-white/5 text-[var(--pine)]/60 dark:text-[#f5f5f0]/60 hover:text-[var(--pine)] dark:hover:text-[#f5f5f0]'
+                          ? 'bg-white dark:bg-[#0a2020] border-[var(--pine-20)] dark:border-white/20 text-[var(--pine)] dark:text-white font-bold shadow-sm'
+                          : 'bg-white/40 dark:bg-white/5 border-transparent text-[var(--pine)]/60 dark:text-white/50 hover:bg-white/70 hover:text-[var(--pine)]'
                       )}
                     >
-                      {/* Active Sliding Background Pill (Framer Motion layoutId) */}
-                      {isActive && (
-                        <motion.div
-                          layoutId="active-ritual-pill"
-                          className="absolute inset-0 bg-white dark:bg-[#0a2020] rounded-t-2xl -z-10 shadow-xs"
-                          transition={{ type: 'spring', stiffness: 450, damping: 35 }}
-                        />
-                      )}
-                      {!isActive && (
-                        <div className="absolute inset-0 bg-[#e8e8e2]/70 dark:bg-[#071d1d] rounded-t-2xl -z-20 hover:bg-[#e8e8e2] dark:hover:bg-[#0a2828] transition-colors" />
-                      )}
-
-                      {/* Glowing color pip */}
-                      <span
-                        className="inline-block w-2 h-2 rounded-full mr-2 transition-transform duration-200"
-                        style={{ backgroundColor: r.accentColor }}
-                        aria-hidden="true"
-                      />
-                      <span>{r.tabLabel}</span>
+                      <span className="block text-[11px] opacity-60 mb-0.5">0{ritual.n.slice(-1)}</span>
+                      <span className="line-clamp-1">{ritual.title.split(' ')[0]}</span>
                     </button>
                   );
                 })}
               </div>
 
               {/* Main Physical Archival Folder Chassis */}
-              <div className="rounded-b-3xl rounded-tr-3xl bg-white dark:bg-[#0a2020] border border-[var(--pine-20)] dark:border-[rgba(30,244,180,0.18)] p-8 sm:p-12 shadow-[0_16px_40px_rgba(7,41,41,0.06)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden min-h-[440px] flex flex-col justify-between">
+              <div className="rounded-3xl bg-white dark:bg-[#0a2020] border border-[var(--pine-20)] dark:border-[rgba(30,244,180,0.18)] p-8 sm:p-12 shadow-[0_16px_40px_rgba(7,41,41,0.06)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden min-h-[380px] flex flex-col justify-between">
                 
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -185,13 +160,10 @@ export function OperatingRitualsRail() {
                     className="flex flex-col justify-between flex-1"
                   >
                     <div>
-                      {/* Folder Header: Tag & SLA Badge */}
-                      <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[var(--pine-12)] mb-8">
-                        <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#0650AD]">
-                          RITUAL · {activeRitual.n}
-                        </span>
-                        <span className="font-mono text-xs font-bold px-3 py-1 rounded-full bg-[var(--pine-08)] dark:bg-white/5 text-[var(--pine)] dark:text-[#f5f5f0] border border-[var(--pine-12)] dark:border-white/10">
-                          {activeRitual.tag}
+                      {/* Folder Header */}
+                      <div className="pb-6 border-b border-[var(--pine-12)] mb-8">
+                        <span className="font-mono text-xs font-bold text-[var(--pine)]/50 dark:text-white/40">
+                          Ritual {activeRitual.n}
                         </span>
                       </div>
 
@@ -199,32 +171,28 @@ export function OperatingRitualsRail() {
                       <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-[var(--pine)] mb-4 tracking-tight">
                         {activeRitual.title}
                       </h3>
-                      <p className="text-[var(--pine)]/80 text-base leading-relaxed max-w-xl mb-8">
+                      <p className="text-[var(--pine)]/80 text-base sm:text-lg leading-relaxed max-w-xl mb-6">
                         {activeRitual.description}
                       </p>
 
-                      {/* Live Terminal Verification Proof */}
-                      <div className="rounded-2xl bg-[#0D1226] text-[#f5f5f0] p-5 sm:p-6 font-mono text-xs sm:text-sm border border-white/10 shadow-inner">
-                        <div className="flex items-center gap-2 pb-3 mb-3 border-b border-white/10 text-white/40 text-xs">
-                          <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
-                          <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
-                          <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
-                          <span className="ml-2 text-white/50">audit-terminal</span>
-                        </div>
-                        <div className="text-[#38BDF8] flex items-center gap-2 mb-2 font-bold">
-                          <span>$</span>
-                          <span>{activeRitual.terminalCommand}</span>
-                        </div>
-                        <div className="space-y-1 text-white/70 text-xs">
+                      {/* Quiet Verification Commitment */}
+                      <div className="rounded-2xl bg-[var(--porcelain)] dark:bg-white/5 border border-[var(--line)] dark:border-white/10 p-5 space-y-2">
+                        <span className="text-xs font-mono text-[var(--pine)]/50 dark:text-white/50 uppercase tracking-wider block font-semibold">
+                          Engineering Standard:
+                        </span>
+                        <div className="space-y-1.5 text-xs sm:text-sm text-[var(--pine)]/80 dark:text-white/80 font-mono">
                           {activeRitual.terminalLogs.map((log, i) => (
-                            <div key={i}>{log}</div>
+                            <div key={i} className="flex items-start gap-2">
+                              <span className="text-[#0650AD] font-bold shrink-0">→</span>
+                              <span>{log.replace(/^\[.*?\]\s*/, '')}</span>
+                            </div>
                           ))}
                         </div>
                       </div>
                     </div>
 
-                    {/* Folder Footer: Action & Location */}
-                    <div className="pt-8 mt-8 border-t border-[var(--pine-12)] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    {/* Folder Footer */}
+                    <div className="pt-8 mt-8 border-t border-[var(--pine-12)] flex items-center justify-between">
                       <Link
                         href="/contact"
                         className="inline-flex items-center gap-2 font-bold text-sm text-[var(--pine)] hover:text-[#0650AD] transition-colors group"
@@ -232,16 +200,11 @@ export function OperatingRitualsRail() {
                         <span>Start a project with the builders</span>
                         <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
                       </Link>
-                      <span className="text-xs font-mono text-[var(--pine)]/50">
-                        100% IN-HOUSE ENGINEERING · BHARAT
-                      </span>
                     </div>
                   </motion.div>
                 </AnimatePresence>
-
               </div>
-
-            </motion.div>
+            </div>
 
           </div>
         </div>

@@ -120,8 +120,7 @@ export function FourPillarsStage() {
   return (
     <section id="pillars" className="py-24 sm:py-32 bg-[#f5f5f0] text-[var(--pine)] border-b border-[var(--line)] scroll-mt-24 overflow-hidden">
       <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
-        
-        {/* Section Header with Staggered Entrance */}
+               {/* Section Header with Staggered Entrance */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -129,9 +128,6 @@ export function FourPillarsStage() {
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="text-center max-w-3xl mx-auto mb-16 sm:mb-20 space-y-4"
         >
-          <span className="text-xs uppercase font-mono tracking-[0.16em] text-[var(--mint-ink)] dark:text-[#B278E3] font-bold block mb-3">
-            4 Core Operational Pillars
-          </span>
           <h2 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl text-[var(--pine)] tracking-tight leading-[1.08]">
             Complete capability. <br className="hidden sm:inline" />
             <span className="text-[#0650AD]">Unified engineering craft.</span>
@@ -176,16 +172,11 @@ export function FourPillarsStage() {
                   </div>
 
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono text-xs font-bold text-[var(--pine)]/60">
-                        {pillar.n}
-                      </span>
-                      <span className="text-[11px] font-mono font-medium px-2 py-0.5 rounded-full bg-black/5 dark:bg-white/5 text-[var(--pine)]/70">
-                        {pillar.metric}
-                      </span>
-                    </div>
+                    <span className="font-mono text-xs font-bold text-[var(--pine)]/50 block">
+                      {pillar.n}
+                    </span>
                     <h3 className={cn(
-                      'text-lg sm:text-xl font-bold tracking-tight mt-1 transition-colors',
+                      'text-lg sm:text-xl font-bold tracking-tight mt-0.5 transition-colors',
                       isActive ? 'text-[var(--pine)]' : 'text-[var(--pine)]/90'
                     )}>
                       {pillar.category}
@@ -208,7 +199,7 @@ export function FourPillarsStage() {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.98, y: -8 }}
                 transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
-                className="rounded-3xl bg-[#0D1226] text-[#f5f5f0] p-8 sm:p-12 border border-white/10 shadow-2xl relative overflow-hidden min-h-[500px] flex flex-col justify-between"
+                className="rounded-3xl bg-[#0D1226] text-[#f5f5f0] p-8 sm:p-12 border border-white/10 shadow-2xl relative overflow-hidden min-h-[460px] flex flex-col justify-between"
               >
                 {/* Corner Mesh Glow */}
                 <div
@@ -217,25 +208,12 @@ export function FourPillarsStage() {
                   aria-hidden="true"
                 />
 
-                {/* Chassis Top Bar */}
-                <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/10 relative z-10">
-                  <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#B278E3]">
-                    {activePillar.tag}
-                  </span>
-                  <span className="font-mono text-xs font-semibold px-3 py-1 rounded-full bg-white/10 text-white border border-white/15">
-                    {activePillar.metric}
-                  </span>
-                </div>
-
                 {/* Chassis Body: Overview & Solutions Breakdown */}
-                <div className="py-8 space-y-6 relative z-10 text-left">
+                <div className="pb-8 space-y-6 relative z-10 text-left">
                   <div>
-                    <h4 className="font-display font-extrabold text-2xl sm:text-3xl text-white mb-2 tracking-tight">
+                    <h4 className="font-display font-extrabold text-2xl sm:text-3xl text-white mb-3 tracking-tight">
                       {activePillar.category}
                     </h4>
-                    <p className="text-[#B278E3] text-xs font-mono font-semibold uppercase tracking-wider mb-2">
-                      — {activePillar.thesis}
-                    </p>
                     <p className="text-white/75 text-sm sm:text-base leading-relaxed max-w-xl">
                       {activePillar.summary}
                     </p>
@@ -283,14 +261,10 @@ export function FourPillarsStage() {
                     <span>Explore {activePillar.category} Solutions</span>
                     <ArrowRight className="w-4 h-4 text-[#03091E] transition-transform duration-200 group-hover:translate-x-1" />
                   </Link>
-                  <span className="text-xs font-mono text-white/40 hidden sm:inline-block">
-                    NO VENDOR LOCK-IN
-                  </span>
                 </div>
               </motion.div>
             </AnimatePresence>
           </div>
-
         </div>
       </Container>
     </section>
