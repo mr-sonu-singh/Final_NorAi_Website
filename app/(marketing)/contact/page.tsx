@@ -2,7 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { Container } from '@/components/foundation/Container';
 import { ContactFormClient } from './ContactFormClient';
-import { Mail, Phone, MapPin, Globe, ShieldCheck, Clock } from 'lucide-react';
+import { Mail, MapPin, Globe, ShieldCheck, Clock } from 'lucide-react';
 import { buildMetadata, getWebSiteJsonLd, JsonLd } from '@/lib/seo';
 import { SubpageHeroAtmosphere } from '@/components/organisms';
 
@@ -29,12 +29,9 @@ export default function ContactPage() {
 
         <Container size="default" className="relative z-10 max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="max-w-3xl space-y-6 text-left">
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-black/40 border border-[#1ef4b4]/30 backdrop-blur-md shadow-xs">
-              <span className="w-2 h-2 rounded-full bg-[#1ef4b4] animate-pulse" aria-hidden="true" />
-              <span className="text-[11px] sm:text-xs font-mono tracking-[0.14em] uppercase text-[#eaf4f0]/90 font-semibold">
-                GHAZIPUR STUDIO DESK · DIRECT CONTACT
-              </span>
-            </div>
+            <span className="text-[11px] sm:text-xs font-mono tracking-[0.16em] uppercase text-[#1ef4b4] font-semibold block mb-2">
+              GHAZIPUR STUDIO DESK · DIRECT CONTACT
+            </span>
 
             <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold text-white leading-[1.04] tracking-[-0.035em]">
               Start a project.{' '}
@@ -44,17 +41,6 @@ export default function ContactPage() {
             <p className="text-lg sm:text-xl text-[#a8beb4] leading-relaxed max-w-2xl font-normal text-pretty">
               Whether you need pragmatic AI workflows, high-speed custom web software, spatial computing environments, or want to collaborate on student workshops—speak directly with our founding engineering team. We reply within one business day.
             </p>
-
-            <div className="pt-2 flex flex-wrap gap-3 text-xs font-mono text-[#eaf4f0]">
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/50 border border-white/15 backdrop-blur-md shadow-xs">
-                <ShieldCheck className="w-4 h-4 text-[#1ef4b4]" />
-                <span>Zero Sales Deflection</span>
-              </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/50 border border-white/15 backdrop-blur-md shadow-xs">
-                <Clock className="w-4 h-4 text-[#7a5cff]" />
-                <span>Guaranteed &lt; 24h Response</span>
-              </div>
-            </div>
           </div>
         </Container>
       </section>
@@ -117,23 +103,7 @@ export default function ContactPage() {
                   </span>
                 </div>
 
-                {/* Statutory Identity Block */}
-                <div className="p-4 rounded-xl bg-[var(--porcelain)] dark:bg-white/5 border border-[var(--line)] dark:border-white/10 space-y-2 font-mono text-xs text-[var(--pine)] dark:text-white">
-                  <div className="text-[11px] uppercase tracking-wider text-[var(--pine)]/60 dark:text-white/60 font-bold">
-                    Registered Corporate Entity
-                  </div>
-                  <div className="font-bold text-[var(--pine)] dark:text-white">
-                    Nor AI Technologies Private Limited
-                  </div>
-                  <div className="flex items-center justify-between pt-1 border-t border-[var(--line)]/50 dark:border-white/10">
-                    <span className="text-[var(--pine)]/60 dark:text-white/60">CIN:</span>
-                    <span className="font-semibold text-[var(--mint-ink)] dark:text-[#1ef4b4]">U62011UP2026PTC252801</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-[var(--pine)]/60 dark:text-white/60">PAN:</span>
-                    <span className="font-semibold">AAMCN1061B</span>
-                  </div>
-                </div>
+
 
                 {/* Direct Channels */}
                 <div className="space-y-4 text-xs font-mono text-[var(--pine)] dark:text-white">
@@ -150,15 +120,7 @@ export default function ContactPage() {
                     </a>
                   </div>
 
-                  <div className="space-y-1">
-                    <span className="text-[10px] uppercase tracking-wider text-[var(--pine)]/60 dark:text-white/60 block font-bold">
-                      Direct Phone Lines
-                    </span>
-                    <p className="text-sm font-semibold text-[var(--pine)] dark:text-white flex items-center gap-2">
-                      <Phone className="h-4 w-4 text-[var(--mint-ink)] dark:text-[#1ef4b4] shrink-0" />
-                      <span>+91 7988552179, +91 7860818514</span>
-                    </p>
-                  </div>
+
 
                   <div className="space-y-1">
                     <span className="text-[10px] uppercase tracking-wider text-[var(--pine)]/60 dark:text-white/60 block font-bold">
@@ -166,7 +128,7 @@ export default function ContactPage() {
                     </span>
                     <p className="text-xs text-[var(--pine)]/90 dark:text-white/90 flex items-start gap-2 leading-relaxed">
                       <MapPin className="h-4 w-4 text-[var(--mint-ink)] dark:text-[#1ef4b4] shrink-0 mt-0.5" />
-                      <span>Umarganj, Zamania, Ghazipur, Uttar Pradesh, India — 232329</span>
+                      <span>Umarganj, Zamania, Ghazipur, Uttar Pradesh, India</span>
                     </p>
                   </div>
 

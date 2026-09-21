@@ -58,7 +58,7 @@ export default function PrivacyPage() {
     <LegalTemplate
       eyebrow="Legal"
       title="Privacy Policy"
-      subtitle="Nor AI Technologies Private Limited · CIN: U62011UP2026PTC252801 · PAN: AAMCN1061B · Umarganj, Zamania, Ghazipur, Uttar Pradesh, India — 232329"
+      subtitle="Nor AI Technologies Private Limited · Umarganj, Zamania, Ghazipur, Uttar Pradesh, India"
       lastUpdated="January 1, 2026"
       sections={PRIVACY_SECTIONS}
       footer={

@@ -130,7 +130,7 @@ export function Header({
       {/* The Floating Pill */}
       <div
         className={cn(
-          'mx-auto max-w-5xl rounded-full px-4 sm:px-6 flex items-center justify-between border transition-all duration-300 shadow-sm',
+          'mx-auto max-w-5xl rounded-2xl px-4 sm:px-6 flex items-center justify-between border transition-all duration-300 shadow-sm',
           'bg-[#fffdf7]/95 dark:bg-[#0a2020]/95 backdrop-blur-xl border-[var(--line)] text-[var(--pine)]',
           isScrolled && 'shadow-lg border-[var(--pine-20)]',
         )}
@@ -162,7 +162,7 @@ export function Header({
                   href={item.href}
                   variant="unstyled"
                   className={cn(
-                    'relative px-4 py-2 text-sm font-medium no-underline rounded-full font-sans transition-[color,background-color,transform] duration-160 ease-out active:scale-[0.97]',
+                    'relative px-4 py-2 text-sm font-medium no-underline rounded-xl font-sans transition-[color,background-color,transform] duration-160 ease-out active:scale-[0.97]',
                     isActive
                       ? 'bg-[var(--mint)] text-[#072929] font-semibold shadow-xs'
                       : 'text-[var(--pine)]/85 hover:text-[var(--pine)] hover:bg-[var(--pine-08)]',
@@ -181,7 +181,7 @@ export function Header({
             <ThemeToggle size="sm" />
             <Link
               href="/contact"
-              className="btn btn--solid text-sm h-10 px-5 shadow-xs group active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out"
+              className="btn btn--solid text-sm h-10 px-5 rounded-xl shadow-xs group active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out"
             >
               <span>{dynamicCtaLabel}</span>
               <svg
@@ -212,7 +212,7 @@ export function Header({
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-menu"
               onClick={toggleMobileMenu}
-              className="p-2 rounded-full text-[var(--pine)] hover:bg-[var(--pine-08)] active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out cursor-pointer pointer-events-auto"
+              className="p-2 rounded-xl text-[var(--pine)] hover:bg-[var(--pine-08)] active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out cursor-pointer pointer-events-auto"
             >
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 {isMobileMenuOpen ? (

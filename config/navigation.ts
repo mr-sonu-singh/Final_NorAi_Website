@@ -4,8 +4,8 @@ import { NavItem } from '@/types';
 export const NORAI_HEADER_NAV_ITEMS: NavItem[] = [
   { label: 'Solutions', href: routes.services },
   { label: 'Prototypes', href: routes.products },
-  { label: 'Civic Mission', href: '/mission' },
-  { label: 'Studio & Story', href: routes.team },
+  { label: 'Mission', href: '/mission' },
+  { label: 'Story', href: routes.team },
 ];
 
 export const AUDENS_HEADER_NAV_ITEMS: NavItem[] = NORAI_HEADER_NAV_ITEMS;
@@ -26,9 +26,9 @@ export const footerNav = {
     { title: 'Research & Innovation', href: routes.services },
   ],
   community: [
-    { title: 'Youth Upskilling Mission', href: '/mission' as const },
+    { title: 'Upskilling Mission', href: '/mission' as const },
     { title: 'Student Upskilling Initiatives', href: '/mission' as const },
-    { title: 'Ghazipur Studio & Team', href: routes.team },
+    { title: 'Team', href: routes.team },
   ],
   legal: [
     { title: 'Privacy Policy', href: routes.privacy },

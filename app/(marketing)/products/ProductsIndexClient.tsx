@@ -9,12 +9,9 @@ import {
   Headphones,
   MessageSquare,
   Newspaper,
-  ShieldCheck,
   CheckCircle2,
   ArrowRight,
   Layers,
-  Zap,
-  Terminal,
   Activity,
   Play,
   Check,
@@ -214,13 +211,10 @@ export function ProductsIndexClient() {
 
         <Container size="default" className="relative z-10 max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="max-w-3xl space-y-6 text-left">
-            {/* Identity Badge */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-black/40 border border-[#1ef4b4]/30 backdrop-blur-md shadow-xs">
-              <span className="w-2 h-2 rounded-full bg-[#1ef4b4] animate-pulse" aria-hidden="true" />
-              <span className="text-[11px] sm:text-xs font-mono tracking-[0.14em] uppercase text-[#eaf4f0]/90 font-semibold">
-                APPLIED R&amp;D &amp; PROTOTYPES · PILLAR 04
-              </span>
-            </div>
+            {/* Identity Eyebrow */}
+            <span className="text-[11px] sm:text-xs font-mono tracking-[0.16em] uppercase text-[#1ef4b4] font-semibold block mb-2">
+              APPLIED R&amp;D &amp; PROTOTYPES · PILLAR 04
+            </span>
 
             {/* Bold Unified Display Headline */}
             <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold text-white leading-[1.04] tracking-[-0.035em]">
@@ -231,22 +225,6 @@ export function ProductsIndexClient() {
             <p className="text-lg sm:text-xl text-[#a8beb4] leading-relaxed max-w-2xl font-normal text-pretty">
               Living proof of our Research &amp; Innovation pillar. Functional applications developed by our engineering practice and student cohorts to solve operational, academic, and civic friction.
             </p>
-
-            {/* Micro-Telemetry Badges */}
-            <div className="pt-2 flex flex-wrap gap-3 text-xs font-mono text-[#eaf4f0]">
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/50 border border-white/15 backdrop-blur-md shadow-xs">
-                <ShieldCheck className="w-4 h-4 text-[#1ef4b4]" />
-                <span>Zero Cold-Storage Retention</span>
-              </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/50 border border-white/15 backdrop-blur-md shadow-xs">
-                <Zap className="w-4 h-4 text-[#7a5cff]" />
-                <span>Sub-Second Vector Execution</span>
-              </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/50 border border-white/15 backdrop-blur-md shadow-xs">
-                <Terminal className="w-4 h-4 text-[#ffa24d]" />
-                <span>REST API &amp; Web UI Ready</span>
-              </div>
-            </div>
           </div>
         </Container>
       </section>
@@ -273,7 +251,7 @@ export function ProductsIndexClient() {
                     if (match) setSelectedSlug(match.slug);
                   }}
                   className={cn(
-                    'px-4 py-2 text-xs sm:text-sm font-medium rounded-full transition-all duration-200 whitespace-nowrap cursor-pointer active:scale-[0.98]',
+                    'px-4 py-2 text-xs sm:text-sm font-medium rounded-lg transition-all duration-200 whitespace-nowrap cursor-pointer active:scale-[0.98]',
                     isSelected
                       ? 'bg-[#1ef4b4] text-[#03140f] shadow-sm font-bold'
                       : 'bg-[#fffdf7] dark:bg-white/5 text-[var(--pine)] dark:text-white/80 hover:bg-[var(--bone)] border border-[var(--line)]'
@@ -368,7 +346,7 @@ export function ProductsIndexClient() {
                           )}
                           <span
                             className={cn(
-                              'font-mono text-[11px] px-2.5 py-1 rounded-full border whitespace-nowrap',
+                              'font-mono text-[11px] px-2.5 py-1 rounded-md border whitespace-nowrap',
                               isSelected
                                 ? 'bg-white/10 text-white border-white/15'
                                 : 'bg-[var(--pine-08)] dark:bg-white/5 text-[var(--pine)] dark:text-white/80 border-[var(--line)]'
@@ -443,7 +421,7 @@ export function ProductsIndexClient() {
                         onClick={handleSimulate}
                         disabled={isSimulating}
                         className={cn(
-                          'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono font-semibold transition-all cursor-pointer border',
+                          'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-mono font-semibold transition-all cursor-pointer border',
                           isSimulating
                             ? 'bg-[#1ef4b4]/20 border-[#1ef4b4]/40 text-[#1ef4b4] animate-pulse'
                             : 'bg-white/10 hover:bg-white/20 border-white/15 text-white'
@@ -532,7 +510,7 @@ export function ProductsIndexClient() {
 
                     <Link
                       href={'/products/' + activeTool.slug}
-                      className="bg-[#1ef4b4] hover:bg-[#1ae0a5] text-[#04130f] font-bold h-11 px-6 rounded-full inline-flex items-center gap-2 shadow-[0_10px_25px_-5px_rgba(30,244,180,0.35)] transition-all duration-200 active:scale-95 group"
+                      className="bg-[#1ef4b4] hover:bg-[#1ae0a5] text-[#04130f] font-bold h-11 px-6 rounded-xl inline-flex items-center gap-2 shadow-[0_10px_25px_-5px_rgba(30,244,180,0.35)] transition-all duration-200 active:scale-95 group"
                       data-testid={
                         activeTool.slug === 'resume-shortlister'
                           ? 'capability-link-resume-shortlister'
@@ -575,7 +553,7 @@ export function ProductsIndexClient() {
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
                   href="/contact"
-                  className="h-12 px-8 rounded-full bg-[#1ef4b4] hover:bg-[#1ae0a5] text-[#04130f] font-bold text-sm shadow-lg shadow-[#1ef4b4]/25 transition-all duration-200 active:scale-[0.98] inline-flex items-center gap-2"
+                  className="h-12 px-8 rounded-xl bg-[#1ef4b4] hover:bg-[#1ae0a5] text-[#04130f] font-bold text-sm shadow-lg shadow-[#1ef4b4]/25 transition-all duration-200 active:scale-[0.98] inline-flex items-center gap-2"
                 >
                   <span>Request Custom Tool Prototype</span>
                   <ArrowRight className="w-4 h-4" />

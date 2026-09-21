@@ -63,12 +63,9 @@ export default function MissionPage() {
 
         <Container size="default" className="relative z-10 max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="max-w-3xl text-left space-y-6">
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-black/40 border border-[#1ef4b4]/30 backdrop-blur-md shadow-xs">
-              <span className="w-2 h-2 rounded-full bg-[#1ef4b4] animate-pulse" aria-hidden="true" />
-              <span className="text-[11px] sm:text-xs font-mono tracking-[0.14em] uppercase text-[#eaf4f0]/90 font-semibold">
-                BHARAT YOUTH UPSKILLING MISSION · GHAZIPUR, UP
-              </span>
-            </div>
+            <span className="text-[11px] sm:text-xs font-mono tracking-[0.16em] uppercase text-[#1ef4b4] font-semibold block mb-2">
+              BHARAT YOUTH UPSKILLING MISSION · GHAZIPUR, UP
+            </span>
 
             <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold text-white leading-[1.04] tracking-[-0.035em]">
               Empowering Millions of Youth with AI Skills.{' '}
@@ -162,7 +159,7 @@ export default function MissionPage() {
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
                   href="/contact"
-                  className="h-12 px-8 rounded-full bg-[#1ef4b4] hover:bg-[#1ae0a5] text-[#04130f] font-bold text-sm shadow-lg shadow-[#1ef4b4]/25 transition-all duration-200 active:scale-[0.98] inline-flex items-center gap-2 group"
+                  className="h-12 px-8 rounded-xl bg-[#1ef4b4] hover:bg-[#1ae0a5] text-[#04130f] font-bold text-sm shadow-lg shadow-[#1ef4b4]/25 transition-all duration-200 active:scale-[0.98] inline-flex items-center gap-2 group"
                 >
                   <span>Request an On-Campus Workshop</span>
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />

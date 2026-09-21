@@ -5,8 +5,8 @@ export const TRANSLATIONS = {
     nav: {
       solutions: 'Solutions',
       prototypes: 'Prototypes',
-      civicMission: 'Civic Mission',
-      studioStory: 'Studio & Story',
+      civicMission: 'Mission',
+      studioStory: 'Story',
       startProject: 'Start a Project',
     },
     hero: {
@@ -15,7 +15,7 @@ export const TRANSLATIONS = {
       headlineHighlight: 'meets action.',
       lede: 'Pragmatic AI systems, high-performance web platforms, and spatial computing environments. Engineered in Ghazipur, Uttar Pradesh, for real businesses and an AI-ready India.',
       exploreSolutions: 'Explore Solutions',
-      civicMission: 'Our Civic Mission',
+      civicMission: 'Our Mission',
       ghazipurStudio: 'Ghazipur Studio, UP',
       fourPillars: '4 Core Pillars',
       clientOwnership: '100% Client IP Ownership',
@@ -44,8 +44,8 @@ export const TRANSLATIONS = {
     nav: {
       solutions: 'समाधान',
       prototypes: 'प्रोटोटाइप्स',
-      civicMission: 'सामाजिक विज़न',
-      studioStory: 'स्टूडियो एवं गाथा',
+      civicMission: 'मिशन',
+      studioStory: 'कहानी',
       startProject: 'परियोजना शुरू करें',
     },
     hero: {
@@ -54,7 +54,7 @@ export const TRANSLATIONS = {
       headlineHighlight: 'कर्म से मिलती है।',
       lede: 'प्रैक्टिकल एआई सिस्टम्स, आधुनिक वेब प्लेटफॉर्म्स, और स्पेशल कंप्यूटिंग। ग़ाज़ीपुर, उत्तर प्रदेश से निर्मित — वास्तविक उद्यमों और समर्थ भारत के लिए।',
       exploreSolutions: 'समाधान देखें',
-      civicMission: 'हमारा सामाजिक विज़न',
+      civicMission: 'हमारा मिशन',
       ghazipurStudio: 'ग़ाज़ीपुर स्टूडियो, उ.प्र.',
       fourPillars: '४ मुख्य स्तंभ',
       clientOwnership: '१००% क्लाइंट कोड स्वामित्व',

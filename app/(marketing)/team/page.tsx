@@ -2,7 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { Container } from '@/components/foundation/Container';
 import { Link } from '@/components/atoms/Link';
-import { ArrowRight, ShieldCheck, Code2, GraduationCap } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { SwissStudioRoster } from '@/components/organisms';
 import { SubpageHeroAtmosphere } from '@/components/organisms';
 import { buildMetadata, getWebSiteJsonLd, JsonLd } from '@/lib/seo';
@@ -54,12 +54,9 @@ export default function TeamPage() {
 
           <Container size="default" className="relative z-10 max-w-[1240px] mx-auto px-4 sm:px-6">
             <div className="max-w-3xl space-y-6 text-left">
-              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-black/40 border border-[#1ef4b4]/30 backdrop-blur-md shadow-xs">
-                <span className="w-2 h-2 rounded-full bg-[#1ef4b4] animate-pulse" aria-hidden="true" />
-                <span className="text-[11px] sm:text-xs font-mono tracking-[0.14em] uppercase text-[#eaf4f0]/90 font-semibold">
-                  FOUNDING STUDIO &amp; ENGINEERING ETHOS
-                </span>
-              </div>
+              <span className="text-[11px] sm:text-xs font-mono tracking-[0.16em] uppercase text-[#1ef4b4] font-semibold block mb-2">
+                FOUNDING STUDIO &amp; ENGINEERING ETHOS
+              </span>
 
               <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold text-white leading-[1.04] tracking-[-0.035em]">
                 Engineers first.{' '}
@@ -69,21 +66,6 @@ export default function TeamPage() {
               <p className="text-lg sm:text-xl text-[#a8beb4] leading-relaxed max-w-2xl font-normal text-pretty">
                 Nor AI Technologies is an independent AI engineering practice based in Umarganj, Zamania, Ghazipur, Uttar Pradesh. We design pragmatic intelligence, modern web software, and train tomorrow&apos;s builders.
               </p>
-
-              <div className="pt-2 flex flex-wrap gap-3 text-xs font-mono text-[#eaf4f0]">
-                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/50 border border-white/15 backdrop-blur-md shadow-xs">
-                  <ShieldCheck className="w-4 h-4 text-[#1ef4b4]" />
-                  <span>Zero Executive Insulation</span>
-                </div>
-                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/50 border border-white/15 backdrop-blur-md shadow-xs">
-                  <Code2 className="w-4 h-4 text-[#7a5cff]" />
-                  <span>100% In-House Code</span>
-                </div>
-                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/50 border border-white/15 backdrop-blur-md shadow-xs">
-                  <GraduationCap className="w-4 h-4 text-[#ffa24d]" />
-                  <span>Grassroots AI Literacy</span>
-                </div>
-              </div>
             </div>
           </Container>
         </section>

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Search, BookOpen, CheckCircle2, Radio } from 'lucide-react';
+import { Search, BookOpen, CheckCircle2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export interface EducationalModuleInfo {
@@ -80,10 +80,9 @@ export function DistrictImpactRadar() {
     <div className="rounded-[22px] bg-[#072929] text-[#f5f5f0] border border-[var(--line)] p-6 sm:p-10 shadow-xl overflow-hidden relative">
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-[var(--pine-20)] pb-8">
         <div className="space-y-2 text-left">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--mint)]/20 text-[var(--mint)] border border-[var(--mint)]/30 font-mono text-xs font-bold uppercase tracking-wider">
-            <Radio className="w-3.5 h-3.5 animate-pulse" />
-            <span>Curriculum & Regional Outreach Roadmap</span>
-          </div>
+          <span className="text-xs font-mono uppercase tracking-wider text-[var(--mint)] font-bold block mb-2">
+            Curriculum & Regional Outreach Roadmap
+          </span>
           <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#f5f5f0] tracking-tight">
             A Vision to Upskill Youth & Regional Communities.
           </h3>

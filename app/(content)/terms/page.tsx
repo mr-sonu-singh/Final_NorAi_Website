@@ -67,7 +67,7 @@ export default function TermsPage() {
     <LegalTemplate
       eyebrow="Legal"
       title="Terms of Service"
-      subtitle="Nor AI Technologies Private Limited · CIN: U62011UP2026PTC252801 · PAN: AAMCN1061B · Umarganj, Zamania, Ghazipur, Uttar Pradesh, India — 232329"
+      subtitle="Nor AI Technologies Private Limited · Umarganj, Zamania, Ghazipur, Uttar Pradesh, India"
       lastUpdated="January 1, 2026"
       sections={TERMS_SECTIONS}
       footer={

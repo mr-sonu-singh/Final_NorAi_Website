@@ -4,7 +4,8 @@ import React from 'react';
 import Link from 'next/link';
 import { Container } from '@/components/foundation/Container';
 import { HeroLandscapeScene } from './HeroLandscapeScene';
-import { Layers, ArrowRight, ShieldCheck, MapPin } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { HeroPillarsStrip } from './HeroPillarsStrip';
 import { useLanguage } from '@/hooks/useLanguage';
 
 export function HeroChamber() {
@@ -17,13 +18,6 @@ export function HeroChamber() {
 
       <Container size="default" className="relative z-10 w-full max-w-[1152px] mx-auto px-4 sm:px-6 lg:px-8 my-auto">
         <div className="max-w-[44rem] text-left pt-6 sm:pt-10">
-          {/* Architectural Location & Identity Tag */}
-          <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-black/40 border border-[#1ef4b4]/30 backdrop-blur-md shadow-xs mb-6 sm:mb-8">
-            <span className="w-2 h-2 rounded-full bg-[#1ef4b4] animate-pulse" aria-hidden="true" />
-            <span className="text-[11px] sm:text-xs font-mono tracking-[0.16em] uppercase text-[#eaf4f0]/90 font-semibold">
-              {t.hero.locationTag}
-            </span>
-          </div>
 
           {/* Display Headline in Native Plus Jakarta Sans */}
           <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-[5.25rem] leading-[1.04] tracking-[-0.035em] text-white font-extrabold mb-6">
@@ -62,40 +56,25 @@ export function HeroChamber() {
           </p>
 
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 mb-10 sm:mb-14">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 mb-8 sm:mb-10">
             <Link
               href="/services"
-              className="btn h-12 sm:h-13 px-7 rounded-full bg-[#1ef4b4] text-[#03140f] hover:bg-[#1ae0a5] text-base font-semibold shadow-lg shadow-[#1ef4b4]/25 flex items-center justify-center gap-2.5 transition-all duration-200 active:scale-[0.98] group"
+              className="btn h-12 sm:h-13 px-7 rounded-xl bg-[#1ef4b4] text-[#03140f] hover:bg-[#1ae0a5] text-base font-semibold shadow-lg shadow-[#1ef4b4]/25 flex items-center justify-center gap-2.5 transition-all duration-200 active:scale-[0.98] group"
             >
               <span>{t.hero.exploreSolutions}</span>
               <ArrowRight className="w-4 h-4 text-[#03140f] transition-transform duration-200 group-hover:translate-x-1" />
             </Link>
             <Link
               href="/mission"
-              className="btn h-12 sm:h-13 px-7 rounded-full border border-white/20 bg-black/40 hover:bg-black/60 hover:border-[#1ef4b4]/40 text-[#eaf4f0] text-base font-medium backdrop-blur-md transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-2"
+              className="btn h-12 sm:h-13 px-7 rounded-xl border border-white/20 bg-black/40 hover:bg-black/60 hover:border-[#1ef4b4]/40 text-[#eaf4f0] text-base font-medium backdrop-blur-md transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-2"
             >
               <span>{t.hero.civicMission}</span>
               <ArrowRight className="w-4 h-4 text-[#a8beb4]" />
             </Link>
           </div>
 
-          {/* Micro-Telemetry Identity Strip */}
-          <div className="pt-6 sm:pt-8 border-t border-white/10 flex flex-wrap items-center gap-4 sm:gap-8 text-xs sm:text-sm font-mono text-[#a8beb4]">
-            <div className="flex items-center gap-2">
-              <MapPin className="w-3.5 h-3.5 text-[#1ef4b4]" />
-              <span>{t.hero.ghazipurStudio}</span>
-            </div>
-            <span className="text-white/20">·</span>
-            <div className="flex items-center gap-2">
-              <Layers className="w-3.5 h-3.5 text-[#7a5cff]" />
-              <span>{t.hero.fourPillars}</span>
-            </div>
-            <span className="text-white/20">·</span>
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#ffa24d]" />
-              <span>{t.hero.clientOwnership}</span>
-            </div>
-          </div>
+          {/* 4 Core Pillars Transparent Icon Bar */}
+          <HeroPillarsStrip className="mt-2 sm:mt-4" />
         </div>
       </Container>
     </section>

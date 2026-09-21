@@ -14,6 +14,7 @@ export * from './sections/SubpageHeroAtmosphere';
 export * from './sections/ServicesPillarsBento';
 export * from './sections/ServicesEngagementTimeline';
 export * from './sections/MissionTiersInteractive';
+export * from './sections/HeroPillarsStrip';
 
 // Active Cards
 export * from './cards/BlogCard';

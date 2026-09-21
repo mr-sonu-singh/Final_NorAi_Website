@@ -116,10 +116,9 @@ export function ServicesEngagementTimeline() {
         />
 
         <div className="relative z-10 max-w-xl space-y-2">
-          <div className="inline-flex items-center gap-2 text-xs font-mono text-[#1ef4b4] font-bold uppercase tracking-wider">
-            <span className="w-2 h-2 rounded-full bg-[#1ef4b4] animate-pulse" />
-            <span>FOUNDER-LED ARCHITECTURAL ENGAGEMENT</span>
-          </div>
+          <span className="text-xs font-mono text-[#1ef4b4] font-bold uppercase tracking-wider block mb-2">
+            FOUNDER-LED ARCHITECTURAL ENGAGEMENT
+          </span>
           <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
             Ready to build with precision?
           </h3>
@@ -130,7 +129,7 @@ export function ServicesEngagementTimeline() {
 
         <Link
           href="/contact"
-          className="relative z-10 inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-[#1ef4b4] text-[#04130f] font-bold text-sm hover:bg-[#1ae0a5] transition-all duration-200 shadow-lg shadow-[#1ef4b4]/25 shrink-0 active:scale-[0.98] group"
+          className="relative z-10 inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl bg-[#1ef4b4] text-[#04130f] font-bold text-sm hover:bg-[#1ae0a5] transition-all duration-200 shadow-lg shadow-[#1ef4b4]/25 shrink-0 active:scale-[0.98] group"
         >
           <span>Start a Project Consultation</span>
           <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />

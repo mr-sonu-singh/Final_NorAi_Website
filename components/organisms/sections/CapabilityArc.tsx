@@ -107,10 +107,6 @@ export function CapabilityArc() {
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="text-center max-w-3xl mx-auto mb-16 sm:mb-20 space-y-4"
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--pine-08)] dark:bg-white/5 border border-[var(--line)] text-xs font-mono font-semibold uppercase tracking-[0.16em] text-[var(--pine)]/85">
-            <span className="w-2 h-2 rounded-full bg-[#1ef4b4] animate-pulse" />
-            <span>Pillar 4 Living Proof</span>
-          </div>
           <h2 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl text-[var(--pine)] tracking-tight leading-[1.08]">
             Prototypes built to work. <br className="hidden sm:inline" />
             <span className="text-[#06845A]">Not to raise rounds.</span>

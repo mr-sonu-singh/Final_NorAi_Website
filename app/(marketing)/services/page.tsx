@@ -1,7 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import { Container } from '@/components/foundation/Container';
-import { ShieldCheck, Zap, Clock } from 'lucide-react';
 import { buildMetadata, getServiceJsonLd, JsonLd } from '@/lib/seo';
 import { SubpageHeroAtmosphere } from '@/components/organisms';
 import { ServicesPillarsBento } from '@/components/organisms/sections/ServicesPillarsBento';
@@ -31,13 +30,10 @@ export default function ServicesPage() {
 
           <Container size="default" className="relative z-10 max-w-[1240px] mx-auto px-4 sm:px-6">
             <div className="max-w-3xl space-y-6 text-left">
-              {/* Architecture Badge */}
-              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-black/40 border border-[#1ef4b4]/30 backdrop-blur-md shadow-xs">
-                <span className="w-2 h-2 rounded-full bg-[#1ef4b4] animate-pulse" aria-hidden="true" />
-                <span className="text-[11px] sm:text-xs font-mono tracking-[0.14em] uppercase text-[#eaf4f0]/90 font-semibold">
-                  SOLUTIONS &amp; PRACTICE CAPABILITIES · 4 PILLARS
-                </span>
-              </div>
+              {/* Architecture Eyebrow */}
+              <span className="text-[11px] sm:text-xs font-mono tracking-[0.16em] uppercase text-[#1ef4b4] font-semibold block mb-2">
+                SOLUTIONS &amp; PRACTICE CAPABILITIES · 4 PILLARS
+              </span>
 
               {/* Bold Unified Display Headline */}
               <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold text-white leading-[1.04] tracking-[-0.035em]">
@@ -48,22 +44,6 @@ export default function ServicesPage() {
               <p className="text-lg sm:text-xl text-[#a8beb4] leading-relaxed max-w-2xl font-normal text-pretty">
                 We build production-ready machine intelligence, high-performance web software, and spatial computing environments. Clean architectures, open standards, and 100% client code ownership.
               </p>
-
-              {/* Telemetry Strip Badges */}
-              <div className="pt-2 flex flex-wrap gap-3 text-xs font-mono text-[#eaf4f0]">
-                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/50 border border-white/15 backdrop-blur-md shadow-xs">
-                  <ShieldCheck className="w-4 h-4 text-[#1ef4b4]" />
-                  <span>100% Client IP Ownership</span>
-                </div>
-                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/50 border border-white/15 backdrop-blur-md shadow-xs">
-                  <Clock className="w-4 h-4 text-[#7a5cff]" />
-                  <span>5-Day Rapid PoC Sprints</span>
-                </div>
-                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/50 border border-white/15 backdrop-blur-md shadow-xs">
-                  <Zap className="w-4 h-4 text-[#ffa24d]" />
-                  <span>Sub-Second Latency SLAs</span>
-                </div>
-              </div>
             </div>
           </Container>
         </section>

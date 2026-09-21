@@ -140,7 +140,7 @@ export function BlogIndexClient({ posts }: BlogIndexClientProps) {
                     aria-selected={isSelected}
                     onClick={() => setSelectedCategory(cat)}
                     className={cn(
-                      'px-4 py-2 text-xs sm:text-sm font-medium rounded-full transition-all duration-200 whitespace-nowrap cursor-pointer active:scale-[0.98]',
+                      'px-4 py-2 text-xs sm:text-sm font-medium rounded-lg transition-all duration-200 whitespace-nowrap cursor-pointer active:scale-[0.98]',
                       isSelected
                         ? 'bg-[var(--pine)] text-[#f5f5f0] shadow-xs font-semibold'
                         : 'bg-[var(--porcelain)] text-[var(--pine)]/70 hover:bg-[var(--bone)] border border-[var(--line)]',
@@ -161,7 +161,7 @@ export function BlogIndexClient({ posts }: BlogIndexClientProps) {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search articles... (Press '/')"
-                className="w-full h-10 pl-10 pr-9 rounded-full bg-[var(--porcelain)] border border-[var(--line)] text-xs text-[var(--pine)] placeholder:text-[var(--pine)]/40 focus:outline-none focus:ring-2 focus:ring-[var(--mint-ink)]/20 focus:border-[var(--mint-ink)] transition-all"
+                className="w-full h-10 pl-10 pr-9 rounded-xl bg-[var(--porcelain)] border border-[var(--line)] text-xs text-[var(--pine)] placeholder:text-[var(--pine)]/40 focus:outline-none focus:ring-2 focus:ring-[var(--mint-ink)]/20 focus:border-[var(--mint-ink)] transition-all"
               />
               {searchQuery && (
                 <button
@@ -189,7 +189,7 @@ export function BlogIndexClient({ posts }: BlogIndexClientProps) {
             >
               <div className="max-w-3xl space-y-5 text-left">
                 <div className="flex items-center gap-3">
-                  <span className="px-3 py-1 rounded-full bg-[var(--mint)]/20 border border-[var(--mint-ink)]/20 text-xs font-mono font-bold text-[var(--mint-ink)] uppercase tracking-wider">
+                  <span className="px-3 py-1 rounded-md bg-[var(--mint)]/20 border border-[var(--mint-ink)]/20 text-xs font-mono font-bold text-[var(--mint-ink)] uppercase tracking-wider">
                     FEATURED DISPATCH · {featured.category}
                   </span>
                   <span className="font-mono text-xs text-[var(--pine)]/85 flex items-center gap-1.5">
@@ -256,7 +256,7 @@ export function BlogIndexClient({ posts }: BlogIndexClientProps) {
                     <span className="font-mono text-xs font-bold text-[var(--pine)]/85">
                       {String(idx + 1).padStart(2, '0')}
                     </span>
-                    <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-[var(--pine-08)] text-[var(--pine)]">
+                    <span className="px-2.5 py-0.5 rounded-md text-[11px] font-semibold bg-[var(--pine-08)] text-[var(--pine)]">
                       {post.category}
                     </span>
                     <span className="font-mono text-[11px] text-[var(--pine)]/85 flex items-center gap-1">

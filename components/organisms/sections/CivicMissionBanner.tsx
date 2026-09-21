@@ -24,7 +24,7 @@ export function CivicMissionBanner() {
 
       {/* Subtle Ambient Radial Glows */}
       <div
-        className="absolute -top-24 right-1/4 w-96 h-96 rounded-full bg-[#1ef4b4]/10 blur-[120px] pointer-events-none"
+        className="absolute -top-24 right-1/4 w-96 h-96 rounded-xl bg-[#1ef4b4]/10 blur-[120px] pointer-events-none"
         aria-hidden="true"
       />
 
@@ -39,10 +39,9 @@ export function CivicMissionBanner() {
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-8 space-y-6 text-left"
           >
-            <div className="inline-flex items-center gap-2 text-xs font-mono tracking-[0.2em] uppercase text-[#1ef4b4] font-bold">
-              <span className="w-2 h-2 rounded-full bg-[#1ef4b4] animate-pulse" aria-hidden="true" />
-              <span>{t.civic.eyebrow}</span>
-            </div>
+            <span className="text-xs font-mono tracking-[0.2em] uppercase text-[#1ef4b4] font-bold block mb-2">
+              {t.civic.eyebrow}
+            </span>
 
             <h2 className="font-display font-extrabold text-2xl sm:text-4xl md:text-5xl lg:text-[2.9rem] text-[#f5f5f0] leading-[1.14] tracking-tight">
               {t.civic.headlinePrefix}{' '}
@@ -94,7 +93,7 @@ export function CivicMissionBanner() {
               <div className="pt-2">
                 <Link
                   href="/mission"
-                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#1ef4b4] text-[#072929] font-bold text-sm hover:bg-white transition-all duration-160 ease-out active:scale-[0.98] shadow-md group"
+                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#1ef4b4] text-[#072929] font-bold text-sm hover:bg-white transition-all duration-160 ease-out active:scale-[0.98] shadow-md group"
                 >
                   <span>{t.civic.cardBtn}</span>
                   <ArrowRight className="w-4 h-4 text-[#072929] transition-transform duration-200 group-hover:translate-x-1" />

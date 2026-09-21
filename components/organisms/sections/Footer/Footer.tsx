@@ -4,7 +4,7 @@ import { Link } from '@/components/atoms/Link';
 import { BrandLogo } from '@/components/atoms/BrandLogo';
 import { cn } from '@/lib/utils';
 import { FooterProps, FooterColumn } from './Footer.types';
-import { Mail, Phone, MapPin, Globe } from 'lucide-react';
+import { Mail, MapPin, Globe } from 'lucide-react';
 
 export const DEFAULT_FOOTER_COLUMNS: FooterColumn[] = [
   {
@@ -28,9 +28,9 @@ export const DEFAULT_FOOTER_COLUMNS: FooterColumn[] = [
   {
     title: 'Mission & Studio',
     links: [
-      { label: 'Civic Upskilling Mission', href: '/mission' },
+      { label: 'Upskilling Mission', href: '/mission' },
       { label: 'Student Upskilling Initiatives', href: '/mission' },
-      { label: 'Ghazipur Studio & Team', href: '/team' },
+      { label: 'Team', href: '/team' },
       { label: 'Contact & Inquiries', href: '/contact' },
     ],
   },
@@ -84,20 +84,10 @@ export function Footer({
               <BrandLogo size="lg" variant="inverted" />
             </Link>
             <p className="text-[var(--bone-70)] text-sm leading-relaxed max-w-sm">
-              Early-stage Indian AI engineering practice and civic upskilling mission. Pragmatic machine intelligence, high-performance web applications, and spatial computing.
+              Early-stage Indian AI engineering practice and upskilling mission. Pragmatic machine intelligence, high-performance web applications, and spatial computing.
             </p>
 
-            {/* Statutory Corporate Details Badge */}
-            <div className="p-4 rounded-xl bg-white/[0.04] border border-white/10 space-y-1.5 font-mono text-xs text-white/80 max-w-sm">
-              <div className="flex items-center justify-between">
-                <span className="text-white/50">CIN:</span>
-                <span className="text-[var(--mint)] font-bold">U62011UP2026PTC252801</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-white/50">PAN:</span>
-                <span className="text-white font-semibold">AAMCN1061B</span>
-              </div>
-            </div>
+
           </div>
 
           {/* Nav Columns */}
@@ -125,12 +115,12 @@ export function Footer({
           {/* Contact Col */}
           <div className="space-y-4">
             <h3 className="text-xs uppercase font-mono tracking-widest text-[var(--bone-70)] font-semibold">
-              Ghazipur Studio Desk
+              Desk & Contact
             </h3>
             <div className="space-y-2.5 text-xs font-mono text-white/80">
               <div className="flex items-start gap-2">
                 <MapPin className="w-3.5 h-3.5 text-[var(--mint)] shrink-0 mt-0.5" />
-                <span>Umarganj, Zamania, Ghazipur, UP — 232329</span>
+                <span>Umarganj, Zamania, Ghazipur, Uttar Pradesh</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-[var(--mint)] shrink-0" />
@@ -141,10 +131,7 @@ export function Footer({
                   noraitechnologies@gmail.com
                 </a>
               </div>
-              <div className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-[var(--mint)] shrink-0" />
-                <span>+91 7988552179 · +91 7860818514</span>
-              </div>
+
               <div className="flex items-center gap-2">
                 <Globe className="w-3.5 h-3.5 text-[var(--mint)] shrink-0" />
                 <span>www.norai.tech</span>
