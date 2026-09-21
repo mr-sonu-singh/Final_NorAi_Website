@@ -1,0 +1,61 @@
+'use client';
+
+import React from 'react';
+import Link from 'next/link';
+import { motion } from 'motion/react';
+import type { Route } from 'next';
+import { Container } from '@/components/foundation/Container';
+import { HandWaveIcon } from '@/components/atoms/HandWaveIcon';
+import { ArrowRight } from 'lucide-react';
+
+export function ClosingDispatch() {
+  return (
+    <section id="closing-dispatch" className="py-24 sm:py-32 bg-[#EDEEF2] dark:bg-[#060919] text-[var(--pine)] dark:text-white scroll-mt-24 overflow-hidden">
+      <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.97, y: 28 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+          className="relative rounded-[32px] sm:rounded-[44px] p-8 sm:p-16 lg:p-20 overflow-hidden shadow-2xl bg-[#0D1226] border border-white/10 text-[#F4F6FC]"
+        >
+          {/* Subtle Ambient Radial Backlight */}
+          <div
+            className="absolute -top-24 -right-24 w-[450px] h-[450px] rounded-full blur-[110px] pointer-events-none opacity-20"
+            style={{ background: '#7C3AED' }}
+            aria-hidden="true"
+          />
+
+          <div className="relative z-10 max-w-3xl mx-auto text-center space-y-6">
+            <h2 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-[1.05]">
+              Bring us the problem you are actually facing.
+            </h2>
+
+            <p className="text-[#A8B6D8] text-base sm:text-lg leading-relaxed max-w-xl mx-auto font-sans font-normal text-pretty">
+              An initial technical conversation is one hour with our founding engineers. A straight answer: the right architecture, cost, and timeline.
+            </p>
+
+            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href={'/contact' as Route}
+                className="h-13 px-8 rounded-xl bg-[#D4C5F9] hover:bg-[#E4CEF7] text-[#03091E] text-base font-semibold shadow-lg shadow-[#D4C5F9]/20 flex items-center justify-center gap-2.5 transition-all duration-200 ease-out active:scale-[0.98] w-full sm:w-auto group"
+              >
+                <span>Talk to an Engineer</span>
+                <HandWaveIcon className="w-4 h-4 text-[#03091E] transition-transform duration-200 group-hover:rotate-12" />
+              </Link>
+              <Link
+                href={'/products' as Route}
+                className="h-13 px-8 rounded-xl border border-white/20 hover:border-white/40 text-white hover:bg-white/5 text-base font-medium flex items-center justify-center gap-2 transition-all duration-200 ease-out active:scale-[0.98] w-full sm:w-auto"
+              >
+                <span>Explore 4 Tools</span>
+                <ArrowRight className="w-4 h-4 text-[#A8B6D8]" />
+              </Link>
+            </div>
+          </div>
+        </motion.div>
+      </Container>
+    </section>
+  );
+}
+
+export default ClosingDispatch;

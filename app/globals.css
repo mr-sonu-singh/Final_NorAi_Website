@@ -1,0 +1,1855 @@
+@import 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
+@import 'katex/dist/katex.min.css';
+@source '..';
+
+/* ==========================================================================
+   DESIGN TOKENS — NorAI High-Voltage Obsidian Architecture
+   Canvas: deep pitch obsidian (#07080D). Typography: crisp slate/white.
+   Accents: mathematically verified WCAG AAA jewel tokens.
+   ========================================================================== */
+:root {
+  /* ==========================================================================
+     AUDENS CANONICAL TOKENS (Pine, Porcelain, Bone, Surface, Jewels)
+     ========================================================================== */
+  /* Brand Calibrated Anchors: Deep Royal Navy + Light Violet + Azure */
+  --navy: #040A5C;
+  --navy-deep: #052C76;
+  --violet: #B278E3;
+  --violet-light: #D4C5F9;
+  --azure: #06A4E0;
+  --ice: #F8F9FD;
+  --porcelain: #EDEEF2;
+  --bone: #E2E4EB;
+  --surface: #FFFFFF;
+  --pine: #040A5C; /* legacy alias redirected to royal navy */
+  --forest: #052C76;
+
+  /* Light Canvas Opacity Gradients */
+  --pine-70: rgba(4, 10, 92, 0.72);
+  --pine-50: rgba(4, 10, 92, 0.52);
+  --pine-20: rgba(4, 10, 92, 0.20);
+  --pine-12: rgba(4, 10, 92, 0.12);
+  --pine-08: rgba(4, 10, 92, 0.08);
+
+  --bone-70: rgba(226, 228, 235, 0.75);
+  --bone-50: rgba(226, 228, 235, 0.52);
+  --bone-20: rgba(226, 228, 235, 0.20);
+
+  /* Jewel & Accent Tokens */
+  --mint: #38BDF8; /* redirected from green to sky/azure */
+  --mint-ink: #040A5C;
+  --lavender: #D4C5F9;
+  --butter: #FFE9B5;
+  --coral: #FF7755;
+  --sky: #06A4E0;
+  --pink: #FF69B4;
+
+  /* Line & Muted Inks */
+  --ink: #040A5C;
+  --muted: #5C6684;
+  --line: rgba(4, 10, 92, 0.08);
+  --brand-gradient: linear-gradient(90deg, #06A4E0 0%, #0A4DD7 35%, #4A2BD8 70%, #9B13F0 100%);
+
+  /* Geometry & Layout */
+  --r-card: 22px;
+  --r-pill: 999px;
+  --r-sm: 8px;
+  --maxw: 1240px;
+
+  /* Audens Fluid Easings */
+  --ease: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-bounce: cubic-bezier(0.33, 1.4, 0.6, 1);
+
+  /* ==========================================================================
+     BASE SURFACES (Canonical Audens Pine & Porcelain Architecture)
+     ========================================================================== */
+  --surface-canvas: var(--porcelain);
+  --surface-panel: var(--surface);
+  --surface-panel-elevated: var(--surface);
+  --surface-panel-subtle: rgba(7, 41, 41, 0.04);
+  --surface-hover: rgba(7, 41, 41, 0.08);
+  --surface-active: rgba(7, 41, 41, 0.12);
+
+  /* ==========================================================================
+     TYPOGRAPHY & CONTENT (High-Contrast White & Slate)
+     ========================================================================== */
+  --text-primary: var(--pine);
+  --text-secondary: var(--pine-70);
+  --text-muted: var(--muted);
+  --text-inverse: var(--bone);
+
+  /* ==========================================================================
+     HAIRLINE BORDERS & LASER SHEENS
+     ========================================================================== */
+  --border-subtle: rgba(7, 41, 41, 0.08);
+  --border-strong: rgba(7, 41, 41, 0.16);
+  --border-highlight: rgba(7, 41, 41, 0.32);
+  --border-hairline: var(--border-subtle);
+
+  /* ==========================================================================
+     CALIBRATED HIGH-VOLTAGE JEWEL TOKENS & NORAI SIGNATURE ACCENTS
+     ========================================================================== */
+  --norai-blue: #1e40af;
+  --norai-blue-soft: rgba(30, 64, 175, 0.12);
+  --norai-violet: #7c3aed;
+  --norai-violet-soft: rgba(124, 58, 237, 0.12);
+
+  --jewel-mint: var(--mint);
+  --jewel-mint-soft: rgba(30, 244, 180, 0.14);
+
+  --jewel-lavender: var(--lavender);
+  --jewel-lavender-soft: rgba(198, 181, 255, 0.14);
+
+  --jewel-coral: var(--coral);
+  --jewel-coral-soft: rgba(255, 119, 85, 0.14);
+
+  --jewel-emerald: #34d399;
+  --jewel-emerald-soft: rgba(52, 211, 153, 0.12);
+
+  --jewel-amber: var(--butter);
+  --jewel-amber-soft: rgba(255, 233, 181, 0.14);
+
+  --jewel-pink: var(--pink);
+  --jewel-pink-soft: rgba(255, 105, 180, 0.14);
+
+  /* Primary Interactive Action Token */
+  --accent-primary: var(--mint-ink);
+  --accent-hover: #056e4b;
+  --accent-subtle: var(--jewel-mint-soft);
+  --accent-mono: var(--mint-ink);
+  --accent-secondary: #5542a6;
+  --accent-secondary-soft: var(--jewel-lavender-soft);
+  --accent-tertiary: #875a00;
+  --accent-tertiary-soft: var(--jewel-amber-soft);
+
+  /* ==========================================================================
+     BACKWARDS-COMPATIBILITY & LEGACY ALIASES
+     ========================================================================== */
+  --ds-background-100: var(--porcelain);
+  --ds-background-200: var(--surface);
+  --ds-background-300: rgba(7, 41, 41, 0.04);
+  --ds-background-400: var(--surface-hover);
+  --ds-text-100: var(--pine);
+  --ds-text-200: var(--pine-70);
+  --ds-text-300: var(--muted);
+  --ds-interactive: var(--pine);
+  --ds-focus-color: var(--mint-ink);
+  --bg-page: var(--porcelain);
+  --bg-elevated: var(--surface);
+  --bg-sunken: rgba(7, 41, 41, 0.04);
+  --bg-dark: var(--pine);
+  --bg-dark-elevated: var(--forest);
+  --bg-header: rgba(245, 245, 240, 0.88);
+
+  --primary-50: #0d1017;
+  --primary-100: #141824;
+  --primary-200: rgba(255, 255, 255, 0.12);
+  --primary-300: #334155;
+  --primary-400: #475569;
+  --primary-500: #64748b;
+  --primary-600: #94a3b8;
+  --primary-700: #cbd5e1;
+  --primary-800: #f8fafc;
+  --primary-900: #ffffff;
+
+  /* ==========================================================================
+     STATUS & TELEMETRY TOKENS (Calibrated for Deep Obsidian)
+     ========================================================================== */
+  --status-error-bg: rgba(248, 113, 113, 0.12);
+  --status-error-border: rgba(248, 113, 113, 0.25);
+  --status-error-text: #f87171;
+  --status-error-solid: #ef4444;
+
+  --status-warn-bg: rgba(251, 191, 36, 0.12);
+  --status-warn-border: rgba(251, 191, 36, 0.25);
+  --status-warn-text: #fbbf24;
+  --status-warn-solid: #f59e0b;
+
+  --status-success-bg: rgba(52, 211, 153, 0.12);
+  --status-success-border: rgba(52, 211, 153, 0.25);
+  --status-success-text: #34d399;
+  --status-success-solid: #10b981;
+
+  --status-info-bg: rgba(147, 197, 253, 0.12);
+  --status-info-border: rgba(147, 197, 253, 0.25);
+  --status-info-text: #93c5fd;
+  --status-info-solid: #3b82f6;
+
+  --badge-cache-hit-bg: rgba(52, 211, 153, 0.12);
+  --badge-cache-hit-text: #34d399;
+  --badge-cache-miss-bg: rgba(251, 191, 36, 0.12);
+  --badge-cache-miss-text: #fbbf24;
+  --badge-cache-stale-bg: rgba(148, 163, 184, 0.12);
+  --badge-cache-stale-text: #94a3b8;
+
+  --glow-warm: 46, 252, 194; /* High-voltage mint glow */
+
+  /* --- Status colors --- */
+  --status-blue: #93c5fd;
+  --status-cyan: #38bdf8;
+  --status-teal: #2efcc2;
+  --status-green: #34d399;
+  --status-orange: #ffa07a;
+  --status-red: #f87171;
+
+  --success-600: #34d399;
+  --success-100: rgba(52, 211, 153, 0.15);
+  --warning-600: #fbbf24;
+  --warning-100: rgba(251, 191, 36, 0.15);
+  --error-600: #f87171;
+  --error-100: rgba(248, 113, 113, 0.15);
+  --info-600: #93c5fd;
+  --info-100: rgba(147, 197, 253, 0.15);
+
+  --opacity-disabled: 0.5;
+
+  /* --- Typography --- */
+  --font-sans: var(--font-jakarta), system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-jakarta), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+
+  /* Editorial serif display scale (Instrument Serif renders at 400 only) */
+  --text-display-xl-size: 4rem; /* 64px */
+  --text-display-xl-line: 1.05;
+  --text-display-xl-weight: 800;
+  --text-display-xl-tracking: -0.03em;
+
+  --text-display-lg-size: 2.75rem; /* 44px */
+  --text-display-lg-line: 1.1;
+  --text-display-lg-weight: 800;
+  --text-display-lg-tracking: -0.03em;
+
+  --text-display-md-size: 2.25rem; /* 36px */
+  --text-display-md-line: 1.15;
+  --text-display-md-weight: 800;
+  --text-display-md-tracking: -0.015em;
+
+  --text-heading-xl-size: 2rem; /* 32px */
+  --text-heading-xl-line: 1.2;
+  --text-heading-xl-weight: 400;
+  --text-heading-xl-tracking: -0.015em;
+
+  --text-heading-lg-size: 1.375rem; /* 22px */
+  --text-heading-lg-line: 1.35;
+  --text-heading-lg-weight: 600;
+  --text-heading-lg-tracking: -0.01em;
+
+  --text-heading-md-size: 1rem; /* 16px */
+  --text-heading-md-line: 1.5;
+  --text-heading-md-weight: 600;
+  --text-heading-md-tracking: -0.005em;
+
+  --text-body-xl-size: 1.25rem;
+  --text-body-xl-line: 1.75rem;
+  --text-body-xl-weight: 400;
+
+  --text-body-lg-size: 1.125rem;
+  --text-body-lg-line: 1.75rem;
+  --text-body-lg-weight: 400;
+
+  --text-body-md-size: 1rem; /* 16px */
+  --text-body-md-line: 1.625rem;
+  --text-body-md-weight: 400;
+
+  --text-body-sm-size: 0.875rem; /* 14px */
+  --text-body-sm-line: 1.375rem;
+  --text-body-sm-weight: 400;
+
+  --text-body-xs-size: 0.75rem; /* 12px */
+  --text-body-xs-line: 1rem;
+  --text-body-xs-weight: 400;
+
+  --text-label-size: 0.875rem;
+  --text-label-line: 1.25rem;
+  --text-label-weight: 500;
+
+  --text-fluid-lead: clamp(1.125rem, 1rem + 0.5vw, 1.25rem);
+  --text-fluid-body: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-badge: 0.6875rem; /* 11px */
+
+  /* --- Spacing --- */
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.5rem; /* 8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-5: 1.25rem; /* 20px */
+  --space-6: 1.5rem; /* 24px */
+  --space-8: 2rem; /* 32px */
+  --space-10: 2.5rem; /* 40px */
+  --space-12: 3rem; /* 48px */
+  --space-16: 4rem; /* 64px */
+  --space-20: 5rem; /* 80px */
+  --space-24: 6rem; /* 96px */
+  --space-32: 8rem; /* 128px */
+
+  --focus-ring-width: 3px;
+  --border-width-default: 1px;
+
+  /* --- Radius --- */
+  --radius-sm: 0.25rem; /* 4px */
+  --radius-default: 0.5rem; /* 8px */
+  --radius-md: 0.5rem; /* 8px */
+  --radius-lg: 0.75rem; /* 12px */
+  --radius-xl: 1rem; /* 16px */
+  --radius-full: 9999px; /* Pill */
+
+  /* --- Shadows (Obsidian elevation & laser rim lighting) --- */
+  --ds-shadow-border-base: 0 0 0 1px rgba(255, 255, 255, 0.08);
+  --ds-shadow-border: var(--ds-shadow-border-base);
+  --ds-focus-ring: 0 0 0 2px var(--surface), 0 0 0 4px var(--mint-ink);
+
+  --ds-shadow-small: 0 1px 3px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  --ds-shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  --ds-shadow-large: 0 12px 32px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  --ds-shadow-menu: 0 20px 48px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.12);
+
+  --shadow-xs: var(--ds-shadow-border);
+  --shadow-sm: var(--ds-shadow-small);
+  --shadow-md: var(--ds-shadow-medium);
+  --shadow-lg: var(--ds-shadow-large);
+  --shadow-xl: var(--ds-shadow-menu);
+  --shadow-accent: 0 0 24px rgba(46, 252, 194, 0.25);
+  --shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.15);
+
+  /* --- Motion (Emil Kowalski Design Engineering Standards) --- */
+  --duration-instant: 120ms;
+  --duration-fast: 160ms;
+  --duration-ui: 200ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+  --duration-exit: 140ms;
+  --duration-enter: 200ms;
+  --duration-move: 250ms;
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-smooth: cubic-bezier(0.23, 1, 0.32, 1);
+  --tooltip-delay: 150ms;
+
+  /* --- Containers --- */
+  --container-narrow: 720px;
+  --container-default: 1120px;
+  --container-wide: 1380px;
+}
+
+/* ==========================================================================
+   TAILWIND THEME MAPPING
+   ========================================================================== */
+@theme inline {
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* High-Voltage Obsidian Surface Tokens */
+  --color-surface-canvas: var(--surface-canvas);
+  --color-surface-panel: var(--surface-panel);
+  --color-surface-panel-elevated: var(--surface-panel-elevated);
+  --color-surface-panel-subtle: var(--surface-panel-subtle);
+  --color-surface-hover: var(--surface-hover);
+  --color-surface-active: var(--surface-active);
+
+  /* High-Contrast Text Tokens */
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-inverse: var(--text-inverse);
+
+  /* Hairline Border Tokens */
+  --color-border-subtle: var(--border-subtle);
+  --color-border-strong: var(--border-strong);
+  --color-border-highlight: var(--border-highlight);
+
+  /* Calibrated High-Voltage Jewel Tokens */
+  --color-jewel-mint: var(--jewel-mint);
+  --color-jewel-mint-soft: var(--jewel-mint-soft);
+  --color-jewel-lavender: var(--jewel-lavender);
+  --color-jewel-lavender-soft: var(--jewel-lavender-soft);
+  --color-jewel-coral: var(--jewel-coral);
+  --color-jewel-coral-soft: var(--jewel-coral-soft);
+  --color-jewel-emerald: var(--jewel-emerald);
+  --color-jewel-emerald-soft: var(--jewel-emerald-soft);
+  --color-jewel-amber: var(--jewel-amber);
+  --color-jewel-amber-soft: var(--jewel-amber-soft);
+  --color-jewel-pink: var(--jewel-pink);
+  --color-jewel-pink-soft: var(--jewel-pink-soft);
+
+  /* Accent Mappings */
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-subtle: var(--accent-subtle);
+  --color-accent-mono: var(--accent-mono);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-accent-secondary-soft: var(--accent-secondary-soft);
+  --color-accent-tertiary: var(--accent-tertiary);
+  --color-accent-tertiary-soft: var(--accent-tertiary-soft);
+
+  /* Primary scale for backwards compatibility */
+  --color-primary-50: var(--primary-50);
+  --color-primary-100: var(--primary-100);
+  --color-primary-200: var(--primary-200);
+  --color-primary-300: var(--primary-300);
+  --color-primary-400: var(--primary-400);
+  --color-primary-500: var(--primary-500);
+  --color-primary-600: var(--primary-600);
+  --color-primary-700: var(--primary-700);
+  --color-primary-800: var(--primary-800);
+  --color-primary-900: var(--primary-900);
+
+  /* Legacy aliases mapping to obsidian architecture */
+  --color-canvas-base: var(--surface-canvas);
+  --color-canvas-paper: var(--surface-panel);
+  --color-canvas-pure: var(--surface-panel-elevated);
+  --color-canvas-recessed: var(--surface-panel-subtle);
+
+  --color-ink-primary: var(--text-primary);
+  --color-ink-body: var(--text-secondary);
+  --color-ink-secondary: var(--text-secondary);
+  --color-ink-disabled: var(--text-muted);
+
+  --color-line-subtle: var(--border-subtle);
+  --color-line-default: var(--border-subtle);
+  --color-line-strong: var(--border-strong);
+  --color-line-accent: rgba(46, 252, 194, 0.3);
+
+  --color-bg-page: var(--bg-page);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-bg-sunken: var(--bg-sunken);
+  --color-bg-dark: var(--bg-dark);
+  --color-bg-dark-elevated: var(--bg-dark-elevated);
+
+  --color-success-600: var(--success-600);
+  --color-success-100: var(--success-100);
+  --color-warning-600: var(--warning-600);
+  --color-warning-100: var(--warning-100);
+  --color-error-600: var(--error-600);
+  --color-error-100: var(--error-100);
+  --color-info-600: var(--info-600);
+  --color-info-100: var(--info-100);
+
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+
+  --tracking-display: -0.02em;
+  --tracking-heading: -0.015em;
+  --tracking-label: -0.005em;
+  --tracking-badge: 0.02em;
+  --text-badge: 0.6875rem;
+
+  --spacing-1: var(--space-1);
+  --spacing-2: var(--space-2);
+  --spacing-3: var(--space-3);
+  --spacing-4: var(--space-4);
+  --spacing-5: var(--space-5);
+  --spacing-6: var(--space-6);
+  --spacing-8: var(--space-8);
+  --spacing-10: var(--space-10);
+  --spacing-12: var(--space-12);
+  --spacing-16: var(--space-16);
+  --spacing-20: var(--space-20);
+  --spacing-24: var(--space-24);
+  --spacing-32: var(--space-32);
+
+  --radius-sm: var(--radius-sm);
+  --radius-default: var(--radius-default);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-full: var(--radius-full);
+
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-accent: var(--shadow-accent);
+  --shadow-hover: var(--shadow-hover);
+
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+
+  --opacity-disabled: var(--opacity-disabled);
+  --focus-ring-width: var(--focus-ring-width);
+  --border-width-default: var(--border-width-default);
+}
+
+/* ==========================================================================
+   BASE STYLES
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  tab-size: 4;
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--surface-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: rgba(178, 120, 227, 0.28);
+  color: inherit;
+}
+
+/* Headlines balance across lines; serif display carries its own weight */
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+h4,
+h5,
+h6 {
+  font-weight: 600;
+}
+
+code,
+pre,
+kbd {
+  font-family: var(--font-mono);
+}
+
+/* Calibrated high-contrast obsidian focus ring */
+:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px #07080d,
+    0 0 0 4px rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
+}
+
+/* Global prefers-reduced-motion override */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   OBSIDIAN CANVAS & MESH GRADIENT UTILITIES
+   ========================================================================== */
+
+/* Subtle ambient glow over pitch obsidian canvas */
+.warm-canvas-bg,
+.obsidian-canvas-bg {
+  background-color: var(--surface-canvas);
+  background-image:
+    radial-gradient(at 85% 0%, rgba(46, 252, 194, 0.05) 0px, transparent 55%),
+    radial-gradient(at 0% 100%, rgba(216, 180, 254, 0.04) 0px, transparent 50%);
+}
+
+/* Audens-style dark ambient mesh gradient anchor for heroes (pure CSS, zero JS) */
+.mesh-gradient {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.mesh-gradient::before,
+.mesh-gradient::after {
+  content: '';
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  opacity: 0.35;
+}
+
+.mesh-gradient::before {
+  inset: -20% -10% auto auto;
+  width: 70%;
+  height: 90%;
+  background-image:
+    radial-gradient(at 70% 30%, rgba(46, 252, 194, 0.18) 0px, transparent 55%),
+    radial-gradient(at 90% 60%, rgba(52, 211, 153, 0.12) 0px, transparent 55%);
+}
+
+.mesh-gradient::after {
+  inset: 20% auto auto -10%;
+  width: 55%;
+  height: 80%;
+  background-image:
+    radial-gradient(at 40% 40%, rgba(216, 180, 254, 0.15) 0px, transparent 55%),
+    radial-gradient(at 20% 70%, rgba(251, 191, 36, 0.08) 0px, transparent 55%);
+}
+
+/* Ambient drift ONLY behind an 80px blur; disabled under reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  .mesh-blob {
+    animation: mesh-drift 24s ease-in-out infinite alternate;
+  }
+  .mesh-blob-reverse {
+    animation: mesh-drift 28s ease-in-out infinite alternate-reverse;
+  }
+}
+
+@keyframes mesh-drift {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(30px, -20px) scale(1.08);
+  }
+}
+
+/* ==========================================================================
+   BORDER SHEENS & LASER UTILITIES
+   ========================================================================== */
+
+/* 1px crisp horizontal hairline laser sheens */
+.border-sheen-top {
+  position: relative;
+}
+.border-sheen-top::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+  pointer-events: none;
+}
+
+.border-sheen-mint {
+  position: relative;
+}
+.border-sheen-mint::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(46, 252, 194, 0.4), transparent);
+  pointer-events: none;
+}
+
+.border-sheen-lavender {
+  position: relative;
+}
+.border-sheen-lavender::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(216, 180, 254, 0.4), transparent);
+  pointer-events: none;
+}
+
+.border-sheen-coral {
+  position: relative;
+}
+.border-sheen-coral::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 160, 122, 0.4), transparent);
+  pointer-events: none;
+}
+
+.border-sheen-emerald {
+  position: relative;
+}
+.border-sheen-emerald::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(52, 211, 153, 0.4), transparent);
+  pointer-events: none;
+}
+
+.border-sheen-amber {
+  position: relative;
+}
+.border-sheen-amber::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.4), transparent);
+  pointer-events: none;
+}
+
+.border-sheen-pink {
+  position: relative;
+}
+.border-sheen-pink::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(244, 114, 182, 0.4), transparent);
+  pointer-events: none;
+}
+
+/* Interactive card border glow on hover */
+.card-sheen-interactive {
+  position: relative;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.card-sheen-interactive:hover {
+  border-color: var(--border-highlight);
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(46, 252, 194, 0.08);
+}
+
+/* Calibrated accessible focus ring utility */
+.focus-ring-calibrated {
+  outline: none;
+  box-shadow:
+    0 0 0 2px #07080d,
+    0 0 0 4px rgba(255, 255, 255, 0.8);
+}
+
+/* ==========================================================================
+   COMPONENTS & UTILITIES
+   ========================================================================== */
+
+/* Editorial link underline */
+.link-editorial {
+  text-decoration: underline;
+  text-decoration-color: rgba(46, 252, 194, 0.4);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.15s ease;
+}
+
+.link-editorial:hover {
+  text-decoration-color: var(--accent-primary);
+}
+
+/* Subtle dot-matrix hardware pattern for telemetry and technical strips */
+.pattern-dots {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+/* Faint gradient hairline divider */
+.hairline-divider-gradient {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.12) 25%,
+    rgba(255, 255, 255, 0.12) 75%,
+    transparent 100%
+  );
+}
+
+/* Fluid typography utilities */
+.fluid-lead {
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.25rem);
+  line-height: 1.625;
+}
+
+.fluid-body {
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  line-height: 1.6;
+}
+
+.text-badge {
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.tracking-display {
+  letter-spacing: -0.02em;
+}
+
+.tracking-badge {
+  letter-spacing: 0.02em;
+}
+
+/* ==========================================================================
+   VIEW TRANSITIONS — Smooth Route Changes & Crossfades
+   Adheres to vercel-react-view-transitions & NorAI motion tokens
+   ========================================================================== */
+
+/* Interactivity pass-through during active transition */
+::view-transition {
+  pointer-events: none;
+}
+
+/* Base keyframes */
+@keyframes vt-fade {
+  from {
+    filter: blur(2px);
+    opacity: 0;
+  }
+  to {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+@keyframes vt-slide {
+  from {
+    translate: var(--slide-offset, 40px);
+  }
+  to {
+    translate: 0;
+  }
+}
+
+/* Fade Transitions */
+::view-transition-old(.fade-out) {
+  animation: var(--duration-exit, 150ms) cubic-bezier(0.16, 1, 0.3, 1) vt-fade reverse;
+}
+::view-transition-new(.fade-in) {
+  animation: var(--duration-enter, 210ms) cubic-bezier(0.16, 1, 0.3, 1) var(--duration-exit, 150ms)
+    both vt-fade;
+}
+
+/* Directional Slide Navigation */
+::view-transition-old(.nav-forward) {
+  --slide-offset: -40px;
+  animation:
+    var(--duration-exit, 150ms) cubic-bezier(0.16, 1, 0.3, 1) both vt-fade reverse,
+    var(--duration-move, 300ms) cubic-bezier(0.16, 1, 0.3, 1) both vt-slide reverse;
+}
+::view-transition-new(.nav-forward) {
+  --slide-offset: 40px;
+  animation:
+    var(--duration-enter, 210ms) cubic-bezier(0.16, 1, 0.3, 1) var(--duration-exit, 150ms) both
+      vt-fade,
+    var(--duration-move, 300ms) cubic-bezier(0.16, 1, 0.3, 1) both vt-slide;
+}
+
+::view-transition-old(.nav-back) {
+  --slide-offset: 40px;
+  animation:
+    var(--duration-exit, 150ms) cubic-bezier(0.16, 1, 0.3, 1) both vt-fade reverse,
+    var(--duration-move, 300ms) cubic-bezier(0.16, 1, 0.3, 1) both vt-slide reverse;
+}
+::view-transition-new(.nav-back) {
+  --slide-offset: -40px;
+  animation:
+    var(--duration-enter, 210ms) cubic-bezier(0.16, 1, 0.3, 1) var(--duration-exit, 150ms) both
+      vt-fade,
+    var(--duration-move, 300ms) cubic-bezier(0.16, 1, 0.3, 1) both vt-slide;
+}
+
+/* Persistent Header Isolation — keeps sticky glass navigation anchored without flicker */
+::view-transition-group(persistent-header) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(persistent-header),
+::view-transition-new(persistent-header) {
+  animation: none;
+}
+
+/* Reduced Motion Override for View Transitions */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+  }
+}
+
+/* ==========================================================================
+   RADIX ACCORDION & WORKBENCH MOTION UTILITIES
+   ========================================================================== */
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+.accordion-content[data-state='open'] {
+  animation: accordion-down 200ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.accordion-content[data-state='closed'] {
+  animation: accordion-up 150ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+/* Audio Waveform Equalizer Animations */
+@keyframes waveform-bounce {
+  0%,
+  100% {
+    transform: scaleY(0.25);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.animate-waveform-1 {
+  animation: waveform-bounce 0.75s ease-in-out infinite alternate;
+  transform-origin: bottom;
+}
+.animate-waveform-2 {
+  animation: waveform-bounce 0.55s ease-in-out infinite alternate 0.15s;
+  transform-origin: bottom;
+}
+.animate-waveform-3 {
+  animation: waveform-bounce 0.85s ease-in-out infinite alternate 0.3s;
+  transform-origin: bottom;
+}
+.animate-waveform-4 {
+  animation: waveform-bounce 0.65s ease-in-out infinite alternate 0.45s;
+  transform-origin: bottom;
+}
+
+/* 3D Perspective Card Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* ==========================================================================
+   LENIS SMOOTH SCROLL INTEGRATION
+   ========================================================================== */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   HARDWARE INSET WELLS & TACTILE UTILITIES
+   ========================================================================== */
+/* Hardware Inset Wells */
+.well-inset {
+  background-color: var(--surface-panel-subtle);
+  border: 1px solid var(--border-subtle);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.well-inset-elevated {
+  background-color: var(--surface-panel);
+  border: 1px solid var(--border-strong);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Knurled Metal / Stepped Switch Pattern */
+.knurled-texture {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.05) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* Laser-Etched Circuit Trace (Subtle Static Vector Glow) */
+.laser-trace-glow {
+  stroke-dasharray: 6 3;
+  opacity: 0.85;
+}
+
+/* Tactile Physical Button Click Reaction (Emil Kowalski Standard: scale 0.97 on active) */
+.btn-tactile {
+  box-shadow:
+    0 2px 0 rgba(0, 0, 0, 0.6),
+    0 4px 12px rgba(46, 252, 194, 0.2);
+  transition:
+    transform 0.12s cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 0.12s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.btn-tactile:active {
+  transform: scale(0.97) translateY(1px);
+  box-shadow:
+    0 0 0 rgba(0, 0, 0, 0.6),
+    0 1px 3px rgba(46, 252, 194, 0.1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accordion-content[data-state='open'],
+  .accordion-content[data-state='closed'] {
+    animation-duration: 0.01ms !important;
+  }
+  .btn-tactile:active {
+    transform: none !important;
+  }
+}
+
+/* ==========================================================================
+   EDITORIAL PROSE STYLES
+   ========================================================================== */
+.prose-editorial {
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+}
+
+.prose-editorial h2 {
+  font-family: var(--font-display);
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+}
+
+.prose-editorial h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+.prose-editorial p {
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.prose-editorial strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.prose-editorial a {
+  color: var(--accent-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.15s ease;
+}
+
+.prose-editorial a:hover {
+  color: var(--accent-hover);
+}
+
+/* ==========================================================================
+   MINIMALIST UI PROTOCOL UTILITIES
+   Deep obsidian surfaces, flat bento architecture, spot jewel accents, faux-OS
+   ========================================================================== */
+
+/* Washed-out spot pastels calibrated for dark theme */
+.badge-pastel-red {
+  background-color: rgba(248, 113, 113, 0.12);
+  color: #f87171;
+  border: 1px solid rgba(248, 113, 113, 0.25);
+}
+
+.badge-pastel-blue {
+  background-color: rgba(147, 197, 253, 0.12);
+  color: #93c5fd;
+  border: 1px solid rgba(147, 197, 253, 0.25);
+}
+
+.badge-pastel-green {
+  background-color: rgba(52, 211, 153, 0.12);
+  color: #34d399;
+  border: 1px solid rgba(52, 211, 153, 0.25);
+}
+
+.badge-pastel-yellow {
+  background-color: rgba(251, 191, 36, 0.12);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.25);
+}
+
+/* Faux-OS Window Chrome */
+.window-chrome {
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  background-color: var(--surface-panel);
+  overflow: hidden;
+}
+
+.window-chrome-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.window-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.window-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Physical Micro-Keystroke UI */
+kbd.key-cap {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--border-strong);
+  background-color: var(--surface-panel-elevated);
+  color: var(--text-primary);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+  user-select: none;
+}
+
+/* ==========================================================================
+   KINETIC ACCENT RING (Hero Headline)
+   ========================================================================== */
+@keyframes drawKineticRing {
+  0% {
+    stroke-dashoffset: 720;
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.85;
+  }
+}
+
+.kinetic-accent-ring {
+  stroke-dasharray: 720;
+  stroke-dashoffset: 720;
+  animation: drawKineticRing 1.3s cubic-bezier(0.23, 1, 0.32, 1) 0.25s forwards;
+  will-change: stroke-dashoffset, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kinetic-accent-ring {
+    animation: none;
+    stroke-dashoffset: 0;
+    opacity: 0.85;
+  }
+}
+
+/* ==========================================================================
+   SECTION 4: KINETIC WAVE MARQUEE (Off-Main-Thread GPU Acceleration)
+   Undulating ribbon separating Hero Command Stage from Capability Arc.
+   Linear velocity (~18-24s cycle per segment, 40s loop across 2 segments).
+   ========================================================================== */
+@keyframes kineticWaveMarquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.kinetic-wave-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: kineticWaveMarquee 40s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kinetic-wave-track {
+    animation: none !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+}
+/* ==========================================================================
+   SECTION 5: AUDENS-INSPIRED CAPABILITY BENTO & MICRO-VIGNETTES
+   Snappy transitions, 3D flip cards, and semantic progressive disclosure drawers.
+   ========================================================================== */
+.bento-drawer-grid {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 250ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.bento-drawer-grid[data-expanded='true'] {
+  grid-template-rows: 1fr;
+}
+
+.bento-drawer-content {
+  overflow: hidden;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bento-drawer-grid {
+    transition: none !important;
+  }
+}
+
+/* ==========================================================================
+   AUDENS.AI SIGNATURE COMPONENT SUITE
+   Buttons, Capsule Pill Navigation, Ledgers, Stepflow, Nextrail, Gradient Cards
+   ========================================================================== */
+
+/* Buttons & Tactile CTAs */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  border-radius: var(--r-pill);
+  transition: transform 0.15s var(--ease), background 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease);
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn--solid {
+  background: var(--pine);
+  color: var(--bone);
+  border: 1.5px solid transparent;
+}
+
+.btn--solid:hover {
+  background: var(--forest);
+}
+
+.btn--mint {
+  background: var(--mint);
+  color: var(--pine);
+  border: 1.5px solid transparent;
+  font-weight: 700;
+}
+
+.btn--mint:hover {
+  background: #19d79e;
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--pine);
+  border: 1.5px solid var(--pine-20);
+}
+
+.btn--ghost:hover {
+  border-color: var(--pine-50);
+}
+
+.btn__hand {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  pointer-events: none;
+  transition: transform 0.25s var(--ease-bounce);
+}
+
+.btn:hover .btn__hand {
+  transform: rotate(14deg) scale(1.1);
+}
+
+/* Floating Nav Capsule */
+.navshell {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.navpill {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 66px;
+  margin-inline: auto;
+  padding: 0 14px 0 22px;
+  border-radius: var(--r-pill);
+  background: rgba(255, 253, 247, 0.95);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(7, 41, 41, 0.14);
+  box-shadow: 0 8px 30px -4px rgba(7, 41, 41, 0.10), 0 2px 6px -1px rgba(7, 41, 41, 0.05);
+  transition: height 0.3s var(--ease), background 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
+  position: relative;
+}
+
+.nav-progress {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 0;
+  height: 2px;
+  background: var(--mint);
+  transform-origin: left;
+  transform: scaleX(0);
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* The Sector Ledger */
+.ledger {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.ledger__row {
+  display: grid;
+  grid-template-columns: 48px 1fr auto 32px;
+  gap: 20px;
+  align-items: center;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  color: inherit;
+  transition: padding-left 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+.ledger__row:hover {
+  padding-left: 8px;
+}
+
+.ledger__row:hover .ledger__arrow {
+  transform: translateX(6px);
+  color: var(--mint);
+}
+
+.ledger__arrow {
+  display: inline-flex;
+  transition: transform 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+/* Stepflow Process Rail */
+.stepflow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 24px;
+  position: relative;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.stepflow__step {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stepflow__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.stepflow__node {
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: var(--flow-tone, var(--mint));
+  color: var(--pine);
+}
+
+.stepflow__link {
+  flex: 1;
+  height: 1.5px;
+  background: var(--pine-20);
+}
+
+.stepflow__copy {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--bone);
+}
+
+/* Nextrail */
+.nextrail {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+  list-style: none;
+  padding: 0;
+}
+
+.nextrail__step {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 16px;
+  align-items: baseline;
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+.nextrail__n {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--mint-ink);
+}
+
+/* Rotating Conic Gradient Card */
+@keyframes rotateConic {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.gradient-card {
+  position: relative;
+  border-radius: var(--r-card);
+  overflow: hidden;
+  padding: 2px;
+}
+
+.gradient-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    var(--mint),
+    var(--sky),
+    var(--lavender),
+    var(--pink),
+    var(--butter),
+    var(--mint)
+  );
+  animation: rotateConic 12s linear infinite;
+  z-index: 0;
+}
+
+.gradient-card__inner {
+  position: relative;
+  z-index: 1;
+  background: var(--surface);
+  color: var(--pine);
+  border-radius: calc(var(--r-card) - 2px);
+  padding: clamp(32px, 5vw, 64px);
+}
+
+/* Typing Dots Animation (Audens Chat Slots) */
+@keyframes typingBounce {
+  0%, 80%, 100% {
+    transform: scale(0.6);
+    opacity: 0.35;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.typing-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.typing-dots i {
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: currentColor;
+  display: inline-block;
+  animation: typingBounce 1.4s infinite ease-in-out both;
+}
+
+.typing-dots i:nth-child(1) {
+  animation-delay: -0.32s;
+}
+.typing-dots i:nth-child(2) {
+  animation-delay: -0.16s;
+}
+.typing-dots i:nth-child(3) {
+  animation-delay: 0s;
+}
+
+/* Aurora Orbs */
+.aurora__orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  pointer-events: none;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gradient-card::before {
+    animation: none !important;
+  }
+  .typing-dots i {
+    animation: none !important;
+    opacity: 0.8 !important;
+    transform: none !important;
+  }
+}
+
+/* ==========================================================================
+   DARK THEME TOKENS — Deep Obsidian Pine & Luminescent Emerald
+   Canvas: deep botanical obsidian pine (#051313).
+   Cards: elevated obsidian spruce (#0A2020 / #0F2C2C).
+   Typography: crisp porcelain bone (#F5F5F0).
+   Borders: luminescent emerald hairlines (rgba(30, 244, 180, 0.14)).
+   ========================================================================== */
+html.dark,
+.dark {
+  --pine: #F4F6FC;
+  --forest: #0D1226;
+  --porcelain: #060919;
+  --bone: #F4F6FC;
+  --surface: #0D1226;
+
+  --pine-70: rgba(244, 246, 252, 0.78);
+  --pine-50: rgba(244, 246, 252, 0.52);
+  --pine-20: rgba(244, 246, 252, 0.20);
+  --pine-12: rgba(244, 246, 252, 0.12);
+  --pine-08: rgba(244, 246, 252, 0.08);
+
+  --bone-70: rgba(244, 246, 252, 0.78);
+  --bone-50: rgba(244, 246, 252, 0.52);
+  --bone-20: rgba(244, 246, 252, 0.20);
+
+  --line: rgba(99, 132, 255, 0.10);
+  --border-subtle: rgba(99, 132, 255, 0.08);
+  --border-strong: rgba(99, 132, 255, 0.18);
+  --border-hairline: rgba(99, 132, 255, 0.10);
+
+  --surface-canvas: #060919;
+  --surface-panel: #0D1226;
+  --surface-panel-elevated: #131A36;
+  --surface-panel-subtle: rgba(255, 255, 255, 0.04);
+  --surface-hover: rgba(255, 255, 255, 0.08);
+  --surface-active: rgba(255, 255, 255, 0.12);
+
+  --text-primary: #F4F6FC;
+  --text-secondary: #A8B6D8;
+  --text-muted: #6C7D9E;
+
+  --bg-page: #060919;
+  --bg-elevated: #0D1226;
+  --bg-sunken: #040610;
+  --bg-header: rgba(6, 9, 25, 0.90);
+  --ds-background-100: #060919;
+  --ds-background-200: #0D1226;
+  --ds-text-100: #F4F6FC;
+}
+
+html.dark body {
+  background-color: #060919 !important;
+  color: #F4F6FC !important;
+}
+
+/* Background overrides for dark mode surfaces */
+html.dark [class*="bg-[#f5f5f0]"] {
+  background-color: #060919 !important;
+}
+
+html.dark [class*="bg-[#fffdf7]"] {
+  background-color: #0D1226 !important;
+  border-color: rgba(99, 132, 255, 0.12) !important;
+}
+
+html.dark [class*="bg-[#072929]"] {
+  background-color: #0D1226 !important;
+  border-color: rgba(99, 132, 255, 0.12) !important;
+}
+
+html.dark .bg-white {
+  background-color: #0D1226 !important;
+}
+
+html.dark .text-primary-800,
+html.dark .text-forest {
+  color: #F4F6FC !important;
+}
+
+/* Primary buttons in dark mode: Pale Orchid (#D4C5F9) with Midnight Navy text (#03091E) at 14.2:1 AAA */
+html.dark .btn--solid,
+html.dark .btn[class*="bg-[var(--pine)]"],
+html.dark [class*="btn"][class*="bg-[var(--pine)]"] {
+  background-color: #D4C5F9 !important;
+  color: #03091E !important;
+  box-shadow: 0 4px 20px -2px rgba(212, 197, 249, 0.25) !important;
+}
+
+html.dark .btn--solid svg,
+html.dark .btn[class*="bg-[var(--pine)]"] svg,
+html.dark [class*="btn"][class*="bg-[var(--pine)]"] svg {
+  color: #03091E !important;
+}
+
+html.dark .btn--ghost,
+html.dark .btn[class*="btn--ghost"],
+html.dark [class*="btn"][class*="btn--ghost"] {
+  background-color: #0D1226 !important;
+  color: #F4F6FC !important;
+  border-color: rgba(99, 132, 255, 0.20) !important;
+}
+
+html.dark .btn--ghost svg,
+html.dark .btn[class*="btn--ghost"] svg,
+html.dark [class*="btn"][class*="btn--ghost"] svg {
+  color: #B278E3 !important;
+}
+
+/* Header dock in dark mode */
+html.dark header [class*="max-w-5xl"] {
+  background-color: rgba(6, 9, 25, 0.92) !important;
+  border-color: rgba(255, 255, 255, 0.10) !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6) !important;
+}
+
+html.dark header nav a {
+  color: #A8B6D8 !important;
+}
+
+html.dark header nav a:hover {
+  color: #FFFFFF !important;
+}
+
+html.dark header nav a[aria-current="page"] {
+  background-color: transparent !important;
+  color: #FFFFFF !important;
+}
+
+/* Cards & Stages in dark mode */
+html.dark [class*="border-[var(--line)]"] {
+  border-color: rgba(99, 132, 255, 0.12) !important;
+}
+
+/* Headings and body copy */
+html.dark h1,
+html.dark h2,
+html.dark h3,
+html.dark h4,
+html.dark h5,
+html.dark h6 {
+  color: #F4F6FC !important;
+}
+
+/* Dark Mode Form Inputs, Buttons & Interactive States */
+html.dark input,
+html.dark textarea,
+html.dark select {
+  background-color: #090E20 !important;
+  color: #F4F6FC !important;
+  border-color: rgba(99, 132, 255, 0.18) !important;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: rgba(244, 246, 252, 0.4) !important;
+}
+
+html.dark input:focus,
+html.dark textarea:focus,
+html.dark select:focus {
+  border-color: #B278E3 !important;
+  box-shadow: 0 0 0 2px rgba(178, 120, 227, 0.25) !important;
+}
+
+html.dark button[type="submit"] {
+  background-color: #D4C5F9 !important;
+  color: #03091E !important;
+}
+
+html.dark button[type="submit"] svg {
+  color: #03091E !important;
+}
+
+/* Operating Rituals tabs */
+html.dark [role="tablist"] button[aria-selected="false"],
+html.dark button[role="tab"][aria-selected="false"],
+html.dark [class*="bg-[#e8e8e2]"] {
+  background-color: #090E20 !important;
+  color: rgba(244, 246, 252, 0.6) !important;
+  border-color: rgba(99, 132, 255, 0.1) !important;
+}
+
+html.dark [role="tablist"] button[aria-selected="false"]:hover,
+html.dark button[role="tab"][aria-selected="false"]:hover {
+  background-color: #131A36 !important;
+  color: #FFFFFF !important;
+}
+
+html.dark [role="tablist"] button[aria-selected="true"],
+html.dark button[role="tab"][aria-selected="true"] {
+  background-color: #131A36 !important;
+  color: #FFFFFF !important;
+  border-color: rgba(178, 120, 227, 0.35) !important;
+}
+
+html.dark #operating-rituals [class*="rounded-b-3xl"],
+html.dark [class*="rounded-b-3xl"][class*="rounded-tr-3xl"] {
+  background-color: #0D1226 !important;
+  border-color: rgba(99, 132, 255, 0.16) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Bilingual Toggle */
+.bilingual-toggle-thumb {
+  background-color: #040A5C !important;
+}
+
+html.dark .bilingual-toggle-thumb {
+  background-color: #FFFFFF !important;
+}
+
+.bilingual-toggle-btn.bilingual-active,
+.bilingual-toggle-btn[aria-checked="true"] {
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+}
+
+html.dark .bilingual-toggle-btn.bilingual-active,
+html.dark .bilingual-toggle-btn[aria-checked="true"] {
+  color: #040A5C !important;
+  font-weight: 700 !important;
+}
+
+html.dark .bilingual-toggle-btn[aria-checked="false"] {
+  color: rgba(244, 246, 252, 0.75) !important;
+}
+
+html.dark .bilingual-toggle-btn[aria-checked="false"]:hover {
+  color: #FFFFFF !important;
+}
+
+/* Hero swoosh underline animation */
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.hero-swoosh-path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 0.95s 0.2s cubic-bezier(0.3, 0.6, 0.2, 1) forwards;
+}
+
+/* ==========================================================================
+   Motion System & Micro-Interactions (Impeccable Animate)
+   ========================================================================== */
+:root {
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-cubic: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.card-interactive {
+  transition: transform 0.28s var(--ease-out-expo), box-shadow 0.28s var(--ease-out-expo), border-color 0.28s var(--ease-out-expo);
+  will-change: transform;
+}
+
+.card-interactive:hover {
+  transform: translateY(-4px);
+}
+
+.glow-border-mint {
+  transition: border-color 0.28s var(--ease-out-expo), box-shadow 0.28s var(--ease-out-expo);
+}
+
+.glow-border-mint:hover, .glow-border-brand:hover {
+  border-color: rgba(178, 120, 227, 0.45) !important;
+  box-shadow: 0 12px 32px -8px rgba(178, 120, 227, 0.18), 0 0 16px 0 rgba(6, 164, 224, 0.12) !important;
+}
+
+.glow-border-violet {
+  transition: border-color 0.28s var(--ease-out-expo), box-shadow 0.28s var(--ease-out-expo);
+}
+
+.glow-border-violet:hover {
+  border-color: rgba(122, 92, 255, 0.45) !important;
+  box-shadow: 0 12px 32px -8px rgba(122, 92, 255, 0.2), 0 0 16px 0 rgba(122, 92, 255, 0.15) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-interactive:hover {
+    transform: none !important;
+  }
+}
