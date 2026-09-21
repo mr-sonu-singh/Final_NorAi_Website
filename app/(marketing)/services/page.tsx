@@ -18,9 +18,9 @@ export default function ServicesPage() {
     <>
       <JsonLd schema={getServiceJsonLd()} />
 
-      <main id="main-content" className="min-h-screen font-sans bg-[#f5f5f0] dark:bg-[#03140f] text-[var(--pine)] dark:text-[#eaf4f0] selection:bg-[#1ef4b4] selection:text-[#03140f]">
+      <main id="main-content" className="min-h-screen font-sans bg-[#f5f5f0] dark:bg-[#060919] text-[var(--pine)] dark:text-[#F4F6FC] selection:bg-[#B278E3]/30 selection:text-[#060919]">
         {/* CINEMATIC HERO CHAMBER WITH COSMIC OBSERVATORY BACKDROP */}
-        <section className="relative min-h-[65vh] lg:min-h-[72vh] flex flex-col justify-center overflow-hidden bg-[#04130f] text-[#eaf4f0] border-b border-white/10 pt-28 pb-16 sm:pt-36 sm:pb-24">
+        <section className="relative min-h-[65vh] lg:min-h-[72vh] flex flex-col justify-center overflow-hidden bg-[#060919] text-[#F4F6FC] border-b border-white/10 pt-28 pb-16 sm:pt-36 sm:pb-24">
           <SubpageHeroAtmosphere
             imageSrc="/images/bg-services-observatory.webp"
             imageAlt="Cosmic Engineering Observatory & Architectural Horizon"
@@ -31,17 +31,17 @@ export default function ServicesPage() {
           <Container size="default" className="relative z-10 max-w-[1240px] mx-auto px-4 sm:px-6">
             <div className="max-w-3xl space-y-6 text-left">
               {/* Architecture Eyebrow */}
-              <span className="text-[11px] sm:text-xs font-mono tracking-[0.16em] uppercase text-[#1ef4b4] font-semibold block mb-2">
+              <span className="text-[11px] sm:text-xs font-mono tracking-[0.16em] uppercase text-[#38BDF8] font-semibold block mb-2">
                 SOLUTIONS &amp; PRACTICE CAPABILITIES · 4 PILLARS
               </span>
 
               {/* Bold Unified Display Headline */}
               <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold text-white leading-[1.04] tracking-[-0.035em]">
                 Pragmatic systems.{' '}
-                <span className="text-[#1ef4b4]">Built for real operations.</span>
+                <span className="text-[#38BDF8]">Built for real operations.</span>
               </h1>
 
-              <p className="text-lg sm:text-xl text-[#a8beb4] leading-relaxed max-w-2xl font-normal text-pretty">
+              <p className="text-lg sm:text-xl text-[#A8B6D8] leading-relaxed max-w-2xl font-normal text-pretty">
                 We build production-ready machine intelligence, high-performance web software, and spatial computing environments. Clean architectures, open standards, and 100% client code ownership.
               </p>
             </div>
@@ -52,7 +52,7 @@ export default function ServicesPage() {
         <section className="py-20 sm:py-28 border-b border-[var(--line)]">
           <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
             <div className="max-w-2xl mb-12 space-y-3 text-left">
-              <span className="text-xs uppercase font-mono tracking-widest text-[var(--mint-ink)] dark:text-[#1ef4b4] font-bold block">
+              <span className="text-xs uppercase font-mono tracking-widest text-[var(--mint-ink)] dark:text-[#38BDF8] font-bold block">
                 INTERACTIVE PRACTICE MATRIX
               </span>
               <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-[var(--pine)] dark:text-white tracking-tight">
@@ -68,10 +68,10 @@ export default function ServicesPage() {
         </section>
 
         {/* SECTION: 3-STEP STUDIO ENGAGEMENT TIMELINE */}
-        <section className="py-20 sm:py-28 bg-[#fffdf7] dark:bg-[#04130f] border-b border-[var(--line)] dark:border-white/10">
+        <section className="py-20 sm:py-28 bg-[#fffdf7] dark:bg-[#060919] border-b border-[var(--line)] dark:border-white/10">
           <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
             <div className="max-w-2xl mb-16 space-y-3 text-left">
-              <span className="text-xs uppercase font-mono tracking-widest text-[var(--mint-ink)] dark:text-[#1ef4b4] font-bold block">
+              <span className="text-xs uppercase font-mono tracking-widest text-[var(--mint-ink)] dark:text-[#38BDF8] font-bold block">
                 HOW WE WORK WITH CLIENTS
               </span>
               <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-[var(--pine)] dark:text-white tracking-tight">

@@ -27,7 +27,7 @@ export function HeroLandscapeScene() {
 
   return (
     <div
-      className="absolute inset-0 overflow-hidden pointer-events-none select-none z-0 bg-[#04130f]"
+      className="absolute inset-0 overflow-hidden pointer-events-none select-none z-0 bg-[#060919]"
       aria-hidden="true"
     >
       {/* Base Cinematic Tree & Cosmic Aurora Backdrop */}
@@ -49,7 +49,7 @@ export function HeroLandscapeScene() {
 
       {/* Atmospheric Aurora Ambient Glow Filter */}
       <div
-        className="absolute inset-0 z-[1] mix-blend-screen opacity-40 pointer-events-none bg-[radial-gradient(ellipse_60%_40%_at_78%_75%,rgba(255,162,77,0.28),transparent_70%),radial-gradient(ellipse_50%_50%_at_25%_35%,rgba(30,244,180,0.18),transparent_70%)] animate-pulse"
+        className="absolute inset-0 z-[1] mix-blend-screen opacity-40 pointer-events-none bg-[radial-gradient(ellipse_60%_40%_at_78%_75%,rgba(255,162,77,0.28),transparent_70%),radial-gradient(ellipse_50%_50%_at_25%_35%,rgba(100,180,255,0.16),transparent_70%)] animate-pulse"
         style={{ animationDuration: '6s' }}
       />
 
@@ -64,8 +64,8 @@ export function HeroLandscapeScene() {
         className="absolute inset-0 z-[4] pointer-events-none"
         style={{
           background: `
-            linear-gradient(90deg, rgba(4, 19, 15, 0.94) 0%, rgba(4, 19, 15, 0.82) 32%, rgba(4, 19, 15, 0.35) 60%, rgba(4, 19, 15, 0) 82%),
-            linear-gradient(180deg, rgba(4, 19, 15, 0.70) 0%, rgba(4, 19, 15, 0) 25%, rgba(4, 19, 15, 0.65) 86%, rgba(4, 19, 15, 1) 100%)
+            linear-gradient(90deg, rgba(6, 9, 25, 0.96) 0%, rgba(6, 9, 25, 0.88) 36%, rgba(6, 9, 25, 0.40) 65%, rgba(6, 9, 25, 0) 85%),
+            linear-gradient(180deg, rgba(6, 9, 25, 0.70) 0%, rgba(6, 9, 25, 0) 25%, rgba(6, 9, 25, 0.65) 85%, rgba(6, 9, 25, 1) 100%)
           `,
         }}
       />

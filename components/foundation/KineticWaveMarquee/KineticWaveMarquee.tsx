@@ -48,10 +48,10 @@ export function KineticWaveMarquee({ className = '' }: KineticWaveMarqueeProps) 
                 key={idx}
                 className="flex items-center gap-8 sm:gap-12 shrink-0 font-display font-black text-2xl sm:text-4xl md:text-5xl text-[#f5f5f0] tracking-[-0.03em] whitespace-nowrap"
               >
-                <span className="hover:text-[#1ef4b4] transition-colors duration-200 cursor-default">
+                <span className="hover:text-[#38BDF8] transition-colors duration-200 cursor-default">
                   {item}
                 </span>
-                <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#1ef4b4] inline-block shrink-0 shadow-[0_0_10px_rgba(30,244,180,0.5)]" aria-hidden="true" />
+                <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#38BDF8] inline-block shrink-0 shadow-[0_0_10px_rgba(30,244,180,0.5)]" aria-hidden="true" />
               </div>
             ))}
           </div>
@@ -68,7 +68,7 @@ export function KineticWaveMarquee({ className = '' }: KineticWaveMarqueeProps) 
             key={idx}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/90"
           >
-            <span className="w-2 h-2 rounded-full bg-[#1ef4b4]" />
+            <span className="w-2 h-2 rounded-full bg-[#38BDF8]" />
             <span className="font-bold tracking-wider uppercase text-xs">
               {item}
             </span>

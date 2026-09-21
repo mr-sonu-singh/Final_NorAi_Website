@@ -500,7 +500,7 @@ export function ContactFormClient() {
               type="submit"
               disabled={submitting}
               aria-busy={submitting}
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--pine)] dark:bg-[#1ef4b4] px-6 py-3 font-sans text-[14px] font-semibold text-[var(--bone)] dark:text-[#031716] shadow-xs transition-[transform,background-color] duration-160 ease-out hover:bg-[var(--forest)] dark:hover:bg-[#1ef4b4]/90 active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--pine)] dark:bg-[#38BDF8] px-6 py-3 font-sans text-[14px] font-semibold text-[var(--bone)] dark:text-[#031716] shadow-xs transition-[transform,background-color] duration-160 ease-out hover:bg-[var(--forest)] dark:hover:bg-[#38BDF8]/90 active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer"
             >
               {submitting ? (
                 <>

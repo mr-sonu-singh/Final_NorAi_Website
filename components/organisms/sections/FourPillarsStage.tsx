@@ -129,12 +129,12 @@ export function FourPillarsStage() {
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="text-center max-w-3xl mx-auto mb-16 sm:mb-20 space-y-4"
         >
-          <span className="text-xs uppercase font-mono tracking-[0.16em] text-[var(--mint-ink)] dark:text-[#1ef4b4] font-bold block mb-3">
+          <span className="text-xs uppercase font-mono tracking-[0.16em] text-[var(--mint-ink)] dark:text-[#B278E3] font-bold block mb-3">
             4 Core Operational Pillars
           </span>
           <h2 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl text-[var(--pine)] tracking-tight leading-[1.08]">
             Complete capability. <br className="hidden sm:inline" />
-            <span className="text-[#06845A]">Unified engineering craft.</span>
+            <span className="text-[#0650AD]">Unified engineering craft.</span>
           </h2>
           <p className="text-[var(--pine)]/75 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
             From deterministic enterprise machine intelligence to grassroots youth upskilling in Ghazipur—every capability is built with zero fluff and complete ownership.
@@ -162,14 +162,14 @@ export function FourPillarsStage() {
                   className={cn(
                     'w-full text-left p-5 sm:p-6 rounded-2xl border transition-all duration-200 flex items-start gap-4 card-interactive group relative overflow-hidden',
                     isActive
-                      ? 'bg-white dark:bg-[#0a2020] border-[#1ef4b4]/60 dark:border-[#1ef4b4]/50 shadow-md ring-1 ring-[#1ef4b4]/20'
+                      ? 'bg-white dark:bg-[#0D1226] border-[#040A5C]/40 dark:border-[#B278E3]/50 shadow-md ring-1 ring-[#B278E3]/20'
                       : 'bg-white/60 dark:bg-[#071d1d]/60 border-[var(--line)] hover:bg-white dark:hover:bg-[#0a2020] hover:border-[var(--pine-20)] dark:hover:border-white/15'
                   )}
                 >
                   <div
                     className={cn(
                       'p-3 rounded-xl shrink-0 transition-transform duration-200 group-hover:scale-105',
-                      isActive ? 'bg-[var(--pine)] text-white dark:bg-[#1ef4b4] dark:text-[#04130f]' : 'bg-black/5 dark:bg-white/5 text-[var(--pine)]'
+                      isActive ? 'bg-[var(--pine)] text-white dark:bg-[#D4C5F9] dark:text-[#03091E]' : 'bg-black/5 dark:bg-white/5 text-[var(--pine)]'
                     )}
                   >
                     <Icon className="w-5 h-5" />
@@ -208,7 +208,7 @@ export function FourPillarsStage() {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.98, y: -8 }}
                 transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
-                className="rounded-3xl bg-[#072929] text-[#f5f5f0] p-8 sm:p-12 border border-white/10 shadow-2xl relative overflow-hidden min-h-[500px] flex flex-col justify-between"
+                className="rounded-3xl bg-[#0D1226] text-[#f5f5f0] p-8 sm:p-12 border border-white/10 shadow-2xl relative overflow-hidden min-h-[500px] flex flex-col justify-between"
               >
                 {/* Corner Mesh Glow */}
                 <div
@@ -219,7 +219,7 @@ export function FourPillarsStage() {
 
                 {/* Chassis Top Bar */}
                 <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/10 relative z-10">
-                  <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#1ef4b4]">
+                  <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#B278E3]">
                     {activePillar.tag}
                   </span>
                   <span className="font-mono text-xs font-semibold px-3 py-1 rounded-full bg-white/10 text-white border border-white/15">
@@ -233,7 +233,7 @@ export function FourPillarsStage() {
                     <h4 className="font-display font-extrabold text-2xl sm:text-3xl text-white mb-2 tracking-tight">
                       {activePillar.category}
                     </h4>
-                    <p className="text-[#1ef4b4] text-xs font-mono font-semibold uppercase tracking-wider mb-2">
+                    <p className="text-[#B278E3] text-xs font-mono font-semibold uppercase tracking-wider mb-2">
                       — {activePillar.thesis}
                     </p>
                     <p className="text-white/75 text-sm sm:text-base leading-relaxed max-w-xl">
@@ -249,7 +249,7 @@ export function FourPillarsStage() {
                     <ul className="space-y-2">
                       {activePillar.deliverables.map((del, idx) => (
                         <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-white/90">
-                          <CheckCircle2 className="w-4 h-4 text-[#1ef4b4] shrink-0 mt-0.5" />
+                          <CheckCircle2 className="w-4 h-4 text-[#38BDF8] shrink-0 mt-0.5" />
                           <span>{del}</span>
                         </li>
                       ))}
@@ -278,10 +278,10 @@ export function FourPillarsStage() {
                 <div className="pt-6 border-t border-white/10 relative z-10 flex items-center justify-between">
                   <Link
                     href="/services"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#1ef4b4] text-[#072929] font-bold text-sm hover:bg-white transition-all duration-160 ease-out shadow-md group active:scale-[0.98]"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D4C5F9] text-[#03091E] font-semibold text-sm hover:bg-[#E4CEF7] transition-all duration-160 ease-out shadow-md group active:scale-[0.98]"
                   >
                     <span>Explore {activePillar.category} Solutions</span>
-                    <ArrowRight className="w-4 h-4 text-[#072929] transition-transform duration-200 group-hover:translate-x-1" />
+                    <ArrowRight className="w-4 h-4 text-[#03091E] transition-transform duration-200 group-hover:translate-x-1" />
                   </Link>
                   <span className="text-xs font-mono text-white/40 hidden sm:inline-block">
                     NO VENDOR LOCK-IN

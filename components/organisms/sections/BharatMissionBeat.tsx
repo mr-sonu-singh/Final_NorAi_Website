@@ -33,7 +33,7 @@ export function BharatMissionBeat() {
   return (
     <section
       id="bharat-mission"
-      className="py-24 sm:py-32 bg-[#072929] text-[var(--bone)] border-b border-white/10 relative overflow-hidden scroll-mt-24"
+      className="py-24 sm:py-32 bg-[#060919] text-[var(--bone)] border-b border-white/10 relative overflow-hidden scroll-mt-24"
     >
       {/* Background Subtle Dot Matrix */}
       <div

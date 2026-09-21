@@ -131,7 +131,7 @@ export function Header({
       <div
         className={cn(
           'mx-auto max-w-5xl rounded-2xl px-4 sm:px-6 flex items-center justify-between border transition-all duration-300 shadow-sm',
-          'bg-[#fffdf7]/95 dark:bg-[#0a2020]/95 backdrop-blur-xl border-[var(--line)] text-[var(--pine)]',
+          'bg-[#FFFFFF]/95 dark:bg-[#060919]/95 backdrop-blur-xl border-black/10 dark:border-white/10 text-[#040A5C] dark:text-[#F4F6FC]',
           isScrolled && 'shadow-lg border-[var(--pine-20)]',
         )}
         style={{ height: '66px' }}
@@ -162,10 +162,10 @@ export function Header({
                   href={item.href}
                   variant="unstyled"
                   className={cn(
-                    'relative px-4 py-2 text-sm font-medium no-underline rounded-xl font-sans transition-[color,background-color,transform] duration-160 ease-out active:scale-[0.97]',
+                    'relative px-4 py-2 text-sm font-medium no-underline rounded-xl font-sans transition-all duration-160 ease-out active:scale-[0.97]',
                     isActive
-                      ? 'bg-[var(--mint)] text-[#072929] font-semibold shadow-xs'
-                      : 'text-[var(--pine)]/85 hover:text-[var(--pine)] hover:bg-[var(--pine-08)]',
+                      ? 'text-[#040A5C] dark:text-white font-semibold after:absolute after:bottom-1 after:left-3 after:right-3 after:h-[2px] after:bg-gradient-to-r after:from-[#06A4E0] after:via-[#4A2BD8] after:to-[#9B13F0] after:rounded-full'
+                      : 'text-[#2D3758] dark:text-[#A8B6D8] hover:text-[#040A5C] dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5',
                   )}
                   aria-current={isActive ? 'page' : undefined}
                 >
@@ -252,7 +252,7 @@ export function Header({
             animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
             exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -6, scale: 0.96 }}
             transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
-            className="pointer-events-auto mx-auto max-w-5xl mt-2 rounded-[22px] border border-[var(--line)] bg-[#fffdf7]/98 dark:bg-[#0a2020]/98 backdrop-blur-2xl p-5 shadow-2xl lg:hidden text-[var(--pine)]"
+            className="pointer-events-auto mx-auto max-w-5xl mt-2 rounded-[22px] border border-[var(--line)] bg-[#fffdf7]/98 dark:bg-[#060919]/98 backdrop-blur-2xl p-5 shadow-2xl lg:hidden text-[var(--pine)]"
           >
             <div className="flex flex-col gap-2">
               {dynamicNavItems.map((item) => {
@@ -267,8 +267,8 @@ export function Header({
                     className={cn(
                       'px-4 py-3 text-base font-medium rounded-xl border-b border-[var(--line)]/50 transition-[background-color,transform] duration-160 ease-out active:scale-[0.97]',
                       isActive
-                        ? 'bg-[var(--mint)] text-[#072929] font-semibold'
-                        : 'text-[var(--pine)] hover:bg-[var(--pine-08)]',
+                        ? 'bg-[#040A5C]/10 dark:bg-[#D4C5F9]/15 text-[#040A5C] dark:text-white font-semibold'
+                        : 'text-[#2D3758] dark:text-[#A8B6D8] hover:bg-black/5 dark:hover:bg-white/5',
                     )}
                     aria-current={isActive ? 'page' : undefined}
                   >

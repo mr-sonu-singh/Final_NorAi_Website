@@ -77,7 +77,7 @@ export function DistrictImpactRadar() {
   );
 
   return (
-    <div className="rounded-[22px] bg-[#072929] text-[#f5f5f0] border border-[var(--line)] p-6 sm:p-10 shadow-xl overflow-hidden relative">
+    <div className="rounded-[22px] bg-[#0D1226] text-[#f5f5f0] border border-[var(--line)] p-6 sm:p-10 shadow-xl overflow-hidden relative">
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-[var(--pine-20)] pb-8">
         <div className="space-y-2 text-left">
           <span className="text-xs font-mono uppercase tracking-wider text-[var(--mint)] font-bold block mb-2">

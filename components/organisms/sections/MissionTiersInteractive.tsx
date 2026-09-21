@@ -28,7 +28,7 @@ export const COMMUNITY_TIERS: CommunityTier[] = [
     desc: 'Bringing Hindi voice interfaces, government welfare navigation, and digital fraud prevention to village elders, self-help groups, and local tradespeople.',
     metric: 'Vernacular Delivery · Localized Learning',
     icon: Users,
-    accent: '#1ef4b4',
+    accent: '#38BDF8',
     accentGlow: 'rgba(30,244,180,0.15)',
     highlights: [
       'Hindi voice prompts for crop advisory & mandi rates',
@@ -98,7 +98,7 @@ export function MissionTiersInteractive() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.3, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="rounded-3xl bg-[#fffdf7] dark:bg-[#04130f] border border-[var(--line)] dark:border-white/15 p-7 sm:p-8 flex flex-col justify-between space-y-6 shadow-sm hover:shadow-xl transition-all duration-300 group relative overflow-hidden"
+            className="rounded-3xl bg-[#fffdf7] dark:bg-[#060919] border border-[var(--line)] dark:border-white/15 p-7 sm:p-8 flex flex-col justify-between space-y-6 shadow-sm hover:shadow-xl transition-all duration-300 group relative overflow-hidden"
           >
 
 

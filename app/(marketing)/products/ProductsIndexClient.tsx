@@ -58,9 +58,9 @@ export const CATALOG_TOOLS: CatalogToolItem[] = [
       'Custom skill vector weighting and experience thresholds',
       'ATS-compatible structured JSON export',
     ],
-    accent: '#1ef4b4',
-    badgeBg: 'bg-[#1ef4b4]/15',
-    badgeText: 'text-[#1ef4b4]',
+    accent: '#38BDF8',
+    badgeBg: 'bg-[#38BDF8]/15',
+    badgeText: 'text-[#38BDF8]',
     telemetryStream: {
       inputSample: '540 Engineering Resumes (Batch #0482)',
       engine: 'pgvector In-Memory Cosine Similarity',
@@ -199,9 +199,9 @@ export function ProductsIndexClient() {
   };
 
   return (
-    <div className="min-h-screen font-sans bg-[#f5f5f0] dark:bg-[#03140f] text-[var(--pine)] dark:text-[#eaf4f0] selection:bg-[#1ef4b4] selection:text-[#03140f]">
+    <div className="min-h-screen font-sans bg-[#f5f5f0] dark:bg-[#060919] text-[var(--pine)] dark:text-[#F4F6FC] selection:bg-[#B278E3]/30 selection:text-[#060919]">
       {/* CINEMATIC HERO CHAMBER WITH CYBERNETIC OBSERVATION DECK BACKDROP */}
-      <section className="relative min-h-[65vh] lg:min-h-[72vh] flex flex-col justify-center overflow-hidden bg-[#04130f] text-[#eaf4f0] border-b border-white/10 pt-28 pb-16 sm:pt-36 sm:pb-24">
+      <section className="relative min-h-[65vh] lg:min-h-[72vh] flex flex-col justify-center overflow-hidden bg-[#060919] text-[#F4F6FC] border-b border-white/10 pt-28 pb-16 sm:pt-36 sm:pb-24">
         <SubpageHeroAtmosphere
           imageSrc="/images/bg-products-cyberdeck.webp"
           imageAlt="Cybernetic Observation Deck overlooking Aurora Horizon"
@@ -212,17 +212,17 @@ export function ProductsIndexClient() {
         <Container size="default" className="relative z-10 max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="max-w-3xl space-y-6 text-left">
             {/* Identity Eyebrow */}
-            <span className="text-[11px] sm:text-xs font-mono tracking-[0.16em] uppercase text-[#1ef4b4] font-semibold block mb-2">
+            <span className="text-[11px] sm:text-xs font-mono tracking-[0.16em] uppercase text-[#38BDF8] font-semibold block mb-2">
               APPLIED R&amp;D &amp; PROTOTYPES · PILLAR 04
             </span>
 
             {/* Bold Unified Display Headline */}
             <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold text-white leading-[1.04] tracking-[-0.035em]">
               Four applied tools.{' '}
-              <span className="text-[#1ef4b4]">Built to solve real problems.</span>
+              <span className="text-[#38BDF8]">Built to solve real problems.</span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-[#a8beb4] leading-relaxed max-w-2xl font-normal text-pretty">
+            <p className="text-lg sm:text-xl text-[#A8B6D8] leading-relaxed max-w-2xl font-normal text-pretty">
               Living proof of our Research &amp; Innovation pillar. Functional applications developed by our engineering practice and student cohorts to solve operational, academic, and civic friction.
             </p>
           </div>
@@ -253,7 +253,7 @@ export function ProductsIndexClient() {
                   className={cn(
                     'px-4 py-2 text-xs sm:text-sm font-medium rounded-lg transition-all duration-200 whitespace-nowrap cursor-pointer active:scale-[0.98]',
                     isSelected
-                      ? 'bg-[#1ef4b4] text-[#03140f] shadow-sm font-bold'
+                      ? 'bg-[#38BDF8] text-[#060919] shadow-sm font-bold'
                       : 'bg-[#fffdf7] dark:bg-white/5 text-[var(--pine)] dark:text-white/80 hover:bg-[var(--bone)] border border-[var(--line)]'
                   )}
                 >
@@ -266,7 +266,7 @@ export function ProductsIndexClient() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Left Column: Interactive Tool Ledger with Spring Pill */}
             <div className="lg:col-span-5 space-y-3 text-left">
-              <span className="font-mono text-xs uppercase tracking-widest text-[var(--mint-ink)] dark:text-[#1ef4b4] font-bold block mb-3">
+              <span className="font-mono text-xs uppercase tracking-widest text-[var(--mint-ink)] dark:text-[#38BDF8] font-bold block mb-3">
                 SELECT INSTRUMENT (01–04)
               </span>
 
@@ -284,15 +284,15 @@ export function ProductsIndexClient() {
                       className={cn(
                         'w-full p-5 rounded-2xl transition-all duration-200 cursor-pointer text-left border relative overflow-hidden group block',
                         isSelected
-                          ? 'bg-[#04130f] text-white border-white/20 shadow-xl ring-1 ring-white/15'
-                          : 'bg-[#fffdf7] dark:bg-[#072929]/50 text-[var(--pine)] dark:text-white border-[var(--line)] hover:border-[#1ef4b4]/40 hover:bg-[#fffdf7]/90'
+                          ? 'bg-[#060919] text-white border-white/20 shadow-xl ring-1 ring-white/15'
+                          : 'bg-[#fffdf7] dark:bg-[#0D1226]/50 text-[var(--pine)] dark:text-white border-[var(--line)] hover:border-[#B278E3]/40 hover:bg-[#fffdf7]/90'
                       )}
                     >
                       {/* Spring-Animated Active Indicator Pill */}
                       {isSelected && (
                         <motion.div
                           layoutId="active-tool-pill"
-                          className="absolute inset-0 bg-gradient-to-r from-[#1ef4b4]/10 to-transparent pointer-events-none"
+                          className="absolute inset-0 bg-gradient-to-r from-[#38BDF8]/10 to-transparent pointer-events-none"
                           transition={{ type: 'spring', stiffness: 450, damping: 35 }}
                         />
                       )}
@@ -372,7 +372,7 @@ export function ProductsIndexClient() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
-                  className="rounded-3xl bg-[#04130f] border border-white/15 p-6 sm:p-9 text-[#f5f5f0] shadow-2xl relative overflow-hidden text-left"
+                  className="rounded-3xl bg-[#060919] border border-white/15 p-6 sm:p-9 text-[#f5f5f0] shadow-2xl relative overflow-hidden text-left"
                 >
                   {/* Subtle Background Blueprint Mesh */}
                   <div
@@ -423,18 +423,18 @@ export function ProductsIndexClient() {
                         className={cn(
                           'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-mono font-semibold transition-all cursor-pointer border',
                           isSimulating
-                            ? 'bg-[#1ef4b4]/20 border-[#1ef4b4]/40 text-[#1ef4b4] animate-pulse'
+                            ? 'bg-[#38BDF8]/20 border-[#38BDF8]/40 text-[#38BDF8] animate-pulse'
                             : 'bg-white/10 hover:bg-white/20 border-white/15 text-white'
                         )}
                       >
                         {isSimulating ? (
                           <>
-                            <Loader2 className="w-3.5 h-3.5 animate-spin text-[#1ef4b4]" />
+                            <Loader2 className="w-3.5 h-3.5 animate-spin text-[#38BDF8]" />
                             <span>Executing step {simStep} of 3...</span>
                           </>
                         ) : (
                           <>
-                            <Play className="w-3 h-3 text-[#1ef4b4]" />
+                            <Play className="w-3 h-3 text-[#38BDF8]" />
                             <span>Simulate Execution</span>
                           </>
                         )}
@@ -442,14 +442,14 @@ export function ProductsIndexClient() {
                     </div>
                   </div>
 
-                  <p className="relative z-10 text-sm sm:text-base text-[#a8beb4] leading-relaxed mt-4 font-normal">
+                  <p className="relative z-10 text-sm sm:text-base text-[#A8B6D8] leading-relaxed mt-4 font-normal">
                     {activeTool.tagline}
                   </p>
 
                   {/* Telemetry Stream Terminal Box */}
                   <div className="relative z-10 my-6 rounded-2xl bg-black/60 border border-white/10 p-5 font-mono text-xs space-y-3">
                     <div className="flex items-center justify-between border-b border-white/10 pb-2 text-[11px] text-white/60">
-                      <span className="flex items-center gap-1.5 text-[#1ef4b4]">
+                      <span className="flex items-center gap-1.5 text-[#38BDF8]">
                         <Activity className="w-3.5 h-3.5" />
                         <span>RUNTIME TELEMETRY STREAM</span>
                       </span>
@@ -462,7 +462,7 @@ export function ProductsIndexClient() {
                           title="Copy Output"
                         >
                           {copied ? (
-                            <span className="text-[#1ef4b4] flex items-center gap-1">
+                            <span className="text-[#38BDF8] flex items-center gap-1">
                               <Check className="w-3 h-3" /> Copied
                             </span>
                           ) : (
@@ -478,10 +478,10 @@ export function ProductsIndexClient() {
                         {activeTool.telemetryStream.inputSample}
                       </div>
                       <div className="text-white/70">
-                        <span className="text-[#1ef4b4]">ENGINE:</span>{' '}
+                        <span className="text-[#38BDF8]">ENGINE:</span>{' '}
                         {activeTool.telemetryStream.engine}
                       </div>
-                      <div className="text-[#1ef4b4] font-semibold">
+                      <div className="text-[#38BDF8] font-semibold">
                         STATUS:{' '}
                         {isSimulating
                           ? `Running live probe [step ${simStep}] · 0.04s elapsed`
@@ -496,21 +496,21 @@ export function ProductsIndexClient() {
 
                   <div className="relative z-10 space-y-2 border-t border-white/15 pt-4">
                     {activeTool.highlights.map((point, idx) => (
-                      <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#eaf4f0]/90">
-                        <CheckCircle2 className="w-4 h-4 text-[#1ef4b4] shrink-0 mt-0.5" />
+                      <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#F4F6FC]/90">
+                        <CheckCircle2 className="w-4 h-4 text-[#38BDF8] shrink-0 mt-0.5" />
                         <span>{point}</span>
                       </div>
                     ))}
                   </div>
 
                   <div className="relative z-10 pt-6 mt-6 border-t border-white/15 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                    <span className="font-mono text-xs text-[#a8beb4]">
+                    <span className="font-mono text-xs text-[#A8B6D8]">
                       Starter Tier · 50 sandbox credits
                     </span>
 
                     <Link
                       href={'/products/' + activeTool.slug}
-                      className="bg-[#1ef4b4] hover:bg-[#1ae0a5] text-[#04130f] font-bold h-11 px-6 rounded-xl inline-flex items-center gap-2 shadow-[0_10px_25px_-5px_rgba(30,244,180,0.35)] transition-all duration-200 active:scale-95 group"
+                      className="bg-[#38BDF8] hover:bg-[#E4CEF7] text-[#060919] font-bold h-11 px-6 rounded-xl inline-flex items-center gap-2 shadow-[0_10px_25px_-5px_rgba(212,197,249,0.25)] transition-all duration-200 active:scale-95 group"
                       data-testid={
                         activeTool.slug === 'resume-shortlister'
                           ? 'capability-link-resume-shortlister'
@@ -531,14 +531,14 @@ export function ProductsIndexClient() {
       {/* CLOSING DISPATCH */}
       <section className="py-16 sm:py-24">
         <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
-          <div className="rounded-[32px] p-8 sm:p-14 text-center shadow-2xl relative overflow-hidden bg-[#04130f] border border-white/15 text-[#eaf4f0]">
+          <div className="rounded-[32px] p-8 sm:p-14 text-center shadow-2xl relative overflow-hidden bg-[#060919] border border-white/15 text-[#F4F6FC]">
             <div
               className="absolute -top-24 -right-24 w-[400px] h-[400px] rounded-full blur-[100px] pointer-events-none opacity-20"
-              style={{ background: '#1ef4b4' }}
+              style={{ background: '#7C3AED' }}
               aria-hidden="true"
             />
             <div className="relative z-10 max-w-3xl mx-auto space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-xs font-mono font-bold uppercase tracking-wider text-[#1ef4b4]">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-xs font-mono font-bold uppercase tracking-wider text-[#38BDF8]">
                 HIGH-VOLUME &amp; PRIVATE VPC HOSTING
               </div>
 
@@ -546,14 +546,14 @@ export function ProductsIndexClient() {
                 Need a private custom prototype in production?
               </h2>
 
-              <p className="text-base sm:text-lg max-w-xl mx-auto font-normal text-[#a8beb4] leading-relaxed">
+              <p className="text-base sm:text-lg max-w-xl mx-auto font-normal text-[#A8B6D8] leading-relaxed">
                 We take prototypes from isolated sandboxes into enterprise environments with private VPC isolation and custom model fine-tuning.
               </p>
 
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
                   href="/contact"
-                  className="h-12 px-8 rounded-xl bg-[#1ef4b4] hover:bg-[#1ae0a5] text-[#04130f] font-bold text-sm shadow-lg shadow-[#1ef4b4]/25 transition-all duration-200 active:scale-[0.98] inline-flex items-center gap-2"
+                  className="h-12 px-8 rounded-xl bg-[#38BDF8] hover:bg-[#E4CEF7] text-[#060919] font-bold text-sm shadow-lg shadow-[#D4C5F9]/20 transition-all duration-200 active:scale-[0.98] inline-flex items-center gap-2"
                 >
                   <span>Request Custom Tool Prototype</span>
                   <ArrowRight className="w-4 h-4" />

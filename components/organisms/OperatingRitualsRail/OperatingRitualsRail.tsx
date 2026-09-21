@@ -28,7 +28,7 @@ const RITUALS: RitualPillar[] = [
     description:
       'We do not sell abstract roadmaps or bloated strategy decks. Before any engagement, we audit existing codebases and deliver working technical benchmarks within 7 days.',
     tag: 'Strict Engineering Standard',
-    accentColor: '#1EF4B4',
+    accentColor: '#38BDF8',
     terminalCommand: 'norai bench --profile production-core --strict',
     terminalLogs: [
       '[OK] Latency: 14.2ms P99 across all regional edge nodes.',
@@ -101,13 +101,13 @@ export function OperatingRitualsRail() {
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               className="lg:col-span-5 lg:sticky lg:top-32 space-y-6"
             >
-              <span className="eyebrow text-xs uppercase font-mono tracking-[0.18em] text-[#06845A] font-bold block">
+              <span className="eyebrow text-xs uppercase font-mono tracking-[0.18em] text-[#0650AD] font-bold block">
                 — HOW WE BUILD SOFTWARE · OPERATING RITUALS
               </span>
               <h2 className="font-display font-extrabold text-4xl sm:text-5xl lg:text-[3.8rem] text-[var(--pine)] tracking-tight leading-[1.04]">
                 Direct. <br />
                 Transparent. <br />
-                <span className="text-[#06845A]">Continuous.</span>
+                <span className="text-[#0650AD]">Continuous.</span>
               </h2>
               <p className="text-[var(--pine)]/80 text-base sm:text-lg leading-relaxed max-w-md">
                 Zero account managers or support bots. You speak, architect, and debug directly with the engineers who write the models.
@@ -115,7 +115,7 @@ export function OperatingRitualsRail() {
               <div className="pt-2">
                 <Link
                   href="/team"
-                  className="inline-flex items-center gap-2 text-sm font-bold text-[#06845A] hover:text-[#046342] transition-colors group"
+                  className="inline-flex items-center gap-2 text-sm font-bold text-[#0650AD] hover:text-[#040A5C] transition-colors group"
                 >
                   <span>Meet our engineering team on /team</span>
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
@@ -187,7 +187,7 @@ export function OperatingRitualsRail() {
                     <div>
                       {/* Folder Header: Tag & SLA Badge */}
                       <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-[var(--pine-12)] mb-8">
-                        <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#06845A]">
+                        <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#0650AD]">
                           RITUAL · {activeRitual.n}
                         </span>
                         <span className="font-mono text-xs font-bold px-3 py-1 rounded-full bg-[var(--pine-08)] dark:bg-white/5 text-[var(--pine)] dark:text-[#f5f5f0] border border-[var(--pine-12)] dark:border-white/10">
@@ -204,14 +204,14 @@ export function OperatingRitualsRail() {
                       </p>
 
                       {/* Live Terminal Verification Proof */}
-                      <div className="rounded-2xl bg-[#072929] text-[#f5f5f0] p-5 sm:p-6 font-mono text-xs sm:text-sm border border-white/10 shadow-inner">
+                      <div className="rounded-2xl bg-[#0D1226] text-[#f5f5f0] p-5 sm:p-6 font-mono text-xs sm:text-sm border border-white/10 shadow-inner">
                         <div className="flex items-center gap-2 pb-3 mb-3 border-b border-white/10 text-white/40 text-xs">
                           <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
                           <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
                           <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
                           <span className="ml-2 text-white/50">audit-terminal</span>
                         </div>
-                        <div className="text-[#00E599] flex items-center gap-2 mb-2 font-bold">
+                        <div className="text-[#38BDF8] flex items-center gap-2 mb-2 font-bold">
                           <span>$</span>
                           <span>{activeRitual.terminalCommand}</span>
                         </div>
@@ -227,7 +227,7 @@ export function OperatingRitualsRail() {
                     <div className="pt-8 mt-8 border-t border-[var(--pine-12)] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                       <Link
                         href="/contact"
-                        className="inline-flex items-center gap-2 font-bold text-sm text-[var(--pine)] hover:text-[#06845A] transition-colors group"
+                        className="inline-flex items-center gap-2 font-bold text-sm text-[var(--pine)] hover:text-[#0650AD] transition-colors group"
                       >
                         <span>Start a project with the builders</span>
                         <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />

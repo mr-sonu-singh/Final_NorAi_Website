@@ -13,7 +13,7 @@ interface Firefly {
   phaseY: number;
   blinkSpeed: number;
   radius: number;
-  colorType: 'mint' | 'amber';
+  colorType: 'azure' | 'amber';
 }
 
 export function FirefliesCanvas() {
@@ -35,7 +35,7 @@ export function FirefliesCanvas() {
 
     const sprites: Record<string, HTMLCanvasElement> = {};
     const spriteColors = {
-      mint: '30, 244, 180',
+      azure: '100, 180, 255',
       amber: '255, 178, 100',
     };
 
@@ -77,7 +77,7 @@ export function FirefliesCanvas() {
           phaseY: Math.random() * Math.PI * 2,
           blinkSpeed: 0.4 + Math.random() * 0.6,
           radius: 2.2 + Math.random() * 2.4,
-          colorType: Math.random() > 0.4 ? 'amber' : 'mint',
+          colorType: Math.random() > 0.4 ? 'amber' : 'azure',
         });
       }
     };

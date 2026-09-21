@@ -14,7 +14,7 @@ export function SubpageHeroAtmosphere({
   imageSrc,
   imageAlt,
   imagePosition = 'object-cover object-[78%_center] md:object-[75%_center]',
-  glowGradient = 'radial-gradient(ellipse 60% 40% at 75% 60%, rgba(30,244,180,0.18), transparent 70%), radial-gradient(ellipse 50% 50% at 20% 30%, rgba(255,162,77,0.15), transparent 70%)',
+  glowGradient = 'radial-gradient(ellipse 60% 40% at 75% 60%, rgba(100,180,255,0.16), transparent 70%), radial-gradient(ellipse 50% 50% at 20% 30%, rgba(255,162,77,0.15), transparent 70%)',
 }: SubpageHeroAtmosphereProps) {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
@@ -35,7 +35,7 @@ export function SubpageHeroAtmosphere({
 
   return (
     <div
-      className="absolute inset-0 overflow-hidden pointer-events-none select-none z-0 bg-[#04130f]"
+      className="absolute inset-0 overflow-hidden pointer-events-none select-none z-0 bg-[#060919]"
       aria-hidden="true"
     >
       {/* Parallax Panoramic Scenic Artwork */}
@@ -78,8 +78,8 @@ export function SubpageHeroAtmosphere({
         className="absolute inset-0 z-[3] pointer-events-none"
         style={{
           background: `
-            linear-gradient(90deg, rgba(4, 19, 15, 0.96) 0%, rgba(4, 19, 15, 0.88) 38%, rgba(4, 19, 15, 0.40) 65%, rgba(4, 19, 15, 0.15) 85%),
-            linear-gradient(180deg, rgba(4, 19, 15, 0.70) 0%, rgba(4, 19, 15, 0) 25%, rgba(4, 19, 15, 0.60) 80%, rgba(4, 19, 15, 1) 100%)
+            linear-gradient(90deg, rgba(6, 9, 25, 0.96) 0%, rgba(6, 9, 25, 0.88) 38%, rgba(6, 9, 25, 0.40) 65%, rgba(6, 9, 25, 0.15) 85%),
+            linear-gradient(180deg, rgba(6, 9, 25, 0.70) 0%, rgba(6, 9, 25, 0) 25%, rgba(6, 9, 25, 0.60) 80%, rgba(6, 9, 25, 1) 100%)
           `,
         }}
       />

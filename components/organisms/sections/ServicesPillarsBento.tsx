@@ -50,8 +50,8 @@ export const PILLARS: PillarData[] = [
       'Custom fine-tuned open-weight classification models',
     ],
     techStack: ['Python', 'FastAPI', 'PyTorch', 'Hugging Face', 'pgvector', 'Docker'],
-    accent: '#1ef4b4',
-    accentGlow: 'rgba(30,244,180,0.25)',
+    accent: '#38BDF8',
+    accentGlow: 'rgba(56,189,248,0.25)',
     badge: 'SUB-SECOND IN-MEMORY',
     sla: 'Latency < 0.35s · 0 Data Egress',
     codeSnippet: `// In-Memory Parsing & Vector Scoring Pipeline
@@ -195,8 +195,8 @@ export function ServicesPillarsBento() {
               className={cn(
                 'relative p-5 rounded-2xl text-left transition-all duration-300 cursor-pointer overflow-hidden border group',
                 isSelected
-                  ? 'bg-[#04130f] border-white/20 shadow-xl ring-1 ring-white/10'
-                  : 'bg-[#fffdf7] dark:bg-[#072929]/50 border-[var(--line)] hover:border-[#1ef4b4]/40 hover:bg-[#fffdf7]/90'
+                  ? 'bg-[#0D1226] border-white/20 shadow-xl ring-1 ring-white/10'
+                  : 'bg-[#fffdf7] dark:bg-[#0D1226] border-[var(--line)] hover:border-[#B278E3]/40 hover:bg-[#fffdf7]/90'
               )}
             >
               {/* Sliding Active Highlight Pill */}
@@ -237,7 +237,7 @@ export function ServicesPillarsBento() {
                   >
                     {pillar.title}
                   </h3>
-                  <span className="text-[11px] font-mono text-[var(--mint-ink)] dark:text-[#1ef4b4]/90 block mt-0.5">
+                  <span className="text-[11px] font-mono text-[var(--mint-ink)] dark:text-[#38BDF8] block mt-0.5">
                     {pillar.badge}
                   </span>
                 </div>
@@ -255,7 +255,7 @@ export function ServicesPillarsBento() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
-          className="rounded-3xl bg-[#04130f] border border-white/15 p-6 sm:p-10 text-[#f5f5f0] shadow-2xl relative overflow-hidden"
+          className="rounded-3xl bg-[#0D1226] border border-white/15 p-6 sm:p-10 text-[#f5f5f0] shadow-2xl relative overflow-hidden"
         >
           {/* Subtle Ambient Radial Backlight */}
           <div
@@ -275,7 +275,7 @@ export function ServicesPillarsBento() {
                   <Icon className="w-6 h-6" />
                 </div>
                 <div>
-                  <span className="font-mono text-xs tracking-wider uppercase font-semibold text-[#1ef4b4]">
+                  <span className="font-mono text-xs tracking-wider uppercase font-semibold text-[#38BDF8]">
                     PILLAR /{activePillar.n} SPECIFICATION
                   </span>
                   <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
@@ -334,7 +334,7 @@ export function ServicesPillarsBento() {
                   <div className="space-y-2.5">
                     {activePillar.deliverables.map((d, i) => (
                       <div key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#eaf4f0]/90">
-                        <CheckCircle2 className="w-4 h-4 text-[#1ef4b4] shrink-0 mt-0.5" />
+                        <CheckCircle2 className="w-4 h-4 text-[#38BDF8] shrink-0 mt-0.5" />
                         <span>{d}</span>
                       </div>
                     ))}
@@ -360,7 +360,7 @@ export function ServicesPillarsBento() {
                       className="absolute top-2.5 right-2.5 p-1.5 rounded-md bg-white/10 hover:bg-white/20 text-white/80 transition-colors"
                       title="Copy Code"
                     >
-                      {copied ? <Check className="w-3.5 h-3.5 text-[#1ef4b4]" /> : <Copy className="w-3.5 h-3.5" />}
+                      {copied ? <Check className="w-3.5 h-3.5 text-[#38BDF8]" /> : <Copy className="w-3.5 h-3.5" />}
                     </button>
                     <pre className="text-[#8af6cf] overflow-x-auto whitespace-pre leading-relaxed pr-8">
                       {activePillar.codeSnippet}
@@ -390,8 +390,8 @@ export function ServicesPillarsBento() {
             {/* Right: Telemetry Cockpit & Direct Scope Card */}
             <div className="lg:col-span-6 rounded-2xl bg-black/50 border border-white/10 p-6 sm:p-7 space-y-5">
               <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                <div className="flex items-center gap-2 text-xs font-mono text-[#1ef4b4]">
-                  <span className="w-2 h-2 rounded-full bg-[#1ef4b4] animate-pulse" />
+                <div className="flex items-center gap-2 text-xs font-mono text-[#38BDF8]">
+                  <span className="w-2 h-2 rounded-full bg-[#38BDF8] animate-pulse" />
                   <span>RUNTIME PROTOCOL ACTIVE</span>
                 </div>
                 <span className="font-mono text-xs text-white/60">
@@ -403,7 +403,7 @@ export function ServicesPillarsBento() {
                 <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 space-y-1.5">
                   <div className="text-white/60 flex items-center justify-between">
                     <span>DEPLOYMENT ARTIFACT:</span>
-                    <span className="text-[#1ef4b4]">DOCKERIZED &amp; VERIFIED</span>
+                    <span className="text-[#38BDF8]">DOCKERIZED &amp; VERIFIED</span>
                   </div>
                   <div className="text-white/60 flex items-center justify-between">
                     <span>INTELLECTUAL PROPERTY:</span>
@@ -417,7 +417,7 @@ export function ServicesPillarsBento() {
 
                 <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between text-xs">
                   <div className="flex items-center gap-2 text-white/80">
-                    <ShieldCheck className="w-4 h-4 text-[#1ef4b4]" />
+                    <ShieldCheck className="w-4 h-4 text-[#38BDF8]" />
                     <span>Zero Vendor Lock-In Guaranteed</span>
                   </div>
                   <span className="text-white/40">·</span>
@@ -431,7 +431,7 @@ export function ServicesPillarsBento() {
               <div className="pt-2">
                 <Link
                   href="/contact"
-                  className="w-full h-12 rounded-full bg-[#1ef4b4] hover:bg-[#1ae0a5] text-[#04130f] font-bold text-sm flex items-center justify-center gap-2 transition-all duration-200 active:scale-[0.98] shadow-lg shadow-[#1ef4b4]/25 group"
+                  className="w-full h-12 rounded-xl bg-[#D4C5F9] hover:bg-[#E4CEF7] text-[#03091E] font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-200 active:scale-[0.98] shadow-lg shadow-[#D4C5F9]/20 group"
                 >
                   <span>Scope a {activePillar.title.split(' ')[0]} Project</span>
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />

@@ -29,7 +29,7 @@ export function ThemeToggle({ className, size = 'sm' }: ThemeToggleProps) {
       className={cn(
         'relative inline-flex items-center justify-center rounded-full p-2 border transition-all duration-200 outline-none cursor-pointer select-none active:scale-95',
         isDark
-          ? 'bg-[#0A2020] border-[rgba(30,244,180,0.25)] text-[#1EF4B4] hover:bg-[#0F2C2C] shadow-[0_0_12px_rgba(30,244,180,0.2)]'
+          ? 'bg-[#0D1226] border-white/10 text-[#D4C5F9] hover:bg-[#131A36] shadow-[0_0_12px_rgba(212,197,249,0.2)]'
           : 'bg-[#fffdf7] border-[var(--line)] text-[var(--pine)] hover:bg-[#f5f5f0] shadow-xs',
         size === 'sm' ? 'w-9 h-9' : 'w-10 h-10',
         className,

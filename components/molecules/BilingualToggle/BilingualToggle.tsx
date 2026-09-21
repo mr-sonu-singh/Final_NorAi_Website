@@ -99,8 +99,8 @@ export function BilingualToggle({
               'bilingual-toggle-btn relative z-10 inline-flex items-center justify-center rounded-full font-semibold transition-[transform,color] duration-150 active:scale-[0.96] outline-none cursor-pointer',
               isSmall ? 'px-2.5 py-1 text-xs' : 'px-3 py-1 text-xs',
               isSelected
-                ? 'bilingual-active text-white dark:text-[#072929] font-bold'
-                : 'text-[#072929]/75 hover:text-[#072929] dark:text-[#f5f5f0]/75 dark:hover:text-white',
+                ? 'bilingual-active text-white dark:text-[#0D1226] font-bold'
+                : 'text-[#0D1226]/75 hover:text-[#0D1226] dark:text-[#f5f5f0]/75 dark:hover:text-white',
             )}
           >
             {isSelected && (

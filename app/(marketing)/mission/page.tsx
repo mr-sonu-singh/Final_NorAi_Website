@@ -20,7 +20,7 @@ const GROUND_FACTS = [
     value: 'Vision',
     label: 'Regional Youth',
     detail: 'Committed to bringing applied AI skills to collegiate talent across Uttar Pradesh',
-    accent: '#1ef4b4',
+    accent: '#38BDF8',
   },
   {
     value: 'Studio',
@@ -49,11 +49,11 @@ export default function MissionPage() {
   ];
 
   return (
-    <div className="min-h-screen font-sans bg-[#f5f5f0] dark:bg-[#03140f] text-[var(--pine)] dark:text-[#eaf4f0] selection:bg-[#1ef4b4] selection:text-[#03140f]">
+    <div className="min-h-screen font-sans bg-[#f5f5f0] dark:bg-[#060919] text-[var(--pine)] dark:text-[#F4F6FC] selection:bg-[#B278E3]/30 selection:text-[#060919]">
       <JsonLd schema={getBreadcrumbListJsonLd(breadcrumbs)} />
 
       {/* CINEMATIC HERO CHAMBER WITH EASTERN UP DAWN BANYAN BACKDROP */}
-      <section className="relative min-h-[68vh] lg:min-h-[75vh] flex flex-col justify-center overflow-hidden bg-[#04130f] text-[#eaf4f0] border-b border-white/10 pt-28 pb-16 sm:pt-36 sm:pb-24">
+      <section className="relative min-h-[68vh] lg:min-h-[75vh] flex flex-col justify-center overflow-hidden bg-[#060919] text-[#F4F6FC] border-b border-white/10 pt-28 pb-16 sm:pt-36 sm:pb-24">
         <SubpageHeroAtmosphere
           imageSrc="/images/bg-mission-dawn-banyan.webp"
           imageAlt="Eastern UP Dawn & Banyan Tree Horizon"
@@ -63,16 +63,16 @@ export default function MissionPage() {
 
         <Container size="default" className="relative z-10 max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="max-w-3xl text-left space-y-6">
-            <span className="text-[11px] sm:text-xs font-mono tracking-[0.16em] uppercase text-[#1ef4b4] font-semibold block mb-2">
+            <span className="text-[11px] sm:text-xs font-mono tracking-[0.16em] uppercase text-[#38BDF8] font-semibold block mb-2">
               BHARAT YOUTH UPSKILLING MISSION · GHAZIPUR, UP
             </span>
 
             <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold text-white leading-[1.04] tracking-[-0.035em]">
               Empowering Millions of Youth with AI Skills.{' '}
-              <span className="text-[#1ef4b4]">Aligned with an AI-ready India.</span>
+              <span className="text-[#38BDF8]">Aligned with an AI-ready India.</span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-[#a8beb4] leading-relaxed max-w-2xl font-normal text-pretty">
+            <p className="text-lg sm:text-xl text-[#A8B6D8] leading-relaxed max-w-2xl font-normal text-pretty">
               Rooted in Ghazipur, Uttar Pradesh, NorAI is dedicated to expanding computational literacy, open developer workshops, and vernacular AI tools for students and regional communities.
             </p>
 
@@ -98,7 +98,7 @@ export default function MissionPage() {
                   >
                     {fact.label}
                   </span>
-                  <p className="text-[11px] text-[#a8beb4] mt-1 leading-tight font-normal">
+                  <p className="text-[11px] text-[#A8B6D8] mt-1 leading-tight font-normal">
                     {fact.detail}
                   </p>
                 </div>
@@ -119,7 +119,7 @@ export default function MissionPage() {
       <section className="py-16 sm:py-24 border-b border-[var(--line)]">
         <Container size="wide" className="max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="max-w-2xl mb-12 text-left space-y-2">
-            <span className="font-mono text-xs text-[var(--mint-ink)] dark:text-[#1ef4b4] uppercase tracking-wider font-bold block">
+            <span className="font-mono text-xs text-[var(--mint-ink)] dark:text-[#38BDF8] uppercase tracking-wider font-bold block">
               THREE-TIER COMMUNITY ARCHITECTURE
             </span>
             <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-[var(--pine)] dark:text-white tracking-tight">
@@ -137,14 +137,14 @@ export default function MissionPage() {
       {/* CLOSING DISPATCH */}
       <section className="py-16 sm:py-24">
         <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
-          <div className="rounded-[32px] p-8 sm:p-14 text-center shadow-2xl relative overflow-hidden bg-[#04130f] border border-white/15 text-[#eaf4f0]">
+          <div className="rounded-[32px] p-8 sm:p-14 text-center shadow-2xl relative overflow-hidden bg-[#060919] border border-white/15 text-[#F4F6FC]">
             <div
               className="absolute -top-24 -right-24 w-[400px] h-[400px] rounded-full blur-[100px] pointer-events-none opacity-20"
               style={{ background: '#7a5cff' }}
               aria-hidden="true"
             />
             <div className="relative z-10 max-w-3xl mx-auto space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-xs font-mono font-bold uppercase tracking-wider text-[#1ef4b4]">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-xs font-mono font-bold uppercase tracking-wider text-[#38BDF8]">
                 REGIONAL COLLABORATIONS &amp; WORKSHOPS
               </div>
 
@@ -152,14 +152,14 @@ export default function MissionPage() {
                 Bring NorAI Workshops to Your Institution.
               </h2>
 
-              <p className="text-base sm:text-lg max-w-xl mx-auto font-normal text-[#a8beb4] leading-relaxed">
+              <p className="text-base sm:text-lg max-w-xl mx-auto font-normal text-[#A8B6D8] leading-relaxed">
                 We conduct intensive hands-on hackathons, localized student sprints, and faculty AI orientations across Uttar Pradesh and Bihar.
               </p>
 
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
                   href="/contact"
-                  className="h-12 px-8 rounded-xl bg-[#1ef4b4] hover:bg-[#1ae0a5] text-[#04130f] font-bold text-sm shadow-lg shadow-[#1ef4b4]/25 transition-all duration-200 active:scale-[0.98] inline-flex items-center gap-2 group"
+                  className="h-12 px-8 rounded-xl bg-[#38BDF8] hover:bg-[#E4CEF7] text-[#060919] font-bold text-sm shadow-lg shadow-[#D4C5F9]/20 transition-all duration-200 active:scale-[0.98] inline-flex items-center gap-2 group"
                 >
                   <span>Request an On-Campus Workshop</span>
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />

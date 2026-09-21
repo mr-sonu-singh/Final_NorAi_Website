@@ -174,7 +174,7 @@ export function HeroPillarsStrip({ className = '' }: { className?: string }) {
               href={pillar.href}
               className="group flex flex-col items-center justify-center py-1.5 px-1 sm:px-2 rounded-xl transition-all duration-200 hover:bg-white/[0.04] active:scale-[0.98]"
             >
-              <div className="text-white/75 group-hover:text-[#1ef4b4] transition-all duration-200 group-hover:-translate-y-0.5 group-hover:drop-shadow-[0_0_10px_rgba(30,244,180,0.45)]">
+              <div className="text-white/75 group-hover:text-[#B278E3] transition-all duration-200 group-hover:-translate-y-0.5 group-hover:drop-shadow-[0_0_10px_rgba(178,120,227,0.45)]">
                 <IconComp className="w-6 h-6 sm:w-7 sm:h-7" />
               </div>
               <span className="mt-1.5 text-[11px] sm:text-xs font-medium tracking-tight text-white/80 group-hover:text-white transition-colors text-center leading-tight">

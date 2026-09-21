@@ -109,7 +109,7 @@ export function CapabilityArc() {
         >
           <h2 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl text-[var(--pine)] tracking-tight leading-[1.08]">
             Prototypes built to work. <br className="hidden sm:inline" />
-            <span className="text-[#06845A]">Not to raise rounds.</span>
+            <span className="text-[#0650AD]">Not to raise rounds.</span>
           </h2>
           <p className="text-[var(--pine)]/75 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
             These are not speculative pitch decks. Every prototype below is a functional computational rig engineered in Ghazipur and battle-tested in real operations.
@@ -136,14 +136,14 @@ export function CapabilityArc() {
                   className={cn(
                     'w-full text-left p-5 sm:p-6 rounded-2xl border transition-all duration-200 flex items-start gap-4 card-interactive group relative overflow-hidden',
                     isActive
-                      ? 'bg-white dark:bg-[#0a2020] border-[#1ef4b4]/60 dark:border-[#1ef4b4]/50 shadow-md ring-1 ring-[#1ef4b4]/20'
+                      ? 'bg-white dark:bg-[#0D1226] border-[#040A5C]/40 dark:border-[#B278E3]/50 shadow-md ring-1 ring-[#B278E3]/20'
                       : 'bg-white/60 dark:bg-[#071d1d]/60 border-[var(--line)] hover:bg-white dark:hover:bg-[#0a2020] hover:border-[var(--pine-20)] dark:hover:border-white/15'
                   )}
                 >
                   <div
                     className={cn(
                       'p-3 rounded-xl shrink-0 font-mono text-xs font-bold transition-transform duration-200 group-hover:scale-105',
-                      isActive ? 'bg-[var(--pine)] text-white dark:bg-[#1ef4b4] dark:text-[#04130f]' : 'bg-black/5 dark:bg-white/5 text-[var(--pine)]'
+                      isActive ? 'bg-[var(--pine)] text-white dark:bg-[#D4C5F9] dark:text-[#03091E]' : 'bg-black/5 dark:bg-white/5 text-[var(--pine)]'
                     )}
                   >
                     {cap.n}
@@ -182,17 +182,17 @@ export function CapabilityArc() {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.98, y: -8 }}
                 transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
-                className="rounded-3xl bg-[#072929] text-[#f5f5f0] p-8 sm:p-12 border border-white/10 shadow-2xl relative overflow-hidden min-h-[460px] flex flex-col justify-between"
+                className="rounded-3xl bg-[#0D1226] text-[#f5f5f0] p-8 sm:p-12 border border-white/10 shadow-2xl relative overflow-hidden min-h-[460px] flex flex-col justify-between"
               >
                 {/* Internal Radiant Corner Mesh */}
                 <div
-                  className="absolute top-0 right-0 w-80 h-80 rounded-full bg-[#00E599]/10 blur-[80px] pointer-events-none"
+                  className="absolute top-0 right-0 w-80 h-80 rounded-full bg-[#38BDF8]/10 blur-[80px] pointer-events-none"
                   aria-hidden="true"
                 />
 
                 {/* Chassis Top Bar: Tag & Telemetry Status */}
                 <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/10 relative z-10">
-                  <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#00E599]">
+                  <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#38BDF8]">
                     {activeCap.telemetryHeader}
                   </span>
                   <span className="font-mono text-xs font-semibold px-3 py-1 rounded-full bg-white/10 text-white border border-white/15 flex items-center gap-2">
@@ -217,7 +217,7 @@ export function CapabilityArc() {
                     {activeCap.telemetryMetrics.map((m, i) => (
                       <div key={i} className="flex items-center justify-between">
                         <span className="text-white/60">{m.label}</span>
-                        <span className={cn('font-bold', m.status === 'alert' ? 'text-[#FFAE42]' : 'text-[#00E599]')}>
+                        <span className={cn('font-bold', m.status === 'alert' ? 'text-[#FFAE42]' : 'text-[#38BDF8]')}>
                           {m.value}
                         </span>
                       </div>
@@ -230,7 +230,7 @@ export function CapabilityArc() {
                   <Link
                     href={activeCap.href as Route}
                     variant="unstyled"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#00E599] text-[#072929] font-bold text-sm hover:bg-[#1ef4b4] transition-all duration-200 shadow-[0_4px_20px_rgba(0,229,153,0.3)] hover:scale-[1.02] active:scale-[0.98]"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#D4C5F9] text-[#03091E] font-semibold text-sm hover:bg-[#E4CEF7] transition-all duration-200 shadow-[0_4px_20px_rgba(0,229,153,0.3)] hover:scale-[1.02] active:scale-[0.98]"
                   >
                     <span>Explore {activeCap.title} →</span>
                   </Link>

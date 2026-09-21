@@ -10,7 +10,7 @@ const STEPS = [
     step: '01',
     time: 'Day 1–2',
     icon: ShieldCheck,
-    accent: '#1ef4b4',
+    accent: '#38BDF8',
     title: 'Architecture Blueprint & Scoping',
     desc: 'We analyze your data boundaries, latency targets, and business constraints. We deliver a clear technical specification with zero vendor lock-in.',
     deliverable: 'Signed Architecture Spec & Zero-Egress Boundary Plan',
@@ -54,7 +54,7 @@ export function ServicesEngagementTimeline() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.3, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="relative z-10 p-7 sm:p-8 rounded-3xl bg-[#fffdf7] dark:bg-[#072929]/70 border border-[var(--line)] shadow-sm hover:shadow-xl transition-all duration-300 group overflow-hidden"
+              className="relative z-10 p-7 sm:p-8 rounded-3xl bg-[#fffdf7] dark:bg-[#0D1226]/70 border border-[var(--line)] shadow-sm hover:shadow-xl transition-all duration-300 group overflow-hidden"
             >
               {/* Top Step Pill & Time */}
               <div className="flex items-center justify-between mb-6">
@@ -94,7 +94,7 @@ export function ServicesEngagementTimeline() {
               </p>
 
               <div className="pt-4 border-t border-[var(--line)] flex items-start gap-2 text-xs font-mono text-[var(--pine)]/85 dark:text-white/80">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#1ef4b4] shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#38BDF8] shrink-0 mt-0.5" />
                 <span>{s.deliverable}</span>
               </div>
             </motion.div>
@@ -108,15 +108,15 @@ export function ServicesEngagementTimeline() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-        className="p-8 sm:p-12 rounded-3xl bg-[#04130f] border border-white/15 text-white flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 shadow-2xl relative overflow-hidden"
+        className="p-8 sm:p-12 rounded-3xl bg-[#0D1226] border border-white/15 text-white flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 shadow-2xl relative overflow-hidden"
       >
         <div
           className="absolute -right-20 -bottom-20 w-[400px] h-[400px] rounded-full blur-[100px] pointer-events-none opacity-25"
-          style={{ background: '#1ef4b4' }}
+          style={{ background: '#7C3AED' }}
         />
 
         <div className="relative z-10 max-w-xl space-y-2">
-          <span className="text-xs font-mono text-[#1ef4b4] font-bold uppercase tracking-wider block mb-2">
+          <span className="text-xs font-mono text-[#B278E3] font-bold uppercase tracking-wider block mb-2">
             FOUNDER-LED ARCHITECTURAL ENGAGEMENT
           </span>
           <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
@@ -129,7 +129,7 @@ export function ServicesEngagementTimeline() {
 
         <Link
           href="/contact"
-          className="relative z-10 inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl bg-[#1ef4b4] text-[#04130f] font-bold text-sm hover:bg-[#1ae0a5] transition-all duration-200 shadow-lg shadow-[#1ef4b4]/25 shrink-0 active:scale-[0.98] group"
+          className="relative z-10 inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl bg-[#D4C5F9] text-[#03091E] font-semibold text-sm hover:bg-[#E4CEF7] transition-all duration-200 shadow-lg shadow-[#D4C5F9]/20 shrink-0 active:scale-[0.98] group"
         >
           <span>Start a Project Consultation</span>
           <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />

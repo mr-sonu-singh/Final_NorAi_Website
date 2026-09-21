@@ -15,11 +15,11 @@ export const metadata: Metadata = buildMetadata({
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen font-sans bg-[#f5f5f0] dark:bg-[#03140f] text-[var(--pine)] dark:text-[#eaf4f0] selection:bg-[#1ef4b4] selection:text-[#03140f]">
+    <div className="min-h-screen font-sans bg-[#f5f5f0] dark:bg-[#060919] text-[var(--pine)] dark:text-[#F4F6FC] selection:bg-[#B278E3]/30 selection:text-[#060919]">
       <JsonLd schema={getWebSiteJsonLd()} />
 
       {/* CINEMATIC HERO CHAMBER WITH DIRECT DESK BACKDROP */}
-      <section className="relative min-h-[60vh] lg:min-h-[66vh] flex flex-col justify-center overflow-hidden bg-[#04130f] text-[#eaf4f0] border-b border-white/10 pt-28 pb-16 sm:pt-36 sm:pb-20">
+      <section className="relative min-h-[60vh] lg:min-h-[66vh] flex flex-col justify-center overflow-hidden bg-[#060919] text-[#F4F6FC] border-b border-white/10 pt-28 pb-16 sm:pt-36 sm:pb-20">
         <SubpageHeroAtmosphere
           imageSrc="/images/bg-services-observatory.webp"
           imageAlt="Ghazipur Studio Desk Direct Dialogue"
@@ -29,16 +29,16 @@ export default function ContactPage() {
 
         <Container size="default" className="relative z-10 max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="max-w-3xl space-y-6 text-left">
-            <span className="text-[11px] sm:text-xs font-mono tracking-[0.16em] uppercase text-[#1ef4b4] font-semibold block mb-2">
+            <span className="text-[11px] sm:text-xs font-mono tracking-[0.16em] uppercase text-[#38BDF8] font-semibold block mb-2">
               GHAZIPUR STUDIO DESK · DIRECT CONTACT
             </span>
 
             <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold text-white leading-[1.04] tracking-[-0.035em]">
               Start a project.{' '}
-              <span className="text-[#1ef4b4]">Talk with builders.</span>
+              <span className="text-[#38BDF8]">Talk with builders.</span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-[#a8beb4] leading-relaxed max-w-2xl font-normal text-pretty">
+            <p className="text-lg sm:text-xl text-[#A8B6D8] leading-relaxed max-w-2xl font-normal text-pretty">
               Whether you need pragmatic AI workflows, high-speed custom web software, spatial computing environments, or want to collaborate on student workshops—speak directly with our founding engineering team. We reply within one business day.
             </p>
           </div>
@@ -46,7 +46,7 @@ export default function ContactPage() {
       </section>
 
       {/* 3-STEP INTAKE PROTOCOL */}
-      <section className="py-8 bg-[#fffdf7] dark:bg-[#04130f] border-b border-[var(--line)] dark:border-white/10">
+      <section className="py-8 bg-[#fffdf7] dark:bg-[#060919] border-b border-[var(--line)] dark:border-white/10">
         <Container size="default" className="max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
             <div className="flex items-start gap-3 p-5 rounded-2xl bg-[var(--porcelain)] dark:bg-white/5 border border-[var(--line)] dark:border-white/10 transition-all hover:shadow-sm">
@@ -89,12 +89,12 @@ export default function ContactPage() {
             
             {/* Left Column: Verified Corporate Credentials */}
             <div className="space-y-6 lg:col-span-5 text-left">
-              <div className="rounded-[22px] border border-[var(--line)] dark:border-white/10 bg-[#fffdf7] dark:bg-[#04130f] p-7 sm:p-8 space-y-6 shadow-xs">
+              <div className="rounded-[22px] border border-[var(--line)] dark:border-white/10 bg-[#fffdf7] dark:bg-[#060919] p-7 sm:p-8 space-y-6 shadow-xs">
                 {/* Active Status */}
                 <div className="flex items-center justify-between border-b border-[var(--line)] dark:border-white/10 pb-4">
                   <div className="flex items-center gap-2">
-                    <span className="flex h-2.5 w-2.5 rounded-full bg-[var(--mint-ink)] dark:bg-[#1ef4b4] animate-pulse" />
-                    <span className="font-mono text-xs font-bold text-[var(--mint-ink)] dark:text-[#1ef4b4] tracking-wider uppercase">
+                    <span className="flex h-2.5 w-2.5 rounded-full bg-[var(--mint-ink)] dark:bg-[#38BDF8] animate-pulse" />
+                    <span className="font-mono text-xs font-bold text-[var(--mint-ink)] dark:text-[#38BDF8] tracking-wider uppercase">
                       STUDIO DESK ACTIVE
                     </span>
                   </div>
@@ -113,7 +113,7 @@ export default function ContactPage() {
                     </span>
                     <a
                       href="mailto:noraitechnologies@gmail.com"
-                      className="text-sm font-semibold text-[var(--mint-ink)] dark:text-[#1ef4b4] hover:underline inline-flex items-center gap-2 break-all"
+                      className="text-sm font-semibold text-[var(--mint-ink)] dark:text-[#38BDF8] hover:underline inline-flex items-center gap-2 break-all"
                     >
                       <Mail className="h-4 w-4 shrink-0" />
                       <span>noraitechnologies@gmail.com</span>
@@ -127,7 +127,7 @@ export default function ContactPage() {
                       Studio &amp; Registered Address
                     </span>
                     <p className="text-xs text-[var(--pine)]/90 dark:text-white/90 flex items-start gap-2 leading-relaxed">
-                      <MapPin className="h-4 w-4 text-[var(--mint-ink)] dark:text-[#1ef4b4] shrink-0 mt-0.5" />
+                      <MapPin className="h-4 w-4 text-[var(--mint-ink)] dark:text-[#38BDF8] shrink-0 mt-0.5" />
                       <span>Umarganj, Zamania, Ghazipur, Uttar Pradesh, India</span>
                     </p>
                   </div>
@@ -137,7 +137,7 @@ export default function ContactPage() {
                       Official Domain
                     </span>
                     <p className="text-xs font-semibold text-[var(--pine)] dark:text-white flex items-center gap-2">
-                      <Globe className="h-4 w-4 text-[var(--mint-ink)] dark:text-[#1ef4b4] shrink-0" />
+                      <Globe className="h-4 w-4 text-[var(--mint-ink)] dark:text-[#38BDF8] shrink-0" />
                       <span>www.norai.tech</span>
                     </p>
                   </div>
@@ -146,13 +146,13 @@ export default function ContactPage() {
                 {/* Service SLA */}
                 <div className="pt-4 border-t border-[var(--line)] dark:border-white/10 space-y-2.5">
                   <div className="flex items-start gap-2 text-xs text-[var(--pine)]/80 dark:text-white/80 leading-normal">
-                    <Clock className="h-4 w-4 text-[var(--mint-ink)] dark:text-[#1ef4b4] shrink-0 mt-0.5" />
+                    <Clock className="h-4 w-4 text-[var(--mint-ink)] dark:text-[#38BDF8] shrink-0 mt-0.5" />
                     <span>
                       <strong className="font-semibold text-[var(--pine)] dark:text-white">Engineer Reviewed:</strong> Every message is read by founding engineers.
                     </span>
                   </div>
                   <div className="flex items-start gap-2 text-xs text-[var(--pine)]/80 dark:text-white/80 leading-normal">
-                    <ShieldCheck className="h-4 w-4 text-[var(--mint-ink)] dark:text-[#1ef4b4] shrink-0 mt-0.5" />
+                    <ShieldCheck className="h-4 w-4 text-[var(--mint-ink)] dark:text-[#38BDF8] shrink-0 mt-0.5" />
                     <span>
                       <strong className="font-semibold text-[var(--pine)] dark:text-white">Zero Sales Bots:</strong> Direct technical consultation without deflection.
                     </span>
@@ -163,7 +163,7 @@ export default function ContactPage() {
 
             {/* Right Column: Clean Contact Form */}
             <div className="lg:col-span-7">
-              <div className="rounded-[22px] border border-[var(--line)] dark:border-white/10 bg-[#fffdf7] dark:bg-[#04130f] p-6 sm:p-8 shadow-xs">
+              <div className="rounded-[22px] border border-[var(--line)] dark:border-white/10 bg-[#fffdf7] dark:bg-[#060919] p-6 sm:p-8 shadow-xs">
                 <ContactFormClient />
               </div>
             </div>

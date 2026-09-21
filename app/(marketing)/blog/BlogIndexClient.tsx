@@ -304,10 +304,10 @@ export function BlogIndexClient({ posts }: BlogIndexClientProps) {
           <div
             className="rounded-[32px] p-8 sm:p-14 text-center shadow-2xl relative overflow-hidden"
             style={{
-              background: 'linear-gradient(135deg, #FF7755 0%, #FFAE42 40%, #00E599 100%)',
+              background: 'linear-gradient(135deg, #FF7755 0%, #FFAE42 40%, #D4C5F9 100%)',
             }}
           >
-            <div className="max-w-3xl mx-auto space-y-6 text-[#072929]">
+            <div className="max-w-3xl mx-auto space-y-6 text-[#0D1226]">
               <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--pine-08)] border border-[var(--line)] text-xs font-mono font-bold text-[var(--mint-ink)] uppercase tracking-wider">
                 Direct Engineering Telemetry
               </div>

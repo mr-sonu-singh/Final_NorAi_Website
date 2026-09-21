@@ -12,37 +12,44 @@
   /* ==========================================================================
      AUDENS CANONICAL TOKENS (Pine, Porcelain, Bone, Surface, Jewels)
      ========================================================================== */
-  --pine: #072929;
-  --forest: #1e3c3b;
-  --porcelain: #f5f5f0;
-  --bone: #ebeae1;
-  --surface: #fffdf7;
+  /* Brand Calibrated Anchors: Deep Royal Navy + Light Violet + Azure */
+  --navy: #040A5C;
+  --navy-deep: #052C76;
+  --violet: #B278E3;
+  --violet-light: #D4C5F9;
+  --azure: #06A4E0;
+  --ice: #F8F9FD;
+  --porcelain: #EDEEF2;
+  --bone: #E2E4EB;
+  --surface: #FFFFFF;
+  --pine: #040A5C; /* legacy alias redirected to royal navy */
+  --forest: #052C76;
 
-  /* Deep Pine Opacity Gradients */
-  --pine-70: rgba(7, 41, 41, 0.7);
-  --pine-50: rgba(7, 41, 41, 0.5);
-  --pine-20: rgba(7, 41, 41, 0.2);
-  --pine-12: rgba(7, 41, 41, 0.12);
-  --pine-08: rgba(7, 41, 41, 0.08);
+  /* Light Canvas Opacity Gradients */
+  --pine-70: rgba(4, 10, 92, 0.72);
+  --pine-50: rgba(4, 10, 92, 0.52);
+  --pine-20: rgba(4, 10, 92, 0.20);
+  --pine-12: rgba(4, 10, 92, 0.12);
+  --pine-08: rgba(4, 10, 92, 0.08);
 
-  /* Bone / Dark Mode Opacity Gradients */
-  --bone-70: rgba(235, 234, 225, 0.75);
-  --bone-50: rgba(235, 234, 225, 0.72);
-  --bone-20: rgba(235, 234, 225, 0.2);
+  --bone-70: rgba(226, 228, 235, 0.75);
+  --bone-50: rgba(226, 228, 235, 0.52);
+  --bone-20: rgba(226, 228, 235, 0.20);
 
-  /* High-Voltage Jewel Tokens */
-  --mint: #1ef4b4;
-  --mint-ink: #046a47;
-  --lavender: #c6b5ff;
-  --butter: #ffe9b5;
-  --coral: #ff7755;
-  --sky: #75d3da;
-  --pink: #ff69b4;
+  /* Jewel & Accent Tokens */
+  --mint: #38BDF8; /* redirected from green to sky/azure */
+  --mint-ink: #040A5C;
+  --lavender: #D4C5F9;
+  --butter: #FFE9B5;
+  --coral: #FF7755;
+  --sky: #06A4E0;
+  --pink: #FF69B4;
 
   /* Line & Muted Inks */
-  --ink: #072929;
-  --muted: rgba(7, 41, 41, 0.65);
-  --line: rgba(7, 41, 41, 0.12);
+  --ink: #040A5C;
+  --muted: #5C6684;
+  --line: rgba(4, 10, 92, 0.08);
+  --brand-gradient: linear-gradient(90deg, #06A4E0 0%, #0A4DD7 35%, #4A2BD8 70%, #9B13F0 100%);
 
   /* Geometry & Layout */
   --r-card: 22px;
@@ -496,8 +503,8 @@ body {
 }
 
 ::selection {
-  background-color: var(--jewel-mint);
-  color: #07080d;
+  background-color: rgba(178, 120, 227, 0.28);
+  color: inherit;
 }
 
 /* Headlines balance across lines; serif display carries its own weight */
@@ -1572,228 +1579,226 @@ kbd.key-cap {
    ========================================================================== */
 html.dark,
 .dark {
-  --pine: #f5f5f0;
-  --forest: #0a2020;
-  --porcelain: #051313;
-  --bone: #f5f5f0;
-  --surface: #0a2020;
+  --pine: #F4F6FC;
+  --forest: #0D1226;
+  --porcelain: #060919;
+  --bone: #F4F6FC;
+  --surface: #0D1226;
 
-  --pine-70: rgba(245, 245, 240, 0.78);
-  --pine-50: rgba(245, 245, 240, 0.52);
-  --pine-20: rgba(245, 245, 240, 0.20);
-  --pine-12: rgba(245, 245, 240, 0.12);
-  --pine-08: rgba(245, 245, 240, 0.08);
+  --pine-70: rgba(244, 246, 252, 0.78);
+  --pine-50: rgba(244, 246, 252, 0.52);
+  --pine-20: rgba(244, 246, 252, 0.20);
+  --pine-12: rgba(244, 246, 252, 0.12);
+  --pine-08: rgba(244, 246, 252, 0.08);
 
-  --bone-70: rgba(245, 245, 240, 0.78);
-  --bone-50: rgba(245, 245, 240, 0.52);
-  --bone-20: rgba(245, 245, 240, 0.20);
+  --bone-70: rgba(244, 246, 252, 0.78);
+  --bone-50: rgba(244, 246, 252, 0.52);
+  --bone-20: rgba(244, 246, 252, 0.20);
 
-  --line: rgba(30, 244, 180, 0.14);
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(255, 255, 255, 0.16);
-  --border-hairline: rgba(30, 244, 180, 0.14);
+  --line: rgba(99, 132, 255, 0.10);
+  --border-subtle: rgba(99, 132, 255, 0.08);
+  --border-strong: rgba(99, 132, 255, 0.18);
+  --border-hairline: rgba(99, 132, 255, 0.10);
 
-  --surface-canvas: #051313;
-  --surface-panel: #0a2020;
-  --surface-panel-elevated: #0f2c2c;
+  --surface-canvas: #060919;
+  --surface-panel: #0D1226;
+  --surface-panel-elevated: #131A36;
   --surface-panel-subtle: rgba(255, 255, 255, 0.04);
   --surface-hover: rgba(255, 255, 255, 0.08);
   --surface-active: rgba(255, 255, 255, 0.12);
 
-  --text-primary: #f5f5f0;
-  --text-secondary: rgba(245, 245, 240, 0.78);
-  --text-muted: rgba(245, 245, 240, 0.55);
+  --text-primary: #F4F6FC;
+  --text-secondary: #A8B6D8;
+  --text-muted: #6C7D9E;
 
-  --bg-page: #051313;
-  --bg-elevated: #0a2020;
-  --bg-sunken: #030d0d;
-  --bg-header: rgba(10, 32, 32, 0.90);
-  --ds-background-100: #051313;
-  --ds-background-200: #0a2020;
-  --ds-text-100: #f5f5f0;
+  --bg-page: #060919;
+  --bg-elevated: #0D1226;
+  --bg-sunken: #040610;
+  --bg-header: rgba(6, 9, 25, 0.90);
+  --ds-background-100: #060919;
+  --ds-background-200: #0D1226;
+  --ds-text-100: #F4F6FC;
 }
 
 html.dark body {
-  background-color: #051313 !important;
-  color: #f5f5f0 !important;
+  background-color: #060919 !important;
+  color: #F4F6FC !important;
 }
 
-/* Background overrides using resilient attribute selectors */
+/* Background overrides for dark mode surfaces */
 html.dark [class*="bg-[#f5f5f0]"] {
-  background-color: #051313 !important;
+  background-color: #060919 !important;
 }
 
 html.dark [class*="bg-[#fffdf7]"] {
-  background-color: #0a2020 !important;
-  border-color: rgba(30, 244, 180, 0.14) !important;
+  background-color: #0D1226 !important;
+  border-color: rgba(99, 132, 255, 0.12) !important;
 }
 
 html.dark [class*="bg-[#072929]"] {
-  background-color: #081d1d !important;
-  border-color: rgba(30, 244, 180, 0.12) !important;
+  background-color: #0D1226 !important;
+  border-color: rgba(99, 132, 255, 0.12) !important;
 }
 
 html.dark .bg-white {
-  background-color: #0a2020 !important;
+  background-color: #0D1226 !important;
 }
 
 html.dark .text-primary-800,
 html.dark .text-forest {
-  color: #f5f5f0 !important;
+  color: #F4F6FC !important;
 }
 
-/* Primary buttons in dark mode: glowing emerald mint with obsidian text */
+/* Primary buttons in dark mode: Pale Orchid (#D4C5F9) with Midnight Navy text (#03091E) at 14.2:1 AAA */
 html.dark .btn--solid,
 html.dark .btn[class*="bg-[var(--pine)]"],
 html.dark [class*="btn"][class*="bg-[var(--pine)]"] {
-  background-color: #1ef4b4 !important;
-  color: #031716 !important;
-  box-shadow: 0 4px 20px -2px rgba(30, 244, 180, 0.3) !important;
+  background-color: #D4C5F9 !important;
+  color: #03091E !important;
+  box-shadow: 0 4px 20px -2px rgba(212, 197, 249, 0.25) !important;
 }
 
 html.dark .btn--solid svg,
 html.dark .btn[class*="bg-[var(--pine)]"] svg,
 html.dark [class*="btn"][class*="bg-[var(--pine)]"] svg {
-  color: #031716 !important;
+  color: #03091E !important;
 }
 
 html.dark .btn--ghost,
 html.dark .btn[class*="btn--ghost"],
 html.dark [class*="btn"][class*="btn--ghost"] {
-  background-color: #0a2020 !important;
-  color: #f5f5f0 !important;
-  border-color: rgba(30, 244, 180, 0.22) !important;
+  background-color: #0D1226 !important;
+  color: #F4F6FC !important;
+  border-color: rgba(99, 132, 255, 0.20) !important;
 }
 
 html.dark .btn--ghost svg,
 html.dark .btn[class*="btn--ghost"] svg,
 html.dark [class*="btn"][class*="btn--ghost"] svg {
-  color: #1ef4b4 !important;
+  color: #B278E3 !important;
 }
 
-/* Header pill in dark mode */
+/* Header dock in dark mode */
 html.dark header [class*="max-w-5xl"] {
-  background-color: rgba(10, 32, 32, 0.95) !important;
-  border-color: rgba(30, 244, 180, 0.16) !important;
+  background-color: rgba(6, 9, 25, 0.92) !important;
+  border-color: rgba(255, 255, 255, 0.10) !important;
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6) !important;
 }
 
 html.dark header nav a {
-  color: #f5f5f0 !important;
+  color: #A8B6D8 !important;
+}
+
+html.dark header nav a:hover {
+  color: #FFFFFF !important;
 }
 
 html.dark header nav a[aria-current="page"] {
-  background-color: #1ef4b4 !important;
-  color: #031716 !important;
+  background-color: transparent !important;
+  color: #FFFFFF !important;
 }
 
 /* Cards & Stages in dark mode */
 html.dark [class*="border-[var(--line)]"] {
-  border-color: rgba(30, 244, 180, 0.14) !important;
+  border-color: rgba(99, 132, 255, 0.12) !important;
 }
 
-/* Ensure headings and body copy pop with bone white clarity */
+/* Headings and body copy */
 html.dark h1,
 html.dark h2,
 html.dark h3,
 html.dark h4,
 html.dark h5,
 html.dark h6 {
-  color: #f5f5f0 !important;
+  color: #F4F6FC !important;
 }
 
 /* Dark Mode Form Inputs, Buttons & Interactive States */
 html.dark input,
 html.dark textarea,
 html.dark select {
-  background-color: #061818 !important;
-  color: #f5f5f0 !important;
-  border-color: rgba(30, 244, 180, 0.18) !important;
+  background-color: #090E20 !important;
+  color: #F4F6FC !important;
+  border-color: rgba(99, 132, 255, 0.18) !important;
 }
 
 html.dark input::placeholder,
 html.dark textarea::placeholder {
-  color: rgba(245, 245, 240, 0.4) !important;
+  color: rgba(244, 246, 252, 0.4) !important;
 }
 
 html.dark input:focus,
 html.dark textarea:focus,
 html.dark select:focus {
-  border-color: #1ef4b4 !important;
-  box-shadow: 0 0 0 2px rgba(30, 244, 180, 0.2) !important;
+  border-color: #B278E3 !important;
+  box-shadow: 0 0 0 2px rgba(178, 120, 227, 0.25) !important;
 }
 
 html.dark button[type="submit"] {
-  background-color: #1ef4b4 !important;
-  color: #031716 !important;
+  background-color: #D4C5F9 !important;
+  color: #03091E !important;
 }
 
 html.dark button[type="submit"] svg {
-  color: #031716 !important;
+  color: #03091E !important;
 }
 
-/* ==========================================================================
-   OPERATING RITUALS TABS — Calibrated Dark Mode
-   ========================================================================== */
+/* Operating Rituals tabs */
 html.dark [role="tablist"] button[aria-selected="false"],
 html.dark button[role="tab"][aria-selected="false"],
 html.dark [class*="bg-[#e8e8e2]"] {
-  background-color: #061818 !important;
-  color: rgba(245, 245, 240, 0.6) !important;
-  border-color: rgba(30, 244, 180, 0.1) !important;
+  background-color: #090E20 !important;
+  color: rgba(244, 246, 252, 0.6) !important;
+  border-color: rgba(99, 132, 255, 0.1) !important;
 }
 
 html.dark [role="tablist"] button[aria-selected="false"]:hover,
 html.dark button[role="tab"][aria-selected="false"]:hover {
-  background-color: #0a2626 !important;
-  color: #f5f5f0 !important;
+  background-color: #131A36 !important;
+  color: #FFFFFF !important;
 }
 
 html.dark [role="tablist"] button[aria-selected="true"],
 html.dark button[role="tab"][aria-selected="true"] {
-  background-color: #0a2020 !important;
-  color: #f5f5f0 !important;
-  border-color: rgba(30, 244, 180, 0.25) !important;
+  background-color: #131A36 !important;
+  color: #FFFFFF !important;
+  border-color: rgba(178, 120, 227, 0.35) !important;
 }
 
 html.dark #operating-rituals [class*="rounded-b-3xl"],
 html.dark [class*="rounded-b-3xl"][class*="rounded-tr-3xl"] {
-  background-color: #0a2020 !important;
-  border-color: rgba(30, 244, 180, 0.18) !important;
+  background-color: #0D1226 !important;
+  border-color: rgba(99, 132, 255, 0.16) !important;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5) !important;
 }
 
-/* ==========================================================================
-   BILINGUAL TOGGLE — Dedicated High-Contrast Rules
-   Light: Deep pine pill (#072929) with pure white text (#ffffff).
-   Dark: Crisp porcelain white pill (#ffffff) with bold deep pine text (#072929).
-   ========================================================================== */
+/* Bilingual Toggle */
 .bilingual-toggle-thumb {
-  background-color: #072929 !important;
+  background-color: #040A5C !important;
 }
 
 html.dark .bilingual-toggle-thumb {
-  background-color: #ffffff !important;
+  background-color: #FFFFFF !important;
 }
 
 .bilingual-toggle-btn.bilingual-active,
 .bilingual-toggle-btn[aria-checked="true"] {
-  color: #ffffff !important;
+  color: #FFFFFF !important;
   font-weight: 700 !important;
 }
 
 html.dark .bilingual-toggle-btn.bilingual-active,
 html.dark .bilingual-toggle-btn[aria-checked="true"] {
-  color: #072929 !important;
+  color: #040A5C !important;
   font-weight: 700 !important;
 }
 
 html.dark .bilingual-toggle-btn[aria-checked="false"] {
-  color: rgba(245, 245, 240, 0.75) !important;
+  color: rgba(244, 246, 252, 0.75) !important;
 }
 
 html.dark .bilingual-toggle-btn[aria-checked="false"]:hover {
-  color: #ffffff !important;
+  color: #FFFFFF !important;
 }
 
 /* Hero swoosh underline animation */
@@ -1829,9 +1834,9 @@ html.dark .bilingual-toggle-btn[aria-checked="false"]:hover {
   transition: border-color 0.28s var(--ease-out-expo), box-shadow 0.28s var(--ease-out-expo);
 }
 
-.glow-border-mint:hover {
-  border-color: rgba(30, 244, 180, 0.45) !important;
-  box-shadow: 0 12px 32px -8px rgba(30, 244, 180, 0.2), 0 0 16px 0 rgba(30, 244, 180, 0.15) !important;
+.glow-border-mint:hover, .glow-border-brand:hover {
+  border-color: rgba(178, 120, 227, 0.45) !important;
+  box-shadow: 0 12px 32px -8px rgba(178, 120, 227, 0.18), 0 0 16px 0 rgba(6, 164, 224, 0.12) !important;
 }
 
 .glow-border-violet {

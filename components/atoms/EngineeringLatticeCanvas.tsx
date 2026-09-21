@@ -28,13 +28,13 @@ export function EngineeringLatticeCanvas() {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // Palette: Deep pine tones with subtle royal blue, violet, and mint hints
-    const colors = ['#072929', '#1E40AF', '#7C3AED', '#046A47', '#1EF4B4'];
+    const colors = ['#0D1226', '#0A4DD7', '#7C3AED', '#06A4E0', '#B278E3'];
 
     const numPoints = Math.min(Math.floor((width * height) / 14000), 55);
     const points: Point[] = [];
 
     for (let i = 0; i < numPoints; i++) {
-      const selectedColor = colors[Math.floor(Math.random() * colors.length)] ?? '#072929';
+      const selectedColor = colors[Math.floor(Math.random() * colors.length)] ?? '#0D1226';
       points.push({
         x: Math.random() * width,
         y: Math.random() * height,

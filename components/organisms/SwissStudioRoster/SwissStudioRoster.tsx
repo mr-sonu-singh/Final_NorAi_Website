@@ -24,7 +24,7 @@ export const STUDIO_ENGINEERS: StudioEngineer[] = [
     conviction: 'Operational security and institutional governance with 30 years defense discipline.',
     runtimeOwnership: 'Security Guardrails · Defense Rigor · State Outreach',
     primaryToken: '30y Defense Service · Corps of Signals',
-    accent: '#1ef4b4',
+    accent: '#38BDF8',
     icon: ShieldCheck,
   },
   {
@@ -64,17 +64,17 @@ export const STUDIO_ENGINEERS: StudioEngineer[] = [
     conviction: 'Deterministic multi-agent state machines and zero-hallucination runtime contracts.',
     runtimeOwnership: 'Autonomous Multi-Agents · pgvector · vLLM Serving',
     primaryToken: 'Deterministic Zod Contracts',
-    accent: '#1ef4b4',
+    accent: '#38BDF8',
     icon: Bot,
   },
 ];
 
 export function SwissStudioRoster() {
   return (
-    <section className="py-16 sm:py-24 border-b border-[var(--line)] bg-[#f5f5f0] dark:bg-[#03140f]">
+    <section className="py-16 sm:py-24 border-b border-[var(--line)] bg-[#f5f5f0] dark:bg-[#060919]">
       <Container size="wide" className="max-w-[1240px] mx-auto px-4 sm:px-6">
         <div className="max-w-2xl mb-12 text-left space-y-2">
-          <span className="font-mono text-xs text-[var(--mint-ink)] dark:text-[#1ef4b4] uppercase tracking-widest font-bold block">
+          <span className="font-mono text-xs text-[var(--mint-ink)] dark:text-[#38BDF8] uppercase tracking-widest font-bold block">
             FOUNDING STUDIO ENGINEERS · SWISS ROSTER
           </span>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--pine)] dark:text-white tracking-[-0.03em]">
@@ -97,7 +97,7 @@ export function SwissStudioRoster() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-30px' }}
                 transition={{ duration: 0.25, delay: idx * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                className="py-6 sm:py-8 flex flex-col md:flex-row md:items-center justify-between gap-6 transition-all duration-200 group hover:bg-[#fffdf7] dark:hover:bg-[#04130f] px-4 -mx-4 rounded-2xl cursor-pointer hover:shadow-md"
+                className="py-6 sm:py-8 flex flex-col md:flex-row md:items-center justify-between gap-6 transition-all duration-200 group hover:bg-[#fffdf7] dark:hover:bg-[#060919] px-4 -mx-4 rounded-2xl cursor-pointer hover:shadow-md"
               >
                 {/* Left: Index + Name + Role */}
                 <div className="flex items-start md:items-center gap-4 sm:gap-6">
@@ -113,7 +113,7 @@ export function SwissStudioRoster() {
                   </div>
 
                   <div>
-                    <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-[var(--pine)] dark:text-white tracking-tight group-hover:text-[#1ef4b4] transition-colors">
+                    <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-[var(--pine)] dark:text-white tracking-tight group-hover:text-[#38BDF8] transition-colors">
                       {eng.name}
                     </h3>
                     <p className="text-xs sm:text-sm font-mono text-[var(--pine)]/75 dark:text-white/70 mt-0.5">
@@ -139,7 +139,7 @@ export function SwissStudioRoster() {
                   >
                     {eng.primaryToken}
                   </span>
-                  <div className="w-8 h-8 rounded-full bg-[var(--pine-08)] dark:bg-white/10 flex items-center justify-center text-[var(--pine)] dark:text-white group-hover:bg-[#1ef4b4] group-hover:text-[#04130f] transition-all">
+                  <div className="w-8 h-8 rounded-full bg-[var(--pine-08)] dark:bg-white/10 flex items-center justify-center text-[var(--pine)] dark:text-white group-hover:bg-[#38BDF8] group-hover:text-[#060919] transition-all">
                     <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </div>
                 </div>
