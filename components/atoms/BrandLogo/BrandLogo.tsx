@@ -12,36 +12,40 @@ export interface BrandLogoProps {
 
 const sizeMap = {
   sm: {
-    px: 28,
-    markClass: 'w-7 h-7',
+    px: 44,
+    markClass: 'w-11 h-11',
     text: 'text-xl',
     gap: 'gap-2',
   },
   md: {
-    px: 32,
-    markClass: 'w-8 h-8',
+    px: 60,
+    markClass: 'w-15 h-15',
     text: 'text-2xl',
     gap: 'gap-2.5',
   },
   lg: {
-    px: 40,
-    markClass: 'w-10 h-10',
+    px: 68,
+    markClass: 'w-[68px] h-[68px]',
     text: 'text-3xl',
     gap: 'gap-3',
   },
 };
 
 /**
- * Official NorAI Brand Logo incorporating the circular Royal Blue & Violet Ai Monogram.
+ * Official NorAI Brand Logo.
  */
-export function BrandLogo({ size = 'md', variant = 'full', className }: BrandLogoProps) {
+export function BrandLogo({
+  size = 'md',
+  variant = 'full',
+  className,
+}: BrandLogoProps) {
   const { px, markClass, text, gap } = sizeMap[size];
 
   const markElement = (
     <div
       className={cn(
         markClass,
-        'relative shrink-0 rounded-full overflow-hidden select-none shadow-sm flex items-center justify-center ring-1 ring-white/15',
+        'relative shrink-0 select-none flex items-center justify-center',
       )}
     >
       <Image
@@ -50,20 +54,28 @@ export function BrandLogo({ size = 'md', variant = 'full', className }: BrandLog
         width={px}
         height={px}
         priority
-        className="w-full h-full object-cover"
+        className="w-full h-full object-contain"
       />
     </div>
   );
 
   if (variant === 'mark') {
-    return <span className={cn('inline-flex items-center', className)}>{markElement}</span>;
+    return (
+      <span className={cn('inline-flex items-center', className)}>
+        {markElement}
+      </span>
+    );
   }
 
-  const textColor = variant === 'inverted' ? 'text-[var(--bone)]' : 'text-[var(--pine)]';
+  const textColor =
+    variant === 'inverted'
+      ? 'text-[var(--bone)]'
+      : 'text-[var(--pine)]';
 
   return (
     <div className={cn('inline-flex items-center', gap, className)}>
       {markElement}
+
       <span
         className={cn(
           'font-display font-extrabold tracking-tight leading-none',
@@ -71,7 +83,6 @@ export function BrandLogo({ size = 'md', variant = 'full', className }: BrandLog
           text,
         )}
       >
-        NorAI
       </span>
     </div>
   );
