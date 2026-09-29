@@ -1,6 +1,31 @@
 /**
  * In-Memory Sliding Window Rate Limiter
  * Provides IP-based and key-based rate limiting to prevent abuse and denial-of-service.
+ *
+ * ---------------------------------------------------------------------------
+ * PRODUCTION LIMITATION — this limiter is a per-instance, best-effort guard,
+ * not a distributed quota.
+ *
+ * On serverless (Vercel Edge / Lambda) this module-level `Map` is scoped to a
+ * single warm isolate. It is discarded on freeze/thaw, never shared across
+ * concurrent instances, and not replicated between regions. A client routed to
+ * a different instance therefore gets a fresh budget, so the effective limit
+ * under load approaches (limit x instance count), and a cold start resets the
+ * window entirely.
+ *
+ * Treat this as defence in depth, not as the control that enforces the quota.
+ * A production deployment needs BOTH of the following, which are host-side
+ * and cannot be implemented in application code:
+ *
+ *   1. A shared store (Upstash Redis / Vercel KV / DynamoDB) so the counter is
+ *      consistent across isolates and survives cold starts.
+ *   2. Edge WAF rate-limit rules (Cloudflare / Vercel Firewall) applied in
+ *      front of the origin, which bound traffic before it reaches the function
+ *      and survive a malicious flood that this in-memory map cannot absorb.
+ *
+ * Until both are in place, publish the documented limit as a per-session
+ * courtesy rather than a guarantee.
+ * ---------------------------------------------------------------------------
  */
 
 export interface RateLimitOptions {
@@ -23,7 +48,15 @@ interface RateLimitRecord {
   lastSeen: number;
 }
 
-// In-memory store for tracking request timestamps
+/**
+ * Hard ceiling on tracked keys. Without it the store grows for as long as the
+ * isolate lives, because a new key is only removed once it goes stale and a
+ * flood can present a fresh key per request.
+ */
+const MAX_TRACKED_KEYS = 10_000;
+
+// In-memory store for tracking request timestamps, in insertion order so the
+// oldest-seen key can be evicted first.
 const rateLimitStore = new Map<string, RateLimitRecord>();
 
 // Clean up stale entries every 5 minutes to prevent memory leaks
@@ -42,6 +75,16 @@ function pruneStaleRecords(maxAgeMs: number = 30 * 60 * 1000) {
   }
 }
 
+/** Evicts the least-recently-seen keys until the store is within its ceiling. */
+function enforceStoreCeiling() {
+  while (rateLimitStore.size >= MAX_TRACKED_KEYS) {
+    const oldest = rateLimitStore.keys().next();
+    if (oldest.done) return;
+    rateLimitStore.delete(oldest.value);
+  }
+}
+
+
 /**
  * Checks and records a request against the rate limit window.
  */
@@ -55,7 +98,12 @@ export function checkRateLimit(key: string, options: RateLimitOptions = {}): Rat
 
   let record = rateLimitStore.get(key);
   if (!record) {
+    enforceStoreCeiling();
     record = { timestamps: [], lastSeen: now };
+    rateLimitStore.set(key, record);
+  } else {
+    // Refresh recency so the ceiling evicts genuinely idle keys first.
+    rateLimitStore.delete(key);
     rateLimitStore.set(key, record);
   }
 

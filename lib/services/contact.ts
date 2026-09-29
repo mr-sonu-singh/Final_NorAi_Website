@@ -6,6 +6,12 @@ export interface ServiceResponse {
   success: boolean;
   message: string;
   errors?: Record<string, string[]>;
+  /**
+   * Distinguishes a client mistake (400) from a server-side delivery failure
+   * (503) so the route never has to guess, and never answers a failed send
+   * with a 200.
+   */
+  failureKind?: 'validation' | 'delivery';
 }
 
 export async function submitContactForm(rawData: unknown): Promise<ServiceResponse> {
@@ -15,6 +21,7 @@ export async function submitContactForm(rawData: unknown): Promise<ServiceRespon
       success: false,
       message: 'Validation failed. Please check the form fields.',
       errors: validation.error.flatten().fieldErrors,
+      failureKind: 'validation',
     };
   }
 
@@ -123,18 +130,34 @@ export async function submitContactForm(rawData: unknown): Promise<ServiceRespon
         `.trim(),
       });
     } catch (err) {
+      // Log the cause server-side only. The SMTP error text can contain
+      // hostnames, auth failure detail, and recipient addresses, none of which
+      // belong in a response body.
       console.error(
-        'Email dispatch error (credentials masked):',
-        err instanceof Error ? err.message : 'Unknown error',
+        '[Contact Service] Email dispatch failed',
+        err instanceof Error ? err.name : 'Unknown error',
       );
       return {
         success: false,
         message:
-          'Could not send message at this moment. Please try again or reach out directly at noraitechnologies@gmail.com.',
+          'We could not send your message right now. Please try again, or email noraitechnologies@gmail.com.',
+        failureKind: 'delivery',
       };
     }
   } else {
-    // If SMTP is unconfigured in development/staging environment, log simulated reception
+    // SMTP is not configured. In production that is a deployment fault, and
+    // reporting success would be a false 200 for a message that was never
+    // sent. In development the simulation is intentional and stays a success.
+    if (process.env.NODE_ENV === 'production') {
+      console.error('[Contact Service] EMAIL_USER / EMAIL_PASS are not configured');
+      return {
+        success: false,
+        message:
+          'Message delivery is temporarily unavailable. Please email noraitechnologies@gmail.com.',
+        failureKind: 'delivery',
+      };
+    }
+
     console.warn('[Contact Service] Form received (SMTP unconfigured, simulation mode):', {
       name: safeName,
       email: safeEmail,
