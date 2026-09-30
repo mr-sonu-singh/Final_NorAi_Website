@@ -44,23 +44,23 @@ export const CATALOG_TOOLS: CatalogToolItem[] = [
     title: 'AI Resume Shortlister',
     category: 'Recruitment AI',
     tagline:
-      'Screen hundreds of engineering resumes in seconds with sub-second vector scoring and weighted skills matching.',
-    metric: '< 0.35s / PDF',
+      'Screen a batch of engineering resumes against one job spec, with every score backed by a quoted line from the CV.',
+    metric: 'PDF · DOCX · TXT',
     inputFormat: 'PDF, DOCX, TXT',
     outputFormat: 'Ranked Scorecard & Validated JSON',
     highlights: [
-      'Multi-format resume parsing with zero permanent storage',
-      'Custom skill vector weighting and experience thresholds',
-      'ATS-compatible structured JSON export',
+      'Multi-format resume parsing with no NorAI-side storage',
+      'Custom skill vector weighting and a cutoff threshold you set',
+      'Red flags and probing interview questions, per candidate',
     ],
     accent: '#38BDF8',
     badgeBg: 'bg-[#38BDF8]/15',
     badgeText: 'text-[#38BDF8]',
     telemetryStream: {
-      inputSample: '540 Engineering Resumes (Batch #0482)',
-      engine: 'pgvector In-Memory Cosine Similarity',
-      stat: '0.28s Execution · 94.2% Relevance Match',
-      snippet: '{\n  "candidate_id": "eng-7402",\n  "score": 0.942,\n  "skills_matched": ["Rust", "Distributed Systems", "vLLM"],\n  "verdict": "SHORTLIST_STAGE_1"\n}',
+      inputSample: '4 resume files, one job spec (paste or drop)',
+      engine: 'Gemini Structured Output · Zod Validation',
+      stat: 'Schema-Locked JSON · Skill Vectors With Evidence',
+      snippet: '{\n  "batchId": "norai_shortlist",\n  "totalEvaluated": 4,\n  "candidates": [\n    {\n      "compositeScore": 84,\n      "status": "Shortlisted",\n      "skillVectors": [\n        { "label": "Distributed Systems", "matchScore": 88,\n          "evidence": "Owned the Raft leader election service" }\n      ]\n    }\n  ]\n}',
     },
   },
   {
@@ -69,23 +69,23 @@ export const CATALOG_TOOLS: CatalogToolItem[] = [
     title: 'Course Note-Taker',
     category: 'EdTech & Study AI',
     tagline:
-      'Transform raw lecture recordings, videos, and slide decks into executive study notes and interactive flashcards.',
-    metric: 'Real-Time Audio NLP',
-    inputFormat: 'MP3, WAV, MP4, YouTube',
-    outputFormat: 'Markdown, Notion & SRS Flashcards',
+      'Turn a lecture transcript or a wall of notes into a chapterised study brief, a flashcard deck, and a practice quiz.',
+    metric: 'Transcript In · Markdown Out',
+    inputFormat: 'TXT, PDF, DOCX, VTT, SRT, MD',
+    outputFormat: 'Markdown Brief & CSV Flashcards',
     highlights: [
-      'LaTeX math formula extraction and rendering',
-      'Interactive 3D study flashcards with spaced repetition',
-      'Academic access for students & researchers',
+      'LaTeX formula extraction, rendered in-browser',
+      'Flashcards graded Foundational / Intermediate / Advanced',
+      'Practice quiz with an explained answer for every option',
     ],
     accent: '#7a5cff',
     badgeBg: 'bg-[#7a5cff]/20',
     badgeText: 'text-[#7a5cff]',
     telemetryStream: {
-      inputSample: 'Stanford CS229 Lecture Audio (1hr 42m)',
-      engine: 'Whisper-v3 Transient Streaming + KaTeX Parser',
-      stat: '42 LaTeX Equations Extracted · 0 Storage Retained',
-      snippet: '## Gradient Descent Optimization\n$$\\nabla f(\\theta) = \\frac{1}{m} \\sum_{i=1}^m (h_\\theta(x^{(i)}) - y^{(i)}) x_j^{(i)}$$\n- Verified: Converges in 14 iterations\n- SRS Flashcard #12 generated',
+      inputSample: 'One transcript file, or pasted captions (1hr 42m of lecture)',
+      engine: 'Gemini Structured Output · LaTeX via KaTeX',
+      stat: 'Schema-Locked Chapters, Cards & Quiz',
+      snippet: '## Gradient Descent Optimization\n$$\\nabla f(\\theta) = \\frac{1}{m} \\sum_{i=1}^m (h_\\theta(x^{(i)}) - y^{(i)}) x_j^{(i)}$$\n- 4 chapters, 6 core axioms, 8 flashcards, 5 quiz questions\n- Export: study-brief.md + flashcards.csv',
     },
   },
   {
@@ -94,23 +94,23 @@ export const CATALOG_TOOLS: CatalogToolItem[] = [
     title: 'Community Chat Digest',
     category: 'Community AI',
     tagline:
-      'Condense thousands of unread Slack, Discord, and Telegram team messages into structured executive decisions.',
-    metric: '4,820 msgs ➔ 3 points',
+      'Condense a pasted channel export into topic clusters, a prioritised action log, and a newsletter draft.',
+    metric: 'Export In · Digest Out',
     inputFormat: 'Slack, Discord, TG exports',
-    outputFormat: 'Chronological Decisions & Action Items',
+    outputFormat: 'Executive Brief, Action Log & Newsletter',
     highlights: [
-      'Noise filtering with thread deduplication & priority scoring',
-      'Action item extraction with assignees and dead-ends flagged',
-      'Executive 3-bullet morning dispatch generation',
+      'Banter, bot spam, and greetings filtered out by the prompt rubric',
+      'Bugs and feature requests extracted with Urgent-to-Low triage',
+      'Newsletter draft with headline, spotlight, shoutouts, and CTA',
     ],
     accent: '#ffa24d',
     badgeBg: 'bg-[#ffa24d]/20',
     badgeText: 'text-[#ffa24d]',
     telemetryStream: {
-      inputSample: '4,820 unread team messages (#core-dev, #general)',
-      engine: 'Deterministic Graph Cluster & Action Extractor',
-      stat: '96.4% Noise Rejected · 3 Key Decisions Extracted',
-      snippet: '• Decision 01: PR #892 merged to main; API v2 deployed\n• Decision 02: Database migration scheduled for 02:00 UTC\n• Action Item: @sonu to sign off on WebGPU shader telemetry',
+      inputSample: 'Pasted multi-channel log (#core-dev, #general)',
+      engine: 'Gemini Structured Output · Zod Validation',
+      stat: 'Banter & Spam Filtered · Topics Clustered',
+      snippet: '• Topic: v2 rollout — 3 messages, Neutral\n• Bug Report (High): shader telemetry pane throws on WebGPU\n• Feature Request (Medium): bulk CSV re-export\n• Newsletter draft ready — you send it',
     },
   },
   {
@@ -119,23 +119,23 @@ export const CATALOG_TOOLS: CatalogToolItem[] = [
     title: 'Smart Dainik News',
     category: 'Regional Intelligence',
     tagline:
-      'Hyper-local regional news and public employment alerts clustered across Hindi and English feeds.',
-    metric: 'Bilingual Feeds (EN/HI)',
-    inputFormat: 'UP Gazette, Regional Wires, RSS',
-    outputFormat: 'Verified Employment Alerts',
+      'Paste a gazette notice or job circular and get deadline-tracked alert cards, an eligibility matrix, and a bilingual brief.',
+    metric: 'Bilingual EN + HI',
+    inputFormat: 'Gazette text, PDF, DOCX, MD',
+    outputFormat: 'Alert Cards & Eligibility Matrix',
     highlights: [
-      'Bi-directional Hindi/English public notification parsing',
-      'Official UP public service commission alert verification',
-      'Zero advertising clutter or clickbait filtering',
+      'Bilingual Hindi/English parsing from one paste, no translation step',
+      'Deadline, vacancy, and pay-band extraction with gazette references',
+      'Anti-rumor notes flagging claims against the official notice',
     ],
     accent: '#00e5ff',
     badgeBg: 'bg-[#00e5ff]/20',
     badgeText: 'text-[#00e5ff]',
     telemetryStream: {
-      inputSample: 'UP State Gazette Official PDF & 12 Regional Wires',
-      engine: 'Bilingual Hindi-English Cross-Modal Parser',
-      stat: '100% Verified Public Source · 0 Ads · Zero Clickbait',
-      snippet: 'सूचना: उत्तर प्रदेश लोक सेवा आयोग भर्ती अधिसूचना 2026\n[Verified UPPSC Dispatch #4902 · Eligibility: B.Tech / B.Sc]\nDirect Application Portal: Active (Closes 30 Sep)',
+      inputSample: 'One pasted circular, state and language mode set',
+      engine: 'Gemini Structured Output · Zod Validation',
+      stat: 'Gazette Reference Recorded Per Alert Card',
+      snippet: 'सूचना: उत्तर प्रदेश लोक सेवा आयोग भर्ती अधिसूचना\n• Alert Card: gazette ref, deadline, days remaining, vacancies, pay band\n• Eligibility Matrix: age / degree / quota / fee / stages\n• Official portal link surfaced — apply there, not here',
     },
   },
 ];
@@ -409,7 +409,7 @@ export function ProductsIndexClient() {
               </h2>
 
               <p className="text-base sm:text-lg max-w-xl mx-auto font-normal text-[#A8B6D8] leading-relaxed">
-                We take prototypes from isolated sandboxes into enterprise environments with private VPC isolation and custom model fine-tuning.
+                We take prototypes from an in-browser sandbox into a deployed system — isolated deployment, custom retrieval, and outputs locked to your schema.
               </p>
 
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">

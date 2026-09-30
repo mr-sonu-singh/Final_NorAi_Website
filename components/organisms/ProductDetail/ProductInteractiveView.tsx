@@ -176,8 +176,8 @@ export function ProductInteractiveView({ product, slug }: ProductInteractiveView
                   {product.title} Workbench
                 </h3>
                 <p className="text-sm md:text-base text-ink-body max-w-xl mx-auto leading-relaxed">
-                  We are rolling out NorAI tools sequentially to ensure zero-hallucination
-                  guarantees and sub-second SLAs.
+                  We roll out NorAI tools one at a time, each locked to an output
+                  schema you can read before you spend a single token.
                 </p>
               </div>
 
@@ -185,7 +185,7 @@ export function ProductInteractiveView({ product, slug }: ProductInteractiveView
                 <div className="flex items-center justify-between">
                   <span className="text-ink-secondary">Engine Target:</span>
                   <span className="text-ink-primary font-semibold">
-                    Gemini 3.5 Lite High-Context
+                    Gemini · Model Allowlist
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
@@ -193,8 +193,8 @@ export function ProductInteractiveView({ product, slug }: ProductInteractiveView
                   <span className="text-emerald-700 font-semibold">Ephemeral In-Memory</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-ink-secondary">Phase 1 Live Tool:</span>
-                  <span className="text-accent-500 font-semibold">AI Resume Shortlister</span>
+                  <span className="text-ink-secondary">Access Model:</span>
+                  <span className="text-accent-500 font-semibold">BYOK · No NorAI Login</span>
                 </div>
               </div>
 
@@ -274,7 +274,7 @@ export function ProductInteractiveView({ product, slug }: ProductInteractiveView
                 <div className="flex items-center justify-between p-3 rounded-lg bg-canvas-recessed/60">
                   <span className="text-ink-secondary">Inference Model</span>
                   <span className="font-mono text-ink-primary font-medium">
-                    Gemini 3.5 Lite (1M ctx)
+                    Your Gemini Key · Allowlisted
                   </span>
                 </div>
                 <div className="flex items-center justify-between p-3 rounded-lg bg-canvas-recessed/60">
@@ -285,7 +285,9 @@ export function ProductInteractiveView({ product, slug }: ProductInteractiveView
                 </div>
                 <div className="flex items-center justify-between p-3 rounded-lg bg-canvas-recessed/60">
                   <span className="text-ink-secondary">Integration</span>
-                  <span className="font-mono text-ink-primary font-medium">REST API & Web UI</span>
+                  <span className="font-mono text-ink-primary font-medium">
+                    Browser UI · No Public API
+                  </span>
                 </div>
                 <div className="flex items-center justify-between p-3 rounded-lg bg-canvas-recessed/60">
                   <span className="text-ink-secondary">Data Retention</span>
@@ -300,7 +302,7 @@ export function ProductInteractiveView({ product, slug }: ProductInteractiveView
                   href="/docs"
                   className="text-xs font-semibold text-accent-500 hover:underline flex items-center gap-1"
                 >
-                  <span>Explore developer API documentation</span>
+                  <span>Read the developer documentation</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>

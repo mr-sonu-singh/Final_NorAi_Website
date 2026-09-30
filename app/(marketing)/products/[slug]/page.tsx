@@ -165,11 +165,11 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
               </div>
               <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#fffdf7] border border-[var(--line)] shadow-xs">
                 <CheckCircle2 className="w-4 h-4 text-[var(--mint-ink)]" />
-                <span>Execution: {product.latency}</span>
+                <span>Accepts: {product.latency}</span>
               </div>
               <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#fffdf7] border border-[var(--line)] shadow-xs">
                 <CheckCircle2 className="w-4 h-4 text-[var(--mint-ink)]" />
-                <span>REST API &amp; Web UI</span>
+                <span>Browser UI &middot; Your Gemini Key</span>
               </div>
             </div>
 
@@ -207,7 +207,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[var(--mint-ink)] animate-pulse" />
               <span className="font-mono text-xs text-[var(--mint-ink)] font-semibold uppercase">
-                Air-Gapped In-Memory Enclave Active
+                Ephemeral In-Memory Session Active
               </span>
             </div>
           </div>
@@ -355,7 +355,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
           <div className="gradient-card max-w-4xl mx-auto text-center">
             <div className="gradient-card__inner p-8 sm:p-12 space-y-6 bg-[#fffdf7] text-[var(--pine)]">
               <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--pine-08)] border border-[var(--line)] text-xs font-mono font-bold text-[var(--mint-ink)] uppercase tracking-wider">
-                Option B · Starter Sandbox Access
+                Bring Your Own Key &middot; No Signup
               </div>
 
               <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--pine)] tracking-tight leading-tight">
@@ -363,9 +363,10 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
               </h2>
 
               <p className="text-base sm:text-lg text-[var(--pine)]/75 max-w-2xl mx-auto leading-relaxed font-normal">
-                Get started directly with 50 sandbox credits to evaluate. For dedicated
-                REST API endpoints, custom parser schemas, or tailored on-premise integration, talk directly to our
-                engineering team.
+                Open the workbench and paste in your own Gemini key &mdash; there is no NorAI
+                account, no credit balance, and no trial to burn through. For a custom parser
+                schema, a private deployment, or a pipeline wired into your own systems, talk
+                directly to our engineering team.
               </p>
 
               <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-4">

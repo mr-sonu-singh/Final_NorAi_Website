@@ -43,84 +43,61 @@ export const PRODUCTS_DATA: Record<string, ProductData> = {
     tagline: 'Automated candidate screening and match scoring for high-volume hiring teams.',
     excerpt:
       'Parse PDF/Word resumes, extract core engineering skills, and generate objective qualification scores matched against your job specifications.',
-    latency: '< 0.35s',
+    latency: 'PDF · DOCX · TXT · Markdown · CSV',
     iconName: 'Sparkles',
     problem: [
-      'Recruiters waste 15+ hours weekly manually scanning hundreds of unstructured candidate resumes.',
+      'Recruiters burn entire days scanning hundreds of unstructured resumes by hand, in a queue that never clears.',
       'Manual keyword searches miss qualified talent and introduce inconsistent screening standards.',
     ],
     solution: [
-      'NorAI parses incoming resumes in memory, extracting verified technical skill vectors and experience timelines.',
-      'Generates a structured JSON score card with weighted qualification rankings and key candidate highlights.',
+      'NorAI parses incoming resumes in memory, extracting technical skill vectors with the evidence behind every score.',
+      'Generates a structured JSON score card with weighted qualification rankings, red flags, and calibrated interview questions.',
     ],
     features: [
       {
         title: 'Multi-Format Parsing',
-        desc: 'Extract structured candidate profiles from PDF, DOCX, and plain text resumes instantaneously.',
+        desc: 'Drop PDF, DOCX, TXT, Markdown, or CSV resumes in, or paste the text straight into the workbench.',
       },
       {
         title: 'Weighted Skill Scoring',
-        desc: 'Match candidates against specific job descriptions using custom skill weights and experience thresholds.',
+        desc: 'Score each candidate against your job description using per-skill weights and a cutoff threshold you set.',
       },
       {
         title: 'Structured JSON Payload',
-        desc: 'Receive clean, validated JSON outputs ready to sync directly into your ATS or internal HR dashboard.',
+        desc: 'Every field is validated by a Zod schema before it reaches the screen. Copy the JSON, or export the batch as CSV or Markdown.',
       },
       {
-        title: 'Zero Permanent Storage',
-        desc: 'Candidate files are processed ephemerally in memory and flushed immediately after scoring.',
+        title: 'No NorAI Storage',
+        desc: 'NorAI keeps no candidate file and no database. The request goes to Google with your key and the response comes back to your tab.',
       },
     ],
     workflow: [
       {
         step: '01',
-        title: 'Submit Resume Payload',
-        desc: 'Send resume documents via REST API endpoint or drag-and-drop web dashboard.',
+        title: 'Drop In The Batch',
+        desc: 'Add resume files to the workbench, or paste them separated by a --- RESUME --- delimiter.',
       },
       {
         step: '02',
-        title: 'Neural Skill Extraction',
-        desc: 'NorAI extracts education history, technical skills, and project relevance scores.',
+        title: 'Skill Vector Extraction',
+        desc: 'NorAI pulls out technical skills, work history, and the evidence line behind each one.',
       },
       {
         step: '03',
-        title: 'Receive Ranked Scoring',
-        desc: 'Get immediate candidate match percentage and qualification summary.',
+        title: 'Read The Scorecard',
+        desc: 'Get a composite score, skill-by-skill breakdowns, red flags, and 2-4 probing interview questions per candidate.',
       },
     ],
     pricing: [
       {
-        tier: 'Starter',
-        price: '$49/mo',
-        desc: 'Ideal for early-stage startups hiring 5-10 roles per month.',
+        tier: 'Free',
+        price: 'Your own Gemini key',
+        desc: 'One tier. No trial, no card, no seat count. NorAI never bills you, and the inference you trigger is billed by Google to you.',
         features: [
-          '500 Resume Parses/mo',
-          'Standard Skill Matching',
-          'Dashboard Access',
-          'Email Support',
-        ],
-      },
-      {
-        tier: 'Pro',
-        price: '$149/mo',
-        desc: 'For growing teams requiring API access and ATS integration.',
-        features: [
-          '3,000 Resume Parses/mo',
-          'Custom Skill Weighting',
-          'REST API Access',
-          'Priority SLA Support',
-        ],
-        highlighted: true,
-      },
-      {
-        tier: 'Scale',
-        price: '$399/mo',
-        desc: 'High-volume recruiting agencies & enterprise HR operations.',
-        features: [
-          '10,000 Resume Parses/mo',
-          'Private Webhook Queues',
-          'Dedicated Support',
-          '99.9% Uptime SLA',
+          'Runs entirely in your browser',
+          '30 requests / 5 minutes, per IP',
+          'No NorAI account, no login',
+          'You pay Google directly for your own inference',
         ],
       },
     ],
@@ -128,17 +105,17 @@ export const PRODUCTS_DATA: Record<string, ProductData> = {
       {
         question: 'What file formats does the AI Resume Shortlister support?',
         answer:
-          'The parser supports PDF, Microsoft Word (.doc, .docx), and plain text (.txt) candidate resumes.',
+          'The parser accepts PDF, Microsoft Word (.doc, .docx), plain text (.txt), Markdown, CSV, and JSON, or you can paste resume text directly.',
       },
       {
         question: 'Is candidate data stored or used for AI model training?',
         answer:
-          'No. All candidate files are processed ephemerally in RAM and flushed immediately upon response completion in accordance with our Zero Persistent Logging security standard.',
+          'Not by us. NorAI holds no database and writes nothing to disk — the request is forwarded to Google with your key and the response returns to your browser. Google\'s own retention terms apply to their inference.',
       },
       {
         question: 'Can I connect the API to my existing ATS software?',
         answer:
-          'Yes! Our REST API returns standard JSON payloads that integrate seamlessly with greenhouse, Lever, Workday, or custom HR portals.',
+          'There is no public NorAI API to connect to. The tool runs in your browser and hands you validated JSON, which you can copy into Greenhouse, Lever, Workday, or your own portal, or export as CSV. If you want a real, automated pipeline into your ATS, that is a services engagement — talk to us about it.',
       },
     ],
   },
@@ -150,87 +127,64 @@ export const PRODUCTS_DATA: Record<string, ProductData> = {
     seoTitle: 'AI Course Note-Taker',
     badge: 'EdTech Summarization',
     tagline:
-      'Transform lecture audio, video transcripts, and slides into study briefs & flashcards.',
+      'Turn lecture transcripts and notes into structured chapter briefs, flashcards, and self-assessment quizzes.',
     excerpt:
       'Convert hours of educational content into structured chapter summaries, interactive flashcards, key takeaways, and self-assessment quizzes.',
-    latency: '< 0.41s',
+    latency: 'TXT · PDF · DOCX · VTT · SRT · Markdown',
     iconName: 'Zap',
     problem: [
       'Students and researchers struggle to retain key concepts from long 2-hour lecture video recordings.',
       'Manual note-taking takes hours away from active learning, problem solving, and concept revision.',
     ],
     solution: [
-      'NorAI processes video transcripts and audio tracks into organized, high-density study outlines.',
-      'Automatically generates interactive digital flashcards and chapter quizzes for rapid concept mastery.',
+      'NorAI turns lecture transcripts and raw notes into chapterised study outlines with the formulas preserved.',
+      'Generates active-recall flashcards and chapter quizzes graded by difficulty, for rapid concept revision.',
     ],
     features: [
       {
         title: 'Chapter Segmentation',
-        desc: 'Automatically break long transcripts into logical topic sections with timestamped headings.',
+        desc: 'Break a long transcript into logical topic sections with estimated timestamp spans and per-chapter takeaways.',
       },
       {
         title: 'Flashcard Generation',
-        desc: 'Extract key formulas, definitions, and core concepts into study-ready Q&A flashcard decks.',
+        desc: 'Extract key formulas, definitions, and core concepts into a study deck graded Foundational, Intermediate, or Advanced.',
       },
       {
         title: 'Multi-Lingual Support',
-        desc: 'Summarize lectures recorded in English, Hindi, and regional languages with high accuracy.',
+        desc: 'Handle English, Hindi, and mixed Devanagari-Latin transcripts without a translation step in between.',
       },
       {
         title: 'Export Formats',
-        desc: 'Download generated study guides in Markdown, Notion, PDF, or JSON formats.',
+        desc: 'Download the study guide as Markdown or the flashcard deck as CSV — no account needed to keep the output.',
       },
     ],
     workflow: [
       {
         step: '01',
-        title: 'Upload Transcript or Audio',
-        desc: 'Paste a video URL, transcript text, or audio file into the processing console.',
+        title: 'Supply The Transcript',
+        desc: 'Paste transcript text or drop a TXT, PDF, DOCX, VTT, SRT, Markdown, CSV, or JSON file into the workbench.',
       },
       {
         step: '02',
         title: 'Intelligent Digesting',
-        desc: 'NorAI identifies core thesis points, key formulas, and main definitions.',
+        desc: 'NorAI identifies the core thesis, the axioms, and every formula or code snippet the lecture turns on.',
       },
       {
         step: '03',
         title: 'Study Guide & Flashcards',
-        desc: 'Export structured chapter briefs and interactive flashcard decks instantly.',
+        desc: 'Read the chapterised brief, flashcards, and practice quiz in the workbench, then export as Markdown or CSV.',
       },
     ],
     pricing: [
       {
-        tier: 'Starter',
-        price: '$29/mo',
-        desc: 'Perfect for individual students and self-learners.',
+        tier: 'Free',
+        price: 'Your own Gemini key',
+        desc: 'No classroom licence and no seat count. Bring a key and process as many lectures as your own Google quota allows.',
         features: [
-          '30 Hours Lecture Processing/mo',
-          'Markdown & PDF Exports',
-          'Flashcard Generator',
-          'Community Support',
-        ],
-      },
-      {
-        tier: 'Educator',
-        price: '$99/mo',
-        desc: 'Designed for course creators and university teaching assistants.',
-        features: [
-          '150 Hours Processing/mo',
-          'Quiz Generator',
-          'API & Webhook Access',
-          'Priority Support',
-        ],
-        highlighted: true,
-      },
-      {
-        tier: 'Institutional',
-        price: '$299/mo',
-        desc: 'For universities, LMS platforms, and online academies.',
-        features: [
-          '500 Hours Processing/mo',
-          'LMS Integration',
-          'Custom Branding',
-          '99.9% Uptime SLA',
+          'Runs entirely in your browser',
+          '30 requests / 5 minutes, per IP',
+          'Markdown study guide + CSV flashcard export',
+          'No NorAI account, no login',
         ],
       },
     ],
@@ -238,12 +192,12 @@ export const PRODUCTS_DATA: Record<string, ProductData> = {
       {
         question: 'Can I upload video files directly or do I need a transcript?',
         answer:
-          'You can provide video transcript text, YouTube links, or standard MP3/WAV audio files for automated processing.',
+          'You need the text. Drop a transcript, notes file, or subtitle track (TXT, PDF, DOCX, VTT, SRT, Markdown, CSV, JSON) and NorAI synthesises from that. There is no audio or video transcriber here — pull auto-generated captions off YouTube yourself and paste them in.',
       },
       {
         question: 'Are flashcards exportable to study apps like Anki?',
         answer:
-          'Yes! Generated flashcards can be exported as CSV, JSON, or text formats compatible with Anki and Quizlet.',
+          'The deck exports as CSV with one front/back pair per row, which is the shape Anki\'s basic import expects. We do not ship an Anki plugin or a hosted sync service — you own the file.',
       },
     ],
   },
@@ -254,87 +208,64 @@ export const PRODUCTS_DATA: Record<string, ProductData> = {
     title: 'Chat Digest & Newsletter AI',
     seoTitle: 'Chat Digest & Newsletter AI',
     badge: 'Community Summarization',
-    tagline: 'Digest noisy community chat channels into daily executive briefs & newsletters.',
+    tagline: 'Digest a noisy community export into an executive brief, action log, and newsletter draft.',
     excerpt:
-      'Extract actionable feedback, sentiment trends, product bugs, and top discussion topics from Telegram, Discord, and Slack channels.',
-    latency: '< 0.28s',
+      'Extract actionable feedback, sentiment read, product bugs, and top discussion topics from a pasted Telegram, Discord, or Slack export.',
+    latency: 'Discord · Telegram · Slack exports',
     iconName: 'Cpu',
     problem: [
       'Community managers and founders miss critical user feedback hidden inside thousands of daily chat messages.',
       'Manually writing community newsletters and weekly updates requires tedious message scanning.',
     ],
     solution: [
-      'NorAI aggregates daily channel exports, filtering out spam and casual banter to isolate high-signal discussions.',
-      'Delivers an executive daily brief highlighting top bug reports, feature requests, and newsletter highlights.',
+      'NorAI reads a channel export and filters spam and casual banter to isolate the discussions worth a decision.',
+      'Delivers an executive brief covering topic clusters, reported bugs, feature requests, and a newsletter draft.',
     ],
     features: [
       {
         title: 'Noise & Spam Filtering',
-        desc: 'Automatically filter out casual banter, memes, and spam to focus on high-value community insights.',
+        desc: 'Filter out greetings, memes, bot messages, and off-topic banter to focus on high-value community insights.',
       },
       {
         title: 'Action Item Extraction',
-        desc: 'Identify reported software bugs, customer questions, and product feature requests.',
+        desc: 'Surface reported bugs, requested features, and unanswered questions — each tagged Urgent, High, Medium, or Low with a triage suggestion.',
       },
       {
-        title: 'Automated Newsletter Generation',
-        desc: 'Format top community discussions into ready-to-send email newsletter drafts.',
+        title: 'Newsletter Draft Generation',
+        desc: 'Get a draft with headline, intro, spotlight section, member shoutouts, and a call to action. You send it; NorAI does not.',
       },
       {
-        title: 'Multi-Channel Support',
-        desc: 'Connect Telegram channels, Discord servers, and Slack workspaces seamlessly.',
+        title: 'Bring Your Own Export',
+        desc: 'Paste a channel log or drop a TXT, JSON, CSV, LOG, or Markdown dump. No bot install, no OAuth, no read access to your server.',
       },
     ],
     workflow: [
       {
         step: '01',
-        title: 'Connect Channel Export',
-        desc: 'Sync channel webhooks or paste chat transcript exports.',
+        title: 'Paste Channel Export',
+        desc: 'Drop in an export file, or paste multi-channel chat logs straight into the workbench.',
       },
       {
         step: '02',
         title: 'Signal Extraction',
-        desc: 'NorAI categorizes messages by sentiment, feature requests, and support queries.',
+        desc: 'NorAI clusters messages by topic and scores the aggregate sentiment of the community.',
       },
       {
         step: '03',
-        title: 'Daily Executive Digest',
-        desc: 'Receive curated daily digests via email or Slack notification.',
+        title: 'Read The Executive Brief',
+        desc: 'Review clusters, action items, and the newsletter draft in the workbench, then export as Markdown or CSV.',
       },
     ],
     pricing: [
       {
-        tier: 'Community',
-        price: '$39/mo',
-        desc: 'For indie creators & single community channels.',
+        tier: 'Free',
+        price: 'Your own Gemini key',
+        desc: 'Not a community-management subscription. Paste an export, read the digest, send the newsletter yourself.',
         features: [
-          '2 Channels Connected',
-          'Daily Digest Briefs',
-          'Spam Filtering',
-          'Email Support',
-        ],
-      },
-      {
-        tier: 'Pro Manager',
-        price: '$119/mo',
-        desc: 'For active Web3, SaaS, and open-source communities.',
-        features: [
-          '10 Channels Connected',
-          'Newsletter Generator',
-          'Webhook Notifications',
-          'Priority Support',
-        ],
-        highlighted: true,
-      },
-      {
-        tier: 'Enterprise',
-        price: '$299/mo',
-        desc: 'For multi-brand organizations with large community operations.',
-        features: [
-          'Unlimited Channels',
-          'Custom Sentiment Models',
-          'Dedicated Account Manager',
-          'SLA Guarantees',
+          'Runs entirely in your browser',
+          '30 requests / 5 minutes, per IP',
+          'Markdown digest + CSV action-item export',
+          'No bot install, no NorAI account',
         ],
       },
     ],
@@ -342,12 +273,12 @@ export const PRODUCTS_DATA: Record<string, ProductData> = {
       {
         question: 'Does the tool read private messages or user data?',
         answer:
-          'No. The bot only accesses public messages in channels where it is explicitly installed or text transcripts provided via API.',
+          'No. There is no bot. NorAI never connects to your Discord, Telegram, or Slack workspace and holds no server credentials — it only ever sees the export text you paste or drop in yourself.',
       },
       {
         question: 'Can I schedule automated daily email digests?',
         answer:
-          'Yes! You can configure automated daily or weekly email dispatches sent to your team at designated times.',
+          'No. There is no scheduler, no mailer, and no saved history to draw on. You get the digest in the workbench at the moment you run it, and you can export it as Markdown or CSV to wire into whatever delivery you already use.',
       },
     ],
   },
@@ -358,87 +289,64 @@ export const PRODUCTS_DATA: Record<string, ProductData> = {
     title: 'Smart Dainik News',
     seoTitle: 'Smart Dainik News',
     badge: 'Regional Intelligence',
-    tagline: 'Hyper-local regional news curation & topic tracking with sentiment briefings.',
+    tagline: 'Regional gazette and employment-notice parsing with bilingual citizen briefings.',
     excerpt:
-      'Track sector trends, local news events, and market intelligence categorized by geographic relevance and sentiment metrics.',
-    latency: '< 0.45s',
+      'Turn gazette notices, recruitment circulars, and press releases into deadline-tracked alert cards, an eligibility matrix, and bilingual briefs.',
+    latency: 'Gazette text · PDF · TXT · DOCX',
     iconName: 'Layers',
     problem: [
       'Media teams and market analysts drown in uncurated news feeds and duplicate press releases.',
-      'Regional and local language news often lacks structured metadata and automated sentiment tagging.',
+      'Regional and local language notices often lack structured metadata and any kind of eligibility breakdown.',
     ],
     solution: [
-      'NorAI aggregates RSS feeds, regional news API sources, and web publications into categorized briefings.',
-      'Applies sentiment analysis, entity extraction, and deduplication to produce clean media digests.',
+      'NorAI structures gazette notices, recruitment circulars, and press-release text into categorised, deadline-tracked alert cards.',
+      'Returns parallel English and Hindi briefs plus a side-by-side eligibility matrix and anti-rumor checks.',
     ],
     features: [
       {
         title: 'Regional Curation',
-        desc: 'Filter news updates by specific state, district, or industry sector.',
+        desc: 'Set the state or jurisdiction and the domain focus before parsing, so the brief lands on your territory.',
       },
       {
-        title: 'Sentiment & Entity Tagging',
-        desc: 'Automatically tag articles with company names, key figures, and positive/negative sentiment scores.',
+        title: 'Bilingual Executive Briefs',
+        desc: 'Every notification comes back with parallel English and Devanagari summaries, alert titles included.',
       },
       {
-        title: 'Duplicate Removal',
-        desc: 'Group syndicated articles and press releases into single topic story clusters.',
+        title: 'Eligibility Matrix',
+        desc: 'Tabulate age limits, qualifications, reservation quotas, fee structure, and selection stages side by side.',
       },
       {
-        title: 'Custom RSS & Webhook Feeds',
-        desc: 'Export curated news briefings to custom webhooks or JSON feeds.',
+        title: 'Anti-Rumor Verification',
+        desc: 'Carry the gazette serial reference on each alert card, with explicit fact-check notes against unauthorised claims.',
       },
     ],
     workflow: [
       {
         step: '01',
-        title: 'Define Topics & Regions',
-        desc: 'Specify industry keywords, region preferences, and tracking topics.',
+        title: 'Define State & Language',
+        desc: 'Choose the jurisdiction, domain focus, and language mode — bilingual Hindi + English, English, or Hindi.',
       },
       {
         step: '02',
-        title: 'Aggregation & Tagging',
-        desc: 'NorAI deduplicates incoming news stories and applies sentiment metadata.',
+        title: 'Alert Extraction',
+        desc: 'NorAI pulls out deadlines, days remaining, vacancies, pay bands, and official portal links from the pasted text.',
       },
       {
         step: '03',
-        title: 'Curated Briefings',
-        desc: 'Access real-time JSON feeds or receive daily executive news dispatches.',
+        title: 'Read The Briefs',
+        desc: 'Review the bilingual summaries, eligibility matrix, and fact-check notes, then apply through the official portal yourself.',
       },
     ],
     pricing: [
       {
-        tier: 'Analyst',
-        price: '$59/mo',
-        desc: 'For researchers and independent media analysts.',
+        tier: 'Free',
+        price: 'Your own Gemini key',
+        desc: 'No media-monitoring contract. Paste the gazette text, read the eligibility matrix, open the official portal yourself.',
         features: [
-          '5 Keyword Trackers',
-          'Daily News Briefings',
-          'Basic Sentiment Analysis',
-          'Email Support',
-        ],
-      },
-      {
-        tier: 'Media Hub',
-        price: '$179/mo',
-        desc: 'For regional newsrooms and corporate PR teams.',
-        features: [
-          '25 Keyword Trackers',
-          'Real-Time Webhooks',
-          'Advanced Entity Extraction',
-          'Priority Support',
-        ],
-        highlighted: true,
-      },
-      {
-        tier: 'Enterprise',
-        price: '$449/mo',
-        desc: 'For large media networks and institutional market intelligence.',
-        features: [
-          'Unlimited Trackers',
-          'Custom NLP Models',
-          'Dedicated Data Pipeline',
-          '99.9% Uptime SLA',
+          'Runs entirely in your browser',
+          '30 requests / 5 minutes, per IP',
+          'Bilingual English + Devanagari briefs',
+          'No NorAI account, no login',
         ],
       },
     ],
@@ -446,12 +354,12 @@ export const PRODUCTS_DATA: Record<string, ProductData> = {
       {
         question: 'Which regional languages are supported?',
         answer:
-          'The news aggregator supports English, Hindi, and major Indian regional language news feeds.',
+          'You pick the language mode per run: bilingual Hindi + English, English, or Hindi. NorAI handles mixed Devanagari and Latin script in the same paste.',
       },
       {
         question: 'Can I export news data via REST API?',
         answer:
-          'Yes! All curated news clusters and sentiment metrics are accessible via REST API endpoints.',
+          'No — there is no public NorAI API, no SDK, and no scheduler. The tool runs in your browser and hands you structured JSON you can copy; automated ingestion from RSS or a ministry endpoint is a services engagement we build for you.',
       },
     ],
   },
