@@ -24,12 +24,12 @@ export const metadata: Metadata = buildMetadata({
   path: '/docs',
   title: 'Developer Documentation',
   description:
-    'Request contracts, deterministic response schemas, rate limits, and error handling for the four NorAI browser tools.',
+    'Request contracts, response schemas, rate limits, and error handling for the four NorAI browser tools — and why the API key is yours.',
 });
 
 const DOCS_NAV = [
-  { id: 'quickstart', label: 'Quickstart & Auth', icon: Key },
-  { id: 'endpoints', label: 'REST API Reference', icon: Terminal },
+  { id: 'quickstart', label: 'Quickstart & BYOK', icon: Key },
+  { id: 'endpoints', label: 'Request Routes', icon: Terminal },
   { id: 'pipeline', label: 'Pipeline Architecture', icon: Layers },
   { id: 'schemas', label: 'Typed Zod Contracts', icon: Code2 },
   { id: 'errors', label: 'Error Handling', icon: AlertTriangle },
@@ -39,28 +39,38 @@ const DOCS_NAV = [
 const ERROR_CODES = [
   {
     code: '400',
-    name: 'BAD_SCHEMA',
-    desc: 'Request payload failed strict Zod schema validation. Inspect details array for failed fields.',
+    name: 'INVALID_INPUT',
+    desc: 'Body is not parseable JSON, or the payload failed the tool\u2019s Zod schema. The details object lists the failing fields.',
+  },
+  {
+    code: '400',
+    name: 'INVALID_MODEL',
+    desc: 'The requested model id is not on the frozen allowlist. Rejected before any key is read and before any upstream call.',
   },
   {
     code: '401',
-    name: 'UNAUTHORIZED',
-    desc: 'Missing or malformed Authorization header. Expected Bearer <api_key>.',
+    name: 'MISSING_API_KEY',
+    desc: 'No key in the x-gemini-api-key header and no GEMINI_API_KEY on the server. Nothing was inferred and no cost was incurred.',
   },
   {
-    code: '422',
-    name: 'UNPARSEABLE_PAYLOAD',
-    desc: 'Corrupt binary file or unextractable text stream. Ensure document complies with size limits (<25MB).',
+    code: '401',
+    name: 'INVALID_API_KEY',
+    desc: 'Google rejected the supplied key. This is your key, so it is your call to fix — rotate it in your BYOK panel and retry.',
+  },
+  {
+    code: '413',
+    name: 'PAYLOAD_TOO_LARGE',
+    desc: 'Request body exceeded the 256 KiB cap. The body is size-checked before it is parsed, so nothing is forwarded upstream.',
   },
   {
     code: '429',
     name: 'RATE_LIMIT_EXCEEDED',
-    desc: 'Tier concurrency threshold exceeded. Retry with exponential backoff.',
+    desc: '30 requests per 5 minutes per IP per tool; the contact route allows 5 per 15 minutes. Counter state is held in memory, never on disk.',
   },
   {
-    code: '500',
-    name: 'INTERNAL_ENGINE_ERROR',
-    desc: 'Deterministic worker execution timed out (>800ms) or model container unreachable.',
+    code: '502',
+    name: 'MODEL_API_ERROR',
+    desc: 'The upstream call failed, was unreachable, or returned output that failed the Zod output schema. The upstream body is never returned to the caller.',
   },
 ];
 
@@ -91,23 +101,24 @@ export default function DocsPage() {
             </h1>
 
             <p className="fluid-lead text-text-secondary leading-relaxed max-w-2xl font-normal text-pretty">
-              Deterministic REST endpoints and typed Zod schemas for high-throughput automated
-              workflows. Sub-350ms response budgets with ephemeral RAM memory guarantees.
+              Bring-your-own-key by design. Your browser assembles the request, a same-origin route
+              validates it against Zod, and Google runs the inference under your own key. Nothing is
+              written to a NorAI server.
             </p>
 
             {/* Quick Stat Chips */}
             <div className="pt-2 flex flex-wrap items-center gap-3 text-xs font-mono text-text-secondary">
               <span className="px-3 py-1.5 rounded-lg bg-surface-panel border border-border-subtle flex items-center gap-1.5">
                 <Zap className="w-3.5 h-3.5 text-accent-primary" />
-                <span>P95 &lt; 350ms Cold Execution</span>
+                <span>30 Requests / 5 Min per IP</span>
               </span>
               <span className="px-3 py-1.5 rounded-lg bg-surface-panel border border-border-subtle flex items-center gap-1.5">
                 <Shield className="w-3.5 h-3.5 text-accent-secondary" />
-                <span>0 Bytes Client Data Retained</span>
+                <span>No Database · In-Memory Limits Only</span>
               </span>
               <span className="px-3 py-1.5 rounded-lg bg-surface-panel border border-border-subtle flex items-center gap-1.5">
                 <Code2 className="w-3.5 h-3.5 text-accent-tertiary" />
-                <span>Strict Zod Schema Guarantee</span>
+                <span>Zod Validated In And Out</span>
               </span>
             </div>
           </div>
@@ -145,15 +156,16 @@ export default function DocsPage() {
 
               {/* Quick Sandbox Card */}
               <div className="p-4 rounded-2xl bg-surface-panel-subtle border border-border-subtle space-y-2 text-left">
-                <div className="text-xs font-semibold text-text-primary">Interactive Sandbox</div>
+                <div className="text-xs font-semibold text-text-primary">Bring Your Own Key</div>
                 <p className="text-[11px] text-text-secondary leading-relaxed">
-                  Test live endpoints with 50 pre-seeded credits in your browser.
+                  Every tool runs against your own Google Gemini key. No NorAI accounts, no credits,
+                  no billing — you pay Google directly.
                 </p>
                 <Link
                   href="/products"
                   className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-accent-primary hover:underline pt-1"
                 >
-                  <span>Open web sandbox</span>
+                  <span>Open the live tools</span>
                   <ExternalLink className="w-3 h-3" />
                 </Link>
               </div>
@@ -165,7 +177,7 @@ export default function DocsPage() {
               <section id="quickstart" className="space-y-6 scroll-mt-28">
                 <div className="space-y-2 border-b border-border-subtle pb-4">
                   <span className="text-xs font-mono font-semibold uppercase tracking-wider text-accent-primary">
-                    Authentication &amp; Overview
+                    Bring Your Own Key
                   </span>
                   <h2 className="font-display text-3xl sm:text-4xl text-text-primary font-normal">
                     Quickstart &amp; API Keys
@@ -173,23 +185,27 @@ export default function DocsPage() {
                 </div>
 
                 <p className="text-sm md:text-base text-text-secondary leading-relaxed">
-                  All requests to the NorAI API must be authenticated using an API bearer token in
-                  the HTTP request headers. Pass your key in the{' '}
+                  There is no NorAI API key. The four tools are POST routes on this site, called by
+                  your own browser, and they read your Google Gemini key from the{' '}
                   <code className="text-xs font-mono px-1.5 py-0.5 rounded bg-surface-panel border border-border-subtle text-accent-primary">
-                    Authorization
+                    x-gemini-api-key
                   </code>{' '}
-                  header.
+                  request header. With that header absent, the route falls back to a{' '}
+                  <code className="text-xs font-mono px-1.5 py-0.5 rounded bg-surface-panel border border-border-subtle text-accent-primary">
+                    GEMINI_API_KEY
+                  </code>{' '}
+                  configured in the server environment.
                 </p>
 
                 {/* Base URL Box */}
                 <div className="p-4 rounded-2xl bg-surface-panel border border-border-subtle space-y-2">
                   <span className="text-[11px] font-mono uppercase text-text-muted block font-semibold">
-                    Production Base URL
+                    Request Origin
                   </span>
                   <div className="flex items-center justify-between bg-surface-canvas p-3 rounded-xl border border-border-subtle font-mono text-xs text-text-primary overflow-x-auto">
-                    <span>https://api.norai.tech/v1</span>
+                    <span>https://&lt;this-host&gt;/api/tools/&lt;tool&gt;</span>
                     <span className="text-[10px] text-accent-secondary bg-sage-100/60 border border-accent-secondary/20 px-2 py-0.5 rounded">
-                      Active
+                      Same-Origin · Not Public
                     </span>
                   </div>
                 </div>
@@ -197,29 +213,30 @@ export default function DocsPage() {
                 {/* Code Sample Box */}
                 <div className="p-5 rounded-2xl bg-[#0D253D] text-[#F5F0EA] space-y-3 font-mono text-xs overflow-x-auto border border-border-strong shadow-sm">
                   <div className="flex items-center justify-between text-[#8DA0B0] text-[11px] border-b border-[#1F3A56] pb-2">
-                    <span>Headers &amp; Authorization</span>
-                    <span>HTTP/1.1</span>
+                    <span>Request headers</span>
+                    <span>POST · application/json</span>
                   </div>
                   <pre className="leading-relaxed">
-                    {`Authorization: Bearer norai_live_sec_key
+                    {`POST /api/tools/resume-shortlister HTTP/1.1
 Content-Type: application/json
-Accept: application/json`}
+x-gemini-api-key: <your Google Gemini API key>`}
                   </pre>
                 </div>
               </section>
 
-              {/* SECTION 2: REST API REFERENCE */}
+              {/* SECTION 2: REQUEST ROUTE REFERENCE */}
               <section id="endpoints" className="space-y-6 scroll-mt-28">
                 <div className="space-y-2 border-b border-border-subtle pb-4">
                   <span className="text-xs font-mono font-semibold uppercase tracking-wider text-accent-primary">
                     Core Endpoints
                   </span>
                   <h2 className="font-display text-3xl sm:text-4xl text-text-primary font-normal">
-                    REST API Reference
+                    Request Route Reference
                   </h2>
                   <p className="text-sm text-text-secondary">
-                    Select an endpoint below to inspect the path, request parameters, and executable
-                    code snippets in cURL and TypeScript.
+                    These are the same-origin routes the browser calls — not a commercial API. No
+                    SDK, no accounts, no billing. Select a tool to inspect its path, body schema, and
+                    a cURL and fetch example.
                   </p>
                 </div>
 
@@ -236,8 +253,9 @@ Accept: application/json`}
                     3-Stage Execution Pipeline Trace
                   </h2>
                   <p className="text-sm text-text-secondary">
-                    Inspect the deterministic flow of data through our multi-format ingestion,
-                    quantized inference core, and sub-second dispatch relay.
+                    Follow a request end to end: the browser extracts and sanitises the text, a Zod
+                    schema gates the payload, Gemini returns structured JSON, and a second Zod schema
+                    gates what reaches the screen.
                   </p>
                 </div>
 
@@ -256,8 +274,9 @@ Accept: application/json`}
                     Typed Schemas &amp; Protocols
                   </h2>
                   <p className="text-sm text-text-secondary">
-                    Zero schema drift. Every pipeline in the NorAI ecosystem runs against strict,
-                    versioned Zod schemas before returning data to the caller.
+                    Each tool freezes a Zod input schema and a Zod output schema. The output schema
+                    is also sent to Gemini as a response contract, so the model is asked for JSON the
+                    server can validate rather than text it has to parse at random.
                   </p>
                 </div>
 
@@ -268,14 +287,15 @@ Accept: application/json`}
               <section id="errors" className="space-y-6 scroll-mt-28">
                 <div className="space-y-2 border-b border-border-subtle pb-4">
                   <span className="text-xs font-mono font-semibold uppercase tracking-wider text-accent-secondary">
-                    Deterministic Status Codes
+                    Mapped Status Codes
                   </span>
                   <h2 className="font-display text-3xl sm:text-4xl text-text-primary font-normal">
                     Error Handling Matrix
                   </h2>
                   <p className="text-sm text-text-secondary">
                     All error responses return a standardized JSON envelope with an explicit error
-                    code and actionable diagnostic string.
+                    code and actionable diagnostic string. The upstream response body is never
+                    returned, so key material, quota detail, and model ids stay on the server.
                   </p>
                 </div>
 
@@ -283,7 +303,7 @@ Accept: application/json`}
                   <div className="divide-y divide-border-subtle">
                     {ERROR_CODES.map((err) => (
                       <div
-                        key={err.code}
+                        key={`${err.code}-${err.name}`}
                         className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 hover:bg-surface-panel-subtle transition-colors"
                       >
                         <div className="flex items-center gap-2.5 sm:w-48 shrink-0">
@@ -315,7 +335,8 @@ Accept: application/json`}
                     </h3>
                     <p className="text-sm text-text-secondary leading-relaxed max-w-xl">
                       We package custom RAG engines, MCP tool servers, and air-gapped Docker / Helm
-                      containers directly into your cloud boundary with dedicated SLAs.
+                      containers directly into your cloud boundary, against a scope and terms we
+                      agree before work starts.
                     </p>
                   </div>
 

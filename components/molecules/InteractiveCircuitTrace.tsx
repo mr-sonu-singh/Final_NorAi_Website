@@ -17,38 +17,38 @@ const STAGES: Stage[] = [
   {
     id: 'stage-ingest',
     step: '01',
-    title: 'Multi-Format Ingestion',
-    subtitle: 'Zero-Egress Stream Parser',
+    title: 'Input Assembled In-Browser',
+    subtitle: 'Typed Request Contract',
     specs: [
-      'PDF / DOCX / TXT Parsing',
-      'Audio / Video Whisper Ingestion',
-      'Webhook & Telegram Listeners',
+      'PDF / DOCX / TXT / Markdown Parsing',
+      'Zod Validation Before Dispatch',
+      '256 KiB Body Ceiling',
     ],
-    badge: '< 45ms cold start',
+    badge: 'Nothing Stored',
   },
   {
     id: 'stage-core',
     step: '02',
-    title: 'Deterministic Neural Core',
-    subtitle: 'Quantized vLLM & Guardrails',
+    title: 'Gemini Inference, Your Key',
+    subtitle: 'BYOK · Request Goes To Google',
     specs: [
-      'FP8 / AWQ LoRA Inference',
+      'Model Resolved From Allowlist',
+      'Response Schema Sent Upstream',
       'Strict Zod Schema Enforcement',
-      'Zero Hallucination Validation',
     ],
-    badge: '100% JSON Guarantee',
+    badge: 'No NorAI Billing',
   },
   {
     id: 'stage-deliver',
     step: '03',
-    title: 'Actionable Dispatch',
-    subtitle: 'Sub-Second Payload Relay',
+    title: 'Validated Structured Output',
+    subtitle: 'Rendered, Then Yours',
     specs: [
-      'MCP Server Endpoint Response',
-      'Ephemeral RAM Flushed (0B Egress)',
-      'Immediate Webhook Callbacks',
+      'Output Schema Checked On Return',
+      'Rejected Mismatch Returns 502',
+      'Export As Markdown / CSV',
     ],
-    badge: 'P95 < 320ms',
+    badge: 'No Latency Claim',
   },
 ];
 
@@ -61,14 +61,14 @@ export function InteractiveCircuitTrace({ className }: { className?: string }) {
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-border-subtle pb-4">
         <div>
           <span className="text-xs font-mono font-semibold text-accent-primary uppercase tracking-wider">
-            Deterministic Pipeline Architecture
+            Request Pipeline Architecture
           </span>
           <h3 className="text-xl sm:text-2xl font-display font-normal text-text-primary mt-0.5">
             End-to-End Execution Flow
           </h3>
         </div>
         <div className="text-xs font-mono text-text-secondary bg-surface-panel-subtle px-3 py-1.5 rounded-lg border border-border-subtle">
-          <span>Active Pipeline: Zero Egress Memory</span>
+          <span>Active Pipeline: Browser-Side Assembly</span>
         </div>
       </div>
 

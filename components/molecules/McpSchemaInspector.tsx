@@ -9,7 +9,7 @@ interface ToolSchema {
   name: string;
   description: string;
   method: 'POST' | 'MCP_TOOL';
-  endpoint: string;
+  contract: string;
   parameters: {
     name: string;
     type: string;
@@ -25,130 +25,237 @@ const SCHEMAS: ToolSchema[] = [
   {
     id: 'resume-screener',
     name: 'screen_candidates',
-    description: 'Deterministic resume parser and vector match scoring engine.',
+    description:
+      'Illustrative tool contract: scores a batch of resume text against a target role and returns ranked, per-skill evidence. Shaped like the pipelines we ship, not a live endpoint.',
     method: 'MCP_TOOL',
-    endpoint: '/v1/mcp/resume/screen',
+    contract: 'tools/call → screen_candidates',
     parameters: [
       {
-        name: 'document_base64',
+        name: 'jobTitle',
         type: 'string',
         required: true,
-        description: 'Raw PDF or DOCX candidate payload',
+        description: 'Target role the batch is evaluated against',
       },
       {
-        name: 'target_role',
+        name: 'resumesText',
         type: 'string',
         required: true,
-        description: 'Role spec or job description requirements',
+        description: 'Candidate resume text supplied by the calling agent',
       },
       {
-        name: 'threshold',
+        name: 'minThreshold',
         type: 'number',
         required: false,
-        description: 'Minimum match confidence cut-off (0.0 - 1.0)',
+        description: 'Shortlist cut-off from 0 to 100, defaults to 75',
       },
     ],
-    exampleCurl: `curl -X POST https://api.norai.in/v1/mcp/resume/screen \\
-  -H "Authorization: Bearer norai_live_key_..." \\
+    exampleCurl: `# Your MCP server runs in YOUR cloud or VPC, not on NorAI.
+curl -X POST "$MCP_SERVER_URL/mcp" \\
   -H "Content-Type: application/json" \\
-  -d '{"document_base64": "JVBERi0xLjQK...", "target_role": "Backend Engineer", "threshold": 0.85}'`,
-    exampleTs: `import { NorAI } from '@norai/sdk';
-
-const client = new NorAI({ apiKey: process.env.NORAI_API_KEY });
-
-const result = await client.mcp.screenCandidates({
-  documentBase64: fileBuffer.toString('base64'),
-  targetRole: 'Backend Engineer',
-  threshold: 0.85,
-});
-
-console.log(result.topCandidates);`,
+  -H "Accept: application/json, text/event-stream" \\
+  -d '{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "tools/call",
+    "params": {
+      "name": "screen_candidates",
+      "arguments": {
+        "jobTitle": "Backend Engineer",
+        "resumesText": "...",
+        "minThreshold": 75
+      }
+    }
+  }'`,
+    exampleTs: `// JSON-RPC 2.0 tools/call frame sent to the engagement's MCP server.
+{
+  jsonrpc: '2.0',
+  id: 1,
+  method: 'tools/call',
+  params: {
+    name: 'screen_candidates',
+    arguments: {
+      jobTitle: 'Backend Engineer',
+      resumesText: candidateTextFromAgent,
+      minThreshold: 75,
+    },
+  },
+}`,
     exampleResponse: {
-      status: 'SUCCESS',
-      latency_ms: 248,
-      candidates_evaluated: 1,
-      match_score: 0.962,
-      recommendation: 'SHORTLIST_FOR_ROUND_1',
-      skills_verified: ['FastAPI', 'PostgreSQL', 'vLLM', 'Distributed Queues'],
-      memory_state: 'RAM_PURGED_ZERO_LOGGED',
+      jsonrpc: '2.0',
+      id: 1,
+      result: {
+        structuredContent: {
+          jobTitle: '<string>',
+          totalEvaluated: '<integer>',
+          shortlistedCount: '<integer>',
+          candidates: [
+            {
+              id: '<cand-01>',
+              name: '<string>',
+              compositeScore: '<number, 0-100>',
+              status: '<Top Match | Shortlisted | Review Queue | Rejected>',
+              skillVectors: [{ label: '<string>', matchScore: '<number>', evidence: '<string>' }],
+            },
+          ],
+        },
+        isError: false,
+      },
     },
   },
   {
     id: 'course-notes',
     name: 'extract_lecture_notes',
-    description: 'Audio/video multi-modal lecture intelligence and LaTeX formula extractor.',
+    description:
+      'Illustrative tool contract: distils a lecture transcript into chapters, extracted formulas, flashcards, and a quiz. Shaped like the pipelines we ship, not a live endpoint.',
     method: 'MCP_TOOL',
-    endpoint: '/v1/mcp/notes/extract',
+    contract: 'tools/call → extract_lecture_notes',
     parameters: [
       {
-        name: 'media_url',
+        name: 'lectureTitle',
         type: 'string',
         required: true,
-        description: 'Direct audio stream or video lecture URL',
+        description: 'Lecture or session title',
       },
       {
-        name: 'extract_math',
-        type: 'boolean',
-        required: false,
-        description: 'Extract and render KaTeX/LaTeX syntax',
+        name: 'transcriptText',
+        type: 'string',
+        required: true,
+        description: 'Transcript supplied by the calling agent',
       },
       {
-        name: 'generate_quiz',
-        type: 'boolean',
+        name: 'focusMode',
+        type: 'string',
         required: false,
-        description: 'Generate Socratic study flashcards',
+        description: 'Comprehensive Study Guide | Formulas & Axioms | Exam Cram & Quizzes',
       },
     ],
-    exampleCurl: `curl -X POST https://api.norai.in/v1/mcp/notes/extract \\
-  -H "Authorization: Bearer norai_live_key_..." \\
+    exampleCurl: `# Your MCP server runs in YOUR cloud or VPC, not on NorAI.
+curl -X POST "$MCP_SERVER_URL/mcp" \\
   -H "Content-Type: application/json" \\
-  -d '{"media_url": "https://cdn.norai.in/lectures/cs229.mp4", "extract_math": true}'`,
-    exampleTs: `const notes = await client.mcp.extractLectureNotes({
-  mediaUrl: 'https://cdn.norai.in/lectures/cs229.mp4',
-  extractMath: true,
-  generateQuiz: true,
-});`,
+  -H "Accept: application/json, text/event-stream" \\
+  -d '{
+    "jsonrpc": "2.0",
+    "id": 2,
+    "method": "tools/call",
+    "params": {
+      "name": "extract_lecture_notes",
+      "arguments": {
+        "lectureTitle": "Lecture 4",
+        "transcriptText": "...",
+        "focusMode": "Formulas & Axioms"
+      }
+    }
+  }'`,
+    exampleTs: `// JSON-RPC 2.0 tools/call frame sent to the engagement's MCP server.
+{
+  jsonrpc: '2.0',
+  id: 2,
+  method: 'tools/call',
+  params: {
+    name: 'extract_lecture_notes',
+    arguments: {
+      lectureTitle: 'Lecture 4',
+      transcriptText: transcriptFromAgent,
+      focusMode: 'Formulas & Axioms',
+    },
+  },
+}`,
     exampleResponse: {
-      status: 'SUCCESS',
-      latency_ms: 310,
-      timestamp_checkpoints: 8,
-      extracted_formulas: ['\\mathcal{L}_{\\text{triplet}} = \\max(0, D(a,p) - D(a,n) + \\alpha)'],
-      quiz_cards_generated: 4,
+      jsonrpc: '2.0',
+      id: 2,
+      result: {
+        structuredContent: {
+          lectureTitle: '<string>',
+          chapters: [
+            {
+              id: '<ch-01>',
+              timestamp: '<00:00 - 14:30>',
+              keyTakeaways: ['<string>'],
+              formulasOrCode: [{ label: '<string>', formulaOrSnippet: '<LaTeX source>' }],
+            },
+          ],
+          flashcards: [{ category: '<string>', difficulty: '<Foundational|Intermediate|Advanced>' }],
+          quiz: [{ options: ['<string>'], correctAnswerIndex: '<integer>' }],
+        },
+        isError: false,
+      },
     },
   },
   {
     id: 'chat-digest',
     name: 'synthesize_community_chat',
-    description: 'Deduplicated topic cluster and action item intelligence for Discord/Slack.',
+    description:
+      'Illustrative tool contract: clusters a raw chat export, triages bugs and requests, and drafts a newsletter. Shaped like the pipelines we ship, not a live endpoint.',
     method: 'MCP_TOOL',
-    endpoint: '/v1/mcp/chat/digest',
+    contract: 'tools/call → synthesize_community_chat',
     parameters: [
       {
-        name: 'messages_json',
-        type: 'array',
+        name: 'communityName',
+        type: 'string',
         required: true,
-        description: 'Batch of raw messages with timestamps',
+        description: 'Community or workspace the log came from',
       },
       {
-        name: 'sentiment_radar',
-        type: 'boolean',
+        name: 'chatLogText',
+        type: 'string',
+        required: true,
+        description: 'Raw export supplied by the calling agent',
+      },
+      {
+        name: 'platform',
+        type: 'string',
         required: false,
-        description: 'Extract community sentiment distribution',
+        description: 'Discord | Telegram | Slack, defaults to Discord',
       },
     ],
-    exampleCurl: `curl -X POST https://api.norai.in/v1/mcp/chat/digest \\
-  -H "Authorization: Bearer norai_live_key_..." \\
+    exampleCurl: `# Your MCP server runs in YOUR cloud or VPC, not on NorAI.
+curl -X POST "$MCP_SERVER_URL/mcp" \\
   -H "Content-Type: application/json" \\
-  -d '{"messages_json": [...], "sentiment_radar": true}'`,
-    exampleTs: `const digest = await client.mcp.synthesizeChat({
-  messagesJson: rawMessages,
-  sentimentRadar: true,
-});`,
+  -H "Accept: application/json, text/event-stream" \\
+  -d '{
+    "jsonrpc": "2.0",
+    "id": 3,
+    "method": "tools/call",
+    "params": {
+      "name": "synthesize_community_chat",
+      "arguments": {
+        "communityName": "Engineering",
+        "chatLogText": "...",
+        "platform": "Discord"
+      }
+    }
+  }'`,
+    exampleTs: `// JSON-RPC 2.0 tools/call frame sent to the engagement's MCP server.
+{
+  jsonrpc: '2.0',
+  id: 3,
+  method: 'tools/call',
+  params: {
+    name: 'synthesize_community_chat',
+    arguments: {
+      communityName: 'Engineering',
+      chatLogText: rawExportFromAgent,
+      platform: 'Discord',
+    },
+  },
+}`,
     exampleResponse: {
-      status: 'SUCCESS',
-      topics_identified: 3,
-      action_items_assigned: 4,
-      sentiment_score: { positive: 0.88, neutral: 0.1, negative: 0.02 },
+      jsonrpc: '2.0',
+      id: 3,
+      result: {
+        structuredContent: {
+          communityName: '<string>',
+          timeframeCovered: '<Last 24 Hours | Past 7 Days>',
+          topicClusters: [{ id: '<topic-01>', sentiment: '<Positive|Neutral|Mixed|Negative>' }],
+          actionItemsAndBugs: [
+            {
+              type: '<Bug Report | Feature Request | Question | Community Action>',
+              priority: '<Urgent | High | Medium | Low>',
+            },
+          ],
+        },
+        isError: false,
+      },
     },
   },
 ];
@@ -186,7 +293,7 @@ export function McpSchemaInspector({ className }: { className?: string }) {
           </div>
           <div>
             <span className="text-xs font-mono uppercase tracking-wider text-text-muted font-medium">
-              Model Context Protocol (MCP) Standard
+              Illustrative Contract · Built Per Engagement
             </span>
             <h4 className="text-sm font-bold text-text-primary font-mono">
               Tool Schema &amp; Strict Zod Type Contract
@@ -227,7 +334,7 @@ export function McpSchemaInspector({ className }: { className?: string }) {
                 {selectedSchema.method}
               </span>
               <code className="text-xs font-mono text-text-primary font-semibold">
-                {selectedSchema.endpoint}
+                {selectedSchema.contract}
               </code>
             </div>
             <p className="text-xs text-text-secondary pt-1 leading-relaxed">
@@ -297,7 +404,7 @@ export function McpSchemaInspector({ className }: { className?: string }) {
                     : 'text-text-secondary hover:text-text-primary',
                 )}
               >
-                TypeScript SDK
+                TypeScript Frame
               </button>
               <button
                 type="button"
@@ -309,7 +416,7 @@ export function McpSchemaInspector({ className }: { className?: string }) {
                     : 'text-text-secondary hover:text-text-primary',
                 )}
               >
-                JSON Response (200)
+                Example Result
               </button>
             </div>
 

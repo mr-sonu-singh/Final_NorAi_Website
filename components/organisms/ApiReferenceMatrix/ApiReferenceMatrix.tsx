@@ -16,79 +16,151 @@ interface Endpoint {
 
 const ENDPOINTS: Endpoint[] = [
   {
-    id: 'shortlist',
+    id: 'resume-shortlister',
     method: 'POST',
-    path: '/api/v1/shortlist',
-    title: 'Resume Shortlister API',
+    path: '/api/tools/resume-shortlister',
+    title: 'Resume Shortlister',
     description:
-      'Upload candidate resume binary or plain text against structured job requirement specifications.',
-    curl: `curl -X POST https://api.norai.in/v1/shortlist \\
-  -H "Authorization: Bearer norai_live_sec_key" \\
-  -H "Content-Type: multipart/form-data" \\
-  -F "resume=@candidate_resume.pdf" \\
-  -F "job_criteria='{\\"title\\": \\"Sr Backend Engineer\\", \\"min_exp\\": 4}'"`,
-    typescript: `import { NorAI } from '@norai/sdk';
-
-const client = new NorAI({ apiKey: process.env.NORAI_API_KEY });
-
-const result = await client.shortlist.evaluate({
-  resumeFile: fs.createReadStream('./resume.pdf'),
-  criteria: {
-    title: 'Sr Backend Engineer',
-    requiredSkills: ['Python', 'FastAPI', 'PostgreSQL'],
+      'Ranks pasted resume text against a job title, description, and optional custom weights. Returns scored candidates with skill vectors, red flags, and interview questions.',
+    curl: `# Same-origin route. Set ORIGIN to whatever host serves this app.
+curl -X POST "$ORIGIN/api/tools/resume-shortlister" \\
+  -H "Content-Type: application/json" \\
+  -H "x-gemini-api-key: $GEMINI_API_KEY" \\
+  -d '{
+    "jobTitle": "Sr Backend Engineer",
+    "jobDescription": "Distributed systems, Python, PostgreSQL.",
+    "minThreshold": 75,
+    "resumesText": "<resume text extracted in your browser>"
+  }'`,
+    typescript: `// Runs in the browser. Your key, your account, your Google bill.
+const response = await fetch('/api/tools/resume-shortlister', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'x-gemini-api-key': userSuppliedGeminiKey,
   },
+  body: JSON.stringify({
+    jobTitle: 'Sr Backend Engineer',
+    jobDescription: 'Distributed systems, Python, PostgreSQL.',
+    minThreshold: 75,
+    resumesText: textExtractedInBrowser,
+  }),
 });
 
-console.log(result.composite_score); // 0.962`,
+const { data } = await response.json();
+// data.candidates[].skillVectors[] carries label, matchScore (0-100), evidence.
+// data.telemetry.latencyMs is this request only — not a published benchmark.`,
   },
   {
-    id: 'notes',
+    id: 'course-note-taker',
     method: 'POST',
-    path: '/api/v1/notes/transcribe',
-    title: 'Course Note-Taker API',
+    path: '/api/tools/course-note-taker',
+    title: 'Course Note-Taker',
     description:
-      'Transform lecture audio, video files, or YouTube links into timestamped outlines and flashcard decks.',
-    curl: `curl -X POST https://api.norai.in/v1/notes/transcribe \\
-  -H "Authorization: Bearer norai_live_sec_key" \\
+      'Turns a lecture transcript into a chaptered study guide with extracted formulas, recall flashcards, and a multiple-choice quiz.',
+    curl: `# Same-origin route. Set ORIGIN to whatever host serves this app.
+curl -X POST "$ORIGIN/api/tools/course-note-taker" \\
   -H "Content-Type: application/json" \\
-  -d '{"audio_url": "https://cdn.example.com/lecture_04.mp3", "deck_type": "ANKI_FLASHCARDS"}'`,
-    typescript: `import { NorAI } from '@norai/sdk';
-
-const client = new NorAI({ apiKey: process.env.NORAI_API_KEY });
-
-const notes = await client.notes.generate({
-  audioUrl: 'https://cdn.example.com/lecture_04.mp3',
-  outputFormat: 'markdown_flashcards',
+  -H "x-gemini-api-key: $GEMINI_API_KEY" \\
+  -d '{
+    "lectureTitle": "Attention Is All You Need",
+    "subject": "Deep Learning",
+    "focusMode": "Formulas & Axioms",
+    "transcriptText": "<transcript pasted into the browser>"
+  }'`,
+    typescript: `// Runs in the browser. Your key, your account, your Google bill.
+const response = await fetch('/api/tools/course-note-taker', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'x-gemini-api-key': userSuppliedGeminiKey,
+  },
+  body: JSON.stringify({
+    lectureTitle: 'Attention Is All You Need',
+    subject: 'Deep Learning',
+    focusMode: 'Formulas & Axioms',
+    transcriptText: pastedTranscript,
+  }),
 });
 
-console.log(notes.chapter_outlines);`,
+const { data } = await response.json();
+// data.chapters[].formulasOrCode[] carries LaTeX source, not rendered markup.
+// data.flashcards and data.quiz are validated against their Zod schemas before return.`,
   },
   {
-    id: 'digest',
+    id: 'chat-digest',
     method: 'POST',
-    path: '/api/v1/digest/webhook',
-    title: 'Chat Digest Ingestion Webhook',
+    path: '/api/tools/chat-digest',
+    title: 'Chat Digest',
     description:
-      'Stream unread Slack, Discord, or Telegram messages for 24-hour executive clustering.',
-    curl: `curl -X POST https://api.norai.in/v1/digest/webhook \\
-  -H "Authorization: Bearer norai_live_sec_key" \\
+      'Condenses a raw Discord, Telegram, or Slack export into topic clusters, triaged action items, and a ready-to-send newsletter draft.',
+    curl: `# Same-origin route. Set ORIGIN to whatever host serves this app.
+curl -X POST "$ORIGIN/api/tools/chat-digest" \\
   -H "Content-Type: application/json" \\
-  -d '{"channel_id": "C0489234", "timeframe_hours": 24}'`,
-    typescript: `import { NorAI } from '@norai/sdk';
-
-const client = new NorAI({ apiKey: process.env.NORAI_API_KEY });
-
-const briefing = await client.digest.summarizeChannel({
-  channelId: 'C0489234',
-  windowHours: 24,
+  -H "x-gemini-api-key: $GEMINI_API_KEY" \\
+  -d '{
+    "communityName": "Open Source Maintainers",
+    "platform": "Discord",
+    "timeframe": "Last 24 Hours",
+    "chatLogText": "<raw chat log pasted into the browser>"
+  }'`,
+    typescript: `// Runs in the browser. Your key, your account, your Google bill.
+const response = await fetch('/api/tools/chat-digest', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'x-gemini-api-key': userSuppliedGeminiKey,
+  },
+  body: JSON.stringify({
+    communityName: 'Open Source Maintainers',
+    platform: 'Discord',
+    timeframe: 'Last 24 Hours',
+    chatLogText: pastedChatLog,
+  }),
 });
 
-console.log(briefing.key_decisions);`,
+const { data } = await response.json();
+// data.actionItemsAndBugs[] is typed as Bug Report, Feature Request,
+// Question, or Community Action — nothing is dispatched automatically.`,
+  },
+  {
+    id: 'smart-dainik-news',
+    method: 'POST',
+    path: '/api/tools/smart-dainik-news',
+    title: 'Regional Gazette Reader',
+    description:
+      'Reads a pasted gazette or press release and returns bilingual briefs, deadline alert cards, and an eligibility matrix. A drafting aid, not a verified source.',
+    curl: `# Same-origin route. Set ORIGIN to whatever host serves this app.
+curl -X POST "$ORIGIN/api/tools/smart-dainik-news" \\
+  -H "Content-Type: application/json" \\
+  -H "x-gemini-api-key: $GEMINI_API_KEY" \\
+  -d '{
+    "stateOrRegion": "Uttar Pradesh",
+    "languageMode": "Bilingual (Hindi + English)",
+    "gazetteText": "<gazette text pasted into the browser>"
+  }'`,
+    typescript: `// Runs in the browser. Your key, your account, your Google bill.
+const response = await fetch('/api/tools/smart-dainik-news', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'x-gemini-api-key': userSuppliedGeminiKey,
+  },
+  body: JSON.stringify({
+    stateOrRegion: 'Uttar Pradesh',
+    languageMode: 'Bilingual (Hindi + English)',
+    gazetteText: pastedGazetteText,
+  }),
+});
+
+const { data } = await response.json();
+// Dates, portal URLs, and notification references come from the text you pasted.
+// Confirm every one against the official portal before you rely on it.`,
   },
 ];
 
 export function ApiReferenceMatrix() {
-  const [selectedId, setSelectedId] = useState('shortlist');
+  const [selectedId, setSelectedId] = useState('resume-shortlister');
   const [language, setLanguage] = useState<'curl' | 'ts'>('curl');
   const [copied, setCopied] = useState(false);
 
@@ -161,7 +233,7 @@ export function ApiReferenceMatrix() {
                     : 'text-slate-400 hover:text-white',
                 )}
               >
-                TypeScript SDK
+                TypeScript fetch
               </button>
             </div>
 
@@ -188,8 +260,8 @@ export function ApiReferenceMatrix() {
           </pre>
 
           <div className="pt-2 text-[11px] font-mono text-slate-400 border-t border-[rgba(253,251,247,0.1)] flex justify-between">
-            <span>Authentication: Bearer Token</span>
-            <span>Latency SLA: &lt; 0.35s</span>
+            <span>Auth: x-gemini-api-key header (BYOK)</span>
+            <span>Rate limit: 30 req / 5 min / IP</span>
           </div>
         </div>
       </div>
