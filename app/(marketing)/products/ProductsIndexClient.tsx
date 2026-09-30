@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, type CSSProperties } from 'react';
 import { Container } from '@/components/foundation/Container';
 import { Link } from '@/components/atoms/Link';
 import { motion, AnimatePresence } from 'motion/react';
@@ -27,6 +27,8 @@ export interface CatalogToolItem {
   outputFormat: string;
   highlights: string[];
   accent: string;
+  /** Dark-mode counterpart. The light accent does not reach 4.5:1 on the dark panel. */
+  accentDark: string;
   badgeBg: string;
   badgeText: string;
   telemetryStream: {
@@ -54,6 +56,7 @@ export const CATALOG_TOOLS: CatalogToolItem[] = [
       'Red flags and probing interview questions, per candidate',
     ],
     accent: '#38BDF8',
+    accentDark: '#7DD3FC',
     badgeBg: 'bg-[#38BDF8]/15',
     badgeText: 'text-[#38BDF8]',
     telemetryStream: {
@@ -79,8 +82,9 @@ export const CATALOG_TOOLS: CatalogToolItem[] = [
       'Practice quiz with an explained answer for every option',
     ],
     accent: '#7a5cff',
+    accentDark: '#A78BFF',
     badgeBg: 'bg-[#7a5cff]/20',
-    badgeText: 'text-[#7a5cff]',
+    badgeText: 'text-[#7a5cff] dark:text-[#A78BFF]',
     telemetryStream: {
       inputSample: 'One transcript file, or pasted captions (1hr 42m of lecture)',
       engine: 'Gemini Structured Output · LaTeX via KaTeX',
@@ -104,6 +108,7 @@ export const CATALOG_TOOLS: CatalogToolItem[] = [
       'Newsletter draft with headline, spotlight, shoutouts, and CTA',
     ],
     accent: '#ffa24d',
+    accentDark: '#FFB870',
     badgeBg: 'bg-[#ffa24d]/20',
     badgeText: 'text-[#ffa24d]',
     telemetryStream: {
@@ -129,6 +134,7 @@ export const CATALOG_TOOLS: CatalogToolItem[] = [
       'Anti-rumor notes flagging claims against the official notice',
     ],
     accent: '#00e5ff',
+    accentDark: '#67E8F9',
     badgeBg: 'bg-[#00e5ff]/20',
     badgeText: 'text-[#00e5ff]',
     telemetryStream: {
@@ -282,8 +288,13 @@ export function ProductsIndexClient() {
                           <div>
                             <div className="flex items-center gap-2">
                               <span
-                                className="font-mono text-xs font-bold"
-                                style={{ color: tool.accent }}
+                                className="font-mono text-xs font-bold accent-ink"
+                                style={
+                                  {
+                                    '--accent': tool.accent,
+                                    '--accent-dark': tool.accentDark,
+                                  } as CSSProperties
+                                }
                               >
                                 {tool.number}
                               </span>

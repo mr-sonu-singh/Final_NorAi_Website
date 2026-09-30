@@ -205,8 +205,8 @@ export function ToolShell({
             </span>
           </div>
 
-          <div className="hidden sm:flex items-center gap-1.5 text-emerald-700">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+          <div className="hidden sm:flex items-center gap-1.5 text-emerald-700 dark:text-emerald-300">
+            <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-300" />
             <span className="font-medium text-[11px]">
               Ephemeral RAM Flushed (0 Bytes Retained)
             </span>

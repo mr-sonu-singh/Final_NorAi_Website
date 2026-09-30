@@ -142,7 +142,7 @@ export function BlogIndexClient({ posts }: BlogIndexClientProps) {
                     className={cn(
                       'px-4 py-2 text-xs sm:text-sm font-medium rounded-lg transition-all duration-200 whitespace-nowrap cursor-pointer active:scale-[0.98]',
                       isSelected
-                        ? 'bg-[var(--pine)] text-[#f5f5f0] shadow-xs font-semibold'
+                        ? 'bg-[var(--bg-dark)] text-[#f5f5f0] shadow-xs font-semibold'
                         : 'bg-[var(--porcelain)] text-[var(--pine)]/70 hover:bg-[var(--bone)] border border-[var(--line)]',
                     )}
                   >

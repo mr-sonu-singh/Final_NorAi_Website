@@ -288,7 +288,7 @@ export function McpSchemaInspector({ className }: { className?: string }) {
       {/* Top Header */}
       <div className="bg-surface-panel-subtle/90 px-6 py-4 border-b border-border-subtle flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-accent-primary text-white flex items-center justify-center font-mono text-xs font-bold shadow-sm">
+          <div className="w-8 h-8 rounded-lg bg-accent-primary on-accent-fill flex items-center justify-center font-mono text-xs font-bold shadow-sm">
             MCP
           </div>
           <div>
@@ -313,7 +313,7 @@ export function McpSchemaInspector({ className }: { className?: string }) {
                 className={cn(
                   'px-3 py-1 rounded-lg text-xs font-mono transition-all cursor-pointer',
                   isSelected
-                    ? 'bg-accent-primary text-white font-semibold shadow-xs'
+                    ? 'bg-accent-primary on-accent-fill font-semibold shadow-xs'
                     : 'text-text-secondary hover:text-text-primary hover:bg-surface-hover',
                 )}
               >

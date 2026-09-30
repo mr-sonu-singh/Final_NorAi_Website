@@ -73,7 +73,7 @@ export function ComparisonTable({
           <div className="flex flex-col items-center gap-1">
             <span>{col.label}</span>
             {col.highlighted && (
-              <span className="rounded-full bg-accent-primary px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">
+              <span className="rounded-full bg-accent-primary px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider on-accent-fill">
                 Recommended
               </span>
             )}

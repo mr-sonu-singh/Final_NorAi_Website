@@ -109,7 +109,7 @@ export function CapabilityArc() {
         >
           <h2 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl text-[var(--pine)] tracking-tight leading-[1.08]">
             Prototypes built to work. <br className="hidden sm:inline" />
-            <span className="text-[#0650AD]">Not to raise rounds.</span>
+            <span className="text-[#0650AD] dark:text-[#38BDF8]">Not to raise rounds.</span>
           </h2>
           <p className="text-[var(--pine)]/75 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
             These are not speculative pitch decks. Every rig below runs in your browser against your own Gemini key, with no accounts, no database, and nothing retained on our side.

@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { type CSSProperties } from 'react';
 import { motion } from 'motion/react';
 import { ShieldCheck, Code2, Rocket, ArrowRight, CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';
@@ -11,6 +11,7 @@ const STEPS = [
     time: 'Day 1–2',
     icon: ShieldCheck,
     accent: '#38BDF8',
+    accentDark: '#7DD3FC',
     title: 'Architecture Blueprint & Scoping',
     desc: 'We analyze your data boundaries, latency targets, and business constraints. We deliver a clear technical specification with zero vendor lock-in.',
     deliverable: 'Signed Architecture Spec & Zero-Egress Boundary Plan',
@@ -20,6 +21,7 @@ const STEPS = [
     time: 'Day 3–7',
     icon: Code2,
     accent: '#7a5cff',
+    accentDark: '#A78BFF',
     title: '5-Day Functional PoC Sprint',
     desc: 'We author a functional, reproducible proof-of-concept in an isolated sandbox. You verify performance, accuracy, and latency with real test data.',
     deliverable: 'Working In-Memory Benchmark Probes & Test Suite',
@@ -29,6 +31,7 @@ const STEPS = [
     time: 'Sprint Close',
     icon: Rocket,
     accent: '#ffa24d',
+    accentDark: '#FFB870',
     title: 'Production Handover & Local Deploy',
     desc: 'Complete git repository transfer, Docker deployment configurations, and senior engineer architectural walkthrough. You own 100% of the code.',
     deliverable: '100% Repository Transfer & Docker Runbooks',
@@ -73,12 +76,13 @@ export function ServicesEngagementTimeline() {
                     STEP {s.step}
                   </span>
                   <span
-                    className="font-mono text-xs font-bold px-2.5 py-1 rounded-full border"
+                    className="accent-ink font-mono text-xs font-bold px-2.5 py-1 rounded-full border"
                     style={{
-                      color: s.accent,
+                      '--accent': s.accent,
+                      '--accent-dark': s.accentDark,
                       borderColor: `${s.accent}30`,
                       background: `${s.accent}10`,
-                    }}
+                    } as CSSProperties}
                   >
                     {s.time}
                   </span>

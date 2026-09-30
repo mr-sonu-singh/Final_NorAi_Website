@@ -770,7 +770,7 @@ export function CourseNoteTakerWorkbench() {
                         <span className="font-medium text-ink-primary">Flashcard Decks</span>
                       </div>
                       <div className="p-2 rounded-lg bg-canvas-paper border border-[rgba(13,37,61,0.06)] flex items-center gap-2">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-300 shrink-0" />
                         <span className="font-medium text-ink-primary">Diagnostic Quiz</span>
                       </div>
                     </div>
@@ -980,8 +980,8 @@ export function CourseNoteTakerWorkbench() {
 
                   {/* Math & Diarization Parser Status */}
                   <div className="flex items-center justify-between text-[11px] font-mono text-ink-secondary pt-0.5">
-                    <span className="flex items-center gap-1 text-emerald-700">
-                      <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                    <span className="flex items-center gap-1 text-emerald-700 dark:text-emerald-300">
+                      <CheckCircle2 className="w-3 h-3 text-emerald-600 dark:text-emerald-300" />
                       <span>Timestamp & KaTeX math parser active</span>
                     </span>
                     <button
@@ -1077,7 +1077,7 @@ export function CourseNoteTakerWorkbench() {
                       </div>
                       <div className="p-2 rounded bg-canvas-paper border border-[rgba(13,37,61,0.06)]">
                         <span className="text-ink-secondary block text-[10px]">Quiz Review:</span>
-                        <strong className="text-emerald-700">~6 Mins (100% Mastery)</strong>
+                        <strong className="text-emerald-700 dark:text-emerald-300">~6 Mins (100% Mastery)</strong>
                       </div>
                     </div>
                   </div>
@@ -1098,13 +1098,13 @@ export function CourseNoteTakerWorkbench() {
               </div>
               <div className="flex items-center justify-between text-[11px]">
                 <span>Synthesized Chapters:</span>
-                <strong className="text-emerald-700 font-semibold tabular-nums">
+                <strong className="text-emerald-700 dark:text-emerald-300 font-semibold tabular-nums">
                   {result?.chapters.length || 0} segments
                 </strong>
               </div>
               <div className="flex items-center justify-between text-[10px] text-ink-secondary pt-1 border-t border-[rgba(13,37,61,0.06)]">
                 <span>Memory Guarantee:</span>
-                <span className="text-emerald-800 font-medium">Ephemeral Client-Side RAM</span>
+                <span className="text-emerald-800 dark:text-emerald-300 font-medium">Ephemeral Client-Side RAM</span>
               </div>
             </div>
           </div>
@@ -1454,7 +1454,7 @@ export function CourseNoteTakerWorkbench() {
                               key={tIdx}
                               className="flex items-start gap-2 text-xs text-ink-body"
                             >
-                              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 mt-0.5 shrink-0" />
+                              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-300 mt-0.5 shrink-0" />
                               <div className="leading-relaxed">
                                 <MathText text={takeaway} />
                               </div>
@@ -1517,7 +1517,7 @@ export function CourseNoteTakerWorkbench() {
                     <div className="flex items-center gap-2">
                       <span className="text-xs">
                         Mastered:{' '}
-                        <strong className="text-emerald-700 font-bold tabular-nums">
+                        <strong className="text-emerald-700 dark:text-emerald-300 font-bold tabular-nums">
                           {masteredCardsCount} of {totalCards}
                         </strong>
                       </span>
@@ -1604,12 +1604,12 @@ export function CourseNoteTakerWorkbench() {
                         className={cn(
                           'p-2.5 rounded-xl border text-xs font-semibold transition-all text-center active:scale-[0.97]',
                           cardMasteryState[activeFlashcard.id]?.status === 'again'
-                            ? 'bg-rose-100 border-rose-500 text-rose-900 shadow-xs'
-                            : 'bg-rose-50/70 text-rose-800 border-rose-500/20 hover:bg-rose-100',
+                            ? 'bg-rose-100 dark:bg-rose-950 border-rose-500 text-rose-900 dark:text-rose-200 shadow-xs'
+                            : 'bg-rose-50/70 dark:bg-rose-950/60 text-rose-800 dark:text-rose-200 border-rose-500/20 hover:bg-rose-100 dark:hover:bg-rose-900/60',
                         )}
                       >
                         <span className="block font-bold">Again</span>
-                        <span className="text-[10px] font-mono text-rose-700">1 Day Interval</span>
+                        <span className="text-[10px] font-mono text-rose-700 dark:text-rose-300">1 Day Interval</span>
                       </button>
 
                       <button
@@ -1623,7 +1623,7 @@ export function CourseNoteTakerWorkbench() {
                         )}
                       >
                         <span className="block font-bold">Good</span>
-                        <span className="text-[10px] font-mono text-slate-600">
+                        <span className="text-[10px] font-mono text-slate-600 dark:text-slate-300">
                           3 Days Interval
                         </span>
                       </button>
@@ -1634,12 +1634,12 @@ export function CourseNoteTakerWorkbench() {
                         className={cn(
                           'p-2.5 rounded-xl border text-xs font-semibold transition-all text-center active:scale-[0.97]',
                           cardMasteryState[activeFlashcard.id]?.status === 'easy'
-                            ? 'bg-emerald-100 border-emerald-600 text-emerald-950 shadow-xs'
-                            : 'bg-emerald-50/70 text-emerald-800 border-emerald-500/20 hover:bg-emerald-100',
+                            ? 'bg-emerald-100 dark:bg-emerald-950 border-emerald-600 text-emerald-950 dark:text-emerald-200 shadow-xs'
+                            : 'bg-emerald-50/70 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-200 border-emerald-500/20 hover:bg-emerald-100 dark:hover:bg-emerald-900/60',
                         )}
                       >
                         <span className="block font-bold">Easy</span>
-                        <span className="text-[10px] font-mono text-emerald-700">
+                        <span className="text-[10px] font-mono text-emerald-700 dark:text-emerald-300">
                           7 Days Mastery
                         </span>
                       </button>

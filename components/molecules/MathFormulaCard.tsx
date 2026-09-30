@@ -69,8 +69,8 @@ export function MathFormulaCard({
           >
             {copied ? (
               <>
-                <Check className="w-3 h-3 text-emerald-600" />
-                <span className="text-[10px] text-emerald-700 font-semibold">Copied</span>
+                <Check className="w-3 h-3 text-emerald-600 dark:text-emerald-300" />
+                <span className="text-[10px] text-emerald-700 dark:text-emerald-300 font-semibold">Copied</span>
               </>
             ) : (
               <>

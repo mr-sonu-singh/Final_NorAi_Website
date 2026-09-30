@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, type CSSProperties } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Users, GraduationCap, Terminal, CheckCircle2, Trophy, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -14,6 +14,8 @@ export interface CommunityTier {
   metric: string;
   icon: React.ElementType;
   accent: string;
+  /** Contrast-safe variant for permanently dark panels. */
+  accentDark: string;
   accentGlow: string;
   highlights: string[];
   tools: string[];
@@ -29,6 +31,7 @@ export const COMMUNITY_TIERS: CommunityTier[] = [
     metric: 'Vernacular Delivery · Localized Learning',
     icon: Users,
     accent: '#38BDF8',
+    accentDark: '#7DD3FC',
     accentGlow: 'rgba(30,244,180,0.15)',
     highlights: [
       'Hindi voice prompts for crop advisory & mandi rates',
@@ -46,6 +49,7 @@ export const COMMUNITY_TIERS: CommunityTier[] = [
     metric: 'Curriculum & Sandbox Access',
     icon: GraduationCap,
     accent: '#7a5cff',
+    accentDark: '#A78BFF',
     accentGlow: 'rgba(122,92,255,0.15)',
     highlights: [
       'Lecture note-taking & structured flashcard extraction',
@@ -63,6 +67,7 @@ export const COMMUNITY_TIERS: CommunityTier[] = [
     metric: 'Direct Founder Mentorship',
     icon: Terminal,
     accent: '#ffa24d',
+    accentDark: '#FFB870',
     accentGlow: 'rgba(255,162,77,0.15)',
     highlights: [
       'Model Context Protocol (MCP) server authoring',
@@ -109,12 +114,13 @@ export function MissionTiersInteractive() {
                   {tier.tier}
                 </span>
                 <span
-                  className="font-mono text-[10px] font-bold px-2.5 py-1 rounded-full border"
+                  className="accent-ink font-mono text-[10px] font-bold px-2.5 py-1 rounded-full border"
                   style={{
-                    color: tier.accent,
+                    '--accent': tier.accent,
+                    '--accent-dark': tier.accentDark,
                     borderColor: `${tier.accent}40`,
                     background: `${tier.accent}12`,
-                  }}
+                  } as CSSProperties}
                 >
                   {tier.badge}
                 </span>
@@ -197,8 +203,8 @@ export function MissionTiersInteractive() {
                       {tier.highlights.map((item, i) => (
                         <div key={i} className="flex items-start gap-2 text-xs text-[var(--pine)]/85 dark:text-white/80">
                           <CheckCircle2
-                            className="w-3.5 h-3.5 shrink-0 mt-0.5"
-                            style={{ color: tier.accent }}
+                            className="accent-ink w-3.5 h-3.5 shrink-0 mt-0.5"
+                            style={{ '--accent': tier.accent, '--accent-dark': tier.accentDark } as CSSProperties}
                           />
                           <span>{item}</span>
                         </div>
@@ -247,7 +253,7 @@ export function MissionTiersInteractive() {
 
             {/* Bottom Metric & Link */}
             <div className="pt-4 border-t border-[var(--line)] dark:border-white/10 flex items-center justify-between text-xs font-mono">
-              <span className="font-semibold" style={{ color: tier.accent }}>
+              <span className="accent-ink font-semibold" style={{ '--accent': tier.accent, '--accent-dark': tier.accentDark } as CSSProperties}>
                 {tier.metric}
               </span>
               <Link

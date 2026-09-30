@@ -285,7 +285,7 @@ export function ContactFormClient() {
             <div className="pt-3 border-t border-[rgba(13,37,61,0.06)] flex flex-col sm:flex-row sm:items-center gap-3">
               <a
                 href="mailto:noraitechnologies@gmail.com?subject=Schedule%2020-Min%20Architecture%20Review"
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--pine)] px-5 py-2.5 font-sans text-xs font-semibold text-[var(--bone)] shadow-xs hover:bg-[var(--forest)] active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--bg-dark)] px-5 py-2.5 font-sans text-xs font-semibold text-[var(--bone)] shadow-xs hover:bg-[var(--forest)] active:scale-[0.97] transition-[transform,background-color] duration-160 ease-out"
               >
                 <span>Request Calendar Invite</span>
                 <ArrowUpRight className="h-4 w-4" />

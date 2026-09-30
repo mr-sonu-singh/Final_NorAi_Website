@@ -7,11 +7,11 @@ import { Spinner } from '../Spinner';
 import { ButtonProps, ButtonVariant, ButtonSize } from './Button.types';
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: 'bg-[var(--pine)] text-[var(--bone)] shadow-none hover:bg-[var(--forest)] active:scale-[0.98] font-medium',
+  primary: 'bg-[var(--bg-dark)] text-[var(--bone)] shadow-none hover:bg-[var(--forest)] active:scale-[0.98] font-medium',
   secondary:
     'bg-surface-panel border border-border-strong text-text-primary shadow-none font-medium hover:border-border-highlight hover:bg-surface-hover active:scale-[0.98]',
   ghost: 'bg-transparent text-text-primary font-medium hover:bg-surface-hover active:scale-[0.98]',
-  dark: 'bg-[var(--pine)] text-[var(--bone)] shadow-none font-medium hover:bg-[var(--forest)] active:scale-[0.98]',
+  dark: 'bg-[var(--bg-dark)] text-[var(--bone)] shadow-none font-medium hover:bg-[var(--forest)] active:scale-[0.98]',
   danger: 'bg-error-600 text-white font-medium hover:bg-error-600/90 active:scale-[0.98]',
 };
 

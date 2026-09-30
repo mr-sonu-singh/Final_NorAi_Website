@@ -104,7 +104,7 @@ export function OperatingRitualsRail() {
               <h2 className="font-display font-extrabold text-4xl sm:text-5xl lg:text-[3.8rem] text-[var(--pine)] tracking-tight leading-[1.04]">
                 Direct. <br />
                 Transparent. <br />
-                <span className="text-[#0650AD]">Continuous.</span>
+                <span className="text-[#0650AD] dark:text-[#38BDF8]">Continuous.</span>
               </h2>
               <p className="text-[var(--pine)]/80 text-base sm:text-lg leading-relaxed max-w-md">
                 Zero account managers or support bots. You speak, architect, and debug directly with the engineers who write the models.
@@ -112,7 +112,7 @@ export function OperatingRitualsRail() {
               <div className="pt-2">
                 <Link
                   href="/team"
-                  className="inline-flex items-center gap-2 text-sm font-bold text-[#0650AD] hover:text-[#040A5C] transition-colors group"
+                  className="inline-flex items-center gap-2 text-sm font-bold text-[#0650AD] dark:text-[#38BDF8] hover:text-[#040A5C] dark:hover:text-[#38BDF8] transition-colors group"
                 >
                   <span>Meet our engineering team on /team</span>
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
@@ -140,7 +140,16 @@ export function OperatingRitualsRail() {
                           : 'bg-white/40 dark:bg-white/5 border-transparent text-[var(--pine)]/60 dark:text-white/50 hover:bg-white/70 hover:text-[var(--pine)]'
                       )}
                     >
-                      <span className="block text-[11px] opacity-60 mb-0.5">0{ritual.n.slice(-1)}</span>
+                      <span
+                        className={cn(
+                          'block text-[11px] mb-0.5',
+                          isActive
+                            ? 'text-[var(--pine)] dark:text-white'
+                            : 'text-[var(--pine)]/70 dark:text-[#A8B6D8]'
+                        )}
+                      >
+                        0{ritual.n.slice(-1)}
+                      </span>
                       <span className="line-clamp-1">{ritual.title.split(' ')[0]}</span>
                     </button>
                   );
@@ -183,7 +192,7 @@ export function OperatingRitualsRail() {
                         <div className="space-y-1.5 text-xs sm:text-sm text-[var(--pine)]/80 dark:text-white/80 font-mono">
                           {activeRitual.terminalLogs.map((log, i) => (
                             <div key={i} className="flex items-start gap-2">
-                              <span className="text-[#0650AD] font-bold shrink-0">→</span>
+                              <span className="text-[#0650AD] dark:text-[#38BDF8] font-bold shrink-0">→</span>
                               <span>{log.replace(/^\[.*?\]\s*/, '')}</span>
                             </div>
                           ))}
@@ -195,7 +204,7 @@ export function OperatingRitualsRail() {
                     <div className="pt-8 mt-8 border-t border-[var(--pine-12)] flex items-center justify-between">
                       <Link
                         href="/contact"
-                        className="inline-flex items-center gap-2 font-bold text-sm text-[var(--pine)] hover:text-[#0650AD] transition-colors group"
+                        className="inline-flex items-center gap-2 font-bold text-sm text-[var(--pine)] hover:text-[#0650AD] dark:text-[#38BDF8] transition-colors group"
                       >
                         <span>Start a project with the builders</span>
                         <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />

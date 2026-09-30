@@ -190,7 +190,7 @@ export function ProductInteractiveView({ product, slug }: ProductInteractiveView
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-ink-secondary">Data Policy:</span>
-                  <span className="text-emerald-700 font-semibold">Ephemeral In-Memory</span>
+                  <span className="text-emerald-700 dark:text-emerald-300 font-semibold">Ephemeral In-Memory</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-ink-secondary">Access Model:</span>
@@ -291,7 +291,7 @@ export function ProductInteractiveView({ product, slug }: ProductInteractiveView
                 </div>
                 <div className="flex items-center justify-between p-3 rounded-lg bg-canvas-recessed/60">
                   <span className="text-ink-secondary">Data Retention</span>
-                  <span className="font-mono text-emerald-700 font-medium">
+                  <span className="font-mono text-emerald-700 dark:text-emerald-300 font-medium">
                     Zero Permanent Storage
                   </span>
                 </div>

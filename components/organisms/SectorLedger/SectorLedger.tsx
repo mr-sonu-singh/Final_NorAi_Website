@@ -61,7 +61,7 @@ export function SectorLedger() {
           <div className="space-y-3">
             <h2 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl text-[var(--pine)] tracking-tight leading-[1.04]">
               Where AI belongs. <br />
-              <span className="text-[#0650AD]">Where it delivers.</span>
+              <span className="text-[#0650AD] dark:text-[#38BDF8]">Where it delivers.</span>
             </h2>
           </div>
           <p className="text-[var(--pine)]/75 text-base sm:text-lg max-w-md leading-relaxed">
@@ -80,11 +80,11 @@ export function SectorLedger() {
             >
               {/* Left Group: Index & Name/Promise */}
               <div className="flex items-start sm:items-baseline gap-4 sm:gap-6 flex-1">
-                <span className="font-mono text-sm font-bold text-[#0650AD] shrink-0">
+                <span className="font-mono text-sm font-bold text-[#0650AD] dark:text-[#38BDF8] shrink-0">
                   {item.n}
                 </span>
                 <div className="flex flex-col lg:flex-row lg:items-baseline gap-1 lg:gap-6">
-                  <span className="font-display font-bold text-lg sm:text-xl text-[var(--pine)] group-hover:text-[#0650AD] transition-colors">
+                  <span className="font-display font-bold text-lg sm:text-xl text-[var(--pine)] group-hover:text-[#0650AD] dark:text-[#38BDF8] transition-colors">
                     {item.name}
                   </span>
                   <span className="text-xs sm:text-sm text-[var(--pine)]/70 font-normal max-w-xl">
@@ -95,7 +95,7 @@ export function SectorLedger() {
 
               {/* Right Group: Deliverable Tag & High-Voltage Hover Arrow */}
               <div className="flex items-center justify-between sm:justify-end gap-4 shrink-0 pl-8 sm:pl-0">
-                <span className="inline-block px-3 py-1 rounded-full text-xs font-mono font-semibold bg-white border border-[var(--pine-12)] text-[var(--pine)] group-hover:border-[#040A5C]/40 group-hover:text-[#0650AD] transition-colors shadow-xs">
+                <span className="inline-block px-3 py-1 rounded-full text-xs font-mono font-semibold bg-white border border-[var(--pine-12)] text-[var(--pine)] group-hover:border-[#040A5C]/40 dark:group-hover:border-[#38BDF8]/40 group-hover:text-[#0650AD] dark:text-[#38BDF8] transition-colors shadow-xs">
                   {item.deliverable}
                 </span>
                 <div className="w-9 h-9 rounded-full bg-white border border-[var(--pine-12)] flex items-center justify-center text-[var(--pine)]/70 group-hover:bg-[#040A5C] group-hover:text-white group-hover:border-[#040A5C] group-hover:rotate-45 transition-all duration-200 shadow-xs">

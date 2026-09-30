@@ -130,7 +130,7 @@ export function FourPillarsStage() {
         >
           <h2 className="font-display font-extrabold text-3xl sm:text-5xl lg:text-6xl text-[var(--pine)] tracking-tight leading-[1.08]">
             Complete capability. <br className="hidden sm:inline" />
-            <span className="text-[#0650AD]">Unified engineering craft.</span>
+            <span className="text-[#0650AD] dark:text-[#38BDF8]">Unified engineering craft.</span>
           </h2>
           <p className="text-[var(--pine)]/75 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
             From deterministic enterprise machine intelligence to grassroots youth upskilling in Ghazipur—every capability is built with zero fluff and complete ownership.

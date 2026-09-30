@@ -235,17 +235,17 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             {/* The Friction */}
-            <div className="rounded-[22px] bg-[var(--bone)]/50 border border-[var(--line)] p-7 sm:p-9 space-y-4">
+            <div className="rounded-[22px] bg-[#E9E9E2] dark:bg-[#131A36] border border-[var(--line)] p-7 sm:p-9 space-y-4">
               <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-[var(--coral)]" />
-                <span className="font-mono text-xs font-bold text-[var(--pine)] uppercase tracking-wider">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#A3381C] dark:bg-[#FF8A6B]" />
+                <span className="font-mono text-xs font-bold text-[var(--pine)] dark:text-[#F4F6FC] uppercase tracking-wider">
                   The Friction (Legacy Workflow)
                 </span>
               </div>
               <ul className="space-y-3 pt-2">
                 {product.problem.map((prob, pIdx) => (
-                  <li key={pIdx} className="text-sm sm:text-base text-[var(--pine)]/80 leading-relaxed flex items-start gap-2.5">
-                    <span className="text-[var(--coral)] font-bold shrink-0">✕</span>
+                  <li key={pIdx} className="text-sm sm:text-base text-[var(--pine)]/80 dark:text-[#A8B6D8] leading-relaxed flex items-start gap-2.5">
+                    <span className="text-[#A3381C] dark:text-[#FF8A6B] font-bold shrink-0">✕</span>
                     <span>{prob}</span>
                   </li>
                 ))}

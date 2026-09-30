@@ -1298,6 +1298,12 @@ kbd.key-cap {
   background: #19d79e;
 }
 
+/* The mint fill is a luminous azure in dark mode, so it cannot carry a bone
+   foreground. Drop the label to the deep navy that sits on it. */
+.dark .btn--mint {
+  color: #040A5C;
+}
+
 .btn--ghost {
   background: transparent;
   color: var(--pine);
@@ -1609,15 +1615,77 @@ html.dark,
 
   --text-primary: #F4F6FC;
   --text-secondary: #A8B6D8;
-  --text-muted: #6C7D9E;
+  --text-muted: #A8B6D8;
+  --text-inverse: #040A5C;
+
+  /* Accent tokens are text-role by default (26 text-* uses vs 5 fill uses), so in
+     dark mode they have to lift to a luminous value. Left unflipped they resolve
+     to the light-mode navy and measure 1.06:1 against the dark canvas. The few
+     fill sites that pair with a foreground opt into the dark foreground
+     explicitly via .on-accent-fill below. */
+  --mint-ink: #38BDF8;
+  --accent-primary: #38BDF8;
+  --accent-hover: #7DD3FC;
+  --accent-mono: #38BDF8;
+  --accent-secondary: #D4C5F9;
+  --accent-tertiary: #FFE9B5;
+  --ink: #F4F6FC;
+  --muted: #A8B6D8;
+  --jewel-mint: #38BDF8;
+  --ds-focus-color: #38BDF8;
+  --ds-interactive: #F4F6FC;
+  --ds-text-200: #A8B6D8;
+  --ds-text-300: #A8B6D8;
+
+  --border-highlight: rgba(99, 132, 255, 0.32);
+
+  /* Status and badge foregrounds are light-tinted, which reads correctly on the
+     porcelain canvas and disappears on obsidian. */
+  --status-error-text: #FCA5A5;
+  --status-error-solid: #F87171;
+  --status-warn-text: #FCD34D;
+  --status-warn-solid: #FBBF24;
+  --status-success-text: #6EE7B7;
+  --status-success-solid: #34D399;
+  --status-info-text: #93C5FD;
+  --status-info-solid: #60A5FA;
+  --badge-cache-hit-text: #6EE7B7;
+  --badge-cache-miss-text: #FCD34D;
+  --badge-cache-stale-text: #CBD5E1;
+  --success-600: #6EE7B7;
+  --warning-600: #FCD34D;
+  --error-600: #FCA5A5;
+  --info-600: #93C5FD;
+  --status-blue: #93C5FD;
+  --status-cyan: #38BDF8;
+  --status-teal: #2EFCC2;
+  --status-green: #6EE7B7;
+  --status-orange: #FFA07A;
+  --status-red: #FCA5A5;
 
   --bg-page: #060919;
   --bg-elevated: #0D1226;
   --bg-sunken: #040610;
+  /* These two promise a *dark* surface in both themes. They were aliased to
+     --pine, which flips to bone in dark mode, so terminal panels rendered
+     bg-bg-dark text-white as white-on-white. */
+  --bg-dark: #0B1024;
+  --bg-dark-elevated: #131A36;
   --bg-header: rgba(6, 9, 25, 0.90);
   --ds-background-100: #060919;
   --ds-background-200: #0D1226;
   --ds-text-100: #F4F6FC;
+}
+
+/* Foreground for the handful of sites that fill with an accent token. Luminous
+   accents cannot carry white text, so the fill keeps the brand hue and the
+   label drops to the deep navy that sits on it in both themes. */
+.on-accent-fill {
+  color: var(--pine);
+}
+
+.dark .on-accent-fill {
+  color: #040A5C;
 }
 
 html.dark body {
@@ -1703,33 +1771,26 @@ html.dark [class*="border-[var(--line)]"] {
   border-color: rgba(99, 132, 255, 0.12) !important;
 }
 
-/* Headings and body copy */
-html.dark h1,
-html.dark h2,
-html.dark h3,
-html.dark h4,
-html.dark h5,
-html.dark h6 {
+/* Headings and body copy.
+   `:not(.paper-card *)` keeps this blanket repaint out of the deliberately light
+   paper surfaces (the civic alert card and its callouts), whose headings carry
+   their own ink. Without it they render bone-on-cream at 1.01:1. */
+html.dark :is(h1, h2, h3, h4, h5, h6):not(.paper-card *) {
   color: #F4F6FC !important;
 }
 
 /* Dark Mode Form Inputs, Buttons & Interactive States */
-html.dark input,
-html.dark textarea,
-html.dark select {
+html.dark :is(input, textarea, select):not(.paper-card *) {
   background-color: #090E20 !important;
   color: #F4F6FC !important;
   border-color: rgba(99, 132, 255, 0.18) !important;
 }
 
-html.dark input::placeholder,
-html.dark textarea::placeholder {
+html.dark :is(input, textarea)::placeholder:not(.paper-card *) {
   color: rgba(244, 246, 252, 0.4) !important;
 }
 
-html.dark input:focus,
-html.dark textarea:focus,
-html.dark select:focus {
+html.dark :is(input, textarea, select):focus:not(.paper-card *) {
   border-color: #B278E3 !important;
   box-shadow: 0 0 0 2px rgba(178, 120, 227, 0.25) !important;
 }
@@ -1852,4 +1913,34 @@ html.dark .bilingual-toggle-btn[aria-checked="false"]:hover {
   .card-interactive:hover {
     transform: none !important;
   }
+}
+
+/* Per-tool accent, themed. The palette is data-driven and inline styles cannot
+   respond to the theme, so the components publish both values as custom
+   properties and this rule picks the legible one. Text needs 4.5:1, which the
+   light-mode accent does not reach on the dark panel. */
+.accent-ink {
+  color: var(--accent);
+}
+
+.dark .accent-ink {
+  color: var(--accent-dark);
+}
+
+/* Paper card: the civic alert is an intentionally light newspaper artefact, so it
+   stays light in dark mode and keeps its own ink. The blanket dark-mode rules
+   above repaint every heading and form control, which turns this card's ink
+   bone-on-paper at 1.01:1, so the card is exempted explicitly. */
+.paper-card {
+  color: #141C2B;
+}
+
+.dark .paper-card {
+  color: #141C2B;
+}
+
+.dark .paper-card :is(input, textarea, select) {
+  background-color: #FAF7F2;
+  color: #141C2B;
+  border-color: rgba(20, 28, 43, 0.18);
 }

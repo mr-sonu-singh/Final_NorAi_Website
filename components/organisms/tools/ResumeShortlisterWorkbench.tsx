@@ -434,7 +434,7 @@ export function ResumeShortlisterWorkbench() {
         shortLabel: 'Tier 1',
         badgeBg: 'bg-emerald-50 text-emerald-800 border-emerald-500/30',
         dotColor: 'bg-emerald-600',
-        scoreColor: 'text-emerald-700',
+        scoreColor: 'text-emerald-700 dark:text-emerald-300',
       };
     }
     if (score >= Math.max(50, threshold - 14)) {
@@ -453,7 +453,7 @@ export function ResumeShortlisterWorkbench() {
       shortLabel: 'Tier 3',
       badgeBg: 'bg-slate-100 text-slate-700 border-slate-300',
       dotColor: 'bg-slate-500',
-      scoreColor: 'text-slate-600',
+      scoreColor: 'text-slate-600 dark:text-slate-300',
     };
   };
 
@@ -1176,10 +1176,10 @@ export function ResumeShortlisterWorkbench() {
             <div className="p-3.5 rounded-xl bg-canvas-recessed/50 border border-[rgba(13,37,61,0.08)] text-xs text-ink-secondary space-y-2">
               <div className="flex items-center justify-between font-mono text-[11px]">
                 <span className="flex items-center gap-1.5 text-ink-primary font-semibold">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-300" />
                   <span>Zero-Retention Policy</span>
                 </span>
-                <span className="text-emerald-700 font-bold">EPHEMERAL RAM</span>
+                <span className="text-emerald-700 dark:text-emerald-300 font-bold">EPHEMERAL RAM</span>
               </div>
               <p className="text-[11px] text-ink-secondary leading-relaxed">
                 Candidate data is parsed strictly in-memory during this session and wiped upon exit.
@@ -1346,7 +1346,7 @@ export function ResumeShortlisterWorkbench() {
                         'px-3 py-1 rounded-lg text-xs font-medium transition-all whitespace-nowrap flex items-center gap-2 outline-none',
                         'focus-visible:ring-2 focus-visible:ring-accent-500 active:scale-[0.97]',
                         isSelected
-                          ? 'bg-[var(--pine)] text-[var(--bone)] shadow-sm font-semibold ring-1 ring-[var(--pine)]'
+                          ? 'bg-[var(--bg-dark)] text-[var(--bone)] shadow-sm font-semibold ring-1 ring-[var(--bg-dark)]'
                           : 'bg-[var(--surface)] text-[var(--pine)] hover:bg-[var(--porcelain)] border border-[var(--line)]',
                       )}
                     >
@@ -1504,10 +1504,10 @@ export function ResumeShortlisterWorkbench() {
                                 className={cn(
                                   'tabular-nums font-bold',
                                   vector.matchScore >= 90
-                                    ? 'text-emerald-700'
+                                    ? 'text-emerald-700 dark:text-emerald-300'
                                     : vector.matchScore >= 75
                                       ? 'text-accent-500'
-                                      : 'text-slate-600',
+                                      : 'text-slate-600 dark:text-slate-300',
                                 )}
                               >
                                 {vector.matchScore}%
@@ -1522,14 +1522,14 @@ export function ResumeShortlisterWorkbench() {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
                               {/* Key Strengths Preview with Citations */}
                               <div className="p-3.5 rounded-xl bg-canvas-base border border-[rgba(13,37,61,0.06)] space-y-1.5">
-                                <span className="font-semibold text-emerald-800 flex items-center gap-1.5">
-                                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                                <span className="font-semibold text-emerald-800 dark:text-emerald-300 flex items-center gap-1.5">
+                                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-300" />
                                   <span>Verified Strengths & Citations</span>
                                 </span>
                                 <ul className="space-y-1.5 text-[11px] text-ink-body">
                                   {candidate.keyStrengths.slice(0, 2).map((str, sIdx) => (
                                     <li key={sIdx} className="flex items-start gap-1.5">
-                                      <span className="text-emerald-600 font-bold">&bull;</span>
+                                      <span className="text-emerald-600 dark:text-emerald-300 font-bold">&bull;</span>
                                       <span className="leading-snug">{str}</span>
                                     </li>
                                   ))}
@@ -1659,10 +1659,10 @@ export function ResumeShortlisterWorkbench() {
                                       className={cn(
                                         'font-mono font-bold text-xs tabular-nums',
                                         score >= 90
-                                          ? 'text-emerald-700'
+                                          ? 'text-emerald-700 dark:text-emerald-300'
                                           : score >= 75
                                             ? 'text-accent-500'
-                                            : 'text-slate-600',
+                                            : 'text-slate-600 dark:text-slate-300',
                                       )}
                                     >
                                       {score}%
@@ -1724,7 +1724,7 @@ export function ResumeShortlisterWorkbench() {
                             'px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all whitespace-nowrap flex items-center gap-2 outline-none',
                             'focus-visible:ring-2 focus-visible:ring-accent-500 active:scale-[0.97]',
                             isSelected
-                              ? 'bg-[var(--pine)] text-[var(--bone)] font-semibold shadow-sm ring-1 ring-[var(--pine)]'
+                              ? 'bg-[var(--bg-dark)] text-[var(--bone)] font-semibold shadow-sm ring-1 ring-[var(--bg-dark)]'
                               : 'bg-[var(--surface)] text-[var(--pine)] hover:bg-[var(--porcelain)] border border-[var(--line)]',
                           )}
                         >
@@ -1807,8 +1807,8 @@ export function ResumeShortlisterWorkbench() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {/* Column 1: Verified Strengths & Source Citations */}
                     <div className="p-5 rounded-2xl bg-canvas-paper border border-[rgba(13,37,61,0.1)] shadow-sm space-y-3">
-                      <div className="flex items-center gap-2 text-xs font-semibold text-emerald-800 border-b border-[rgba(13,37,61,0.06)] pb-2">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                      <div className="flex items-center gap-2 text-xs font-semibold text-emerald-800 dark:text-emerald-300 border-b border-[rgba(13,37,61,0.06)] pb-2">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-300 shrink-0" />
                         <span>Verified Strengths & Source Citations</span>
                       </div>
                       <div className="space-y-2.5 text-xs text-ink-body">
@@ -1835,7 +1835,7 @@ export function ResumeShortlisterWorkbench() {
                       <div className="space-y-2.5 text-xs text-ink-body">
                         {selectedCandidate.missingRequirements.length === 0 ? (
                           <div className="p-3 rounded-xl bg-canvas-base border border-[rgba(13,37,61,0.06)] text-[11px] text-ink-secondary italic flex items-center gap-2">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-300 shrink-0" />
                             <span>
                               No critical requirements missing against the job description.
                             </span>
@@ -1912,8 +1912,8 @@ export function ResumeShortlisterWorkbench() {
                             >
                               {isCopied ? (
                                 <>
-                                  <Check className="w-3 h-3 text-emerald-600" />
-                                  <span className="text-emerald-700 font-semibold">Copied</span>
+                                  <Check className="w-3 h-3 text-emerald-600 dark:text-emerald-300" />
+                                  <span className="text-emerald-700 dark:text-emerald-300 font-semibold">Copied</span>
                                 </>
                               ) : (
                                 <>

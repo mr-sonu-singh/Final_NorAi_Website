@@ -135,7 +135,7 @@ export function SmartDainikAlertCard({
       case 'new-alert':
         return (
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[13px] font-semibold bg-[#141C2B] text-[#F5F0EA] shadow-xs">
-            <span className="w-2 h-2 rounded-full bg-[#C85A32] animate-ping" />
+            <span className="w-2 h-2 rounded-full bg-[#A34420] animate-ping" />
             <span>New Alert Available</span>
           </span>
         );
@@ -188,7 +188,7 @@ export function SmartDainikAlertCard({
   return (
     <article
       className={cn(
-        'w-full max-w-2xl mx-auto rounded-2xl bg-[#FAF7F2] border border-[#141C2B]/12 shadow-sm text-[#141C2B] overflow-hidden transition-all',
+        'paper-card w-full max-w-2xl mx-auto rounded-2xl bg-[#FAF7F2] border border-[#141C2B]/12 shadow-sm text-[#141C2B] overflow-hidden transition-all',
         className,
       )}
     >
@@ -267,7 +267,7 @@ export function SmartDainikAlertCard({
             <span className="text-[12px] font-medium text-[#526075] block">
               Application Deadline
             </span>
-            <span className="text-base font-bold text-[#C85A32] tabular-nums">
+            <span className="text-base font-bold text-[#A34420] tabular-nums">
               {mergedCard.daysRemaining} Days Remaining
             </span>
           </div>
@@ -299,7 +299,7 @@ export function SmartDainikAlertCard({
           {/* Vacancy Metric Box */}
           <div className="p-3.5 rounded-xl bg-[#F5F0EA] border border-[#141C2B]/10 space-y-1">
             <div className="flex items-center gap-1.5 text-[#526075] text-[13px] font-medium">
-              <Users className="w-4 h-4 text-[#C85A32]" />
+              <Users className="w-4 h-4 text-[#A34420]" />
               <span>Vacancies</span>
             </div>
             <div className="text-base font-bold text-[#141C2B] tabular-nums">
@@ -312,7 +312,7 @@ export function SmartDainikAlertCard({
           {/* Age Limit Metric Box */}
           <div className="p-3.5 rounded-xl bg-[#F5F0EA] border border-[#141C2B]/10 space-y-1">
             <div className="flex items-center gap-1.5 text-[#526075] text-[13px] font-medium">
-              <Calendar className="w-4 h-4 text-[#C85A32]" />
+              <Calendar className="w-4 h-4 text-[#A34420]" />
               <span>Age Criteria</span>
             </div>
             <div className="text-base font-bold text-[#141C2B] tabular-nums">
@@ -323,7 +323,7 @@ export function SmartDainikAlertCard({
           {/* Qualification Metric Box */}
           <div className="p-3.5 rounded-xl bg-[#F5F0EA] border border-[#141C2B]/10 space-y-1">
             <div className="flex items-center gap-1.5 text-[#526075] text-[13px] font-medium">
-              <GraduationCap className="w-4 h-4 text-[#C85A32]" />
+              <GraduationCap className="w-4 h-4 text-[#A34420]" />
               <span>Qualification</span>
             </div>
             <div className="text-base font-bold text-[#141C2B]">12th Pass (10+2)</div>
@@ -332,7 +332,7 @@ export function SmartDainikAlertCard({
 
         {/* 4. PLAIN-LANGUAGE ELIGIBILITY SUMMARY: Base size 16px, Line-height 1.6 */}
         <div className="p-4 rounded-xl bg-[#FAF7F2] border border-[#141C2B]/10 space-y-2">
-          <span className="text-[13px] font-bold uppercase tracking-wider text-[#C85A32] flex items-center gap-1.5">
+          <span className="text-[13px] font-bold uppercase tracking-wider text-[#A34420] flex items-center gap-1.5">
             <FileText className="w-4 h-4" />
             <span>Eligibility Summary</span>
           </span>
@@ -368,7 +368,7 @@ export function SmartDainikAlertCard({
             aria-expanded={isEligibilityOpen}
           >
             <div className="flex items-center gap-2">
-              <GraduationCap className="w-5 h-5 text-[#C85A32]" />
+              <GraduationCap className="w-5 h-5 text-[#A34420]" />
               <span>Check My Eligibility (Single Tap)</span>
             </div>
             {isEligibilityOpen ? (
@@ -391,7 +391,7 @@ export function SmartDainikAlertCard({
                 <div className="space-y-2">
                   <div className="flex items-center justify-between text-[14px]">
                     <span className="font-medium text-[#141C2B]">Your Current Age:</span>
-                    <strong className="text-base font-bold text-[#C85A32] tabular-nums">
+                    <strong className="text-base font-bold text-[#A34420] tabular-nums">
                       {userAge} Years
                     </strong>
                   </div>
@@ -401,7 +401,7 @@ export function SmartDainikAlertCard({
                     max={35}
                     value={userAge}
                     onChange={(e) => setUserAge(Number(e.target.value))}
-                    className="w-full h-3 bg-[#E0D5C5] rounded-lg accent-[#C85A32] cursor-pointer min-h-[44px]"
+                    className="w-full h-3 bg-[#E0D5C5] rounded-lg accent-[#A34420] cursor-pointer min-h-[44px]"
                     aria-label="Select applicant age"
                   />
                   <div className="flex justify-between text-[12px] text-[#526075]">
@@ -425,7 +425,7 @@ export function SmartDainikAlertCard({
                       id="card-user-category"
                       value={userCategory}
                       onChange={(e) => setUserCategory(e.target.value as typeof userCategory)}
-                      className="w-full min-h-[44px] px-3 py-2 rounded-xl bg-[#FAF7F2] border border-[#141C2B]/20 text-[#141C2B] text-[14px] font-medium focus:outline-none focus:ring-2 focus:ring-[#C85A32]"
+                      className="w-full min-h-[44px] px-3 py-2 rounded-xl bg-[#FAF7F2] border border-[#141C2B]/20 text-[#141C2B] text-[14px] font-medium focus:outline-none focus:ring-2 focus:ring-[#A34420]"
                     >
                       <option value="General">General (Unreserved)</option>
                       <option value="OBC">OBC (+3 Years Relaxation)</option>
@@ -445,7 +445,7 @@ export function SmartDainikAlertCard({
                       id="card-user-edu"
                       value={userEducation}
                       onChange={(e) => setUserEducation(e.target.value as typeof userEducation)}
-                      className="w-full min-h-[44px] px-3 py-2 rounded-xl bg-[#FAF7F2] border border-[#141C2B]/20 text-[#141C2B] text-[14px] font-medium focus:outline-none focus:ring-2 focus:ring-[#C85A32]"
+                      className="w-full min-h-[44px] px-3 py-2 rounded-xl bg-[#FAF7F2] border border-[#141C2B]/20 text-[#141C2B] text-[14px] font-medium focus:outline-none focus:ring-2 focus:ring-[#A34420]"
                     >
                       <option value="12th Pass">12th Pass (Intermediate)</option>
                       <option value="Graduate">Graduate (B.A. / B.Sc / B.Tech)</option>
@@ -497,7 +497,7 @@ export function SmartDainikAlertCard({
             href={mergedCard.officialPortalUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full min-h-[48px] px-5 py-3 rounded-xl bg-[#141C2B] text-[#F5F0EA] hover:bg-[#C85A32] font-semibold text-[15px] flex items-center justify-center gap-2 transition-colors active:scale-[0.99] shadow-xs"
+            className="w-full min-h-[48px] px-5 py-3 rounded-xl bg-[#141C2B] text-[#F5F0EA] hover:bg-[#A34420] font-semibold text-[15px] flex items-center justify-center gap-2 transition-colors active:scale-[0.99] shadow-xs"
           >
             <span>VIEW OFFICIAL NOTICE (PDF)</span>
             <ExternalLink className="w-4 h-4" />
@@ -522,7 +522,7 @@ export function SmartDainikAlertCard({
                 </>
               ) : (
                 <>
-                  <Bell className="w-4 h-4 text-[#C85A32]" />
+                  <Bell className="w-4 h-4 text-[#A34420]" />
                   <span>Set WhatsApp / SMS Alert</span>
                 </>
               )}

@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { type CSSProperties } from 'react';
 import { Container } from '@/components/foundation/Container';
 import { ShieldCheck, Cpu, TrendingUp, Palette, Bot, ArrowUpRight } from 'lucide-react';
 import { motion } from 'motion/react';
@@ -13,6 +13,8 @@ export interface StudioEngineer {
   runtimeOwnership: string;
   primaryToken: string;
   accent: string;
+  /** Contrast-safe variant for the permanently dark roster panel. */
+  accentDark: string;
   icon: React.ElementType;
 }
 
@@ -25,6 +27,7 @@ export const STUDIO_ENGINEERS: StudioEngineer[] = [
     runtimeOwnership: 'Security Guardrails · Institutional Governance · State Outreach',
     primaryToken: 'Operational Security & Governance',
     accent: '#38BDF8',
+    accentDark: '#7DD3FC',
     icon: ShieldCheck,
   },
   {
@@ -35,6 +38,7 @@ export const STUDIO_ENGINEERS: StudioEngineer[] = [
     runtimeOwnership: 'WebGPU Compute · Three.js/WGSL · Spatial Telemetry',
     primaryToken: 'WebGPU & Spatial Interaction Systems',
     accent: '#00e5ff',
+    accentDark: '#67E8F9',
     icon: Cpu,
   },
   {
@@ -45,6 +49,7 @@ export const STUDIO_ENGINEERS: StudioEngineer[] = [
     runtimeOwnership: 'Inbound Funnels · Technical SEO · B2B Client Pipelines',
     primaryToken: 'Enterprise Partnership Ecosystems',
     accent: '#7a5cff',
+    accentDark: '#A78BFF',
     icon: TrendingUp,
   },
   {
@@ -55,6 +60,7 @@ export const STUDIO_ENGINEERS: StudioEngineer[] = [
     runtimeOwnership: 'Design Systems · Fluid Spring Physics · motion/react',
     primaryToken: 'High-Craft Design Tokens',
     accent: '#ffa24d',
+    accentDark: '#FFB870',
     icon: Palette,
   },
   {
@@ -65,6 +71,7 @@ export const STUDIO_ENGINEERS: StudioEngineer[] = [
     runtimeOwnership: 'Autonomous Multi-Agents · pgvector · vLLM Serving',
     primaryToken: 'Deterministic Zod Contracts',
     accent: '#38BDF8',
+    accentDark: '#7DD3FC',
     icon: Bot,
   },
 ];
@@ -109,7 +116,7 @@ export function SwissStudioRoster() {
                     className="w-11 h-11 rounded-xl bg-[var(--porcelain)] dark:bg-white/5 border border-[var(--line)] dark:border-white/10 flex items-center justify-center text-[var(--pine)] dark:text-white shrink-0 group-hover:scale-105 transition-transform"
                     style={{ borderColor: `${eng.accent}40` }}
                   >
-                    <Icon className="w-5 h-5" style={{ color: eng.accent }} />
+                    <Icon className="w-5 h-5" style={{ color: eng.accentDark }} />
                   </div>
 
                   <div>
@@ -130,12 +137,13 @@ export function SwissStudioRoster() {
                 {/* Right: Runtime Ownership Capsule */}
                 <div className="flex items-center gap-3 shrink-0">
                   <span
-                    className="font-mono text-xs px-3.5 py-1.5 rounded-full border transition-colors"
+                    className="accent-ink font-mono text-xs px-3.5 py-1.5 rounded-full border transition-colors"
                     style={{
+                      '--accent': eng.accent,
+                      '--accent-dark': eng.accentDark,
                       background: `${eng.accent}12`,
                       borderColor: `${eng.accent}30`,
-                      color: eng.accent,
-                    }}
+                    } as CSSProperties}
                   >
                     {eng.primaryToken}
                   </span>

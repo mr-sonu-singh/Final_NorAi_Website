@@ -67,7 +67,7 @@ export function KnobSwitch({
                 className={cn(
                   'px-2 py-1 rounded-md text-xs font-mono transition-all cursor-pointer',
                   isActive
-                    ? 'bg-accent-primary text-white font-semibold shadow-sm'
+                    ? 'bg-accent-primary on-accent-fill font-semibold shadow-sm'
                     : 'text-text-secondary hover:text-text-primary hover:bg-surface-hover',
                 )}
               >
