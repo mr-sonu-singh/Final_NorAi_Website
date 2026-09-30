@@ -383,6 +383,50 @@
   --color-accent-tertiary: var(--accent-tertiary);
   --color-accent-tertiary-soft: var(--accent-tertiary-soft);
 
+  /* Numeric accent scale.
+     These were referenced ~350 times across the site (bg-accent-50 chips,
+     text-accent-500/600 labels, border/ring-accent-500) but never defined, so
+     Tailwind emitted nothing for them and every one of those utilities was a
+     silent no-op. The ramp is authored so each step is legible in its role:
+     50/100/200 are tint surfaces, 500 is the label/graphic step, 600 the
+     strongest text step. Deep values clear 4.5:1 on the light canvas; the
+     dark theme re-points them at the luminous range. */
+  /* Legacy civic palette families (terra / sage / ochre / gold).
+     These were referenced by ~60 utilities across the mission, careers and docs
+     surfaces but never registered as theme colours, so none of them emitted a
+     rule. The ramps are built to match the hues already in use: terracotta from
+     --coral, sage from the pine-green family, ochre/gold from --butter. The 600+
+     steps are the deep ends and clear 4.5:1 on the light canvas. */
+  --color-terra-100: #FCEAE3;
+  --color-terra-200: #F7C9B8;
+  --color-terra-500: #D2603A;
+  --color-terra-600: #A94A26;
+  --color-terra-700: #823A1D;
+  --color-terra-800: #5F2A14;
+
+  --color-sage-100: #E7F0EA;
+  --color-sage-200: #C6DACD;
+  --color-sage-300: #A3C4B0;
+  --color-sage-400: #7FAA92;
+  --color-sage-500: #5C8F75;
+  --color-sage-600: #43705A;
+  --color-sage-700: #325643;
+  --color-sage-800: #223E2F;
+
+  --color-ochre-100: #FBF0D6;
+  --color-ochre-200: #F0DFAB;
+  --color-ochre-800: #5F4410;
+
+  --color-gold-100: #FFF4D6;
+  --color-gold-300: #E8C766;
+  --color-gold-600: #7E6009;
+
+  --color-accent-50: #EAF6FE;
+  --color-accent-100: #CDEBFC;
+  --color-accent-200: #9AD7F9;
+  --color-accent-500: #0B6E9E;
+  --color-accent-600: #075985;
+
   /* Primary scale for backwards compatibility */
   --color-primary-50: var(--primary-50);
   --color-primary-100: var(--primary-100);
@@ -1681,7 +1725,7 @@ html.dark,
    accents cannot carry white text, so the fill keeps the brand hue and the
    label drops to the deep navy that sits on it in both themes. */
 .on-accent-fill {
-  color: var(--pine);
+  color: var(--bone);
 }
 
 .dark .on-accent-fill {
@@ -1919,12 +1963,16 @@ html.dark .bilingual-toggle-btn[aria-checked="false"]:hover {
    respond to the theme, so the components publish both values as custom
    properties and this rule picks the legible one. Text needs 4.5:1, which the
    light-mode accent does not reach on the dark panel. */
+/* The jewel accents are tuned as tile/icon fills, which is why they read as
+   "brand" but drop to 1.35:1 when used as small text. Text therefore needs its
+   own value per surface: a deepened step on light panels, the luminous step on
+   dark ones. Components publish all three as custom properties. */
 .accent-ink {
-  color: var(--accent);
+  color: var(--accent-on-light, var(--accent));
 }
 
 .dark .accent-ink {
-  color: var(--accent-dark);
+  color: var(--accent-dark, var(--accent));
 }
 
 /* Paper card: the civic alert is an intentionally light newspaper artefact, so it
@@ -1944,3 +1992,51 @@ html.dark .bilingual-toggle-btn[aria-checked="false"]:hover {
   color: #141C2B;
   border-color: rgba(20, 28, 43, 0.18);
 }
+
+
+/* Numeric accent scale, dark theme.
+   `@theme inline` compiles these utilities to static values, so a custom-property
+   override cannot reach them — the ramp has to be re-declared as real rules.
+   Deliberately unlayered: unlayered CSS outranks Tailwind's utilities layer, so
+   these win without depending on source order inside it. */
+.dark .bg-accent-50 { background-color: #0D2436; }
+.dark .bg-accent-100 { background-color: #123049; }
+.dark .bg-accent-200 { background-color: #1A4468; }
+.dark .text-accent-500 { color: #7DD3FC; }
+.dark .text-accent-600 { color: #A8DFFA; }
+.dark .border-accent-500 { border-color: #2F7FA8; }
+.dark .border-accent-200 { border-color: #1A4468; }
+.dark .ring-accent-500 { --tw-ring-color: #7DD3FC; }
+.dark .bg-accent-500 { background-color: #7DD3FC; }
+.dark .bg-accent-600 { background-color: #A8DFFA; }
+
+/* Tailwind omits ring-accent-* under @theme inline; the site uses
+   ring-accent-500 on 54 elements for focus rings. */
+.ring-accent-500 { --tw-ring-color: #0B6E9E; }
+
+/* Legacy civic palette, dark theme. Same reason as the accent ramp: `@theme
+   inline` freezes these utilities at build time, so the dark steps must be
+   re-declared as real rules. Unlayered so they outrank Tailwind's utilities. */
+.dark .text-terra-600 { color: #F0A182; }
+.dark .text-terra-700 { color: #E88F6C; }
+.dark .text-terra-800 { color: #F5C4B2; }
+.dark .border-terra-200 { border-color: #5F2A14; }
+.dark .border-terra-500 { border-color: #A9522F; }
+.dark .bg-terra-100 { background-color: #2C1A12; }
+.dark .bg-terra-500 { background-color: #D2603A; }
+
+.dark .text-sage-600 { color: #9CCBB0; }
+.dark .text-sage-700 { color: #B6DCC5; }
+.dark .text-sage-800 { color: #D2EADA; }
+.dark .border-sage-200 { border-color: #22402F; }
+.dark .border-sage-300 { border-color: #2C4E3A; }
+.dark .bg-sage-100 { background-color: #16291F; }
+.dark .bg-sage-500 { background-color: #4E7E65; }
+
+.dark .text-ochre-800 { color: #E4CE8A; }
+.dark .border-ochre-200 { border-color: #4A360E; }
+.dark .bg-ochre-100 { background-color: #241C0C; }
+
+.dark .text-gold-600 { color: #E8C766; }
+.dark .border-gold-300 { border-color: #6B5410; }
+.dark .bg-gold-100 { background-color: #241D0B; }

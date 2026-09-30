@@ -1583,7 +1583,7 @@ export function SmartDainikNewsWorkbench() {
                           href={primaryAlertCard.officialPortalUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#0D253D] text-white hover:bg-accent-500 transition-colors text-xs font-semibold active:scale-[0.97]"
+                          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#0D253D] text-white hover:bg-[#1B3A5C] transition-colors text-xs font-semibold active:scale-[0.97]"
                         >
                           <span>Proceed to {primaryAlertCard.portalName || 'Official Portal'}</span>
                           <ExternalLink className="w-3.5 h-3.5" />
@@ -1704,7 +1704,7 @@ export function SmartDainikNewsWorkbench() {
                       <span>{copiedFormat === 'json' ? 'Copied!' : 'Copy JSON'}</span>
                     </button>
                   </div>
-                  <pre className="p-4 rounded-xl bg-[#0D253D] text-[#F9F6F0] font-mono text-[11px] leading-relaxed overflow-x-auto max-h-[460px] border border-[rgba(255,255,255,0.1)] selection:bg-accent-500">
+                  <pre className="p-4 rounded-xl bg-[#0D253D] text-[#F9F6F0] font-mono text-[11px] leading-relaxed overflow-x-auto max-h-[460px] border border-[rgba(255,255,255,0.1)] selection:bg-[#38BDF8] selection:text-[#040A5C]">
                     {JSON.stringify(result, null, 2)}
                   </pre>
                 </div>

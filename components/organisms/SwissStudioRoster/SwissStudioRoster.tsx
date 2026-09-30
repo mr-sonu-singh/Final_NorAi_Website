@@ -15,6 +15,8 @@ export interface StudioEngineer {
   accent: string;
   /** Contrast-safe variant for the permanently dark roster panel. */
   accentDark: string;
+  /** Text-safe variant for light panels (default theme). */
+  accentOnLight: string;
   icon: React.ElementType;
 }
 
@@ -26,8 +28,9 @@ export const STUDIO_ENGINEERS: StudioEngineer[] = [
     conviction: 'Operational security, institutional governance, and state-level outreach.',
     runtimeOwnership: 'Security Guardrails · Institutional Governance · State Outreach',
     primaryToken: 'Operational Security & Governance',
-    accent: '#38BDF8',
+        accent: '#38BDF8',
     accentDark: '#7DD3FC',
+    accentOnLight: '#0B6E9E',
     icon: ShieldCheck,
   },
   {
@@ -37,8 +40,9 @@ export const STUDIO_ENGINEERS: StudioEngineer[] = [
     conviction: 'Tactile 3D interaction models, WebGPU compute shaders, and spatial telemetry.',
     runtimeOwnership: 'WebGPU Compute · Three.js/WGSL · Spatial Telemetry',
     primaryToken: 'WebGPU & Spatial Interaction Systems',
-    accent: '#00e5ff',
+        accent: '#00e5ff',
     accentDark: '#67E8F9',
+    accentOnLight: '#0E7490',
     icon: Cpu,
   },
   {
@@ -48,8 +52,9 @@ export const STUDIO_ENGINEERS: StudioEngineer[] = [
     conviction: 'Technical search visibility and enterprise partnership funnels into production.',
     runtimeOwnership: 'Inbound Funnels · Technical SEO · B2B Client Pipelines',
     primaryToken: 'Enterprise Partnership Ecosystems',
-    accent: '#7a5cff',
+        accent: '#7a5cff',
     accentDark: '#A78BFF',
+    accentOnLight: '#5B3FD9',
     icon: TrendingUp,
   },
   {
@@ -61,6 +66,7 @@ export const STUDIO_ENGINEERS: StudioEngineer[] = [
     primaryToken: 'High-Craft Design Tokens',
     accent: '#ffa24d',
     accentDark: '#FFB870',
+    accentOnLight: '#9A4A06',
     icon: Palette,
   },
   {
@@ -72,6 +78,7 @@ export const STUDIO_ENGINEERS: StudioEngineer[] = [
     primaryToken: 'Deterministic Zod Contracts',
     accent: '#38BDF8',
     accentDark: '#7DD3FC',
+    accentOnLight: '#0B6E9E',
     icon: Bot,
   },
 ];
@@ -141,6 +148,7 @@ export function SwissStudioRoster() {
                     style={{
                       '--accent': eng.accent,
                       '--accent-dark': eng.accentDark,
+                      '--accent-on-light': eng.accentOnLight,
                       background: `${eng.accent}12`,
                       borderColor: `${eng.accent}30`,
                     } as CSSProperties}

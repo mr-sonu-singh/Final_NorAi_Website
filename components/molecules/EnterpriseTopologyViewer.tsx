@@ -65,7 +65,7 @@ export function EnterpriseTopologyViewer({ className }: { className?: string }) 
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-border-subtle pb-4">
         <div>
-          <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-sage-100/70 border border-accent-secondary/20 text-accent-secondary text-xs font-mono font-semibold mb-1">
+          <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-sage-100/70 border border-accent-secondary/20 dark:border-accent-secondary/30 text-accent-secondary text-xs font-mono font-semibold mb-1">
             <Lock className="w-3.5 h-3.5" />
             <span>Zero-Egress Private Cloud Topology</span>
           </div>
@@ -100,7 +100,7 @@ export function EnterpriseTopologyViewer({ className }: { className?: string }) 
                 <span className="text-[10px] font-mono text-accent-primary font-semibold uppercase tracking-wider">
                   {node.category}
                 </span>
-                <span className="text-[10px] font-mono text-accent-secondary font-medium bg-sage-100/60 px-1.5 py-0.5 rounded">
+                <span className="text-[10px] font-mono text-accent-secondary font-medium bg-sage-100 dark:bg-[#16291F] px-1.5 py-0.5 rounded">
                   {node.status}
                 </span>
               </div>

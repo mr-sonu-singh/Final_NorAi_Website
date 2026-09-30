@@ -29,6 +29,8 @@ export interface CatalogToolItem {
   accent: string;
   /** Dark-mode counterpart. The light accent does not reach 4.5:1 on the dark panel. */
   accentDark: string;
+  /** Text-safe variant for light panels (default theme). */
+  accentOnLight: string;
   badgeBg: string;
   badgeText: string;
   telemetryStream: {
@@ -55,8 +57,9 @@ export const CATALOG_TOOLS: CatalogToolItem[] = [
       'Custom skill vector weighting and a cutoff threshold you set',
       'Red flags and probing interview questions, per candidate',
     ],
-    accent: '#38BDF8',
+        accent: '#38BDF8',
     accentDark: '#7DD3FC',
+    accentOnLight: '#0B6E9E',
     badgeBg: 'bg-[#38BDF8]/15',
     badgeText: 'text-[#38BDF8]',
     telemetryStream: {
@@ -81,8 +84,9 @@ export const CATALOG_TOOLS: CatalogToolItem[] = [
       'Flashcards graded Foundational / Intermediate / Advanced',
       'Practice quiz with an explained answer for every option',
     ],
-    accent: '#7a5cff',
+        accent: '#7a5cff',
     accentDark: '#A78BFF',
+    accentOnLight: '#5B3FD9',
     badgeBg: 'bg-[#7a5cff]/20',
     badgeText: 'text-[#7a5cff] dark:text-[#A78BFF]',
     telemetryStream: {
@@ -107,8 +111,9 @@ export const CATALOG_TOOLS: CatalogToolItem[] = [
       'Bugs and feature requests extracted with Urgent-to-Low triage',
       'Newsletter draft with headline, spotlight, shoutouts, and CTA',
     ],
-    accent: '#ffa24d',
+        accent: '#ffa24d',
     accentDark: '#FFB870',
+    accentOnLight: '#9A4A06',
     badgeBg: 'bg-[#ffa24d]/20',
     badgeText: 'text-[#ffa24d]',
     telemetryStream: {
@@ -133,8 +138,9 @@ export const CATALOG_TOOLS: CatalogToolItem[] = [
       'Deadline, vacancy, and pay-band extraction with gazette references',
       'Anti-rumor notes flagging claims against the official notice',
     ],
-    accent: '#00e5ff',
+        accent: '#00e5ff',
     accentDark: '#67E8F9',
+    accentOnLight: '#0E7490',
     badgeBg: 'bg-[#00e5ff]/20',
     badgeText: 'text-[#00e5ff]',
     telemetryStream: {
@@ -288,12 +294,20 @@ export function ProductsIndexClient() {
                           <div>
                             <div className="flex items-center gap-2">
                               <span
-                                className="font-mono text-xs font-bold accent-ink"
+                                className={cn(
+                                  'font-mono text-xs font-bold',
+                                  isSelected
+                                    ? ''
+                                    : 'accent-ink'
+                                )}
                                 style={
-                                  {
-                                    '--accent': tool.accent,
-                                    '--accent-dark': tool.accentDark,
-                                  } as CSSProperties
+                                  isSelected
+                                    ? { color: tool.accentDark }
+                                    : ({
+                                        '--accent': tool.accent,
+                                        '--accent-dark': tool.accentDark,
+                                        '--accent-on-light': tool.accentOnLight,
+                                      } as CSSProperties)
                                 }
                               >
                                 {tool.number}

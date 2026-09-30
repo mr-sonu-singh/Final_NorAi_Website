@@ -129,7 +129,7 @@ export default function CareersPage() {
   ]);
 
   return (
-    <div className="min-h-screen bg-canvas-base font-sans text-ink-primary selection:bg-accent-500 selection:text-white">
+    <div className="min-h-screen bg-canvas-base font-sans text-ink-primary selection:bg-[#38BDF8] selection:text-[#040A5C]">
       <JsonLd schema={breadcrumbSchema} />
 
       {/* =========================================================================
@@ -227,7 +227,7 @@ export default function CareersPage() {
 
                   <a
                     href={`mailto:noraitechnologies@gmail.com?subject=${encodeURIComponent(`Application: ${area.mailSubject}`)}`}
-                    className="inline-flex shrink-0 items-center justify-center gap-2 self-start lg:self-auto rounded-lg bg-accent-500 px-5 py-2.5 text-sm font-semibold text-white shadow-accent transition-all duration-150 hover:bg-accent-600 hover:shadow-hover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent-500 focus-visible:ring-offset-bg-page"
+                    className="inline-flex shrink-0 items-center justify-center gap-2 self-start lg:self-auto rounded-lg bg-[var(--bg-dark)] px-5 py-2.5 text-sm font-semibold text-[var(--bone)] shadow-accent transition-all duration-150 hover:bg-accent-600 hover:shadow-hover active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-accent-500 focus-visible:ring-offset-bg-page"
                   >
                     <span>Apply for {area.role}</span>
                     <ArrowUpRight className="h-4 w-4" aria-hidden="true" />

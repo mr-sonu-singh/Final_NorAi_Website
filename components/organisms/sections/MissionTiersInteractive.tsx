@@ -16,6 +16,8 @@ export interface CommunityTier {
   accent: string;
   /** Contrast-safe variant for permanently dark panels. */
   accentDark: string;
+  /** Text-safe variant for light panels (default theme). */
+  accentOnLight: string;
   accentGlow: string;
   highlights: string[];
   tools: string[];
@@ -30,8 +32,9 @@ export const COMMUNITY_TIERS: CommunityTier[] = [
     desc: 'Bringing Hindi voice interfaces, government welfare navigation, and digital fraud prevention to village elders, self-help groups, and local tradespeople.',
     metric: 'Vernacular Delivery · Localized Learning',
     icon: Users,
-    accent: '#38BDF8',
+        accent: '#38BDF8',
     accentDark: '#7DD3FC',
+    accentOnLight: '#0B6E9E',
     accentGlow: 'rgba(30,244,180,0.15)',
     highlights: [
       'Hindi voice prompts for crop advisory & mandi rates',
@@ -48,8 +51,9 @@ export const COMMUNITY_TIERS: CommunityTier[] = [
     desc: 'Teaching high school and collegiate students how to turn AI into a tireless personal tutor, extract structured notes from messy lectures, and build rigorous study habits.',
     metric: 'Curriculum & Sandbox Access',
     icon: GraduationCap,
-    accent: '#7a5cff',
+        accent: '#7a5cff',
     accentDark: '#A78BFF',
+    accentOnLight: '#5B3FD9',
     accentGlow: 'rgba(122,92,255,0.15)',
     highlights: [
       'Lecture note-taking & structured flashcard extraction',
@@ -66,8 +70,9 @@ export const COMMUNITY_TIERS: CommunityTier[] = [
     desc: 'Direct founder-led masterclasses for ambitious undergraduate engineers: Model Context Protocol (MCP) servers, local vLLM serving, vector databases, and typed APIs.',
     metric: 'Direct Founder Mentorship',
     icon: Terminal,
-    accent: '#ffa24d',
+        accent: '#ffa24d',
     accentDark: '#FFB870',
+    accentOnLight: '#9A4A06',
     accentGlow: 'rgba(255,162,77,0.15)',
     highlights: [
       'Model Context Protocol (MCP) server authoring',
@@ -118,6 +123,7 @@ export function MissionTiersInteractive() {
                   style={{
                     '--accent': tier.accent,
                     '--accent-dark': tier.accentDark,
+                    '--accent-on-light': tier.accentOnLight,
                     borderColor: `${tier.accent}40`,
                     background: `${tier.accent}12`,
                   } as CSSProperties}
@@ -204,7 +210,11 @@ export function MissionTiersInteractive() {
                         <div key={i} className="flex items-start gap-2 text-xs text-[var(--pine)]/85 dark:text-white/80">
                           <CheckCircle2
                             className="accent-ink w-3.5 h-3.5 shrink-0 mt-0.5"
-                            style={{ '--accent': tier.accent, '--accent-dark': tier.accentDark } as CSSProperties}
+                            style={{
+                              '--accent': tier.accent,
+                              '--accent-dark': tier.accentDark,
+                              '--accent-on-light': tier.accentOnLight,
+                            } as CSSProperties}
                           />
                           <span>{item}</span>
                         </div>
@@ -253,7 +263,11 @@ export function MissionTiersInteractive() {
 
             {/* Bottom Metric & Link */}
             <div className="pt-4 border-t border-[var(--line)] dark:border-white/10 flex items-center justify-between text-xs font-mono">
-              <span className="accent-ink font-semibold" style={{ '--accent': tier.accent, '--accent-dark': tier.accentDark } as CSSProperties}>
+              <span className="accent-ink font-semibold" style={{
+                              '--accent': tier.accent,
+                              '--accent-dark': tier.accentDark,
+                              '--accent-on-light': tier.accentOnLight,
+                            } as CSSProperties}>
                 {tier.metric}
               </span>
               <Link

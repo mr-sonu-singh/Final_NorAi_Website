@@ -202,7 +202,7 @@ export function ProductInteractiveView({ product, slug }: ProductInteractiveView
                 <Link href="/products/resume-shortlister">
                   <button
                     type="button"
-                    className="px-6 py-3 rounded-lg bg-accent-500 text-white text-xs font-semibold hover:bg-accent-600 transition-colors shadow-sm inline-flex items-center gap-2"
+                    className="px-6 py-3 rounded-lg bg-[var(--bg-dark)] text-[var(--bone)] text-xs font-semibold hover:bg-[#1B3A5C] transition-colors shadow-sm inline-flex items-center gap-2"
                   >
                     <span>Test AI Resume Shortlister Live</span>
                     <ArrowRight className="w-4 h-4" />

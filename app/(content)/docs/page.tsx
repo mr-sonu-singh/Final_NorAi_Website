@@ -81,7 +81,7 @@ export default function DocsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-surface-canvas font-sans text-text-primary selection:bg-accent-primary selection:text-white">
+    <div className="min-h-screen bg-surface-canvas font-sans text-text-primary selection:bg-[#38BDF8] selection:text-[#040A5C]">
       <JsonLd schema={getBreadcrumbListJsonLd(breadcrumbs)} />
 
       {/* =========================================================================
@@ -204,7 +204,7 @@ export default function DocsPage() {
                   </span>
                   <div className="flex items-center justify-between bg-surface-canvas p-3 rounded-xl border border-border-subtle font-mono text-xs text-text-primary overflow-x-auto">
                     <span>https://&lt;this-host&gt;/api/tools/&lt;tool&gt;</span>
-                    <span className="text-[10px] text-accent-secondary bg-sage-100/60 border border-accent-secondary/20 px-2 py-0.5 rounded">
+                    <span className="text-[10px] text-accent-secondary bg-sage-100 dark:bg-[#16291F] border border-accent-secondary/20 dark:border-accent-secondary/30 px-2 py-0.5 rounded">
                       Same-Origin · Not Public
                     </span>
                   </div>

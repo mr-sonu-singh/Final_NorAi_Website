@@ -1849,7 +1849,7 @@ export function CourseNoteTakerWorkbench() {
                       <span>{copiedFormat === 'json' ? 'Copied to clipboard' : 'Copy JSON'}</span>
                     </button>
                   </div>
-                  <pre className="p-4 rounded-xl bg-[#0D253D] text-[#F9F6F0] font-mono text-[11px] leading-relaxed overflow-x-auto max-h-[460px] border border-[rgba(255,255,255,0.1)] selection:bg-accent-500">
+                  <pre className="p-4 rounded-xl bg-[#0D253D] text-[#F9F6F0] font-mono text-[11px] leading-relaxed overflow-x-auto max-h-[460px] border border-[rgba(255,255,255,0.1)] selection:bg-[#38BDF8] selection:text-[#040A5C]">
                     {JSON.stringify(result, null, 2)}
                   </pre>
                 </div>
