@@ -87,7 +87,7 @@ export const BLOG_POSTS: Record<string, BlogPostData> = {
     relatedProduct: {
       name: 'Bespoke Enterprise AI Solutions',
       description:
-        'Deploy deterministic, private-VPC agent pipelines with sub-second execution targets.',
+        'Deploy deterministic, private-VPC agent pipelines with per-stage latency budgets.',
       href: '/services',
       badge: 'Enterprise Architecture',
     },
@@ -110,7 +110,7 @@ export const BLOG_POSTS: Record<string, BlogPostData> = {
         id: 'finite-state-machine-formalism',
         heading: 'Modeling Agent Workflows as Finite State Machines',
         paragraphs: [
-          'At NorAI, we model every multi-agent pipeline as an explicit Directed Acyclic Graph (DAG) of state transitions. Each node represents a single, isolated deterministic task (e.g., INTAKE, VALIDATE, ENRICH, SYNTHESIZE, COMMIT) with typed entry criteria, timeout SLAs, and rollback handlers.',
+          'At NorAI, we model every multi-agent pipeline as an explicit Directed Acyclic Graph (DAG) of state transitions. Each node represents a single, isolated deterministic task (e.g., INTAKE, VALIDATE, ENRICH, SYNTHESIZE, COMMIT) with typed entry criteria, a per-node timeout budget set from your own latency data, and rollback handlers.',
           'By isolating responsibilities into discrete states, failed transitions can be retried independently without re-executing expensive upstream LLM calls or corrupting system state.',
         ],
         codeSnippet: {
@@ -148,17 +148,18 @@ export interface StateTransitionContext<TInput, TOutput> {
         heading: 'Automated Schema Self-Healing & Repair Loops',
         paragraphs: [
           'When an LLM generates a payload that violates a Zod schema (such as a missing property or wrong type), the orchestrator intercepts the error before it escapes the node boundary. Instead of discarding the run, the system enters a self-healing loop.',
-          'The repair loop sends the exact Zod issue array back to the model as a targeted correction prompt, instructing it to fix only the violated fields. In production benchmarks across 50,000 invocations, this technique recovers 98.4% of malformed responses on the first retry within 140ms.',
+          'The repair loop sends the exact Zod issue array back to the model as a targeted correction prompt, instructing it to fix only the violated fields.',
+          'How well that works is not a property of the technique, it is a property of your schema, your model, and your prompt. So do not take a published recovery rate from anyone, including us. Instrument it: log every validation failure with its issue array, replay the loop, and report two numbers for your own corpus, the first-retry recovery rate and the latency the retry adds. Those two figures are the ones that belong in your design doc.',
         ],
         table: {
-          headers: ['Pipeline Strategy', 'Raw Error Rate', 'Self-Healing Recovery', 'Mean Latency'],
+          headers: ['Pipeline Strategy', 'Raw Error Rate', 'First-Retry Recovery', 'Added Latency'],
           rows: [
-            ['Naive Prompting (Unstructured)', '14.2%', '0.0%', '820ms'],
-            ['JSON Mode (Standard OpenAI)', '4.8%', '32.1%', '640ms'],
-            ['NorAI Zod DAG + Self-Healing Loop', '0.02%', '98.4%', '340ms'],
+            ['Naive Prompting (Unstructured)', 'measure', 'none: no repair path exists', 'measure'],
+            ['Provider JSON Mode', 'measure', 'measure', 'measure'],
+            ['Zod DAG + Targeted Repair Loop', 'measure', 'measure', 'measure'],
           ],
           caption:
-            'Benchmark comparison of schema compliance across 50,000 real-world document extraction tasks.',
+            'Illustrative measurement structure, not measured results. We have not run this benchmark, so the cells are deliberately empty. The win comes from the mechanism, a narrow correction prompt against a machine-checkable contract, not from a number lifted off somebody else traffic.',
         },
         callout: {
           type: 'takeaway',
@@ -223,7 +224,7 @@ export async function processCandidateIntake(rawText: string) {
     relatedProduct: {
       name: 'Enterprise Knowledge Hub & RAG',
       description:
-        'Zero-hallucination document intelligence pipelines for proprietary enterprise data.',
+        'Schema-enforced document intelligence pipelines for proprietary enterprise data.',
       href: '/services',
       badge: 'High-Throughput RAG',
     },
@@ -247,7 +248,7 @@ export async function processCandidateIntake(rawText: string) {
         heading: 'Heading-Aware & Structure-Preserving Chunking',
         paragraphs: [
           'Rather than slicing text by arbitrary character or token boundaries, chunking must be semantic and document-aware. In technical documentation and enterprise manuals, every chunk must inherit its parent section hierarchy (e.g., `Document Title > Chapter 3 > Subsection B`).',
-          'Prepending the breadcrumb hierarchy to the chunk content before embedding guarantees that the vector accurately captures both local detail and broader document context.',
+          'Prepending the breadcrumb hierarchy to the chunk content before embedding gives the vector both the local detail and the surrounding document context, instead of an orphaned sentence.',
         ],
         codeSnippet: {
           language: 'typescript',
@@ -275,7 +276,7 @@ export function buildSemanticContextString(chunk: StructuredChunk): string {
         heading: 'Hybrid Retrieval & Reciprocal Rank Fusion (RRF)',
         paragraphs: [
           'To achieve both semantic comprehension and exact-match precision, NorAI employs hybrid search combining sparse BM25 keyword matching with dense vector similarity.',
-          'The individual score distributions from dense vector search and sparse BM25 cannot be directly summed because their scales differ. We normalize and merge the ranked candidate lists using Reciprocal Rank Fusion (RRF), where constant k=60 prevents top-rank skewing:',
+          'The individual score distributions from dense vector search and sparse BM25 cannot be directly summed because their scales differ. We normalize and merge the ranked candidate lists using Reciprocal Rank Fusion (RRF), where the constant k=60 is the value from the original RRF paper (Cormack et al., 2009) and is what stops top-rank skewing:',
         ],
         codeSnippet: {
           language: 'typescript',
@@ -304,14 +305,15 @@ export function buildSemanticContextString(chunk: StructuredChunk): string {
 }`,
         },
         table: {
-          headers: ['Retrieval Model', 'Recall@5', 'Precision@5', 'P95 Latency'],
+          headers: ['Retrieval Strategy', 'Recall@5', 'Precision@5', 'P95 Latency'],
           rows: [
-            ['Dense Embeddings Only', '74.2%', '68.1%', '18ms'],
-            ['BM25 Keyword Search Only', '68.9%', '61.4%', '4ms'],
-            ['Hybrid RRF (Dense + BM25)', '91.8%', '87.6%', '22ms'],
-            ['Hybrid RRF + Cross-Encoder Rerank', '96.4%', '93.2%', '48ms'],
+            ['Dense Embeddings Only', 'measure', 'measure', 'measure'],
+            ['BM25 Keyword Search Only', 'measure', 'measure', 'measure'],
+            ['Hybrid RRF (Dense + BM25)', 'measure', 'measure', 'measure'],
+            ['Hybrid RRF + Cross-Encoder Rerank', 'measure', 'measure', 'measure'],
           ],
-          caption: 'Retrieval accuracy benchmark on enterprise legal and technical spec datasets.',
+          caption:
+            'Illustrative measurement structure, not measured results. We hold no public retrieval benchmark over legal or technical-spec corpora and would not publish one without disclosing the corpus, the judge, and the split. The directional claim is the real content of this table: hybrid fusion should beat either arm alone on exact-match queries, and reranking should buy precision with latency. Measure the magnitude on your own corpus.',
         },
       },
       {
@@ -325,7 +327,7 @@ export function buildSemanticContextString(chunk: StructuredChunk): string {
           type: 'takeaway',
           title: 'Production Tip',
           content:
-            'Always limit the generation context to top-5 reranked chunks rather than stuffing 50 chunks into a 128k context window. Concentrated relevance produces fewer hallucinations and reduces generation latency by up to 60%.',
+            'Always limit the generation context to top-5 reranked chunks rather than stuffing 50 chunks into a 128k context window. Concentrated relevance keeps a far larger share of generated tokens tied to retrieved evidence, and a short prompt is cheaper and faster to generate. We have not measured the delta ourselves, so if you want to quote a percentage, run it on your own traffic.',
         },
       },
     ],
@@ -431,7 +433,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     seoTitle:
       'Automated Candidate Screening',
     excerpt:
-      'Technical insights into parsing multi-format resume documents, extracting verified candidate qualifications, and computing objective match scores in sub-350ms pipelines.',
+      'Technical insights into parsing multi-format resume documents, extracting verified candidate qualifications, and computing objective match scores with auditable weighting.',
     author: 'Gourav Singh',
     authorRole: 'Founder & AI Systems Architect',
     date: 'December 05, 2025',
@@ -451,13 +453,13 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         heading: 'The Chaos of Unstructured Resume Formatting',
         paragraphs: [
           'Recruiters in high-growth companies receive thousands of resumes weekly across radically different formats: complex multi-column PDFs, graphic-heavy Canva templates, poorly formatted Word documents, and plain text uploads.',
-          'Standard PDF text extraction libraries frequently read across column boundaries, causing job titles from column 1 to merge with dates from column 2. At NorAI, we built a layout-aware PDF tokenizer that calculates spatial bounding boxes before text extraction, preserving exact chronological work history.',
+          'Standard PDF text extraction libraries frequently read across column boundaries, causing job titles from column 1 to merge with dates from column 2. At NorAI, we built a layout-aware PDF tokenizer that calculates spatial bounding boxes before text extraction, so work history reads in chronological order instead of reading order.',
         ],
         callout: {
           type: 'takeaway',
-          title: 'Sub-350ms Execution Target',
+          title: 'Where The Time Actually Goes',
           content:
-            'By pairing local layout analysis with pre-compiled skill taxonomy vectors, NorAI processes a 3-page resume and generates a structured scorecard in under 350 milliseconds.',
+            'Layout analysis is the expensive stage, and taxonomy matching is the cheap one: parsing a PDF into spatial blocks costs real time, while matching those blocks against a pre-compiled skill taxonomy is a deterministic local lookup. Keep the model call out of the hot path where you can and instrument every stage separately. Measure your own corpus before you put a latency number in front of a hiring team, because page count and scan quality move the distribution more than any optimisation will.',
         },
       },
       {
@@ -492,7 +494,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         heading: 'Bias Mitigation & Compliance Guardrails',
         paragraphs: [
           'Automated hiring tools must adhere to strict equal employment regulations. Our extraction engine implements an automatic PII (Personally Identifiable Information) masking layer.',
-          'Before candidate evaluation begins, demographic signals—including candidate photo, candidate name, gender indicators, age references, and residential addresses—are stripped from the evaluation payload, ensuring match scores reflect technical merit alone.',
+          'Before candidate evaluation begins, demographic signals—including candidate photo, candidate name, gender indicators, age references, and residential addresses—are stripped from the evaluation payload, so the score is computed from skills and work history rather than from the name on the envelope. Stripping is not a fairness proof: it removes one class of leak, and the remaining weights still have to be reviewed and challenged.',
         ],
       },
     ],
@@ -504,7 +506,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     seoTitle:
       'Operational Redundancy',
     excerpt:
-      'Applying multi-tier fallback systems, automated database heartbeats, and strict DevSecOps redundancy across high-availability background workers.',
+      'Applying multi-tier fallback routing, liveness probes on every long-running worker, and strict DevSecOps redundancy across high-availability background processes.',
     author: 'Dhruw Singh',
     authorRole: 'Infrastructure & Reliability Lead',
     date: 'November 18, 2025',
@@ -514,7 +516,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     tags: ['DevOps', 'Reliability', 'vLLM', 'Queues', 'High Availability'],
     relatedProduct: {
       name: 'Private On-Prem GPU Infrastructure',
-      description: 'Dedicated GPU clusters with zero network egress and 99.99% uptime guarantees.',
+      description: 'Dedicated GPU clusters with no network egress and redundancy designed into the serving tier.',
       href: '/services',
       badge: 'Infrastructure',
     },
@@ -524,27 +526,32 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         heading: 'Designing for Intermittent GPU Failures',
         paragraphs: [
           'In mission-critical AI workloads, inference endpoints can fail without warning due to CUDA out-of-memory errors, GPU thermal throttling, or sudden upstream rate-limit bursts.',
-          'A reliable production system must treat inference failures as routine operational occurrences rather than fatal exceptions. We implement a three-tier routing topology that guarantees zero request loss.',
+          'A reliable production system must treat inference failures as routine operational occurrences rather than fatal exceptions. We implement a three-tier routing topology so that a failing endpoint degrades into a slower or a queued path instead of a dropped request, and we alert on the tier you land in rather than assuming the primary will hold.',
         ],
         table: {
-          headers: ['Tier Level', 'Target Hardware', 'Fallback Trigger', 'Latency Target'],
+          headers: ['Tier Level', 'Target Hardware', 'Fallback Trigger', 'Latency Budget'],
           rows: [
-            ['Tier 1: Primary', 'Dedicated vLLM GPU Cluster (VPC)', 'Normal Operation', '< 280ms'],
+            [
+              'Tier 1: Primary',
+              'Dedicated vLLM GPU Cluster (VPC)',
+              'Normal operation',
+              'Set from your own traces, then instrumented',
+            ],
             [
               'Tier 2: Hot Standby',
-              'Secondary Hosted API (Anthropic/OpenAI)',
-              'Tier 1 Latency > 1200ms or 5xx',
-              '< 650ms',
+              'Secondary Hosted API (Anthropic / OpenAI)',
+              'Tier 1 above your SLO, or 5xx',
+              'Higher: budget it as a deliberate slowdown',
             ],
             [
               'Tier 3: Asynchronous DLQ',
               'Persistent Redis / BullMQ Queue',
-              'Global Provider Outage',
-              'Job Queued (SLA: 5m)',
+              'Global provider outage',
+              'Async: queued, retried, then alerted',
             ],
           ],
           caption:
-            'Three-tier fallback routing topology deployed across NorAI enterprise services.',
+            'Architecture table, not a performance table. The tiers and the trigger conditions are the deliverable; the latency figures are numbers each deployment sets and instruments for itself, and we do not publish ours as a promise.',
         },
       },
       {
@@ -623,44 +630,45 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
         id: 'why-open-weights-win-for-enterprise',
         heading: 'Why Open Weights Win for Enterprise Infrastructure',
         paragraphs: [
-          'While proprietary cloud APIs offer fast prototyping, enterprise requirements around data sovereignty, regulatory compliance (HIPAA, GDPR, DPDP), and predictable unit economics make self-hosted open-weight models significantly more attractive at scale.',
-          'With models like Llama 3.3 70B and Qwen 2.5 72B matching proprietary performance, the engineering challenge shifts from model capability to high-throughput inference optimization.',
+          'While proprietary cloud APIs are the fastest path to a prototype, it is usually the buyer, not the vendor, who forces the decision in-house: data sovereignty, customer regimes such as HIPAA, GDPR, or India DPDP, and per-token unit economics the buyer can forecast. We are not certified against any of those regimes and do not claim to be, we engineer to whatever counsel on the buying side requires.',
+          'With open weights at the Llama 3.3 70B and Qwen 2.5 72B class, the published evaluation results are close enough to frontier proprietary models that the engineering challenge shifts from model capability to throughput and memory. Read the current model card before you commit: these leaderboards move every quarter, and we will happily go read it with you.',
         ],
         callout: {
           type: 'takeaway',
-          title: 'The Cost Disparity at Scale',
+          title: 'Run The TCO Model Yourself',
           content:
-            'At 20 million tokens per day, self-hosting a quantized 70B model on two NVIDIA L40S GPUs reduces monthly inference expenditure from $6,200/mo (cloud API) to under $950/mo (bare-metal server lease).',
+            'The self-hosting argument is a spreadsheet, not a headline saving. Build it with your own inputs: tokens per day, your blended price per token from the provider console, amortised GPU lease, power and cooling, and the engineer-hours needed to keep the cluster alive across driver upgrades. Every one of those five numbers moves, and the two that move most are the ones no blog post can quote for you. We will build that model with you during an engagement; we have not run it as a NorAI cost study, so we do not publish a saving figure.',
         },
       },
       {
         id: 'vram-budgeting-and-awq-quantization',
         heading: 'VRAM Budgeting & AWQ 4-Bit Quantization',
         paragraphs: [
-          'A standard 70B parameter model in 16-bit floating point precision requires approximately 140GB of GPU VRAM just to load model weights into memory, demanding multiple expensive A100/H100 GPUs.',
-          'Activation-aware Weight Quantization (AWQ) preserves the top 1% of salient weights that protect reasoning accuracy while compressing the remaining 99% into 4-bit integers. This fits a 70B model into under 38GB of VRAM with zero perceptible degradation on standard benchmark suites.',
+          'A standard 70B parameter model in 16-bit floating point precision requires approximately 140GB of GPU VRAM just to load model weights into memory, which is basic arithmetic: 70 billion parameters at two bytes each. That is what forces the expensive multi-GPU A100 or H100 configuration.',
+          'Activation-aware Weight Quantization (AWQ) protects a small fraction of salient weights, roughly one percent, that carry disproportionate weight for accuracy, while compressing the rest into 4-bit integers. That framing comes from the AWQ paper (Lin et al., MLSys 2023), not from us. The practical result is a 70B model fitting in the high-thirties of GB, give or take: the exact footprint depends on group size, KV-cache headroom, and the context length you serve, so measure it under your own serving parameters.',
         ],
         table: {
           headers: [
             'Quantization Format',
-            'VRAM Footprint',
-            'Tokens/sec (Batch 1)',
-            'MMLU Accuracy',
+            'VRAM Footprint (Weights Only)',
+            'Throughput (Batch 1)',
+            'MMLU Delta vs FP16',
           ],
           rows: [
-            ['FP16 (Uncompressed)', '142 GB (2x A100 80GB)', '34 tok/s', '82.4%'],
-            ['GPTQ 4-bit', '41 GB (1x A100 80GB)', '52 tok/s', '81.1%'],
-            ['AWQ 4-bit (FlashAttention-2)', '38 GB (1x A100 / 2x L40S)', '78 tok/s', '82.2%'],
-            ['FP8 (Hopper Native)', '72 GB (1x H100 80GB)', '114 tok/s', '82.3%'],
+            ['FP16 (Uncompressed)', '~140 GB', 'measure', 'baseline'],
+            ['GPTQ 4-bit', '~40 GB', 'measure', 'measure'],
+            ['AWQ 4-bit (FlashAttention-2)', '~36-38 GB', 'measure', 'measure'],
+            ['FP8 (Hopper Native)', '~70 GB', 'measure', 'measure'],
           ],
-          caption: 'Quantization trade-offs for Llama-3-70B running on vLLM 0.6.x.',
+          caption:
+            'Illustrative structure, not measured results. We have not benchmarked these rows on our own hardware, so the throughput and MMLU columns are left for you to fill. The VRAM column is arithmetic on parameter counts. Any MMLU number you compare against comes from a vendor or community model card, and those vary with prompt template, few-shot count, and harness version, so read the card and then reproduce it on your own eval set.',
         },
       },
       {
         id: 'production-vllm-deployment-config',
         heading: 'Production vLLM Server Deployment Config',
         paragraphs: [
-          'Below is the verified production launch script using PagedAttention, FlashAttention-2, and CUDA graph capture for sub-30ms first-token latency:',
+          'Below is the launch script we start from, using PagedAttention, FlashAttention-2, and CUDA graph capture. First-token latency is dominated by queue depth and prompt length, so set your own target from a load test under your own arrival pattern:',
         ],
         codeSnippet: {
           language: 'bash',
@@ -724,7 +732,7 @@ python3 -m vllm.entrypoints.openai.api_server \\
         paragraphs: [
           'When a speaker says "the integral from zero to infinity of e to the minus x squared dx equals square root pi over two," standard transcription outputs broken text. Our pipeline converts spoken mathematical phrasing into standard LaTeX notation:',
           '$$\\int_{0}^{\\infty} e^{-x^2} \\, dx = \\frac{\\sqrt{\\pi}}{2}$$',
-          'We parse the output directly with KaTeX at compile time for zero client-side layout shift, formatting theorems into structured study cards with clickable timestamps.',
+          'We render the LaTeX server-side with KaTeX so a study card never reflows on the client, and format theorems into structured cards with clickable timestamps.',
         ],
         codeSnippet: {
           language: 'typescript',
@@ -750,11 +758,11 @@ python3 -m vllm.entrypoints.openai.api_server \\
 
   'zero-hallucination-enterprise-guardrails': {
     slug: 'zero-hallucination-enterprise-guardrails',
-    title: 'Zero-Hallucination Guardrails in Enterprise Pipelines with Structured Outputs',
+    title: 'Eliminating Hallucinations in Enterprise Pipelines with Structured Outputs',
     seoTitle:
-      'Zero-Hallucination Guardrails',
+      'Hallucination Guardrails for Enterprise AI',
     excerpt:
-      'Eliminating probabilistic failure modes in mission-critical banking, legal, and HR automation with schema-enforced generation and verification circuits.',
+      'Driving down probabilistic failure modes in mission-critical banking, legal, and HR automation with schema-enforced generation and verification circuits.',
     author: 'Gourav Singh',
     authorRole: 'Founder & AI Systems Architect',
     date: 'February 19, 2026',
@@ -765,7 +773,7 @@ python3 -m vllm.entrypoints.openai.api_server \\
     relatedProduct: {
       name: 'Bespoke Enterprise AI Solutions',
       description:
-        'Deploy deterministic, zero-hallucination automation pipelines with SLA guarantees.',
+        'Deploy deterministic, schema-enforced automation pipelines with instrumented verification.',
       href: '/services',
       badge: 'Enterprise Architecture',
     },
@@ -775,7 +783,7 @@ python3 -m vllm.entrypoints.openai.api_server \\
         heading: 'The Anatomy of Hallucinations in Production',
         paragraphs: [
           'In enterprise automation, hallucinations take three distinct forms: factual fabrications (inventing non-existent policies), structural drift (returning the wrong data format), and confidence masking (stating inaccurate claims with high assertiveness).',
-          'While model fine-tuning helps reduce errors, it cannot guarantee correctness. True zero-hallucination engineering requires hard structural guardrails that constrain the model generation space before a single token is sampled.',
+          'Model fine-tuning can reduce errors, but it cannot make a claim true. The only version of zero hallucination we are willing to put our name on is structural: hard guardrails that shrink the generation space before a token is sampled. That does not make a factual claim correct, it makes a malformed claim impossible, which is a narrower promise and the one we can actually keep.',
         ],
         callout: {
           type: 'warning',
@@ -792,28 +800,29 @@ python3 -m vllm.entrypoints.openai.api_server \\
           'Furthermore, monitoring per-token log probabilities (confidence scores) allows the system to flag uncertain extractions for automated human review before the payload is committed to production databases.',
         ],
         table: {
-          headers: ['Guardrail Layer', 'Mechanism', 'Failure Prevention Rate', 'Overhead'],
+          headers: ['Guardrail Layer', 'Mechanism', 'What It Actually Buys You', 'What It Costs'],
           rows: [
             [
               'Grammar-Constrained Sampling',
-              'Token Masking via CFG',
-              '100% Schema Compliance',
-              '0ms',
+              'Token masking via CFG',
+              'Malformed output becomes structurally impossible',
+              'A slower sampler, not a free win',
             ],
             [
               'Deterministic Zod Validation',
-              'Runtime Post-Parse Typecheck',
-              '100% Type Safety',
-              '< 2ms',
+              'Runtime post-parse typecheck',
+              'Type errors cannot reach your database',
+              'Cheap: a pure CPU parse',
             ],
             [
               'Citation Grounding Check',
-              'Cross-Encoder Claim Verifier',
-              '96.8% Fact Verification',
-              '40ms',
+              'Cross-encoder claim verifier',
+              'Ranks claims for human review, proves none of them',
+              'Real: one forward pass per claim',
             ],
           ],
-          caption: 'Multi-layer guardrail defense in NorAI deterministic pipelines.',
+          caption:
+            'Mechanism table, not a performance table. The first two layers carry hard guarantees and neither is free, and the third layer is the probabilistic one that gets sold most often as if it were a guarantee. It is not: a verifier scores its own opinion and still needs a human in the loop above your confidence threshold.',
         },
       },
     ],
@@ -846,7 +855,7 @@ python3 -m vllm.entrypoints.openai.api_server \\
         heading: 'The Reality of Regional Indian Document Parsing',
         paragraphs: [
           'Public employment notifications (Sarkari Gazettes) in North India present unique document challenges: scanned physical printouts with ink smudges, complex multi-script Hindi/English (Hinglish) code-mixing, and critical eligibility tables embedded in unstructured PDF layouts.',
-          'Standard international OCR models fail significantly on Devanagari script conjuncts (युग्माक्षर) and misinterpret eligibility age criteria, causing thousands of aspiring job seekers to miss critical application deadlines.',
+          'Standard international OCR models degrade badly on Devanagari script conjuncts (युग्माक्षर) and misread eligibility age criteria, which is precisely how an eligible candidate misses a deadline.',
         ],
         callout: {
           type: 'takeaway',
@@ -860,7 +869,7 @@ python3 -m vllm.entrypoints.openai.api_server \\
         heading: 'Bilingual Entity Normalization Engine',
         paragraphs: [
           'Our pipeline extracts four core verified data points from every employment notification: Eligibility Qualifications, Age Limits with category relaxations, Important Application Deadlines, and Official Direct Submission Links.',
-          'By utilizing custom fine-tuned Devanagari OCR models paired with regex boundary detectors, we achieve 99.2% extraction accuracy across regional publications and local gazettes.',
+          'By pairing a custom fine-tuned Devanagari OCR pass with regex boundary detectors, each of those four fields is extracted into a fixed shape. The regex detectors are cheap and easy to test, which is the point: we verify every extraction against the source gazette during ingestion and surface a low-confidence flag to the reader rather than publishing an accuracy percentage we cannot reproduce on a corpus you can download.',
         ],
         codeSnippet: {
           language: 'typescript',
