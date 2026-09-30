@@ -41,7 +41,13 @@ const jetbrainsMono = JetBrains_Mono({
   adjustFontFallback: true,
 });
 
-export const metadata: Metadata = buildMetadata();
+/**
+ * Root metadata supplies only the shared defaults. It deliberately declares no
+ * canonical: a page that forgets to pass `path` would otherwise inherit a
+ * canonical pointing at the homepage, which is how the 404 page came to claim
+ * the homepage as the authoritative version of every unknown URL.
+ */
+export const metadata: Metadata = buildMetadata({ noCanonical: true });
 
 export default function RootLayout({
   children,

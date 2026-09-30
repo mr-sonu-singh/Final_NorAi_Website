@@ -22,6 +22,8 @@ interface BlogPostPageProps {
   }>;
 }
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return Object.keys(BLOG_POSTS).map((slug) => ({
     slug,
@@ -34,15 +36,16 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
   if (!post) {
     return buildMetadata({
-      path: `/blog/${slug}`,
-      title: 'Article Not Found — NorAi Blog',
-      description: 'The requested blog article could not be found.',
+      title: 'Article Not Found',
+      description: 'The requested article could not be found.',
+      noIndex: true,
+      noCanonical: true,
     });
   }
 
   return buildMetadata({
     path: `/blog/${post.slug}`,
-    title: `${post.title} — NorAi Journal`,
+    title: post.seoTitle ?? post.title,
     description: post.excerpt,
   });
 }

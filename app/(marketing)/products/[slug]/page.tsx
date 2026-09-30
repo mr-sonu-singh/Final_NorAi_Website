@@ -58,6 +58,8 @@ interface ProductDetailPageProps {
   }>;
 }
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return Object.keys(PRODUCTS_DATA).map((slug) => ({
     slug,
@@ -70,15 +72,16 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
 
   if (!product) {
     return buildMetadata({
-      path: `/products/${slug}`,
-      title: 'Product Not Found — NorAI Technologies',
-      description: 'The requested product could not be found.',
+      title: 'Product Not Found',
+      description: 'The requested prototype could not be found.',
+      noIndex: true,
+      noCanonical: true,
     });
   }
 
   return buildMetadata({
     path: `/products/${product.slug}`,
-    title: `${product.title} — Built to change what happens`,
+    title: product.seoTitle ?? product.title,
     description: product.excerpt,
   });
 }

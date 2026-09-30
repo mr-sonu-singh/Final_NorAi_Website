@@ -16,6 +16,8 @@ function sectionId(slug: string, index: number, heading: string): string {
   return `${slug}-${index}-${base}`;
 }
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return Object.keys(LEGAL_POLICIES).map((policy) => ({ policy }));
 }

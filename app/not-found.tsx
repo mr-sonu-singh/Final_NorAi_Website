@@ -10,6 +10,9 @@ export const metadata: Metadata = buildMetadata({
   title: '404 — Page Not Found',
   description: 'The page you requested could not be found or may have moved to another URL.',
   noIndex: true,
+  // A canonical here would assert the homepage is the authoritative version of
+  // every unknown URL. A 404 must claim no canonical at all.
+  noCanonical: true,
 });
 
 export default function NotFound() {
