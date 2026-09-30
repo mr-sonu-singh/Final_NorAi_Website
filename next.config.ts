@@ -70,21 +70,26 @@ const nextConfig: NextConfig = {
 
   async redirects() {
     return [
-      {
-        source: '/about',
-        destination: '/team',
-        permanent: true,
-      },
-      {
-        source: '/faq',
-        destination: '/contact',
-        permanent: true,
-      },
-      {
-        source: '/pricing',
-        destination: '/products',
-        permanent: true,
-      },
+      // Legacy marketing paths retained from earlier site structures.
+      { source: '/about', destination: '/team', permanent: true },
+      { source: '/faq', destination: '/contact', permanent: true },
+      { source: '/pricing', destination: '/products', permanent: true },
+      // The legal documents moved to the (legal)/[policy] route. The short
+      // paths used to be separate pages describing accounts and billing that
+      // this business does not operate, so they redirect rather than persist.
+      { source: '/privacy', destination: '/privacy-policy', permanent: true },
+      { source: '/terms', destination: '/terms-of-service', permanent: true },
+      { source: '/legal/privacy', destination: '/privacy-policy', permanent: true },
+      { source: '/legal/terms', destination: '/terms-of-service', permanent: true },
+      { source: '/legal/cookies', destination: '/cookie-policy', permanent: true },
+      // Retired product slugs from the pre-rename catalogue.
+      { source: '/products/ai-resume-shortlister', destination: '/products/resume-shortlister', permanent: true },
+      { source: '/products/community-chat-digest', destination: '/products/chat-digest', permanent: true },
+      { source: '/products/news-aggregator', destination: '/products/smart-dainik-news', permanent: true },
+      { source: '/products/ai-course-note-taker', destination: '/products/course-note-taker', permanent: true },
+      // Common case/separator variants of the same documents.
+      { source: '/privacy-policy/', destination: '/privacy-policy', permanent: true },
+      { source: '/terms-of-service/', destination: '/terms-of-service', permanent: true },
     ];
   },
 

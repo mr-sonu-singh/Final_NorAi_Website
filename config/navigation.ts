@@ -33,5 +33,6 @@ export const footerNav = {
   legal: [
     { title: 'Privacy Policy', href: routes.privacy },
     { title: 'Terms of Service', href: routes.terms },
+    { title: 'Cookie Policy', href: routes.cookies },
   ],
 } as const;

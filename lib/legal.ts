@@ -11,37 +11,56 @@ export interface LegalPolicyData {
   sections: LegalPolicySection[];
 }
 
+export const CONTACT_EMAIL = 'noraitechnologies@gmail.com';
+
+/**
+ * The single source of truth for legal copy.
+ *
+ * These documents describe what the business actually does. NorAI runs four
+ * BYOK browser tools, custom engineering services, and a civic AI-literacy
+ * programme. There is no account system, no billing, no credit system, no
+ * public API, no SDK, and no database, so none of those are described here.
+ * The only server-side data is anonymous rate-limit bookkeeping, and the
+ * browser tools call Google's Gemini API directly with the visitor's own key.
+ */
 export const LEGAL_POLICIES: Record<string, LegalPolicyData> = {
   'privacy-policy': {
     slug: 'privacy-policy',
     title: 'Privacy Policy',
     lastUpdated: 'January 15, 2026',
     description:
-      'Privacy Policy for NorAI Technologies zero-knowledge neural infrastructure and public web services.',
+      'How NorAI Technologies handles data on norai.tech. Tools are browser-based and bring-your-own-key, so we never receive your input.',
     sections: [
       {
-        heading: '1. Information We Collect',
+        heading: '1. Who We Are',
         paragraphs: [
-          'NorAI Technologies ("NorAI", "we", "us") collects technical usage telemetry and corporate contact information necessary to operate our verifiable AI infrastructure. When you visit our site or submit inquiries, we process contact names, enterprise email addresses, and server log telemetry.',
-          'We do not process, store, or sell personal consumer data. All zero-knowledge neural inferencing payloads processed through NorAI compute nodes are cryptographically encrypted and non-persistent.',
+          'NorAI Technologies Private Limited ("NorAI", "we", "us") is an AI engineering practice with registered offices at Umarganj, Zamania, Ghazipur, Uttar Pradesh, India. This policy describes what happens to data when you use norai.tech.',
         ],
       },
       {
-        heading: '2. Zero-Knowledge Cryptographic Privacy Guarantees',
+        heading: '2. What We Receive',
         paragraphs: [
-          'Enterprise neural workloads submitted to NorAI Core hardware nodes utilize zero-knowledge STARK proofs. Neither NorAI system administrators nor third-party cloud providers can decrypt, inspect, or reconstruct model weights or input payloads.',
+          'When you use the four browser tools on this site, your text, documents, or chat logs are sent by your own browser to Google\'s Gemini API. Your API key travels in a request header directly to Google. NorAI servers see the request only far enough to validate the payload, rate-limit it, and pass it onward; we do not store your input or your output.',
+          'We do not ask you to create an account, and we do not operate a user database, billing system, or credit ledger.',
+          'When you submit the contact form, we receive the name, email address, company, selected service, and message you type. That enquiry is delivered by email to the practice and is the only personal data we hold from you.',
         ],
       },
       {
-        heading: '3. Data Retention & Protection',
+        heading: '3. What We Keep on the Server',
         paragraphs: [
-          'Server telemetry and website form submissions are retained for up to 90 days for operational diagnostics and security audit compliance. All data at rest is encrypted using AES-256-GCM, and data in transit is secured via TLS 1.3 encryption.',
+          'The only server-side record associated with a request is anonymous rate-limit bookkeeping: a coarse client address and a count of recent requests, held in memory only and discarded. It is not linked to an account, because there are no accounts.',
         ],
       },
       {
-        heading: '4. Contact Information',
+        heading: '4. Where Data Is Processed',
         paragraphs: [
-          'For privacy questions or data request inquiries, contact our Data Protection Officer at privacy@norai.tech or via physical mail at NorAI Technologies, Uttar Pradesh, India.',
+          'This website is hosted on managed infrastructure that provides transport encryption. Model inference happens at Google, under Google\'s own terms, using the key you supply. If you do not wish to send content to Google, do not run a tool with that content.',
+        ],
+      },
+      {
+        heading: '5. Your Choices',
+        paragraphs: [
+          'Because we do not hold an account or a database, there is generally nothing for us to export or delete. If you have sent us an enquiry and want it removed, or you have any privacy question, email us and a person will handle it.',
         ],
       },
     ],
@@ -51,30 +70,44 @@ export const LEGAL_POLICIES: Record<string, LegalPolicyData> = {
     title: 'Terms of Service',
     lastUpdated: 'January 15, 2026',
     description:
-      'Terms of Service governing access and use of NorAI Technologies infrastructure, APIs, and digital properties.',
+      'Terms governing use of the NorAI website, its four BYOK browser tools, and NorAI engineering services. Governed by the laws of India.',
     sections: [
       {
-        heading: '1. Agreement to Terms',
+        heading: '1. Agreement',
         paragraphs: [
-          'By accessing or using the website, developer APIs, or deterministic AI compute services provided by NorAI Technologies, you agree to be bound by these Terms of Service. If you do not agree, do not access or use the platform.',
+          'By using norai.tech or engaging NorAI Technologies Private Limited ("NorAI", "we", "us") you agree to these terms. If you do not agree, do not use the site.',
         ],
       },
       {
-        heading: '2. Infrastructure SLA & Availability',
+        heading: '2. The Browser Tools',
         paragraphs: [
-          'NorAI guarantees sub-10ms neural execution SLA bounds for enterprise subscription tiers subject to the provisions of individual Master Services Agreements (MSA). Public website APIs and preview endpoints are provided on an "as-is" basis.',
+          'NorAI publishes four tools that run in your browser: a resume shortlister, a course note-taker, a community chat digest, and a regional gazette reader. They are bring-your-own-key. You supply a Google Gemini API key, you bear any charges Google applies to that key, and the request is made by your browser to Google.',
+          'We provide no public REST API, no SDK, and no hosted inference endpoint. These tools are offered as-is, with no uptime, latency, or accuracy commitment, and their output is generated by a language model and may be wrong.',
+          'Do not submit confidential, personal, or regulated information to a tool unless your own policy permits it. You are responsible for what you paste in and for what you do with the result. In particular, a model-generated candidate score or eligibility summary is not a decision about a person.',
         ],
       },
       {
-        heading: '3. Intellectual Property Rights',
+        heading: '3. Engineering Services',
         paragraphs: [
-          'All zero-knowledge compiler architectures, FPGA hardware firmware designs, trade secrets, logos, and digital site content are the exclusive intellectual property of NorAI Technologies.',
+          'Custom engineering work is governed by a separate written agreement covering scope, deliverables, and fees. Where such an agreement conflicts with these terms, that agreement prevails.',
         ],
       },
       {
-        heading: '4. Governing Law',
+        heading: '4. Intellectual Property',
         paragraphs: [
-          'These Terms shall be governed by and construed in accordance with the laws of Switzerland, without regard to its conflict of law principles.',
+          'The website, its design, its written content, and the source of the tools are owned by NorAI. Output produced by a tool belongs to you, subject to Google\'s terms governing model output. NorAI names, marks, and brand assets are not licensed by these terms.',
+        ],
+      },
+      {
+        heading: '5. No Warranty',
+        paragraphs: [
+          'The site and the tools are provided on an "as-is" and "as-available" basis, without warranties of any kind. We do not publish an availability figure, a response-time guarantee, or an accuracy benchmark, because we do not currently hold measurements we can evidence. To the extent permitted by law, NorAI is not liable for indirect or consequential loss arising from use of the site or the tools.',
+        ],
+      },
+      {
+        heading: '6. Governing Law',
+        paragraphs: [
+          'These terms are governed by the laws of India. Any dispute arising from them is subject to the exclusive jurisdiction of the courts at Ghazipur, Uttar Pradesh, India.',
         ],
       },
     ],
@@ -84,24 +117,30 @@ export const LEGAL_POLICIES: Record<string, LegalPolicyData> = {
     title: 'Cookie Policy',
     lastUpdated: 'January 15, 2026',
     description:
-      'Cookie and telemetry policy explaining how cookies are used on the NorAI Technologies website.',
+      'What cookies and local storage norai.tech uses, why, and how to clear them. No advertising or cross-site tracking cookies are set.',
     sections: [
       {
-        heading: '1. What Are Cookies',
+        heading: '1. What We Store Locally',
         paragraphs: [
-          'Cookies are small text files placed on your device when visiting a web application. NorAI utilizes essential session cookies required for network routing, load balancing, and secure form submissions.',
+          'This site uses your browser\'s local storage rather than cookies for two things: your light or dark theme choice, and — only if you choose to use a tool — your Gemini API key and selected model, kept on your own device so the tool can call Google directly. Clearing your browser storage removes all of it.',
         ],
       },
       {
-        heading: '2. Essential & Analytical Cookies',
+        heading: '2. Cookies We Do Not Set',
         paragraphs: [
-          'We use strictly essential cookies to maintain user session state and dark/light theme preferences. We do not use third-party advertising, retargeting, or cross-site tracking cookies.',
+          'We set no advertising, retargeting, or cross-site tracking cookies, and we do not sell or share data with advertising networks. We are not a registered data broker and do not build behavioural profiles.',
         ],
       },
       {
-        heading: '3. Managing Cookie Preferences',
+        heading: '3. Why Your Key Stays With You',
         paragraphs: [
-          'You may disable cookies in your browser settings. However, disabling essential session cookies may impair website navigation and form interactions.',
+          'Because the Gemini key is stored in your browser and sent from your browser to Google, it is never stored on a NorAI server. A key saved in local storage is only as safe as the device it is saved on — do not use a tool on a shared or public machine, and revoke the key in Google AI Studio if you think it has been exposed.',
+        ],
+      },
+      {
+        heading: '4. Removing It',
+        paragraphs: [
+          'You can clear this site\'s storage at any time through your browser settings, with no loss of function beyond resetting your theme and re-entering your key.',
         ],
       },
     ],

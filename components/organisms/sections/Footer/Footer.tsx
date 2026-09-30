@@ -145,11 +145,14 @@ export function Footer({
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 text-xs text-[#A8B6D8]">
           <div>{legalText}</div>
           <div className="flex items-center gap-6">
-            <Link href="/privacy" variant="unstyled" className="hover:text-[#F4F6FC] transition-colors">
+            <Link href="/privacy-policy" variant="unstyled" className="hover:text-[#F4F6FC] transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/terms" variant="unstyled" className="hover:text-[#F4F6FC] transition-colors">
+            <Link href="/terms-of-service" variant="unstyled" className="hover:text-[#F4F6FC] transition-colors">
               Terms of Service
+            </Link>
+            <Link href="/cookie-policy" variant="unstyled" className="hover:text-[#F4F6FC] transition-colors">
+              Cookie Policy
             </Link>
             <span className="text-[#6C7D9E]">·</span>
             <span>Umarganj, Zamania, Ghazipur, Uttar Pradesh</span>
