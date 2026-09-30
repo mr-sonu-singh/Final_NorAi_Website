@@ -5,9 +5,9 @@ import { ProductsIndexClient } from './ProductsIndexClient';
 
 export const metadata: Metadata = buildMetadata({
   path: '/products',
-  title: 'Applied Prototypes & Tools — NorAI Technologies',
+  title: 'Applied Prototypes & Tools',
   description:
-    'Explore live applied prototypes engineered by NorAI Technologies and student fellows: Resume shortlisting, lecture synthesis, community digests, and regional civic news.',
+    'Four live browser prototypes built by NorAI engineers: resume shortlisting, lecture synthesis, community digests, and regional gazette reading.',
 });
 
 export default function ProductsPage() {

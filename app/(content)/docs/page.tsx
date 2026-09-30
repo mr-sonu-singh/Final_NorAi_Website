@@ -22,9 +22,9 @@ import { InteractiveCircuitTrace } from '@/components/molecules/InteractiveCircu
 
 export const metadata: Metadata = buildMetadata({
   path: '/docs',
-  title: 'Developer Documentation & API Contracts',
+  title: 'Developer Documentation',
   description:
-    'Comprehensive REST API contracts, deterministic Zod schemas, 3-stage execution pipeline trace, and SDK references for NorAI micro-SaaS utilities.',
+    'Request contracts, deterministic response schemas, rate limits, and error handling for the four NorAI browser tools.',
 });
 
 const DOCS_NAV = [

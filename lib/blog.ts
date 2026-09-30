@@ -52,6 +52,11 @@ export interface BlogRelatedProduct {
 export interface BlogPostData {
   slug: string;
   title: string;
+  /**
+   * Search/OG title, kept short enough that the brand suffix does not push the
+   * document title past 60 characters. Falls back to `title` when absent.
+   */
+  seoTitle?: string;
   excerpt: string;
   author: string;
   authorRole: string;
@@ -68,6 +73,8 @@ export const BLOG_POSTS: Record<string, BlogPostData> = {
   'ai-agent-orchestration-architecture': {
     slug: 'ai-agent-orchestration-architecture',
     title: 'Architecting Deterministic AI Agent Workflows for Scale',
+    seoTitle:
+      'Deterministic AI Agent Workflows',
     excerpt:
       'An in-depth analysis of multi-agent state transition machines, structured JSON schema validation, automated self-healing repair loops, and fault-tolerant background execution queues.',
     author: 'Gourav Singh',
@@ -202,6 +209,8 @@ export async function processCandidateIntake(rawText: string) {
   'rag-vector-search-best-practices': {
     slug: 'rag-vector-search-best-practices',
     title: 'Best Practices for Hybrid Vector Search & RAG Retrieval',
+    seoTitle:
+      'Hybrid Vector Search & RAG',
     excerpt:
       'Key strategies for document chunking, hybrid keyword-dense embedding indexing, Reciprocal Rank Fusion (RRF), and grounded context validation in enterprise knowledge search.',
     author: 'Gourav Singh',
@@ -325,6 +334,8 @@ export function buildSemanticContextString(chunk: StructuredChunk): string {
   'mcp-protocol-developer-tooling': {
     slug: 'mcp-protocol-developer-tooling',
     title: 'Connecting Developer Tools via Model Context Protocol (MCP)',
+    seoTitle:
+      'Model Context Protocol (MCP)',
     excerpt:
       'Understanding standard MCP tool servers, secure resource handlers, JSON-RPC communication, and how AI assistants interact safely with local databases and APIs.',
     author: 'Sonu Singh',
@@ -417,6 +428,8 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
   'automated-resume-screening-patterns': {
     slug: 'automated-resume-screening-patterns',
     title: 'Automating Candidate Screening: Skill Extraction Patterns',
+    seoTitle:
+      'Automated Candidate Screening',
     excerpt:
       'Technical insights into parsing multi-format resume documents, extracting verified candidate qualifications, and computing objective match scores in sub-350ms pipelines.',
     author: 'Gourav Singh',
@@ -488,6 +501,8 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
   'operational-discipline-devops-reliability': {
     slug: 'operational-discipline-devops-reliability',
     title: 'Operational Redundancy and Fail-Safe Engineering Principles',
+    seoTitle:
+      'Operational Redundancy',
     excerpt:
       'Applying multi-tier fallback systems, automated database heartbeats, and strict DevSecOps redundancy across high-availability background workers.',
     author: 'Dhruw Singh',
@@ -586,6 +601,8 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
   'deploying-open-weight-llms-vllm-awq': {
     slug: 'deploying-open-weight-llms-vllm-awq',
     title: 'Deploying Open-Weight LLMs Locally with vLLM, AWQ & FlashAttention-2',
+    seoTitle:
+      'Open-Weight LLMs with vLLM & AWQ',
     excerpt:
       'A complete blueprint for running high-throughput, low-latency open-source models (Llama 3.3, DeepSeek, Qwen 2.5) on private infrastructure with AWQ 4-bit quantization.',
     author: 'Gourav Singh',
@@ -668,6 +685,8 @@ python3 -m vllm.entrypoints.openai.api_server \\
   'multimodal-audio-video-synthesis-latex': {
     slug: 'multimodal-audio-video-synthesis-latex',
     title: 'Multi-Modal Audio & Video Synthesis: Timestamped Chunking & LaTeX Math Extraction',
+    seoTitle:
+      'Multimodal Audio & Video Synthesis',
     excerpt:
       'How NorAI built the Course Note-Taker ingestion engine to parse 2-hour university lectures into timestamped summaries, definition glossaries, and clean LaTeX mathematical formula cards.',
     author: 'Sonu Singh',
@@ -732,6 +751,8 @@ python3 -m vllm.entrypoints.openai.api_server \\
   'zero-hallucination-enterprise-guardrails': {
     slug: 'zero-hallucination-enterprise-guardrails',
     title: 'Zero-Hallucination Guardrails in Enterprise Pipelines with Structured Outputs',
+    seoTitle:
+      'Zero-Hallucination Guardrails',
     excerpt:
       'Eliminating probabilistic failure modes in mission-critical banking, legal, and HR automation with schema-enforced generation and verification circuits.',
     author: 'Gourav Singh',
@@ -801,6 +822,8 @@ python3 -m vllm.entrypoints.openai.api_server \\
   'vernacular-nlp-hindi-english-gazette-parsing': {
     slug: 'vernacular-nlp-hindi-english-gazette-parsing',
     title: 'Vernacular NLP: Engineering Hindi-English Code-Mixed Speech & Public Gazette Parsing',
+    seoTitle:
+      'Vernacular NLP for Hindi-English',
     excerpt:
       'How NorAI built the Smart Dainik News ingestion pipeline to parse complex Indian public employment gazettes, Hindi PDF tables, and code-mixed vernacular announcements.',
     author: 'Dhruw Singh',

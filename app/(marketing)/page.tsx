@@ -13,9 +13,9 @@ import { buildMetadata, getOrganizationJsonLd, getLocalBusinessJsonLd, JsonLd } 
 
 export const metadata: Metadata = buildMetadata({
   path: '/',
-  title: 'NorAI Technologies — Pragmatic AI Engineering & Upskilling Mission',
+  title: 'AI Engineering, Ghazipur',
   description:
-    'Indian AI engineering practice and civic upskilling mission based in Ghazipur, Uttar Pradesh. Pragmatic AI solutions, modern custom web software, spatial computing, and educational student workshops.',
+    'Indian AI engineering practice in Ghazipur, Uttar Pradesh. Browser tools, custom web software, spatial computing, and civic AI-literacy workshops.',
 });
 
 export default function HomePage() {

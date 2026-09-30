@@ -30,9 +30,9 @@ import {
 
 export const metadata: Metadata = buildMetadata({
   path: '/careers',
-  title: 'Engineering Careers & Open Roles',
+  title: 'Engineering Careers',
   description:
-    'Join NorAI Technologies in Uttar Pradesh. We are hiring engineers to build deterministic micro-SaaS utilities and high-reliability enterprise AI pipelines.',
+    'Open engineering roles at NorAI Technologies in Uttar Pradesh, building browser tools and high-reliability AI systems for real users.',
 });
 
 const PRACTICE_AREAS = [

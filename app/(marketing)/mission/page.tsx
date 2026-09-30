@@ -10,9 +10,9 @@ import { ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = buildMetadata({
   path: '/mission',
-  title: 'Youth Upskilling Mission — Aligned with an AI-Ready India | NorAI',
+  title: 'Youth Upskilling Mission',
   description:
-    'A dedicated vision to democratize AI literacy and deterministic engineering for collegiate students, youth, and regional communities across Uttar Pradesh.',
+    'A civic programme bringing practical AI literacy and deterministic engineering to students, youth, and regional communities in Uttar Pradesh.',
 });
 
 const GROUND_FACTS = [

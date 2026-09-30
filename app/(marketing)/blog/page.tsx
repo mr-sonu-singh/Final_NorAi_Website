@@ -6,9 +6,9 @@ import { BlogIndexClient } from './BlogIndexClient';
 
 export const metadata: Metadata = buildMetadata({
   path: '/blog',
-  title: 'Engineering Journal & Technical Notes',
+  title: 'Engineering Journal',
   description:
-    'Practical technical notes on AI orchestration patterns, vector search retrieval, MCP developer tooling, and workflow automation engineering.',
+    'Practical notes on AI agent orchestration, hybrid vector search, MCP tooling, and vLLM deployment from the engineers building NorAI.',
 });
 
 export default function BlogIndexPage() {

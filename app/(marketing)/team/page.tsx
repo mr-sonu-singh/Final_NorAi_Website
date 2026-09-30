@@ -9,9 +9,9 @@ import { buildMetadata, getWebSiteJsonLd, JsonLd } from '@/lib/seo';
 
 export const metadata: Metadata = buildMetadata({
   path: '/team',
-  title: 'Studio & Story — NorAI Technologies',
+  title: 'Studio & Story',
   description:
-    'Meet Dhruw Singh, Sonu Singh, Annanta Singh, Rishabh Singh, and Gourav Singh—the founding engineering team driving NorAI Technologies from Uttar Pradesh, India.',
+    'Meet the five founding engineers of NorAI Technologies Private Limited, building an independent AI practice from Uttar Pradesh, India.',
 });
 
 const RITUALS = [

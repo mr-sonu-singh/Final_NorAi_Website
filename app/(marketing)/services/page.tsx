@@ -8,9 +8,9 @@ import { ServicesEngagementTimeline } from '@/components/organisms/sections/Serv
 
 export const metadata: Metadata = buildMetadata({
   path: '/services',
-  title: 'Solutions & Engineering Practice — NorAI Technologies',
+  title: 'Solutions & Engineering',
   description:
-    'Pragmatic AI Solutions, Custom Modern Web Software, Spatial Computing (AR/VR), and Applied R&D. Engineered with clean code, open standards, and zero vendor lock-in.',
+    'AI solutions and automation, custom modern web software, spatial computing, and applied research. Engineered cleanly, with no vendor lock-in.',
 });
 
 export default function ServicesPage() {

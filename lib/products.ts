@@ -2,6 +2,8 @@ export interface ProductData {
   slug: string;
   id: string;
   title: string;
+  /** Search/OG title, kept short so the brand suffix stays within 60 chars. */
+  seoTitle?: string;
   badge: string;
   tagline: string;
   excerpt: string;
@@ -36,6 +38,7 @@ export const PRODUCTS_DATA: Record<string, ProductData> = {
     slug: 'resume-shortlister',
     id: 'TOOL_01',
     title: 'AI Resume Shortlister',
+    seoTitle: 'AI Resume Shortlister',
     badge: 'Recruitment Automation',
     tagline: 'Automated candidate screening and match scoring for high-volume hiring teams.',
     excerpt:
@@ -144,6 +147,7 @@ export const PRODUCTS_DATA: Record<string, ProductData> = {
     slug: 'course-note-taker',
     id: 'TOOL_02',
     title: 'AI Course Note-Taker',
+    seoTitle: 'AI Course Note-Taker',
     badge: 'EdTech Summarization',
     tagline:
       'Transform lecture audio, video transcripts, and slides into study briefs & flashcards.',
@@ -248,6 +252,7 @@ export const PRODUCTS_DATA: Record<string, ProductData> = {
     slug: 'chat-digest',
     id: 'TOOL_03',
     title: 'Chat Digest & Newsletter AI',
+    seoTitle: 'Chat Digest & Newsletter AI',
     badge: 'Community Summarization',
     tagline: 'Digest noisy community chat channels into daily executive briefs & newsletters.',
     excerpt:
@@ -351,6 +356,7 @@ export const PRODUCTS_DATA: Record<string, ProductData> = {
     slug: 'smart-dainik-news',
     id: 'TOOL_04',
     title: 'Smart Dainik News',
+    seoTitle: 'Smart Dainik News',
     badge: 'Regional Intelligence',
     tagline: 'Hyper-local regional news curation & topic tracking with sentiment briefings.',
     excerpt:
@@ -451,13 +457,9 @@ export const PRODUCTS_DATA: Record<string, ProductData> = {
   },
 };
 
-// Aliases for backward compatibility
-if (PRODUCTS_DATA['resume-shortlister']) {
-  PRODUCTS_DATA['ai-resume-shortlister'] = PRODUCTS_DATA['resume-shortlister'];
-}
-if (PRODUCTS_DATA['chat-digest']) {
-  PRODUCTS_DATA['community-chat-digest'] = PRODUCTS_DATA['chat-digest'];
-}
-if (PRODUCTS_DATA['smart-dainik-news']) {
-  PRODUCTS_DATA['news-aggregator'] = PRODUCTS_DATA['smart-dainik-news'];
-}
+// Pre-rename slugs are NOT aliased into this map. Aliasing made
+// `generateStaticParams` prerender a second URL for the same document, so three
+// products were reachable at two addresses each and all of them landed in the
+// sitemap. Old inbound links are handled by permanent redirects in
+// next.config.ts, which is the correct mechanism: one canonical URL per
+// document, and a single hop for anything that still points at the old path.
