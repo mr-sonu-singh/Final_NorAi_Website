@@ -35,7 +35,7 @@ export default function ContactPage() {
             </h1>
 
             <p className="text-lg sm:text-xl text-[#A8B6D8] leading-relaxed max-w-2xl font-normal text-pretty">
-              Whether you need pragmatic AI workflows, high-speed custom web software, spatial computing environments, or want to collaborate on student workshops—speak directly with our founding engineering team. We reply within one business day.
+              Whether you need pragmatic AI workflows, high-speed custom web software, spatial computing environments, or want to collaborate on student workshops—speak directly with our founding engineering team. Every message reaches an engineer who reads it; reply time follows our current load.
             </p>
           </div>
         </Container>
@@ -139,7 +139,7 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* Service SLA */}
+                {/* Desk Commitments */}
                 <div className="pt-4 border-t border-[var(--line)] dark:border-white/10 space-y-2.5">
                   <div className="flex items-start gap-2 text-xs text-[var(--pine)]/80 dark:text-white/80 leading-normal">
                     <Clock className="h-4 w-4 text-[var(--mint-ink)] dark:text-[#38BDF8] shrink-0 mt-0.5" />

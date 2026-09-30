@@ -36,7 +36,7 @@ export const COMMUNITY_TIERS: CommunityTier[] = [
       'Government welfare portal navigation (PM-Kisan, Ayushman)',
     ],
     tools: ['Bhashini Speech API', 'WhatsApp Audio Bots', 'Zero-Install Web Audio'],
-    outcome: 'Independent digital self-reliance for 10,000+ regional households.',
+    outcome: 'Target: independent digital self-reliance for 10,000+ regional households.',
   },
   {
     tier: 'TIER 02',
@@ -53,7 +53,7 @@ export const COMMUNITY_TIERS: CommunityTier[] = [
       'Foundational programming & computational thinking',
     ],
     tools: ['Whisper Transcripts', 'KaTeX Math Formatter', 'Spaced Repetition SRS'],
-    outcome: 'Transform passive smartphone consumption into active academic mastery.',
+    outcome: 'Intended outcome: passive smartphone consumption becomes active academic mastery.',
   },
   {
     tier: 'TIER 03',
@@ -70,7 +70,7 @@ export const COMMUNITY_TIERS: CommunityTier[] = [
       'Type-safe Zod runtime contracts & pgvector cosine search',
     ],
     tools: ['vLLM', 'FastAPI', 'Docker', 'pgvector', 'TypeScript / Zod'],
-    outcome: 'Graduates ship production systems directly into enterprise clients.',
+    outcome: 'Intended outcome: graduates ship production systems directly into enterprise clients.',
   },
 ];
 

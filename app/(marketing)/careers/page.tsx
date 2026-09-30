@@ -39,7 +39,7 @@ const PRACTICE_AREAS = [
   {
     title: 'AI Product & Micro-SaaS Engineering',
     role: 'AI Product Engineer',
-    desc: 'Build sub-second REST API endpoints and interactive web workbenches for parsing, summarization, and data digestion utilities.',
+    desc: 'Build typed REST API endpoints and interactive web workbenches for parsing, summarization, and data digestion utilities.',
     tags: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'Zod', 'REST APIs'],
     icon: Code,
     mailSubject: 'AI Product & Micro-SaaS Engineering',
@@ -88,7 +88,7 @@ const PERKS = [
     icon: ShieldCheck,
     tone: 'text-accent-secondary bg-sage-100/70 border border-accent-secondary/20',
     title: 'High-craft engineering bar',
-    body: 'Deterministic JSON schemas, < 0.35s latency SLAs, strict type-safety, and zero AI slop.',
+    body: 'Deterministic JSON schemas, strict type-safety, and zero AI slop.',
   },
   {
     icon: Clock,
@@ -118,7 +118,7 @@ const HIRING_STEPS = [
   {
     number: '03',
     title: 'Offer & Onboarding',
-    desc: 'Clear, transparent compensation offer within 48 hours of final review. Seamless remote onboarding on day one.',
+    desc: 'A clear, written compensation offer once the team has finished its review, and remote onboarding from day one.',
   },
 ];
 
@@ -157,8 +157,8 @@ export default function CareersPage() {
             {/* Lead Prose */}
             <p className="fluid-lead text-ink-body font-normal leading-relaxed max-w-2xl mx-auto text-pretty">
               We are a lean engineering team operating out of Uttar Pradesh, India. Zero
-              bureaucracy, zero throwaway prototypes — just high-precision AI utilities that real
-              people rely on every single day.
+              bureaucracy, zero throwaway prototypes — just high-precision AI utilities built to
+              hold up in daily use.
             </p>
           </div>
         </Container>
@@ -252,10 +252,10 @@ export default function CareersPage() {
               Built for craft, speed, and real utility
             </Heading>
             <p className="fluid-body text-ink-body leading-relaxed text-pretty">
-              NorAI builds software that solves unglamorous problems exceptionally well: screening
-              hundreds of resumes in sub-second bursts, turning multi-hour lectures into revision
-              cards, distilling noisy community channels into action points, and clustering
-              vernacular news feeds.
+              NorAI builds software that solves unglamorous problems exceptionally well: parsing
+              resume stacks into structured records, turning multi-hour lectures into revision cards,
+              distilling noisy community channels into action points, and clustering vernacular news
+              feeds.
             </p>
           </div>
 

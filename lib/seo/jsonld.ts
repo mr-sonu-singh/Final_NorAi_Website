@@ -88,7 +88,7 @@ export function getLocalBusinessJsonLd() {
     name: siteConfig.name,
     url: siteConfig.url,
     description:
-      'NorAI Technologies engineers deterministic micro-SaaS utilities and bespoke enterprise AI automation pipelines with sub-second latency targets in Uttar Pradesh, India.',
+      'NorAI Technologies engineers deterministic browser utilities and bespoke enterprise AI automation pipelines in Uttar Pradesh, India.',
     image: `${siteConfig.url}/icon.svg`,
     priceRange: '$$',
     address: {
@@ -114,31 +114,15 @@ export function getSoftwareApplicationJsonLd(product: ProductData) {
     'smart-dainik-news': 'NewsApplication',
   };
 
-  const startingPrice = product.pricing?.[0]?.price?.replace(/[^0-9.]/g, '') || '0';
-
   return {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
     name: product.title,
     applicationCategory: applicationCategories[product.slug] || 'BusinessApplication',
     operatingSystem: 'Web, Cloud',
+    isAccessibleForFree: true,
     description: product.excerpt || product.tagline,
     url: `${siteConfig.url}/products/${product.slug}`,
-    offers: product.pricing?.map((tier) => ({
-      '@type': 'Offer',
-      name: tier.tier,
-      price: tier.price.replace(/[^0-9.]/g, '') || '0',
-      priceCurrency: 'USD',
-      description: tier.desc,
-      availability: 'https://schema.org/InStock',
-    })) || [
-      {
-        '@type': 'Offer',
-        price: startingPrice,
-        priceCurrency: 'USD',
-        availability: 'https://schema.org/InStock',
-      },
-    ],
     featureList: product.features?.map((f) => f.title).join(', '),
     author: {
       '@type': 'Organization',
@@ -204,7 +188,7 @@ export function getServiceJsonLd() {
             '@type': 'Service',
             name: 'Custom AI Web Applications',
             description:
-              'Full-stack Next.js and React web applications powered by sub-second neural inference.',
+              'Full-stack Next.js and React web applications with typed, verifiable APIs.',
           },
         },
         {

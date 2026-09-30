@@ -54,7 +54,7 @@ export default function ServicesPage() {
                 Four engineering pillars.
               </h2>
               <p className="text-[var(--pine)]/75 dark:text-white/70 text-base sm:text-lg">
-                Select a pillar below to inspect its production deliverables, system architecture, code blueprints, and in-memory SLAs.
+                Select a pillar below to inspect its production deliverables, system architecture, code blueprints, and runtime constraints.
               </p>
             </div>
 

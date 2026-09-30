@@ -64,7 +64,7 @@ export default function MissionPage() {
         <Container size="default" className="relative z-10 max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="max-w-3xl text-left space-y-6">
             <h1 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold text-white leading-[1.04] tracking-[-0.035em]">
-              Empowering Millions of Youth with AI Skills.{' '}
+              Building AI Skills in Eastern UP.{' '}
               <span className="text-[#38BDF8]">Aligned with an AI-ready India.</span>
             </h1>
 
@@ -149,7 +149,9 @@ export default function MissionPage() {
               </h2>
 
               <p className="text-base sm:text-lg max-w-xl mx-auto font-normal text-[#A8B6D8] leading-relaxed">
-                We conduct intensive hands-on hackathons, localized student sprints, and faculty AI orientations across Uttar Pradesh and Bihar.
+                We run intensive hands-on hackathons, localized student sprints, and faculty AI
+                orientations across Uttar Pradesh and Bihar. Sessions run on dates we agree with each
+                host institution.
               </p>
 
               <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">

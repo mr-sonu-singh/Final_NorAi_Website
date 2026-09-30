@@ -17,7 +17,7 @@ export const siteConfig = {
   name: 'NorAI Technologies',
   titleTemplate: 'NorAI Technologies — Intelligence Meets Action',
   description:
-    'Four single-purpose AI tools. Sub-second execution, zero data retention, and clean, reliable outputs. Engineered in Uttar Pradesh, India.',
+    'Four single-purpose AI tools. Bring your own Gemini key, zero data retention, and clean, reliable outputs. Engineered in Uttar Pradesh, India.',
   url: resolveSiteUrl(),
   ogImage: '/og/default.png',
   links: {
