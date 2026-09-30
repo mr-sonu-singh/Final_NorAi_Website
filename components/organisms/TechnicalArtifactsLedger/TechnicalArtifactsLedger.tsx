@@ -36,9 +36,9 @@ const DEFAULT_ARTIFACT: TechnicalArtifact = {
   author: 'Gourav Singh',
   authorRole: 'AI Engineer / Orchestration Lead',
   version: 'v2.4.0',
-  latencyTarget: '< 320ms cold latency',
+  latencyTarget: 'Schema-Validated Output',
   summary:
-    'Typed Zod schema and transition state machine ensuring zero hallucinations and guaranteed structured JSON outputs across all micro-SaaS endpoints.',
+    'Typed Zod schema and transition state machine ensuring schema-checked structured JSON output on every run, across all micro-SaaS endpoints.',
   icon: Bot,
   language: 'typescript',
   code: `import { z } from 'zod';
@@ -51,16 +51,16 @@ export const CandidateEvaluationSchema = z.object({
   verifiedSkills: z.array(z.string()).nonempty(),
   missingRequirements: z.array(z.string()),
   probingQuestions: z.array(z.string()).length(3),
-  executionLatencyMs: z.number().max(350),
+  executionMode: z.enum(['BROWSER_RUNTIME', 'EDGE_RUNTIME']),
   dataResidency: z.literal('EPHEMERAL_RAM_FLUSHED'),
 });
 
 export const shortlisterAgent = defineAgentPipeline({
   name: 'ResumeShortlisterEngine',
-  model: 'vllm-llama-3.3-70b-instruct-fp8',
+  model: 'byok/gemini-user-supplied-key',
   outputSchema: CandidateEvaluationSchema,
   maxRetries: 2,
-  timeoutMs: 800,
+  timeoutMs: 30000,
 });`,
 };
 
@@ -73,7 +73,7 @@ const ARTIFACTS: TechnicalArtifact[] = [
     author: 'Sonu Singh',
     authorRole: 'AR-VR / AI Engineer',
     version: 'v1.8.2',
-    latencyTarget: '60–120 FPS frame budget',
+    latencyTarget: 'Browser Frame Budget Target',
     summary:
       'Coordinate mapping and multi-modal sensory event pipelines for next-generation spatial computing and WebGPU immersive rendering.',
     icon: Cpu,
@@ -101,7 +101,7 @@ export const spatialTracker = new SpatialRaycastPipeline({
     author: 'Rishabh Singh',
     authorRole: 'Design & Visualisation Lead',
     version: 'v3.1.0',
-    latencyTarget: '0ms runtime overhead',
+    latencyTarget: 'Static Token Emission',
     summary:
       'Tactile editorial token definitions, 5-state component ergonomics, and concentric border radius formulas adhering to the Impeccable Protocol.',
     icon: Palette,
@@ -132,7 +132,7 @@ export const spatialTracker = new SpatialRaycastPipeline({
     author: 'Annanta Singh',
     authorRole: 'Digital Marketing Lead',
     version: 'v1.4.0',
-    latencyTarget: '< 200ms lead routing',
+    latencyTarget: 'Typed Routing Contract',
     summary:
       'Multi-channel inbound lead routing, organic search attribution, and automated institutional partner matching algorithms.',
     icon: TrendingUp,
@@ -144,36 +144,36 @@ export const InboundLeadRoutingSchema = z.object({
   districtLocation: z.string(),
   urgencyBand: z.enum(['SCHEDULE_THIS_WEEK', 'NEXT_MONTH_COHORT', 'GENERAL_INQUIRY']),
   routingTarget: z.string().email(),
-  slaGuaranteeHours: z.literal(2),
+  responseTarget: z.enum(['NEXT_WORKING_DAY']),
 });
 
 export function routeInboundInquiry(lead: z.infer<typeof InboundLeadRoutingSchema>) {
-  // Routes instantly to relevant engineering or institutional coordinator
+  // Routes to the relevant engineering or institutional coordinator
   return { routed: true, timestamp: Date.now(), queue: 'HIGH_PRIORITY_UP_REGIONAL' };
 }`,
   },
   {
     id: 'governance-sla',
-    name: 'High-Stakes Security & SLA Guardrails',
-    package: '@norai/governance-sla',
+    name: 'High-Stakes Security & Reliability Guardrails',
+    package: '@norai/governance-guardrails',
     author: 'Dhruw Singh',
     authorRole: 'Founder & Head of Operations',
     version: 'v2.0.0',
-    latencyTarget: '100% fail-safe redundancy',
+    latencyTarget: 'Fail-Safe by Design',
     summary:
-      'Defense-grade operational reliability, automated heartbeat failover, and strict data residency compliance protocols.',
+      'Fail-safe operational defaults, automated heartbeat failover, and data residency and compliance obligations set per contract.',
     icon: ShieldCheck,
     language: 'typescript',
-    code: `export interface OperationalSLAGuardrail {
-  serviceLevelAgreement: 'SUB_350MS_COLD_START';
+    code: `export interface OperationalGuardrail {
+  serviceLevelAgreement: 'SET_PER_ENGAGEMENT';
   dataRetentionPolicy: 'ZERO_PERSISTENCE_TRANSIENT_RAM';
   failoverProtocol: 'MULTI_TIER_FALLBACK_QUEUE';
   institutionalCompliance: 'UP_STATE_SKILL_MISSION_COMPLIANT';
   verificationStatus: 'CONTINUOUS_AUDIT_ACTIVE';
 }
 
-export const noraiGovernanceConfig: OperationalSLAGuardrail = {
-  serviceLevelAgreement: 'SUB_350MS_COLD_START',
+export const noraiGovernanceConfig: OperationalGuardrail = {
+  serviceLevelAgreement: 'SET_PER_ENGAGEMENT',
   dataRetentionPolicy: 'ZERO_PERSISTENCE_TRANSIENT_RAM',
   failoverProtocol: 'MULTI_TIER_FALLBACK_QUEUE',
   institutionalCompliance: 'UP_STATE_SKILL_MISSION_COMPLIANT',

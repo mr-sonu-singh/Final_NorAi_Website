@@ -30,7 +30,7 @@ const NODES: TopologyNode[] = [
     category: 'Core GPU Engine',
     description:
       'High-throughput FP8/AWQ quantized inference instances tuned with custom LoRA adapters.',
-    specs: 'NVIDIA H100 / A100 / L40S Tensor Cores (<320ms P95)',
+    specs: 'NVIDIA H100 / A100 / L40S Tensor Cores · Sized To Your Load',
     status: 'ACTIVE',
   },
   {
@@ -47,7 +47,7 @@ const NODES: TopologyNode[] = [
     label: 'Private Vector Store (Qdrant/Milvus)',
     category: 'Storage & Index',
     description: 'Encrypted semantic vector index with zero-retention ephemeral embeddings.',
-    specs: 'HNSW Indexing with Sub-5ms Vector Lookup',
+    specs: 'HNSW Indexing Tuned For Recall',
     status: 'ONLINE',
   },
 ];
@@ -137,7 +137,7 @@ export function EnterpriseTopologyViewer({ className }: { className?: string }) 
         </p>
       </div>
 
-      {/* Hardware Guarantee Callouts */}
+      {/* Hardware Posture Callouts */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 text-xs font-mono text-text-secondary">
         <div className="flex items-center gap-2 bg-surface-panel-subtle/70 p-3 rounded-lg border border-border-subtle">
           <ShieldCheck className="w-4 h-4 text-accent-secondary shrink-0" />
@@ -149,7 +149,7 @@ export function EnterpriseTopologyViewer({ className }: { className?: string }) 
         </div>
         <div className="flex items-center gap-2 bg-surface-panel-subtle/70 p-3 rounded-lg border border-border-subtle">
           <Zap className="w-4 h-4 text-accent-primary shrink-0" />
-          <span>Strict SLA Guarantees</span>
+          <span>Data Residency Set Per Contract</span>
         </div>
       </div>
     </div>

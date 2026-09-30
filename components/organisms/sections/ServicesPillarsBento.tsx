@@ -40,24 +40,24 @@ export const PILLARS: PillarData[] = [
     icon: Brain,
     title: 'AI Solutions & Automation',
     tagline: 'Pragmatic machine intelligence for high-friction workflows.',
-    desc: 'We engineer purpose-built intelligence pipelines that eliminate tedious operational busywork. From unstructured document extraction to contextual assistants, our systems run with sub-second latency and zero permanent data retention.',
+    desc: 'We engineer purpose-built intelligence pipelines that eliminate tedious operational busywork. From unstructured document extraction to contextual assistants, every result passes a typed output contract with no permanent data retention.',
     deliverables: [
       'Multi-format resume, invoice, and legal document parsers',
-      'Contextual knowledge retrieval without hallucination',
+      'Contextual knowledge retrieval with citations attached to every answer',
       'Automated customer support triage and intent routing',
       'Custom fine-tuned open-weight classification models',
     ],
     techStack: ['Python', 'FastAPI', 'PyTorch', 'Hugging Face', 'pgvector', 'Docker'],
     accent: '#38BDF8',
     accentGlow: 'rgba(56,189,248,0.25)',
-    badge: 'SUB-SECOND IN-MEMORY',
-    sla: 'Latency < 0.35s · 0 Data Egress',
+    badge: 'SCHEMA-VALIDATED OUTPUT',
+    sla: '0 Data Egress · Targets Set Per Engagement',
     codeSnippet: `// In-Memory Parsing & Vector Scoring Pipeline
 async def process_document_pipeline(file_bytes: bytes) -> DocumentScorecard:
     extracted = await pdf_extractor.stream_extract(file_bytes)
     embeddings = local_embedder.encode_transient(extracted.text)
     scores = pgvector_session.cosine_similarity(embeddings, TARGET_VECTORS)
-    return DocumentScorecard(relevance=scores.max(), latency_ms=42.6)`,
+    return DocumentScorecard(relevance=scores.max(), scored_at=time.perf_counter())`,
     architectureBlueprint: [
       'Transient RAM Sandbox · Zero Cold Storage',
       'Local vLLM Quantized Serving Node',
@@ -72,22 +72,22 @@ async def process_document_pipeline(file_bytes: bytes) -> DocumentScorecard:
     tagline: 'High-performance web applications and resilient digital products.',
     desc: 'Full-stack software engineering grounded in modern TypeScript ecosystems. We author ultra-fast web interfaces, robust REST/GraphQL APIs, and mission-critical admin portals designed to scale gracefully without technical debt.',
     deliverables: [
-      'Next.js 15 & React 19 web applications with sub-second page loads',
+      'Next.js 15 & React 19 web applications measured with Core Web Vitals',
       'High-concurrency RESTful and GraphQL backend microservices',
-      'PostgreSQL / Redis database architectures with zero data loss SLAs',
+      'PostgreSQL / Redis database architectures with agreed replication and backup policies',
       'Responsive enterprise consoles with real-time WebSocket telemetry',
     ],
     techStack: ['Next.js 15', 'React 19', 'TypeScript', 'Tailwind CSS v4', 'PostgreSQL', 'Node.js'],
     accent: '#7a5cff',
     accentGlow: 'rgba(122,92,255,0.25)',
     badge: '100% CLIENT IP OWNERSHIP',
-    sla: 'Sub-100ms TTFB · 99.99% Availability',
+    sla: 'Targets Set Per Engagement · Measured Against Your Load Test',
     codeSnippet: `// High-Concurrency Reactive Edge Gateway
 export async function GET(req: Request) {
   const telemetry = await edgeTelemetry.probe({ session: req.headers.get('x-session') });
   return NextResponse.json({
     status: 'OPTIMAL',
-    p99_latency: '18ms',
+    cache: 'HIT',
     tenant_guardrails: 'ENFORCED'
   }, { headers: { 'Cache-Control': 'no-store' } });
 }`,
@@ -103,7 +103,7 @@ export async function GET(req: Request) {
     icon: Glasses,
     title: 'AR / VR Spatial Computing',
     tagline: 'Interactive 3D environments and immersive simulations.',
-    desc: 'We bring spatial computing directly to the browser via WebXR and Three.js. No cumbersome headset-only app stores or heavy gigabyte downloads—just immediate, 60fps 3D interactions accessible across phones, tablets, and VR headsets.',
+    desc: 'We bring spatial computing directly to the browser via WebXR and Three.js. No cumbersome headset-only app stores or heavy gigabyte downloads—just immediate, browser-rendered 3D across phones, tablets, and VR headsets.',
     deliverables: [
       'Interactive 3D mechanical, architectural, and equipment visualizers',
       'WebXR vocational training environments for technical apprentices',
@@ -113,8 +113,8 @@ export async function GET(req: Request) {
     techStack: ['Three.js', 'WebXR', 'GLSL', 'React Three Fiber', 'Blender', 'WebGPU'],
     accent: '#00e5ff',
     accentGlow: 'rgba(0,229,255,0.25)',
-    badge: '60 FPS BROWSER NATIVE',
-    sla: '60 FPS Lock · Zero App Store Install',
+    badge: 'BROWSER-NATIVE RENDERING',
+    sla: 'Zero App Store Install · Frame Budget Set Per Project',
     codeSnippet: `// WebGPU Compute Shader for Spatial Telemetry
 const shaderModule = device.createShaderModule({
   code: \`
@@ -147,7 +147,7 @@ const shaderModule = device.createShaderModule({
     accent: '#ffa24d',
     accentGlow: 'rgba(255,162,77,0.25)',
     badge: 'OPEN STANDARDS & CIVIC',
-    sla: 'Edge Inference · 100% Offline Capable',
+    sla: 'Edge Inference · Runs Fully Offline',
     codeSnippet: `// Local vLLM Quantized Regional Serving
 from vllm import LLM, SamplingParams
 llm = LLM(model="Qwen/Qwen2.5-7B-Instruct-AWQ", quantization="awq")
@@ -417,7 +417,7 @@ export function ServicesPillarsBento() {
                   <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
                 </Link>
                 <p className="text-center text-xs text-white/50 mt-2.5">
-                  Direct senior engineer response within one business day.
+                  Scoped by a senior engineer, not a sales queue.
                 </p>
               </div>
             </div>

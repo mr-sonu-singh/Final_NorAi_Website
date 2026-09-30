@@ -123,7 +123,7 @@ export function ServicesEngagementTimeline() {
             Ready to build with precision?
           </h3>
           <p className="text-sm text-[#a8beb4]">
-            Speak directly with founding engineers. We scope technical feasibility and deliver reproducible PoC sandboxes within 24 hours.
+            Speak directly with founding engineers. We scope technical feasibility before quoting, and build a reproducible proof of concept before committing to a build.
           </p>
         </div>
 

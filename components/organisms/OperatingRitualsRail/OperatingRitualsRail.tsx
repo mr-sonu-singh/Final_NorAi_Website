@@ -31,8 +31,8 @@ const RITUALS: RitualPillar[] = [
     accentColor: '#38BDF8',
     terminalCommand: 'norai bench --profile production-core --strict',
     terminalLogs: [
-      '[OK] Latency: 14.2ms P99 across all regional edge nodes.',
-      '[PASS] Zero hallucination threshold validated via deterministic harness.',
+      '[OK] No latency or uptime figure is published without a measurement behind it.',
+      '[OK] Every tool output is validated against a typed schema before it is shown.',
     ],
   },
   {
@@ -42,12 +42,12 @@ const RITUALS: RitualPillar[] = [
     title: 'In-Memory Privacy Architecture',
     description:
       'Zero model retention, zero third-party training leaks. Your proprietary customer and company records are scrubbed in RAM and never stored on third-party servers.',
-    tag: 'Enterprise Security SLA',
+    tag: 'Enterprise Security Standard',
     accentColor: '#4EF2D2',
     terminalCommand: 'norai audit:privacy --verify-zero-persistence',
     terminalLogs: [
-      '[RAM] Ephemeral buffer scrubbed on inference completion.',
-      '[AUDIT] Zero bytes written to third-party disk or model training sets.',
+      '[OK] Your input never reaches a NorAI server — inference runs in your browser.',
+      '[OK] No request body is written to disk or to third-party model training sets.',
     ],
   },
   {
@@ -61,7 +61,7 @@ const RITUALS: RitualPillar[] = [
     accentColor: '#FFAE42',
     terminalCommand: 'norai release --channel production --deterministic',
     terminalLogs: [
-      '[BENCHMARK] Automated regression test suite passed: 100% deterministic.',
+      '[OK] Every commit is type-checked and linted before it reaches review.',
       '[DEPLOYED] Weekly production optimization shipped directly to your repo.',
     ],
   },
@@ -77,7 +77,7 @@ const RITUALS: RitualPillar[] = [
     terminalCommand: 'norai grassroots --upskill-youth --local-regions',
     terminalLogs: [
       '[MISSION] Vision to upskill youth and regional communities active.',
-      '[CURRICULUM] Python, MCP protocol, and open-weight models and practical AI tools.',
+      '[CURRICULUM] Python, the MCP protocol, open-weight models, and practical AI tooling.',
     ],
   },
 ];

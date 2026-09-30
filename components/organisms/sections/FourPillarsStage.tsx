@@ -38,10 +38,10 @@ const PILLARS: Pillar[] = [
     category: 'AI Solutions',
     tagline: 'Pragmatic machine intelligence & automation for real problems.',
     tag: '01 · MACHINE INTELLIGENCE',
-    metric: 'Sub-Second In-Memory Latency',
+    metric: 'Schema-Validated Extraction',
     thesis: 'Why deterministic pipelines outperform generative guesswork.',
     summary:
-      'We design purpose-built intelligence pipelines that automate high-friction operational workflows, parse complex unstructured documents, and power contextual retrieval with zero hallucination.',
+      'We design purpose-built intelligence pipelines that automate high-friction operational workflows, parse complex unstructured documents, and power contextual retrieval with citations attached to every answer.',
     deliverables: [
       'Unstructured invoice, resume, and legal document extraction',
       'Context-aware knowledge base retrieval with verified citations',
@@ -56,14 +56,14 @@ const PILLARS: Pillar[] = [
     n: '02',
     icon: Code2,
     category: 'Custom Software',
-    tagline: 'Modern web platforms engineered for sub-second speeds.',
+    tagline: 'Modern web platforms engineered around measured performance.',
     tag: '02 · WEB & SYSTEMS',
     metric: '100% Client Code Ownership',
     thesis: 'Why a pilot is not a production capability.',
     summary:
       'High-performance web applications, resilient backend APIs, and scalable database architectures built on Next.js 15, React 19, and TypeScript. Zero lock-in, complete code ownership.',
     deliverables: [
-      'Full-stack web applications with sub-second core web vitals',
+      'Full-stack web applications instrumented for Core Web Vitals',
       'Type-safe API microservices and event-driven architectures',
       'Modernized relational and document database pipelines',
     ],
@@ -78,7 +78,7 @@ const PILLARS: Pillar[] = [
     category: 'AR / VR (Spatial)',
     tagline: 'Interactive 3D environments running directly in the browser.',
     tag: '03 · SPATIAL COMPUTING',
-    metric: '60fps In-Browser WebXR',
+    metric: 'Zero-Install Browser WebXR',
     thesis: 'Physical reality meets responsive synthetic spaces.',
     summary:
       'Immersive WebGL and WebXR spaces for product visualization, spatial commerce, and architectural walkthroughs without requiring native app downloads.',

@@ -30,14 +30,14 @@ const STUDIO_PROTOTYPES: CapabilityItem[] = [
     n: '01',
     dimension: 'Everyday Tools',
     title: 'AI Resume Shortlister',
-    subhead: 'Sub-second parsing analyzes git repositories and architectural experience.',
-    copy: 'Filters out ATS keyword stuffers by evaluating production commits, system design patterns, and engineering ownership. Ephemeral memory processing with zero data retention.',
+    subhead: 'Scoring that reads git repositories and architectural experience.',
+    copy: 'Filters out ATS keyword stuffers by evaluating production commits, system design patterns, and engineering ownership. Parsing runs in your browser with zero data retention.',
     href: '/products/resume-shortlister',
     telemetryHeader: 'PARSER ENGINE · CONTEXTUAL SCORING',
-    telemetryBadge: '0.28s LATENCY',
+    telemetryBadge: 'BROWSER-SIDE SCORING',
     telemetryMetrics: [
-      { label: 'Evaluation Speed', value: '0.28s Execution', status: 'ok' },
-      { label: 'Data Retention', value: '0 bytes retained', status: 'ok' },
+      { label: 'Where Scoring Runs', value: 'In Your Browser', status: 'ok' },
+      { label: 'Data Retention', value: 'No Document Data Stored', status: 'ok' },
       { label: 'Keyword Stuffers', value: 'Filtered Out', status: 'alert' },
     ],
   },
@@ -47,13 +47,13 @@ const STUDIO_PROTOTYPES: CapabilityItem[] = [
     dimension: 'Everyday Tools',
     title: 'Course Note-Taker',
     subhead: 'Messy classroom recordings converted to executive KaTeX notes.',
-    copy: 'Ingests raw classroom recordings and slide decks, extracting validated mathematical equations, structured study summaries, and active recall cards in seconds.',
+    copy: 'Ingests raw classroom recordings and slide decks, extracting validated mathematical equations, structured study summaries, and active recall cards you can review and export.',
     href: '/products/course-note-taker',
     telemetryHeader: 'AUDIO TRANSCRIPTION · NLP EXTRACTION',
     telemetryBadge: 'KATEX COMPILED',
     telemetryMetrics: [
-      { label: 'Audio Ingestion', value: '1.2h in 8.4s', status: 'ok' },
-      { label: 'LaTeX Accuracy', value: '99.4% syntax ok', status: 'ok' },
+      { label: 'Audio Ingestion', value: 'Batch Transcript → Reviewed Notes', status: 'ok' },
+      { label: 'Equation Output', value: 'Schema-Validated KaTeX', status: 'ok' },
       { label: 'Scholar Tier', value: 'Academic Access', status: 'ok' },
     ],
   },
@@ -62,14 +62,14 @@ const STUDIO_PROTOTYPES: CapabilityItem[] = [
     n: '03',
     dimension: 'Everyday Tools',
     title: 'WhatsApp & Slack Digest',
-    subhead: 'Synthesizes 500+ unread team messages into 3 bulleted decisions.',
+    subhead: 'Unread team threads condensed into three bulleted decisions.',
     copy: 'Runs locally or in a zero-persistence sandbox, extracting actionable action items, blocker alerts, and assigned deliverables without leaking company conversations.',
     href: '/products/chat-digest',
-    telemetryHeader: 'LOCAL INFERENCE · AGENT PIPELINE',
-    telemetryBadge: 'EPHEMERAL RAM',
+    telemetryHeader: 'BROWSER INFERENCE · AGENT PIPELINE',
+    telemetryBadge: 'NO SERVER-SIDE STORAGE',
     telemetryMetrics: [
-      { label: 'Token Window', value: '128k context', status: 'ok' },
-      { label: 'Action Extraction', value: '100% Deterministic', status: 'ok' },
+      { label: 'Token Window', value: 'Set By Your Gemini Model', status: 'ok' },
+      { label: 'Action Extraction', value: 'SCHEMA-VALIDATED OUTPUT', status: 'ok' },
       { label: 'Telemetry Leak', value: '0 bytes saved', status: 'alert' },
     ],
   },
@@ -84,8 +84,8 @@ const STUDIO_PROTOTYPES: CapabilityItem[] = [
     telemetryHeader: 'WEBRTC REALTIME · VOICE AGENT',
     telemetryBadge: 'LIVE SOCKET',
     telemetryMetrics: [
-      { label: 'Audio Latency', value: '240ms roundtrip', status: 'ok' },
-      { label: 'Code Execution', value: 'Isolated Firecracker VM', status: 'ok' },
+      { label: 'Audio Path', value: 'Browser-Side WebRTC', status: 'ok' },
+      { label: 'Isolation Model', value: 'NO SERVER-SIDE STORAGE', status: 'ok' },
       { label: 'Biased Scoring', value: 'Eliminated', status: 'alert' },
     ],
   },
@@ -112,7 +112,7 @@ export function CapabilityArc() {
             <span className="text-[#0650AD]">Not to raise rounds.</span>
           </h2>
           <p className="text-[var(--pine)]/75 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-            These are not speculative pitch decks. Every prototype below is a functional computational rig engineered in Ghazipur and battle-tested in real operations.
+            These are not speculative pitch decks. Every rig below runs in your browser against your own Gemini key, with no accounts, no database, and nothing retained on our side.
           </p>
         </motion.div>
 

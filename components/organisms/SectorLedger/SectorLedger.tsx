@@ -18,7 +18,7 @@ const LEDGER_ITEMS: LedgerItem[] = [
   {
     n: '01',
     name: 'Document & Workflow Automation',
-    promise: 'Instant extraction of complex invoices, legal agreements, and technical resumes with zero data retention.',
+    promise: 'Structured extraction of complex invoices, legal agreements, and technical resumes with zero data retention.',
     deliverable: 'Workflow AI',
     href: '/services',
   },
@@ -32,14 +32,14 @@ const LEDGER_ITEMS: LedgerItem[] = [
   {
     n: '03',
     name: 'Full-Stack Modern Web Platforms',
-    promise: 'Next.js 15 & React 19 digital systems engineered for sub-second speeds and 100% client code ownership.',
+    promise: 'Next.js 15 & React 19 digital systems built around measured Core Web Vitals and 100% client code ownership.',
     deliverable: 'Modern Web',
     href: '/services',
   },
   {
     n: '04',
     name: 'Spatial Computing & WebXR Simulators',
-    promise: 'Interactive browser-based 3D digital twins and vocational training environments running at 60fps.',
+    promise: 'Interactive browser-based 3D digital twins and vocational training environments with no native app install.',
     deliverable: 'WebXR 3D',
     href: '/services',
   },
