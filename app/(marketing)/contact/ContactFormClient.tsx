@@ -529,7 +529,7 @@ export function ContactFormClient() {
             <span>
               Your information is kept strictly confidential and never shared. Read our{' '}
               <Link
-                href="/privacy"
+                href="/privacy-policy"
                 className="font-medium text-ink-primary underline underline-offset-2 hover:text-[var(--mint-ink)] transition-colors"
               >
                 privacy policy
@@ -539,6 +539,29 @@ export function ContactFormClient() {
           </div>
         </form>
       )}
+    </div>
+  );
+}
+
+/**
+ * Server-rendered stand-in for the streaming form.
+ *
+ * Reserves roughly the form's height so the streamed swap does not shift the
+ * layout, and uses the same surface tokens so there is no visual flash.
+ */
+export function ContactFormFallback() {
+  const bar = 'rounded-lg bg-[rgba(4,10,92,0.06)] dark:bg-white/10';
+
+  return (
+    <div aria-busy="true" aria-live="polite" className="space-y-5">
+      <div className="grid grid-cols-2 gap-3">
+        <div className={`h-11 ${bar}`} />
+        <div className={`h-11 ${bar}`} />
+      </div>
+      <div className={`h-11 ${bar}`} />
+      <div className={`h-32 ${bar}`} />
+      <div className={`h-12 w-full rounded-xl ${bar}`} />
+      <span className="sr-only">Loading the contact form.</span>
     </div>
   );
 }

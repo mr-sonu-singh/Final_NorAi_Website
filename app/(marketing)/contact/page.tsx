@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { Container } from '@/components/foundation/Container';
-import { ContactFormClient } from './ContactFormClient';
+import { ContactFormClient, ContactFormFallback } from './ContactFormClient';
 import { Mail, MapPin, Globe, ShieldCheck, Clock } from 'lucide-react';
 import { buildMetadata, getWebSiteJsonLd, JsonLd } from '@/lib/seo';
 import { SubpageHeroAtmosphere } from '@/components/organisms';
 
 export const metadata: Metadata = buildMetadata({
   path: '/contact',
-  title: 'Contact Engineering & Studio — NorAI Technologies',
+  title: 'Contact the Studio',
   description:
-    'Contact the founding engineering practice of Nor AI Technologies Private Limited in Ghazipur, Uttar Pradesh. Real engineer response within one business day.',
+    'Talk to the founding engineers of NorAI Technologies Private Limited in Ghazipur, Uttar Pradesh. Enquiries go to a person, not a queue.',
 });
 
 export default function ContactPage() {
@@ -160,7 +160,15 @@ export default function ContactPage() {
             {/* Right Column: Clean Contact Form */}
             <div className="lg:col-span-7">
               <div className="rounded-[22px] border border-[var(--line)] dark:border-white/10 bg-[#fffdf7] dark:bg-[#060919] p-6 sm:p-8 shadow-xs">
-                <ContactFormClient />
+                {/* The form reads ?service= via useSearchParams. Without a
+                    Suspense boundary that hook deopts the entire route to
+                    client-side rendering, so the page ships as an empty shell
+                    with no server-rendered heading or copy. The boundary keeps
+                    the rest of the page server-rendered and streams only the
+                    form. */}
+                <Suspense fallback={<ContactFormFallback />}>
+                  <ContactFormClient />
+                </Suspense>
               </div>
             </div>
 

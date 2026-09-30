@@ -67,10 +67,10 @@ interface ProductInteractiveViewProps {
 }
 
 export function ProductInteractiveView({ product, slug }: ProductInteractiveViewProps) {
-  const isResumeShortlister = slug === 'resume-shortlister' || slug === 'ai-resume-shortlister';
-  const isCourseNoteTaker = slug === 'course-note-taker' || slug === 'ai-course-note-taker';
-  const isChatDigest = slug === 'chat-digest' || slug === 'community-chat-digest';
-  const isSmartDainikNews = slug === 'smart-dainik-news' || slug === 'regional-dainik-news';
+  const isResumeShortlister = slug === 'resume-shortlister';
+  const isCourseNoteTaker = slug === 'course-note-taker';
+  const isChatDigest = slug === 'chat-digest';
+  const isSmartDainikNews = slug === 'smart-dainik-news';
   const isToolLive = isResumeShortlister || isCourseNoteTaker || isChatDigest || isSmartDainikNews;
 
   const [viewMode, setViewMode] = useState<'workbench' | 'specs'>(
