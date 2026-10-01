@@ -2,7 +2,6 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { Container } from '@/components/foundation/Container';
 import { Link } from '@/components/atoms/Link';
-import { Button } from '@/components/atoms/Button';
 import { MagneticButton } from '@/components/atoms/MagneticButton';
 import {
   ArrowRight,
@@ -340,30 +339,24 @@ x-gemini-api-key: <your Google Gemini API key>`}
                     </p>
                   </div>
 
-                  <div className="flex flex-wrap items-center gap-3">
-                    <Link href="/contact?service=dedicated-vpc">
-                      <MagneticButton strength={12}>
-                        <Button
-                          variant="primary"
-                          size="md"
-                          className="justify-between group shadow-accent hover:shadow-hover hover:-translate-y-0.5 active:scale-[0.98] transition-all cursor-pointer btn-tactile pl-5 pr-2 py-2 text-xs"
-                        >
-                          <span className="font-semibold">Talk to Infrastructure Engineers</span>
-                          <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center ml-2.5">
-                            <ArrowRight className="w-3.5 h-3.5 text-white" />
-                          </span>
-                        </Button>
-                      </MagneticButton>
-                    </Link>
-
-                    <Link href="/services">
-                      <Button
-                        variant="secondary"
-                        size="md"
-                        className="hover:-translate-y-0.5 active:scale-[0.98] transition-all cursor-pointer text-xs"
+                  <div className="flex flex-wrap items-center gap-3 gap-x-6">
+                    <MagneticButton strength={12}>
+                      <Link
+                        href="/contact?service=dedicated-vpc"
+                        className="group inline-flex items-center justify-between bg-[var(--bg-dark)] text-[var(--bone)] shadow-accent hover:shadow-hover hover:bg-[var(--forest)] hover:-translate-y-0.5 active:scale-[0.98] transition-all cursor-pointer btn-tactile pl-5 pr-2 py-2.5 text-xs rounded-lg font-medium"
                       >
-                        Explore 4 Core Practices
-                      </Button>
+                        <span className="font-semibold">Talk to Infrastructure Engineers</span>
+                        <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center ml-2.5">
+                          <ArrowRight className="w-3.5 h-3.5 text-white" />
+                        </span>
+                      </Link>
+                    </MagneticButton>
+
+                    <Link
+                      href="/services"
+                      className="inline-flex items-center justify-center bg-surface-panel border border-border-strong text-text-primary hover:border-border-highlight hover:bg-surface-hover hover:-translate-y-0.5 active:scale-[0.98] transition-all cursor-pointer text-xs rounded-lg px-5 py-2.5 font-medium"
+                    >
+                      Explore 4 Core Practices
                     </Link>
                   </div>
                 </div>
