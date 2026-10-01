@@ -176,13 +176,20 @@ export function ToolShell({
 
       {/* =========================================================================
           2. MAIN WORKBENCH BODY (Edge-to-Edge Studio Stage)
+          A <div>, not a <main>: the page's single main landmark is the
+          `<main id="main-content">` the marketing layout renders, and `<main>`
+          may not be nested.
           ========================================================================= */}
-      <main className="w-full">{children}</main>
+      <div className="w-full">{children}</div>
 
       {/* =========================================================================
-          3. FOOTER TELEMETRY & TACTILE ACTION BAR
+          3. TELEMETRY & TACTILE ACTION BAR
+          A <div>, not a <footer>: the document already has exactly one
+          contentinfo landmark (the site footer), and a second <footer> here
+          made `footer` ambiguous for landmark navigation and for anything
+          that counts footers on the page.
           ========================================================================= */}
-      <footer className="flex flex-wrap items-center justify-between gap-3 px-5 sm:px-6 py-3 bg-canvas-recessed/50 border-t border-[rgba(13,37,61,0.08)] text-xs text-ink-secondary font-mono rounded-b-2xl">
+      <div className="flex flex-wrap items-center justify-between gap-3 px-5 sm:px-6 py-3 bg-canvas-recessed/50 border-t border-[rgba(13,37,61,0.08)] text-xs text-ink-secondary font-mono rounded-b-2xl">
         {/* Left: Telemetry & Memory Guarantees */}
         <div className="flex flex-wrap items-center gap-4">
           <div className="flex items-center gap-1.5">
@@ -246,7 +253,7 @@ export function ToolShell({
             )}
           </Button>
         </div>
-      </footer>
+      </div>
     </div>
   );
 }

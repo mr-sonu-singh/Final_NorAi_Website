@@ -44,9 +44,11 @@ export function BlogPostTemplate({
             <div className="prose-editorial">{children}</div>
 
             {footer && (
-              <footer className="mt-16 border-t border-[rgba(13,37,61,0.08)] pt-10">
+              /* A <div>, not a <footer>: the document already has exactly one
+                 footer, and a second one made `locator('footer')` ambiguous. */
+              <div className="mt-16 border-t border-[rgba(13,37,61,0.08)] pt-10">
                 {footer}
-              </footer>
+              </div>
             )}
           </div>
 
