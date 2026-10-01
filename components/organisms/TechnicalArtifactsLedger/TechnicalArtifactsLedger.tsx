@@ -269,7 +269,7 @@ export function TechnicalArtifactsLedger() {
               type="button"
               onClick={handleCopy}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 border border-white/10 text-xs font-mono text-white transition-all active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terra-400"
-              aria-label="Copy code to clipboard"
+              aria-label={copied ? 'Copied to clipboard' : 'Copy payload to clipboard'}
             >
               {copied ? (
                 <>

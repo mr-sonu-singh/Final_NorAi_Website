@@ -200,7 +200,7 @@ export function ApiReferenceMatrix() {
                     {ep.path}
                   </span>
                 </div>
-                <h4 className="font-display text-lg text-ink-primary font-normal">{ep.title}</h4>
+                <h3 className="font-display text-lg text-ink-primary font-normal">{ep.title}</h3>
                 <p className="text-xs text-ink-secondary line-clamp-2 mt-1">{ep.description}</p>
               </button>
             );

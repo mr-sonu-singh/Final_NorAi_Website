@@ -69,9 +69,9 @@ export function EnterpriseTopologyViewer({ className }: { className?: string }) 
             <Lock className="w-3.5 h-3.5" />
             <span>Zero-Egress Private Cloud Topology</span>
           </div>
-          <h4 className="text-xl sm:text-2xl font-display font-normal text-text-primary">
+          <h3 className="text-xl sm:text-2xl font-display font-normal text-text-primary">
             Enterprise Architecture &amp; Hardware Isolation
-          </h4>
+          </h3>
         </div>
 
         <div className="flex items-center gap-2 text-xs font-mono text-text-secondary">

@@ -51,7 +51,7 @@ export default function ContactPage() {
                 01
               </span>
               <div>
-                <h4 className="font-display text-sm font-bold text-[var(--pine)] dark:text-white">Define Requirements</h4>
+                <h2 className="font-display text-sm font-bold text-[var(--pine)] dark:text-white">Define Requirements</h2>
                 <p className="text-xs text-[var(--pine)]/70 dark:text-white/70 mt-0.5">Share your workflow, latency goals, or cohort details.</p>
               </div>
             </div>
@@ -61,7 +61,7 @@ export default function ContactPage() {
                 02
               </span>
               <div>
-                <h4 className="font-display text-sm font-bold text-[var(--pine)] dark:text-white">Architecture Review</h4>
+                <h2 className="font-display text-sm font-bold text-[var(--pine)] dark:text-white">Architecture Review</h2>
                 <p className="text-xs text-[var(--pine)]/70 dark:text-white/70 mt-0.5">We review feasibility and propose a functional blueprint.</p>
               </div>
             </div>
@@ -71,7 +71,7 @@ export default function ContactPage() {
                 03
               </span>
               <div>
-                <h4 className="font-display text-sm font-bold text-[var(--pine)] dark:text-white">Sprint Execution</h4>
+                <h2 className="font-display text-sm font-bold text-[var(--pine)] dark:text-white">Sprint Execution</h2>
                 <p className="text-xs text-[var(--pine)]/70 dark:text-white/70 mt-0.5">5-day working prototype or live in-person workshop.</p>
               </div>
             </div>

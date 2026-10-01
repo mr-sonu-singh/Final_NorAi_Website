@@ -98,7 +98,7 @@ export function InteractiveCircuitTrace({ className }: { className?: string }) {
               </div>
 
               {/* Title and Subtitle */}
-              <h4 className="text-lg font-bold text-text-primary">{stage.title}</h4>
+              <h3 className="text-lg font-bold text-text-primary">{stage.title}</h3>
               <p className="text-xs font-mono text-text-secondary mt-0.5 mb-4">{stage.subtitle}</p>
 
               {/* Specs List */}

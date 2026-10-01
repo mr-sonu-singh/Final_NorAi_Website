@@ -295,9 +295,9 @@ export function McpSchemaInspector({ className }: { className?: string }) {
             <span className="text-xs font-mono uppercase tracking-wider text-text-muted font-medium">
               Illustrative Contract · Built Per Engagement
             </span>
-            <h4 className="text-sm font-bold text-text-primary font-mono">
+            <h3 className="text-sm font-bold text-text-primary font-mono">
               Tool Schema &amp; Strict Zod Type Contract
-            </h4>
+            </h3>
           </div>
         </div>
 

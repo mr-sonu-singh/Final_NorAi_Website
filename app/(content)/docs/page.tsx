@@ -163,7 +163,7 @@ export default function DocsPage() {
                 </p>
                 <Link
                   href="/products"
-                  className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-accent-primary hover:underline pt-1"
+                  className="inline-flex items-center gap-1.5 py-1.5 text-xs font-mono font-semibold text-accent-primary hover:underline"
                 >
                   <span>Open the live tools</span>
                   <ExternalLink className="w-3 h-3" />

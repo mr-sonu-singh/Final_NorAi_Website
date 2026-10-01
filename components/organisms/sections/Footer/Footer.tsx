@@ -127,7 +127,7 @@ export function Footer({
                 <Mail className="w-3.5 h-3.5 text-[#38BDF8] shrink-0" />
                 <a
                   href="mailto:noraitechnologies@gmail.com"
-                  className="text-white hover:text-[#D4C5F9] transition-colors break-all"
+                  className="inline-block py-1 text-white hover:text-[#D4C5F9] transition-colors break-all"
                 >
                   noraitechnologies@gmail.com
                 </a>

@@ -312,14 +312,13 @@ export function ProductsIndexClient() {
                               >
                                 {tool.number}
                               </span>
-                              <h3
+                              <h2
                                 className={cn(
                                   'font-display text-base sm:text-lg font-bold tracking-tight',
                                   isSelected ? 'text-white' : 'text-[var(--pine)] dark:text-white'
                                 )}
-                              >
-                                {tool.title}
-                              </h3>
+                              >{tool.title}
+                              </h2>
                             </div>
                             <span className="text-[11px] font-mono tracking-wide text-[var(--pine)]/60 dark:text-white/60">
                               {tool.category}

@@ -80,9 +80,9 @@ export function DistrictImpactRadar() {
     <div className="rounded-[22px] bg-[#0D1226] text-[#f5f5f0] border border-[var(--line)] p-6 sm:p-10 shadow-xl overflow-hidden relative">
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-[var(--pine-20)] pb-8">
         <div className="space-y-2 text-left">
-          <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#f5f5f0] tracking-tight">
+          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#f5f5f0] tracking-tight">
             A Vision to Upskill Youth & Regional Communities.
-          </h3>
+          </h2>
           <p className="text-sm sm:text-base text-[var(--bone-70)] max-w-2xl font-normal">
             We reject the idea that artificial intelligence should be locked in elite metropolitan enclaves.
             NorAI is committed to an open educational vision: practical workshops, localized open-weight tooling, and hands-on developer training for collegiate talent and ambitious youth across Uttar Pradesh.
@@ -172,9 +172,9 @@ export function DistrictImpactRadar() {
           <div className="space-y-4">
             <div className="flex items-center justify-between border-b border-[var(--line)] pb-3">
               <div>
-                <h4 className="font-display text-2xl font-extrabold text-[#f5f5f0]">
+                <h3 className="font-display text-2xl font-extrabold text-[#f5f5f0]">
                   {selectedModule.name}
-                </h4>
+                </h3>
               </div>
               <span className="font-mono text-xs text-[var(--bone-70)]">
                 {selectedModule.metrics}
