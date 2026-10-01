@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useId } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import { cn } from '@/lib/utils';
+import { applyDocumentLanguage } from '@/hooks/useLanguage';
 import { BilingualToggleProps, SupportedLanguage } from './BilingualToggle.types';
 
 const LANGUAGES: Array<{ id: SupportedLanguage; label: string; nativeLabel: string }> = [
@@ -27,6 +28,9 @@ export function BilingualToggle({
         const stored = localStorage.getItem('norai_language') as SupportedLanguage | null;
         if (stored === 'en' || stored === 'hi') {
           setInternalLang(stored);
+          // A stored preference has to be reflected on first paint, not only
+          // after the visitor touches the toggle.
+          applyDocumentLanguage(stored);
         }
       } catch {
         // Fallback silently
@@ -42,6 +46,10 @@ export function BilingualToggle({
     if (!currentLang) {
       setInternalLang(lang);
     }
+
+    // Every visible string just switched, so the document language must follow —
+    // otherwise a screen reader pronounces the new script with the old rules.
+    applyDocumentLanguage(lang);
 
     if (typeof window !== 'undefined') {
       try {

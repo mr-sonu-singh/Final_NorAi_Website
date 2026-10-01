@@ -9,7 +9,7 @@ import {
   ClosingDispatch,
   StudioManifesto,
 } from '@/components/organisms';
-import { buildMetadata, getOrganizationJsonLd, getLocalBusinessJsonLd, JsonLd } from '@/lib/seo';
+import { buildMetadata, getLocalBusinessJsonLd, JsonLd } from '@/lib/seo';
 
 export const metadata: Metadata = buildMetadata({
   path: '/',
@@ -18,10 +18,14 @@ export const metadata: Metadata = buildMetadata({
     'Indian AI engineering practice in Ghazipur, Uttar Pradesh. Browser tools, custom web software, spatial computing, and civic AI-literacy workshops.',
 });
 
+/**
+ * Only the homepage-local entity is declared here. The root layout already
+ * emits Organization, so repeating it would put the same @type on one page
+ * twice; this page adds the LocalBusiness that describes the studio itself.
+ */
 export default function HomePage() {
   return (
     <div className="min-h-screen font-sans bg-[#f5f5f0] text-[var(--pine)] selection:bg-[var(--mint)] selection:text-[var(--pine)]">
-      <JsonLd schema={getOrganizationJsonLd()} />
       <JsonLd schema={getLocalBusinessJsonLd()} />
 
       {/* BEAT 1: HERO CHAMBER WITH INTERACTIVE VECTOR LATTICE */}

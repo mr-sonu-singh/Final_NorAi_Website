@@ -238,3 +238,61 @@ export function getBreadcrumbListJsonLd(crumbs: BreadcrumbItem[]) {
     })),
   };
 }
+
+/**
+ * BlogPosting Schema for /blog/[slug].
+ *
+ * Everything here is real data carried by the post itself. Deliberately absent:
+ * ratings, review counts, word counts and images — the posts have none of those,
+ * and an invented value is worse than a missing one.
+ */
+export function getBlogPostingJsonLd(post: {
+  slug: string;
+  title: string;
+  excerpt: string;
+  author: string;
+  authorRole: string;
+  date: string;
+  category: string;
+  tags: string[];
+}) {
+  const url = `${siteConfig.url}/blog/${post.slug}`;
+
+  // `date` is authored for display ("January 15, 2026"); schema.org wants ISO
+  // 8601. These posts are static and carry no separate revision date, so
+  // dateModified mirrors datePublished rather than inventing one.
+  const parsed = new Date(post.date);
+  const isoDate = Number.isNaN(parsed.getTime())
+    ? undefined
+    : parsed.toISOString().slice(0, 10);
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    '@id': `${url}#blogposting`,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': url,
+    },
+    url,
+    headline: post.title,
+    description: post.excerpt,
+    articleSection: post.category,
+    keywords: post.tags.join(', '),
+    inLanguage: 'en',
+    ...(isoDate ? { datePublished: isoDate, dateModified: isoDate } : {}),
+    author: {
+      '@type': 'Person',
+      name: post.author,
+      jobTitle: post.authorRole,
+      worksFor: {
+        '@type': 'Organization',
+        name: siteConfig.name,
+        url: siteConfig.url,
+      },
+    },
+    publisher: {
+      '@id': `${siteConfig.url}/#organization`,
+    },
+  };
+}

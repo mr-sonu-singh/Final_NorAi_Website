@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { Container } from '@/components/foundation/Container';
 import { ContactFormClient, ContactFormFallback } from './ContactFormClient';
 import { Mail, MapPin, Globe, ShieldCheck, Clock } from 'lucide-react';
-import { buildMetadata, getWebSiteJsonLd, JsonLd } from '@/lib/seo';
+import { buildMetadata } from '@/lib/seo';
 import { SubpageHeroAtmosphere } from '@/components/organisms';
 
 export const metadata: Metadata = buildMetadata({
@@ -16,7 +16,8 @@ export const metadata: Metadata = buildMetadata({
 export default function ContactPage() {
   return (
     <div className="min-h-screen font-sans bg-[#f5f5f0] dark:bg-[#060919] text-[var(--pine)] dark:text-[#F4F6FC] selection:bg-[#B278E3]/30 selection:text-[#060919]">
-      <JsonLd schema={getWebSiteJsonLd()} />
+      {/* No page-level JSON-LD: the root layout already emits the site-wide
+          Organization and WebSite entities for every route. */}
 
       {/* CINEMATIC HERO CHAMBER WITH DIRECT DESK BACKDROP */}
       <section className="relative min-h-[60vh] lg:min-h-[66vh] flex flex-col justify-center overflow-hidden bg-[#060919] text-[#F4F6FC] border-b border-white/10 pt-28 pb-16 sm:pt-36 sm:pb-20">

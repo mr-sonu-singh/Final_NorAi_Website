@@ -3,6 +3,28 @@
 import { useState, useEffect, useCallback } from 'react';
 import { TRANSLATIONS, Language } from '@/config/translations';
 
+/**
+ * BCP-47 tag each UI language must declare on <html lang>. A screen reader picks
+ * its pronunciation and its voice from this attribute, so it has to follow the
+ * interface language — Devanagari read with English rules is unintelligible.
+ */
+const HTML_LANG: Record<Language, string> = {
+  en: 'en',
+  hi: 'hi',
+};
+
+/**
+ * Single writer for <html lang>. Both owners of language state call this: the
+ * hook (which mirrors the stored preference) and the toggle (which owns the
+ * uncontrolled selection in the header).
+ */
+export function applyDocumentLanguage(lang: Language) {
+  if (typeof document === 'undefined') return;
+  if (document.documentElement.lang !== HTML_LANG[lang]) {
+    document.documentElement.lang = HTML_LANG[lang];
+  }
+}
+
 export function useLanguage() {
   const [lang, setLang] = useState<Language>('en');
 
@@ -28,6 +50,12 @@ export function useLanguage() {
       window.removeEventListener('norai:language-change', handleLanguageChange);
     };
   }, []);
+
+  // Runs on mount (covering a stored preference) and on every change, from
+  // either the toggle or another subscriber of the language-change event.
+  useEffect(() => {
+    applyDocumentLanguage(lang);
+  }, [lang]);
 
   const setLanguage = useCallback((newLang: Language) => {
     setLang(newLang);

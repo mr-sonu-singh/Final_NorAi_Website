@@ -155,7 +155,14 @@ export function BlogIndexClient({ posts }: BlogIndexClientProps) {
             {/* Search Input */}
             <div className="relative w-full md:w-72">
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--pine)]/40 pointer-events-none" />
+              {/* The placeholder disappears as soon as the field has a value, so
+                  it is not a name. `sr-only` keeps the real label in the
+                  accessibility tree without adding visual noise. */}
+              <label htmlFor="blog-search" className="sr-only">
+                Search articles
+              </label>
               <input
+                id="blog-search"
                 ref={searchInputRef}
                 type="text"
                 value={searchQuery}

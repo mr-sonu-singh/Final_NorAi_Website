@@ -18,7 +18,11 @@ export default function ServicesPage() {
     <>
       <JsonLd schema={getServiceJsonLd()} />
 
-      <main id="main-content" className="min-h-screen font-sans bg-[#f5f5f0] dark:bg-[#060919] text-[var(--pine)] dark:text-[#F4F6FC] selection:bg-[#B278E3]/30 selection:text-[#060919]">
+      {/* The marketing layout already owns the single <main id="main-content">
+          landmark that the skip link targets, so this page contributes a plain
+          wrapper — a second <main> would nest the landmarks and make the
+          fragment reference ambiguous. */}
+      <div className="min-h-screen font-sans bg-[#f5f5f0] dark:bg-[#060919] text-[var(--pine)] dark:text-[#F4F6FC] selection:bg-[#B278E3]/30 selection:text-[#060919]">
         {/* CINEMATIC HERO CHAMBER WITH COSMIC OBSERVATORY BACKDROP */}
         <section className="relative min-h-[65vh] lg:min-h-[72vh] flex flex-col justify-center overflow-hidden bg-[#060919] text-[#F4F6FC] border-b border-white/10 pt-28 pb-16 sm:pt-36 sm:pb-24">
           <SubpageHeroAtmosphere
@@ -80,7 +84,7 @@ export default function ServicesPage() {
             <ServicesEngagementTimeline />
           </Container>
         </section>
-      </main>
+      </div>
     </>
   );
 }

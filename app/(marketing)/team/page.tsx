@@ -5,7 +5,7 @@ import { Link } from '@/components/atoms/Link';
 import { ArrowRight } from 'lucide-react';
 import { SwissStudioRoster } from '@/components/organisms';
 import { SubpageHeroAtmosphere } from '@/components/organisms';
-import { buildMetadata, getWebSiteJsonLd, JsonLd } from '@/lib/seo';
+import { buildMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = buildMetadata({
   path: '/team',
@@ -40,9 +40,14 @@ const RITUALS = [
 export default function TeamPage() {
   return (
     <>
-      <JsonLd schema={getWebSiteJsonLd()} />
-
-      <main id="main-content" className="min-h-screen font-sans bg-[#f5f5f0] dark:bg-[#060919] text-[var(--pine)] dark:text-[#F4F6FC] selection:bg-[#B278E3]/30 selection:text-[#060919]">
+      {/* No page-level JSON-LD here: the root layout already emits the site-wide
+          Organization and WebSite entities, and repeating a @type on one page
+          makes the graph contradictory. This page adds nothing of its own. */}
+      {/* The marketing layout already owns the single <main id="main-content">
+          landmark that the skip link targets, so this page contributes a plain
+          wrapper — a second <main> would nest the landmarks and make the
+          fragment reference ambiguous. */}
+      <div className="min-h-screen font-sans bg-[#f5f5f0] dark:bg-[#060919] text-[var(--pine)] dark:text-[#F4F6FC] selection:bg-[#B278E3]/30 selection:text-[#060919]">
         {/* CINEMATIC HERO CHAMBER WITH ATELIER BACKDROP */}
         <section className="relative min-h-[65vh] lg:min-h-[72vh] flex flex-col justify-center overflow-hidden bg-[#060919] text-[#F4F6FC] border-b border-white/10 pt-28 pb-16 sm:pt-36 sm:pb-24">
           <SubpageHeroAtmosphere
@@ -126,7 +131,7 @@ export default function TeamPage() {
             </div>
           </Container>
         </section>
-      </main>
+      </div>
     </>
   );
 }
