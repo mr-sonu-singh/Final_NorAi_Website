@@ -83,3 +83,9 @@ Desktop.ini
 
 # Misc
 *.orig
+
+# Lighthouse spawns a throwaway Chrome profile in $TMPDIR. When TMPDIR holds a
+# Windows path (WSL interop), it lands in the repo root as a literal
+# "C:\Users\...\lighthouse.NNNNNNN" directory tree instead of a temp dir.
+C:\Users\*
+.lighthouse.*
