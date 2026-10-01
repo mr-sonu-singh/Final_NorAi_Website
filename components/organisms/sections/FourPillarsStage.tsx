@@ -258,7 +258,7 @@ export function FourPillarsStage() {
                     href="/services"
                     className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D4C5F9] text-[#03091E] font-semibold text-sm hover:bg-[#E4CEF7] transition-all duration-160 ease-out shadow-md group active:scale-[0.98]"
                   >
-                    <span>Explore {activePillar.category} Solutions</span>
+                    <span>Explore {activePillar.category}</span>
                     <ArrowRight className="w-4 h-4 text-[#03091E] transition-transform duration-200 group-hover:translate-x-1" />
                   </Link>
                 </div>
