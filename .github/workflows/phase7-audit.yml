@@ -2,13 +2,21 @@ name: Phase 7 Audit & Hardening CI
 
 on:
   push:
-    branches: [main, master]
+    branches: [main, master, bunnyV2]
   pull_request:
-    branches: [main, master]
+    branches: [main, master, bunnyV2]
+
+# A newer push to the same branch makes the in-flight run obsolete. Cancelling
+# it is what keeps a 25-route Lighthouse sweep plus the e2e suite affordable.
+concurrency:
+  group: phase7-audit-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   audit:
+    name: Lint, Types, Build & Lighthouse
     runs-on: ubuntu-latest
+    timeout-minutes: 90
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -28,8 +36,53 @@ jobs:
       - name: Run TypeScript Verification
         run: npx tsc --noEmit
 
+      # Lighthouse CI audits the production build. `next build` has to run before
+      # `lhci collect` because the config boots the app with `next start`.
       - name: Run Production Build
         run: npm run build
 
       - name: Run Lighthouse CI Audit
-        run: npx @lhci/cli autorun --config=.lighthouserc.json || echo "Lighthouse CI audit completed."
+        # `@lhci/cli` is deliberately not a devDependency: package-lock.json does
+        # not carry it, so `npm ci` would refuse to install. The pinned version
+        # is installed here instead, and `npx` caches it per runner.
+        run: npx --yes @lhci/cli@0.14.0 autorun --config=.lighthouserc.json
+
+  e2e:
+    name: Playwright E2E (chromium)
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Install Chromium & System Dependencies
+        run: npx playwright install --with-deps chromium
+
+      # `playwright.config.ts` runs `webServer.command: npm run start` whenever
+      # CI is set, and `reuseExistingServer: false` in that mode. So the job owns
+      # the production server and a build has to exist before the tests start.
+      - name: Run Production Build
+        run: npm run build
+
+      - name: Run Playwright E2E Tests
+        run: npx playwright test --project=chromium
+        env:
+          CI: true
+
+      - name: Upload Playwright Report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-chromium
+          path: playwright-report/
+          retention-days: 7
+          if-no-files-found: ignore
