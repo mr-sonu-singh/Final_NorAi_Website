@@ -112,7 +112,14 @@ export function DistrictImpactRadar() {
         <div className="lg:col-span-6 space-y-4 text-left">
           <div className="relative">
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--bone-70)]" />
+            {/* The placeholder disappears as soon as the field has a value, so
+                it is not a name. `sr-only` keeps the real label in the
+                accessibility tree without adding visual noise. */}
+            <label htmlFor="mission-track-search" className="sr-only">
+              Search curriculum tracks or focus areas
+            </label>
             <input
+              id="mission-track-search"
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}

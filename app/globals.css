@@ -589,6 +589,26 @@ kbd {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
+  /* Every scroll reveal writes its parked state as an *inline* `opacity` and
+     `transform`, and the server has no way to know the visitor's preference, so
+     that state is already in the HTML before hydration. A reveal that never runs
+     — no scroll, no IntersectionObserver callback, no hydration pass to undo it —
+     then leaves its content invisible at opacity 0: the headline, the mission
+     statement and the pillar cards simply do not exist for a motion-averse
+     visitor. Discarding the inline values is the only fix that works, because
+     there is no client render in which a component could choose otherwise.
+
+     The attribute selector is deliberate. A class-driven `opacity-40` on an
+     ambient glow is a design value and is left alone; only Motion's inline
+     output is reset, and it resets to the element's final visual state — full
+     opacity, no offset. */
+  [style*='opacity'] {
+    opacity: 1 !important;
+  }
+  [style*='transform'] {
+    transform: none !important;
+  }
 }
 
 /* ==========================================================================
@@ -1111,14 +1131,19 @@ html.lenis body {
   font-weight: 600;
 }
 
-.prose-editorial a {
+/* Prose links take the accent ink. A filled control is not a prose link: its
+   label has to hold contrast against its own fill, and the accent ink is
+   measured against the page canvas, not against a terracotta chip. Such a
+   control opts out with `prose-cta`, which restores the undecorated label the
+   fill's own foreground expects. */
+.prose-editorial a:not(.prose-cta) {
   color: var(--accent-primary);
   text-decoration: underline;
   text-underline-offset: 3px;
   transition: color 0.15s ease;
 }
 
-.prose-editorial a:hover {
+.prose-editorial a:not(.prose-cta):hover {
   color: var(--accent-hover);
 }
 
@@ -2040,3 +2065,20 @@ html.dark .bilingual-toggle-btn[aria-checked="false"]:hover {
 .dark .text-gold-600 { color: #E8C766; }
 .dark .border-gold-300 { border-color: #6B5410; }
 .dark .bg-gold-100 { background-color: #241D0B; }
+
+/* Alpha-modified utilities, dark theme. `bg-sage-100/70` and `text-accent-500/40`
+   compile to `color-mix(... / 0.7)` and `color-mix(... / 0.4)`, so the solid
+   dark-step rules above cannot reach them: a different class name is emitted, and
+   the frozen light value is what gets mixed. In dark mode that left a near-white
+   sage wash under light text, and a 40%-strength azure numeral on the obsidian
+   canvas — 1.46:1 and 1.47:1. Both are re-declared here at their own alpha so
+   each keeps its designed weight and clears its threshold:
+   sage chip  -> 9.89:1 (was 1.46:1), numeral -> 4.20:1 (was 1.47:1). */
+.dark .bg-sage-100\/70 { background-color: rgba(22, 41, 31, 0.7); }
+.dark .text-accent-500\/40 { color: #3A7A9E; }
+
+/* The same ghosted numeral on the light canvas: 40% of the accent measures only
+   1.77:1 against the porcelain surface, under the 3:1 floor that 30px bold text
+   needs. 80% of the identical accent measures 3.42:1 and still reads as a lighter
+   step than the heading beside it. */
+.text-accent-500\/40 { color: rgba(11, 110, 158, 0.8); }
