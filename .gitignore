@@ -88,4 +88,3 @@ Desktop.ini
 # Windows path (WSL interop), it lands in the repo root as a literal
 # "C:\Users\...\lighthouse.NNNNNNN" directory tree instead of a temp dir.
 C:\Users\*
-.lighthouse.*
