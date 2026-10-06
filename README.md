@@ -131,12 +131,15 @@ Key project context, design guidelines, and technical references are documented 
 
 - [`PRODUCT.md`](PRODUCT.md) — Product mission, the 4 flagship tools, enterprise services, and core values.
 - [`DESIGN.md`](DESIGN.md) — "Parchment & Terracotta" design ethos, typography system, and CSS tokens reference.
+- [`DEPLOYMENT.md`](DEPLOYMENT.md) — Complete VPS deployment mental model, SSH security topology, rollback mechanics, and operations manual.
 - [`AGENTS.md`](AGENTS.md) (mirrored to `CLAUDE.md` and `GEMINI.md`) — Tech stack, directory architecture, key conventions, and developer guidelines.
 - [`project_progress_context.md`](project_progress_context.md) — Complete phase roadmap and rebuild execution history.
 
 ---
 
 ## 🚢 Deployment
+
+Detailed architecture, security model, and troubleshooting flowcharts are in [`DEPLOYMENT.md`](DEPLOYMENT.md).
 
 Production is a self-hosted **VPS** (Hostinger, Ubuntu) serving `norai.tech`, with
 nginx in front of a pm2-managed `next start` process.
