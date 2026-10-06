@@ -152,7 +152,21 @@ commit, rebuilds, restarts, and fails the run. A tracked copy of the script live
 [`scripts/deploy-vps.sh`](scripts/deploy-vps.sh).
 
 Required repository secrets: `VPS_HOST`, `VPS_USER`, `VPS_SSH_PORT`, `VPS_SSH_KEY`.
-The server pulls this repository with a read-only **deploy key**.
+`VPS_SSH_KEY` is the **private** key, not the `.pub` file. The server pulls this
+repository with a read-only **deploy key**.
+
+If Actions is unavailable, or you simply want to ship without waiting on CI, run the
+identical script straight from a laptop:
+
+```bash
+bash scripts/deploy-now.sh
+```
+
+It reuses the same server-side script, so behaviour matches. It expects
+`~/.ssh/norai_actions_deploy`; override with `DEPLOY_KEY=/path/to/key`.
+
+Note that git `post-push` hooks do not fire in every environment, so this is invoked
+explicitly rather than hooked to `git push`.
 
 `mr-sonu-singh/Final_NorAi_Website` is kept as a one-way mirror for the partner's
 reference. It is not a deploy source.
