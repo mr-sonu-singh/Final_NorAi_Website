@@ -138,7 +138,21 @@ Key project context, design guidelines, and technical references are documented 
 
 ## 🚢 Deployment
 
-This platform is configured for continuous zero-config deployment on **Vercel**:
+Production is a self-hosted **VPS** (Hostinger, Ubuntu) serving `norai.tech`, with
+nginx in front of a pm2-managed `next start` process.
 
-1. Push changes to `main`.
-2. Vercel automatically builds the production bundle with Edge runtime and image optimization.
+Every push to `main` runs [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml):
+
+1. `preflight` typechecks the tree.
+2. `deploy` SSHes to the server and runs `/var/www/official-website/deploy.sh`.
+
+The server-side script fetches `origin/main`, runs `npm ci` and `next build`, restarts
+pm2, then polls the app for up to 60s. If it never returns 200 it resets to the previous
+commit, rebuilds, restarts, and fails the run. A tracked copy of the script lives at
+[`scripts/deploy-vps.sh`](scripts/deploy-vps.sh).
+
+Required repository secrets: `VPS_HOST`, `VPS_USER`, `VPS_SSH_PORT`, `VPS_SSH_KEY`.
+The server pulls this repository with a read-only **deploy key**.
+
+`mr-sonu-singh/Final_NorAi_Website` is kept as a one-way mirror for the partner's
+reference. It is not a deploy source.
