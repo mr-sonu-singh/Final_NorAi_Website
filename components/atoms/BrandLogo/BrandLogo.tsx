@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
 export interface BrandLogoProps {
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg' | 'footer';
   variant?: 'mark' | 'full' | 'inverted';
   className?: string;
 }
@@ -29,6 +29,12 @@ const sizeMap = {
     text: 'text-3xl',
     gap: 'gap-3',
   },
+  footer: {
+    px: 100,
+    markClass: 'w-[100px] h-[100px]',
+    text: 'text-4xl',
+    gap: 'gap-4',
+  },
 };
 
 /**
@@ -50,7 +56,7 @@ export function BrandLogo({ size = 'md', variant = 'full', className }: BrandLog
         width={px}
         height={px}
         priority
-        className="w-full h-full object-cover"
+        className="w-full h-full object-contain"
       />
     </div>
   );
