@@ -1,0 +1,54 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Deploys must never overlap. cancel-in-progress is false on purpose: a
+# half-finished deploy owns the working tree on the VPS, and cancelling it
+# mid-restart is how you end up with pm2 serving a directory that no longer
+# matches a built commit. Queued runs wait their turn instead.
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    name: Typecheck
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npx tsc --noEmit
+
+  deploy:
+    name: Ship to norai.tech
+    needs: preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Materialise deploy key
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/norai_deploy
+          chmod 600 ~/.ssh/norai_deploy
+
+      # The VPS does the real work: fetch, npm ci, next build, pm2 restart,
+      # then poll the site and roll itself back if it does not come back.
+      # That rollback is the reason this job does not need to build here.
+      - name: Run remote deploy
+        run: |
+          ssh -i ~/.ssh/norai_deploy \
+              -o IdentitiesOnly=yes \
+              -o StrictHostKeyChecking=accept-new \
+              -p ${{ secrets.VPS_SSH_PORT }} \
+              "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \
+              'bash /var/www/official-website/deploy.sh'
