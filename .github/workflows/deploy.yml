@@ -34,21 +34,44 @@ jobs:
     needs: preflight
     runs-on: ubuntu-latest
     timeout-minutes: 25
+    env:
+      VPS_HOST: ${{ secrets.VPS_HOST }}
+      VPS_USER: ${{ secrets.VPS_USER }}
+      VPS_SSH_PORT: ${{ secrets.VPS_SSH_PORT }}
+      VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
     steps:
       - name: Materialise deploy key
         run: |
+          set -euo pipefail
           mkdir -p ~/.ssh
-          printf '%s\n' "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/norai_deploy
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/norai_deploy
           chmod 600 ~/.ssh/norai_deploy
+
+          # Without this, a truncated or wrong secret surfaces only as a
+          # bare "exit code 255" from ssh several steps later, with
+          # nothing pointing at the actual cause.
+          if ! grep -q 'BEGIN OPENSSH PRIVATE KEY' ~/.ssh/norai_deploy; then
+            echo "::error::VPS_SSH_KEY has no BEGIN OPENSSH PRIVATE KEY marker."
+            echo "::error::That secret is almost certainly the .pub file or a truncated paste."
+            exit 1
+          fi
+
+          if ! ssh-keygen -y -f ~/.ssh/norai_deploy > /dev/null 2>&1; then
+            echo "::error::VPS_SSH_KEY is not a parseable private key."
+            exit 1
+          fi
+
+          echo "deploy key parses cleanly"
 
       # The VPS does the real work: fetch, npm ci, next build, pm2 restart,
       # then poll the site and roll itself back if it does not come back.
       # That rollback is the reason this job does not need to build here.
       - name: Run remote deploy
         run: |
+          set -euo pipefail
           ssh -i ~/.ssh/norai_deploy \
               -o IdentitiesOnly=yes \
               -o StrictHostKeyChecking=accept-new \
-              -p ${{ secrets.VPS_SSH_PORT }} \
-              "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \
+              -p "$VPS_SSH_PORT" \
+              "$VPS_USER@$VPS_HOST" \
               'bash /var/www/official-website/deploy.sh'
