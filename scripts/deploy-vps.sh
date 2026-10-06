@@ -24,7 +24,8 @@ PREV_COMMIT="$(git rev-parse HEAD 2>/dev/null || echo none)"
 log "HEAD is $PREV_COMMIT"
 
 rollback() {
-  log "DEPLOY FAILED -- rolling back to $PREV_COMMIT"
+  local reason="${1:-unknown failure}"
+  log "DEPLOY FAILED ($reason) -- rolling back to $PREV_COMMIT"
   git reset --hard --quiet "$PREV_COMMIT" || true
   npm ci --no-audit --no-fund || true
   npm run build || true
@@ -46,14 +47,15 @@ log "deploying $TARGET"
 git reset --hard --quiet "$TARGET"
 
 log "installing dependencies"
-npm ci --no-audit --no-fund || { rollback; exit 1; }
+npm ci --no-audit --no-fund || { rollback "npm ci failed"; exit 1; }
 
 log "building"
-npm run build || { rollback; exit 1; }
+npm run build || { rollback "next build failed"; exit 1; }
 
 log "restarting pm2"
-pm2 restart "$PM2_APP" --update-env || { rollback; exit 1; }
+pm2 restart "$PM2_APP" --update-env || { rollback "pm2 restart failed"; exit 1; }
 
+log "probing health check at $HEALTH_URL..."
 for i in $(seq 1 "$HEALTH_ATTEMPTS"); do
   if curl -fsS -o /dev/null --max-time 5 "$HEALTH_URL"; then
     log "healthy after ${i} probe(s) -- $TARGET is live"
@@ -62,5 +64,5 @@ for i in $(seq 1 "$HEALTH_ATTEMPTS"); do
   sleep "$HEALTH_INTERVAL"
 done
 
-rollback
+rollback "health check timed out after $(( HEALTH_ATTEMPTS * HEALTH_INTERVAL ))s ($HEALTH_ATTEMPTS probes against $HEALTH_URL failed)"
 exit 1
